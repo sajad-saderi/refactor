@@ -8,7 +8,7 @@ module.exports = withCSS(
     /* config options here */
     env: {
       SITE_URL: "https://otoli.net",
-      PRODUCTION_ENDPOINT: "https://core.otoli.net"
+      PRODUCTION_ENDPOINT: "https://core.otoli.net",
     }
   })
 );
