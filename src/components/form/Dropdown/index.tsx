@@ -21,7 +21,6 @@ const DropdownSearch = props => {
       });
     }
   }, [props.data]);
-  console.log("Data", Data);
 
   return (
     <div
