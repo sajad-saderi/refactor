@@ -99,7 +99,7 @@ const Footer = () => {
 
           <div className="row">
             <div className="col-lg-12">
-              <span className="ver">1.10.14</span>
+              <span className="ver">2.0.0</span>
               <Link href="/site-map">
                 <a
                   style={{

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "react-modern-calendar-datepicker/lib/DatePicker.scss";
+import "../../styles/calender.scss";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 
 import DropdownSearch from "../../components/form/Dropdown";

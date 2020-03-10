@@ -2,10 +2,12 @@
 
 const withSass = require("@zeit/next-sass");
 
-module.exports = withSass({
+module.exports = withSass({});
+
+module.exports = {
   /* config options here */
   env: {
     SITE_URL: "https://otoli.net",
     PRODUCTION_ENDPOINT: "https://core.otoli.net"
   }
-});
+};
