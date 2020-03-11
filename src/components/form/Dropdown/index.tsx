@@ -73,7 +73,7 @@ const DropdownSearch = props => {
       )}
       {ShowController && (
         <div className="resultList" style={{ top: props.top + "px" }}>
-          {Data.map(i => (
+          {Data.map((i,index) => (
             <p
               className="Items"
               onClick={() => {
@@ -81,7 +81,7 @@ const DropdownSearch = props => {
                 props.Select(i);
                 DropDownController();
               }}
-              key={i.key}
+              key={index}
             >
               {i.text}
             </p>

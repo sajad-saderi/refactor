@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const Layout = props => {
   useEffect(() => {
-    if (Router.query.utm_source) {
+    if (Router.router.query.utm_source) {
       localStorage["utm_source"] = Router.query.utm_source;
       localStorage["utm_medium"] = Router.query.utm_medium;
       localStorage["utm_campaign"] = Router.query.utm_campaign;

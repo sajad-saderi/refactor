@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
 
-
 import Layout from "../src/Layout";
 import Search from "../src/containers/Search";
 
@@ -19,7 +18,7 @@ const HomePage = () => {
         <h2>ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.</h2>
       </div>
       <Search />
-      <div style={{ background: "#fafafa" }}>
+      <div>
         <section className="insurance responsive">
           <div>
             <div className="insuranceBox">
@@ -74,13 +73,7 @@ const HomePage = () => {
             <a>تخمین درآمد ماهیانه</a>
           </div>
         </section>
-        <section
-          className="responsive WHITE whyOtoli"
-          style={{
-            marginBottom: "20px",
-            paddingBottom: "50px"
-          }}
-        >
+        <section className="responsive WHITE whyOtoli">
           <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
           <div className="WhyOtolicontainer">
             <section className="WhyOtolibox">
