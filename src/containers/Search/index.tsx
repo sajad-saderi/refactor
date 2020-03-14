@@ -60,7 +60,7 @@ const Search = () => {
           />
         </div>
         <div>
-          <button>جستوجو</button>
+          <button>جستجو</button>
         </div>
       </form>
     </section>

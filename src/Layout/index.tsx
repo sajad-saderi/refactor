@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Router from "next/router";
 import Footer from "../components/Footer";
+import Header from "../containers/header";
 
 const Layout = props => {
   useEffect(() => {
@@ -16,11 +17,9 @@ const Layout = props => {
 
   return (
     <>
-      <header>هدر</header>
+      <Header></Header>
       <main>{props.children}</main>
-      <footer>
-        <Footer/>
-      </footer>
+      <Footer />
     </>
   );
 };

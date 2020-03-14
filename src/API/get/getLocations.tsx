@@ -6,7 +6,7 @@ const GET_LOCATIONS = "/core/location/list";
 export const REQUEST_GET_LOCATION = () => {
   return new Promise((resolve, reject) => {
     axios
-      .post(DOMAIN + GET_LOCATIONS + "?limit=100")
+      .get(DOMAIN + GET_LOCATIONS + "?limit=100")
       .then(response => {
         if (response.data.success) {
           const citiesFarsi = response.data.items.map((value, index) => ({

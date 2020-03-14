@@ -5,6 +5,7 @@ import Filters from "../src/containers/Filters";
 
 import filterContext from "../src/context/filter-context";
 import SearchResultList from "../src/containers/car/search-result";
+import Layout from "../src/Layout";
 
 let Location: any = 1;
 let Start_date = null;
@@ -29,8 +30,6 @@ const SearchResult = () => {
   }, []);
 
   async function initSearch() {
-    console.log(Start_date, End_date);
-
     let queryString = `location_id=${Location}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
     if (price.min && price.max)
       queryString += `&min_price=${price.min}&max_price=${price.max}`;
@@ -46,7 +45,7 @@ const SearchResult = () => {
   }
 
   function filterResults(v) {
-    page =1
+    page = 1;
     price = {
       min: +v[0],
       max: +v[1]
@@ -65,7 +64,7 @@ const SearchResult = () => {
   };
 
   return (
-    <>
+    <Layout>
       <filterContext.Provider
         value={{
           setDataForSearch: v => {
@@ -77,7 +76,7 @@ const SearchResult = () => {
       </filterContext.Provider>
       <SearchResultList result={result} />
       <span onClick={() => loadMore()}>نمایش بیشتر</span>
-    </>
+    </Layout>
   );
 };
 

@@ -1,0 +1,9 @@
+@import "../../styles/colors";
+header {
+  background-color: $header_background_color;
+  .Nav {
+      ul li{
+          display: inline-block;
+      }
+  }
+}

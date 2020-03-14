@@ -1,14 +1,18 @@
 import React from "react";
 
-const TextInput = (props:ItextInput) => {
+const TextInput = (props: ItextInput) => {
+  const ValueHandler = e => {
+    props.onChangeHandler(e.target.value);
+  };
+
   return (
     <input
       name={props.name}
       value={props.value}
-      onChange={props.onChangeHandler}
+      onChange={ValueHandler}
       disabled={props.disabled}
-      max={props.max}
-      min={props.min}
+      maxLength={props.max}
+      minLength={props.min}
     />
   );
 };
@@ -18,8 +22,8 @@ interface ItextInput {
   value?: string;
   onChangeHandler: any;
   disabled?: boolean;
-  max?: string | number;
-  min?: string | number;
+  max?: number;
+  min?: number;
 }
 
 export default TextInput;

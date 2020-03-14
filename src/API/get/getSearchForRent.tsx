@@ -1,29 +1,29 @@
-import axios from 'axios';
+import axios from "axios";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-const GET_SEARCH_FOR_RENT = '/core/rental-car/search-for-rent/list';
+const GET_SEARCH_FOR_RENT = "/core/rental-car/search-for-rent/list";
 
 export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
-  console.log(data);
-  
   return new Promise((resolve, reject) => {
     let queryString;
     if (data.result_key) {
-      queryString = 'result_key=' + data.result_key + '&o=' + data.o;
+      queryString = "result_key=" + data.result_key + "&o=" + data.o;
     } else {
       queryString = data.queryString;
     }
-    
+
     axios
       .get(
         DOMAIN +
           GET_SEARCH_FOR_RENT +
-          ('?limit=' + data.limit + '&page=' + data.page ) +
-          ('&' + queryString)
+          ("?limit=" + data.limit + "&page=" + data.page) +
+          ("&" + queryString)
       )
       .then(response => {
+        console.log(response);
+        
         if (response.data.success) {
-          const results = response.data.items
+          const results = response.data.items;
           if (results === undefined || results.length == 0) {
             resolve({
               results: [],
@@ -45,7 +45,7 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
                 stats: {
                   body_style_set: body_style_stats,
                   deliver_at_renters_place: stats.deliver_at_renters_place,
-                  with_driver: stats.with_driver,
+                  with_driver: stats.with_driver
                 }
               };
             }

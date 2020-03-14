@@ -11,7 +11,7 @@ const Footer = () => {
     if (Router.route === "/checkout") setHider(true);
   }, []);
   return (
-    <>
+    <footer>
       <div id="toTop" />
       <div className={["plus_border", hider ? "removeFooter" : ""].join(" ")}>
         <div className="container" dir="rtl">
@@ -115,7 +115,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </>
+    </footer>
   );
 };
 
