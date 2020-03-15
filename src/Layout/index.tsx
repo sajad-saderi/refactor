@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Router from "next/router";
 import Footer from "../components/Footer";
 import Header from "../containers/header";
+import "../styles/main.scss";
 
 const Layout = props => {
   useEffect(() => {

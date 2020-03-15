@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
+import modal_context from "../../../context/Modal_context";
 import jsCookie from "js-cookie";
 
 const Menu = () => {
+  const MODAL_CONTEXT = useContext(modal_context);
   const complete_register = jsCookie.get("complete_register");
   const token = jsCookie.get("token");
   const img_profile = jsCookie.get("thumbnail_url");
   const profile = jsCookie.get("company_name")
     ? jsCookie.get("company_name")
     : `${jsCookie.get("first_name")} ${jsCookie.get("last_name")}`;
+
   return (
     <ul>
       {token ? (
         <li>
-          <img src={img_profile || "https://core.otoli.net/static/core/default_profile_pic.png"} alt={profile} />
+          <img
+            src={
+              img_profile ||
+              "https://core.otoli.net/static/core/default_profile_pic.png"
+            }
+            alt={profile}
+          />
           <span>{profile}</span>
         </li>
       ) : (
-        <li>ورود/ثبت نام</li>
+        <li
+          onClick={() => {
+            MODAL_CONTEXT.modalHandler("Login");
+          }}
+        >
+          ورود/ثبت نام
+        </li>
       )}
       {complete_register && <li>رزروهای من</li>}
-      <li>
+      <li className="Drop_Down">
         راهنما
-        <ul>
+        <ul className="Sub_Nav_Level_2">
           <li>
             <Link href="/otoli">
               <a>اتولی چگونه کار می‌کند؟</a>

@@ -40,7 +40,7 @@ const Search = () => {
   };
 
   return (
-    <section>
+    <section className="search_container">
       <form onSubmit={e => GotoSearchResult(e)}>
         <div>
           <DropdownSearch

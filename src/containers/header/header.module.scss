@@ -1,9 +1,89 @@
 @import "../../styles/colors";
+@import "./modals/modal.module.scss";
 header {
   background-color: $header_background_color;
+  padding-top: 1.2rem;
+  // height: 64px;
+  .Logo {
+    float: left;
+    &::after {
+      display: block;
+      clear: both;
+      content: "";
+    }
+    img {
+      width: 8.1rem;
+    }
+  }
   .Nav {
-      ul li{
-          display: inline-block;
+    ul {
+      li {
+        display: inline-block;
+        color: $White_Color;
+        font-size: 1.4rem;
+        position: relative;
+        line-height: 2;
+        font-weight: 500;
+        padding-bottom: 1.2rem;
+
+        padding-left: 2.4rem;
+        cursor: pointer;
+        .Sub_Nav_Level_2 {
+          display: none;
+          position: absolute;
+          box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
+          width: 120px;
+          right: -16px;
+          top: 36px;
+          min-width: 200px;
+          background: rgb(255, 255, 255);
+          border-radius: 3px;
+          li {
+            padding-bottom: 0rem;
+            display: block;
+            &:hover {
+              background-color: rgb(250, 250, 250);
+              a {
+                color: rgb(75, 163, 206);
+              }
+              padding-left: 15px;
+            }
+            a {
+              font-size: 1rem;
+              color: $Main_black_Text_Color;
+              display: block;
+              line-height: 1;
+              border-bottom: 1px solid rgb(254, 254, 254);
+              padding: 15px 10px;
+            }
+          }
+        }
+        a,
+        span {
+          font-weight: 500;
+          font-size: 1.4rem;
+          color: $White_Color;
+        }
       }
+      .Drop_Down {
+        &:hover .Sub_Nav_Level_2 {
+          display: block;
+          &::before {
+            bottom: 100%;
+            right: 15%;
+            content: "";
+            height: 0px;
+            width: 0px;
+            position: absolute;
+            pointer-events: none;
+            margin-left: -7px;
+            border-style: solid;
+            border-color: transparent transparent rgb(255, 255, 255);
+            border-image: initial;
+            border-width: 7px;
+          }
+        }
+      }
+    }
   }
 }
