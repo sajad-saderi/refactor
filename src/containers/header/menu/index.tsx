@@ -17,6 +17,7 @@ const Menu = () => {
       {token ? (
         <li>
           <img
+            className="profile_icon"
             src={
               img_profile ||
               "https://core.otoli.net/static/core/default_profile_pic.png"

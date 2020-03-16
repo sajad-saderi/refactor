@@ -25,9 +25,14 @@ header {
         line-height: 2;
         font-weight: 500;
         padding-bottom: 1.2rem;
-
         padding-left: 2.4rem;
         cursor: pointer;
+        .profile_icon {
+          width: 3rem;
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 8px;
+        }
         .Sub_Nav_Level_2 {
           display: none;
           position: absolute;

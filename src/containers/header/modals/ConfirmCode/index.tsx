@@ -1,16 +1,27 @@
 import React, { useState, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
+import modal_context from "../../../../context/Modal_context";
 import axios from "axios";
 import Router from "next/router";
 import jsCookie from "js-cookie";
+import Button from "../../../../components/form/Button";
+import CountDown from "../../../../components/countDown";
 
-const ConfirmCode = () => {
+const ConfirmCode = (props: IConfirmCode) => {
   const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [ActiveAgain, setActiveAgain] = useState(false);
+  const [error, setError] = useState({
+    status: false,
+    message: ""
+  });
   const Cell_Phone_context = useContext(cell_Phone_context);
+  const Modal_context = useContext(modal_context);
   const sendConfirmCode = e => {
     e.preventDefault();
 
+    setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/login";
     axios
@@ -19,18 +30,16 @@ const ConfirmCode = () => {
         code: code
       })
       .then(response => {
+        setLoading(false);
+        Modal_context.modalHandler("SET");
         if (response.data.token && !response.data.has_name) {
-          //TODO:   save Data on cache and add heap to project
+          const data = response.data;
+          jsCookie.set("token", data.token);
+          jsCookie.set("phone", data.user_profile.cell);
+          jsCookie.set("complete_register", data.has_name);
+          jsCookie.set("user_id", data.user_profile.id);
 
-          // actions.signin({
-          //   user_id: response.data.user_profile.id,
-          //   token: response.data.token,
-          //   phone: this.state.phone,
-          //   // =====>
-          //   complete_register: false
-          //   // =====>
-          // });
-
+          // TODO: save data in cache and active heap
           // if(window.heap){
           //   window.heap.identify(`${this.state.phone}`);
           //   console.log('window.heap',this.state.phone);
@@ -68,15 +77,23 @@ const ConfirmCode = () => {
         }
       })
       .catch(error => {
-        console.error("Error in LoginModal Happend:");
+        setLoading(false);
         console.error(error.response.data);
+        setError({
+          status: true,
+          message: error.response.data.message
+        });
       });
   };
 
+  const Done = () => {
+    setActiveAgain(true);
+  };
   return (
-    <>
+    <div className="modal_box_div">
       <form onSubmit={sendConfirmCode}>
         <TextInput
+          error={error}
           name="code"
           onChangeHandler={e => {
             setCode(e);
@@ -84,11 +101,22 @@ const ConfirmCode = () => {
           value={code}
           min={4}
           max={4}
+          label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
+          placeholder="لطفا کد را وارد کنید"
         />
-        <button>ورود</button>
+        <span className="error_message">{error.message}</span>
+        {ActiveAgain ? (
+          <p onClick={() => props.panelController()}>ارسال مجدد</p>
+        ) : (
+          <CountDown time={20} Done={Done} />
+        )}
+        <Button class="Blue_BTN login_submit" value="ورود" loading={loading} />
       </form>
-    </>
+    </div>
   );
 };
 
+interface IConfirmCode {
+  panelController: any;
+}
 export default ConfirmCode;

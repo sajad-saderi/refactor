@@ -2,13 +2,21 @@ import React, { useState, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import axios from "axios";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
+import "./get_cellphone.module.scss";
+import Button from "../../../../components/form/Button";
 
-const GetUserCellPhone = () => {
+const GetUserCellPhone = (props: IGetUserCellPhone) => {
   const [cellPhone, setCellPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({
+    status: false,
+    message: ""
+  });
   const Cell_Phone_context = useContext(cell_Phone_context);
+
   const sendConfirmCode = e => {
     e.preventDefault();
-
+    setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/send-code";
     axios
@@ -35,31 +43,50 @@ const GetUserCellPhone = () => {
         if (response.data.success) {
           Cell_Phone_context.cell_phone = cellPhone;
           console.log(response.data);
+          setLoading(false);
+          props.panelController();
         }
       })
       .catch(error => {
-        console.error("Error in LoginModal Happend:");
+        setLoading(false);
         console.error(error.response.data);
+        setError({
+          status: true,
+          message: error.response.data.message
+        });
       });
-    console.log("logloglog");
   };
 
   return (
     <>
-      <form onSubmit={sendConfirmCode}>
-        <TextInput
-          name="cell Phone"
-          onChangeHandler={e => {
-            setCellPhone(e);
-          }}
-          value={cellPhone}
-          min={11}
-          max={11}
-        />
-        <button>ارسال کد ورود</button>
-      </form>
+      <div className="modal_box_div">
+        <form onSubmit={sendConfirmCode}>
+          <TextInput
+            error={error}
+            name="cell Phone"
+            onChangeHandler={e => {
+              setCellPhone(e);
+            }}
+            value={cellPhone}
+            min={11}
+            max={11}
+            label="شماره تلفن همراه"
+            placeholder="لطفا شماره همراه خود را وارد کنید"
+          />
+          <span className="error_message">{error.message}</span>
+          <Button
+            class="Blue_BTN login_submit"
+            value="ارسال کد ورود"
+            loading={loading}
+          />
+        </form>
+      </div>
     </>
   );
 };
+
+interface IGetUserCellPhone {
+  panelController: any;
+}
 
 export default GetUserCellPhone;
