@@ -1,4 +1,4 @@
-@import '../../../../styles/colors';
+@import "../../../../styles/colors";
 
 .modal_box_div {
   &:nth-last-of-type(1) {
@@ -11,9 +11,6 @@
   width: 100%;
   form {
     width: 100%;
-    input {
-      margin: 0.8rem auto 0.5rem;
-    }
     .error_message {
       color: $Error_text_color;
       font-size: 1.2rem;

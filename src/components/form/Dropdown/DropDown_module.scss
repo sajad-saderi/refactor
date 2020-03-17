@@ -1,0 +1,88 @@
+.DropDown_container {
+  width: 100%;
+  position: relative;
+  label {
+    font-size: 1.2rem;
+  }
+  input {
+    font-family: inherit;
+    margin: 0.3rem auto 0.5rem;
+    display: block;
+    width: 100%;
+    outline: 0;
+    -webkit-appearance: none;
+    line-height: 1;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    background: #fff;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    color: rgba(0, 0, 0, 0.87);
+    border-radius: 0.4rem;
+    box-shadow: 0 0 0 0 transparent inset;
+  }
+  .clean_icon {
+    position: absolute;
+    top: 1.2rem;
+    left: 4.5rem;
+  }
+  .ArrowDown{
+    position: absolute;
+    top: 1.3rem;
+    left: 1rem
+  }
+  .Locations_list_container {
+    position: absolute;
+    padding: 1rem;
+    z-index: 2;
+    width: 100%;
+    max-height: 30rem;
+    min-height: 6rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 5rem;
+    background: #fff;
+    box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.176);
+    input {
+      font-family: inherit;
+      margin: 0.3rem auto 0.5rem;
+      display: block;
+      width: 100%;
+      outline: 0;
+      -webkit-appearance: none;
+      line-height: 1;
+      padding: 0.5rem;
+      font-size: 1.4rem;
+      background: #fff;
+      border: 1px solid rgba(34, 36, 38, 0.15);
+      color: rgba(0, 0, 0, 0.87);
+      border-radius: 0.4rem;
+      box-shadow: 0 0 0 0 transparent inset;
+    }
+    p {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f9f9f9;
+      &:last-child {
+        border-color: transparent;
+      }
+    }
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+}

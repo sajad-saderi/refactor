@@ -1,0 +1,50 @@
+.search_box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .search_box_div {
+      margin: auto 1rem;
+      input {
+        padding: 0.94rem;
+      }
+      .Search_Text_transparent {
+        margin-bottom: 4px;
+    color: transparent;
+    cursor: default;
+    line-height: 1;
+      }
+      display: inline-block;
+      width: 100%;
+      .DatePicker {
+        width: 100%;
+        input {
+          text-align: right;
+          padding: 0.94rem;
+          font-family: inherit;
+          margin: 0.3rem auto 0.5rem;
+          display: block;
+          width: 100%;
+          outline: 0;
+          -webkit-appearance: none;
+          line-height: 1;
+          font-size: 1.4rem;
+          background: #fff;
+          border: 1px solid rgba(34, 36, 38, 0.15);
+          color: rgba(0, 0, 0, 0.87);
+          border-radius: 0.4rem;
+          box-shadow: 0 0 0 0 transparent inset;
+        }
+      }
+    }
+    .search_Btn {
+      width: 100%;
+    }
+  }
+}

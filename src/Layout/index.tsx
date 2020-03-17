@@ -1,10 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Router from "next/router";
 import Footer from "../components/Footer";
 import Header from "../containers/header";
 import "../styles/main.scss";
+import modal_context from "../context/Modal_context";
+
+const ShowModalReducer = (current, action) => {
+  if (action.type === "SET") return !current;
+};
 
 const Layout = props => {
+  const [modalType, setModalType] = useState("Login");
+  const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
+
   useEffect(() => {
     if (Router.router.query.utm_source) {
       localStorage["utm_source"] = Router.query.utm_source;
@@ -16,10 +24,25 @@ const Layout = props => {
     }
   }, []);
 
+  const modal_handler = type => {
+    dispatch({ type: "SET" });
+    setModalType(type);
+  };
+
   return (
     <>
-      <Header></Header>
-      <main>{props.children}</main>
+      <modal_context.Provider
+        value={{
+          show_modal: Show_Modal,
+          modalHandler: type => {
+            console.log();
+            modal_handler(type);
+          }
+        }}
+      >
+        <Header modalType={modalType} Show_Modal={Show_Modal}></Header>
+        <main>{props.children}</main>
+      </modal_context.Provider>
       <Footer />
     </>
   );

@@ -3,6 +3,7 @@ import GetUserCellPhone from "./GetUserCellPhone";
 import ConfirmCode from "./ConfirmCode";
 import modal_context from "../../../context/Modal_context";
 import { IoMdClose } from "react-icons/io";
+import TellMe from "./Tell_me";
 
 const Modals = props => {
   const [change, setChange] = useState(false);
@@ -14,22 +15,33 @@ const Modals = props => {
 
   return (
     <div className="Modal">
-      {props.modal_type === "Login" && (
-        <div className="modal_box login_modal">
-          <div className="modal_box_div">
-            <IoMdClose
-              color="rgb(165, 165, 165)"
-              size="2rem"
-              onClick={() => Modal_context.modalHandler()}
-            />
-          </div>
-          {!change ? (
+      <div
+        className={[
+          "modal_box",
+          props.modal_type === "Login"
+            ? "login_modal"
+            : props.modal_type === "TellMe"
+            ? "Tell_me"
+            : null
+        ].join(" ")}
+      >
+        <div className="modal_box_div">
+          <IoMdClose
+            color="rgb(165, 165, 165)"
+            size="2rem"
+            onClick={() => Modal_context.modalHandler()}
+          />
+        </div>
+        {props.modal_type === "Login" ? (
+          change ? (
             <ConfirmCode panelController={panelController} />
           ) : (
             <GetUserCellPhone panelController={panelController} />
-          )}
-        </div>
-      )}
+          )
+        ) : props.modal_type === "TellMe" ? (
+          <TellMe />
+        ) : null}
+      </div>
       <div className="back_draw" onClick={() => Modal_context.modalHandler()} />
     </div>
   );

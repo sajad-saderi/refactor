@@ -92,6 +92,7 @@ video {
   font-weight: normal;
   vertical-align: baseline;
   box-sizing: border-box;
+  color: $Main_black_Text_Color;
 }
 footer,
 header {
@@ -161,6 +162,7 @@ a {
 // INPUT 
 input {
   box-sizing: border-box;
+  margin: 0.8em auto;
 }
 
 .input_Error{

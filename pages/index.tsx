@@ -3,7 +3,7 @@ import { NextSeo } from "next-seo";
 
 import Layout from "../src/Layout";
 import Search from "../src/containers/Search";
-import '../src/styles/pages/index.scss'
+import "../src/styles/pages/index.scss";
 
 const HomePage = () => {
   return (
@@ -15,11 +15,11 @@ const HomePage = () => {
       />
       <article className="Homepage">
         <div className="banner">
-        <div className="brand">
           <h1>اتولی، اجاره آسان خودرو</h1>
           <h2>ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.</h2>
-        </div>
-        <Search />
+          <div className="search_container responsive">
+            <Search />
+          </div>
         </div>
         <div className="second_container">
           <section className="insurance responsive">

@@ -1,50 +1,45 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import axios from "axios";
-import cell_Phone_context from "../../../../context/Cell_Phone_context";
-import "./userCellphone.module.scss";
+import "./Tell_me.module.scss";
 import Button from "../../../../components/form/Button";
+import modal_context from "../../../../context/Modal_context";
 
-const GetUserCellPhone = (props: IGetUserCellPhone) => {
+let location_id = null;
+
+const TellMe = () => {
   const [cellPhone, setCellPhone] = useState("");
+  const [locationName, setLocationName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
     message: ""
   });
-  const Cell_Phone_context = useContext(cell_Phone_context);
+  const Modal_context = useContext(modal_context);
 
-  const sendConfirmCode = e => {
+  const sendCellPhonenumber = e => {
     e.preventDefault();
+    if (cellPhone.length < 11) {
+      setError({
+        status: true,
+        message: "شماره باید 11 رقم باشد."
+      });
+      return;
+    }
     setLoading(true);
+    console.log(location_id);
+
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-    const SEND_CONFIRM_CODE = "/core/device/send-code";
+    const SEND_CONFIRM_CODE = "/core/service-request/new";
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellPhone,
-        utm_source: localStorage["utm_source"]
-          ? localStorage["utm_source"]
-          : "",
-        utm_medium: localStorage["utm_medium"]
-          ? localStorage["utm_medium"]
-          : "",
-        utm_campaign: localStorage["utm_campaign"]
-          ? localStorage["utm_campaign"]
-          : "",
-        utm_term: localStorage["utm_term"] ? localStorage["utm_term"] : "",
-        utm_content: localStorage["utm_content"]
-          ? localStorage["utm_content"]
-          : "",
-        utm_landing_url: localStorage["utm_landing_url"]
-          ? localStorage["utm_landing_url"]
-          : ""
+        location_id: location_id
       })
       .then(response => {
         if (response.data.success) {
-          Cell_Phone_context.cell_phone = cellPhone;
-          console.log(response.data);
+          Modal_context.modalHandler("SET");
           setLoading(false);
-          props.panelController();
         }
       })
       .catch(error => {
@@ -61,10 +56,20 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
     setCellPhone("");
   };
 
+  useEffect(() => {
+    const Location = JSON.parse(localStorage["User_Location"]);
+    location_id = Location.value;
+    setLocationName(Location.text);
+  }, []);
+
   return (
     <>
       <div className="modal_box_div">
-        <form onSubmit={sendConfirmCode}>
+        <form onSubmit={sendCellPhonenumber}>
+          <p className="p1">
+            اتولی در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.
+          </p>
+          {/* <p className="p2"></p> */}
           <TextInput
             error={error}
             name="cell Phone"
@@ -74,11 +79,13 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             value={cellPhone}
             min={11}
             max={11}
-            label="شماره تلفن همراه"
-            placeholder="لطفا شماره همراه خود را وارد کنید"
+            LabelColor="#737373"
+            label="شماره همراهتان را وارد کنید"
+            placeholder="شماره تلفن همراه"
             clearField={clearField}
           />
           <span className="error_message">{error.message}</span>
+          <p className="p3">{`وقتی در ${locationName} فعال شدیم خبرتان می‌کنیم.`}</p>
           <Button
             class="Blue_BTN login_submit"
             value="ارسال کد ورود"
@@ -90,8 +97,4 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   );
 };
 
-interface IGetUserCellPhone {
-  panelController: any;
-}
-
-export default GetUserCellPhone;
+export default TellMe;

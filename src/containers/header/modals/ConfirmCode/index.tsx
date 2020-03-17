@@ -89,6 +89,11 @@ const ConfirmCode = (props: IConfirmCode) => {
   const Done = () => {
     setActiveAgain(true);
   };
+
+  const clearField = () =>{
+    setCode("");
+  }
+
   return (
     <div className="modal_box_div">
       <form onSubmit={sendConfirmCode}>
@@ -103,13 +108,24 @@ const ConfirmCode = (props: IConfirmCode) => {
           max={4}
           label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
           placeholder="لطفا کد را وارد کنید"
+          clearField={clearField}
         />
         <span className="error_message">{error.message}</span>
-        {ActiveAgain ? (
-          <p onClick={() => props.panelController()}>ارسال مجدد</p>
-        ) : (
-          <CountDown time={20} Done={Done} />
-        )}
+        <div className="go_back">
+          {ActiveAgain ? (
+            <p onClick={() => props.panelController()} className="send_again">
+              ارسال مجدد
+            </p>
+          ) : (
+            <div className="Count_Down_text">
+              <span>ارسال مجدد</span> <CountDown time={20} Done={Done} />{" "}
+              <span>ثانیه</span>
+            </div>
+          )}
+        </div>
+        <div className="go_back" onClick={() => props.panelController()}>
+          <p className="Edit_number">ویرایش شماره</p>
+        </div>
         <Button class="Blue_BTN login_submit" value="ورود" loading={loading} />
       </form>
     </div>

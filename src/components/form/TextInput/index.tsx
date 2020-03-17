@@ -1,5 +1,6 @@
 import React from "react";
 import "./inputStyle.module.scss";
+import { IoMdClose } from "react-icons/io";
 
 const TextInput = (props: ItextInput) => {
   const ValueHandler = e => {
@@ -7,8 +8,15 @@ const TextInput = (props: ItextInput) => {
   };
 
   return (
-    <>
-      <label className="text_input_label">{props.label}</label>
+    <div className="text_input_container">
+      <label
+        style={{
+          color: props.LabelColor
+        }}
+        className="text_input_label"
+      >
+        {props.label}
+      </label>
       <input
         className={[
           "text_input",
@@ -22,7 +30,15 @@ const TextInput = (props: ItextInput) => {
         minLength={props.min}
         placeholder={props.placeholder}
       />
-    </>
+      {props.value.length > 0 && (
+        <IoMdClose
+          color="rgb(165, 165, 165)"
+          size="2rem"
+          className="clean_icon"
+          onClick={() => props.clearField()}
+        />
+      )}
+    </div>
   );
 };
 
@@ -36,6 +52,8 @@ interface ItextInput {
   label?: string;
   placeholder?: string;
   error?: any;
+  clearField: any;
+  LabelColor?: string;
 }
 
 export default TextInput;

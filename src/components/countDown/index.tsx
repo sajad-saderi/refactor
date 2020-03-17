@@ -40,7 +40,7 @@ const CountDown = (props: ITime) => {
       type: "REDUCE"
     });
   };
-  return <p>{Time}</p>;
+  return <span>{Time}</span>;
 };
 
 interface ITime {
