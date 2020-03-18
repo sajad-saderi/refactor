@@ -62,7 +62,7 @@ const DropdownSearch = (props: IDropDown) => {
   return (
     <div className="DropDown_container" ref={wrapperRef}>
       {props.label && <label>{props.label}</label>}
-      <div>
+      <div className="input_wrapper">
         <input
           className={props.styleClass ? props.styleClass : ""}
           data-hj-whitelist

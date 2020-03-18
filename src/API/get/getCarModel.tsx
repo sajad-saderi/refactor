@@ -1,15 +1,12 @@
 import axios from "axios";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-let GET_LOCATIONS = "/core/location/list?limit=500";
+let GET_MODEL = "/core/car/list?limit=800&brand_id=";
 
-export const REQUEST_GET_LOCATION = (parent_id?: IGetLocation) => {
-  if (parent_id) {
-    GET_LOCATIONS = GET_LOCATIONS + `&parent_id=${parent_id}`;
-  }
+export const REQUEST_GET_CAR_MODEL = (carModel: ICarModel) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(DOMAIN + GET_LOCATIONS)
+      .get(DOMAIN + GET_MODEL + carModel)
       .then(response => {
         if (response.data.success) {
           const data = response.data.items.map((value, index) => ({
@@ -28,6 +25,6 @@ export const REQUEST_GET_LOCATION = (parent_id?: IGetLocation) => {
   });
 };
 
-interface IGetLocation {
-  parent_id?: number;
+interface ICarModel {
+  carModel: string;
 }

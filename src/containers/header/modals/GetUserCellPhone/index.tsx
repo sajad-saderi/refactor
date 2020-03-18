@@ -71,6 +71,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             onChangeHandler={e => {
               setCellPhone(e);
             }}
+            autoFocus={true}
             value={cellPhone}
             min={11}
             max={11}

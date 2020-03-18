@@ -1,0 +1,24 @@
+.Please_login_container {
+  min-height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  div {
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 8rem;
+    }
+    p {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 1.4rem;
+      margin: 1rem;
+      font-weight: 500;
+    }
+  }
+  .costume_btn_style{
+      width:12rem;
+  }
+}

@@ -18,6 +18,7 @@ const TextInput = (props: ItextInput) => {
         {props.label}
       </label>
       <input
+        autoFocus={props.autoFocus}
         className={[
           "text_input",
           props.error.status ? "input_Error" : null
@@ -54,6 +55,7 @@ interface ItextInput {
   error?: any;
   clearField: any;
   LabelColor?: string;
+  autoFocus?: boolean;
 }
 
 export default TextInput;

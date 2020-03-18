@@ -1,0 +1,19 @@
+.add_car_form_step_1 {
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  font-size: 1.4rem;
+}
+.pageTitle {
+  position: relative;
+  .car_icon {
+    margin: 1rem;
+    margin-right: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  h3 {
+    font-size: 1.8rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import modal_context from "../../../../context/Modal_context";
+import Auth_context from "../../../../context/Auth_context";
 import axios from "axios";
 import Router from "next/router";
 import jsCookie from "js-cookie";
@@ -18,6 +19,7 @@ const ConfirmCode = (props: IConfirmCode) => {
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
   const Modal_context = useContext(modal_context);
+  const AUTH_CONTEXT = useContext(Auth_context);
   const sendConfirmCode = e => {
     e.preventDefault();
 
@@ -69,7 +71,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           //         window.heap.addUserProperties({Name: `${response2.data.data.first_name}-${response2.data.data.last_name}`});
           //         console.log('window.heap',this.state.phone);
           //       }
-
+          AUTH_CONTEXT.Auth_Manager(true);
           console.log(response.data);
         } else {
           // TODO: handle errors
@@ -90,9 +92,9 @@ const ConfirmCode = (props: IConfirmCode) => {
     setActiveAgain(true);
   };
 
-  const clearField = () =>{
+  const clearField = () => {
     setCode("");
-  }
+  };
 
   return (
     <div className="modal_box_div">
@@ -103,6 +105,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           onChangeHandler={e => {
             setCode(e);
           }}
+          autoFocus={true}
           value={code}
           min={4}
           max={4}
