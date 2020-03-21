@@ -1,8 +1,14 @@
 .DropDown_container {
+  *::selection{
+    background-color: transparent;
+  }
   width: 100%;
   position: relative;
   label {
     font-size: 1.2rem;
+  }
+  .Disable_color {
+    cursor: not-allowed;
   }
   .input_wrapper {
     position: relative;
@@ -64,10 +70,19 @@
       box-shadow: 0 0 0 0 transparent inset;
     }
     p {
+      cursor: pointer;
       padding: 0.5rem 0;
       border-bottom: 1px solid #f9f9f9;
       &:last-child {
         border-color: transparent;
+      }
+      .Color_box {
+        border-radius: 4px;
+        width: 2rem;
+        height: 2rem;
+        display: inline-block;
+        float: left;
+        border: 1px solid #eee;
       }
     }
     /* width */
@@ -90,4 +105,7 @@
       background: #555;
     }
   }
+}
+.Disable_Container {
+  opacity: 0.5;
 }

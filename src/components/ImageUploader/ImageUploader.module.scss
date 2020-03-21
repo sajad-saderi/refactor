@@ -1,0 +1,18 @@
+.drop_zone {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-bottom: 24px;
+  background-color: rgb(250, 250, 250);
+  color: rgb(189, 189, 189);
+  cursor: pointer;
+  flex: 1 1 0%;
+  padding: 20px;
+  border-width: 2px;
+  border-color: rgb(238, 238, 238);
+  border-style: dashed;
+  outline: none;
+  transition: border 0.24s ease-in-out 0s;
+  border-radius: 0.285714rem;
+}

@@ -1,5 +1,6 @@
 @import "./units";
 @import "./colors";
+@import "./font";
 
 html {
   direction: rtl;
@@ -156,6 +157,11 @@ table {
 a {
   color: $White_Color;
   text-decoration: none;
+}
+
+// MAIN
+main{
+  background-color: #fafafa;
 }
 
 

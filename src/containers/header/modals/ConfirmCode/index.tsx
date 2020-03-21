@@ -57,14 +57,25 @@ const ConfirmCode = (props: IConfirmCode) => {
           );
         } else if (response.data.token && response.data.has_name) {
           const data = response.data;
-          jsCookie.set("token", data.token);
-          jsCookie.set("phone", data.user_profile.cell);
-          jsCookie.set("complete_register", data.has_name);
-          jsCookie.set("first_name", data.user_profile.name);
-          jsCookie.set("last_name", data.user_profile.last_name);
-          jsCookie.set("company_name", data.user_profile.company_name);
-          jsCookie.set("user_id", data.user_profile.id);
-          jsCookie.set("thumbnail_url", data.user_profile.thumbnail_url);
+          const cook_option = {
+            expires: 100
+          };
+          jsCookie.set("token", data.token, cook_option);
+          jsCookie.set("phone", data.user_profile.cell, cook_option);
+          jsCookie.set("complete_register", data.has_name, cook_option);
+          jsCookie.set("first_name", data.user_profile.name, cook_option);
+          jsCookie.set("last_name", data.user_profile.last_name, cook_option);
+          jsCookie.set(
+            "company_name",
+            data.user_profile.company_name,
+            cook_option
+          );
+          jsCookie.set("user_id", data.user_profile.id, cook_option);
+          jsCookie.set(
+            "thumbnail_url",
+            data.user_profile.thumbnail_url,
+            cook_option
+          );
           // TODO: save data in cache and active heap
           //       if(window.heap){
           //         window.heap.identify(`${this.state.phone}`);

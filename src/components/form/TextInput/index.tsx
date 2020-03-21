@@ -4,7 +4,11 @@ import { IoMdClose } from "react-icons/io";
 
 const TextInput = (props: ItextInput) => {
   const ValueHandler = e => {
-    props.onChangeHandler(e.target.value);
+    let value = e.target.value;
+    if (props.number) {
+      value = value.replace(/[^0-9]/g, "");
+      props.onChangeHandler(value);
+    } else props.onChangeHandler(value);
   };
 
   return (
@@ -24,14 +28,20 @@ const TextInput = (props: ItextInput) => {
           props.error.status ? "input_Error" : null
         ].join(" ")}
         name={props.name}
-        value={props.value}
+        value={
+          props.number
+            ? props.value === ""
+              ? props.value.toLocaleString()
+              : Number(props.value).toLocaleString()
+            : props.value
+        }
         onChange={ValueHandler}
         disabled={props.disabled}
         maxLength={props.max}
         minLength={props.min}
         placeholder={props.placeholder}
       />
-      {props.value.length > 0 && (
+      {props.value.length > 0 && !props.HideClearIcon &&  (
         <IoMdClose
           color="rgb(165, 165, 165)"
           size="2rem"
@@ -45,17 +55,19 @@ const TextInput = (props: ItextInput) => {
 
 interface ItextInput {
   name: string;
-  value?: string;
+  clearField: any;
   onChangeHandler: any;
+  value?: string;
   disabled?: boolean;
   max?: number;
   min?: number;
   label?: string;
   placeholder?: string;
   error?: any;
-  clearField: any;
   LabelColor?: string;
   autoFocus?: boolean;
+  number?: boolean;
+  HideClearIcon?: boolean;
 }
 
 export default TextInput;

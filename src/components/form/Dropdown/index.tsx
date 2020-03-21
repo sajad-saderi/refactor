@@ -60,11 +60,24 @@ const DropdownSearch = (props: IDropDown) => {
   };
 
   return (
-    <div className="DropDown_container" ref={wrapperRef}>
-      {props.label && <label>{props.label}</label>}
+    <div
+      className={[
+        "DropDown_container",
+        props.disabled && "Disable_Container"
+      ].join(" ")}
+      ref={wrapperRef}
+    >
+      {props.label && (
+        <label className={props.disabled && "Disable_color"}>
+          {props.label}
+        </label>
+      )}
       <div className="input_wrapper">
         <input
-          className={props.styleClass ? props.styleClass : ""}
+          className={[
+            props.disabled && "Disable_color",
+            props.styleClass ? props.styleClass : ""
+          ].join(" ")}
           data-hj-whitelist
           readOnly={props.InputDisable}
           disabled={props.disabled}
@@ -74,7 +87,8 @@ const DropdownSearch = (props: IDropDown) => {
           placeholder={props.placeholder}
           onClick={DropDownController}
         />
-        {InputValue.length > 0 || props.defaultVal ? (
+        {(InputValue.length > 0 || props.defaultVal) &&
+        !props.hideClearField ? (
           <IoMdClose
             color="rgb(165, 165, 165)"
             size="2rem"
@@ -82,12 +96,14 @@ const DropdownSearch = (props: IDropDown) => {
             onClick={clearField}
           />
         ) : null}
-        <IoIosArrowDown
-          color="rgb(165, 165, 165)"
-          size="2rem"
-          className="ArrowDown"
-          onClick={DropDownController}
-        />
+        {!props.hideArrowDown && (
+          <IoIosArrowDown
+            color="rgb(165, 165, 165)"
+            size="2rem"
+            className="ArrowDown"
+            onClick={DropDownController}
+          />
+        )}
       </div>
       {ShowController ? (
         <div className="Locations_list_container">
@@ -103,17 +119,19 @@ const DropdownSearch = (props: IDropDown) => {
               className="resultList"
               // style={{ top: props.top + "px" }}
             >
-              <input
-                autoFocus
-                placeholder="جستجو"
-                name="search"
-                type="search"
-                value={search_value}
-                onChange={e => {
-                  setSearch_value(e.target.value);
-                  searchHandler(e.target.value);
-                }}
-              />
+              {!props.disableSearch && (
+                <input
+                  autoFocus
+                  placeholder="جستجو"
+                  name="search"
+                  type="search"
+                  value={search_value}
+                  onChange={e => {
+                    setSearch_value(e.target.value);
+                    searchHandler(e.target.value);
+                  }}
+                />
+              )}
               {Data.map((i, index) => (
                 <p
                   className="Items"
@@ -125,6 +143,12 @@ const DropdownSearch = (props: IDropDown) => {
                   key={index}
                 >
                   {i.text}
+                  {i.code && (
+                    <span
+                      style={{ background: `${i.code}` }}
+                      className="Color_box"
+                    ></span>
+                  )}
                 </p>
               ))}
             </div>
@@ -146,6 +170,9 @@ interface IDropDown {
   clearField: any;
   Select: any;
   hardValue?: string;
+  disableSearch?: boolean;
+  hideArrowDown?: boolean;
+  hideClearField?: boolean;
 }
 
 export default DropdownSearch;
