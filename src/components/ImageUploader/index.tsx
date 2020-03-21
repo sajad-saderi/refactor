@@ -6,43 +6,45 @@ import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 
 const token = jsCookie.get("token");
 
-const ImageUploader = () => {
+const ImageUploader = (props: IImageUpload) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
   const [loading, loadingHandler] = useState(0);
 
-  //   const removePicture = (i) => {
-  //         removePictureID(i);
-  //         var picturesPreviewIndex = picturesPreview.indexOf(i);
-  //         picturesPreview.splice(i, 1);
-  //         // console.log(picturesID);
-  //         setPicturesPreview(picturesPreview);
-  //       }
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.forEach(file => {
       const reader: any = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        setPicturesPreview(picturesPreview =>
-          picturesPreview.concat(reader.result)
-        );
+        sendTheImage(file, reader.result);
       };
     });
   }, []);
 
   const RemoveAnImage = i => {
+    REQUEST_REMOVE_CAR_MEDIA({
+      token: token,
+      id: "950"
+    });
     setPicturesPreview(picturesPreview =>
-      picturesPreview.filter((_, index) => {
-        return index !== i;
+      picturesPreview.filter((item, index) => {
+        return item.id !== i;
       })
     );
+    props.delete_image(i);
   };
 
-  const sendTheImage = async file => {
-    const image_upload_res = await REQUEST_NEW_CAR_MEDIA({
+  const sendTheImage = async (file, result) => {
+    const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
       token: token,
       file: file
     });
-    console.log(image_upload_res);
+    setPicturesPreview(picturesPreview =>
+      picturesPreview.concat({
+        img: result,
+        id: image_upload_res.id
+      })
+    );
+    props.Upload_image(image_upload_res.id);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -55,18 +57,32 @@ const ImageUploader = () => {
       <label>بارگذاری عکس ها</label>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
-        <p>جهت بارگذاری عکس اینجا کلیک کنید و یا عکس خود را داخل این کادر بیاندازید</p>
+        <p>
+          جهت بارگذاری عکس اینجا کلیک کنید و یا عکس خود را داخل این کادر
+          بیاندازید
+        </p>
       </div>
       {picturesPreview.length > 0 &&
         picturesPreview.map((i, index) => {
           return (
-            <img src={i} width="80" onClick={() => RemoveAnImage(index)} />
+            <img
+              src={i.img}
+              width="80"
+              alt={i.id}
+              onClick={() => RemoveAnImage(i.id)}
+            />
           );
         })}
     </>
   );
 };
 // id: 940
+// id: 941
+
+interface IImageUpload {
+  Upload_image: any;
+  delete_image: any;
+}
 
 export default ImageUploader;
 

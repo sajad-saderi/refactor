@@ -20,11 +20,10 @@ export const REQUEST_NEW_CAR_MEDIA = (data: INewCarMedia) => {
       })
       .then(response => {
         if (response.data.success) {
-          resolve(response.data);
+          resolve(response.data.data);
         }
       })
       .catch(error => {
-        console.log(error);
         reject(error.response);
       });
   });

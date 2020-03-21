@@ -71,6 +71,18 @@ const stateReducer = (current, action) => {
           return item !== action.remove_id;
         })
       };
+    case "media_id":
+      return {
+        ...current,
+        media_id: current.media_id.concat(action.media_id)
+      };
+    case "Remove_media_id":
+      return {
+        ...current,
+        media_id: current.media_id.filter(item => {
+          return item !== action.Remove_media_id;
+        })
+      };
     case "color_id":
       return { ...current, color_id: action.color_id };
     case "description":
@@ -182,8 +194,6 @@ const Add_Car_Step_1 = () => {
     setBodyStyleList(bodyStyle_res.data);
     setCylinderList(cylinder_res.data);
     setFacilitesList(facilities_res.data);
-    console.log(colorList_res);
-
     setColorList(colorList_res.data);
   };
 
@@ -202,8 +212,6 @@ const Add_Car_Step_1 = () => {
     const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
     setDistrictList(car_districts_res.data);
   };
-
-  console.log(state);
 
   return (
     <article className="responsive add_car_form_container">
@@ -233,7 +241,7 @@ const Add_Car_Step_1 = () => {
             if (i.value === 1) getDistricts(i.value);
           }}
         />
-        {(state.location_id !== 1 && state.location_id !== null) && (
+        {state.location_id !== 1 && state.location_id !== null && (
           <p>{`اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در ${locationName} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.`}</p>
         )}
 
@@ -496,7 +504,20 @@ const Add_Car_Step_1 = () => {
             });
           }}
         />
-        <ImageUploader />
+        <ImageUploader
+          Upload_image={id => {
+            dispatch({
+              type: "media_id",
+              media_id: id
+            });
+          }}
+          delete_image={id => {
+            dispatch({
+              type: "Remove_media_id",
+              Remove_media_id: id
+            });
+          }}
+        />
         <DropdownSearch
           label="رنگ خودرو"
           InputDisable={true}
