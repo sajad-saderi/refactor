@@ -8,14 +8,16 @@ const Menu = () => {
   const complete_register = jsCookie.get("complete_register");
   const token = jsCookie.get("token");
   const img_profile = jsCookie.get("thumbnail_url");
-  const profile = jsCookie.get("company_name")
-    ? jsCookie.get("company_name")
-    : `${jsCookie.get("first_name")} ${jsCookie.get("last_name")}`;
+  const company_name = jsCookie.get("company_name");
+  const profile =
+    company_name && company_name !== "null"
+      ? company_name
+      : `${jsCookie.get("user_name")}`;
 
   return (
     <ul>
       {token ? (
-        <li>
+        <li className="first_element_li">
           <img
             className="profile_icon"
             src={

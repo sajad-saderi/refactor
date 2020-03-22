@@ -56,6 +56,8 @@ const ConfirmCode = (props: IConfirmCode) => {
             }
           );
         } else if (response.data.token && response.data.has_name) {
+          console.log(response.data);
+          
           const data = response.data;
           const cook_option = {
             expires: 100
@@ -63,8 +65,8 @@ const ConfirmCode = (props: IConfirmCode) => {
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("first_name", data.user_profile.name, cook_option);
-          jsCookie.set("last_name", data.user_profile.last_name, cook_option);
+          jsCookie.set("user_name", data.user_profile.name, cook_option);
+          // jsCookie.set("last_name", data.user_profile.last_name, cook_option);
           jsCookie.set(
             "company_name",
             data.user_profile.company_name,

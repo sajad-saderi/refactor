@@ -26,6 +26,12 @@ const DropdownSearch = (props: IDropDown) => {
   }, []);
 
   useEffect(() => {
+    if (props.defaultVal) {
+      setInputValue(props.defaultVal);
+    }
+  }, [props.defaultVal]);
+
+  useEffect(() => {
     setData(props.data);
   }, [props.data]);
 
@@ -63,27 +69,25 @@ const DropdownSearch = (props: IDropDown) => {
     <div
       className={[
         "DropDown_container",
-        props.disabled && "Disable_Container"
+        props.disabled ? "Disable_Container" : null
       ].join(" ")}
       ref={wrapperRef}
     >
       {props.label && (
-        <label className={props.disabled && "Disable_color"}>
+        <label className={props.disabled ? "Disable_color" : null}>
           {props.label}
         </label>
       )}
       <div className="input_wrapper">
         <input
           className={[
-            props.disabled && "Disable_color",
+            props.disabled ? "Disable_color" : null,
             props.styleClass ? props.styleClass : ""
           ].join(" ")}
           data-hj-whitelist
           readOnly={props.InputDisable}
           disabled={props.disabled}
-          value={
-            props.hardValue ? props.hardValue : InputValue || props.defaultVal
-          }
+          value={props.hardValue ? props.hardValue : InputValue}
           placeholder={props.placeholder}
           onClick={DropDownController}
         />

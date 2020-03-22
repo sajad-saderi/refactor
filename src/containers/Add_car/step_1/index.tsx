@@ -10,7 +10,9 @@ import {
   REQUEST_GET_CAR_BODY_STYLE,
   REQUEST_GET_CAR_CYLINDER,
   REQUEST_GET_CAR_FACILITIES,
-  REQUEST_GET_CAR_COLORS
+  REQUEST_GET_CAR_COLORS,
+  REQUEST_GET_MODEL_INFO,
+  REQUEST_GET_CAR
 } from "../../../API";
 import Radio from "../../../components/form/Radio";
 import TextInput from "../../../components/form/TextInput";
@@ -18,9 +20,12 @@ import pelak from "../../../../public/image/pelak.png";
 import Checkbox from "../../../components/form/Checkbox";
 import ImageUploader from "../../../components/ImageUploader";
 import Button from "../../../components/form/Button";
+import Router from "next/router";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
+    case "id":
+      return { ...current, id: action.id };
     case "location_id":
       return { ...current, location_id: action.location_id };
     case "car_id":
@@ -64,6 +69,11 @@ const stateReducer = (current, action) => {
         ...current,
         facility_id: current.facility_id.concat(action.facility_id)
       };
+    case "empty_facility_id":
+      return {
+        ...current,
+        facility_id: action.empty_facility_id
+      };
     case "Remove_facility_id":
       return {
         ...current,
@@ -94,15 +104,21 @@ const stateReducer = (current, action) => {
 
 const Add_Car_Step_1 = () => {
   const [locationList, setLocationList] = useState([]);
-  const [locationName, setLocationName] = useState([]);
-  const [showDistrict, setShowDistrict] = useState(true);
+  const [locationName, setLocationName] = useState(null);
+  const [showDistrict, setShowDistrict] = useState(false);
+  const [DistrictName, setDistrictName] = useState(null);
   const [districtList, setDistrictList] = useState([]);
   const [BrandList, setBrandList] = useState([]);
   const [Brand_id, setBrand_id] = useState(null);
+  const [Brand_Name, setBrand_Name] = useState(null);
   const [ModelList, setModelList] = useState([]);
+  const [CarModelName, setCarModelName] = useState(null);
   const [YearList, setYearList] = useState([]);
+  const [YearName, setYearName] = useState(null);
   const [BodyStyleList, setBodyStyleList] = useState([]);
+  const [BodyStyleName, setBodyStyleName] = useState(null);
   const [cylinderList, setCylinderList] = useState([]);
+  const [CylinderName, setCylinderName] = useState(null);
   const [capacityList, setCapacity] = useState([
     { value: 1, text: "۱" },
     { value: 2, text: "۲" },
@@ -149,6 +165,7 @@ const Add_Car_Step_1 = () => {
   ]);
   const [facilitesList, setFacilitesList] = useState([]);
   const [colorList, setColorList] = useState([]);
+  const [Loading, setLoading] = useState(false);
 
   const [state, dispatch] = useReducer(stateReducer, {
     id: null,
@@ -177,8 +194,106 @@ const Add_Car_Step_1 = () => {
   });
 
   useEffect(() => {
+    console.log(Router.router.query);
+    if (Router.router.query.mode === "edit") {
+      getCarInfoToEdit(Router.router.query.car_id);
+    }
     getInitials();
   }, []);
+
+  const getCarInfoToEdit = async id => {
+    const car_info_res = await REQUEST_GET_CAR({ id: id });
+    SetCar(car_info_res);
+    console.log(car_info_res);
+  };
+
+  const SetCar = car => {
+    // SET CAR ID
+    dispatch({ type: "id", id: car.id });
+
+    // SET CAR LOCATION AND DISTRICT
+    if (car.location.parent_id === 1) {
+      setLocationName("تهران");
+      setShowDistrict(true);
+      dispatch({ type: "location_id", location_id: car.location.id });
+      setDistrictName(car.location.name.fa);
+    } else {
+      setLocationName(car.location.name.fa);
+      setShowDistrict(false);
+      dispatch({ type: "location_id", location_id: car.location.id });
+    }
+
+    // SET CAR MODEL
+    setBrand_id(car.car.brand.id);
+    setBrand_Name(car.car.brand.name.fa);
+    getModelList(car.car.brand.id);
+    dispatch({ type: "car_id", car_id: car.car.id });
+    setCarModelName(car.car.name.fa);
+
+    // SET YEAR
+    dispatch({ type: "year_id", year_id: car.year.id });
+    setYearName(car.year.name.fa);
+
+    // SET TRANSMISSION
+    dispatch({
+      type: "transmission_type_id",
+      transmission_type_id: car.transmission_type.id
+    });
+
+    // SET BODY STYLE
+    dispatch({
+      type: "body_style_id",
+      body_style_id: car.body_style.id
+    });
+    setBodyStyleName(car.body_style.name.fa);
+
+    // SET CYLINDER
+    dispatch({
+      type: "cylinder_id",
+      cylinder_id: car.cylinder.id
+    });
+    setCylinderName(car.cylinder.name.fa);
+
+    // SET CAPACITY
+    dispatch({ type: "capacity", capacity: car.capacity });
+
+    // SET MILE RANGE
+    dispatch({
+      type: "mileage_range_id",
+      mileage_range_id: car.mileage_range.id
+    });
+
+    // SET CAR VALUE
+    dispatch({
+      type: "value",
+      value: car.value
+    });
+
+    // SET PELAK VALUES
+    dispatch({
+      type: "registration_plate_first_part",
+      registration_plate_first_part: car.registration_plate_first_part
+    });
+    dispatch({
+      type: "registration_plate_second_part",
+      registration_plate_second_part: car.registration_plate_second_part
+    });
+    dispatch({
+      type: "registration_plate_third_part",
+      registration_plate_third_part: car.registration_plate_third_part
+    });
+    dispatch({
+      type: "registration_plate_forth_part",
+      registration_plate_forth_part: car.registration_plate_forth_part
+    });
+
+    // SET FACILITIES
+    if (car.facility_set.length > 0) {
+      car.facility_set.forEach(item => {
+        dispatch({ type: "facility_id", facility_id: item.id });
+      });
+    } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
+  };
 
   const getInitials = async () => {
     const location_Res: any = await REQUEST_GET_LOCATION();
@@ -199,7 +314,7 @@ const Add_Car_Step_1 = () => {
 
   const submitHandler = (e, state) => {
     e.preventDefault();
-
+    // setLoading(true);
     console.log(state);
   };
 
@@ -213,6 +328,66 @@ const Add_Car_Step_1 = () => {
     setDistrictList(car_districts_res.data);
   };
 
+  const clearRelativeToModel = () => {
+    // RESET ALL BRAND RELATED FIELDS
+    dispatch({ type: "capacity", capacity: null });
+    dispatch({ type: "transmission_type_id", transmission_type_id: null });
+    dispatch({ type: "cylinder_id", cylinder_id: null });
+    dispatch({ type: "body_style_id", body_style_id: null });
+    dispatch({ type: "empty_facility_id", empty_facility_id: [] });
+    setBodyStyleName("");
+  };
+
+  const getBrandInfo = async id => {
+    clearRelativeToModel();
+    const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
+    console.log("model_info_res", model_info_res);
+    if (model_info_res.facility_set.length > 0) {
+      model_info_res.facility_set.forEach(item => {
+        dispatch({ type: "facility_id", facility_id: item.id });
+      });
+    } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
+    if (model_info_res.capacity)
+      dispatch({ type: "capacity", capacity: model_info_res.capacity });
+    else dispatch({ type: "capacity", capacity: null });
+    if (model_info_res.transmission_type)
+      dispatch({
+        type: "transmission_type_id",
+        transmission_type_id: model_info_res.transmission_type.id
+      });
+    else
+      dispatch({
+        type: "transmission_type_id",
+        transmission_type_id: null
+      });
+    if (model_info_res.cylinder) {
+      dispatch({
+        type: "cylinder_id",
+        cylinder_id: model_info_res.cylinder.id
+      });
+      setCylinderName(model_info_res.cylinder.name.fa);
+    } else {
+      dispatch({
+        type: "cylinder_id",
+        cylinder_id: null
+      });
+      setCylinderName("");
+    }
+    if (model_info_res.body_style) {
+      dispatch({
+        type: "body_style_id",
+        body_style_id: model_info_res.body_style.id
+      });
+      setBodyStyleName(model_info_res.body_style.name.fa);
+    } else {
+      dispatch({
+        type: "body_style_id",
+        body_style_id: null
+      });
+      setBodyStyleName("");
+    }
+  };
+
   return (
     <article className="responsive add_car_form_container">
       <div className="pageTitle">
@@ -223,13 +398,17 @@ const Add_Car_Step_1 = () => {
         className="add_car_form_step_1"
         onSubmit={e => submitHandler(e, state)}
       >
-        <p>مشخصات خودرو را با مطابق با مدارک آن پر کنید. </p>
+        <p className="extra_text">
+          مشخصات خودرو را با مطابق با مدارک آن پر کنید.{" "}
+        </p>
         <DropdownSearch
           InputDisable={true}
           label="ماشین شما کجاست؟"
           data={locationList}
+          defaultVal={locationName}
           clearField={() => {
             dispatch({ type: "location_id", location_id: null });
+            setShowDistrict(false);
           }}
           Select={i => {
             if (i.value === 1) setShowDistrict(true);
@@ -241,16 +420,19 @@ const Add_Car_Step_1 = () => {
             if (i.value === 1) getDistricts(i.value);
           }}
         />
-        {state.location_id !== 1 && state.location_id !== null && (
-          <p>{`اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در ${locationName} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.`}</p>
-        )}
+        {state.location_id !== 1 &&
+          state.location_id !== null &&
+          !showDistrict && (
+            <p className="extra_text">{`اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در ${locationName} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.`}</p>
+          )}
 
         {showDistrict && (
           <DropdownSearch
             InputDisable={true}
             label="محله"
+            defaultVal={DistrictName}
             data={districtList}
-            disabled={state.location_id !== 1 || !showDistrict ? true : false}
+            disabled={!showDistrict}
             clearField={() =>
               dispatch({ type: "location_id", location_id: null })
             }
@@ -263,8 +445,11 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             label="برند"
+            defaultVal={Brand_Name}
             data={BrandList}
-            clearField={() => setBrand_id(null)}
+            clearField={() => {
+              setBrand_id(null);
+            }}
             Select={i => {
               setBrand_id(i.value);
               setModelList([]);
@@ -274,14 +459,19 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             disabled={!Brand_id ? true : false}
+            defaultVal={CarModelName}
             label="مدل"
             data={ModelList}
             clearField={() => dispatch({ type: "car_id", car_id: null })}
-            Select={i => dispatch({ type: "car_id", car_id: i.value })}
+            Select={i => {
+              getBrandInfo(i.value);
+              dispatch({ type: "car_id", car_id: i.value });
+            }}
           />
           <DropdownSearch
             InputDisable={true}
             label="سال"
+            defaultVal={YearName}
             disableSearch={true}
             data={YearList}
             clearField={() => dispatch({ type: "year_id", year_id: null })}
@@ -295,12 +485,19 @@ const Add_Car_Step_1 = () => {
             SelectHandler={i =>
               dispatch({
                 type: "transmission_type_id",
-                transmission_type_id: i
+                transmission_type_id: +i
               })
             }
+            defaultCheck={state.transmission_type_id}
             data={[
-              { label: "دنده دستی", value: 2, checked: null },
-              { label: "دنده اتوماتیک", value: 1, checked: null }
+              {
+                label: "دنده دستی",
+                value: 2
+              },
+              {
+                label: "دنده اتوماتیک",
+                value: 1
+              }
             ]}
           />
         </div>
@@ -309,6 +506,7 @@ const Add_Car_Step_1 = () => {
           label="نوع شاسی"
           data={BodyStyleList}
           disableSearch={true}
+          defaultVal={BodyStyleName}
           clearField={() =>
             dispatch({ type: "body_style_id", body_style_id: null })
           }
@@ -321,6 +519,7 @@ const Add_Car_Step_1 = () => {
           label="تعداد سیلندر"
           data={cylinderList}
           disableSearch={true}
+          defaultVal={CylinderName}
           clearField={() =>
             dispatch({ type: "cylinder_id", cylinder_id: null })
           }
@@ -331,12 +530,18 @@ const Add_Car_Step_1 = () => {
           label="ظرفیت خودرو"
           data={capacityList}
           disableSearch={true}
+          defaultVal={state.capacity}
           clearField={() => dispatch({ type: "capacity", capacity: null })}
           Select={i => dispatch({ type: "capacity", capacity: i.value })}
         />
         <DropdownSearch
           InputDisable={true}
           label="کارکرد خودرو"
+          defaultVal={
+            state.mileage_range_id
+              ? mileRange[state.mileage_range_id - 1].text
+              : ""
+          }
           data={mileRange}
           disableSearch={true}
           clearField={() =>
@@ -376,7 +581,7 @@ const Add_Car_Step_1 = () => {
         <div className="pelak_container">
           <label>پلاک خودرو</label>
           <img src={pelak} alt="تصویر پلاک" />
-          <p>
+          <p className="extra_text">
             پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در
             نتایج جستجو نمایش داده نمی‌شود.
           </p>
@@ -441,6 +646,7 @@ const Add_Car_Step_1 = () => {
                   InputDisable={true}
                   data={PelakList}
                   disableSearch={true}
+                  defaultVal={state.registration_plate_second_part}
                   clearField={() =>
                     dispatch({
                       type: "registration_plate_second_part",
@@ -489,6 +695,7 @@ const Add_Car_Step_1 = () => {
         </div>
         <label className="add_car_Facilities_label">امکانات خودرو</label>
         <Checkbox
+          initialValue={state.facility_id}
           data={facilitesList}
           name="facility_id"
           clearField={item =>
@@ -536,7 +743,9 @@ const Add_Car_Step_1 = () => {
             })
           }
         />
-        <label>توضیحات (اختیاری)</label>
+        <label>
+          توضیحات<span> (اختیاری)</span>
+        </label>
         <textarea
           className="text_area_step_1"
           placeholder={
@@ -549,7 +758,12 @@ const Add_Car_Step_1 = () => {
             });
           }}
         />
-        <Button value="ثبت" loading={false} class="Blue_BTN" />
+        <Button
+          value="ثبت"
+          loading={Loading}
+          disable={Loading}
+          class="Blue_BTN local_style"
+        />
       </form>
     </article>
   );

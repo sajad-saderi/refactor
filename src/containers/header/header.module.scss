@@ -31,6 +31,7 @@ header {
           width: 3rem;
           display: inline-block;
           vertical-align: middle;
+          border-radius: 50%;
           margin-left: 8px;
         }
         .Sub_Nav_Level_2 {
@@ -43,6 +44,7 @@ header {
           min-width: 200px;
           background: rgb(255, 255, 255);
           border-radius: 3px;
+          z-index: 10;
           li {
             padding-bottom: 0rem;
             display: block;
@@ -62,6 +64,9 @@ header {
               padding: 15px 10px;
             }
           }
+        }
+        span {
+          vertical-align: middle;
         }
         a,
         span {

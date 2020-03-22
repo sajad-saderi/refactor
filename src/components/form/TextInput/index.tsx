@@ -41,7 +41,7 @@ const TextInput = (props: ItextInput) => {
         minLength={props.min}
         placeholder={props.placeholder}
       />
-      {props.value.length > 0 && !props.HideClearIcon &&  (
+      {props.value.length > 0 && !props.HideClearIcon && (
         <IoMdClose
           color="rgb(165, 165, 165)"
           size="2rem"

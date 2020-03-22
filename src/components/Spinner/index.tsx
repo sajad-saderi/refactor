@@ -8,8 +8,8 @@ const Spinner = (props: ISpinner) => {
       style={{
         display: props.display,
         borderRightColor: props.color,
-        width: props.width,
-        height: props.width
+        width: props.width + "px",
+        height: props.width + "px"
       }}
       className="Loading"
     ></span>

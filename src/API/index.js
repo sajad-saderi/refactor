@@ -10,6 +10,7 @@ import { REQUEST_GET_CAR_BODY_STYLE } from "./get/getBodyStyle";
 import { REQUEST_GET_CAR_CYLINDER } from "./get/getCylinder";
 import { REQUEST_GET_CAR_FACILITIES } from "./get/getFacilities";
 import { REQUEST_GET_CAR_COLORS } from "./get/getCarColors";
+import { REQUEST_GET_MODEL_INFO } from "./get/getModelInfo";
 
 // SET
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
@@ -29,5 +30,6 @@ export {
   REQUEST_GET_CAR_FACILITIES,
   REQUEST_REMOVE_CAR_MEDIA,
   REQUEST_NEW_CAR_MEDIA,
-  REQUEST_GET_CAR_COLORS
+  REQUEST_GET_CAR_COLORS,
+  REQUEST_GET_MODEL_INFO
 };

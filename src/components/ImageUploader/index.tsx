@@ -3,12 +3,14 @@ import "./ImageUploader.module.scss";
 import jsCookie from "js-cookie";
 import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
+import { IoIosTrash } from "react-icons/io";
+import Spinner from "../Spinner";
 
 const token = jsCookie.get("token");
 
 const ImageUploader = (props: IImageUpload) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
-  const [loading, loadingHandler] = useState(0);
+  const [loading, setloading] = useState(false);
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.forEach(file => {
@@ -34,10 +36,12 @@ const ImageUploader = (props: IImageUpload) => {
   };
 
   const sendTheImage = async (file, result) => {
+    setloading(true);
     const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
       token: token,
       file: file
     });
+    setloading(false);
     setPicturesPreview(picturesPreview =>
       picturesPreview.concat({
         img: result,
@@ -62,17 +66,27 @@ const ImageUploader = (props: IImageUpload) => {
           بیاندازید
         </p>
       </div>
-      {picturesPreview.length > 0 &&
-        picturesPreview.map((i, index) => {
-          return (
-            <img
-              src={i.img}
-              width="80"
-              alt={i.id}
-              onClick={() => RemoveAnImage(i.id)}
-            />
-          );
-        })}
+      <div
+        className={["Image_box", loading ? "loading_class" : null].join(" ")}
+      >
+        {loading ? (
+          <Spinner display="block" width={20} color="#b5b5b5" />
+        ) : (
+          picturesPreview.length > 0 &&
+          picturesPreview.map((i, index) => {
+            return (
+              <div className="Each_image" key={index}>
+                <IoIosTrash
+                  size="2rem"
+                  onClick={() => RemoveAnImage(i.id)}
+                  color="#ea2d2d"
+                />
+                <img src={i.img} alt={i.id} />
+              </div>
+            );
+          })
+        )}
+      </div>
     </>
   );
 };

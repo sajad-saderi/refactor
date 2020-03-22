@@ -25,11 +25,13 @@
   border: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.19);
   .DropDown_container,
-  .radio_father {
-    margin: 0 0 1.6rem;
+  .radio_father,
+  .text_input_container {
+    margin: 0 0 2rem;
   }
-  p {
+  .extra_text {
     margin: 0.4rem 0 1.6rem 0;
+    font-size: 1.2rem;
   }
   .DropDown_container label,
   label {
@@ -37,6 +39,9 @@
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
     display: block;
+    span {
+      color: #bfbfbf;
+    }
   }
   .add_car_Facilities_label {
     margin-bottom: 1.6rem;
@@ -50,12 +55,12 @@
     justify-content: center;
     align-items: center;
     .DropDown_container {
-      margin: 0 0.8rem 1.6rem;
+      margin: 0 0.8rem 2rem;
       &:first-child {
-        margin: 0 0rem 1.6rem 0.8rem;
+        margin: 0 0rem 2rem 0.8rem;
       }
       &:last-child {
-        margin: 0 0.8rem 1.6rem 0rem;
+        margin: 0 0.8rem 2rem 0rem;
       }
     }
   }
@@ -79,6 +84,7 @@
   }
   .pelak_container {
     position: relative;
+    margin-bottom: 2rem;
     .pelak_input {
       position: absolute;
       // display: flex;
@@ -145,7 +151,7 @@
     min-height: 15rem;
     width: 100%;
     font-family: inherit;
-    margin: 0.3rem auto 0.5rem;
+    margin: 0.3rem auto 2rem;
     display: block;
     outline: 0;
     -webkit-appearance: none;
@@ -158,5 +164,9 @@
     border-radius: 0.4rem;
     box-shadow: 0 0 0 0 transparent inset;
     box-sizing: border-box;
+  }
+  .local_style {
+    display: block;
+    width: 100%;
   }
 }
