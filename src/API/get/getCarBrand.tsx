@@ -12,7 +12,7 @@ export const REQUEST_GET_CAR_BRAND = () => {
           const carBrands = response.data.items.map((value, index) => ({
             key: value.id,
             text: value.name.fa,
-            value: value.id
+            value: +value.id
           }));
           resolve({ carBrands });
         } else {

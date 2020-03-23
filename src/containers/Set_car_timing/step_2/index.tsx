@@ -1,8 +1,9 @@
 import React, { useEffect, useReducer, useState, useRef } from "react";
-import { IoIosCar } from "react-icons/io";
-import "./step_1.module.scss";
+import { IoIosCalendar } from "react-icons/io";
+import "./step_2.module.scss";
 import DropdownSearch from "../../../components/form/Dropdown";
 import {
+  REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_GET_LOCATION,
   REQUEST_GET_CAR_BRAND,
   REQUEST_GET_YEAR,
@@ -12,7 +13,6 @@ import {
   REQUEST_GET_CAR_FACILITIES,
   REQUEST_GET_CAR_COLORS,
   REQUEST_GET_MODEL_INFO,
-  REQUEST_GET_CAR,
   REQUEST_ADD_NEW_CAR
 } from "../../../API";
 import Radio from "../../../components/form/Radio";
@@ -24,15 +24,49 @@ import Button from "../../../components/form/Button";
 import Router from "next/router";
 import jsCookie from "js-cookie";
 import validator from "validator";
+import PelakView from "../../../components/pelak";
+import Spinner from "../../../components/Spinner";
+import Counter from "../../../components/Counter";
 
 const token = jsCookie.get("token");
-
-let car_OBJ = null;
 
 const stateReducer = (current, action) => {
   switch (action.type) {
     case "id":
       return { ...current, id: action.id };
+    case "days_to_get_reminded":
+      return { ...current, days_to_get_reminded: action.days_to_get_reminded };
+    case "ADD_days_to_get_reminded":
+      return {
+        ...current,
+        days_to_get_reminded: current.days_to_get_reminded + 1
+      };
+    case "REDUCE_days_to_get_reminded":
+      return {
+        ...current,
+        days_to_get_reminded: current.days_to_get_reminded - 1
+      };
+    case "min_days_to_rent":
+      return { ...current, min_days_to_rent: action.min_days_to_rent };
+    case "ADD_min_days_to_rent":
+      return { ...current, min_days_to_rent: current.min_days_to_rent + 1 };
+    case "REDUCE_min_days_to_rent":
+      return { ...current, min_days_to_rent: current.min_days_to_rent - 1 };
+    case "max_km_per_day":
+      return { ...current, max_km_per_day: action.max_km_per_day };
+    case "extra_km_price":
+      return { ...current, extra_km_price: action.extra_km_price };
+    case "deliver_at_renters_place":
+      return {
+        ...current,
+        deliver_at_renters_place: action.deliver_at_renters_place
+      };
+    case "with_driver":
+      return {
+        ...current,
+        with_driver: action.with_driver
+      };
+
     case "location_id":
       return { ...current, location_id: action.location_id };
     case "car_id":
@@ -104,11 +138,6 @@ const stateReducer = (current, action) => {
       return { ...current, color_id: action.color_id };
     case "description":
       return { ...current, description: action.description };
-    case "deliver_at_renters_place":
-      return {
-        ...current,
-        deliver_at_renters_place: action.deliver_at_renters_place
-      };
     case "is_out_of_service":
       return { ...current, is_out_of_service: action.is_out_of_service };
     case "min_days_to_rent":
@@ -226,7 +255,7 @@ const error_reducer = (current, action) => {
   }
 };
 
-const Add_Car_Step_1 = () => {
+const Add_Car_Step_2 = () => {
   const [locationList, setLocationList] = useState([]);
   const [locationName, setLocationName] = useState(null);
   const [showDistrict, setShowDistrict] = useState(false);
@@ -235,9 +264,9 @@ const Add_Car_Step_1 = () => {
   const [BrandList, setBrandList] = useState([]);
   const [Brand_id, setBrand_id] = useState(null);
   const [Brand_id_error, setBrand_id_error] = useState(null);
-  const [Brand_Name, setBrand_Name] = useState(null);
+  const [Brand_Name, setBrand_Name] = useState("");
   const [ModelList, setModelList] = useState([]);
-  const [CarModelName, setCarModelName] = useState(null);
+  const [CarModelName, setCarModelName] = useState("");
   const [YearList, setYearList] = useState([]);
   const [YearName, setYearName] = useState(null);
   const [BodyStyleList, setBodyStyleList] = useState([]);
@@ -315,7 +344,10 @@ const Add_Car_Step_1 = () => {
     media_id: null,
     cylinder_id: null,
     value: null,
-    error_message: null
+    max_km_per_day: null,
+    extra_km_price: null,
+    days_to_get_reminded: null,
+    min_days_to_rent: null
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
@@ -338,24 +370,29 @@ const Add_Car_Step_1 = () => {
     media_id: [],
     cylinder_id: null,
     value: "",
-    deliver_at_renters_place: 0,
+    max_km_per_day: "",
+    extra_km_price: "",
     days_to_get_reminded: 1,
+    deliver_at_renters_place: false,
+    with_driver: false,
     special_type_id: 1,
     is_out_of_service: true,
     min_days_to_rent: 1
   });
 
   useEffect(() => {
-    console.log(Router.router.query);
-    if (Router.router.query.mode === "edit") {
-      getCarInfoToEdit(Router.router.query.car_id);
-    }
+    getCarInfoToEdit(Router.router.query.id);
     getInitials();
+    scrollTo(0, 0);
   }, []);
 
   const getCarInfoToEdit = async id => {
-    const car_info_res = await REQUEST_GET_CAR({ id: id }); 
+    const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
+      id: id,
+      token: token
+    });
     SetCar(car_info_res);
+    console.log(car_info_res);
   };
 
   const SetCar = car => {
@@ -501,6 +538,8 @@ const Add_Car_Step_1 = () => {
     setBodyStyleList(bodyStyle_res.data);
     setCylinderList(cylinder_res.data);
     setFacilitesList(facilities_res.data);
+    console.log(facilities_res);
+
     setColorList(colorList_res.data);
   };
 
@@ -839,18 +878,169 @@ const Add_Car_Step_1 = () => {
   };
 
   return (
-    <article className="responsive add_car_form_container">
+    <article className="responsive step_2_form_container">
       <div className="pageTitle">
-        <IoIosCar className="car_icon" size="6rem" color="#4ba3ce" />
-        <h3>افزودن خودرو</h3>
+        <IoIosCalendar className="car_icon" size="6rem" color="#4ba3ce" />
+        <h3>تعیین شرایط اجاره</h3>
       </div>
-      <form
-        className="add_car_form_step_1"
-        onSubmit={e => submitHandler(e, state)}
-      >
-        <p className="extra_text">
-          مشخصات خودرو را با مطابق با مدارک آن پر کنید.{" "}
-        </p>
+      <article className="step_2_image_pelak add_car_form_step_2">
+        <div className="Image_container">
+          {initialImage.length > 0 ? (
+            <img src={initialImage[0].img} alt="تصویر کوچک خودرو" />
+          ) : (
+            <Spinner display="inline-block" width={30} color="#9E9E9E" />
+          )}
+        </div>
+        <div className="pelak_container">
+          <p>{`${Brand_Name} - ${CarModelName}`}</p>
+          <img />
+          <PelakView
+            registration_plate_first_part={state.registration_plate_first_part}
+            registration_plate_second_part={
+              state.registration_plate_second_part
+            }
+            registration_plate_third_part={state.registration_plate_third_part}
+            registration_plate_forth_part={state.registration_plate_forth_part}
+          />
+        </div>
+      </article>
+      <form onSubmit={e => submitHandler(e, state)}>
+        <div className="add_car_form_step_2">
+          <h4 className="extra_text">شرایط اجاره</h4>
+          <Counter
+            max={31}
+            min={1}
+            AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
+            reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
+            label="زمان اطلاع از اجاره"
+            text="روز قبل"
+            value={state.days_to_get_reminded}
+          />
+          <Counter
+            max={31}
+            min={1}
+            AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
+            reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
+            label="حداقل مدت اجاره"
+            text="روز"
+            value={state.min_days_to_rent}
+          />
+          <div>
+            <TextInput
+              name="max_km_per_day"
+              number={true}
+              onChangeHandler={e => {
+                dispatch({
+                  type: "max_km_per_day",
+                  max_km_per_day: e
+                });
+              }}
+              clearField={() =>
+                dispatch({
+                  type: "max_km_per_day",
+                  max_km_per_day: ""
+                })
+              }
+              error={{
+                status: ErrorState.max_km_per_day,
+                message: ""
+              }}
+              min={2}
+              max={5}
+              value={state.max_km_per_day}
+              label="محدودیت مسافت"
+            />
+            <span>کیلومتر در روز</span>
+          </div>
+          <div>
+            <TextInput
+              name="extra_km_price"
+              number={true}
+              onChangeHandler={e => {
+                dispatch({
+                  type: "extra_km_price",
+                  extra_km_price: e
+                });
+              }}
+              clearField={() =>
+                dispatch({
+                  type: "extra_km_price",
+                  extra_km_price: ""
+                })
+              }
+              error={{
+                status: ErrorState.extra_km_price,
+                message: ""
+              }}
+              min={4}
+              max={8}
+              value={state.extra_km_price}
+              label="هزینه هر کیلومتر اضافه"
+            />
+            <span>تومان</span>
+          </div>
+          <div>
+            <Checkbox
+              initialValue={[
+                {
+                  value: state.deliver_at_renters_place
+                }
+              ]}
+              data={[
+                {
+                  text: "در محل اجاره‌گیرنده تحویل می‌دهم",
+                  value: state.deliver_at_renters_place
+                }
+              ]}
+              name="deliver_at_renters_place"
+              clearField={item =>
+                dispatch({
+                  type: "deliver_at_renters_place",
+                  deliver_at_renters_place: item.value
+                })
+              }
+              Select={item => {
+                dispatch({
+                  type: "deliver_at_renters_place",
+                  deliver_at_renters_place: item.value
+                });
+              }}
+            />
+          </div>
+          <div>
+            <Checkbox
+              initialValue={[
+                {
+                  value: state.with_driver
+                }
+              ]}
+              data={[
+                {
+                  text: "اجاره فقط با راننده",
+                  value: state.with_driver
+                }
+              ]}
+              name="with_driver"
+              clearField={item =>
+                dispatch({
+                  type: "with_driver",
+                  with_driver: item.value
+                })
+              }
+              Select={item => {
+                dispatch({
+                  type: "with_driver",
+                  with_driver: item.value
+                });
+              }}
+            />
+          </div>
+        </div>
+        <div className="add_car_form_step_2">
+          <h4>تاریخ و نرخ اجاره</h4>
+        </div>
+
+
         <DropdownSearch
           InputDisable={true}
           error_status={!showDistrict ? ErrorState.location_id : false}
@@ -1243,4 +1433,4 @@ const Add_Car_Step_1 = () => {
   );
 };
 
-export default Add_Car_Step_1;
+export default Add_Car_Step_2;

@@ -1,6 +1,6 @@
 @import "../../../styles/units";
 
-.add_car_form_container {
+.step_2_form_container {
   max-width: 68rem;
 }
 .pageTitle {
@@ -17,8 +17,33 @@
     vertical-align: middle;
   }
 }
+.step_2_image_pelak {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .Image_container {
+    width: 15rem;
+    min-height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+  .pelak_container {
+    font-size: 1.4rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    img {
+      width: 20rem;
+    }
+  }
+}
 
-.add_car_form_step_1 {
+.add_car_form_step_2 {
   background: #fff;
   border: 1px solid rgba(34, 36, 38, 0.15);
   font-size: 1.4rem;
@@ -26,14 +51,15 @@
   padding: 1.6rem;
   border: none;
   box-shadow: $Box;
+  margin-bottom: 2rem;
   .DropDown_container,
   .radio_father,
   .text_input_container {
     margin: 0 0 2rem;
   }
-  .extra_text {
-    margin: 0.4rem 0 1.6rem 0;
-    font-size: 1.2rem;
+  h4 {
+    margin: 0rem 0 1.6rem 0;
+    font-size: 1.6rem;
   }
   .DropDown_container label,
   label {

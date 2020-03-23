@@ -15,7 +15,7 @@ export const REQUEST_GET_LOCATION = (parent_id?: IGetLocation) => {
           const data = response.data.items.map((value, index) => ({
             key: value.id,
             text: value.name.fa,
-            value: value.id
+            value: +value.id
           }));
           resolve({ data });
         } else {

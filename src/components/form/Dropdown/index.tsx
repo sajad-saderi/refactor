@@ -35,6 +35,12 @@ const DropdownSearch = (props: IDropDown) => {
     setData(props.data);
   }, [props.data]);
 
+  useEffect(() => {
+    if (props.error_status) {
+      scrollTo(0, wrapperRef.current.offsetTop);
+    }
+  }, [props.error_status]);
+
   const DropDownController = () => {
     setShowController(!ShowController);
   };
@@ -82,7 +88,8 @@ const DropdownSearch = (props: IDropDown) => {
         <input
           className={[
             props.disabled ? "Disable_color" : null,
-            props.styleClass ? props.styleClass : ""
+            props.styleClass ? props.styleClass : null,
+            props.error_status ? "inputError" : null
           ].join(" ")}
           data-hj-whitelist
           readOnly={props.InputDisable}
@@ -164,6 +171,7 @@ const DropdownSearch = (props: IDropDown) => {
 };
 
 interface IDropDown {
+  error_status?: boolean;
   InputDisable?: boolean;
   disabled?: boolean;
   placeholder?: string;

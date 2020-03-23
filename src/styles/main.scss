@@ -160,19 +160,18 @@ a {
 }
 
 // MAIN
-main{
+main {
   background-color: #fafafa;
 }
 
-
-// INPUT 
+// INPUT
 input {
   box-sizing: border-box;
   margin: 0.8em auto;
 }
 
-.input_Error{
-  border:1px solid #e0b4b4;
+.input_Error {
+  border: 1px solid #e0b4b4;
   background: rgb(255, 246, 246) !important;
 }
 
@@ -188,10 +187,20 @@ input {
   border-radius: 4px;
   border: none;
   padding: 1.1rem 2.1rem;
-  transition:0.25s all;
+  transition: 0.25s all;
   &:hover {
     background-color: $background_hover;
   }
+}
+
+// ERROR
+.inputError {
+  border: 1px solid #d83030 !important;
+  background: rgba(216, 48, 48, 0.1) !important;
+}
+
+.Error_color {
+  color: $Error_text_color;
 }
 
 // Responsive

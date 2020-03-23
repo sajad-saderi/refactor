@@ -6,6 +6,35 @@ const TextInput = (props: ItextInput) => {
   const ValueHandler = e => {
     let value = e.target.value;
     if (props.number) {
+      const persianNumbers = [
+        /۰/g,
+        /۱/g,
+        /۲/g,
+        /۳/g,
+        /۴/g,
+        /۵/g,
+        /۶/g,
+        /۷/g,
+        /۸/g,
+        /۹/g
+      ];
+      const arabicNumbers = [
+        /٠/g,
+        /١/g,
+        /٢/g,
+        /٣/g,
+        /٤/g,
+        /٥/g,
+        /٦/g,
+        /٧/g,
+        /٨/g,
+        /٩/g
+      ];
+      for (var i = 0; i < 10; i++) {
+        value = value
+          .replace(persianNumbers[i], i)
+          .replace(arabicNumbers[i], i);
+      }
       value = value.replace(/[^0-9]/g, "");
       props.onChangeHandler(value);
     } else props.onChangeHandler(value);
@@ -25,7 +54,7 @@ const TextInput = (props: ItextInput) => {
         autoFocus={props.autoFocus}
         className={[
           "text_input",
-          props.error.status ? "input_Error" : null
+          props.error.status ? "inputError" : null
         ].join(" ")}
         name={props.name}
         value={
@@ -34,6 +63,7 @@ const TextInput = (props: ItextInput) => {
               ? props.value.toLocaleString()
               : Number(props.value).toLocaleString()
             : props.value
+          // props.value
         }
         onChange={ValueHandler}
         disabled={props.disabled}

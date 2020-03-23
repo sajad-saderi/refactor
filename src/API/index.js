@@ -11,10 +11,12 @@ import { REQUEST_GET_CAR_CYLINDER } from "./get/getCylinder";
 import { REQUEST_GET_CAR_FACILITIES } from "./get/getFacilities";
 import { REQUEST_GET_CAR_COLORS } from "./get/getCarColors";
 import { REQUEST_GET_MODEL_INFO } from "./get/getModelInfo";
+import { REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING } from "./get/getRentalCar";
 
 // SET
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
 import { REQUEST_NEW_CAR_MEDIA } from "./set/setCarMedia";
+import { REQUEST_ADD_NEW_CAR } from "./set/setNewcar";
 
 export {
   REQUEST_GET_LOCATION,
@@ -31,5 +33,7 @@ export {
   REQUEST_REMOVE_CAR_MEDIA,
   REQUEST_NEW_CAR_MEDIA,
   REQUEST_GET_CAR_COLORS,
-  REQUEST_GET_MODEL_INFO
+  REQUEST_GET_MODEL_INFO,
+  REQUEST_ADD_NEW_CAR,
+  REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING
 };

@@ -25,5 +25,5 @@ export const REQUEST_REMOVE_CAR_MEDIA = (data: IRemoveCarMedia) => {
 
 interface IRemoveCarMedia {
   token: string;
-  id: string;
+  id: number;
 }
