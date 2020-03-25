@@ -1,0 +1,40 @@
+@import "../../styles/colors";
+
+.counter_container {
+  *::selection {
+    background-color: transparent;
+  }
+  .counter_box {
+    margin-top: 1.2rem;
+    margin-bottom: 2.5rem;
+    .counter {
+      display: inline-block;
+      vertical-align: middle;
+      p {
+        display: inline-block;
+        vertical-align: middle;
+        width: 6rem;
+        text-align: center;
+        margin: 0 1.2rem;
+        border: 1px solid $input_border;
+        border-radius: 4px;
+        line-height: 2;
+      }
+      svg {
+        cursor: pointer;
+        background-color: rgba($main__color, 0.15);
+        padding: 0.7rem;
+        border-radius: 4px;
+        width: 1.6rem;
+        height: 1.6rem;
+        color: $main__color;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .text_tail {
+      display: inline-block;
+      margin-right: 1rem;
+    }
+  }
+}

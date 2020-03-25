@@ -193,6 +193,17 @@ input {
   }
 }
 
+// CONFIRM and CANCEL
+.confirm {
+  color: $main__color;
+  font-weight: bold;
+  cursor: pointer;
+}
+.cancel {
+  color: $Error_text_color;
+  cursor: pointer;
+}
+
 // ERROR
 .inputError {
   border: 1px solid #d83030 !important;

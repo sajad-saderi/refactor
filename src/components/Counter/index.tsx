@@ -6,8 +6,8 @@ const Counter = (props: ICounter) => {
   return (
     <div className="counter_container">
       <label>{props.label}</label>
-      <div>
-        <div>
+      <div className="counter_box">
+        <div className="counter">
           <IoMdAdd
             onClick={() => {
               console.log(props.value, props.max);
@@ -22,7 +22,7 @@ const Counter = (props: ICounter) => {
             }}
           />
         </div>
-        <span>{props.text}</span>
+        <span className="text_tail">{props.text}</span>
       </div>
     </div>
   );

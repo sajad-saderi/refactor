@@ -346,7 +346,6 @@ const Add_Car_Step_1 = () => {
   });
 
   useEffect(() => {
-    console.log(Router.router.query);
     if (Router.router.query.mode === "edit") {
       getCarInfoToEdit(Router.router.query.car_id);
     }
@@ -354,7 +353,7 @@ const Add_Car_Step_1 = () => {
   }, []);
 
   const getCarInfoToEdit = async id => {
-    const car_info_res = await REQUEST_GET_CAR({ id: id }); 
+    const car_info_res = await REQUEST_GET_CAR({ id: id });
     SetCar(car_info_res);
   };
 

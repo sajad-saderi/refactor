@@ -4,6 +4,8 @@ import "./step_2.module.scss";
 import DropdownSearch from "../../../components/form/Dropdown";
 import {
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
+  REQUEST_GET_RENTAL_CAR_AVAILABILITIES,
+  REQUEST_GET_RENTAL_CAR_DISCOUNTS,
   REQUEST_GET_LOCATION,
   REQUEST_GET_CAR_BRAND,
   REQUEST_GET_YEAR,
@@ -27,6 +29,8 @@ import validator from "validator";
 import PelakView from "../../../components/pelak";
 import Spinner from "../../../components/Spinner";
 import Counter from "../../../components/Counter";
+import PriceBox from "../PriceBox";
+import DiscountBox from "../DiscountBox";
 
 const token = jsCookie.get("token");
 
@@ -65,6 +69,11 @@ const stateReducer = (current, action) => {
       return {
         ...current,
         with_driver: action.with_driver
+      };
+    case "price_per_day":
+      return {
+        ...current,
+        price_per_day: action.price_per_day
       };
 
     case "location_id":
@@ -256,6 +265,8 @@ const error_reducer = (current, action) => {
 };
 
 const Add_Car_Step_2 = () => {
+  const [DateAndPrice, setDateAndPrice] = useState(1);
+
   const [locationList, setLocationList] = useState([]);
   const [locationName, setLocationName] = useState(null);
   const [showDistrict, setShowDistrict] = useState(false);
@@ -347,7 +358,8 @@ const Add_Car_Step_2 = () => {
     max_km_per_day: null,
     extra_km_price: null,
     days_to_get_reminded: null,
-    min_days_to_rent: null
+    min_days_to_rent: null,
+    price_per_day: null
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
@@ -377,13 +389,18 @@ const Add_Car_Step_2 = () => {
     with_driver: false,
     special_type_id: 1,
     is_out_of_service: true,
-    min_days_to_rent: 1
+    min_days_to_rent: 1,
+    price_per_day: "",
+    discount_persent: [],
+    cancellation_policy: ""
   });
 
   useEffect(() => {
-    getCarInfoToEdit(Router.router.query.id);
-    getInitials();
-    scrollTo(0, 0);
+    if (Router.router.query.mode === "edit") {
+      getCarInfoToEdit(Router.router.query.car_id);
+      getInitials(Router.router.query.car_id);
+    } else {
+    }
   }, []);
 
   const getCarInfoToEdit = async id => {
@@ -524,23 +541,28 @@ const Add_Car_Step_2 = () => {
     });
   };
 
-  const getInitials = async () => {
-    const location_Res: any = await REQUEST_GET_LOCATION();
-    const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
-    const year_Res: any = await REQUEST_GET_YEAR();
-    const bodyStyle_res: any = await REQUEST_GET_CAR_BODY_STYLE();
-    const cylinder_res: any = await REQUEST_GET_CAR_CYLINDER();
-    const facilities_res: any = await REQUEST_GET_CAR_FACILITIES();
-    const colorList_res: any = await REQUEST_GET_CAR_COLORS();
-    setLocationList(location_Res.data);
-    setBrandList(car_brand_Res.carBrands);
-    setYearList(year_Res.data);
-    setBodyStyleList(bodyStyle_res.data);
-    setCylinderList(cylinder_res.data);
-    setFacilitesList(facilities_res.data);
-    console.log(facilities_res);
-
-    setColorList(colorList_res.data);
+  const getInitials = async id => {
+    const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
+      { id: id, token: token }
+    );
+    const car_discount_res = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
+      id: id,
+      token: token
+    });
+    console.log("car_availability_res", car_availability_res, car_discount_res);
+    // const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
+    // const year_Res: any = await REQUEST_GET_YEAR();
+    // const bodyStyle_res: any = await REQUEST_GET_CAR_BODY_STYLE();
+    // const cylinder_res: any = await REQUEST_GET_CAR_CYLINDER();
+    // const facilities_res: any = await REQUEST_GET_CAR_FACILITIES();
+    // const colorList_res: any = await REQUEST_GET_CAR_COLORS();
+    // setBrandList(car_brand_Res.carBrands);
+    // setYearList(year_Res.data);
+    // setBodyStyleList(bodyStyle_res.data);
+    // setCylinderList(cylinder_res.data);
+    // setFacilitesList(facilities_res.data);
+    // console.log(facilities_res);
+    // setColorList(colorList_res.data);
   };
 
   const submitHandler = async (e, state) => {
@@ -925,7 +947,7 @@ const Add_Car_Step_2 = () => {
             text="روز"
             value={state.min_days_to_rent}
           />
-          <div>
+          <div className="custom_input_container_step_2">
             <TextInput
               name="max_km_per_day"
               number={true}
@@ -950,9 +972,9 @@ const Add_Car_Step_2 = () => {
               value={state.max_km_per_day}
               label="محدودیت مسافت"
             />
-            <span>کیلومتر در روز</span>
+            <span className="tail_text">کیلومتر در روز</span>
           </div>
-          <div>
+          <div className="custom_input_container_step_2">
             <TextInput
               name="extra_km_price"
               number={true}
@@ -977,71 +999,146 @@ const Add_Car_Step_2 = () => {
               value={state.extra_km_price}
               label="هزینه هر کیلومتر اضافه"
             />
-            <span>تومان</span>
+            <span className="tail_text">تومان</span>
           </div>
-          <div>
-            <Checkbox
-              initialValue={[
-                {
-                  value: state.deliver_at_renters_place
-                }
-              ]}
-              data={[
-                {
-                  text: "در محل اجاره‌گیرنده تحویل می‌دهم",
-                  value: state.deliver_at_renters_place
-                }
-              ]}
-              name="deliver_at_renters_place"
-              clearField={item =>
-                dispatch({
-                  type: "deliver_at_renters_place",
-                  deliver_at_renters_place: item.value
-                })
+          <Checkbox
+            initialValue={[
+              {
+                value: state.deliver_at_renters_place
               }
-              Select={item => {
-                dispatch({
-                  type: "deliver_at_renters_place",
-                  deliver_at_renters_place: item.value
-                });
-              }}
-            />
-          </div>
-          <div>
-            <Checkbox
-              initialValue={[
-                {
-                  value: state.with_driver
-                }
-              ]}
-              data={[
-                {
-                  text: "اجاره فقط با راننده",
-                  value: state.with_driver
-                }
-              ]}
-              name="with_driver"
-              clearField={item =>
-                dispatch({
-                  type: "with_driver",
-                  with_driver: item.value
-                })
+            ]}
+            data={[
+              {
+                text: "در محل اجاره‌گیرنده تحویل می‌دهم",
+                value: state.deliver_at_renters_place
               }
-              Select={item => {
-                dispatch({
-                  type: "with_driver",
-                  with_driver: item.value
-                });
-              }}
-            />
-          </div>
+            ]}
+            name="deliver_at_renters_place"
+            clearField={item =>
+              dispatch({
+                type: "deliver_at_renters_place",
+                deliver_at_renters_place: item.value
+              })
+            }
+            Select={item => {
+              dispatch({
+                type: "deliver_at_renters_place",
+                deliver_at_renters_place: item.value
+              });
+            }}
+          />
+          <Checkbox
+            initialValue={[
+              {
+                value: state.with_driver
+              }
+            ]}
+            data={[
+              {
+                text: "فقط با راننده اجاره می‌دهم",
+                value: state.with_driver
+              }
+            ]}
+            name="with_driver"
+            clearField={item =>
+              dispatch({
+                type: "with_driver",
+                with_driver: item.value
+              })
+            }
+            Select={item => {
+              dispatch({
+                type: "with_driver",
+                with_driver: item.value
+              });
+            }}
+          />
         </div>
         <div className="add_car_form_step_2">
-          <h4>تاریخ و نرخ اجاره</h4>
+          <h4 className="extra_text">تاریخ و نرخ اجاره</h4>
+          <div
+            className="Set_Price_date_options"
+            //   className={[
+            //     "transition_type_Label",
+            //     ErrorState.transmission_type_id ? "Error_color" : null
+            //   ].join(" ")}
+          >
+            <Radio
+              name="DateAndPrice"
+              error_status={ErrorState.transmission_type_id}
+              SelectHandler={i => setDateAndPrice(+i)}
+              defaultCheck={DateAndPrice}
+              data={[
+                {
+                  label: "موجود در تمام تاریخ‌ها با قیمت یکسان",
+                  value: 1
+                },
+                {
+                  label: "موجود در بازه‌های زمانی مختلف با قیمت‌های متفاوت",
+                  value: 2
+                }
+              ]}
+            />
+            <hr />
+          </div>
+          {DateAndPrice === 1 ? (
+            <>
+              <div className="custom_input_container_step_2">
+                <TextInput
+                  name="price_per_day"
+                  number={true}
+                  onChangeHandler={e => {
+                    dispatch({
+                      type: "price_per_day",
+                      price_per_day: e
+                    });
+                  }}
+                  clearField={() =>
+                    dispatch({
+                      type: "price_per_day",
+                      price_per_day: ""
+                    })
+                  }
+                  label="قیمت روزانه"
+                  error={{
+                    status: ErrorState.price_per_day,
+                    message: ""
+                  }}
+                  min={4}
+                  max={8}
+                  value={state.price_per_day}
+                />
+                <span className="tail_text">تومان</span>
+              </div>
+              {state.price_per_day.length > 3 && (
+                <p>
+                  - اجاره خودرو در تمام روز ها با قیمت{" "}
+                  {Number(state.price_per_day).toLocaleString()} تومان
+                </p>
+              )}
+            </>
+          ) : (
+            <PriceBox />
+          )}
+        </div>
+        <div className="add_car_form_step_2">
+          <h4 className="extra_text">تخفیف ها</h4>
+          <DiscountBox />
+          <label>شرایط اجاره و کنسلی</label>
+          <textarea
+            className="text_area_step_2"
+            placeholder="شرایط اجاره و کنسلی"
+            value={state.description}
+            onChange={e => {
+              dispatch({
+                type: "description",
+                description: e.target.value
+              });
+            }}
+          />
         </div>
 
-
-        <DropdownSearch
+        {/* <DropdownSearch
           InputDisable={true}
           error_status={!showDistrict ? ErrorState.location_id : false}
           label="ماشین شما کجاست؟"
@@ -1420,7 +1517,7 @@ const Add_Car_Step_2 = () => {
               description: e.target.value
             });
           }}
-        />
+        /> */}
         <Button
           value="ثبت"
           loading={Loading}

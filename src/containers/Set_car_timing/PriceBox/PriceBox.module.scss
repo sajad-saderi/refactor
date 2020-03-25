@@ -1,0 +1,105 @@
+@import "../../../styles/colors";
+
+.Price_form_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  .input_price_Box {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    flex-wrap: wrap;
+    .tail {
+      position: relative;
+      input {
+        direction: ltr;
+        text-indent: 7rem;
+        text-align: left;
+        padding: 0.94rem;
+        font-family: inherit;
+        margin: 0.3rem auto 0.5rem;
+        display: block;
+        width: 100%;
+        outline: 0;
+        -webkit-appearance: none;
+        line-height: 1;
+        font-size: 1.4rem;
+        background: #fff;
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        color: rgba(0, 0, 0, 0.87);
+        border-radius: 0.4rem;
+      }
+      .clean_icon {
+        position: absolute;
+        left: 49px;
+        top: 31px;
+      }
+      span {
+        position: absolute;
+        top: 3.4rem;
+        left: 1rem;
+      }
+    }
+    .divs {
+      display: inline-block;
+      width: 18.6rem;
+      margin: 1rem;
+      margin-right: 0;
+      vertical-align: middle;
+      height: 8.1rem;
+      .Diff_margin {
+        margin-bottom: 0.3rem;
+      }
+    }
+    .button_box {
+      justify-content: start;
+      align-items: center;
+      display: flex;
+      p {
+        padding: 0 1.4rem;
+      }
+    }
+  }
+  .DatePicker {
+    width: 100%;
+    input {
+      padding: 0.94rem;
+      font-family: inherit;
+      text-align: center;
+      margin: 0.3rem auto 0.5rem;
+      display: block;
+      width: 100%;
+      outline: 0;
+      -webkit-appearance: none;
+      line-height: 1;
+      font-size: 1.4rem;
+      background: #fff;
+      border: 1px solid $input_border;
+      color: rgba(0, 0, 0, 0.87);
+      border-radius: 0.4rem;
+      box-shadow: 0 0 0 0 transparent inset;
+    }
+  }
+  .Date_list {
+    p {
+      color: $grey_color;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .nothing {
+      color: rgba(34, 36, 38, 0.6);
+      margin-bottom: 1rem;
+    }
+    .button_box {
+      display: inline-block;
+      span {
+        display: inline-block;
+        font-size: 1.2rem;
+        margin: 0 1rem 0 0;
+        padding: 0 1rem;
+      }
+    }
+  }
+}

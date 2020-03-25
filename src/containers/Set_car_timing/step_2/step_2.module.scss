@@ -1,197 +1,115 @@
 @import "../../../styles/units";
+@import "../../../styles/colors";
 
 .step_2_form_container {
   max-width: 68rem;
-}
-.pageTitle {
-  position: relative;
-  .car_icon {
-    margin: 1rem;
-    margin-right: 0;
-    display: inline-block;
-    vertical-align: middle;
+  .pageTitle {
+    position: relative;
+    .car_icon {
+      margin: 1rem;
+      margin-right: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    h3 {
+      font-size: 1.8rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
-  h3 {
-    font-size: 1.8rem;
-    display: inline-block;
-    vertical-align: middle;
-  }
-}
-.step_2_image_pelak {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  .Image_container {
-    width: 15rem;
-    min-height: 10rem;
+  .step_2_image_pelak {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      display: block;
-      width: 100%;
-      border-radius: 4px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .Image_container {
+      width: 15rem;
+      min-height: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        display: block;
+        width: 100%;
+        border-radius: 4px;
+      }
+    }
+    .pelak_container {
+      font-size: 1.4rem;
+      margin-right: 2rem;
+      margin-top: 1rem;
+      img {
+        width: 20rem;
+      }
     }
   }
-  .pelak_container {
-    font-size: 1.4rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-    img {
-      width: 20rem;
-    }
-  }
-}
 
-.add_car_form_step_2 {
-  background: #fff;
-  border: 1px solid rgba(34, 36, 38, 0.15);
-  font-size: 1.4rem;
-  border-radius: 4px;
-  padding: 1.6rem;
-  border: none;
-  box-shadow: $Box;
-  margin-bottom: 2rem;
-  .DropDown_container,
-  .radio_father,
-  .text_input_container {
-    margin: 0 0 2rem;
-  }
-  h4 {
-    margin: 0rem 0 1.6rem 0;
-    font-size: 1.6rem;
-  }
-  .DropDown_container label,
-  label {
-    font-weight: 500;
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    display: block;
-    span {
-      color: #bfbfbf;
-    }
-  }
-  .add_car_Facilities_label {
-    margin-bottom: 1.6rem;
-  }
-  .transition_type_Label {
-    display: block;
-    margin-bottom: 0.8rem;
-  }
-  .Car_info_step_1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .DropDown_container {
-      margin: 0 0.8rem 2rem;
-      &:first-child {
-        margin: 0 0rem 2rem 0.8rem;
-      }
-      &:last-child {
-        margin: 0 0.8rem 2rem 0rem;
-      }
-    }
-  }
-  .value_container {
-    position: relative;
-    .clean_icon {
-      left: 63px;
-      top: 39px;
-    }
-    input {
-      text-align: left;
-      text-indent: 7.5rem;
-      direction: ltr;
-    }
-    span {
-      position: absolute;
-      top: 4.2rem;
-      left: 2rem;
-      font-weight: 500;
-    }
-  }
-  .pelak_container {
-    position: relative;
-    margin-bottom: 2rem;
-    .pelak_input {
-      position: absolute;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      width: 300px;
-      top: 0;
-      right: 0;
-      .pelak_input_box_controller {
-        position: relative;
-        .Fourth_part_pelak {
-          position: absolute;
-          top: 15px;
-          right: 10px;
-          input {
-            height: 39px;
-            text-align: center;
-          }
-        }
-        .Third_part_pelak {
-          position: absolute;
-          top: 3px;
-          right: 83px;
-          input {
-            padding: 0;
-            text-align: center;
-            height: 51px;
-          }
-        }
-        .Second_part_pelak {
-          position: absolute;
-          top: 24px;
-          right: 144px;
-          width: 5rem;
-          input {
-            height: 51px;
-            text-align: center;
-            font-size: 1.6rem;
-            font-weight: 500;
-          }
-        }
-        .First_part_pelak {
-          position: absolute;
-          width: 5rem;
-          left: 45px;
-          top: 3px;
-          input {
-            padding: 0;
-            text-align: center;
-            height: 51px;
-          }
-        }
-        .text_input_container {
-          position: absolute;
-          label {
-            color: transparent;
-          }
-          width: 5rem;
-        }
-      }
-    }
-  }
-  .text_area_step_1 {
-    min-height: 15rem;
-    width: 100%;
-    font-family: inherit;
-    margin: 0.3rem auto 2rem;
-    display: block;
-    outline: 0;
-    -webkit-appearance: none;
-    line-height: 2;
-    padding: 0.5rem;
-    font-size: 1.4rem;
+  .add_car_form_step_2 {
     background: #fff;
-    border: 1px solid rgba(34, 36, 38, 0.15);
-    color: rgba(0, 0, 0, 0.87);
-    border-radius: 0.4rem;
-    box-shadow: 0 0 0 0 transparent inset;
-    box-sizing: border-box;
+    border: 1px solid $input_border;
+    font-size: 1.4rem;
+    border-radius: 4px;
+    padding: 1.6rem;
+    border: none;
+    box-shadow: $Box;
+    margin-bottom: 2rem;
+    .DropDown_container,
+    .radio_father,
+    .text_input_container {
+      margin: 0 0 2rem;
+    }
+    .extra_text {
+      margin: 0rem 0 1.6rem 0;
+      font-size: 1.6rem;
+    }
+    .DropDown_container label,
+    label {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .custom_input_container_step_2 {
+      max-width: 38rem;
+      .text_input_container {
+        display: inline-block;
+        vertical-align: middle;
+        width: 15rem;
+      }
+      .tail_text {
+        display: inline-block;
+        margin-right: 1rem;
+      }
+    }
+    .check_box_container{
+      margin-bottom: 1.2rem;
+    }
+    .Set_Price_date_options{
+      .radio_container{
+        display: block;
+        margin-bottom: 1.2rem;
+      }
+      hr{
+        border-color:$input_border;
+        margin-bottom: 2rem;
+      }
+    }
+    .text_area_step_2 {
+      min-height: 15rem;
+      width: 100%;
+      font-family: inherit;
+      margin: 0.3rem auto 2rem;
+      display: block;
+      outline: 0;
+      -webkit-appearance: none;
+      line-height: 2;
+      padding: 0.5rem;
+      font-size: 1.4rem;
+      background: #fff;
+      border: 1px solid $input_border;
+      color: rgba(0, 0, 0, 0.87);
+      border-radius: 0.4rem;
+      box-shadow: 0 0 0 0 transparent inset;
+      box-sizing: border-box;
+    }
   }
   .local_style {
     display: block;
