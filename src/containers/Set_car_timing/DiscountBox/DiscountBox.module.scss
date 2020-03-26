@@ -1,0 +1,74 @@
+@import "../../../styles/colors";
+.Price_form_container {
+  margin-bottom: 2rem;
+  .check_box_container {
+    margin-top: 1.6rem;
+  }
+  hr {
+    border-color: rgba(34, 36, 38, 0.15);
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+  .Discount_Controller {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    width: 100%;
+    .DropDown_container,
+    .text_input_container {
+      margin-bottom: 0.5rem;
+    }
+    .containers {
+      width: 18rem;
+      margin-left: 2rem;
+      .input_error_message {
+        font-size: 1.2rem;
+        color: $Error_text_color;
+      }
+    }
+    .confirm {
+      line-height: 5.5;
+      margin-left: 1.6rem;
+    }
+    .cancel {
+      line-height: 5.5;
+    }
+    .tail {
+      position: relative;
+      span {
+        position: absolute;
+        top: 3.2rem;
+        left: 1rem;
+        font-size: 2rem;
+        color: $grey_color;
+      }
+      input {
+        text-indent: 5rem;
+        height: 42px;
+        margin: 3px 0 5px 0;
+        direction: ltr;
+      }
+      svg {
+        position: absolute;
+        left: 33px;
+        top: 30px;
+      }
+    }
+  }
+  .Discount_list {
+    div {
+      margin: 0.5rem 0;
+      p {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 1rem;
+      }
+      span {
+        display: inline-block;
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        padding: 0 0.5rem;
+      }
+    }
+  }
+}

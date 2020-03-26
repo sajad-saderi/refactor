@@ -198,10 +198,16 @@ input {
   color: $main__color;
   font-weight: bold;
   cursor: pointer;
+  &::selection {
+    background-color: transparent;
+  }
 }
 .cancel {
   color: $Error_text_color;
   cursor: pointer;
+  &::selection {
+    background-color: transparent;
+  }
 }
 
 // ERROR

@@ -79,6 +79,7 @@ const TextInput = (props: ItextInput) => {
           onClick={() => props.clearField()}
         />
       )}
+      {props.error.status && <p className="input_error_message">{props.error.message}</p>}
     </div>
   );
 };

@@ -42,6 +42,17 @@
         left: 1rem;
       }
     }
+    .datePickerError {
+      input {
+        border: 1px solid $Error_text_color !important;
+        background: rgba(216, 48, 48, 0.1) !important;
+      }
+
+      .input_error_message {
+        font-size: 1.2rem;
+        color: $Error_text_color;
+      }
+    }
     .divs {
       display: inline-block;
       width: 18.6rem;
@@ -87,6 +98,7 @@
       color: $grey_color;
       display: inline-block;
       vertical-align: middle;
+      line-height: 2;
     }
     .nothing {
       color: rgba(34, 36, 38, 0.6);

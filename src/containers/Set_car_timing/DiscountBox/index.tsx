@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
+import Checkbox from "../../../components/form/Checkbox";
+import "./DiscountBox.module.scss";
 
 const DiscountBox = (props: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");
+  const [Error_discount_percent, setError_discount_percent] = useState({
+    status: false,
+    message: ""
+  });
   const [DiscountList, setDiscountList] = useState([]);
   const [days_limit, setDays_limit] = useState(null);
-
+  const [days_limit_name, setDays_limit_name] = useState(null);
+  const [Error_days_limit, setError_days_limit] = useState({
+    status: false,
+    message: ""
+  });
+  const [Discountcheck, setDiscountcheck] = useState(0);
+  const [mode, setMode] = useState({
+    status: false,
+    index: null
+  });
   const daysFarsi = [
     { key: "1", value: "1", text: "۱ روز" },
     { key: "2", value: "2", text: "۲ روز" },
@@ -40,61 +55,177 @@ const DiscountBox = (props: IDiscountBox) => {
     { key: "30", value: "30", text: "۳۰ روز" }
   ];
 
+  const onConfirm = () => {
+    if (!days_limit) {
+      setError_days_limit({
+        status: true,
+        message: "لطفا تعداد روز را مشخص کنید"
+      });
+      return;
+    }
+    setError_days_limit({
+      status: false,
+      message: ""
+    });
+    if (discount_percent === "") {
+      setError_discount_percent({
+        status: true,
+        message: "لطفا درصد تخفیف را مشخص کنید"
+      });
+      return;
+    }
+    setError_discount_percent({
+      status: false,
+      message: ""
+    });
+    if (mode.status) {
+      let temp = [...DiscountList];
+      temp[mode.index] = {
+        days_limit: days_limit,
+        discount_percent: discount_percent
+      };
+      setDiscountList(temp);
+    } else {
+      setDiscountList(DiscountList =>
+        DiscountList.concat({
+          days_limit: days_limit,
+          discount_percent: discount_percent
+        })
+      );
+    }
+    setDiscount_percent("");
+    setDays_limit_name(null)
+    setDays_limit(null);
+  };
+
   return (
     <div className="Price_form_container">
-      <DropdownSearch
-        data={daysFarsi}
-        clearField={() => {
-          setDays_limit(null);
+      <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
+      <Checkbox
+        initialValue={[Discountcheck]}
+        data={[
+          {
+            text: "افزودن تخفیف",
+            value: Discountcheck
+          }
+        ]}
+        name="setDiscount"
+        clearField={item => {
+          setDiscountcheck(0);
         }}
-        label="بیشتر از"
-        disableSearch={true}
-        InputDisable={true}
-        Select={e => {
-          setDays_limit(e.value);
-        }}
-      />
-      <TextInput
-        name="price"
-        label="درصد تخفیف"
-        error={{
-          status: false,
-          message: ""
-        }}
-        value={discount_percent}
-        number={true}
-        autoFocus={false}
-        clearField={() => {
-          setDiscount_percent("");
-        }}
-        min={1}
-        max={2}
-        onChangeHandler={e => {
-          setDiscount_percent(e);
+        Select={item => {
+          setDiscountcheck(1);
         }}
       />
-      <p
-        onClick={() => {
-          setDiscountList(DiscountList =>
-            DiscountList.concat({
-              days_limit: days_limit,
-              discount_percent: discount_percent
-            })
-          );
-        }}
-      >
-        ثبت
-      </p>
-      <div>
-        {DiscountList.map(item => {
-          return (
-            <p>
-              از
-              {days_limit} هست {discount_percent}
+      {Discountcheck === 1 && (
+        <>
+          <hr />
+          <div className="Discount_Controller">
+            <div className="containers">
+              <DropdownSearch
+                data={daysFarsi}
+                clearField={() => {
+                  setDays_limit_name(null)
+                  setDays_limit(null);
+                }}
+                label="بیشتر از"
+                disableSearch={true}
+                error_status={Error_days_limit.status}
+                InputDisable={true}
+                defaultVal={days_limit_name}
+                Select={e => {
+                  setDays_limit_name(e.text)
+                  setDays_limit(e.value);
+                }}
+              />
+              {Error_days_limit.status && (
+                <p className="input_error_message">
+                  {Error_days_limit.message}
+                </p>
+              )}
+            </div>
+            <div className="tail containers">
+              <TextInput
+                name="price"
+                label="درصد تخفیف"
+                error={{
+                  status: Error_discount_percent.status,
+                  message: Error_discount_percent.message
+                }}
+                value={discount_percent}
+                number={true}
+                autoFocus={false}
+                clearField={() => {
+                  setDiscount_percent("");
+                }}
+                min={1}
+                max={2}
+                onChangeHandler={e => {
+                  setDiscount_percent(e);
+                }}
+              />
+              <span> %</span>
+            </div>
+            <p className="confirm" onClick={onConfirm}>
+              ثبت
             </p>
-          );
-        })}
-      </div>
+            {mode.status && (
+              <p
+                className="cancel"
+                onClick={() => {
+                  setMode({
+                    status: false,
+                    index: null
+                  });
+                  setDiscount_percent("");
+                  setDays_limit_name(null);
+                  setDays_limit(null);
+                }}
+              >
+                لغو
+              </p>
+            )}
+          </div>
+          <div className="Discount_list">
+            {DiscountList.map((item, i) => {
+              return (
+                <div>
+                  <p>
+                    - برای اجاره‌ بیشتر از {item.days_limit} روز{" "}
+                    {item.discount_percent} درصد تخفیف
+                  </p>
+                  <span
+                    className="confirm"
+                    onClick={() => {
+                      setMode({
+                        status: true,
+                        index: i
+                      });
+                      setDays_limit(item.days_limit);
+                      setDays_limit_name(`${item.days_limit} روز`);
+                      setDiscount_percent(item.discount_percent);
+                    }}
+                  >
+                    ویرایش
+                  </span>
+                  <span
+                    className="cancel"
+                    onClick={() => {
+                      setDiscountList(DiscountList =>
+                        DiscountList.filter((_, index) => {
+                          return index !== i;
+                        })
+                      );
+                    }}
+                  >
+                    حذف
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ import {
   REQUEST_GET_CAR_FACILITIES,
   REQUEST_GET_CAR_COLORS,
   REQUEST_GET_MODEL_INFO,
-  REQUEST_GET_CAR,
+  REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_ADD_NEW_CAR
 } from "../../../API";
 import Radio from "../../../components/form/Radio";
@@ -353,7 +353,10 @@ const Add_Car_Step_1 = () => {
   }, []);
 
   const getCarInfoToEdit = async id => {
-    const car_info_res = await REQUEST_GET_CAR({ id: id });
+    const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
+      id: id,
+      token: token
+    });
     SetCar(car_info_res);
   };
 

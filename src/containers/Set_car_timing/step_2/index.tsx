@@ -75,6 +75,11 @@ const stateReducer = (current, action) => {
         ...current,
         price_per_day: action.price_per_day
       };
+    case "cancellation_policy":
+      return {
+        ...current,
+        cancellation_policy: action.cancellation_policy
+      };
 
     case "location_id":
       return { ...current, location_id: action.location_id };
@@ -359,7 +364,8 @@ const Add_Car_Step_2 = () => {
     extra_km_price: null,
     days_to_get_reminded: null,
     min_days_to_rent: null,
-    price_per_day: null
+    price_per_day: null,
+    cancellation_policy:null
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
@@ -1112,8 +1118,8 @@ const Add_Car_Step_2 = () => {
               </div>
               {state.price_per_day.length > 3 && (
                 <p>
-                  - اجاره خودرو در تمام روز ها با قیمت{" "}
-                  {Number(state.price_per_day).toLocaleString()} تومان
+                  اجاره خودرو شما در تمام روز ها با قیمت{" "}
+                  {Number(state.price_per_day).toLocaleString()} تومان است
                 </p>
               )}
             </>
@@ -1128,11 +1134,11 @@ const Add_Car_Step_2 = () => {
           <textarea
             className="text_area_step_2"
             placeholder="شرایط اجاره و کنسلی"
-            value={state.description}
+            value={state.cancellation_policy}
             onChange={e => {
               dispatch({
-                type: "description",
-                description: e.target.value
+                type: "cancellation_policy",
+                cancellation_policy: e.target.value
               });
             }}
           />

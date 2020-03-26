@@ -11,7 +11,15 @@ const PriceBox = (props: IPriceBox) => {
     from: null,
     to: null
   });
+  const [dayRange_error, setdayRange_error] = useState({
+    status: false,
+    message: ""
+  });
   const [price_per_day, setPrice_per_day] = useState("");
+  const [price_per_day_error, setprice_per_day_error] = useState({
+    status: false,
+    message: ""
+  });
   const [DisableList, setDisableList] = useState([]);
   const [availList, setAvailList] = useState([]);
   const [DateDuration, setDateDuration] = useState([]);
@@ -19,7 +27,6 @@ const PriceBox = (props: IPriceBox) => {
     status: false,
     index: null
   });
-  console.log(DisableList);
 
   const convertDateToMoment = date => {
     if (!date) return;
@@ -55,7 +62,6 @@ const PriceBox = (props: IPriceBox) => {
   const getBetweenRange = (date, returnValue?: boolean) => {
     const { from, to } = convertRangeDateToMoment(date);
     if (from && to) {
-      // console.log('from and to  are:', { from, to });
       const days = [];
       const out = [];
       const duration = from.diff(to, "days");
@@ -65,11 +71,9 @@ const PriceBox = (props: IPriceBox) => {
       for (let i = 0; i <= -duration; i++) {
         days.push(moment(from).add(i, "days"));
       }
-      // console.log('days is:', out);
       days.map((value, index) => {
         out.push(convertMomentToDate(value));
       });
-      console.log("out is:", out);
       if (returnValue) {
         return out;
       } else setDisableList(DisableList => DisableList.concat(out));
@@ -77,6 +81,28 @@ const PriceBox = (props: IPriceBox) => {
   };
 
   const onConfirm = () => {
+    if (dayRange.from === null || dayRange.to === null) {
+      setdayRange_error({
+        status: true,
+        message: "لطفا تاریخ را انتخاب کنید"
+      });
+      return;
+    }
+    setdayRange_error({
+      status: false,
+      message: ""
+    });
+    if (price_per_day === "") {
+      setprice_per_day_error({
+        status: true,
+        message: "لطفا قیمت خودرو را وارد کنید"
+      });
+      return;
+    }
+    setprice_per_day_error({
+      status: false,
+      message: ""
+    });
     if (EditMode.status) {
       let tempArr = [...availList];
       tempArr[EditMode.index] = {
@@ -117,13 +143,16 @@ const PriceBox = (props: IPriceBox) => {
     tempArr.splice(FindIndex, DateDuration[index]);
     setDateDuration(DateDuration => DateDuration.filter((_, i) => index !== i));
     setDisableList(tempArr);
-    console.log("returnValue", tempArr);
-    // console.log(returnValue.join('') == DisableList.join(''));
   };
   return (
     <div className="Price_form_container">
       <div className="Price_container input_price_Box">
-        <div className="divs">
+        <div
+          className={[
+            "divs",
+            dayRange_error.status ? "datePickerError" : null
+          ].join(" ")}
+        >
           <label className="Diff_margin">از تاریخ</label>
           <DatePicker
             inputPlaceholder="از تاریخ تا تاریخ"
@@ -135,13 +164,16 @@ const PriceBox = (props: IPriceBox) => {
             colorPrimary="#4ba3ce"
             disabledDays={DisableList}
           />
+          {dayRange_error.status && (
+            <p className="input_error_message">{dayRange_error.message}</p>
+          )}
         </div>
         <div className="divs  tail">
           <TextInput
             name="price_per_day"
             error={{
-              status: false,
-              message: ""
+              status: price_per_day_error.status,
+              message: price_per_day_error.message
             }}
             label="قیمت"
             value={price_per_day}
@@ -184,48 +216,52 @@ const PriceBox = (props: IPriceBox) => {
       </div>
       <div className="Price_container Date_list">
         {availList.length > 0 ? (
-          availList.map((item, i) => {
-            return (
-              <div>
-                <p>
-                  - اجاره خودرو از تاریخ {item.start_date.month}/{item.start_date.day} تا{" "}
-                  {item.end_date.month}/{item.end_date.day} با قیمت{" "}
-                  {Number(item.price_per_day).toLocaleString()} تومان
-                </p>
-                <div className="button_box">
-                  <span
-                    className="confirm"
-                    onClick={() => {
-                      setEditMode({
-                        status: true,
-                        index: i
-                      });
-                      setPrice_per_day(item.price_per_day);
-                      setDayRange({
-                        from: item.start_date,
-                        to: item.end_date
-                      });
-                    }}
-                  >
-                    ویرایش
-                  </span>
-                  <span
-                    className="cancel"
-                    onClick={() => {
-                      releaseDisableDays(i);
-                      setAvailList(availList =>
-                        availList.filter((_, index) => {
-                          return index !== i;
-                        })
-                      );
-                    }}
-                  >
-                    حذف
-                  </span>
+          <>
+            <p>خودرو شما فقط</p>
+            {availList.map((item, i) => {
+              return (
+                <div>
+                  <p>
+                    - از تاریخ {item.start_date.month}/{item.start_date.day} تا{" "}
+                    {item.end_date.month}/{item.end_date.day} با قیمت{" "}
+                    {Number(item.price_per_day).toLocaleString()} تومان
+                  </p>
+                  <div className="button_box">
+                    <span
+                      className="confirm"
+                      onClick={() => {
+                        setEditMode({
+                          status: true,
+                          index: i
+                        });
+                        setPrice_per_day(item.price_per_day);
+                        setDayRange({
+                          from: item.start_date,
+                          to: item.end_date
+                        });
+                      }}
+                    >
+                      ویرایش
+                    </span>
+                    <span
+                      className="cancel"
+                      onClick={() => {
+                        releaseDisableDays(i);
+                        setAvailList(availList =>
+                          availList.filter((_, index) => {
+                            return index !== i;
+                          })
+                        );
+                      }}
+                    >
+                      حذف
+                    </span>
+                  </div>
                 </div>
-              </div>
-            );
-          })
+              );
+            })}
+            <p>اجاره داده خواهد شد</p>
+          </>
         ) : (
           <p className="nothing">بازه زمانی ثبت شده ندارید</p>
         )}
