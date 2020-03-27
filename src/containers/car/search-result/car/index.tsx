@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import "./car.module.scss";
 
 const Car = props => {
   const [heightController, setheightController] = useState(0);
@@ -19,34 +20,41 @@ const Car = props => {
   } = props.data;
 
   let img = media_set[0].thumbnail_url;
+  let imageWidth = media_set[0].thumbnail_width;
+  let imageHeight = media_set[0].thumbnail_height;
   let title = car.brand.name.fa + " " + car.name.fa;
   let link = `/car/${id}?search_id=${search_id}`;
+  let price =
+    avg_discounted_price_per_day >= 10000000
+      ? avg_discounted_price_per_day_name.slice(0, 4)
+      : avg_discounted_price_per_day >= 1000000
+      ? avg_discounted_price_per_day_name.toString().slice(0, 3)
+      : avg_discounted_price_per_day.toString().slice(0, 3);
+
+  let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
   return (
-    <div
-    // className={`strip grid carcard CAR_CART_${title}`}
-    >
+    <div className={`carcard`}>
       <Link href={link}>
-        <a className={`strip grid carcard CAR_CART_${title}`}>
+        <a className={`CAR_CART_${title}`}>
           <figure>
             {total_discount_percent > 0 && (
-              <span className="wish_bt">
-                {/* ٪{convertNumbers2Persian( */}
-                {total_discount_percent}
-                {/* )} */}
-                تخفیف
+              <span className="discount_badge">
+                {total_discount_percent}% تخفیف
               </span>
             )}
-            {has_system_discount && <span className="wish_bt">ویژه</span>}
+            {has_system_discount && <span className="Special">ویژه</span>}
             <img
-              // style={{ position: "absolute", top: -heightController + "px" }}
+              style={{ position: "absolute", top: -heightController + "px" }}
               src={img}
               className="img-fluid"
               alt={title}
-              onLoadCapture={a => {
-                a.persist();
-                // let w = a.target.naturalWidth;
-                // let h = a.target.naturalHeight;
-                // // console.log(title,"==>",w/h)
+              onLoadCapture={e => {
+                e.persist();
+                if (imageHeight > 200) {
+                  setheightController(imageHeight - 200);
+                }
+                // let w = imageWidth;
+                // let h = imageHeight;
                 // if (w / h < 1.2) {
                 //   setheightController((w / h) * 100);
                 // }
@@ -59,30 +67,24 @@ const Car = props => {
               <span>مشاهده مشخصات</span>
             </div>
           </figure>
-          <div className="wrapper row">
-            <div className="col-8">
-              <h3>
-                {title}
-                <br />
-                <small>{year.name.fa}</small>
-                <br />
-              </h3>
+          <div className="info_box">
+            <div className="car_brand">
+              <h3>{title}</h3>
+              <p>{year.name.fa}</p>
             </div>
-
-            <div className="col-4 leftbox" style={{ cursor: "default" }}>
-              {avg_discounted_price_per_day_name}
-              در روز
+            <div className="price">
+              <p className="Price_number">{price}</p>
+              <p>{`${unit} تومان در روز`}</p>
             </div>
-
-            <ul style={{ cursor: "default" }}>
+            <ul className="tags_container">
               {deliver_at_renters_place && (
                 <li>
-                  <span className="delivery">تحویل در محل</span>
+                  <span className="tags">تحویل در محل</span>
                 </li>
               )}
               {with_driver && (
                 <li>
-                  <span className="delivery">اجاره با راننده</span>
+                  <span className="tags">اجاره با راننده</span>
                 </li>
               )}
             </ul>

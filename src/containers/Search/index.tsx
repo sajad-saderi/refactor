@@ -25,7 +25,8 @@ const Search = () => {
 
   const get_car_location = async () => {
     const res: any = await REQUEST_GET_LOCATION();
-    setLocationsList(res.citiesFarsi);
+    setLocationsList(res.data);
+    
   };
 
   useEffect(() => {
@@ -53,7 +54,6 @@ const Search = () => {
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
-            // defaultVal="تهران"
             hardValue = "تهران"
             Select={i => {
               // setLocationId(i.key);

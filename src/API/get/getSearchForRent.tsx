@@ -20,40 +20,32 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
           ("&" + queryString)
       )
       .then(response => {
-        console.log(response);
-        
         if (response.data.success) {
+          let statsObj = {};
+          const extra_info = response.data.extra_info.stats;
+          const body_style_id = extra_info.body_style_set.map(
+            (value, index) => ({
+              value: value.id,
+              text: value.name.fa,
+              count: value.count
+            })
+          );
+          statsObj = {
+            extra_info: {
+              body_style_id: body_style_id,
+              deliver_at_renters_place: extra_info.deliver_at_renters_place,
+              with_driver: extra_info.with_driver
+            }
+          };
           const results = response.data.items;
           if (results === undefined || results.length == 0) {
             resolve({
               results: [],
-              loadingResults: false,
-              noResult: true,
-              lodingMore: false
+              ...statsObj
             });
           } else {
-            let statsObj = {};
-            if (data.page <= 1 && !data.result_key) {
-              const stats = response.data.extra_info.stats;
-              const body_style_stats = stats.body_style_set.map(
-                (value, index) => ({
-                  id: value.id,
-                  count: value.count
-                })
-              );
-              statsObj = {
-                stats: {
-                  body_style_set: body_style_stats,
-                  deliver_at_renters_place: stats.deliver_at_renters_place,
-                  with_driver: stats.with_driver
-                }
-              };
-            }
             resolve({
               results,
-              loadingResults: false,
-              noResult: false,
-              lodingMore: false,
               ...statsObj
               // remained_count:response.data.remained_count,
               // latest_result_key: response.data.result_key,

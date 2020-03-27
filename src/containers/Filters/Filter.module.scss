@@ -1,0 +1,12 @@
+@import '../../styles/colors';
+.filter_section{
+    max-width: 27rem;
+    padding: 2rem;
+    width: 30%;
+    background: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.4rem;
+    box-shadow: $box_shadow;
+    border-radius: 4px;
+}

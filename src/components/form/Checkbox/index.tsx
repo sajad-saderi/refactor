@@ -25,6 +25,7 @@ const Checkbox = (props: ICheckbox) => {
           {Data.map((i, index) => (
             <label className="container" key={index}>
               {i.text}
+              {i.count && <span>{i.count}</span>}
               <input
                 checked={initialValueList.find(item => {
                   return item === i.value ? true : false;
