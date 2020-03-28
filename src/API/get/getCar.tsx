@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-const GET_RENTAL_CAR = "/core/rental-car/get";
+const GET_RENTAL_CAR = "/core/rental-car/search-for-rent/get";
 
 export const REQUEST_GET_CAR = (data: IgetCar) => {
   return new Promise((resolve, reject) => {

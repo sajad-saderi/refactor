@@ -120,7 +120,7 @@ const Search_result = () => {
   };
 
   return (
-    <article className="search_result_page_container">
+    <article className=" responsive search_result_page_container">
       <section className="content_container">
         <filterContext.Provider
           value={{

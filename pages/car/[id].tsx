@@ -1,39 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { REQUEST_GET_CAR } from "../../src/API";
-import Router from "next/router";
-import Link from "next/link";
+import React from "react";
 import Layout from "../../src/Layout";
+import CarPage from "../../src/containers/car/carpage";
 
 const Car = () => {
-  const [carInfo, setCarInfo] = useState(null);
-
-  useEffect(() => {
-    const { search_id } = Router.router.query;
-    fetchData(search_id);
-  }, []);
-
-  const fetchData = async search_id => {
-    const res: any = await REQUEST_GET_CAR({ search_id });
-    console.log(res);
-    setCarInfo(res);
-  };
-
+  
   return (
     <Layout>
-      {carInfo &&
-        carInfo.media_set.map((item, i) => {
-          return (
-            <>
-              <Link href={`/checkout?search_id=${carInfo.search_id}`}>
-                <a>
-                  <figure key={i}>
-                    <img src={item.url} alt={carInfo.car.name.fa} />
-                  </figure>
-                </a>
-              </Link>
-            </>
-          );
-        })}
+      <CarPage/>
     </Layout>
   );
 };
