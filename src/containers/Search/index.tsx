@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
+import moment from "moment-jalaali";
 
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_LOCATION } from "../../API/index";
@@ -26,15 +27,42 @@ const Search = () => {
   const get_car_location = async () => {
     const res: any = await REQUEST_GET_LOCATION();
     setLocationsList(res.data);
-    
   };
 
   useEffect(() => {
+    setDateFromStorage();
     get_car_location();
   }, []);
 
+  const setDateFromStorage = () => {
+    if (localStorage["start"] && localStorage["end"]) {
+      let start = JSON.parse(localStorage["start"]);
+      if (start.day > moment().jDate()) {
+        if (start.month >= moment().jMonth() + 1) {
+          setDayRange({
+            from: JSON.parse(localStorage["start"]),
+            to: JSON.parse(localStorage["end"])
+          });
+        } else {
+          localStorage.removeItem("start");
+          localStorage.removeItem("end");
+        }
+      } else if (start.month > moment().jMonth() + 1) {
+        setDayRange({
+          from: JSON.parse(localStorage["start"]),
+          to: JSON.parse(localStorage["end"])
+        });
+      } else {
+        localStorage.removeItem("start");
+        localStorage.removeItem("end");
+      }
+    }
+  };
+
   const GotoSearchResult = e => {
     e.preventDefault();
+    localStorage["start"] = JSON.stringify(dayRange.from);
+    localStorage["end"] = JSON.stringify(dayRange.to);
     setLoading(true);
     Router.push({
       pathname: "/search-result",
@@ -54,7 +82,7 @@ const Search = () => {
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
-            hardValue = "تهران"
+            hardValue="تهران"
             Select={i => {
               // setLocationId(i.key);
               localStorage["User_Location"] = JSON.stringify(i);
@@ -78,7 +106,12 @@ const Search = () => {
         </div>
         <div className="search_box_div">
           <p className="Search_Text_transparent">search</p>
-          <Button value="جستجو" class="Blue_BTN search_Btn" loading={loading} />
+          <Button
+            value="جستجو"
+            class="Blue_BTN search_Btn"
+            loading={loading}
+            click={() => {}}
+          />
         </div>
       </form>
     </section>

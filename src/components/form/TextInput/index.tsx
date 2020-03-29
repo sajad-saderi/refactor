@@ -79,7 +79,9 @@ const TextInput = (props: ItextInput) => {
           onClick={() => props.clearField()}
         />
       )}
-      {props.error.status && <p className="input_error_message">{props.error.message}</p>}
+      {props.error.status && (
+        <p className="input_error_message">{props.error.message}</p>
+      )}
     </div>
   );
 };
@@ -88,15 +90,15 @@ interface ItextInput {
   name: string;
   clearField: any;
   onChangeHandler: any;
-  value?: string;
+  value: string;
+  error: any;
+  autoFocus: boolean;
   disabled?: boolean;
   max?: number;
   min?: number;
   label?: string;
   placeholder?: string;
-  error?: any;
   LabelColor?: string;
-  autoFocus?: boolean;
   number?: boolean;
   HideClearIcon?: boolean;
 }

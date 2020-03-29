@@ -1,0 +1,118 @@
+@import "../../styles/colors";
+
+.Checkout_container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: self-start;
+  .car_info_insurance {
+    width: 63%;
+    display: inline-block;
+    vertical-align: top;
+    .car_info {
+      box-shadow: $box_shadow;
+      background: #fff;
+      padding: 1.6rem;
+      font-size: 1.4rem;
+      border-radius: 4px;
+      .car_owner_part {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+          font-size: 2.4rem;
+          margin-bottom: 0;
+        }
+        h4 {
+          margin-top: 0;
+          font-weight: 400;
+        }
+        .car_image {
+          width: 17rem;
+          img {
+            display: block;
+            margin: auto;
+            width: 100%;
+            border-radius: 4px;
+          }
+        }
+      }
+      h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      p,
+      pre,
+      span {
+        line-height: 2;
+        font-family: inherit;
+        display: block;
+      }
+      pre {
+        white-space: pre-line;
+      }
+      hr {
+        border-width: 0.1rem;
+        margin-top: 2.2rem;
+        margin-bottom: 1.2rem;
+        border-bottom-width: 0;
+        border-color: $input_border;
+      }
+      .owner_part {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        img {
+          width: 5.4rem;
+          border-radius: 4px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        p {
+          display: inline-block;
+          margin-right: 1.4rem;
+          font-size: 1.4rem;
+          font-weight: 500;
+        }
+      }
+    }
+    .insurance {
+      box-shadow: $box_shadow;
+      background: #fff;
+      padding: 1.6rem;
+      font-size: 1.4rem;
+      border-radius: 4px;
+      h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .payment_info_container {
+    display: inline-block;
+    width: 34%;
+    background: #fff;
+    border-radius: 4px;
+    padding: 1.6rem;
+    box-shadow: $box_shadow;
+    .Date_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+    }
+    .number_of_days {
+      text-align: center;
+      font-size: 1.4rem;
+    }
+    .payment_information {
+    }
+  }
+}

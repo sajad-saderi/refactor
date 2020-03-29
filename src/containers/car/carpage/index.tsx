@@ -2,39 +2,40 @@ import React, { useEffect, useState } from "react";
 
 import { REQUEST_GET_CAR } from "../../../../src/API";
 import Router from "next/router";
-import Link from "next/link";
 import Slider from "../../../../src/components/Slider";
 import "./carpage.module.scss";
 import Button from "../../../components/form/Button";
 import { IoIosLink } from "react-icons/io";
 
 const CarPage = () => {
-  const [car, setcar] = useState(null);
-  const [year, setyear] = useState(null);
-  const [media_set, setmedia_set] = useState([]);
-  const [capacity, setcapacity] = useState(null);
+  const [car, setCar] = useState(null);
+  const [year, setYear] = useState(null);
+  const [media_set, setMedia_set] = useState([]);
+  const [capacity, setCapacity] = useState(null);
   const [
     avg_discounted_price_per_day,
-    setavg_discounted_price_per_day
+    setAvg_discounted_price_per_day
   ] = useState(null);
   const [unit, setUnit] = useState("هراز");
-  const [body_style, setbody_style] = useState(null);
-  const [transmission_type, settransmission_type] = useState(null);
-  const [with_driver, setwith_driver] = useState(null);
-  const [description, setdescription] = useState(null);
-  const [max_km_per_day, setmax_km_per_day] = useState(null);
-  const [extra_km_price_name, setextra_km_price_name] = useState(null);
-  const [is_out_of_service, setis_out_of_service] = useState(null);
-  const [id, setid] = useState(null);
-  const [deliver_at_renters_place, setdeliver_at_renters_place] = useState(
+  const [body_style, setBody_style] = useState(null);
+  const [transmission_type, setTransmission_type] = useState(null);
+  const [with_driver, setWith_driver] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [max_km_per_day, setMax_km_per_day] = useState(null);
+  const [extra_km_price_name, setExtra_km_price_name] = useState(null);
+  const [is_out_of_service, setIs_out_of_service] = useState(null);
+  const [id, setId] = useState(null);
+  const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(
     null
   );
-  const [location, setlocation] = useState(null);
-  const [mileage_range, setmileage_range] = useState(null);
-  const [owner, setowner] = useState(null);
-  const [cylinder, setcylinder] = useState(null);
-  const [facility_set, setfacility_set] = useState(null);
-  const [cancellation_policy, setcancellation_policy] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [mileage_range, setMileage_range] = useState(null);
+  const [owner, setOwner] = useState(null);
+  const [cylinder, setCylinder] = useState(null);
+  const [facility_set, setFacility_set] = useState(null);
+  const [cancellation_policy, setCancellation_policy] = useState(null);
+  const [search_id, setSearch_id] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const { search_id } = Router.router.query;
@@ -44,14 +45,14 @@ const CarPage = () => {
   const fetchData = async search_id => {
     const res: any = await REQUEST_GET_CAR({ search_id });
     console.log(res);
-    set_CarInfornation(res);
+    set_CarInformation(res);
   };
 
-  const set_CarInfornation = res => {
-    setcar(res.car);
-    setyear(res.year);
-    setcapacity(res.capacity);
-    setavg_discounted_price_per_day(
+  const set_CarInformation = res => {
+    setCar(res.car);
+    setYear(res.year);
+    setCapacity(res.capacity);
+    setAvg_discounted_price_per_day(
       res.avg_discounted_price_per_day >= 10000000
         ? res.avg_discounted_price_per_day_name.slice(0, 4)
         : res.avg_discounted_price_per_day >= 1000000
@@ -59,22 +60,31 @@ const CarPage = () => {
         : res.avg_discounted_price_per_day.toString().slice(0, 3)
     );
     setUnit(res.avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار");
-    setbody_style(res.body_style);
-    settransmission_type(res.transmission_type);
-    setwith_driver(res.with_driver);
-    setdescription(res.description);
-    setmax_km_per_day(res.max_km_per_day);
-    setextra_km_price_name(res.extra_km_price_name);
-    setis_out_of_service(res.is_out_of_service);
-    setid(res.id);
-    setdeliver_at_renters_place(res.deliver_at_renters_place);
-    setlocation(res.location);
-    setmileage_range(res.mileage_range);
-    setowner(res.owner);
-    setcylinder(res.cylinder);
-    setfacility_set(res.facility_set);
-    setcancellation_policy(res.cancellation_policy);
-    setmedia_set(res.media_set);
+    setBody_style(res.body_style);
+    setTransmission_type(res.transmission_type);
+    setWith_driver(res.with_driver);
+    setDescription(res.description);
+    setMax_km_per_day(res.max_km_per_day);
+    setExtra_km_price_name(res.extra_km_price_name);
+    setIs_out_of_service(res.is_out_of_service);
+    setId(res.id);
+    setDeliver_at_renters_place(res.deliver_at_renters_place);
+    setLocation(res.location);
+    setMileage_range(res.mileage_range);
+    setOwner(res.owner);
+    setCylinder(res.cylinder);
+    setFacility_set(res.facility_set);
+    setCancellation_policy(res.cancellation_policy);
+    setMedia_set(res.media_set);
+    setSearch_id(res.search_id);
+  };
+
+  const GoToCheckout = () => {
+    setLoading(true);
+    Router.push({
+      pathname: "/checkout",
+      query: { search_id: search_id }
+    });
   };
 
   return (
@@ -157,7 +167,7 @@ const CarPage = () => {
                   <h2>برچسب</h2>
                   {car.category_set.map(item => (
                     <p className="car_Tags">
-                      <IoIosLink color="#fff" size="1.6rem" />
+                      <IoIosLink color="#4ba3ce" size="1.6rem" />
                       {item.name.fa}
                     </p>
                   ))}
@@ -178,7 +188,8 @@ const CarPage = () => {
               <Button
                 value="ادامه"
                 class="Blue_BTN localClass"
-                loading={false}
+                loading={loading}
+                click={GoToCheckout}
               />
               <span className="extra_info">
                 هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد.
@@ -187,14 +198,6 @@ const CarPage = () => {
           </article>
         </>
       )}
-      {/* <Link href={`/checkout?search_id=${carInfo.search_id}`}>
-                  <a> */}
-      {/* <Slider Feed={media_set} alt = {`${car.brand.name.fa} ${car.name.fa}`}/>  */}
-      {/* <figure key={i}> */}
-      {/* <img src={item.url} alt={carInfo.car.name.fa} /> */}
-      {/* </figure> */}
-      {/* </a>
-                </Link> */}
     </>
   );
 };

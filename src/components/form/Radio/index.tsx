@@ -10,7 +10,9 @@ const Radio = (props: IRadio) => {
   }, [props.defaultCheck]);
 
   useEffect(() => {
-    scrollTo(0, wrapperRef.current.offsetTop);
+    if (props.error_status) {
+      scrollTo(0, wrapperRef.current.offsetTop);
+    }
   }, [props.error_status]);
 
   return props.data.map((i: any) => {
@@ -18,13 +20,14 @@ const Radio = (props: IRadio) => {
       <div className="radio_container" ref={wrapperRef}>
         <label className="container">
           {i.label}
+          {i.extra_text && <p>{i.extra_text}</p>}
           <input
             type="radio"
             name={props.name}
             value={i.value}
             checked={checked === i.value}
             onChange={e => {
-              props.SelectHandler(e.target.value);
+              props.SelectHandler(+e.target.value);
             }}
           />
           <span className="checkmark"></span>

@@ -57,7 +57,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           );
         } else if (response.data.token && response.data.has_name) {
           console.log(response.data);
-          
+
           const data = response.data;
           const cook_option = {
             expires: 100
@@ -142,7 +142,12 @@ const ConfirmCode = (props: IConfirmCode) => {
         <div className="go_back" onClick={() => props.panelController()}>
           <p className="Edit_number">ویرایش شماره</p>
         </div>
-        <Button class="Blue_BTN login_submit" value="ورود" loading={loading} />
+        <Button
+          class="Blue_BTN login_submit"
+          value="ورود"
+          loading={loading}
+          click={() => {}}
+        />
       </form>
     </div>
   );

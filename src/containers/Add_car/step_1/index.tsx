@@ -1036,6 +1036,7 @@ const Add_Car_Step_1 = () => {
                 value: ""
               })
             }
+            autoFocus={false}
             error={{
               status: ErrorState.value,
               message: ""
@@ -1238,6 +1239,7 @@ const Add_Car_Step_1 = () => {
           loading={Loading}
           disable={Loading}
           class="Blue_BTN local_style"
+          click={() => {}}
         />
         <p>{ErrorState.error_message}</p>
       </form>

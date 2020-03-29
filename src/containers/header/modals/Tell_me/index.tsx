@@ -79,6 +79,7 @@ const TellMe = () => {
             value={cellPhone}
             min={11}
             max={11}
+            autoFocus={false}
             LabelColor="#737373"
             label="شماره همراهتان را وارد کنید"
             placeholder="شماره تلفن همراه"
@@ -90,6 +91,7 @@ const TellMe = () => {
             class="Blue_BTN login_submit"
             value="ارسال کد ورود"
             loading={loading}
+            click={() => {}}
           />
         </form>
       </div>

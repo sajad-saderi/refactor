@@ -365,7 +365,7 @@ const Add_Car_Step_2 = () => {
     days_to_get_reminded: null,
     min_days_to_rent: null,
     price_per_day: null,
-    cancellation_policy:null
+    cancellation_policy: null
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
@@ -957,6 +957,7 @@ const Add_Car_Step_2 = () => {
             <TextInput
               name="max_km_per_day"
               number={true}
+              autoFocus={false}
               onChangeHandler={e => {
                 dispatch({
                   type: "max_km_per_day",
@@ -984,6 +985,7 @@ const Add_Car_Step_2 = () => {
             <TextInput
               name="extra_km_price"
               number={true}
+              autoFocus={false}
               onChangeHandler={e => {
                 dispatch({
                   type: "extra_km_price",
@@ -1110,6 +1112,7 @@ const Add_Car_Step_2 = () => {
                     status: ErrorState.price_per_day,
                     message: ""
                   }}
+                  autoFocus={false}
                   min={4}
                   max={8}
                   value={state.price_per_day}
@@ -1529,6 +1532,7 @@ const Add_Car_Step_2 = () => {
           loading={Loading}
           disable={Loading}
           class="Blue_BTN local_style"
+          click={() => {}}
         />
         <p>{ErrorState.error_message}</p>
       </form>

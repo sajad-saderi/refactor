@@ -91,15 +91,12 @@
     }
     .car_Tags {
       cursor: pointer;
-      background: #4ba3ce;
       display: inline-block;
-      color: #ffffff;
+      color: $main__color;
       border: none;
-      border-radius: 4px;
-      text-align: center;
       padding: 0.2rem 2.5rem;
       text-indent: -14px;
-      margin: 6px;
+      margin: 0 0.6rem;
       font-size: 1.2rem;
       font-weight: 500;
       svg {
@@ -135,7 +132,7 @@
       margin-top: 2rem;
       margin-bottom: 2rem;
       img {
-        width: 70px;
+        width: 5.4rem;
         border-radius: 4px;
         display: inline-block;
         vertical-align: middle;

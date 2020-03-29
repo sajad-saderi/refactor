@@ -84,6 +84,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             class="Blue_BTN login_submit"
             value="ارسال کد ورود"
             loading={loading}
+            click={() => {}}
           />
         </form>
       </div>
