@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { REQUEST_GET_CAR } from "../../API";
+import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from "../../API";
 import Router from "next/router";
 import "./checkout.module.scss";
 
@@ -8,7 +8,10 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import moment from "moment-jalaali";
 import Insurance from "./insurance";
 import TextInput from "../../components/form/TextInput";
+import jsCookie from "js-cookie";
 moment.loadPersian({ dialect: "persian-modern" });
+
+const token = jsCookie.get("token");
 
 const Checkout_Container = () => {
   const [car, setCar] = useState(null);
@@ -38,8 +41,13 @@ const Checkout_Container = () => {
   const [total_discount, setTotal_discount] = useState(null);
   const [showInsurance, setShowInsurance] = useState(true);
   const [showcoupon, setShowcoupon] = useState(false);
-  const [couponPrice, setCouponPrice] = useState(0);
+  const [useCouponPrice, setUseCouponPrice] = useState(false);
+  const [couponDiscount, setCouponDiscount] = useState(0);
   const [coupon, setCoupon] = useState("");
+  const [couponError, setCouponError] = useState({
+    status: false,
+    message: ""
+  });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +57,7 @@ const Checkout_Container = () => {
   }, []);
 
   const fetchData = async search_id => {
-    const res: any = await REQUEST_GET_CAR({ search_id });
+    const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
     console.log(res);
     set_CarInformation(res);
   };
@@ -83,13 +91,55 @@ const Checkout_Container = () => {
     else setShowInsurance(false);
   };
 
-  const couponHandler = () => {
+  const couponHandler = async e => {
+    e.preventDefault();
     setCoupanLoading(true);
-    // تنیجه در couponPrice دخیره شوذ
-    setCouponPrice(0);
+    if (coupon.length === 0) {
+      setCouponError({
+        status: true,
+        message: "لطفا کد تخفیف خود را وارد کنید"
+      });
+      setCoupanLoading(false);
+      return;
+    }
+    setCouponError({
+      status: false,
+      message: ""
+    });
+    let data = {
+      token,
+      coupon,
+      search_id
+    };
+    setCoupanLoading(true);
+    try {
+      const coupon_res: any = await REQUEST_GET_RENTAL_CAR(data);
+      console.log(coupon_res);
+      setCoupanLoading(false);
+      setUseCouponPrice(true);
+      setCouponDiscount(coupon_res.coupon.total_price);
+      setDiscounted_total_price(
+        discounted_total_price - coupon_res.coupon.total_price
+      );
+    } catch (error) {
+      setCoupanLoading(false);
+      setCouponError({
+        status: true,
+        message: error
+      });
+    }
   };
 
-  const GoToRequests = () => {};
+  const GoToRequests = async () => {
+    let data = {
+      token,
+      search_id,
+      coupon_code: useCouponPrice ? coupon : null,
+      has_insurance: showInsurance
+    };
+    const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
+    console.log(new_rent_req_res);
+  };
 
   return (
     media_set.length > 0 && (
@@ -160,67 +210,92 @@ const Checkout_Container = () => {
           <div className="payment_information">
             <p>
               <span>قیمت روزانه</span>
-              <span>{avg_discounted_price_per_day.toLocaleString()} تومان</span>
-            </p>
-            <p>
               <span>
-                {!has_system_discount
-                  ? `تخفیف برای ${no_of_days} روز`
-                  : "تخفیف"}
-              </span>
-              <span>
-                {(total_price - discounted_total_price).toLocaleString()}
+                {avg_discounted_price_per_day.toLocaleString()}{" "}
+                <span className="Toman">تومان</span>
               </span>
             </p>
+            {total_discount > 0 && (
+              <p>
+                <span>
+                  {!has_system_discount
+                    ? `تخفیف برای ${no_of_days} روز`
+                    : "تخفیف"}
+                </span>
+                <span>
+                  {(total_price - discounted_total_price).toLocaleString()}{" "}
+                  <span className="Toman">تومان</span>
+                </span>
+              </p>
+            )}
             <p>
               <span>جمع اجاره</span>
-              <span>{discounted_total_price.toLocaleString()} تومان </span>
+              <span>
+                {discounted_total_price.toLocaleString()}{" "}
+                <span className="Toman">تومان</span>{" "}
+              </span>
             </p>
             <p>
               <span>بیمه</span>
               <span>
-                {showInsurance
-                  ? `${insurance_total_price.toLocaleString()} تومان`
-                  : "ندارد"}
+                {showInsurance ? (
+                  <>
+                    {`${insurance_total_price.toLocaleString()} `}
+                    <span className="Toman">تومان</span>
+                  </>
+                ) : (
+                  "ندارد"
+                )}
               </span>
             </p>
-            {!showcoupon ? (
-              <p onClick={() => setShowcoupon(true)}>کد تخفیف دارید؟</p>
+            {!useCouponPrice ? (
+              !showcoupon ? (
+                <p
+                  className="coupon_Text_show"
+                  onClick={() => setShowcoupon(true)}
+                >
+                  کد تخفیف دارید؟
+                </p>
+              ) : (
+                <form className="coupon_form" onSubmit={couponHandler}>
+                  <TextInput
+                    name="coupon"
+                    autoFocus={true}
+                    clearField={() => setCoupon("")}
+                    error={{
+                      status: couponError.status,
+                      message: couponError.message
+                    }}
+                    value={coupon}
+                    placeholder="کد تخفیف خود را وارد کنید"
+                    onChangeHandler={i => setCoupon(i)}
+                  />
+                  <Button
+                    value="اعمال"
+                    class="Blue_BTN coupan_BTN"
+                    loading={coupanLoading}
+                    click={() => {}}
+                  />
+                </form>
+              )
             ) : (
-              <form onSubmit={couponHandler}>
-                <TextInput
-                  name="coupon"
-                  autoFocus={true}
-                  clearField={() => setCoupon("")}
-                  error={{
-                    status: false,
-                    message: ""
-                  }}
-                  value={coupon}
-                  placeholder="کد تخفیف خود را وارد کنید"
-                  onChangeHandler={i => setCoupon(i)}
-                />
-                <Button
-                  value="اعمال"
-                  class="Blue_BTN coupan_BTN"
-                  loading={coupanLoading}
-                  click={() => {}}
-                />
-              </form>
+              <p>
+                <span>کد تخفیف</span>
+                <span className="total_price_number">
+                  {couponDiscount.toLocaleString()}-
+                  <span className="Toman"> تومان</span>
+                </span>
+              </p>
             )}
-            <p>
-              <span>جمع کل</span>
-              <span>
+            <p className="total_price">
+              <span className="total_price_text">جمع کل</span>
+              <span className="total_price_number">
                 {showInsurance
-                  ? couponPrice > 0
-                    ? (couponPrice + insurance_total_price).toLocaleString()
-                    : (
-                        discounted_total_price + insurance_total_price
-                      ).toLocaleString()
-                  : couponPrice > 0
-                  ? this.state.coupanPrice.toLocaleString()
-                  : discounted_total_price.toLocaleString()}
-                تومان
+                  ? (
+                      discounted_total_price + insurance_total_price
+                    ).toLocaleString()
+                  : discounted_total_price.toLocaleString()}{" "}
+                <span className="Toman">تومان</span>
               </span>
             </p>
           </div>
@@ -230,6 +305,9 @@ const Checkout_Container = () => {
             loading={loading}
             click={GoToRequests}
           />
+          <span className="extra_info">
+            هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد
+          </span>
         </section>
       </article>
     )

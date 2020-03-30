@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: self-start;
+  padding-top: 3rem;
   .car_info_insurance {
     width: 63%;
     display: inline-block;
@@ -111,8 +112,66 @@
     .number_of_days {
       text-align: center;
       font-size: 1.4rem;
+      margin-bottom: 2rem;
+      margin-top: 1rem;
     }
     .payment_information {
+      .coupon_Text_show {
+        cursor: pointer;
+        font-weight: 500;
+      }
+      p {
+        font-size: 1.4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 2.5;
+        span {
+          font-weight: 500;
+          &:last-child {
+            font-size: 1.6rem;
+          }
+          .Toman {
+            font-weight: 400;
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .coupon_form {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .text_input_container {
+          margin-left: 1rem;
+          input {
+            margin: 0;
+          }
+          .input_error_message {
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .total_price {
+        margin-top: 1.4rem;
+        border-top: 1px solid $input_border;
+        .total_price_text {
+          font-size: 2rem;
+        }
+        .total_price_number {
+          font-size: 2rem;
+        }
+      }
+    }
+    .localClass {
+      display: block;
+      margin-top: 1.6rem;
+      width: 100%;
+      margin-bottom: 1.6rem;
+    }
+    .extra_info {
+      line-height: 1.5;
+      text-align: center;
+      display: block;
     }
   }
 }

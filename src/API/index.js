@@ -1,6 +1,6 @@
 import { REQUEST_GET_LOCATION } from "./get/getLocations";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "./get/getSearchForRent";
-import { REQUEST_GET_CAR } from "./get/getCar";
+import { REQUEST_GET_RENTAL_CAR } from "./get/getCar";
 import { GET_ORDER_REQUEST } from "./get/getOrderRequest";
 import { REQUEST_GET_ORDER_REQUESTS } from "./get/getOrderRequests";
 import { REQUEST_GET_CAR_BRAND } from "./get/getCarBrand";
@@ -19,11 +19,12 @@ import { REQUEST_GET_RENTAL_CAR_DISCOUNTS } from "./get/getCarDiscount";
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
 import { REQUEST_NEW_CAR_MEDIA } from "./set/setCarMedia";
 import { REQUEST_ADD_NEW_CAR } from "./set/setNewcar";
+import { REQUEST_SET_RENT_REQUEST } from "./set/setRentRequest";
 
 export {
   REQUEST_GET_LOCATION,
   REQUEST_GET_SEARCH_FOR_RENT,
-  REQUEST_GET_CAR,
+  REQUEST_GET_RENTAL_CAR,
   GET_ORDER_REQUEST,
   REQUEST_GET_ORDER_REQUESTS,
   REQUEST_GET_CAR_BRAND,
@@ -39,5 +40,6 @@ export {
   REQUEST_ADD_NEW_CAR,
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_GET_RENTAL_CAR_AVAILABILITIES,
-  REQUEST_GET_RENTAL_CAR_DISCOUNTS
+  REQUEST_GET_RENTAL_CAR_DISCOUNTS,
+  REQUEST_SET_RENT_REQUEST
 };

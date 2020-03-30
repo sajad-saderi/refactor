@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { REQUEST_GET_CAR } from "../../../../src/API";
+import { REQUEST_GET_RENTAL_CAR } from "../../../../src/API";
 import Router from "next/router";
 import Slider from "../../../../src/components/Slider";
 import "./carpage.module.scss";
@@ -43,7 +43,7 @@ const CarPage = () => {
   }, []);
 
   const fetchData = async search_id => {
-    const res: any = await REQUEST_GET_CAR({ search_id });
+    const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
     console.log(res);
     set_CarInformation(res);
   };

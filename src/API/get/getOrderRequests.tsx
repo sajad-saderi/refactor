@@ -6,7 +6,7 @@ const GET_ORDER_REQUESTS = "/core/rental-car/order/list";
 export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(DOMAIN + GET_ORDER_REQUESTS + "?limit=50", {
+      .get(DOMAIN + GET_ORDER_REQUESTS + "?limit=14", {
         headers: {
           Authorization: "Bearer " + data.token
         }
