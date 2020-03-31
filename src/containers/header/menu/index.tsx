@@ -37,7 +37,13 @@ const Menu = () => {
           ورود/ثبت نام
         </li>
       )}
-      {complete_register && <li>رزروهای من</li>}
+      {complete_register && (
+        <li>
+          <Link href="/requests">
+            <a>رزروهای من</a>
+          </Link>
+        </li>
+      )}
       <li className="Drop_Down">
         راهنما
         <ul className="Sub_Nav_Level_2">
