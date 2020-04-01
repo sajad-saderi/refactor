@@ -17,8 +17,14 @@ import PelakView from "../../../components/pelak";
 
 import "./request_cart.module.scss";
 import Link from "next/link";
+import Button from "../../../components/form/Button";
+import { REQUEST_REQUEST_ACTION } from "../../../API";
+import jsCookie from "js-cookie";
 
 moment.loadPersian({ dialect: "persian-modern" });
+
+const token = jsCookie.get("token");
+let car_id = null;
 
 const Request_cart = (props: IRequest_cart) => {
   const [rentStatus, setRentStatus] = useState(null);
@@ -34,11 +40,23 @@ const Request_cart = (props: IRequest_cart) => {
   const [owner_Info, setOwner_Info] = useState(null);
   const [renter_info, setRenter_info] = useState(null);
   const [pelak, setPelak] = useState(null);
+  const [button_code, setButton_code] = useState(null);
+
+  const setForRequest = async (data: any) => {
+    const request_res = await REQUEST_REQUEST_ACTION({
+      token,
+      id: car_id,
+      action: data.action
+    });
+    console.log(request_res);
+  };
 
   useEffect(() => {
     if (props.data) {
+      let renter = props.data.role === "renter" ? true : false;
       let RentStatus = null;
       setStatus_id(props.data.status.id);
+      car_id = props.data.id;
       switch (props.data.status.id) {
         case "new":
           RentStatus = (
@@ -47,6 +65,24 @@ const Request_cart = (props: IRequest_cart) => {
               <span>{props.data.status.name}</span>
             </div>
           );
+          setButton_code(
+            !renter ? (
+              <>
+                <Button
+                  value="قبول"
+                  class="Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST"
+                  loading={false}
+                  click={() => setForRequest({ action: "approve" })}
+                />
+                <Button
+                  value="رد"
+                  class="Blue_BTN request_car_reject REJECT_INCOMING_REQUEST"
+                  loading={false}
+                  click={() => setForRequest({ action: "reject" })}
+                />
+              </>
+            ) : null
+          );
           break;
         case "approved":
           RentStatus = (
@@ -54,6 +90,18 @@ const Request_cart = (props: IRequest_cart) => {
               <IoIosCard size="1.4rem" color="#656565" />
               <span>{props.data.status.name}</span>
             </div>
+          );
+          setButton_code(
+            renter ? (
+              <>
+                <Button
+                  value="پرداخت"
+                  class="Blue_BTN request_car_pay"
+                  loading={false}
+                  click={() => {}}
+                />
+              </>
+            ) : null
           );
           break;
         case "rejected":
@@ -95,6 +143,18 @@ const Request_cart = (props: IRequest_cart) => {
               <span>{props.data.status.name}</span>
             </div>
           );
+          setButton_code(
+            renter ? (
+              <>
+                <Button
+                  value="خودرو را تحویل گرفتم"
+                  class="Blue_BTN request_car_pay"
+                  loading={false}
+                  click={() => {}}
+                />
+              </>
+            ) : null
+          );
           break;
         case "returned":
           RentStatus = (
@@ -102,6 +162,25 @@ const Request_cart = (props: IRequest_cart) => {
               <IoMdFlag size="1.4rem" color="#656565" />
               <span>{props.data.status.name}</span>
             </div>
+          );
+          setButton_code(
+            renter ? (
+              <>
+                <Button
+                  value="ثبت نظر"
+                  class="Blue_BTN request_car_pay"
+                  loading={false}
+                  click={() => {}}
+                />
+              </>
+            ) : (
+              <Button
+                value="ثبت نظر"
+                class="Blue_BTN request_car_pay"
+                loading={false}
+                click={() => {}}
+              />
+            )
           );
           break;
         default:
@@ -122,7 +201,7 @@ const Request_cart = (props: IRequest_cart) => {
       setDiscounted_total_price(
         props.data.rent_search_dump.discounted_total_price
       );
-      setRole(props.data.role === "renter" ? true : false);
+      setRole(renter);
       setOwner_Info(props.data.rent_search_dump.owner);
       setRenter_info(props.data.renter);
       setPelak({
@@ -217,6 +296,7 @@ const Request_cart = (props: IRequest_cart) => {
             </>
           )}
         </div>
+        <div className="Button_container">{button_code}</div>
       </>
     )
   );

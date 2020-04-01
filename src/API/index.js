@@ -20,6 +20,7 @@ import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
 import { REQUEST_NEW_CAR_MEDIA } from "./set/setCarMedia";
 import { REQUEST_ADD_NEW_CAR } from "./set/setNewcar";
 import { REQUEST_SET_RENT_REQUEST } from "./set/setRentRequest";
+import { REQUEST_REQUEST_ACTION } from "./set/setRequestAction";
 
 export {
   REQUEST_GET_LOCATION,
@@ -41,5 +42,6 @@ export {
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_GET_RENTAL_CAR_AVAILABILITIES,
   REQUEST_GET_RENTAL_CAR_DISCOUNTS,
-  REQUEST_SET_RENT_REQUEST
+  REQUEST_SET_RENT_REQUEST,
+  REQUEST_REQUEST_ACTION
 };

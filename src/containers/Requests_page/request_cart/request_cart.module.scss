@@ -142,3 +142,22 @@
     }
   }
 }
+.Button_container {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .request_car_accept {
+    width: 49%;
+  }
+  .request_car_reject {
+    width: 49%;
+    background-color: transparent;
+    border: 1px solid $main__color;
+    color: $main__color;
+  }
+  .request_car_pay {
+    width: 100%;
+    display: block;
+  }
+}
