@@ -1,0 +1,16 @@
+@import "../../styles/colors";
+.requests_page_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .requests_section {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    .Request_car {
+      margin: 0;
+    }
+  }
+}
