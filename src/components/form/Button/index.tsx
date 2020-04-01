@@ -5,7 +5,7 @@ const Button = (props: IButton) => {
   return (
     <button
       className={props.class}
-      disabled={props.disable}
+      disabled={props.disable || props.loading}
       onClick={() => props.click()}
     >
       {props.loading ? <span className="Loading" /> : props.value}

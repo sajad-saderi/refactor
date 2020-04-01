@@ -11,10 +11,10 @@ const Request = () => {
   useEffect(() => {
     const complete_register = jsCookie.get("complete_register");
 
-    if (!complete_register) {
-      alert("you are mot login ");
-      return;
-    }
+    // if (!complete_register) {
+    //   alert("you are mot login ");
+    //   return;
+    // }
     fetchAPI();
   }, []);
 

@@ -16,16 +16,17 @@ const Requests_page = () => {
   useEffect(() => {
     const complete_register = jsCookie.get("complete_register");
 
-    if (!complete_register) {
-      alert("you are mot login ");
-      return;
-    }
+    // if (!complete_register) {
+    //   alert("you are mot login ");
+    //   return;
+    // }
     fetchAPI({
       page
     });
   }, []);
 
   const fetchAPI = async data => {
+    setResult([]);
     try {
       const res: any = await REQUEST_GET_ORDER_REQUESTS({
         ...data,
@@ -82,7 +83,16 @@ const Requests_page = () => {
               {result.map((item, i) => {
                 return (
                   <div className="Request_car" key={i}>
-                    <Request_cart data={item} />
+                    <Request_cart
+                      data={item}
+                      getDataAgain={() => {
+                        page = 1;
+                        fetchAPI({
+                          page: 1,
+                          status_id: filter_id.join(",")
+                        });
+                      }}
+                    />
                   </div>
                 );
               })}

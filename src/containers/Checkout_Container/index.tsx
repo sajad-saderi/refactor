@@ -114,7 +114,6 @@ const Checkout_Container = () => {
     setCoupanLoading(true);
     try {
       const coupon_res: any = await REQUEST_GET_RENTAL_CAR(data);
-      console.log(coupon_res);
       setCoupanLoading(false);
       setUseCouponPrice(true);
       setCouponDiscount(coupon_res.coupon.total_price);
@@ -137,8 +136,10 @@ const Checkout_Container = () => {
       coupon_code: useCouponPrice ? coupon : null,
       has_insurance: showInsurance
     };
-    const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
-    console.log(new_rent_req_res);
+    try {
+      const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
+      Router.push("/requests");
+    } catch (e) {}
   };
 
   return (

@@ -8,9 +8,9 @@ const Requests_filter = (props: IRequests_filter) => {
     { value: "new", text: "در انتظار تایید" },
     { value: "approved", text: "در انتظار پرداخت" },
     { value: "rejected", text: "رد شد" },
-    { value: "cancelled", text: "لغو شد" },
+    // { value: "cancelled", text: "لغو شد" },
     { value: "paid", text: "در انتظار تحویل خودرو" },
-    { value: "not_delivered", text: "سفر به شکل دستی لغو شد " },
+    // { value: "not_delivered", text: "سفر به شکل دستی لغو شد " },
     { value: "delivered", text: " در حال سفر" },
     { value: "returned", text: " پایان اجاره" }
   ]);

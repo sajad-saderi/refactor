@@ -10,8 +10,7 @@ import {
   IoMdFlag,
   IoIosDownload,
   IoMdArrowRoundBack,
-  IoMdPerson,
-  IoMdPhonePortrait
+  IoMdPerson
 } from "react-icons/io";
 import PelakView from "../../../components/pelak";
 
@@ -24,7 +23,6 @@ import jsCookie from "js-cookie";
 moment.loadPersian({ dialect: "persian-modern" });
 
 const token = jsCookie.get("token");
-let car_id = null;
 
 const Request_cart = (props: IRequest_cart) => {
   const [rentStatus, setRentStatus] = useState(null);
@@ -40,15 +38,34 @@ const Request_cart = (props: IRequest_cart) => {
   const [owner_Info, setOwner_Info] = useState(null);
   const [renter_info, setRenter_info] = useState(null);
   const [pelak, setPelak] = useState(null);
-  const [button_code, setButton_code] = useState(null);
+  const [button_code, setButton_code] = useState([]);
+  const [ButtonLoader, setButtonLoader] = useState(false);
+  const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
 
   const setForRequest = async (data: any) => {
-    const request_res = await REQUEST_REQUEST_ACTION({
-      token,
-      id: car_id,
-      action: data.action
-    });
-    console.log(request_res);
+    if (data.action === "reject") {
+      setRejectButtonLoader(true);
+    } else {
+      setButtonLoader(true);
+    }
+    try {
+      const request_res: any = await REQUEST_REQUEST_ACTION({
+        token,
+        id: data.id,
+        action: data.action
+      });
+      setButtonLoader(false);
+      setRejectButtonLoader(false);
+      if (data.action === "pay") {
+        window.location.href = `${request_res.redirect_to}`;
+      } else {
+        props.getDataAgain();
+      }
+    } catch (e) {
+      setButtonLoader(false);
+      setRejectButtonLoader(false);
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -56,7 +73,6 @@ const Request_cart = (props: IRequest_cart) => {
       let renter = props.data.role === "renter" ? true : false;
       let RentStatus = null;
       setStatus_id(props.data.status.id);
-      car_id = props.data.id;
       switch (props.data.status.id) {
         case "new":
           RentStatus = (
@@ -66,22 +82,25 @@ const Request_cart = (props: IRequest_cart) => {
             </div>
           );
           setButton_code(
-            !renter ? (
-              <>
-                <Button
-                  value="قبول"
-                  class="Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST"
-                  loading={false}
-                  click={() => setForRequest({ action: "approve" })}
-                />
-                <Button
-                  value="رد"
-                  class="Blue_BTN request_car_reject REJECT_INCOMING_REQUEST"
-                  loading={false}
-                  click={() => setForRequest({ action: "reject" })}
-                />
-              </>
-            ) : null
+            !renter
+              ? [
+                  {
+                    value: "قبول",
+                    class:
+                      "Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST",
+                    click: () =>
+                      setForRequest({ action: "approve", id: props.data.id })
+                  },
+                  {
+                    value: "رد",
+                    class:
+                      "Blue_BTN request_car_reject REJECT_INCOMING_REQUEST",
+                    loading: ButtonLoader,
+                    click: () =>
+                      setForRequest({ action: "reject", id: props.data.id })
+                  }
+                ]
+              : []
           );
           break;
         case "approved":
@@ -92,16 +111,16 @@ const Request_cart = (props: IRequest_cart) => {
             </div>
           );
           setButton_code(
-            renter ? (
-              <>
-                <Button
-                  value="پرداخت"
-                  class="Blue_BTN request_car_pay"
-                  loading={false}
-                  click={() => {}}
-                />
-              </>
-            ) : null
+            renter
+              ? [
+                  {
+                    value: "پرداخت",
+                    class: "Blue_BTN request_car_pay GO_TO_BANK",
+                    click: () =>
+                      setForRequest({ action: "pay", id: props.data.id })
+                  }
+                ]
+              : []
           );
           break;
         case "rejected":
@@ -127,6 +146,18 @@ const Request_cart = (props: IRequest_cart) => {
               <span>{props.data.status.name}</span>
             </div>
           );
+          setButton_code(
+            renter
+              ? [
+                  {
+                    value: "خودرو را تحویل گرفتم",
+                    class: "Blue_BTN request_car_pay CAR_DELIVERED",
+                    click: () =>
+                      setForRequest({ action: "deliver", id: props.data.id })
+                  }
+                ]
+              : []
+          );
           break;
         case "not_delivered":
           RentStatus = (
@@ -144,16 +175,15 @@ const Request_cart = (props: IRequest_cart) => {
             </div>
           );
           setButton_code(
-            renter ? (
-              <>
-                <Button
-                  value="خودرو را تحویل گرفتم"
-                  class="Blue_BTN request_car_pay"
-                  loading={false}
-                  click={() => {}}
-                />
-              </>
-            ) : null
+            renter
+              ? [
+                  {
+                    value: "خودرو را تحویل گرفتم",
+                    class: "Blue_BTN request_car_pay",
+                    click: () => {}
+                  }
+                ]
+              : []
           );
           break;
         case "returned":
@@ -164,23 +194,21 @@ const Request_cart = (props: IRequest_cart) => {
             </div>
           );
           setButton_code(
-            renter ? (
-              <>
-                <Button
-                  value="ثبت نظر"
-                  class="Blue_BTN request_car_pay"
-                  loading={false}
-                  click={() => {}}
-                />
-              </>
-            ) : (
-              <Button
-                value="ثبت نظر"
-                class="Blue_BTN request_car_pay"
-                loading={false}
-                click={() => {}}
-              />
-            )
+            renter
+              ? [
+                  {
+                    value: "ثبت نظر",
+                    class: "Blue_BTN request_car_pay",
+                    click: () => {}
+                  }
+                ]
+              : [
+                  {
+                    value: "ثبت نظر",
+                    class: "Blue_BTN request_car_pay",
+                    click: () => {}
+                  }
+                ]
           );
           break;
         default:
@@ -221,7 +249,7 @@ const Request_cart = (props: IRequest_cart) => {
     media_set && (
       <>
         {rentStatus}
-        <div className="cart">
+        <div className="cart" onClick={setForRequest}>
           <div className="rent_info">
             <h2>
               {car.brand.name.fa} {car.name.fa}
@@ -289,14 +317,28 @@ const Request_cart = (props: IRequest_cart) => {
                   {renter_info.name}
                 </a>
               </Link>
-              <a href={`tel:0${renter_info.cell}`}>
-                0{renter_info.cell}
-                <span className="extra_Text"> :تماس با اجاره گیرنده</span>
-              </a>
+              {status_id === "approved" && (
+                <a href={`tel:0${renter_info.cell}`}>
+                  0{renter_info.cell}
+                  <span className="extra_Text"> :تماس با اجاره گیرنده</span>
+                </a>
+              )}
             </>
           )}
         </div>
-        <div className="Button_container">{button_code}</div>
+        <div className="Button_container">
+          {/* {button_code} */}
+          {button_code.length > 0 &&
+            button_code.map((item, i) => (
+              <Button
+                key={i}
+                value={item.value}
+                class={item.class}
+                loading={i === 1 ? rejectButtonLoader : ButtonLoader}
+                click={item.click}
+              />
+            ))}
+        </div>
       </>
     )
   );
@@ -304,6 +346,7 @@ const Request_cart = (props: IRequest_cart) => {
 
 interface IRequest_cart {
   data: any;
+  getDataAgain?: any;
 }
 
 export default Request_cart;
