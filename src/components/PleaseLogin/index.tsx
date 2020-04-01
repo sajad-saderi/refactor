@@ -7,7 +7,7 @@ const PleaseLogin = () => {
   const MODAL_CONTEXT = useContext(Modal_context);
 
   return (
-    <div className="Please_login_container">
+    <div className="Please_login_container minHeight">
       <div>
         <img src={login} alt="please log in" />
         <p>برای دسترسی به این بخش، لطفا ابتدا وارد شوید.</p>

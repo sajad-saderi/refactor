@@ -1,0 +1,20 @@
+@import "../colors";
+
+.failed_payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .alarm_container {
+    margin-bottom: 5rem;
+    text-align: center;
+    p {
+      font-size: 2rem;
+      font-weight: 500;
+      color: $second__color;
+    }
+  }
+  .local_style {
+    width: 15rem;
+  }
+}
