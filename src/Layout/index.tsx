@@ -12,9 +12,10 @@ const ShowModalReducer = (current, action) => {
 
 const Layout = props => {
   const [modalType, setModalType] = useState("Login");
+  const [data, setData] = useState(null);
   const [Auth, setAuth] = useState(false);
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
-  
+
   useEffect(() => {
     if (Router.router.query.utm_source) {
       localStorage["utm_source"] = Router.query.utm_source;
@@ -26,9 +27,10 @@ const Layout = props => {
     }
   }, []);
 
-  const modal_handler = type => {
+  const modal_handler = (type, data) => {
     dispatch({ type: "SET" });
     setModalType(type);
+    setData(data);
   };
 
   return (
@@ -36,8 +38,8 @@ const Layout = props => {
       <modal_context.Provider
         value={{
           show_modal: Show_Modal,
-          modalHandler: type => {
-            modal_handler(type);
+          modalHandler: (type, data) => {
+            modal_handler(type, data);
           }
         }}
       >
@@ -47,7 +49,11 @@ const Layout = props => {
             Auth_Manager: v => setAuth(v)
           }}
         >
-          <Header modalType={modalType} Show_Modal={Show_Modal}></Header>
+          <Header
+            modalType={modalType}
+            Show_Modal={Show_Modal}
+            data={data}
+          ></Header>
           <main>{props.children}</main>
         </auth_context.Provider>
       </modal_context.Provider>

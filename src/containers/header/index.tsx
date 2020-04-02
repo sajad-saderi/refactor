@@ -20,7 +20,7 @@ const Header = (props: IHeader) => {
           <Menu />
         </section>
       </article>
-      {props.Show_Modal && <Modal modal_type={props.modalType} />}
+      {props.Show_Modal && <Modal modal_type={props.modalType} data={props.data} />}
     </header>
   );
 };
@@ -28,6 +28,7 @@ const Header = (props: IHeader) => {
 interface IHeader {
   Show_Modal: boolean;
   modalType: string;
+  data?:any
 }
 
 export default Header;

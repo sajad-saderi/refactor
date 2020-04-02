@@ -9,12 +9,12 @@ const SET_ORDER_DELIVER = "/core/rental-car/order/deliver";
 const SET_ORDER_RETURN = "/core/rental-car/order/return";
 const SET_ORDER_RATE = {
   OWNER: {
-    USER: "/core/rental-car/review/owner/renter",
-    RENT_ORDER: "/core/rental-car/review/owner/rent-order"
-  },
-  RENTER: {
     USER: "/core/rental-car/review/renter/owner",
     RENT_ORDER: "/core/rental-car/review/renter/rent-order"
+  },
+  RENTER: {
+    USER: "/core/rental-car/review/owner/renter",
+    RENT_ORDER: "/core/rental-car/review/owner/rent-order"
   }
 };
 
@@ -52,11 +52,11 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
           "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد اجاره گیرنده را با سایر کاربران در میان بگذارید.";
         break;
       case "rate":
-        if (data.payload.toRate === "renter") {
+        if (data.payload.toRate === "owner") {
           if (data.payload.type === "user") {
             message = "امتیاز شما برای اجاره دهنده ثبت شد.";
 
-            ACTION_URL = SET_ORDER_RATE.RENTER.USER;
+            ACTION_URL = SET_ORDER_RATE.OWNER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
               rate: data.payload.rate
@@ -65,18 +65,18 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
           if (data.payload.type === "rent-order") {
             message = "امتیاز شما برای خودرو ثبت شد.";
 
-            ACTION_URL = SET_ORDER_RATE.RENTER.RENT_ORDER;
+            ACTION_URL = SET_ORDER_RATE.OWNER.RENT_ORDER;
             more = {
               rent_order_id: data.id,
               rate: data.payload.rate,
               review: data.payload.review
             };
           }
-        } else if (data.payload.toRate === "owner") {
+        } else if (data.payload.toRate === "renter") {
           if (data.payload.type === "user") {
             message = "امتیاز شما برای اجاره گیرنده ثبت شد.";
 
-            ACTION_URL = SET_ORDER_RATE.OWNER.USER;
+            ACTION_URL = SET_ORDER_RATE.RENTER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
               rate: data.payload.rate
@@ -88,6 +88,8 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         }
         break;
     }
+    console.log("more", more);
+
     axios
       .post(
         DOMAIN + ACTION_URL,
@@ -135,7 +137,7 @@ interface InewRentRequest {
   payload?: {
     toRate: "owner" | "renter"; // only in rate action
     type: "user" | "rent-order"; // only in rate action
-    user_profile_id?: string; // only in rate action
+    user_profile_id?: string | number; // only in rate action
     rate?: number; // only in rate action
     review?: string; // only in rate action
   };

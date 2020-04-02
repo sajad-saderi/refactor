@@ -1,0 +1,146 @@
+import React, { useState, useContext, useEffect } from "react";
+import "./Renter.module.scss";
+import Button from "../../../../components/form/Button";
+import modal_context from "../../../../context/Modal_context";
+import StarRatings from "react-star-ratings";
+import jsCookie from "js-cookie";
+import { REQUEST_REQUEST_ACTION } from "../../../../API";
+
+const token = jsCookie.get("token");
+
+const Renter = (props: IRenter) => {
+  const [rent_search_dump, setRent_search_dump] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [textareaValue, setTextareaValue] = useState("");
+  const [carRate, setCarRate] = useState(0);
+  const [ownerRate, setOwnerRate] = useState(0);
+  const Modal_context = useContext(modal_context);
+
+  useEffect(() => {
+    setRent_search_dump(props.data.rent_search_dump);
+  }, []);
+
+//   console.log(props.data);
+
+  const setForRequest = async (e, data: any) => {
+    e.preventDefault();
+    setLoading(true);
+    Promise.all([
+      REQUEST_REQUEST_ACTION({
+        token,
+        id: data.id,
+        action: data.action,
+        payload: {
+          toRate: "owner",
+          type: "rent-order",
+          rate: carRate,
+          review: textareaValue
+        }
+      }),
+      REQUEST_REQUEST_ACTION({
+        token,
+        id: data.id,
+        action: data.action,
+        payload: {
+          toRate: "owner",
+          type: "user",
+          user_profile_id: rent_search_dump.owner.id,
+          rate: ownerRate
+        }
+      })
+    ])
+      .then(response => {
+        console.log(response);
+        setLoading(false);
+        //   Modal_context.modalHandler("SET");
+      })
+      .catch(e => {
+        console.log(e);
+        setLoading(false);
+      });
+  };
+
+  return (
+    <>
+      {rent_search_dump && (
+        <div className="modal_box_div">
+          <form
+            className="rate_to_owner_car"
+            onSubmit={e => {
+              setForRequest(e, {
+                id: props.data.id,
+                action: "rate"
+              });
+            }}
+          >
+            <img
+              src={rent_search_dump.media_set[0].thumbnail_url}
+              alt={rent_search_dump.car.name.fa}
+            />
+            <h3>
+              {rent_search_dump.car.brand.name.fa}{" "}
+              {rent_search_dump.car.name.fa}
+            </h3>
+            <p>امتیاز شما به خودرو</p>
+            <StarRatings
+              rating={carRate}
+              starRatedColor="rgb(255, 204, 0)"
+              starHoverColor="rgb(255, 204, 0)"
+              starDimension="20px"
+              starSpacing="5px"
+              changeRating={e => setCarRate(e)}
+              numberOfStars={5}
+              name="carRate"
+            />
+            <img
+              src={rent_search_dump.owner.thumbnail_url}
+              alt={rent_search_dump.owner.name}
+            />
+            <h3>{rent_search_dump.owner.name}</h3>
+            <p>امتیاز شما به اجاره‌دهنده</p>
+            <StarRatings
+              rating={ownerRate}
+              starRatedColor="rgb(255, 204, 0)"
+              starHoverColor="rgb(255, 204, 0)"
+              starDimension="20px"
+              starSpacing="5px"
+              changeRating={e => setOwnerRate(e)}
+              numberOfStars={5}
+              name="ownerRate"
+            />
+            <label>توضیح:</label>
+            <textarea
+              value={textareaValue}
+              onChange={e => {
+                setTextareaValue(e.target.value);
+              }}
+              placeholder="(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)"
+            />
+            <div className="rate_buttons">
+              <Button
+                class="Blue_BTN submit_submit"
+                value="ثبت امتیاز"
+                loading={loading}
+                click={() => {}}
+              />
+              <Button
+                class="Blue_BTN cancel_submit"
+                value="لغو"
+                loading={loading}
+                click={() => {
+                  Modal_context.modalHandler("SET");
+                }}
+              />
+            </div>
+          </form>
+        </div>
+      )}
+    </>
+  );
+};
+
+interface IRenter {
+  data: any;
+}
+
+export default Renter;

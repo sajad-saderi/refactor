@@ -147,6 +147,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .disable_rate_btn {
+    color: #656565;
+    font-family: inherit;
+    background-color: #e6e6e6;
+  }
   .request_car_accept {
     width: 49%;
   }

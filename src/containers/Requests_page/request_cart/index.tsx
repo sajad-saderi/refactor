@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import moment from "moment-jalaali";
 import {
   IoIosCheckboxOutline,
@@ -19,6 +19,7 @@ import Link from "next/link";
 import Button from "../../../components/form/Button";
 import { REQUEST_REQUEST_ACTION } from "../../../API";
 import jsCookie from "js-cookie";
+import Modal_context from "../../../context/Modal_context";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -41,6 +42,7 @@ const Request_cart = (props: IRequest_cart) => {
   const [button_code, setButton_code] = useState([]);
   const [ButtonLoader, setButtonLoader] = useState(false);
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
+  const MODAL_CONTEXT = useContext(Modal_context);
 
   const setForRequest = async (data: any) => {
     if (data.action === "reject") {
@@ -175,12 +177,14 @@ const Request_cart = (props: IRequest_cart) => {
             </div>
           );
           setButton_code(
-            renter
+            !renter
               ? [
                   {
-                    value: "خودرو را تحویل گرفتم",
+                    value: "خودرو را بازتحویل گرفتم",
                     class: "Blue_BTN request_car_pay",
-                    click: () => {}
+                    click: () => {
+                      setForRequest({ action: "return", id: props.data.id });
+                    }
                   }
                 ]
               : []
@@ -195,10 +199,31 @@ const Request_cart = (props: IRequest_cart) => {
           );
           setButton_code(
             renter
+              ? props.data.has_renter_reviewed_owner ||
+                props.data.has_renter_reviewed_rent_order
+                ? [
+                    {
+                      value: "قبلا برای این سفارش نظر ثبت کرده اید",
+                      disable: true,
+                      class: "Blue_BTN request_car_pay disable_rate_btn",
+                      click: () => {}
+                    }
+                  ]
+                : [
+                    {
+                      value: "ثبت نظر",
+                      class: "Blue_BTN request_car_pay",
+                      click: () =>
+                        MODAL_CONTEXT.modalHandler("Renter", props.data)
+                    }
+                  ]
+              : props.data.has_owner_reviewed_rent_order ||
+                props.data.has_owner_reviewed_renter
               ? [
                   {
-                    value: "ثبت نظر",
-                    class: "Blue_BTN request_car_pay",
+                    value: "قبلا برای این سفارش نظر ثبت کرده اید",
+                    disable: true,
+                    class: "Blue_BTN request_car_pay disable_rate_btn",
                     click: () => {}
                   }
                 ]
@@ -206,7 +231,7 @@ const Request_cart = (props: IRequest_cart) => {
                   {
                     value: "ثبت نظر",
                     class: "Blue_BTN request_car_pay",
-                    click: () => {}
+                    click: () => MODAL_CONTEXT.modalHandler("Owner", props.data)
                   }
                 ]
           );
