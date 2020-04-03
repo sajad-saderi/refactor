@@ -14,6 +14,8 @@ import { REQUEST_GET_MODEL_INFO } from "./get/getModelInfo";
 import { REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING } from "./get/getRentalCar";
 import { REQUEST_GET_RENTAL_CAR_AVAILABILITIES } from "./get/getCarAvailability";
 import { REQUEST_GET_RENTAL_CAR_DISCOUNTS } from "./get/getCarDiscount";
+import { REQUEST_GET_USER_CARS } from "./get/getUserCars";
+import { REQUEST_GET_USER_INFO } from "./get/getUserInfo";
 
 // SET
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
@@ -21,6 +23,12 @@ import { REQUEST_NEW_CAR_MEDIA } from "./set/setCarMedia";
 import { REQUEST_ADD_NEW_CAR } from "./set/setNewcar";
 import { REQUEST_SET_RENT_REQUEST } from "./set/setRentRequest";
 import { REQUEST_REQUEST_ACTION } from "./set/setRequestAction";
+import { REQUEST_SET_USER_IMAGE } from "./set/setUserImage";
+import { REQUEST_SET_FIRST_LAST_NAME } from "./set/setFirstandLastName";
+import { REQUEST_SET_USERNAME } from "./set/setUsername";
+import { REQUEST_SET_COMPANY_NAME } from "./set/setCompanyName";
+import { REQUEST_SET_OUT_OF_SERVICE } from "./set/setIsOutOfService";
+import { REQUEST_DELETE_CAR } from "./set/setDeleteCar";
 
 export {
   REQUEST_GET_LOCATION,
@@ -43,5 +51,13 @@ export {
   REQUEST_GET_RENTAL_CAR_AVAILABILITIES,
   REQUEST_GET_RENTAL_CAR_DISCOUNTS,
   REQUEST_SET_RENT_REQUEST,
-  REQUEST_REQUEST_ACTION
+  REQUEST_REQUEST_ACTION,
+  REQUEST_GET_USER_CARS,
+  REQUEST_GET_USER_INFO,
+  REQUEST_SET_USER_IMAGE,
+  REQUEST_SET_FIRST_LAST_NAME,
+  REQUEST_SET_USERNAME,
+  REQUEST_SET_COMPANY_NAME,
+  REQUEST_SET_OUT_OF_SERVICE,
+  REQUEST_DELETE_CAR
 };

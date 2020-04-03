@@ -38,12 +38,22 @@ const CarPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const { search_id } = Router.router.query;
-    fetchData(search_id);
+    const { search_id, id } = Router.router.query;
+    console.log();
+    if (search_id) {
+      fetchData({ search_id });
+    } else {
+      fetchData({ id });
+    }
   }, []);
 
-  const fetchData = async search_id => {
-    const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
+  const fetchData = async data => {
+    let res: any = null;
+    if (data.search_id) {
+      res = await REQUEST_GET_RENTAL_CAR({ search_id: data.search_id });
+    } else {
+      res = await REQUEST_GET_RENTAL_CAR({ id: data.id });
+    }
     console.log(res);
     set_CarInformation(res);
   };
@@ -117,9 +127,13 @@ const CarPage = () => {
               <h2>محدودیت مسافت</h2>
               <p>{max_km_per_day} کیلومتر در روز</p>
               <p>هزینه هر کیلومتر اضافه {extra_km_price_name} تومان</p>
-              <hr />
-              <h2>توضیحات</h2>
-              <pre>{description}</pre>
+              {description && (
+                <>
+                  <hr />
+                  <h2>توضیحات</h2>
+                  <pre>{description}</pre>
+                </>
+              )}
               <hr />
               <h2>مشخصات فنی</h2>
               <div className="info_container">

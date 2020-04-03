@@ -1,0 +1,56 @@
+@import "../../../styles/colors";
+
+.Profile_info_container {
+  min-width: 30%;
+  background: #fff;
+  border-radius: 4px;
+  padding: 1.4rem;
+  box-shadow: $box_shadow;
+  .user_information {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 3rem;
+    img {
+      width: 7rem;
+      margin-left: 1rem;
+      border-radius: 4px;
+    }
+    h3 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 1.4rem;
+      color: $main__color;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+  }
+  .profile_controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .Exit {
+      width: 50%;
+      cursor: pointer;
+      p {
+        display: inline-block;
+        color: $main__color;
+        font-size: 1.6rem;
+        vertical-align: middle;
+      }
+      svg {
+        display: inline-block;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        path:first-child {
+          color: $second__color;
+        }
+        path:last-child {
+          color: $main__color;
+        }
+      }
+    }
+  }
+}

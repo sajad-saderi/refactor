@@ -13,20 +13,24 @@ const Menu = () => {
     company_name && company_name !== "null"
       ? company_name
       : `${jsCookie.get("user_name")}`;
-
+  const user_id = jsCookie.get("user_id");
   return (
     <ul>
       {token ? (
         <li className="first_element_li">
-          <img
-            className="profile_icon"
-            src={
-              img_profile ||
-              "https://core.otoli.net/static/core/default_profile_pic.png"
-            }
-            alt={profile}
-          />
-          <span>{profile}</span>
+          <Link href="/user/[id]" as={`/user/${user_id}`}>
+            <a>
+              <img
+                className="profile_icon"
+                src={
+                  img_profile ||
+                  "https://core.otoli.net/static/core/default_profile_pic.png"
+                }
+                alt={profile}
+              />
+              <span>{profile}</span>
+            </a>
+          </Link>
         </li>
       ) : (
         <li

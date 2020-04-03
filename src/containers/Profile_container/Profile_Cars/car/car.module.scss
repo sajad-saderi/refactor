@@ -1,0 +1,77 @@
+@import "../../../../styles/colors";
+
+.carcard {
+  min-width: 32rem;
+  max-width: 34rem;
+  height: 300px;
+  background: #fff;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 1rem 1rem;
+  box-shadow: $box_shadow;
+  figure {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    .read_more {
+      display: none;
+      top: 43%;
+      background-color: #f7f7f7;
+      color: #2a2a2a;
+      font-size: 1rem;
+      padding: 0.7rem 0;
+      border-radius: 20px;
+      position: absolute;
+      right: 0;
+      left: 0;
+      margin: auto;
+      width: 102px;
+      text-align: center;
+    }
+    &:hover .read_more {
+      display: block;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .info_box {
+    position: relative;
+    padding: 0 0.8rem;
+    .car_brand {
+      h3 {
+        font-size: 2rem;
+        margin-bottom: 0;
+        width: 200px;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .edit_part {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.8rem;
+    margin-top: 0.6rem;
+    .Loading {
+      margin: 0 1rem;
+    }
+    p {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: $main__color;
+    }
+    svg {
+      cursor: pointer;
+    }
+  }
+}

@@ -75,7 +75,9 @@ const ConfirmCode = (props: IConfirmCode) => {
           jsCookie.set("user_id", data.user_profile.id, cook_option);
           jsCookie.set(
             "thumbnail_url",
-            data.user_profile.thumbnail_url,
+            data.user_profile.thumbnail_url
+              ? data.user_profile.thumbnail_url
+              : "https://core.otoli.net/static/core/default_profile_pic.png",
             cook_option
           );
           // TODO: save data in cache and active heap

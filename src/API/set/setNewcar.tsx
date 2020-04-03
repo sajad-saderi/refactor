@@ -6,12 +6,10 @@ const ADD_NEW_CAR = "/core/rental-car/new";
 export const REQUEST_ADD_NEW_CAR = (info: IAddCar) => {
   return new Promise((resolve, reject) => {
     const { token, data } = info;
-    // return console.log(info);
-
     axios
       .post(
         DOMAIN + ADD_NEW_CAR,
-        { data },
+        { ...data },
         {
           headers: {
             Authorization: "Bearer " + token

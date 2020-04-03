@@ -1,0 +1,64 @@
+@import "../../../../styles/colors";
+
+.edit_profile_form {
+  .change_image_container {
+    position: relative;
+    margin-bottom: 2rem;
+    p {
+      font-size: 1.4rem;
+      text-align: center;
+      margin: 1rem 0;
+      color: $main__color;
+      font-weight: 500;
+    }
+    input {
+      cursor: pointer;
+      width: 100%;
+      position: absolute;
+      display: block;
+      right: 0;
+      bottom: 0;
+      height: 12rem;
+      opacity: 0;
+      margin: 0;
+    }
+  }
+  img {
+    width: 10rem;
+    border-radius: 4px;
+    display: block;
+    margin: auto;
+  }
+  .link_text {
+    color: $main__color;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+  .text_input_container {
+    margin-bottom: 2rem;
+    label {
+      font-weight: 500;
+    }
+    input {
+      margin: 0.5rem 0;
+    }
+    svg {
+      top: 3rem;
+    }
+  }
+  .BTN_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .cancel_class {
+      background: transparent;
+      border: 1px solid $main__color;
+      color: $main__color;
+    }
+    .cancel_class,
+    .local_class {
+      width: 49%;
+    }
+  }
+}
