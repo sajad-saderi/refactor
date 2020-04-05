@@ -6,8 +6,9 @@ import { IoMdClose } from "react-icons/io";
 import TellMe from "./Tell_me";
 import Renter from "./Renter";
 import Owner from "./Owner";
+import Law from "./Law";
 
-const Modals = props => {
+const Modals = (props) => {
   const [change, setChange] = useState(false);
   const Modal_context = useContext(modal_context);
 
@@ -28,7 +29,9 @@ const Modals = props => {
             ? "Renter"
             : props.modal_type === "Owner"
             ? "Owner"
-            : null
+            : props.modal_type === "Law"
+            ? "Law"
+            : null,
         ].join(" ")}
       >
         <div className="modal_box_div">
@@ -50,6 +53,8 @@ const Modals = props => {
           <Renter data={props.data} />
         ) : props.modal_type === "Owner" ? (
           <Owner data={props.data} />
+        ) : props.modal_type === "Law" ? (
+          <Law />
         ) : null}
       </div>
       <div className="back_draw" onClick={() => Modal_context.modalHandler()} />

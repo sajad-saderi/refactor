@@ -15,7 +15,7 @@ import {
   REQUEST_GET_CAR_FACILITIES,
   REQUEST_GET_CAR_COLORS,
   REQUEST_GET_MODEL_INFO,
-  REQUEST_ADD_NEW_CAR
+  REQUEST_ADD_NEW_CAR,
 } from "../../../API";
 import Radio from "../../../components/form/Radio";
 import TextInput from "../../../components/form/TextInput";
@@ -43,12 +43,12 @@ const stateReducer = (current, action) => {
     case "ADD_days_to_get_reminded":
       return {
         ...current,
-        days_to_get_reminded: current.days_to_get_reminded + 1
+        days_to_get_reminded: current.days_to_get_reminded + 1,
       };
     case "REDUCE_days_to_get_reminded":
       return {
         ...current,
-        days_to_get_reminded: current.days_to_get_reminded - 1
+        days_to_get_reminded: current.days_to_get_reminded - 1,
       };
     case "min_days_to_rent":
       return { ...current, min_days_to_rent: action.min_days_to_rent };
@@ -63,22 +63,22 @@ const stateReducer = (current, action) => {
     case "deliver_at_renters_place":
       return {
         ...current,
-        deliver_at_renters_place: action.deliver_at_renters_place
+        deliver_at_renters_place: action.deliver_at_renters_place,
       };
     case "with_driver":
       return {
         ...current,
-        with_driver: action.with_driver
+        with_driver: action.with_driver,
       };
     case "price_per_day":
       return {
         ...current,
-        price_per_day: action.price_per_day
+        price_per_day: action.price_per_day,
       };
     case "cancellation_policy":
       return {
         ...current,
-        cancellation_policy: action.cancellation_policy
+        cancellation_policy: action.cancellation_policy,
       };
 
     case "location_id":
@@ -102,51 +102,51 @@ const stateReducer = (current, action) => {
     case "registration_plate_first_part":
       return {
         ...current,
-        registration_plate_first_part: action.registration_plate_first_part
+        registration_plate_first_part: action.registration_plate_first_part,
       };
     case "registration_plate_second_part":
       return {
         ...current,
-        registration_plate_second_part: action.registration_plate_second_part
+        registration_plate_second_part: action.registration_plate_second_part,
       };
     case "registration_plate_third_part":
       return {
         ...current,
-        registration_plate_third_part: action.registration_plate_third_part
+        registration_plate_third_part: action.registration_plate_third_part,
       };
     case "registration_plate_forth_part":
       return {
         ...current,
-        registration_plate_forth_part: action.registration_plate_forth_part
+        registration_plate_forth_part: action.registration_plate_forth_part,
       };
     case "facility_id":
       return {
         ...current,
-        facility_id: current.facility_id.concat(action.facility_id)
+        facility_id: current.facility_id.concat(action.facility_id),
       };
     case "empty_facility_id":
       return {
         ...current,
-        facility_id: action.empty_facility_id
+        facility_id: action.empty_facility_id,
       };
     case "Remove_facility_id":
       return {
         ...current,
-        facility_id: current.facility_id.filter(item => {
+        facility_id: current.facility_id.filter((item) => {
           return item !== action.remove_id;
-        })
+        }),
       };
     case "media_id":
       return {
         ...current,
-        media_id: current.media_id.concat(action.media_id)
+        media_id: current.media_id.concat(action.media_id),
       };
     case "Remove_media_id":
       return {
         ...current,
-        media_id: current.media_id.filter(item => {
+        media_id: current.media_id.filter((item) => {
           return item !== action.Remove_media_id;
-        })
+        }),
       };
     case "color_id":
       return { ...current, color_id: action.color_id };
@@ -167,102 +167,102 @@ const error_reducer = (current, action) => {
       return {
         ...current,
         location_id: action.location_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "car_id":
       return {
         ...current,
         car_id: action.car_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "year_id":
       return {
         ...current,
         year_id: action.year_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "transmission_type_id":
       return {
         ...current,
         transmission_type_id: action.transmission_type_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "body_style_id":
       return {
         ...current,
         body_style_id: action.body_style_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "cylinder_id":
       return {
         ...current,
         cylinder_id: action.cylinder_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "capacity":
       return {
         ...current,
         capacity: action.capacity,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "mileage_range_id":
       return {
         ...current,
         mileage_range_id: action.mileage_range_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "value":
       return {
         ...current,
         value: action.value,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_first_part":
       return {
         ...current,
         registration_plate_first_part: action.registration_plate_first_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_second_part":
       return {
         ...current,
         registration_plate_second_part: action.registration_plate_second_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_third_part":
       return {
         ...current,
         registration_plate_third_part: action.registration_plate_third_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_forth_part":
       return {
         ...current,
         registration_plate_forth_part: action.registration_plate_forth_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "facility_id":
       return {
         ...current,
         facility_id: action.facility_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "media_id":
       return {
         ...current,
         media_id: action.media_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "color_id":
       return {
         ...current,
         color_id: action.color_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "error_message":
       return {
         ...current,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     default:
       throw new Error("There is a problem!");
@@ -306,13 +306,13 @@ const Add_Car_Step_2 = () => {
     { value: 14, text: "۱۴" },
     { value: 15, text: "۱۵" },
     { value: 16, text: "۱۶" },
-    { value: 17, text: "۱۷" }
+    { value: 17, text: "۱۷" },
   ]);
   const [mileRange, setMileRange] = useState([
     { key: "1", value: "1", text: "۰ - ۵۰٫۰۰۰ کیلومتر" },
     { key: "2", value: "2", text: "۵۰٫۰۰۰ - ۱۰۰٫۰۰۰ کیلومتر" },
     { key: "3", value: "3", text: "۱۰۰٫۰۰۰ - ۲۰۰٫۰۰۰ کیلومتر" },
-    { key: "4", value: "4", text: "+۲۰۰٫۰۰۰  کیلومتر" }
+    { key: "4", value: "4", text: "+۲۰۰٫۰۰۰  کیلومتر" },
   ]);
   const [PelakList, setPelakList] = useState([
     { value: "الف", text: "الف" },
@@ -331,7 +331,7 @@ const Add_Car_Step_2 = () => {
     { value: "ن", text: "ن" },
     { value: "و", text: "و" },
     { value: "ه", text: "هـ" },
-    { value: "ی", text: "ی" }
+    { value: "ی", text: "ی" },
   ]);
   const [facilitesList, setFacilitesList] = useState([]);
   const [initialImage, setInitialImage] = useState([]);
@@ -365,7 +365,7 @@ const Add_Car_Step_2 = () => {
     days_to_get_reminded: null,
     min_days_to_rent: null,
     price_per_day: null,
-    cancellation_policy: null
+    cancellation_policy: null,
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
@@ -398,7 +398,7 @@ const Add_Car_Step_2 = () => {
     min_days_to_rent: 1,
     price_per_day: "",
     discount_persent: [],
-    cancellation_policy: ""
+    cancellation_policy: "",
   });
 
   useEffect(() => {
@@ -409,16 +409,16 @@ const Add_Car_Step_2 = () => {
     }
   }, []);
 
-  const getCarInfoToEdit = async id => {
+  const getCarInfoToEdit = async (id) => {
     const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
       id: id,
-      token: token
+      token: token,
     });
     SetCar(car_info_res);
     console.log(car_info_res);
   };
 
-  const SetCar = car => {
+  const SetCar = (car) => {
     // SET CAR ID
     dispatch({ type: "id", id: car.id });
 
@@ -448,20 +448,20 @@ const Add_Car_Step_2 = () => {
     // SET TRANSMISSION
     dispatch({
       type: "transmission_type_id",
-      transmission_type_id: car.transmission_type.id
+      transmission_type_id: car.transmission_type.id,
     });
 
     // SET BODY STYLE
     dispatch({
       type: "body_style_id",
-      body_style_id: car.body_style.id
+      body_style_id: car.body_style.id,
     });
     setBodyStyleName(car.body_style.name.fa);
 
     // SET CYLINDER
     dispatch({
       type: "cylinder_id",
-      cylinder_id: car.cylinder.id
+      cylinder_id: car.cylinder.id,
     });
     setCylinderName(car.cylinder.name.fa);
 
@@ -471,50 +471,50 @@ const Add_Car_Step_2 = () => {
     // SET MILE RANGE
     dispatch({
       type: "mileage_range_id",
-      mileage_range_id: car.mileage_range.id
+      mileage_range_id: car.mileage_range.id,
     });
 
     // SET CAR VALUE
     dispatch({
       type: "value",
-      value: car.value
+      value: car.value,
     });
 
     // SET PELAK VALUES
     dispatch({
       type: "registration_plate_first_part",
-      registration_plate_first_part: car.registration_plate_first_part
+      registration_plate_first_part: car.registration_plate_first_part,
     });
     dispatch({
       type: "registration_plate_second_part",
-      registration_plate_second_part: car.registration_plate_second_part
+      registration_plate_second_part: car.registration_plate_second_part,
     });
     dispatch({
       type: "registration_plate_third_part",
-      registration_plate_third_part: car.registration_plate_third_part
+      registration_plate_third_part: car.registration_plate_third_part,
     });
     dispatch({
       type: "registration_plate_forth_part",
-      registration_plate_forth_part: car.registration_plate_forth_part
+      registration_plate_forth_part: car.registration_plate_forth_part,
     });
 
     // SET FACILITIES
     if (car.facility_set.length > 0) {
-      car.facility_set.forEach(item => {
+      car.facility_set.forEach((item) => {
         dispatch({ type: "facility_id", facility_id: item.id });
       });
     } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
 
     // SET IMAGE UPLOADED
-    car.media_set.forEach(item => {
+    car.media_set.forEach((item) => {
       dispatch({
         type: "media_id",
-        media_id: item.id
+        media_id: item.id,
       });
-      setInitialImage(InitialImage =>
+      setInitialImage((InitialImage) =>
         InitialImage.concat({
           img: item.thumbnail_url,
-          id: item.id
+          id: item.id,
         })
       );
     });
@@ -522,38 +522,38 @@ const Add_Car_Step_2 = () => {
     // SET COLOR
     dispatch({
       type: "color_id",
-      color_id: car.color.id
+      color_id: car.color.id,
     });
     setColorName(car.color.name.fa);
 
     // SET DESCRIPTION
     dispatch({
       type: "description",
-      description: car.description
+      description: car.description,
     });
 
     // SET EXTRA INFO
     dispatch({
       type: "deliver_at_renters_place",
-      deliver_at_renters_place: car.deliver_at_renters_place
+      deliver_at_renters_place: car.deliver_at_renters_place,
     });
     dispatch({
       type: "is_out_of_service",
-      is_out_of_service: car.is_out_of_service
+      is_out_of_service: car.is_out_of_service,
     });
     dispatch({
       type: "min_days_to_rent",
-      min_days_to_rent: car.min_days_to_rent
+      min_days_to_rent: car.min_days_to_rent,
     });
   };
 
-  const getInitials = async id => {
+  const getInitials = async (id) => {
     const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
       { id: id, token: token }
     );
     const car_discount_res = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
       id: id,
-      token: token
+      token: token,
     });
     console.log("car_availability_res", car_availability_res, car_discount_res);
     // const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
@@ -578,7 +578,7 @@ const Add_Car_Step_2 = () => {
       try {
         const add_new_car_res = await REQUEST_ADD_NEW_CAR({
           data: state,
-          token: token
+          token: token,
         });
       } catch (error) {
         setLoading(false);
@@ -586,19 +586,19 @@ const Add_Car_Step_2 = () => {
     } else setLoading(false);
   };
 
-  const validation = state => {
+  const validation = (state) => {
     if (!validator.isNumeric(`${state.location_id}`) && !showDistrict) {
       ErrorDispatch({
         type: "location_id",
         location_id: true,
-        error_message: "لطفا شهر خودرو را انتخاب کنید"
+        error_message: "لطفا شهر خودرو را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "location_id",
         location_id: null,
-        error_message: null
+        error_message: null,
       });
     }
     if (showDistrict) {
@@ -606,14 +606,14 @@ const Add_Car_Step_2 = () => {
         ErrorDispatch({
           type: "location_id",
           location_id: true,
-          error_message: "لطفا محله را انتخاب کنید"
+          error_message: "لطفا محله را انتخاب کنید",
         });
         return false;
       } else {
         ErrorDispatch({
           type: "location_id",
           location_id: null,
-          error_message: null
+          error_message: null,
         });
       }
     }
@@ -621,112 +621,112 @@ const Add_Car_Step_2 = () => {
       setBrand_id_error(true);
       ErrorDispatch({
         type: "error_message",
-        error_message: "لطفا برند را انتخاب کنید"
+        error_message: "لطفا برند را انتخاب کنید",
       });
       return false;
     } else {
       setBrand_id_error(false);
       ErrorDispatch({
         type: "error_message",
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.car_id}`)) {
       ErrorDispatch({
         type: "car_id",
         car_id: true,
-        error_message: "لطفا مدل را انتخاب کنید"
+        error_message: "لطفا مدل را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "car_id",
         car_id: null,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.year_id}`)) {
       ErrorDispatch({
         type: "year_id",
         year_id: true,
-        error_message: " لطفا سال را انتخاب کنید"
+        error_message: " لطفا سال را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "year_id",
         year_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.transmission_type_id}`)) {
       ErrorDispatch({
         type: "transmission_type_id",
         transmission_type_id: true,
-        error_message: "لطفا نوع دنده را انتخاب کنید"
+        error_message: "لطفا نوع دنده را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "transmission_type_id",
         transmission_type_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.body_style_id}`)) {
       ErrorDispatch({
         type: "body_style_id",
         body_style_id: true,
-        error_message: "لطفا نوع دنده را انتخاب کنید"
+        error_message: "لطفا نوع دنده را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "body_style_id",
         body_style_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.cylinder_id}`)) {
       ErrorDispatch({
         type: "cylinder_id",
         cylinder_id: true,
-        error_message: "لطفا تعداد سیلندر را انتخاب کنید"
+        error_message: "لطفا تعداد سیلندر را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "cylinder_id",
         cylinder_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.capacity}`)) {
       ErrorDispatch({
         type: "capacity",
         capacity: true,
-        error_message: "لطفا ظرفیت خودرو را انتخاب کنبد"
+        error_message: "لطفا ظرفیت خودرو را انتخاب کنبد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "capacity",
         capacity: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.mileage_range_id}`)) {
       ErrorDispatch({
         type: "mileage_range_id",
         mileage_range_id: true,
-        error_message: "لطفا کارکرد خودرو را انتخاب کنید"
+        error_message: "لطفا کارکرد خودرو را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "mileage_range_id",
         mileage_range_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.value}`)) {
@@ -734,14 +734,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "value",
         value: true,
-        error_message: "لطفا ارزش خودرو را وارد کنید"
+        error_message: "لطفا ارزش خودرو را وارد کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "value",
         value: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (`${state.registration_plate_first_part}`.length !== 2) {
@@ -749,14 +749,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "registration_plate_first_part",
         registration_plate_first_part: true,
-        error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد"
+        error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_first_part",
         registration_plate_first_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!state.registration_plate_second_part) {
@@ -764,14 +764,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "registration_plate_second_part",
         registration_plate_second_part: true,
-        error_message: "لطفا بخش دوم پلاک را کامل کنید"
+        error_message: "لطفا بخش دوم پلاک را کامل کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_second_part",
         registration_plate_second_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (`${state.registration_plate_third_part}`.length !== 3) {
@@ -779,14 +779,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "registration_plate_third_part",
         registration_plate_third_part: true,
-        error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد"
+        error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_third_part",
         registration_plate_third_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (`${state.registration_plate_forth_part}`.length !== 2) {
@@ -794,53 +794,53 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "registration_plate_forth_part",
         registration_plate_forth_part: true,
-        error_message: "کد استانی شماره پلاک باید ۲ رقم باشد"
+        error_message: "کد استانی شماره پلاک باید ۲ رقم باشد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_forth_part",
         registration_plate_forth_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (state.media_id.length < 1) {
       ErrorDispatch({
         type: "media_id",
         media_id: true,
-        error_message: "لطفاً حداقل یک تصویر بارگذاری کنید"
+        error_message: "لطفاً حداقل یک تصویر بارگذاری کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "media_id",
         media_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.color_id}`)) {
       ErrorDispatch({
         type: "color_id",
         color_id: true,
-        error_message: "لطفا رنگ خود را انتخاب کنید"
+        error_message: "لطفا رنگ خود را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "color_id",
         color_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     return true;
   };
 
-  const getModelList = async i => {
+  const getModelList = async (i) => {
     const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
     setModelList(car_model_res.data);
   };
 
-  const getDistricts = async parent_id => {
+  const getDistricts = async (parent_id) => {
     const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
     setDistrictList(car_districts_res.data);
   };
@@ -855,12 +855,12 @@ const Add_Car_Step_2 = () => {
     setBodyStyleName("");
   };
 
-  const getBrandInfo = async id => {
+  const getBrandInfo = async (id) => {
     clearRelativeToModel();
     const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
     console.log("model_info_res", model_info_res);
     if (model_info_res.facility_set.length > 0) {
-      model_info_res.facility_set.forEach(item => {
+      model_info_res.facility_set.forEach((item) => {
         dispatch({ type: "facility_id", facility_id: item.id });
       });
     } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
@@ -870,36 +870,36 @@ const Add_Car_Step_2 = () => {
     if (model_info_res.transmission_type)
       dispatch({
         type: "transmission_type_id",
-        transmission_type_id: model_info_res.transmission_type.id
+        transmission_type_id: model_info_res.transmission_type.id,
       });
     else
       dispatch({
         type: "transmission_type_id",
-        transmission_type_id: null
+        transmission_type_id: null,
       });
     if (model_info_res.cylinder) {
       dispatch({
         type: "cylinder_id",
-        cylinder_id: model_info_res.cylinder.id
+        cylinder_id: model_info_res.cylinder.id,
       });
       setCylinderName(model_info_res.cylinder.name.fa);
     } else {
       dispatch({
         type: "cylinder_id",
-        cylinder_id: null
+        cylinder_id: null,
       });
       setCylinderName("");
     }
     if (model_info_res.body_style) {
       dispatch({
         type: "body_style_id",
-        body_style_id: model_info_res.body_style.id
+        body_style_id: model_info_res.body_style.id,
       });
       setBodyStyleName(model_info_res.body_style.name.fa);
     } else {
       dispatch({
         type: "body_style_id",
-        body_style_id: null
+        body_style_id: null,
       });
       setBodyStyleName("");
     }
@@ -932,7 +932,7 @@ const Add_Car_Step_2 = () => {
           />
         </div>
       </article>
-      <form onSubmit={e => submitHandler(e, state)}>
+      <form onSubmit={(e) => submitHandler(e, state)}>
         <div className="add_car_form_step_2">
           <h4 className="extra_text">شرایط اجاره</h4>
           <Counter
@@ -958,21 +958,21 @@ const Add_Car_Step_2 = () => {
               name="max_km_per_day"
               number={true}
               autoFocus={false}
-              onChangeHandler={e => {
+              onChangeHandler={(e) => {
                 dispatch({
                   type: "max_km_per_day",
-                  max_km_per_day: e
+                  max_km_per_day: e,
                 });
               }}
               clearField={() =>
                 dispatch({
                   type: "max_km_per_day",
-                  max_km_per_day: ""
+                  max_km_per_day: "",
                 })
               }
               error={{
                 status: ErrorState.max_km_per_day,
-                message: ""
+                message: "",
               }}
               min={2}
               max={5}
@@ -986,21 +986,21 @@ const Add_Car_Step_2 = () => {
               name="extra_km_price"
               number={true}
               autoFocus={false}
-              onChangeHandler={e => {
+              onChangeHandler={(e) => {
                 dispatch({
                   type: "extra_km_price",
-                  extra_km_price: e
+                  extra_km_price: e,
                 });
               }}
               clearField={() =>
                 dispatch({
                   type: "extra_km_price",
-                  extra_km_price: ""
+                  extra_km_price: "",
                 })
               }
               error={{
                 status: ErrorState.extra_km_price,
-                message: ""
+                message: "",
               }}
               min={4}
               max={8}
@@ -1012,52 +1012,52 @@ const Add_Car_Step_2 = () => {
           <Checkbox
             initialValue={[
               {
-                value: state.deliver_at_renters_place
-              }
+                value: state.deliver_at_renters_place,
+              },
             ]}
             data={[
               {
                 text: "در محل اجاره‌گیرنده تحویل می‌دهم",
-                value: state.deliver_at_renters_place
-              }
+                value: state.deliver_at_renters_place,
+              },
             ]}
             name="deliver_at_renters_place"
-            clearField={item =>
+            clearField={(item) =>
               dispatch({
                 type: "deliver_at_renters_place",
-                deliver_at_renters_place: item.value
+                deliver_at_renters_place: item.value,
               })
             }
-            Select={item => {
+            Select={(item) => {
               dispatch({
                 type: "deliver_at_renters_place",
-                deliver_at_renters_place: item.value
+                deliver_at_renters_place: item.value,
               });
             }}
           />
           <Checkbox
             initialValue={[
               {
-                value: state.with_driver
-              }
+                value: state.with_driver,
+              },
             ]}
             data={[
               {
                 text: "فقط با راننده اجاره می‌دهم",
-                value: state.with_driver
-              }
+                value: state.with_driver,
+              },
             ]}
             name="with_driver"
-            clearField={item =>
+            clearField={(item) =>
               dispatch({
                 type: "with_driver",
-                with_driver: item.value
+                with_driver: item.value,
               })
             }
-            Select={item => {
+            Select={(item) => {
               dispatch({
                 type: "with_driver",
-                with_driver: item.value
+                with_driver: item.value,
               });
             }}
           />
@@ -1074,17 +1074,17 @@ const Add_Car_Step_2 = () => {
             <Radio
               name="DateAndPrice"
               error_status={ErrorState.transmission_type_id}
-              SelectHandler={i => setDateAndPrice(+i)}
+              SelectHandler={(i) => setDateAndPrice(+i)}
               defaultCheck={DateAndPrice}
               data={[
                 {
                   label: "موجود در تمام تاریخ‌ها با قیمت یکسان",
-                  value: 1
+                  value: 1,
                 },
                 {
                   label: "موجود در بازه‌های زمانی مختلف با قیمت‌های متفاوت",
-                  value: 2
-                }
+                  value: 2,
+                },
               ]}
             />
             <hr />
@@ -1095,22 +1095,22 @@ const Add_Car_Step_2 = () => {
                 <TextInput
                   name="price_per_day"
                   number={true}
-                  onChangeHandler={e => {
+                  onChangeHandler={(e) => {
                     dispatch({
                       type: "price_per_day",
-                      price_per_day: e
+                      price_per_day: e,
                     });
                   }}
                   clearField={() =>
                     dispatch({
                       type: "price_per_day",
-                      price_per_day: ""
+                      price_per_day: "",
                     })
                   }
                   label="قیمت روزانه"
                   error={{
                     status: ErrorState.price_per_day,
-                    message: ""
+                    message: "",
                   }}
                   autoFocus={false}
                   min={4}
@@ -1138,395 +1138,14 @@ const Add_Car_Step_2 = () => {
             className="text_area_step_2"
             placeholder="شرایط اجاره و کنسلی"
             value={state.cancellation_policy}
-            onChange={e => {
+            onChange={(e) => {
               dispatch({
                 type: "cancellation_policy",
-                cancellation_policy: e.target.value
+                cancellation_policy: e.target.value,
               });
             }}
           />
         </div>
-
-        {/* <DropdownSearch
-          InputDisable={true}
-          error_status={!showDistrict ? ErrorState.location_id : false}
-          label="ماشین شما کجاست؟"
-          data={locationList}
-          defaultVal={locationName}
-          clearField={() => {
-            dispatch({ type: "location_id", location_id: null });
-            setShowDistrict(false);
-          }}
-          Select={i => {
-            if (i.value === 1) setShowDistrict(true);
-            else {
-              setLocationName(i.text);
-              setShowDistrict(false);
-            }
-            dispatch({ type: "location_id", location_id: i.value });
-            if (i.value === 1) getDistricts(i.value);
-          }}
-        />
-        {state.location_id !== 1 &&
-          state.location_id !== null &&
-          !showDistrict && (
-            <p className="extra_text">{`اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در ${locationName} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.`}</p>
-          )}
-
-        {showDistrict && (
-          <DropdownSearch
-            error_status={showDistrict ? ErrorState.location_id : false}
-            InputDisable={true}
-            label="محله"
-            defaultVal={DistrictName}
-            data={districtList}
-            disabled={!showDistrict}
-            clearField={() =>
-              dispatch({ type: "location_id", location_id: null })
-            }
-            Select={i =>
-              dispatch({ type: "location_id", location_id: i.value })
-            }
-          />
-        )}
-        <div className="Car_info_step_1">
-          <DropdownSearch
-            InputDisable={true}
-            error_status={Brand_id_error}
-            label="برند"
-            defaultVal={Brand_Name}
-            data={BrandList}
-            clearField={() => {
-              setBrand_id(null);
-            }}
-            Select={i => {
-              setBrand_id(i.value);
-              setModelList([]);
-              getModelList(i.value);
-            }}
-          />
-          <DropdownSearch
-            InputDisable={true}
-            error_status={ErrorState.car_id}
-            disabled={!Brand_id ? true : false}
-            defaultVal={CarModelName}
-            label="مدل"
-            data={ModelList}
-            clearField={() => dispatch({ type: "car_id", car_id: null })}
-            Select={i => {
-              getBrandInfo(i.value);
-              dispatch({ type: "car_id", car_id: i.value });
-            }}
-          />
-          <DropdownSearch
-            InputDisable={true}
-            label="سال"
-            error_status={ErrorState.year_id}
-            defaultVal={YearName}
-            disableSearch={true}
-            data={YearList}
-            clearField={() => dispatch({ type: "year_id", year_id: null })}
-            Select={i => dispatch({ type: "year_id", year_id: i.value })}
-          />
-        </div>
-        <div className="radio_father">
-          <label
-            className={[
-              "transition_type_Label",
-              ErrorState.transmission_type_id ? "Error_color" : null
-            ].join(" ")}
-          >
-            نوع دنده
-          </label>
-          <Radio
-            name="transmission_type_id"
-            error_status={ErrorState.transmission_type_id}
-            SelectHandler={i =>
-              dispatch({
-                type: "transmission_type_id",
-                transmission_type_id: +i
-              })
-            }
-            defaultCheck={state.transmission_type_id}
-            data={[
-              {
-                label: "دنده دستی",
-                value: 2
-              },
-              {
-                label: "دنده اتوماتیک",
-                value: 1
-              }
-            ]}
-          />
-        </div>
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.body_style_id}
-          label="نوع شاسی"
-          data={BodyStyleList}
-          disableSearch={true}
-          defaultVal={BodyStyleName}
-          clearField={() =>
-            dispatch({ type: "body_style_id", body_style_id: null })
-          }
-          Select={i =>
-            dispatch({ type: "body_style_id", body_style_id: i.value })
-          }
-        />
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.cylinder_id}
-          label="تعداد سیلندر"
-          data={cylinderList}
-          disableSearch={true}
-          defaultVal={CylinderName}
-          clearField={() =>
-            dispatch({ type: "cylinder_id", cylinder_id: null })
-          }
-          Select={i => dispatch({ type: "cylinder_id", cylinder_id: i.value })}
-        />
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.capacity}
-          label="ظرفیت خودرو"
-          data={capacityList}
-          disableSearch={true}
-          defaultVal={state.capacity}
-          clearField={() => dispatch({ type: "capacity", capacity: null })}
-          Select={i => dispatch({ type: "capacity", capacity: i.value })}
-        />
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.mileage_range_id}
-          label="کارکرد خودرو"
-          defaultVal={
-            state.mileage_range_id
-              ? mileRange[state.mileage_range_id - 1].text
-              : ""
-          }
-          data={mileRange}
-          disableSearch={true}
-          clearField={() =>
-            dispatch({ type: "mileage_range_id", mileage_range_id: null })
-          }
-          Select={i =>
-            dispatch({ type: "mileage_range_id", mileage_range_id: i.value })
-          }
-        />
-        <div className="value_container" ref={valueRef}>
-          <TextInput
-            name="value"
-            number={true}
-            onChangeHandler={e => {
-              dispatch({
-                type: "value",
-                value: e
-              });
-            }}
-            clearField={() =>
-              dispatch({
-                type: "value",
-                value: ""
-              })
-            }
-            error={{
-              status: ErrorState.value,
-              message: ""
-            }}
-            min={7}
-            max={14}
-            value={state.value}
-            label="ارزش خودرو"
-          />
-          <span>تومان</span>
-        </div>
-        <div className="pelak_container" ref={pelakRef}>
-          <label>پلاک خودرو</label>
-          <img src={pelak} alt="تصویر پلاک" />
-          <p className="extra_text">
-            پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در
-            نتایج جستجو نمایش داده نمی‌شود.
-          </p>
-          <div className="pelak_input">
-            <div className="pelak_input_box_controller">
-              <div className="Fourth_part_pelak">
-                <TextInput
-                  label="4"
-                  name="registration_plate_forth_part"
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_forth_part",
-                      registration_plate_forth_part: ""
-                    })
-                  }
-                  HideClearIcon={true}
-                  onChangeHandler={e => {
-                    dispatch({
-                      type: "registration_plate_forth_part",
-                      registration_plate_forth_part: e
-                    });
-                  }}
-                  min={2}
-                  max={2}
-                  autoFocus={false}
-                  value={state.registration_plate_forth_part}
-                  error={{
-                    status: ErrorState.registration_plate_forth_part,
-                    message: ""
-                  }}
-                />
-              </div>
-              <div className="Third_part_pelak">
-                <TextInput
-                  label="3"
-                  name="registration_plate_third_part"
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_third_part",
-                      registration_plate_third_part: ""
-                    })
-                  }
-                  min={3}
-                  max={3}
-                  HideClearIcon={true}
-                  autoFocus={false}
-                  value={state.registration_plate_third_part}
-                  error={{
-                    status: ErrorState.registration_plate_third_part,
-                    message: ""
-                  }}
-                  onChangeHandler={e =>
-                    dispatch({
-                      type: "registration_plate_third_part",
-                      registration_plate_third_part: e
-                    })
-                  }
-                />
-              </div>
-              <div className="Second_part_pelak">
-                <DropdownSearch
-                  InputDisable={true}
-                  error_status={ErrorState.registration_plate_second_part}
-                  data={PelakList}
-                  disableSearch={true}
-                  defaultVal={state.registration_plate_second_part}
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_second_part",
-                      registration_plate_second_part: null
-                    })
-                  }
-                  Select={i =>
-                    dispatch({
-                      type: "registration_plate_second_part",
-                      registration_plate_second_part: i.value
-                    })
-                  }
-                  hideArrowDown={true}
-                  hideClearField={true}
-                />
-              </div>
-              <div className="First_part_pelak">
-                <TextInput
-                  label="1"
-                  name="registration_plate_first_part"
-                  value={state.registration_plate_first_part}
-                  error={{
-                    status: ErrorState.registration_plate_first_part,
-                    message: ""
-                  }}
-                  min={2}
-                  max={2}
-                  HideClearIcon={true}
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_first_part",
-                      registration_plate_first_part: ""
-                    })
-                  }
-                  onChangeHandler={e =>
-                    dispatch({
-                      type: "registration_plate_first_part",
-                      registration_plate_first_part: e
-                    })
-                  }
-                  autoFocus={false}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <label className="add_car_Facilities_label">امکانات خودرو</label>
-        <Checkbox
-          initialValue={state.facility_id}
-          data={facilitesList}
-          name="facility_id"
-          clearField={item =>
-            dispatch({
-              type: "Remove_facility_id",
-              remove_id: item.value
-            })
-          }
-          Select={item => {
-            dispatch({
-              type: "facility_id",
-              facility_id: item.value
-            });
-          }}
-        />
-        <ImageUploader
-          Upload_image={id => {
-            dispatch({
-              type: "media_id",
-              media_id: id
-            });
-          }}
-          error_status={ErrorState.media_id}
-          default_image={initialImage}
-          delete_image={id => {
-            dispatch({
-              type: "Remove_media_id",
-              Remove_media_id: id
-            });
-          }}
-        />
-        <DropdownSearch
-          label="رنگ خودرو"
-          error_status={ErrorState.color_id}
-          InputDisable={true}
-          data={colorList}
-          defaultVal={colorName}
-          disableSearch={true}
-          clearField={() =>
-            dispatch({
-              type: "color_id",
-              color_id: null
-            })
-          }
-          Select={i =>
-            dispatch({
-              type: "color_id",
-              color_id: i.value
-            })
-          }
-        />
-        <label>
-          توضیحات<span> (اختیاری)</span>
-        </label>
-        <textarea
-          className="text_area_step_1"
-          placeholder={
-            "برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود.\nاگر برای اجاره شرایط خاصی، مثل سیگار نکشیدن، دارید می‌توانید اینجا وارد کنید."
-          }
-          value={state.description}
-          onChange={e => {
-            dispatch({
-              type: "description",
-              description: e.target.value
-            });
-          }}
-        /> */}
         <Button
           value="ثبت"
           loading={Loading}

@@ -3,7 +3,7 @@ import "./inputStyle.module.scss";
 import { IoMdClose } from "react-icons/io";
 
 const TextInput = (props: ItextInput) => {
-  const ValueHandler = e => {
+  const ValueHandler = (e) => {
     let value = e.target.value;
     if (props.number) {
       const persianNumbers = [
@@ -16,7 +16,7 @@ const TextInput = (props: ItextInput) => {
         /۶/g,
         /۷/g,
         /۸/g,
-        /۹/g
+        /۹/g,
       ];
       const arabicNumbers = [
         /٠/g,
@@ -28,7 +28,7 @@ const TextInput = (props: ItextInput) => {
         /٦/g,
         /٧/g,
         /٨/g,
-        /٩/g
+        /٩/g,
       ];
       for (var i = 0; i < 10; i++) {
         value = value
@@ -44,7 +44,7 @@ const TextInput = (props: ItextInput) => {
     <div className="text_input_container">
       <label
         style={{
-          color: props.LabelColor
+          color: props.LabelColor,
         }}
         className="text_input_label"
       >
@@ -54,13 +54,15 @@ const TextInput = (props: ItextInput) => {
         autoFocus={props.autoFocus}
         className={[
           "text_input",
-          props.error.status ? "inputError" : null
+          props.error.status ? "inputError" : null,
         ].join(" ")}
         name={props.name}
         value={
           props.number
             ? props.value === ""
               ? props.value.toLocaleString()
+              : props.localeString
+              ? props.value
               : Number(props.value).toLocaleString()
             : props.value
           // props.value
@@ -101,6 +103,7 @@ interface ItextInput {
   LabelColor?: string;
   number?: boolean;
   HideClearIcon?: boolean;
+  localeString?: boolean;
 }
 
 export default TextInput;

@@ -1,0 +1,89 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.complete_register_container {
+  .pageTitle {
+    position: relative;
+    .Person_icon {
+      margin: 1rem;
+      margin-right: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    h3 {
+      font-size: 1.8rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .complete_register_form {
+    background: #fff;
+    border: 1px solid $input_border;
+    font-size: 1.4rem;
+    border-radius: 4px;
+    padding: 1.6rem;
+    border: none;
+    box-shadow: $Box;
+    .text_input_container {
+      margin: 0 0 2rem;
+      label {
+        font-weight: 500;
+      }
+    }
+    .name_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .text_input_container {
+        width: 49%;
+      }
+    }
+    .company_part {
+      p {
+        color: $main__color;
+        font-weight: 500;
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        cursor: pointer;
+      }
+      .text_input_container {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 2rem;
+        width: 90%;
+      }
+      span {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 1.6rem;
+        color: $Error_text_color;
+        padding: 0 1.4rem;
+        cursor: pointer;
+      }
+    }
+    .date_birth {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .text_input_container,
+      .DropDown_container {
+        width: 32%;
+      }
+      .DropDown_container {
+        input {
+          height: 5.1rem;
+          margin: 1rem 0;
+        }
+      }
+    }
+    .local_BTN {
+      display: block;
+      width: 100%;
+    }
+    .disable_BTN {
+      color: #656565;
+      font-family: inherit;
+      background-color: #e6e6e6;
+    }
+  }
+}

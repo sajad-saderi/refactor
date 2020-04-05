@@ -16,6 +16,8 @@ import { REQUEST_GET_RENTAL_CAR_AVAILABILITIES } from "./get/getCarAvailability"
 import { REQUEST_GET_RENTAL_CAR_DISCOUNTS } from "./get/getCarDiscount";
 import { REQUEST_GET_USER_CARS } from "./get/getUserCars";
 import { REQUEST_GET_USER_INFO } from "./get/getUserInfo";
+import { REQUEST_GET_FAQ } from "./get/getFaq";
+import { REQUEST_GET_URLS_FOR_SITE_MAP } from "./get/getSiteMapLinks";
 
 // SET
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
@@ -29,6 +31,7 @@ import { REQUEST_SET_USERNAME } from "./set/setUsername";
 import { REQUEST_SET_COMPANY_NAME } from "./set/setCompanyName";
 import { REQUEST_SET_OUT_OF_SERVICE } from "./set/setIsOutOfService";
 import { REQUEST_DELETE_CAR } from "./set/setDeleteCar";
+import { REQUEST_USER_INFO_UPDATE } from "./set/setUserInfoupdate";
 
 export {
   REQUEST_GET_LOCATION,
@@ -59,5 +62,8 @@ export {
   REQUEST_SET_USERNAME,
   REQUEST_SET_COMPANY_NAME,
   REQUEST_SET_OUT_OF_SERVICE,
-  REQUEST_DELETE_CAR
+  REQUEST_DELETE_CAR,
+  REQUEST_USER_INFO_UPDATE,
+  REQUEST_GET_FAQ,
+  REQUEST_GET_URLS_FOR_SITE_MAP,
 };

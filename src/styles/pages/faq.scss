@@ -1,0 +1,22 @@
+@import "../colors";
+
+.FAQ_Page {
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  padding: 1.6rem;
+  border-radius: 4px;
+  h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  .FQ_WRAPPER {
+    margin-bottom: 50px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    h2 {
+      font-size: 22px;
+      padding: 15px;
+    }
+  }
+}

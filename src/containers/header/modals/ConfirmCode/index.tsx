@@ -15,12 +15,12 @@ const ConfirmCode = (props: IConfirmCode) => {
   const [ActiveAgain, setActiveAgain] = useState(false);
   const [error, setError] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
   const Modal_context = useContext(modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
-  const sendConfirmCode = e => {
+  const sendConfirmCode = (e) => {
     e.preventDefault();
 
     setLoading(true);
@@ -29,17 +29,20 @@ const ConfirmCode = (props: IConfirmCode) => {
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: Cell_Phone_context.cell_phone,
-        code: code
+        code: code,
       })
-      .then(response => {
+      .then((response) => {
         setLoading(false);
         Modal_context.modalHandler("SET");
+        const cook_option = {
+          expires: 100,
+        };
         if (response.data.token && !response.data.has_name) {
           const data = response.data;
-          jsCookie.set("token", data.token);
-          jsCookie.set("phone", data.user_profile.cell);
-          jsCookie.set("complete_register", data.has_name);
-          jsCookie.set("user_id", data.user_profile.id);
+          jsCookie.set("token", data.token, cook_option);
+          jsCookie.set("phone", data.user_profile.cell, cook_option);
+          jsCookie.set("complete_register", data.has_name, cook_option);
+          jsCookie.set("user_id", data.user_profile.id.cook_option);
 
           // TODO: save data in cache and active heap
           // if(window.heap){
@@ -49,19 +52,16 @@ const ConfirmCode = (props: IConfirmCode) => {
 
           Router.push(
             {
-              pathname: "/complete-register"
+              pathname: "/complete-register",
             },
             {
-              pathname: "/complete-register"
+              pathname: "/complete-register",
             }
           );
         } else if (response.data.token && response.data.has_name) {
           console.log(response.data);
 
           const data = response.data;
-          const cook_option = {
-            expires: 100
-          };
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
@@ -93,12 +93,12 @@ const ConfirmCode = (props: IConfirmCode) => {
           console.error("error");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false);
         console.error(error.response.data);
         setError({
           status: true,
-          message: error.response.data.message
+          message: error.response.data.message,
         });
       });
   };
@@ -117,7 +117,7 @@ const ConfirmCode = (props: IConfirmCode) => {
         <TextInput
           error={error}
           name="code"
-          onChangeHandler={e => {
+          onChangeHandler={(e) => {
             setCode(e);
           }}
           autoFocus={true}

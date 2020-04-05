@@ -222,8 +222,8 @@ input {
 }
 
 // Responsive
-.minHeight{
-  min-height: 50rem; 
+.minHeight {
+  min-height: 50rem;
 }
 
 .responsive {
@@ -246,3 +246,6 @@ input {
     max-width: 114rem;
   }
 }
+
+@import "../components/form/Checkbox/Checkbox.module.scss";
+@import "./pages/static_pages.scss";
