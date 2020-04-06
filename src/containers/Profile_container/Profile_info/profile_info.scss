@@ -10,7 +10,6 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-bottom: 3rem;
     img {
       width: 7rem;
       margin-left: 1rem;
@@ -28,6 +27,7 @@
     }
   }
   .profile_controls {
+    margin-top: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

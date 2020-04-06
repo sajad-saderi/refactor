@@ -406,6 +406,7 @@ const Add_Car_Step_2 = () => {
       getCarInfoToEdit(Router.router.query.car_id);
       getInitials(Router.router.query.car_id);
     } else {
+      getInitials(Router.router.query.car_id);
     }
   }, []);
 
@@ -556,19 +557,6 @@ const Add_Car_Step_2 = () => {
       token: token,
     });
     console.log("car_availability_res", car_availability_res, car_discount_res);
-    // const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
-    // const year_Res: any = await REQUEST_GET_YEAR();
-    // const bodyStyle_res: any = await REQUEST_GET_CAR_BODY_STYLE();
-    // const cylinder_res: any = await REQUEST_GET_CAR_CYLINDER();
-    // const facilities_res: any = await REQUEST_GET_CAR_FACILITIES();
-    // const colorList_res: any = await REQUEST_GET_CAR_COLORS();
-    // setBrandList(car_brand_Res.carBrands);
-    // setYearList(year_Res.data);
-    // setBodyStyleList(bodyStyle_res.data);
-    // setCylinderList(cylinder_res.data);
-    // setFacilitesList(facilities_res.data);
-    // console.log(facilities_res);
-    // setColorList(colorList_res.data);
   };
 
   const submitHandler = async (e, state) => {

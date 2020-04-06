@@ -7,8 +7,14 @@ import "./carpage.scss";
 import Button from "../../../components/form/Button";
 import { IoIosLink } from "react-icons/io";
 import Link from "next/link";
+import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 const CarPage = () => {
+  const [dayRange, setDayRange] = React.useState<DayRange>({
+    from: null,
+    to: null,
+  });
   const [car, setCar] = useState(null);
   const [year, setYear] = useState(null);
   const [media_set, setMedia_set] = useState([]);
@@ -37,23 +43,34 @@ const CarPage = () => {
   const [cancellation_policy, setCancellation_policy] = useState(null);
   const [search_id, setSearch_id] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showCalender, setShowCalender] = useState(false);
 
   useEffect(() => {
     const { search_id, id } = Router.router.query;
+    console.log(search_id, id);
+
     if (search_id) {
       fetchData({ search_id });
     } else {
+      setShowCalender(true);
       fetchData({ id });
     }
   }, []);
 
   const fetchData = async (data) => {
     let res: any = null;
-    if (data.search_id) {
+    if (dayRange.from && dayRange.to) {
+      res = await REQUEST_GET_RENTAL_CAR({
+        id: Router.router.query.id,
+        start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+        end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+      });
+    } else if (data.search_id) {
       res = await REQUEST_GET_RENTAL_CAR({ search_id: data.search_id });
     } else {
       res = await REQUEST_GET_RENTAL_CAR({ id: data.id });
     }
+    console.log(res);
     set_CarInformation(res);
   };
 
@@ -61,13 +78,15 @@ const CarPage = () => {
     setCar(res.car);
     setYear(res.year);
     setCapacity(res.capacity);
-    setAvg_discounted_price_per_day(
-      res.avg_discounted_price_per_day >= 10000000
-        ? res.avg_discounted_price_per_day_name.slice(0, 4)
-        : res.avg_discounted_price_per_day >= 1000000
-        ? res.avg_discounted_price_per_day_name.toString().slice(0, 3)
-        : res.avg_discounted_price_per_day.toString().slice(0, 3)
-    );
+    if (res.avg_discounted_price_per_day > 0) {
+      setAvg_discounted_price_per_day(
+        res.avg_discounted_price_per_day >= 10000000
+          ? res.avg_discounted_price_per_day_name.slice(0, 4)
+          : res.avg_discounted_price_per_day >= 1000000
+          ? res.avg_discounted_price_per_day_name.toString().slice(0, 3)
+          : res.avg_discounted_price_per_day.toString().slice(0, 3)
+      );
+    }
     setUnit(res.avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار");
     setBody_style(res.body_style);
     setTransmission_type(res.transmission_type);
@@ -195,15 +214,36 @@ const CarPage = () => {
             </section>
 
             <section className="onwnerInfo_container">
-              <div className="avg_discounted_price_per_day">
-                <p>{avg_discounted_price_per_day}</p>
-                <span className="unit_name">{unit} تومان</span>
-                <span> در روز</span>
-              </div>
-              <figure className="owner_part">
-                <img src={owner.thumbnail_url} alt={owner.name} />
-                <p>{owner.name}</p>
-              </figure>
+              {avg_discounted_price_per_day && (
+                <div className="avg_discounted_price_per_day">
+                  <p>{avg_discounted_price_per_day}</p>
+                  <span className="unit_name">{unit} تومان</span>
+                  <span> در روز</span>
+                </div>
+              )}
+              {showCalender && (
+                <div className="search_box_div">
+                  <DatePicker
+                    inputPlaceholder="از تاریخ تا تاریخ"
+                    value={dayRange}
+                    onChange={setDayRange}
+                    shouldHighlightWeekends
+                    minimumDate={utils("fa").getToday()}
+                    locale="fa"
+                    colorPrimary="#4ba3ce"
+                    disabledDays={[utils("fa").getToday()]}
+                  />
+                  <p onClick={fetchData}>اعمال</p>
+                </div>
+              )}
+              <Link href={`/user/[id]`} as={`/user/${owner.id}`}>
+                <a>
+                  <figure className="owner_part">
+                    <img src={owner.thumbnail_url} alt={owner.name} />
+                    <p>{owner.name}</p>
+                  </figure>
+                </a>
+              </Link>
               <Button
                 value="ادامه"
                 class="Blue_BTN localClass"

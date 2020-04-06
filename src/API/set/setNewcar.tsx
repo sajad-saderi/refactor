@@ -18,7 +18,7 @@ export const REQUEST_ADD_NEW_CAR = (info: IAddCar) => {
       )
       .then(response => {
         if (response.data.success) {
-          console.log(response.data);
+          resolve(response.data);
 
           //   if (this.props.edit_mode) {
           //     localStorage.removeItem("CarEditId");

@@ -275,7 +275,7 @@ const Add_Car_Step_1 = () => {
     { value: "د", text: "د" },
     { value: "ژ", text: "ژ" },
     { value: "س", text: "س" },
-    { value: "ٌص", text: "ص" },
+    { value: "ص", text: "ص" },
     { value: "ط", text: "ط" },
     { value: "ق", text: "ق" },
     { value: "گ", text: "گ" },
@@ -332,7 +332,7 @@ const Add_Car_Step_1 = () => {
     registration_plate_third_part: "",
     registration_plate_forth_part: "",
     facility_id: [],
-    description: null,
+    description: "",
     media_id: [],
     cylinder_id: null,
     value: "",
@@ -509,10 +509,11 @@ const Add_Car_Step_1 = () => {
     setLoading(true);
     if (validation(state)) {
       try {
-        const add_new_car_res = await REQUEST_ADD_NEW_CAR({
+        const add_new_car_res: any = await REQUEST_ADD_NEW_CAR({
           data: state,
           token: token,
         });
+        Router.push(`/set-car-timing?car_id=${add_new_car_res.data.id}`);
       } catch (error) {
         setLoading(false);
       }

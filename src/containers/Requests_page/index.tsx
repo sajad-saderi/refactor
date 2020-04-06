@@ -21,19 +21,23 @@ const Requests_page = () => {
     //   return;
     // }
     fetchAPI({
-      page
+      page,
     });
+    return () => {
+      filter_id = [];
+      page = 1;
+    };
   }, []);
 
-  const fetchAPI = async data => {
+  const fetchAPI = async (data) => {
     setResult([]);
     try {
       const res: any = await REQUEST_GET_ORDER_REQUESTS({
         ...data,
-        token: token
+        token: token,
       });
       if (data.page > 1) {
-        setResult(result => result.concat(res.items));
+        setResult((result) => result.concat(res.items));
       } else {
         setResult(res.items);
       }
@@ -46,12 +50,12 @@ const Requests_page = () => {
     if (option === "add") {
       filter_id.push(value);
     } else {
-      filter_id = filter_id.filter(i => i !== value);
+      filter_id = filter_id.filter((i) => i !== value);
     }
     page = 1;
     fetchAPI({
       page: 1,
-      status_id: filter_id.join(",")
+      status_id: filter_id.join(","),
     });
   };
 
@@ -60,11 +64,11 @@ const Requests_page = () => {
     if (filter_id.length > 0) {
       fetchAPI({
         page,
-        status_id: filter_id.join(",")
+        status_id: filter_id.join(","),
       });
     } else {
       fetchAPI({
-        page
+        page,
       });
     }
   };
@@ -87,7 +91,7 @@ const Requests_page = () => {
                         page = 1;
                         fetchAPI({
                           page: 1,
-                          status_id: filter_id.join(",")
+                          status_id: filter_id.join(","),
                         });
                       }}
                     />

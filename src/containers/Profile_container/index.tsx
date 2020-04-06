@@ -6,8 +6,6 @@ import jsCookie from "js-cookie";
 import Router from "next/router";
 import { REQUEST_GET_USER_INFO } from "../../API";
 
-const user_id = jsCookie("user_id");
-
 const Profile_container = () => {
   const [is_mine, setIs_mine] = useState(false);
 
@@ -18,11 +16,12 @@ const Profile_container = () => {
   }, []);
 
   const fetchApi = async () => {
+    const user_id = jsCookie.get("user_id");
     const user_cars_info: any = await REQUEST_GET_USER_INFO({
       id: `${Router.router.query.id}`,
     });
-    setData(user_cars_info);
     setIs_mine(user_id == user_cars_info.id ? true : false);
+    setData(user_cars_info);
   };
 
   return (

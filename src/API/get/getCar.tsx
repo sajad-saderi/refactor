@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-const GET_RENTAL_CAR = "/core/rental-car/search-for-rent/get";
+const GET_CAR = "/core/rental-car/search-for-rent/get";
 
 export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
   return new Promise((resolve, reject) => {
@@ -11,11 +11,16 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
         queryString + `search_id=${data.search_id}&coupon_code=${data.coupon}`;
     } else if (data.search_id) {
       queryString = queryString + `search_id=${data.search_id}`;
+    } else if (data.start_date) {
+      queryString =
+        queryString +
+        `rental_car_id=${data.id}&start_date=${data.start_date}&end_date=${data.end_date}`;
     } else if (data.id) {
       queryString = queryString + `rental_car_id=${data.id}`;
     }
+    console.log(queryString);
     axios
-      .get(DOMAIN + GET_RENTAL_CAR + "?" + queryString)
+      .get(DOMAIN + GET_CAR + "?" + queryString)
       .then((response) => {
         if (response.data.id) {
           resolve(response.data);
@@ -36,4 +41,6 @@ interface IgetCar {
   search_id?: string;
   id?: any;
   coupon?: string;
+  start_date?: string;
+  end_date?: string;
 }
