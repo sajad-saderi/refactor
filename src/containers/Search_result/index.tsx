@@ -12,7 +12,7 @@ let End_date = null;
 let page = 1;
 let price = {
   min: null,
-  max: null
+  max: null,
 };
 let o = "-price";
 let loadMoreCar = false;
@@ -27,7 +27,7 @@ let filtersChecker = {
   body_style_id: false,
   deliver_at_renters_place: false,
   brand_id: false,
-  car_id: false
+  car_id: false,
 };
 const Search_result = () => {
   const [result, setResult] = useState([]);
@@ -39,6 +39,31 @@ const Search_result = () => {
     Start_date = start_date;
     End_date = end_date;
     initSearch();
+    return () => {
+      Location = 1;
+      Start_date = null;
+      End_date = null;
+      page = 1;
+      price = {
+        min: null,
+        max: null,
+      };
+      o = "-price";
+      loadMoreCar = false;
+      deliver_at_renters_place = 0;
+      with_driver = 0;
+      body_style_id = [];
+      brand_id = null;
+      car_id = null;
+      filtersChecker = {
+        price: false,
+        with_driver: false,
+        body_style_id: false,
+        deliver_at_renters_place: false,
+        brand_id: false,
+        car_id: false,
+      };
+    };
   }, []);
 
   async function initSearch() {
@@ -66,10 +91,10 @@ const Search_result = () => {
     const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
       queryString,
       limit: 14,
-      page
+      page,
     });
     console.log(res);
-    
+
     if (loadMoreCar) {
       setExtra_info(res.extra_info);
       setResult(result.concat(res.results));
@@ -85,7 +110,7 @@ const Search_result = () => {
       filtersChecker.price = v.price.status;
       price = {
         min: +v.price.value[0],
-        max: +v.price.value[1]
+        max: +v.price.value[1],
       };
     }
     if (v.deliver_at_renters_place) {
@@ -124,9 +149,9 @@ const Search_result = () => {
       <section className="content_container">
         <filterContext.Provider
           value={{
-            setDataForSearch: v => {
+            setDataForSearch: (v) => {
               filterResults(v);
-            }
+            },
           }}
         >
           <Filters extra_info={extra_info} />

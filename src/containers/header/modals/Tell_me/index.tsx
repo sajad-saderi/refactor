@@ -13,16 +13,16 @@ const TellMe = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const Modal_context = useContext(modal_context);
 
-  const sendCellPhonenumber = e => {
+  const sendCellPhonenumber = (e) => {
     e.preventDefault();
     if (cellPhone.length < 11) {
       setError({
         status: true,
-        message: "شماره باید 11 رقم باشد."
+        message: "شماره باید 11 رقم باشد.",
       });
       return;
     }
@@ -34,20 +34,20 @@ const TellMe = () => {
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellPhone,
-        location_id: location_id
+        location_id: location_id,
       })
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           Modal_context.modalHandler("SET");
           setLoading(false);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false);
         console.error(error.response.data);
         setError({
           status: true,
-          message: error.response.data.message
+          message: error.response.data.message,
         });
       });
   };
@@ -60,6 +60,9 @@ const TellMe = () => {
     const Location = JSON.parse(localStorage["User_Location"]);
     location_id = Location.value;
     setLocationName(Location.text);
+    return () => {
+      location_id = null;
+    };
   }, []);
 
   return (
@@ -73,7 +76,7 @@ const TellMe = () => {
           <TextInput
             error={error}
             name="cell Phone"
-            onChangeHandler={e => {
+            onChangeHandler={(e) => {
               setCellPhone(e);
             }}
             value={cellPhone}

@@ -9,10 +9,8 @@ import { REQUEST_GET_USER_INFO } from "../../API";
 const user_id = jsCookie("user_id");
 
 const Profile_container = () => {
-  // const [is_mine, setIs_mine] = useState(false);
-  //FIXME: 
-  const [is_mine, setIs_mine] = useState(true);
-  
+  const [is_mine, setIs_mine] = useState(false);
+
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -21,11 +19,10 @@ const Profile_container = () => {
 
   const fetchApi = async () => {
     const user_cars_info: any = await REQUEST_GET_USER_INFO({
-      id: `${Router.router.query.id}`
+      id: `${Router.router.query.id}`,
     });
     setData(user_cars_info);
-    // FIXME:
-    // setIs_mine(user_id == user_cars_info.id ? true : false);
+    setIs_mine(user_id == user_cars_info.id ? true : false);
   };
 
   return (

@@ -13,7 +13,7 @@ import {
   REQUEST_GET_CAR_COLORS,
   REQUEST_GET_MODEL_INFO,
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
-  REQUEST_ADD_NEW_CAR
+  REQUEST_ADD_NEW_CAR,
 } from "../../../API";
 import Radio from "../../../components/form/Radio";
 import TextInput from "../../../components/form/TextInput";
@@ -26,8 +26,6 @@ import jsCookie from "js-cookie";
 import validator from "validator";
 
 const token = jsCookie.get("token");
-
-let car_OBJ = null;
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -54,51 +52,51 @@ const stateReducer = (current, action) => {
     case "registration_plate_first_part":
       return {
         ...current,
-        registration_plate_first_part: action.registration_plate_first_part
+        registration_plate_first_part: action.registration_plate_first_part,
       };
     case "registration_plate_second_part":
       return {
         ...current,
-        registration_plate_second_part: action.registration_plate_second_part
+        registration_plate_second_part: action.registration_plate_second_part,
       };
     case "registration_plate_third_part":
       return {
         ...current,
-        registration_plate_third_part: action.registration_plate_third_part
+        registration_plate_third_part: action.registration_plate_third_part,
       };
     case "registration_plate_forth_part":
       return {
         ...current,
-        registration_plate_forth_part: action.registration_plate_forth_part
+        registration_plate_forth_part: action.registration_plate_forth_part,
       };
     case "facility_id":
       return {
         ...current,
-        facility_id: current.facility_id.concat(action.facility_id)
+        facility_id: current.facility_id.concat(action.facility_id),
       };
     case "empty_facility_id":
       return {
         ...current,
-        facility_id: action.empty_facility_id
+        facility_id: action.empty_facility_id,
       };
     case "Remove_facility_id":
       return {
         ...current,
-        facility_id: current.facility_id.filter(item => {
+        facility_id: current.facility_id.filter((item) => {
           return item !== action.remove_id;
-        })
+        }),
       };
     case "media_id":
       return {
         ...current,
-        media_id: current.media_id.concat(action.media_id)
+        media_id: current.media_id.concat(action.media_id),
       };
     case "Remove_media_id":
       return {
         ...current,
-        media_id: current.media_id.filter(item => {
+        media_id: current.media_id.filter((item) => {
           return item !== action.Remove_media_id;
-        })
+        }),
       };
     case "color_id":
       return { ...current, color_id: action.color_id };
@@ -107,7 +105,7 @@ const stateReducer = (current, action) => {
     case "deliver_at_renters_place":
       return {
         ...current,
-        deliver_at_renters_place: action.deliver_at_renters_place
+        deliver_at_renters_place: action.deliver_at_renters_place,
       };
     case "is_out_of_service":
       return { ...current, is_out_of_service: action.is_out_of_service };
@@ -124,102 +122,102 @@ const error_reducer = (current, action) => {
       return {
         ...current,
         location_id: action.location_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "car_id":
       return {
         ...current,
         car_id: action.car_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "year_id":
       return {
         ...current,
         year_id: action.year_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "transmission_type_id":
       return {
         ...current,
         transmission_type_id: action.transmission_type_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "body_style_id":
       return {
         ...current,
         body_style_id: action.body_style_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "cylinder_id":
       return {
         ...current,
         cylinder_id: action.cylinder_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "capacity":
       return {
         ...current,
         capacity: action.capacity,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "mileage_range_id":
       return {
         ...current,
         mileage_range_id: action.mileage_range_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "value":
       return {
         ...current,
         value: action.value,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_first_part":
       return {
         ...current,
         registration_plate_first_part: action.registration_plate_first_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_second_part":
       return {
         ...current,
         registration_plate_second_part: action.registration_plate_second_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_third_part":
       return {
         ...current,
         registration_plate_third_part: action.registration_plate_third_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "registration_plate_forth_part":
       return {
         ...current,
         registration_plate_forth_part: action.registration_plate_forth_part,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "facility_id":
       return {
         ...current,
         facility_id: action.facility_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "media_id":
       return {
         ...current,
         media_id: action.media_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "color_id":
       return {
         ...current,
         color_id: action.color_id,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     case "error_message":
       return {
         ...current,
-        error_message: action.error_message
+        error_message: action.error_message,
       };
     default:
       throw new Error("There is a problem!");
@@ -261,13 +259,13 @@ const Add_Car_Step_1 = () => {
     { value: 14, text: "۱۴" },
     { value: 15, text: "۱۵" },
     { value: 16, text: "۱۶" },
-    { value: 17, text: "۱۷" }
+    { value: 17, text: "۱۷" },
   ]);
   const [mileRange, setMileRange] = useState([
     { key: "1", value: "1", text: "۰ - ۵۰٫۰۰۰ کیلومتر" },
     { key: "2", value: "2", text: "۵۰٫۰۰۰ - ۱۰۰٫۰۰۰ کیلومتر" },
     { key: "3", value: "3", text: "۱۰۰٫۰۰۰ - ۲۰۰٫۰۰۰ کیلومتر" },
-    { key: "4", value: "4", text: "+۲۰۰٫۰۰۰  کیلومتر" }
+    { key: "4", value: "4", text: "+۲۰۰٫۰۰۰  کیلومتر" },
   ]);
   const [PelakList, setPelakList] = useState([
     { value: "الف", text: "الف" },
@@ -286,7 +284,7 @@ const Add_Car_Step_1 = () => {
     { value: "ن", text: "ن" },
     { value: "و", text: "و" },
     { value: "ه", text: "هـ" },
-    { value: "ی", text: "ی" }
+    { value: "ی", text: "ی" },
   ]);
   const [facilitesList, setFacilitesList] = useState([]);
   const [initialImage, setInitialImage] = useState([]);
@@ -315,7 +313,7 @@ const Add_Car_Step_1 = () => {
     media_id: null,
     cylinder_id: null,
     value: null,
-    error_message: null
+    error_message: null,
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
@@ -342,7 +340,7 @@ const Add_Car_Step_1 = () => {
     days_to_get_reminded: 1,
     special_type_id: 1,
     is_out_of_service: true,
-    min_days_to_rent: 1
+    min_days_to_rent: 1,
   });
 
   useEffect(() => {
@@ -352,15 +350,15 @@ const Add_Car_Step_1 = () => {
     getInitials();
   }, []);
 
-  const getCarInfoToEdit = async id => {
+  const getCarInfoToEdit = async (id) => {
     const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
       id: id,
-      token: token
+      token: token,
     });
     SetCar(car_info_res);
   };
 
-  const SetCar = car => {
+  const SetCar = (car) => {
     // SET CAR ID
     dispatch({ type: "id", id: car.id });
 
@@ -390,20 +388,20 @@ const Add_Car_Step_1 = () => {
     // SET TRANSMISSION
     dispatch({
       type: "transmission_type_id",
-      transmission_type_id: car.transmission_type.id
+      transmission_type_id: car.transmission_type.id,
     });
 
     // SET BODY STYLE
     dispatch({
       type: "body_style_id",
-      body_style_id: car.body_style.id
+      body_style_id: car.body_style.id,
     });
     setBodyStyleName(car.body_style.name.fa);
 
     // SET CYLINDER
     dispatch({
       type: "cylinder_id",
-      cylinder_id: car.cylinder.id
+      cylinder_id: car.cylinder.id,
     });
     setCylinderName(car.cylinder.name.fa);
 
@@ -413,50 +411,50 @@ const Add_Car_Step_1 = () => {
     // SET MILE RANGE
     dispatch({
       type: "mileage_range_id",
-      mileage_range_id: car.mileage_range.id
+      mileage_range_id: car.mileage_range.id,
     });
 
     // SET CAR VALUE
     dispatch({
       type: "value",
-      value: car.value
+      value: car.value,
     });
 
     // SET PELAK VALUES
     dispatch({
       type: "registration_plate_first_part",
-      registration_plate_first_part: car.registration_plate_first_part
+      registration_plate_first_part: car.registration_plate_first_part,
     });
     dispatch({
       type: "registration_plate_second_part",
-      registration_plate_second_part: car.registration_plate_second_part
+      registration_plate_second_part: car.registration_plate_second_part,
     });
     dispatch({
       type: "registration_plate_third_part",
-      registration_plate_third_part: car.registration_plate_third_part
+      registration_plate_third_part: car.registration_plate_third_part,
     });
     dispatch({
       type: "registration_plate_forth_part",
-      registration_plate_forth_part: car.registration_plate_forth_part
+      registration_plate_forth_part: car.registration_plate_forth_part,
     });
 
     // SET FACILITIES
     if (car.facility_set.length > 0) {
-      car.facility_set.forEach(item => {
+      car.facility_set.forEach((item) => {
         dispatch({ type: "facility_id", facility_id: item.id });
       });
     } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
 
     // SET IMAGE UPLOADED
-    car.media_set.forEach(item => {
+    car.media_set.forEach((item) => {
       dispatch({
         type: "media_id",
-        media_id: item.id
+        media_id: item.id,
       });
-      setInitialImage(InitialImage =>
+      setInitialImage((InitialImage) =>
         InitialImage.concat({
           img: item.thumbnail_url,
-          id: item.id
+          id: item.id,
         })
       );
     });
@@ -464,28 +462,28 @@ const Add_Car_Step_1 = () => {
     // SET COLOR
     dispatch({
       type: "color_id",
-      color_id: car.color.id
+      color_id: car.color.id,
     });
     setColorName(car.color.name.fa);
 
     // SET DESCRIPTION
     dispatch({
       type: "description",
-      description: car.description
+      description: car.description,
     });
 
     // SET EXTRA INFO
     dispatch({
       type: "deliver_at_renters_place",
-      deliver_at_renters_place: car.deliver_at_renters_place
+      deliver_at_renters_place: car.deliver_at_renters_place,
     });
     dispatch({
       type: "is_out_of_service",
-      is_out_of_service: car.is_out_of_service
+      is_out_of_service: car.is_out_of_service,
     });
     dispatch({
       type: "min_days_to_rent",
-      min_days_to_rent: car.min_days_to_rent
+      min_days_to_rent: car.min_days_to_rent,
     });
   };
 
@@ -513,7 +511,7 @@ const Add_Car_Step_1 = () => {
       try {
         const add_new_car_res = await REQUEST_ADD_NEW_CAR({
           data: state,
-          token: token
+          token: token,
         });
       } catch (error) {
         setLoading(false);
@@ -521,19 +519,19 @@ const Add_Car_Step_1 = () => {
     } else setLoading(false);
   };
 
-  const validation = state => {
+  const validation = (state) => {
     if (!validator.isNumeric(`${state.location_id}`) && !showDistrict) {
       ErrorDispatch({
         type: "location_id",
         location_id: true,
-        error_message: "لطفا شهر خودرو را انتخاب کنید"
+        error_message: "لطفا شهر خودرو را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "location_id",
         location_id: null,
-        error_message: null
+        error_message: null,
       });
     }
     if (showDistrict) {
@@ -541,14 +539,14 @@ const Add_Car_Step_1 = () => {
         ErrorDispatch({
           type: "location_id",
           location_id: true,
-          error_message: "لطفا محله را انتخاب کنید"
+          error_message: "لطفا محله را انتخاب کنید",
         });
         return false;
       } else {
         ErrorDispatch({
           type: "location_id",
           location_id: null,
-          error_message: null
+          error_message: null,
         });
       }
     }
@@ -556,112 +554,112 @@ const Add_Car_Step_1 = () => {
       setBrand_id_error(true);
       ErrorDispatch({
         type: "error_message",
-        error_message: "لطفا برند را انتخاب کنید"
+        error_message: "لطفا برند را انتخاب کنید",
       });
       return false;
     } else {
       setBrand_id_error(false);
       ErrorDispatch({
         type: "error_message",
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.car_id}`)) {
       ErrorDispatch({
         type: "car_id",
         car_id: true,
-        error_message: "لطفا مدل را انتخاب کنید"
+        error_message: "لطفا مدل را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "car_id",
         car_id: null,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.year_id}`)) {
       ErrorDispatch({
         type: "year_id",
         year_id: true,
-        error_message: " لطفا سال را انتخاب کنید"
+        error_message: " لطفا سال را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "year_id",
         year_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.transmission_type_id}`)) {
       ErrorDispatch({
         type: "transmission_type_id",
         transmission_type_id: true,
-        error_message: "لطفا نوع دنده را انتخاب کنید"
+        error_message: "لطفا نوع دنده را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "transmission_type_id",
         transmission_type_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.body_style_id}`)) {
       ErrorDispatch({
         type: "body_style_id",
         body_style_id: true,
-        error_message: "لطفا نوع دنده را انتخاب کنید"
+        error_message: "لطفا نوع دنده را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "body_style_id",
         body_style_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.cylinder_id}`)) {
       ErrorDispatch({
         type: "cylinder_id",
         cylinder_id: true,
-        error_message: "لطفا تعداد سیلندر را انتخاب کنید"
+        error_message: "لطفا تعداد سیلندر را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "cylinder_id",
         cylinder_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.capacity}`)) {
       ErrorDispatch({
         type: "capacity",
         capacity: true,
-        error_message: "لطفا ظرفیت خودرو را انتخاب کنبد"
+        error_message: "لطفا ظرفیت خودرو را انتخاب کنبد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "capacity",
         capacity: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.mileage_range_id}`)) {
       ErrorDispatch({
         type: "mileage_range_id",
         mileage_range_id: true,
-        error_message: "لطفا کارکرد خودرو را انتخاب کنید"
+        error_message: "لطفا کارکرد خودرو را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "mileage_range_id",
         mileage_range_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.value}`)) {
@@ -669,14 +667,14 @@ const Add_Car_Step_1 = () => {
       ErrorDispatch({
         type: "value",
         value: true,
-        error_message: "لطفا ارزش خودرو را وارد کنید"
+        error_message: "لطفا ارزش خودرو را وارد کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "value",
         value: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (`${state.registration_plate_first_part}`.length !== 2) {
@@ -684,14 +682,14 @@ const Add_Car_Step_1 = () => {
       ErrorDispatch({
         type: "registration_plate_first_part",
         registration_plate_first_part: true,
-        error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد"
+        error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_first_part",
         registration_plate_first_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!state.registration_plate_second_part) {
@@ -699,14 +697,14 @@ const Add_Car_Step_1 = () => {
       ErrorDispatch({
         type: "registration_plate_second_part",
         registration_plate_second_part: true,
-        error_message: "لطفا بخش دوم پلاک را کامل کنید"
+        error_message: "لطفا بخش دوم پلاک را کامل کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_second_part",
         registration_plate_second_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (`${state.registration_plate_third_part}`.length !== 3) {
@@ -714,14 +712,14 @@ const Add_Car_Step_1 = () => {
       ErrorDispatch({
         type: "registration_plate_third_part",
         registration_plate_third_part: true,
-        error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد"
+        error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_third_part",
         registration_plate_third_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (`${state.registration_plate_forth_part}`.length !== 2) {
@@ -729,53 +727,53 @@ const Add_Car_Step_1 = () => {
       ErrorDispatch({
         type: "registration_plate_forth_part",
         registration_plate_forth_part: true,
-        error_message: "کد استانی شماره پلاک باید ۲ رقم باشد"
+        error_message: "کد استانی شماره پلاک باید ۲ رقم باشد",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "registration_plate_forth_part",
         registration_plate_forth_part: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (state.media_id.length < 1) {
       ErrorDispatch({
         type: "media_id",
         media_id: true,
-        error_message: "لطفاً حداقل یک تصویر بارگذاری کنید"
+        error_message: "لطفاً حداقل یک تصویر بارگذاری کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "media_id",
         media_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     if (!validator.isNumeric(`${state.color_id}`)) {
       ErrorDispatch({
         type: "color_id",
         color_id: true,
-        error_message: "لطفا رنگ خود را انتخاب کنید"
+        error_message: "لطفا رنگ خود را انتخاب کنید",
       });
       return false;
     } else {
       ErrorDispatch({
         type: "color_id",
         color_id: false,
-        error_message: null
+        error_message: null,
       });
     }
     return true;
   };
 
-  const getModelList = async i => {
+  const getModelList = async (i) => {
     const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
     setModelList(car_model_res.data);
   };
 
-  const getDistricts = async parent_id => {
+  const getDistricts = async (parent_id) => {
     const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
     setDistrictList(car_districts_res.data);
   };
@@ -790,12 +788,12 @@ const Add_Car_Step_1 = () => {
     setBodyStyleName("");
   };
 
-  const getBrandInfo = async id => {
+  const getBrandInfo = async (id) => {
     clearRelativeToModel();
     const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
     console.log("model_info_res", model_info_res);
     if (model_info_res.facility_set.length > 0) {
-      model_info_res.facility_set.forEach(item => {
+      model_info_res.facility_set.forEach((item) => {
         dispatch({ type: "facility_id", facility_id: item.id });
       });
     } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
@@ -805,36 +803,36 @@ const Add_Car_Step_1 = () => {
     if (model_info_res.transmission_type)
       dispatch({
         type: "transmission_type_id",
-        transmission_type_id: model_info_res.transmission_type.id
+        transmission_type_id: model_info_res.transmission_type.id,
       });
     else
       dispatch({
         type: "transmission_type_id",
-        transmission_type_id: null
+        transmission_type_id: null,
       });
     if (model_info_res.cylinder) {
       dispatch({
         type: "cylinder_id",
-        cylinder_id: model_info_res.cylinder.id
+        cylinder_id: model_info_res.cylinder.id,
       });
       setCylinderName(model_info_res.cylinder.name.fa);
     } else {
       dispatch({
         type: "cylinder_id",
-        cylinder_id: null
+        cylinder_id: null,
       });
       setCylinderName("");
     }
     if (model_info_res.body_style) {
       dispatch({
         type: "body_style_id",
-        body_style_id: model_info_res.body_style.id
+        body_style_id: model_info_res.body_style.id,
       });
       setBodyStyleName(model_info_res.body_style.name.fa);
     } else {
       dispatch({
         type: "body_style_id",
-        body_style_id: null
+        body_style_id: null,
       });
       setBodyStyleName("");
     }
@@ -848,7 +846,7 @@ const Add_Car_Step_1 = () => {
       </div>
       <form
         className="add_car_form_step_1"
-        onSubmit={e => submitHandler(e, state)}
+        onSubmit={(e) => submitHandler(e, state)}
       >
         <p className="extra_text">
           مشخصات خودرو را با مطابق با مدارک آن پر کنید.{" "}
@@ -863,7 +861,7 @@ const Add_Car_Step_1 = () => {
             dispatch({ type: "location_id", location_id: null });
             setShowDistrict(false);
           }}
-          Select={i => {
+          Select={(i) => {
             if (i.value === 1) setShowDistrict(true);
             else {
               setLocationName(i.text);
@@ -890,7 +888,7 @@ const Add_Car_Step_1 = () => {
             clearField={() =>
               dispatch({ type: "location_id", location_id: null })
             }
-            Select={i =>
+            Select={(i) =>
               dispatch({ type: "location_id", location_id: i.value })
             }
           />
@@ -905,7 +903,7 @@ const Add_Car_Step_1 = () => {
             clearField={() => {
               setBrand_id(null);
             }}
-            Select={i => {
+            Select={(i) => {
               setBrand_id(i.value);
               setModelList([]);
               getModelList(i.value);
@@ -919,7 +917,7 @@ const Add_Car_Step_1 = () => {
             label="مدل"
             data={ModelList}
             clearField={() => dispatch({ type: "car_id", car_id: null })}
-            Select={i => {
+            Select={(i) => {
               getBrandInfo(i.value);
               dispatch({ type: "car_id", car_id: i.value });
             }}
@@ -932,14 +930,14 @@ const Add_Car_Step_1 = () => {
             disableSearch={true}
             data={YearList}
             clearField={() => dispatch({ type: "year_id", year_id: null })}
-            Select={i => dispatch({ type: "year_id", year_id: i.value })}
+            Select={(i) => dispatch({ type: "year_id", year_id: i.value })}
           />
         </div>
         <div className="radio_father">
           <label
             className={[
               "transition_type_Label",
-              ErrorState.transmission_type_id ? "Error_color" : null
+              ErrorState.transmission_type_id ? "Error_color" : null,
             ].join(" ")}
           >
             نوع دنده
@@ -947,22 +945,22 @@ const Add_Car_Step_1 = () => {
           <Radio
             name="transmission_type_id"
             error_status={ErrorState.transmission_type_id}
-            SelectHandler={i =>
+            SelectHandler={(i) =>
               dispatch({
                 type: "transmission_type_id",
-                transmission_type_id: +i
+                transmission_type_id: +i,
               })
             }
             defaultCheck={state.transmission_type_id}
             data={[
               {
                 label: "دنده دستی",
-                value: 2
+                value: 2,
               },
               {
                 label: "دنده اتوماتیک",
-                value: 1
-              }
+                value: 1,
+              },
             ]}
           />
         </div>
@@ -976,7 +974,7 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({ type: "body_style_id", body_style_id: null })
           }
-          Select={i =>
+          Select={(i) =>
             dispatch({ type: "body_style_id", body_style_id: i.value })
           }
         />
@@ -990,7 +988,9 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({ type: "cylinder_id", cylinder_id: null })
           }
-          Select={i => dispatch({ type: "cylinder_id", cylinder_id: i.value })}
+          Select={(i) =>
+            dispatch({ type: "cylinder_id", cylinder_id: i.value })
+          }
         />
         <DropdownSearch
           InputDisable={true}
@@ -1000,7 +1000,7 @@ const Add_Car_Step_1 = () => {
           disableSearch={true}
           defaultVal={state.capacity}
           clearField={() => dispatch({ type: "capacity", capacity: null })}
-          Select={i => dispatch({ type: "capacity", capacity: i.value })}
+          Select={(i) => dispatch({ type: "capacity", capacity: i.value })}
         />
         <DropdownSearch
           InputDisable={true}
@@ -1016,7 +1016,7 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({ type: "mileage_range_id", mileage_range_id: null })
           }
-          Select={i =>
+          Select={(i) =>
             dispatch({ type: "mileage_range_id", mileage_range_id: i.value })
           }
         />
@@ -1024,22 +1024,22 @@ const Add_Car_Step_1 = () => {
           <TextInput
             name="value"
             number={true}
-            onChangeHandler={e => {
+            onChangeHandler={(e) => {
               dispatch({
                 type: "value",
-                value: e
+                value: e,
               });
             }}
             clearField={() =>
               dispatch({
                 type: "value",
-                value: ""
+                value: "",
               })
             }
             autoFocus={false}
             error={{
               status: ErrorState.value,
-              message: ""
+              message: "",
             }}
             min={7}
             max={14}
@@ -1064,14 +1064,14 @@ const Add_Car_Step_1 = () => {
                   clearField={() =>
                     dispatch({
                       type: "registration_plate_forth_part",
-                      registration_plate_forth_part: ""
+                      registration_plate_forth_part: "",
                     })
                   }
                   HideClearIcon={true}
-                  onChangeHandler={e => {
+                  onChangeHandler={(e) => {
                     dispatch({
                       type: "registration_plate_forth_part",
-                      registration_plate_forth_part: e
+                      registration_plate_forth_part: e,
                     });
                   }}
                   min={2}
@@ -1080,7 +1080,7 @@ const Add_Car_Step_1 = () => {
                   value={state.registration_plate_forth_part}
                   error={{
                     status: ErrorState.registration_plate_forth_part,
-                    message: ""
+                    message: "",
                   }}
                 />
               </div>
@@ -1091,7 +1091,7 @@ const Add_Car_Step_1 = () => {
                   clearField={() =>
                     dispatch({
                       type: "registration_plate_third_part",
-                      registration_plate_third_part: ""
+                      registration_plate_third_part: "",
                     })
                   }
                   min={3}
@@ -1101,12 +1101,12 @@ const Add_Car_Step_1 = () => {
                   value={state.registration_plate_third_part}
                   error={{
                     status: ErrorState.registration_plate_third_part,
-                    message: ""
+                    message: "",
                   }}
-                  onChangeHandler={e =>
+                  onChangeHandler={(e) =>
                     dispatch({
                       type: "registration_plate_third_part",
-                      registration_plate_third_part: e
+                      registration_plate_third_part: e,
                     })
                   }
                 />
@@ -1121,13 +1121,13 @@ const Add_Car_Step_1 = () => {
                   clearField={() =>
                     dispatch({
                       type: "registration_plate_second_part",
-                      registration_plate_second_part: null
+                      registration_plate_second_part: null,
                     })
                   }
-                  Select={i =>
+                  Select={(i) =>
                     dispatch({
                       type: "registration_plate_second_part",
-                      registration_plate_second_part: i.value
+                      registration_plate_second_part: i.value,
                     })
                   }
                   hideArrowDown={true}
@@ -1141,7 +1141,7 @@ const Add_Car_Step_1 = () => {
                   value={state.registration_plate_first_part}
                   error={{
                     status: ErrorState.registration_plate_first_part,
-                    message: ""
+                    message: "",
                   }}
                   min={2}
                   max={2}
@@ -1149,13 +1149,13 @@ const Add_Car_Step_1 = () => {
                   clearField={() =>
                     dispatch({
                       type: "registration_plate_first_part",
-                      registration_plate_first_part: ""
+                      registration_plate_first_part: "",
                     })
                   }
-                  onChangeHandler={e =>
+                  onChangeHandler={(e) =>
                     dispatch({
                       type: "registration_plate_first_part",
-                      registration_plate_first_part: e
+                      registration_plate_first_part: e,
                     })
                   }
                   autoFocus={false}
@@ -1169,32 +1169,32 @@ const Add_Car_Step_1 = () => {
           initialValue={state.facility_id}
           data={facilitesList}
           name="facility_id"
-          clearField={item =>
+          clearField={(item) =>
             dispatch({
               type: "Remove_facility_id",
-              remove_id: item.value
+              remove_id: item.value,
             })
           }
-          Select={item => {
+          Select={(item) => {
             dispatch({
               type: "facility_id",
-              facility_id: item.value
+              facility_id: item.value,
             });
           }}
         />
         <ImageUploader
-          Upload_image={id => {
+          Upload_image={(id) => {
             dispatch({
               type: "media_id",
-              media_id: id
+              media_id: id,
             });
           }}
           error_status={ErrorState.media_id}
           default_image={initialImage}
-          delete_image={id => {
+          delete_image={(id) => {
             dispatch({
               type: "Remove_media_id",
-              Remove_media_id: id
+              Remove_media_id: id,
             });
           }}
         />
@@ -1208,13 +1208,13 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({
               type: "color_id",
-              color_id: null
+              color_id: null,
             })
           }
-          Select={i =>
+          Select={(i) =>
             dispatch({
               type: "color_id",
-              color_id: i.value
+              color_id: i.value,
             })
           }
         />
@@ -1227,10 +1227,10 @@ const Add_Car_Step_1 = () => {
             "برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود.\nاگر برای اجاره شرایط خاصی، مثل سیگار نکشیدن، دارید می‌توانید اینجا وارد کنید."
           }
           value={state.description}
-          onChange={e => {
+          onChange={(e) => {
             dispatch({
               type: "description",
-              description: e.target.value
+              description: e.target.value,
             });
           }}
         />

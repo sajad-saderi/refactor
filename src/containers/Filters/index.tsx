@@ -21,6 +21,9 @@ const Filters = (props: IFilter) => {
 
   useEffect(() => {
     getBrandCarList();
+    return () => {
+      body_style_list = [];
+    };
   }, []);
 
   const getBrandCarList = async () => {
@@ -28,7 +31,7 @@ const Filters = (props: IFilter) => {
     setBrandList(car_brand_Res.carBrands);
   };
 
-  const getModelList = async i => {
+  const getModelList = async (i) => {
     const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
     setModelList(car_model_res.data);
   };
@@ -39,19 +42,19 @@ const Filters = (props: IFilter) => {
     }
   }, [props.extra_info]);
 
-  const body_style_add = item => {
+  const body_style_add = (item) => {
     body_style_list.push(item.value);
     FilterContext.setDataForSearch({
-      body_style_id: { status: true, value: body_style_list }
+      body_style_id: { status: true, value: body_style_list },
     });
   };
 
-  const body_style_remove = item => {
-    body_style_list = body_style_list.filter(i => {
+  const body_style_remove = (item) => {
+    body_style_list = body_style_list.filter((i) => {
       return i !== item.value;
     });
     FilterContext.setDataForSearch({
-      body_style_id: { status: true, value: body_style_list }
+      body_style_id: { status: true, value: body_style_list },
     });
   };
 
@@ -63,19 +66,19 @@ const Filters = (props: IFilter) => {
         data={[
           {
             text: "تحویل در محل",
-            value: deliver_at_renters_place
-          }
+            value: deliver_at_renters_place,
+          },
         ]}
         name="deliver_at_renters_place"
-        clearField={item => {
+        clearField={(item) => {
           FilterContext.setDataForSearch({
-            deliver_at_renters_place: { status: false, value: 0 }
+            deliver_at_renters_place: { status: false, value: 0 },
           });
           setDeliver_at_renters_place(0);
         }}
-        Select={item => {
+        Select={(item) => {
           FilterContext.setDataForSearch({
-            deliver_at_renters_place: { status: true, value: 1 }
+            deliver_at_renters_place: { status: true, value: 1 },
           });
           setDeliver_at_renters_place(1);
         }}
@@ -85,19 +88,19 @@ const Filters = (props: IFilter) => {
         data={[
           {
             text: "اجاره با راننده",
-            value: with_driver
-          }
+            value: with_driver,
+          },
         ]}
         name="with_driver"
-        clearField={item => {
+        clearField={(item) => {
           FilterContext.setDataForSearch({
-            with_driver: { status: false, value: 0 }
+            with_driver: { status: false, value: 0 },
           });
           setwith_driver(0);
         }}
-        Select={item => {
+        Select={(item) => {
           FilterContext.setDataForSearch({
-            with_driver: { status: true, value: 1 }
+            with_driver: { status: true, value: 1 },
           });
           setwith_driver(1);
         }}
@@ -106,10 +109,10 @@ const Filters = (props: IFilter) => {
         initialValue={body_style_set}
         data={body_style_set}
         name="body_style_set"
-        clearField={item => {
+        clearField={(item) => {
           body_style_remove(item);
         }}
-        Select={item => {
+        Select={(item) => {
           body_style_add(item);
         }}
       />
@@ -120,15 +123,15 @@ const Filters = (props: IFilter) => {
         clearField={() => {
           setBrand_id(null);
           FilterContext.setDataForSearch({
-            brand_id: { status: false, value: null }
+            brand_id: { status: false, value: null },
           });
         }}
-        Select={i => {
+        Select={(i) => {
           setBrand_id(i.value);
           setModelList([]);
           getModelList(i.value);
           FilterContext.setDataForSearch({
-            brand_id: { status: true, value: i.value }
+            brand_id: { status: true, value: i.value },
           });
         }}
       />
@@ -140,13 +143,13 @@ const Filters = (props: IFilter) => {
         clearField={() => {
           setcar_id(null);
           FilterContext.setDataForSearch({
-            car_id: { status: false, value: null }
+            car_id: { status: false, value: null },
           });
         }}
-        Select={i => {
+        Select={(i) => {
           setcar_id(i.value);
           FilterContext.setDataForSearch({
-            car_id: { status: true, value: i.value }
+            car_id: { status: true, value: i.value },
           });
         }}
       />
@@ -159,4 +162,3 @@ interface IFilter {
 }
 
 export default Filters;
-

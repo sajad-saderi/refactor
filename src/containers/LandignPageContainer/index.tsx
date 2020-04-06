@@ -3,10 +3,7 @@ import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
 import Router from "next/router";
-import {
-  REQUEST_GET_SEARCH_FOR_RENT,
-  REQUEST_GET_LANDING_PAGE,
-} from "../../API";
+import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import moment from "moment-jalaali";
 
 import "./Search_result.scss";
@@ -40,6 +37,35 @@ let filtersChecker = {
 const Landing_page_container = (props: ILanding_page_container) => {
   const [result, setResult] = useState([]);
   const [extra_info, setExtra_info] = useState([]);
+
+  useEffect(() => {
+    return () => {
+      Location = 1;
+      Start_date = null;
+      End_date = null;
+      page = 1;
+      price = {
+        min: null,
+        max: null,
+      };
+      o = "-price";
+      loadMoreCar = false;
+      deliver_at_renters_place = 0;
+      with_driver = 0;
+      body_style_id = [];
+      brand_id = null;
+      car_id = null;
+      filtersChecker = {
+        Location: false,
+        price: false,
+        with_driver: false,
+        body_style_id: false,
+        deliver_at_renters_place: false,
+        brand_id: false,
+        car_id: false,
+      };
+    };
+  }, []);
 
   useEffect(() => {
     const Today = moment().format("jYYYY/jMM/jDD");

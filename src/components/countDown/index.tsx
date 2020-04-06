@@ -24,6 +24,8 @@ const CountDown = (props: ITime) => {
     myInterval = setInterval(() => timer(), 1000);
 
     return () => {
+      myInterval = null;
+      UpdatedTime = 0;
       clearInterval(myInterval);
     };
   }, []);
@@ -37,7 +39,7 @@ const CountDown = (props: ITime) => {
 
   const timer = () => {
     dispatch({
-      type: "REDUCE"
+      type: "REDUCE",
     });
   };
   return <span>{Time}</span>;
