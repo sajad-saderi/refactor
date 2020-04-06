@@ -14,11 +14,11 @@ import Button from "../../components/form/Button";
 
 import modal_context from "../../context/Modal_context";
 
-const Search = () => {
+const Search = (props: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
   const [dayRange, setDayRange] = React.useState<DayRange>({
     from: null,
-    to: null
+    to: null,
   });
   const [locationsList, setLocationsList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ const Search = () => {
         if (start.month >= moment().jMonth() + 1) {
           setDayRange({
             from: JSON.parse(localStorage["start"]),
-            to: JSON.parse(localStorage["end"])
+            to: JSON.parse(localStorage["end"]),
           });
         } else {
           localStorage.removeItem("start");
@@ -50,7 +50,7 @@ const Search = () => {
       } else if (start.month > moment().jMonth() + 1) {
         setDayRange({
           from: JSON.parse(localStorage["start"]),
-          to: JSON.parse(localStorage["end"])
+          to: JSON.parse(localStorage["end"]),
         });
       } else {
         localStorage.removeItem("start");
@@ -59,8 +59,18 @@ const Search = () => {
     }
   };
 
-  const GotoSearchResult = e => {
+  const GotoSearchResult = (e) => {
     e.preventDefault();
+    if (props.dynamic) {
+      props.searchSubmit({
+        location_id: 1,
+        date: {
+          Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+          End_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+        },
+      });
+      return;
+    }
     localStorage["start"] = JSON.stringify(dayRange.from);
     localStorage["end"] = JSON.stringify(dayRange.to);
     setLoading(true);
@@ -69,21 +79,21 @@ const Search = () => {
       query: {
         location_id: LocationId,
         start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-        end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
-      }
+        end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+      },
     });
   };
 
   return (
     <section className="search_box">
-      <form onSubmit={e => GotoSearchResult(e)}>
+      <form onSubmit={(e) => GotoSearchResult(e)}>
         <div className="search_box_div">
           <p>خودرو خود را کجا تحویل میگیرید؟</p>
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
             hardValue="تهران"
-            Select={i => {
+            Select={(i) => {
               // setLocationId(i.key);
               localStorage["User_Location"] = JSON.stringify(i);
               MODAL_CONTEXT.modalHandler("TellMe");
@@ -117,5 +127,10 @@ const Search = () => {
     </section>
   );
 };
+
+interface ISearch {
+  dynamic?: boolean;
+  searchSubmit?: any;
+}
 
 export default Search;

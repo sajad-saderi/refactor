@@ -18,6 +18,8 @@ import { REQUEST_GET_USER_CARS } from "./get/getUserCars";
 import { REQUEST_GET_USER_INFO } from "./get/getUserInfo";
 import { REQUEST_GET_FAQ } from "./get/getFaq";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "./get/getSiteMapLinks";
+import { REQUEST_GET_LANDING_PAGE } from "./get/getLanding";
+import { REQUEST_GET_CAR_PRICE_ESTIMATION } from "./get/getPriceEstimation";
 
 // SET
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
@@ -66,4 +68,6 @@ export {
   REQUEST_USER_INFO_UPDATE,
   REQUEST_GET_FAQ,
   REQUEST_GET_URLS_FOR_SITE_MAP,
+  REQUEST_GET_LANDING_PAGE,
+  REQUEST_GET_CAR_PRICE_ESTIMATION,
 };
