@@ -4,7 +4,7 @@ import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
 import Router from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
-import "./Search_result.module.scss";
+import "./Search_result.scss";
 
 let Location: any = 1;
 let Start_date = null;

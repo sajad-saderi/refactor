@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Button from "../../../../components/form/Button";
 import Modal_context from "../../../../context/Modal_context";
-import "./Law.module.scss";
+import "./Law.scss";
 
 const Law = (props: ILaw) => {
   const [renter, setRenter] = useState(null);

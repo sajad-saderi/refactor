@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { REQUEST_GET_USER_CARS } from "../../../API";
 import Router from "next/router";
 import Car from "./car";
-import "./profile_car.module.scss";
+import "./profile_car.scss";
 
 const Profile_Cars = (props: IProfile_Cars) => {
   const [result, setResult] = useState([]);

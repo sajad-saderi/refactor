@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../../Spinner";
-// import "./Checkbox.module.scss";
 
 const Checkbox = (props: ICheckbox) => {
   const [Data, setData] = useState([]);

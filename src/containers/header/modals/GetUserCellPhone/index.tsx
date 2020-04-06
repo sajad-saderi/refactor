@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import axios from "axios";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
-import "./userCellphone.module.scss";
+import "./userCellphone.scss";
 import Button from "../../../../components/form/Button";
 
 const GetUserCellPhone = (props: IGetUserCellPhone) => {

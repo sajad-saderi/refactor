@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./profile_info.module.scss";
+import "./profile_info.scss";
 import Edit_profile from "./Edit_profile";
 import { IoMdLogOut } from "react-icons/io";
 import Button from "../../../components/form/Button";

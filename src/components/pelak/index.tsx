@@ -1,6 +1,6 @@
 import React from "react";
 import pelak from "../../../public/image/pelak.png";
-import "./pelak.module.scss";
+import "./pelak.scss";
 
 const PelakView = (props: IPelakView) => {
   return (

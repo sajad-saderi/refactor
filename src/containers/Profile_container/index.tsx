@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Profile_container.module.scss";
+import "./Profile_container.scss";
 import Profile_info from "./Profile_info";
 import Profile_Cars from "./Profile_Cars";
 import jsCookie from "js-cookie";

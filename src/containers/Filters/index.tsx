@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import PriceSlider from "../../components/filters/PriceSlider";
-import "./Filter.module.scss";
+import "./Filter.scss";
 import Checkbox from "../../components/form/Checkbox";
 import filterContext from "../../context/filter-context";
 import DropdownSearch from "../../components/form/Dropdown";

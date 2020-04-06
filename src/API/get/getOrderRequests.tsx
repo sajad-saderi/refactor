@@ -8,16 +8,17 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
   if (data.status_id) {
     query = `&status_id=${data.status_id}`;
   }
-  console.log(data);
-  
   return new Promise((resolve, reject) => {
     axios
-      .get(DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=14` + query, {
-        headers: {
-          Authorization: "Bearer " + data.token
+      .get(
+        DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=14` + query,
+        {
+          headers: {
+            Authorization: "Bearer " + data.token,
+          },
         }
-      })
-      .then(response => {
+      )
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data);
         }
@@ -28,5 +29,5 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
 interface IgetOrderRequests {
   token: string;
   status_id?: string;
-  page:number
+  page: number;
 }

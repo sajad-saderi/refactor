@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from "../../API";
 import Router from "next/router";
-import "./checkout.module.scss";
+import "./checkout.scss";
 
 import Button from "../../components/form/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -19,7 +19,7 @@ const Checkout_Container = () => {
   const [media_set, setMedia_set] = useState([]);
   const [
     avg_discounted_price_per_day,
-    setAvg_discounted_price_per_day
+    setAvg_discounted_price_per_day,
   ] = useState(null);
   const [unit, setUnit] = useState("هراز");
   const [with_driver, setWith_driver] = useState(null);
@@ -46,7 +46,7 @@ const Checkout_Container = () => {
   const [coupon, setCoupon] = useState("");
   const [couponError, setCouponError] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -56,13 +56,12 @@ const Checkout_Container = () => {
     fetchData(search_id);
   }, []);
 
-  const fetchData = async search_id => {
+  const fetchData = async (search_id) => {
     const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
-    console.log(res);
     set_CarInformation(res);
   };
 
-  const set_CarInformation = res => {
+  const set_CarInformation = (res) => {
     setCar(res.car);
     setYear(res.year);
     setInsurance_total_price(res.insurance_total_price);
@@ -86,30 +85,30 @@ const Checkout_Container = () => {
     setEnd_date(res.end_date);
   };
 
-  const hasInsurance = e => {
+  const hasInsurance = (e) => {
     if (e == 2) setShowInsurance(true);
     else setShowInsurance(false);
   };
 
-  const couponHandler = async e => {
+  const couponHandler = async (e) => {
     e.preventDefault();
     setCoupanLoading(true);
     if (coupon.length === 0) {
       setCouponError({
         status: true,
-        message: "لطفا کد تخفیف خود را وارد کنید"
+        message: "لطفا کد تخفیف خود را وارد کنید",
       });
       setCoupanLoading(false);
       return;
     }
     setCouponError({
       status: false,
-      message: ""
+      message: "",
     });
     let data = {
       token,
       coupon,
-      search_id
+      search_id,
     };
     setCoupanLoading(true);
     try {
@@ -124,7 +123,7 @@ const Checkout_Container = () => {
       setCoupanLoading(false);
       setCouponError({
         status: true,
-        message: error
+        message: error,
       });
     }
   };
@@ -134,7 +133,7 @@ const Checkout_Container = () => {
       token,
       search_id,
       coupon_code: useCouponPrice ? coupon : null,
-      has_insurance: showInsurance
+      has_insurance: showInsurance,
     };
     try {
       const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
@@ -265,11 +264,11 @@ const Checkout_Container = () => {
                     clearField={() => setCoupon("")}
                     error={{
                       status: couponError.status,
-                      message: couponError.message
+                      message: couponError.message,
                     }}
                     value={coupon}
                     placeholder="کد تخفیف خود را وارد کنید"
-                    onChangeHandler={i => setCoupon(i)}
+                    onChangeHandler={(i) => setCoupon(i)}
                   />
                   <Button
                     value="اعمال"

@@ -9,7 +9,7 @@ import {
 } from "../../API";
 import moment from "moment-jalaali";
 
-import "./Search_result.module.scss";
+import "./Search_result.scss";
 import Search from "../Search";
 
 let Location = 1;

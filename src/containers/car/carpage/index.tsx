@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { REQUEST_GET_RENTAL_CAR } from "../../../../src/API";
 import Router from "next/router";
 import Slider from "../../../../src/components/Slider";
-import "./carpage.module.scss";
+import "./carpage.scss";
 import Button from "../../../components/form/Button";
 import { IoIosLink } from "react-icons/io";
+import Link from "next/link";
 
 const CarPage = () => {
   const [car, setCar] = useState(null);
@@ -14,7 +15,7 @@ const CarPage = () => {
   const [capacity, setCapacity] = useState(null);
   const [
     avg_discounted_price_per_day,
-    setAvg_discounted_price_per_day
+    setAvg_discounted_price_per_day,
   ] = useState(null);
   const [unit, setUnit] = useState("هراز");
   const [body_style, setBody_style] = useState(null);
@@ -39,7 +40,6 @@ const CarPage = () => {
 
   useEffect(() => {
     const { search_id, id } = Router.router.query;
-    console.log();
     if (search_id) {
       fetchData({ search_id });
     } else {
@@ -47,18 +47,17 @@ const CarPage = () => {
     }
   }, []);
 
-  const fetchData = async data => {
+  const fetchData = async (data) => {
     let res: any = null;
     if (data.search_id) {
       res = await REQUEST_GET_RENTAL_CAR({ search_id: data.search_id });
     } else {
       res = await REQUEST_GET_RENTAL_CAR({ id: data.id });
     }
-    console.log(res);
     set_CarInformation(res);
   };
 
-  const set_CarInformation = res => {
+  const set_CarInformation = (res) => {
     setCar(res.car);
     setYear(res.year);
     setCapacity(res.capacity);
@@ -93,7 +92,7 @@ const CarPage = () => {
     setLoading(true);
     Router.push({
       pathname: "/checkout",
-      query: { search_id: search_id }
+      query: { search_id: search_id },
     });
   };
 
@@ -166,8 +165,8 @@ const CarPage = () => {
                   <hr />
                   <h2>امکانات</h2>
                   <div className="facilities_container">
-                    {facility_set.map(item => (
-                      <p>{item.name.fa}</p>
+                    {facility_set.map((item) => (
+                      <p key={item.id}>{item.name.fa}</p>
                     ))}
                   </div>
                 </>
@@ -179,11 +178,17 @@ const CarPage = () => {
                 <>
                   <hr />
                   <h2>برچسب</h2>
-                  {car.category_set.map(item => (
-                    <p className="car_Tags">
-                      <IoIosLink color="#4ba3ce" size="1.6rem" />
-                      {item.name.fa}
-                    </p>
+                  {car.category_set.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={"/rent/[id]"}
+                      as={`/rent/${item.name.en}`}
+                    >
+                      <a className="car_Tags">
+                        <IoIosLink color="#4ba3ce" size="1.6rem" />
+                        {item.name.fa}
+                      </a>
+                    </Link>
                   ))}
                 </>
               )}

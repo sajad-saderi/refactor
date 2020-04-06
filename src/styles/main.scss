@@ -247,5 +247,9 @@ input {
   }
 }
 
-@import "../components/form/Checkbox/Checkbox.module.scss";
+@import "../components/form/Dropdown/DropDown.scss";
+@import "../components/form/Checkbox/Checkbox.scss";
+@import "../components/form/Radio/radio.scss";
+@import "../components/form/Checkbox/Checkbox.scss";
 @import "./pages/static_pages.scss";
+@import "../components/Spinner/spinner.scss";

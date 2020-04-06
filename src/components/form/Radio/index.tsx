@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import "./radio.module.scss";
 
 const Radio = (props: IRadio) => {
   const [checked, setChecked] = useState(null);
@@ -15,9 +14,9 @@ const Radio = (props: IRadio) => {
     }
   }, [props.error_status]);
 
-  return props.data.map((i: any) => {
+  return props.data.map((i: any, index) => {
     return (
-      <div className="radio_container" ref={wrapperRef}>
+      <div className="radio_container" key={index} ref={wrapperRef}>
         <label className="container">
           {i.label}
           {i.extra_text && <p>{i.extra_text}</p>}
@@ -26,7 +25,7 @@ const Radio = (props: IRadio) => {
             name={props.name}
             value={i.value}
             checked={checked === i.value}
-            onChange={e => {
+            onChange={(e) => {
               props.SelectHandler(+e.target.value);
             }}
           />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
-import "./DiscountBox.module.scss";
+import "./DiscountBox.scss";
 
 const DiscountBox = (props: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");

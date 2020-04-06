@@ -1,5 +1,5 @@
 import React from "react";
-import "./inputStyle.module.scss";
+import "./inputStyle.scss";
 import { IoMdClose } from "react-icons/io";
 
 const TextInput = (props: ItextInput) => {

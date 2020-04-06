@@ -1,6 +1,6 @@
 @import "../../styles/colors";
-@import "./modals/modal.module.scss";
-header {
+@import "./modals/modal.scss";
+.header {
   background-color: $header_background_color;
   padding-top: 1.2rem;
   // height: 64px;

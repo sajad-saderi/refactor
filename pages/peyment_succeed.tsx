@@ -5,7 +5,7 @@ import jsCookie from "js-cookie";
 import moment from "moment-jalaali";
 import Router from "next/router";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import "../src/styles/pages/Success_payment.module.scss";
+import "../src/styles/pages/Success_payment.scss";
 
 moment.loadPersian({ dialect: "persian-modern" });
 

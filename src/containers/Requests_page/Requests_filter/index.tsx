@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./Requests_filter.module.scss";
+import "./Requests_filter.scss";
 import Checkbox from "../../../components/form/Checkbox";
 
 const Requests_filter = (props: IRequests_filter) => {

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import modal_context from "../../../context/Modal_context";
 import jsCookie from "js-cookie";
+import Router from "next/router";
 
 const Menu = () => {
   const MODAL_CONTEXT = useContext(modal_context);
@@ -17,20 +18,23 @@ const Menu = () => {
   return (
     <ul>
       {token ? (
-        <li className="first_element_li">
-          <Link href="/user/[id]" as={`/user/${user_id}`}>
-            <a>
-              <img
-                className="profile_icon"
-                src={
-                  img_profile ||
-                  "https://core.otoli.net/static/core/default_profile_pic.png"
-                }
-                alt={profile}
-              />
-              <span>{profile}</span>
-            </a>
-          </Link>
+        <li
+          className="first_element_li"
+          onClick={() => Router.push(`/user/${user_id}`)}
+        >
+          {/* <Link href="/user/[id]" as={}> */}
+          {/* <span > */}
+          <img
+            className="profile_icon"
+            src={
+              img_profile ||
+              "https://core.otoli.net/static/core/default_profile_pic.png"
+            }
+            alt={profile}
+          />
+          <span>{profile}</span>
+          {/* </span> */}
+          {/* </Link> */}
         </li>
       ) : (
         <li

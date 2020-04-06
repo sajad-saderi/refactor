@@ -3,7 +3,7 @@ import Layout from "../src/Layout";
 import Router from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Button from "../src/components/form/Button";
-import "../src/styles/pages/Failed_payment.module.scss";
+import "../src/styles/pages/Failed_payment.scss";
 
 const Failed_payment = () => {
   return (

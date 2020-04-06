@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import jsCookie from "js-cookie";
 import { REQUEST_GET_ORDER_REQUESTS } from "../../API";
 import Router from "next/router";
-import "./Requests_page.module.scss";
+import "./Requests_page.scss";
 import Request_cart from "./request_cart";
 import Requests_filter from "./Requests_filter";
 
@@ -32,7 +32,6 @@ const Requests_page = () => {
         ...data,
         token: token
       });
-      console.log(res.items);
       if (data.page > 1) {
         setResult(result => result.concat(res.items));
       } else {
@@ -44,7 +43,6 @@ const Requests_page = () => {
   };
 
   const filterHandler = (value, option) => {
-    console.log(value, option);
     if (option === "add") {
       filter_id.push(value);
     } else {

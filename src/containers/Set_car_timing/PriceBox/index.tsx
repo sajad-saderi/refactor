@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
-import "./PriceBox.module.scss";
+import "./PriceBox.scss";
 import TextInput from "../../../components/form/TextInput";
 // moment.loadPersian({ dialect: "persian-modern" });
 

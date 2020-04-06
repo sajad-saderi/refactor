@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMdClose, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import "./Gallery.module.scss";
+import "./Gallery.scss";
 
 const Gallery = (props: IGallery) => {
   const [Feed, setFeed] = useState([]);
@@ -12,11 +12,11 @@ const Gallery = (props: IGallery) => {
   const [FromX, setFromX] = useState(0);
   const [falgControl, setfalgControl] = useState(false);
 
-  const showController = index => {
+  const showController = (index) => {
     setindex(index);
   };
 
-  const SliderNav = slide => {
+  const SliderNav = (slide) => {
     if (slide === "right" && index < Feed.length - 1) {
       setindex(1 + index);
     } else if (slide === "left" && index > 0) {
@@ -40,6 +40,7 @@ const Gallery = (props: IGallery) => {
         {Feed.map((item, i) => {
           return (
             <img
+              key={i}
               src={item.url}
               alt={alt}
               onTouchEnd={() => {
@@ -76,10 +77,10 @@ const Gallery = (props: IGallery) => {
               className={[
                 index === i && "carousel_FrontImage",
                 index < i && "carousel_FrontImage TranslateRight",
-                index > i && "carousel_FrontImage TranslateLeft"
+                index > i && "carousel_FrontImage TranslateLeft",
               ].join(" ")}
               style={{
-                right: rightV + "px"
+                right: rightV + "px",
               }}
             />
           );
@@ -88,7 +89,12 @@ const Gallery = (props: IGallery) => {
       <div className="thumbnail_part">
         {Feed.map((item, i) => {
           return (
-            <img src={item.url} onClick={() => showController(i)} alt={alt} />
+            <img
+              key={i}
+              src={item.url}
+              onClick={() => showController(i)}
+              alt={alt}
+            />
           );
         })}
       </div>

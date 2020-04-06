@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState, useRef } from "react";
 import { IoIosCar } from "react-icons/io";
-import "./step_1.module.scss";
+import "./step_1.scss";
 import DropdownSearch from "../../../components/form/Dropdown";
 import {
   REQUEST_GET_LOCATION,

@@ -4,8 +4,6 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_ORDER_REQUEST_URL = "/core/rental-car/order/get";
 
 export const GET_ORDER_REQUEST = (data: IgetOrderRequest) => {
-  console.log(data);
-
   return new Promise((resolve, reject) => {
     const { token, id } = data;
     axios

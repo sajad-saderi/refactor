@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoIosArrowForward, IoIosArrowBack, IoIosExpand } from "react-icons/io";
-import "./slider.module.scss";
+import "./slider.scss";
 import Gallery from "./Gallery";
 
 const Slider = (props: ISlider) => {
@@ -35,7 +35,7 @@ const Slider = (props: ISlider) => {
     }
   };
 
-  const SliderNav = slide => {
+  const SliderNav = (slide) => {
     if (slide === "right" && slideIndex < props.Feed.length - 1) {
       setslideIndex(1 + slideIndex);
       // direction:slide;
@@ -72,6 +72,7 @@ const Slider = (props: ISlider) => {
             {Feed.map((item, i) => {
               return (
                 <img
+                  key={i}
                   onClick={CloseGallery}
                   onTouchEnd={() => {
                     setrightV(0);
@@ -83,7 +84,7 @@ const Slider = (props: ISlider) => {
                     setFromX(e.target.x);
                     setfalgControl(true);
                   }}
-                  onTouchMoveCapture={e => {
+                  onTouchMoveCapture={(e) => {
                     e.persist();
                     if (e.changedTouches[0].screenX > startPoint) {
                       let right = e.changedTouches[0].screenX - startPoint;
@@ -113,12 +114,12 @@ const Slider = (props: ISlider) => {
                     }
                   }}
                   style={{
-                    right: rightV + "px"
+                    right: rightV + "px",
                   }}
                   className={[
                     slideIndex === i && "carousel_FrontImage",
                     slideIndex < i && "carousel_FrontImage TranslateRight",
-                    slideIndex > i && "carousel_FrontImage TranslateLeft"
+                    slideIndex > i && "carousel_FrontImage TranslateLeft",
                   ].join(" ")}
                   src={item.url}
                   alt={alt}
@@ -132,7 +133,7 @@ const Slider = (props: ISlider) => {
               //   this.state.slideIndex === i ? "activslide" : "HiddenSlide"
               // ].join(" ")}
               style={{
-                top: `-${heightController}px`
+                top: `-${heightController}px`,
               }}
               src={Feed[slideIndex].url}
               alt={alt}
@@ -156,7 +157,7 @@ const Slider = (props: ISlider) => {
               className="carousel_BackImage"
               src={Feed[0].url}
               style={{
-                top: `-${heightController}px`
+                top: `-${heightController}px`,
               }}
               alt={alt}
               onLoad={() => positionController(Feed[0].width, Feed[0].height)}
@@ -188,6 +189,7 @@ const Slider = (props: ISlider) => {
             {Feed.map((_, i) => {
               return (
                 <span
+                  key={i}
                   onClick={() => setslideIndex(i)}
                   className={slideIndex === i ? "activeDot" : "deactiveDot"}
                 ></span>

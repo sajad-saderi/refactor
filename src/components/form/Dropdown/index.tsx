@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoIosArrowDown } from "react-icons/io";
 import Spinner from "../../Spinner";
-import "./DropDown_module.scss";
 
 const DropdownSearch = (props: IDropDown) => {
   const [InputValue, setInputValue] = useState("");

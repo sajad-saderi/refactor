@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import jsCookie from "js-cookie";
 import { GET_ORDER_REQUEST } from "../../API";
 import Router from "next/router";
-import "./Requests_page.module.scss";
+import "./Requests_page.scss";
 import Request_cart from "./request_cart";
 
 const token = jsCookie.get("token");
@@ -19,13 +19,12 @@ const Request_page = () => {
     // }
   }, []);
 
-  const fetchAPI = async id => {
+  const fetchAPI = async (id) => {
     try {
       const res: any = await GET_ORDER_REQUEST({
         id,
-        token
+        token,
       });
-      console.log(res);
       setResult([res.data]);
     } catch (e) {
       console.log(e.response);

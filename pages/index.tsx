@@ -3,6 +3,7 @@ import { NextSeo } from "next-seo";
 
 import Layout from "../src/Layout";
 import Search from "../src/containers/Search";
+import insurance from "../public/image/SamanInsurance.png";
 import "../src/styles/pages/index.scss";
 
 const HomePage = () => {
@@ -26,7 +27,7 @@ const HomePage = () => {
             <div>
               <div className="insuranceBox">
                 <p>با همکاری </p>
-                <img src="" alt="تصویر بیمه سامان" />
+                <img src={insurance} alt="تصویر بیمه سامان" />
               </div>
               <div>
                 <h2>اتولی چه کار می‌کند؟</h2>

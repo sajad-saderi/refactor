@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import "./please_login_module.scss";
+import "./please_login.scss";
 import login from "../../../public/image/login.png";
 import Modal_context from "../../../src/context/Modal_context";
 
