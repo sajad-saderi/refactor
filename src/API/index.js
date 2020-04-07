@@ -36,6 +36,7 @@ import { REQUEST_DELETE_CAR } from "./set/setDeleteCar";
 import { REQUEST_USER_INFO_UPDATE } from "./set/setUserInfoupdate";
 import { REQUEST_SET_CAR_DISCOUNT } from "./set/setCarDiscount";
 import { REQUEST_SET_CAR_AVAILABILITY } from "./set/setCarAvailablity";
+import { REQUEST_SET_CAR_PARTIAL } from "./set/setCarPartial";
 
 export {
   REQUEST_GET_LOCATION,
@@ -74,4 +75,5 @@ export {
   REQUEST_GET_CAR_PRICE_ESTIMATION,
   REQUEST_SET_CAR_DISCOUNT,
   REQUEST_SET_CAR_AVAILABILITY,
+  REQUEST_SET_CAR_PARTIAL,
 };

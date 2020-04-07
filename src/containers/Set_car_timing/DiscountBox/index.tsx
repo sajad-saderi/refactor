@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
@@ -8,19 +8,19 @@ const DiscountBox = (props: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");
   const [Error_discount_percent, setError_discount_percent] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const [DiscountList, setDiscountList] = useState([]);
   const [days_limit, setDays_limit] = useState(null);
   const [days_limit_name, setDays_limit_name] = useState(null);
   const [Error_days_limit, setError_days_limit] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const [Discountcheck, setDiscountcheck] = useState(0);
   const [mode, setMode] = useState({
     status: false,
-    index: null
+    index: null,
   });
   const daysFarsi = [
     { key: "1", value: "1", text: "۱ روز" },
@@ -52,51 +52,78 @@ const DiscountBox = (props: IDiscountBox) => {
     { key: "27", value: "27", text: "۲۷ روز" },
     { key: "28", value: "28", text: "۲۸ روز" },
     { key: "29", value: "29", text: "۲۹ روز" },
-    { key: "30", value: "30", text: "۳۰ روز" }
+    { key: "30", value: "30", text: "۳۰ روز" },
   ];
 
-  const onConfirm = () => {
-    if (!days_limit) {
-      setError_days_limit({
-        status: true,
-        message: "لطفا تعداد روز را مشخص کنید"
-      });
-      return;
-    }
-    setError_days_limit({
-      status: false,
-      message: ""
-    });
-    if (discount_percent === "") {
-      setError_discount_percent({
-        status: true,
-        message: "لطفا درصد تخفیف را مشخص کنید"
-      });
-      return;
-    }
-    setError_discount_percent({
-      status: false,
-      message: ""
-    });
-    if (mode.status) {
-      let temp = [...DiscountList];
-      temp[mode.index] = {
-        days_limit: days_limit,
-        discount_percent: discount_percent
-      };
-      setDiscountList(temp);
-    } else {
-      setDiscountList(DiscountList =>
+  const onConfirm = (data?, autoFill = false) => {
+    if (autoFill) {
+      setDiscountList((DiscountList) =>
         DiscountList.concat({
-          days_limit: days_limit,
-          discount_percent: discount_percent
+          days_limit: data.days_limit,
+          discount_percent: data.discount_percent,
         })
       );
+    } else {
+      if (!days_limit) {
+        setError_days_limit({
+          status: true,
+          message: "لطفا تعداد روز را مشخص کنید",
+        });
+        return;
+      }
+      setError_days_limit({
+        status: false,
+        message: "",
+      });
+      if (discount_percent === "") {
+        setError_discount_percent({
+          status: true,
+          message: "لطفا درصد تخفیف را مشخص کنید",
+        });
+        return;
+      }
+      setError_discount_percent({
+        status: false,
+        message: "",
+      });
+      if (mode.status) {
+        let temp = [...DiscountList];
+        temp[mode.index] = {
+          days_limit: days_limit,
+          discount_percent: discount_percent,
+        };
+        setDiscountList(temp);
+        props.addDiscount(temp, true);
+        setMode({
+          status: false,
+          index: null,
+        });
+      } else {
+        setDiscountList((DiscountList) =>
+          DiscountList.concat({
+            days_limit: days_limit,
+            discount_percent: discount_percent,
+          })
+        );
+        props.addDiscount({
+          days_limit: days_limit,
+          discount_percent: discount_percent,
+        });
+      }
+      setDiscount_percent("");
+      setDays_limit_name(null);
+      setDays_limit(null);
     }
-    setDiscount_percent("");
-    setDays_limit_name(null)
-    setDays_limit(null);
   };
+
+  useEffect(() => {
+    if (props.initialDiscountList) {
+      setDiscountcheck(props.showDiscount);
+      props.initialDiscountList.forEach((item) => {
+        onConfirm(item, true);
+      });
+    }
+  }, [props.initialDiscountList]);
 
   return (
     <div className="Price_form_container">
@@ -106,14 +133,14 @@ const DiscountBox = (props: IDiscountBox) => {
         data={[
           {
             text: "افزودن تخفیف",
-            value: Discountcheck
-          }
+            value: Discountcheck,
+          },
         ]}
         name="setDiscount"
-        clearField={item => {
+        clearField={(item) => {
           setDiscountcheck(0);
         }}
-        Select={item => {
+        Select={(item) => {
           setDiscountcheck(1);
         }}
       />
@@ -125,7 +152,7 @@ const DiscountBox = (props: IDiscountBox) => {
               <DropdownSearch
                 data={daysFarsi}
                 clearField={() => {
-                  setDays_limit_name(null)
+                  setDays_limit_name(null);
                   setDays_limit(null);
                 }}
                 label="بیشتر از"
@@ -133,8 +160,8 @@ const DiscountBox = (props: IDiscountBox) => {
                 error_status={Error_days_limit.status}
                 InputDisable={true}
                 defaultVal={days_limit_name}
-                Select={e => {
-                  setDays_limit_name(e.text)
+                Select={(e) => {
+                  setDays_limit_name(e.text);
                   setDays_limit(e.value);
                 }}
               />
@@ -150,7 +177,7 @@ const DiscountBox = (props: IDiscountBox) => {
                 label="درصد تخفیف"
                 error={{
                   status: Error_discount_percent.status,
-                  message: Error_discount_percent.message
+                  message: Error_discount_percent.message,
                 }}
                 value={discount_percent}
                 number={true}
@@ -160,7 +187,7 @@ const DiscountBox = (props: IDiscountBox) => {
                 }}
                 min={1}
                 max={2}
-                onChangeHandler={e => {
+                onChangeHandler={(e) => {
                   setDiscount_percent(e);
                 }}
               />
@@ -175,7 +202,7 @@ const DiscountBox = (props: IDiscountBox) => {
                 onClick={() => {
                   setMode({
                     status: false,
-                    index: null
+                    index: null,
                   });
                   setDiscount_percent("");
                   setDays_limit_name(null);
@@ -189,7 +216,7 @@ const DiscountBox = (props: IDiscountBox) => {
           <div className="Discount_list">
             {DiscountList.map((item, i) => {
               return (
-                <div>
+                <div key={i}>
                   <p>
                     - برای اجاره‌ بیشتر از {item.days_limit} روز{" "}
                     {item.discount_percent} درصد تخفیف
@@ -199,7 +226,7 @@ const DiscountBox = (props: IDiscountBox) => {
                     onClick={() => {
                       setMode({
                         status: true,
-                        index: i
+                        index: i,
                       });
                       setDays_limit(item.days_limit);
                       setDays_limit_name(`${item.days_limit} روز`);
@@ -211,11 +238,12 @@ const DiscountBox = (props: IDiscountBox) => {
                   <span
                     className="cancel"
                     onClick={() => {
-                      setDiscountList(DiscountList =>
+                      setDiscountList((DiscountList) =>
                         DiscountList.filter((_, index) => {
                           return index !== i;
                         })
                       );
+                      props.removeDiscountList(i);
                     }}
                   >
                     حذف
@@ -230,6 +258,12 @@ const DiscountBox = (props: IDiscountBox) => {
   );
 };
 
-interface IDiscountBox {}
+interface IDiscountBox {
+  initialDiscountList: any;
+  addDiscount: any;
+  removeDiscountList: any;
+  discountCheck: any;
+  showDiscount: number;
+}
 
 export default DiscountBox;

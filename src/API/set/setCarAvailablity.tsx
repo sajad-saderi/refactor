@@ -6,8 +6,6 @@ const SET_CAR_AVAILABILITY = "/core/rental-car/availability/replace-set";
 export const REQUEST_SET_CAR_AVAILABILITY = (
   inputData: ISetCarAvailability
 ) => {
-  return console.log("inputData", inputData);
-
   const { token, rental_car_id, data } = inputData;
   return new Promise((resolve, reject) => {
     axios

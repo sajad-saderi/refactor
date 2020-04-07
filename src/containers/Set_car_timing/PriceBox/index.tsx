@@ -85,15 +85,15 @@ const PriceBox = (props: IPriceBox) => {
       getBetweenRange(data.dayRange);
       setAvailList((availList) =>
         availList.concat({
-          start_date: data.dayRange.from,
-          end_date: data.dayRange.to,
+          start_date: `${data.dayRange.from.year}/${data.dayRange.from.month}/${data.dayRange.from.day}`,
+          end_date: `${data.dayRange.to.year}/${data.dayRange.to.month}/${data.dayRange.to.day}`,
           price_per_day: data.price_per_day,
           status_id: "available",
         })
       );
       props.addAvailList({
-        start_date: data.dayRange.from,
-        end_date: data.dayRange.to,
+        start_date: `${data.dayRange.from.year}/${data.dayRange.from.month}/${data.dayRange.from.day}`,
+        end_date: `${data.dayRange.to.year}/${data.dayRange.to.month}/${data.dayRange.to.day}`,
         price_per_day: data.price_per_day,
         status_id: "available",
       });
@@ -123,8 +123,10 @@ const PriceBox = (props: IPriceBox) => {
       if (EditMode.status) {
         let tempArr = [...availList];
         tempArr[EditMode.index] = {
-          start_date: dayRange.from,
-          end_date: dayRange.to,
+          start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+          end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+          // start_date: dayRange.from,
+          // end_date: dayRange.to,
           price_per_day: price_per_day,
           status_id: "available",
         };
@@ -138,15 +140,17 @@ const PriceBox = (props: IPriceBox) => {
         getBetweenRange(dayRange);
         setAvailList((availList) =>
           availList.concat({
-            start_date: dayRange.from,
-            end_date: dayRange.to,
+            start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+            end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+            // start_date: dayRange.from,
+            // end_date: dayRange.to,
             price_per_day: price_per_day,
             status_id: "available",
           })
         );
         props.addAvailList({
-          start_date: dayRange.from,
-          end_date: dayRange.to,
+          start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+          end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
           price_per_day: price_per_day,
           status_id: "available",
         });
@@ -277,8 +281,7 @@ const PriceBox = (props: IPriceBox) => {
               return (
                 <div key={i}>
                   <p>
-                    - از تاریخ {item.start_date.month}/{item.start_date.day} تا{" "}
-                    {item.end_date.month}/{item.end_date.day} با قیمت{" "}
+                    - از تاریخ {item.start_date} تا {item.end_date} با قیمت{" "}
                     {Number(item.price_per_day).toLocaleString()} تومان
                   </p>
                   <div className="button_box">
@@ -290,9 +293,18 @@ const PriceBox = (props: IPriceBox) => {
                           index: i,
                         });
                         setPrice_per_day(item.price_per_day);
+
                         setDayRange({
-                          from: item.start_date,
-                          to: item.end_date,
+                          from: {
+                            year: +moment(item.start_date).format("YYYY"),
+                            month: +moment(item.start_date).format("MM"),
+                            day: +moment(item.start_date).format("DD"),
+                          },
+                          to: {
+                            year: +moment(item.end_date).format("YYYY"),
+                            month: +moment(item.end_date).format("MM"),
+                            day: +moment(item.end_date).format("DD"),
+                          },
                         });
                       }}
                     >
