@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
@@ -9,45 +9,45 @@ import TextInput from "../../../components/form/TextInput";
 const PriceBox = (props: IPriceBox) => {
   const [dayRange, setDayRange] = useState<DayRange>({
     from: null,
-    to: null
+    to: null,
   });
   const [dayRange_error, setdayRange_error] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const [price_per_day, setPrice_per_day] = useState("");
   const [price_per_day_error, setprice_per_day_error] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const [DisableList, setDisableList] = useState([]);
   const [availList, setAvailList] = useState([]);
   const [DateDuration, setDateDuration] = useState([]);
   const [EditMode, setEditMode] = useState({
     status: false,
-    index: null
+    index: null,
   });
 
-  const convertDateToMoment = date => {
+  const convertDateToMoment = (date) => {
     if (!date) return;
     const formatedDate = `${date.year}/${date.month}/${date.day}`;
     return moment(formatedDate, "jYYYY/jMM/jDD");
   };
 
-  const convertRangeDateToMoment = date => {
+  const convertRangeDateToMoment = (date) => {
     if (!date) return;
     return {
       from: convertDateToMoment(date.from),
-      to: convertDateToMoment(date.to)
+      to: convertDateToMoment(date.to),
     };
   };
 
-  const convertMomentToDate = date => {
+  const convertMomentToDate = (date) => {
     if (!date) return;
     return {
       day: Number(moment(date).format("jDD")),
       month: Number(moment(date).format("jMM")),
-      year: Number(moment(date).format("jYYYY"))
+      year: Number(moment(date).format("jYYYY")),
     };
   };
 
@@ -55,7 +55,7 @@ const PriceBox = (props: IPriceBox) => {
     if (!start && !end) return;
     return {
       from: convertMomentToDate(start),
-      to: convertMomentToDate(end)
+      to: convertMomentToDate(end),
     };
   };
 
@@ -65,7 +65,7 @@ const PriceBox = (props: IPriceBox) => {
       const days = [];
       const out = [];
       const duration = from.diff(to, "days");
-      setDateDuration(DateDuration =>
+      setDateDuration((DateDuration) =>
         DateDuration.concat(Math.abs(duration) + 1)
       );
       for (let i = 0; i <= -duration; i++) {
@@ -76,63 +76,90 @@ const PriceBox = (props: IPriceBox) => {
       });
       if (returnValue) {
         return out;
-      } else setDisableList(DisableList => DisableList.concat(out));
+      } else setDisableList((DisableList) => DisableList.concat(out));
     }
   };
 
-  const onConfirm = () => {
-    if (dayRange.from === null || dayRange.to === null) {
-      setdayRange_error({
-        status: true,
-        message: "لطفا تاریخ را انتخاب کنید"
-      });
-      return;
-    }
-    setdayRange_error({
-      status: false,
-      message: ""
-    });
-    if (price_per_day === "") {
-      setprice_per_day_error({
-        status: true,
-        message: "لطفا قیمت خودرو را وارد کنید"
-      });
-      return;
-    }
-    setprice_per_day_error({
-      status: false,
-      message: ""
-    });
-    if (EditMode.status) {
-      let tempArr = [...availList];
-      tempArr[EditMode.index] = {
-        start_date: dayRange.from,
-        end_date: dayRange.to,
-        price_per_day: price_per_day
-      };
-      setAvailList(tempArr);
-      setEditMode({
-        status: false,
-        index: null
-      });
-    } else {
-      getBetweenRange(dayRange);
-      setAvailList(availList =>
+  const onConfirm = (data?, autoFill = false) => {
+    if (autoFill) {
+      getBetweenRange(data.dayRange);
+      setAvailList((availList) =>
         availList.concat({
-          start_date: dayRange.from,
-          end_date: dayRange.to,
-          price_per_day: price_per_day
+          start_date: data.dayRange.from,
+          end_date: data.dayRange.to,
+          price_per_day: data.price_per_day,
+          status_id: "available",
         })
       );
+      props.addAvailList({
+        start_date: data.dayRange.from,
+        end_date: data.dayRange.to,
+        price_per_day: data.price_per_day,
+        status_id: "available",
+      });
+    } else {
+      if (dayRange.from === null || dayRange.to === null) {
+        setdayRange_error({
+          status: true,
+          message: "لطفا تاریخ را انتخاب کنید",
+        });
+        return;
+      }
+      setdayRange_error({
+        status: false,
+        message: "",
+      });
+      if (price_per_day === "") {
+        setprice_per_day_error({
+          status: true,
+          message: "لطفا قیمت خودرو را وارد کنید",
+        });
+        return;
+      }
+      setprice_per_day_error({
+        status: false,
+        message: "",
+      });
+      if (EditMode.status) {
+        let tempArr = [...availList];
+        tempArr[EditMode.index] = {
+          start_date: dayRange.from,
+          end_date: dayRange.to,
+          price_per_day: price_per_day,
+          status_id: "available",
+        };
+        props.addAvailList(tempArr, true);
+        setAvailList(tempArr);
+        setEditMode({
+          status: false,
+          index: null,
+        });
+      } else {
+        getBetweenRange(dayRange);
+        setAvailList((availList) =>
+          availList.concat({
+            start_date: dayRange.from,
+            end_date: dayRange.to,
+            price_per_day: price_per_day,
+            status_id: "available",
+          })
+        );
+        props.addAvailList({
+          start_date: dayRange.from,
+          end_date: dayRange.to,
+          price_per_day: price_per_day,
+          status_id: "available",
+        });
+      }
+      setDayRange({
+        from: null,
+        to: null,
+      });
+      setPrice_per_day("");
     }
-    setDayRange({
-      from: null,
-      to: null
-    });
-    setPrice_per_day("");
   };
 
-  const releaseDisableDays = index => {
+  const releaseDisableDays = (index) => {
     let FindIndex = 0;
     DateDuration.forEach((element, i) => {
       if (i < index) {
@@ -141,16 +168,44 @@ const PriceBox = (props: IPriceBox) => {
     });
     const tempArr = [...DisableList];
     tempArr.splice(FindIndex, DateDuration[index]);
-    setDateDuration(DateDuration => DateDuration.filter((_, i) => index !== i));
+    setDateDuration((DateDuration) =>
+      DateDuration.filter((_, i) => index !== i)
+    );
     setDisableList(tempArr);
   };
+
+  useEffect(() => {
+    if (props.initialAvailabilityList) {
+      props.initialAvailabilityList.forEach((item) => {
+        onConfirm(
+          {
+            dayRange: {
+              from: {
+                year: item.start_date.jalali.y,
+                month: item.start_date.jalali.m,
+                day: item.start_date.jalali.d,
+              },
+              to: {
+                year: item.end_date.jalali.y,
+                month: item.end_date.jalali.m,
+                day: item.end_date.jalali.d,
+              },
+            },
+            price_per_day: item.price_per_day,
+          },
+          true
+        );
+      });
+    }
+  }, [props.initialAvailabilityList]);
+
   return (
     <div className="Price_form_container">
       <div className="Price_container input_price_Box">
         <div
           className={[
             "divs",
-            dayRange_error.status ? "datePickerError" : null
+            dayRange_error.status ? "datePickerError" : null,
           ].join(" ")}
         >
           <label className="Diff_margin">از تاریخ</label>
@@ -173,7 +228,7 @@ const PriceBox = (props: IPriceBox) => {
             name="price_per_day"
             error={{
               status: price_per_day_error.status,
-              message: price_per_day_error.message
+              message: price_per_day_error.message,
             }}
             label="قیمت"
             value={price_per_day}
@@ -184,7 +239,7 @@ const PriceBox = (props: IPriceBox) => {
             }}
             min={4}
             max={10}
-            onChangeHandler={e => {
+            onChangeHandler={(e) => {
               setPrice_per_day(e);
             }}
           />
@@ -200,11 +255,11 @@ const PriceBox = (props: IPriceBox) => {
               onClick={() => {
                 setEditMode({
                   status: false,
-                  index: null
+                  index: null,
                 });
                 setDayRange({
                   from: null,
-                  to: null
+                  to: null,
                 });
                 setPrice_per_day("");
               }}
@@ -220,7 +275,7 @@ const PriceBox = (props: IPriceBox) => {
             <p>خودرو شما فقط</p>
             {availList.map((item, i) => {
               return (
-                <div>
+                <div key={i}>
                   <p>
                     - از تاریخ {item.start_date.month}/{item.start_date.day} تا{" "}
                     {item.end_date.month}/{item.end_date.day} با قیمت{" "}
@@ -232,12 +287,12 @@ const PriceBox = (props: IPriceBox) => {
                       onClick={() => {
                         setEditMode({
                           status: true,
-                          index: i
+                          index: i,
                         });
                         setPrice_per_day(item.price_per_day);
                         setDayRange({
                           from: item.start_date,
-                          to: item.end_date
+                          to: item.end_date,
                         });
                       }}
                     >
@@ -247,11 +302,12 @@ const PriceBox = (props: IPriceBox) => {
                       className="cancel"
                       onClick={() => {
                         releaseDisableDays(i);
-                        setAvailList(availList =>
+                        setAvailList((availList) =>
                           availList.filter((_, index) => {
                             return index !== i;
                           })
                         );
+                        props.removeAvailList(i);
                       }}
                     >
                       حذف
@@ -270,6 +326,10 @@ const PriceBox = (props: IPriceBox) => {
   );
 };
 
-interface IPriceBox {}
+interface IPriceBox {
+  initialAvailabilityList?: any;
+  addAvailList?: any;
+  removeAvailList?: any;
+}
 
 export default PriceBox;

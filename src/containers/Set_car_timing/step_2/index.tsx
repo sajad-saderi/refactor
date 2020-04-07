@@ -6,16 +6,9 @@ import {
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_GET_RENTAL_CAR_AVAILABILITIES,
   REQUEST_GET_RENTAL_CAR_DISCOUNTS,
-  REQUEST_GET_LOCATION,
-  REQUEST_GET_CAR_BRAND,
-  REQUEST_GET_YEAR,
-  REQUEST_GET_CAR_MODEL,
-  REQUEST_GET_CAR_BODY_STYLE,
-  REQUEST_GET_CAR_CYLINDER,
-  REQUEST_GET_CAR_FACILITIES,
-  REQUEST_GET_CAR_COLORS,
-  REQUEST_GET_MODEL_INFO,
   REQUEST_ADD_NEW_CAR,
+  REQUEST_SET_CAR_AVAILABILITY,
+  REQUEST_SET_CAR_DISCOUNT,
 } from "../../../API";
 import Radio from "../../../components/form/Radio";
 import TextInput from "../../../components/form/TextInput";
@@ -31,6 +24,7 @@ import Spinner from "../../../components/Spinner";
 import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
+import Car from "../../Profile_container/Profile_Cars/car";
 
 const token = jsCookie.get("token");
 
@@ -271,6 +265,8 @@ const error_reducer = (current, action) => {
 
 const Add_Car_Step_2 = () => {
   const [DateAndPrice, setDateAndPrice] = useState(1);
+  const [initialAvailabilityList, setInitialAvailabilityList] = useState([]);
+  const [availabilityList, setAvailabilityList] = useState([]);
 
   const [locationList, setLocationList] = useState([]);
   const [locationName, setLocationName] = useState(null);
@@ -334,7 +330,7 @@ const Add_Car_Step_2 = () => {
     { value: "ی", text: "ی" },
   ]);
   const [facilitesList, setFacilitesList] = useState([]);
-  const [initialImage, setInitialImage] = useState([]);
+  const [initialImage, setInitialImage] = useState(null);
   const [colorList, setColorList] = useState([]);
   const [colorName, setColorName] = useState(null);
   const [Loading, setLoading] = useState(false);
@@ -390,9 +386,9 @@ const Add_Car_Step_2 = () => {
     value: "",
     max_km_per_day: "",
     extra_km_price: "",
-    days_to_get_reminded: 1,
-    deliver_at_renters_place: false,
-    with_driver: false,
+    days_to_get_reminded: 0,
+    deliver_at_renters_place: 0,
+    with_driver: 0,
     special_type_id: 1,
     is_out_of_service: true,
     min_days_to_rent: 1,
@@ -402,12 +398,11 @@ const Add_Car_Step_2 = () => {
   });
 
   useEffect(() => {
-    if (Router.router.query.mode === "edit") {
-      getCarInfoToEdit(Router.router.query.car_id);
-      getInitials(Router.router.query.car_id);
-    } else {
-      getInitials(Router.router.query.car_id);
-    }
+    getCarInfoToEdit(Router.router.query.car_id);
+    // if (Router.router.query.mode === "edit") {
+    // } else {
+    //   getInitials(Router.router.query.car_id);
+    // }
   }, []);
 
   const getCarInfoToEdit = async (id) => {
@@ -417,68 +412,79 @@ const Add_Car_Step_2 = () => {
     });
     SetCar(car_info_res);
     console.log(car_info_res);
+
+    const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
+      { id: id, token: token }
+    );
+    if (car_availability_res.length > 0) {
+      AvailabilityController(car_availability_res);
+    }
+    const car_discount_res: any = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
+      id: id,
+      token: token,
+    });
+    if (car_discount_res.length > 0) {
+    }
+    console.log("car_availability_res", car_availability_res, car_discount_res);
+  };
+
+  const AvailabilityController = (data) => {
+    if (data[0].is_all_time) {
+      setDateAndPrice(1);
+      dispatch({
+        type: "price_per_day",
+        price_per_day: data[0].price_per_day,
+      });
+    } else {
+      setDateAndPrice(2);
+      setInitialAvailabilityList(data);
+    }
   };
 
   const SetCar = (car) => {
     // SET CAR ID
     dispatch({ type: "id", id: car.id });
 
-    // SET CAR LOCATION AND DISTRICT
-    if (car.location.parent_id === 1) {
-      setLocationName("تهران");
-      setShowDistrict(true);
-      dispatch({ type: "location_id", location_id: car.location.id });
-      setDistrictName(car.location.name.fa);
-    } else {
-      setLocationName(car.location.name.fa);
-      setShowDistrict(false);
-      dispatch({ type: "location_id", location_id: car.location.id });
+    // SET CAR DAYS TO GET REMINDED
+    dispatch({
+      type: "days_to_get_reminded",
+      days_to_get_reminded: car.days_to_get_reminded,
+    });
+
+    // SET CAR MIN DAYS TO RENT
+    dispatch({
+      type: "min_days_to_rent",
+      min_days_to_rent: car.min_days_to_rent,
+    });
+
+    // SET CAR MAX km PER DAY
+    if (car.max_km_per_day && car.extra_km_price) {
+      dispatch({
+        type: "max_km_per_day",
+        max_km_per_day: car.max_km_per_day,
+      });
+      dispatch({
+        type: "extra_km_price",
+        extra_km_price: car.extra_km_price,
+      });
     }
 
-    // SET CAR MODEL
-    setBrand_id(car.car.brand.id);
-    setBrand_Name(car.car.brand.name.fa);
-    getModelList(car.car.brand.id);
-    dispatch({ type: "car_id", car_id: car.car.id });
-    setCarModelName(car.car.name.fa);
-
-    // SET YEAR
-    dispatch({ type: "year_id", year_id: car.year.id });
-    setYearName(car.year.name.fa);
-
-    // SET TRANSMISSION
+    // SET CAR OUT OF SERVICE
     dispatch({
-      type: "transmission_type_id",
-      transmission_type_id: car.transmission_type.id,
+      type: "is_out_of_service",
+      is_out_of_service: false,
     });
 
-    // SET BODY STYLE
+    // SET CAR WITH DRIVER
     dispatch({
-      type: "body_style_id",
-      body_style_id: car.body_style.id,
-    });
-    setBodyStyleName(car.body_style.name.fa);
-
-    // SET CYLINDER
-    dispatch({
-      type: "cylinder_id",
-      cylinder_id: car.cylinder.id,
-    });
-    setCylinderName(car.cylinder.name.fa);
-
-    // SET CAPACITY
-    dispatch({ type: "capacity", capacity: car.capacity });
-
-    // SET MILE RANGE
-    dispatch({
-      type: "mileage_range_id",
-      mileage_range_id: car.mileage_range.id,
+      type: "with_driver",
+      with_driver: car.with_driver ? 1 : 0,
     });
 
-    // SET CAR VALUE
+    // SET CAR DELIVER AT RENTERS PLACE
     dispatch({
-      type: "value",
-      value: car.value,
+      type: "deliver_at_renters_place",
+      deliver_at_renters_place: car.deliver_at_renters_place ? 1 : 0,
     });
 
     // SET PELAK VALUES
@@ -499,79 +505,49 @@ const Add_Car_Step_2 = () => {
       registration_plate_forth_part: car.registration_plate_forth_part,
     });
 
-    // SET FACILITIES
-    if (car.facility_set.length > 0) {
-      car.facility_set.forEach((item) => {
-        dispatch({ type: "facility_id", facility_id: item.id });
-      });
-    } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
+    setInitialImage(car.media_set[0].thumbnail_url);
 
-    // SET IMAGE UPLOADED
-    car.media_set.forEach((item) => {
-      dispatch({
-        type: "media_id",
-        media_id: item.id,
-      });
-      setInitialImage((InitialImage) =>
-        InitialImage.concat({
-          img: item.thumbnail_url,
-          id: item.id,
-        })
-      );
-    });
-
-    // SET COLOR
+    // SET CAR CANCELLATION POLICY
     dispatch({
-      type: "color_id",
-      color_id: car.color.id,
+      type: "cancellation_policy",
+      cancellation_policy: car.cancellation_policy,
     });
-    setColorName(car.color.name.fa);
-
-    // SET DESCRIPTION
-    dispatch({
-      type: "description",
-      description: car.description,
-    });
-
-    // SET EXTRA INFO
-    dispatch({
-      type: "deliver_at_renters_place",
-      deliver_at_renters_place: car.deliver_at_renters_place,
-    });
-    dispatch({
-      type: "is_out_of_service",
-      is_out_of_service: car.is_out_of_service,
-    });
-    dispatch({
-      type: "min_days_to_rent",
-      min_days_to_rent: car.min_days_to_rent,
-    });
-  };
-
-  const getInitials = async (id) => {
-    const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
-      { id: id, token: token }
-    );
-    const car_discount_res = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
-      id: id,
-      token: token,
-    });
-    console.log("car_availability_res", car_availability_res, car_discount_res);
   };
 
   const submitHandler = async (e, state) => {
     e.preventDefault();
-    setLoading(true);
-    if (validation(state)) {
-      try {
-        const add_new_car_res = await REQUEST_ADD_NEW_CAR({
-          data: state,
-          token: token,
+    // setLoading(true);
+    // if (validation(state)) {
+    try {
+      if (DateAndPrice === 1) {
+        await REQUEST_SET_CAR_AVAILABILITY({
+          token,
+          rental_car_id: state.id,
+          data: JSON.stringify([
+            {
+              rental_car_id: state.id,
+              is_all_time: 1,
+              price_per_day: state.price_per_day,
+              status_id: "available",
+            },
+          ]),
         });
-      } catch (error) {
-        setLoading(false);
+      } else {
+        await REQUEST_SET_CAR_AVAILABILITY({
+          token,
+          rental_car_id: state.id,
+          data: JSON.stringify(availabilityList),
+        });
       }
-    } else setLoading(false);
+
+      // const add_new_car_res = await REQUEST_ADD_NEW_CAR({
+      //   data: state,
+      //   token: token,
+      // });
+    } catch (error) {
+      setLoading(false);
+    }
+    // } else setLoading(false);
   };
 
   const validation = (state) => {
@@ -823,74 +799,28 @@ const Add_Car_Step_2 = () => {
     return true;
   };
 
-  const getModelList = async (i) => {
-    const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
-    setModelList(car_model_res.data);
-  };
+  const addToAvailabilityList = (data, edit = false) => {
+    console.log(" data data ", data);
 
-  const getDistricts = async (parent_id) => {
-    const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
-    setDistrictList(car_districts_res.data);
-  };
-
-  const clearRelativeToModel = () => {
-    // RESET ALL BRAND RELATED FIELDS
-    dispatch({ type: "capacity", capacity: null });
-    dispatch({ type: "transmission_type_id", transmission_type_id: null });
-    dispatch({ type: "cylinder_id", cylinder_id: null });
-    dispatch({ type: "body_style_id", body_style_id: null });
-    dispatch({ type: "empty_facility_id", empty_facility_id: [] });
-    setBodyStyleName("");
-  };
-
-  const getBrandInfo = async (id) => {
-    clearRelativeToModel();
-    const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
-    console.log("model_info_res", model_info_res);
-    if (model_info_res.facility_set.length > 0) {
-      model_info_res.facility_set.forEach((item) => {
-        dispatch({ type: "facility_id", facility_id: item.id });
-      });
-    } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
-    if (model_info_res.capacity)
-      dispatch({ type: "capacity", capacity: model_info_res.capacity });
-    else dispatch({ type: "capacity", capacity: null });
-    if (model_info_res.transmission_type)
-      dispatch({
-        type: "transmission_type_id",
-        transmission_type_id: model_info_res.transmission_type.id,
-      });
-    else
-      dispatch({
-        type: "transmission_type_id",
-        transmission_type_id: null,
-      });
-    if (model_info_res.cylinder) {
-      dispatch({
-        type: "cylinder_id",
-        cylinder_id: model_info_res.cylinder.id,
-      });
-      setCylinderName(model_info_res.cylinder.name.fa);
+    if (edit) {
+      setAvailabilityList(data);
     } else {
-      dispatch({
-        type: "cylinder_id",
-        cylinder_id: null,
-      });
-      setCylinderName("");
+      setAvailabilityList((availabilityList) =>
+        availabilityList.concat({
+          start_date: data.start_date,
+          end_date: data.end_date,
+          price_per_day: data.price_per_day,
+          status_id: "available",
+        })
+      );
     }
-    if (model_info_res.body_style) {
-      dispatch({
-        type: "body_style_id",
-        body_style_id: model_info_res.body_style.id,
-      });
-      setBodyStyleName(model_info_res.body_style.name.fa);
-    } else {
-      dispatch({
-        type: "body_style_id",
-        body_style_id: null,
-      });
-      setBodyStyleName("");
-    }
+  };
+  const removeFromAvailabilityList = (i) => {
+    setAvailabilityList((availabilityList) =>
+      availabilityList.filter((_, index) => {
+        return index !== i;
+      })
+    );
   };
 
   return (
@@ -901,8 +831,8 @@ const Add_Car_Step_2 = () => {
       </div>
       <article className="step_2_image_pelak add_car_form_step_2">
         <div className="Image_container">
-          {initialImage.length > 0 ? (
-            <img src={initialImage[0].img} alt="تصویر کوچک خودرو" />
+          {initialImage ? (
+            <img src={initialImage} alt="تصویر کوچک خودرو" />
           ) : (
             <Spinner display="inline-block" width={30} color="#9E9E9E" />
           )}
@@ -998,11 +928,7 @@ const Add_Car_Step_2 = () => {
             <span className="tail_text">تومان</span>
           </div>
           <Checkbox
-            initialValue={[
-              {
-                value: state.deliver_at_renters_place,
-              },
-            ]}
+            initialValue={[state.deliver_at_renters_place]}
             data={[
               {
                 text: "در محل اجاره‌گیرنده تحویل می‌دهم",
@@ -1010,25 +936,21 @@ const Add_Car_Step_2 = () => {
               },
             ]}
             name="deliver_at_renters_place"
-            clearField={(item) =>
+            clearField={() =>
               dispatch({
                 type: "deliver_at_renters_place",
-                deliver_at_renters_place: item.value,
+                deliver_at_renters_place: 0,
               })
             }
-            Select={(item) => {
+            Select={() => {
               dispatch({
                 type: "deliver_at_renters_place",
-                deliver_at_renters_place: item.value,
+                deliver_at_renters_place: 1,
               });
             }}
           />
           <Checkbox
-            initialValue={[
-              {
-                value: state.with_driver,
-              },
-            ]}
+            initialValue={[state.with_driver]}
             data={[
               {
                 text: "فقط با راننده اجاره می‌دهم",
@@ -1036,16 +958,16 @@ const Add_Car_Step_2 = () => {
               },
             ]}
             name="with_driver"
-            clearField={(item) =>
+            clearField={() => {
               dispatch({
                 type: "with_driver",
-                with_driver: item.value,
-              })
-            }
-            Select={(item) => {
+                with_driver: 0,
+              });
+            }}
+            Select={() => {
               dispatch({
                 type: "with_driver",
-                with_driver: item.value,
+                with_driver: 1,
               });
             }}
           />
@@ -1115,7 +1037,11 @@ const Add_Car_Step_2 = () => {
               )}
             </>
           ) : (
-            <PriceBox />
+            <PriceBox
+              initialAvailabilityList={initialAvailabilityList}
+              addAvailList={addToAvailabilityList}
+              removeAvailList={removeFromAvailabilityList}
+            />
           )}
         </div>
         <div className="add_car_form_step_2">
@@ -1133,15 +1059,15 @@ const Add_Car_Step_2 = () => {
               });
             }}
           />
+          <Button
+            value="ثبت"
+            loading={Loading}
+            disable={Loading}
+            class="Blue_BTN local_style"
+            click={() => {}}
+          />
+          <p>{ErrorState.error_message}</p>
         </div>
-        <Button
-          value="ثبت"
-          loading={Loading}
-          disable={Loading}
-          class="Blue_BTN local_style"
-          click={() => {}}
-        />
-        <p>{ErrorState.error_message}</p>
       </form>
     </article>
   );

@@ -34,6 +34,8 @@ import { REQUEST_SET_COMPANY_NAME } from "./set/setCompanyName";
 import { REQUEST_SET_OUT_OF_SERVICE } from "./set/setIsOutOfService";
 import { REQUEST_DELETE_CAR } from "./set/setDeleteCar";
 import { REQUEST_USER_INFO_UPDATE } from "./set/setUserInfoupdate";
+import { REQUEST_SET_CAR_DISCOUNT } from "./set/setCarDiscount";
+import { REQUEST_SET_CAR_AVAILABILITY } from "./set/setCarAvailablity";
 
 export {
   REQUEST_GET_LOCATION,
@@ -70,4 +72,6 @@ export {
   REQUEST_GET_URLS_FOR_SITE_MAP,
   REQUEST_GET_LANDING_PAGE,
   REQUEST_GET_CAR_PRICE_ESTIMATION,
+  REQUEST_SET_CAR_DISCOUNT,
+  REQUEST_SET_CAR_AVAILABILITY,
 };
