@@ -1,7 +1,7 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
 .DropDown_container {
-  *::selection{
+  *::selection {
     background-color: transparent;
   }
   width: 100%;
@@ -46,7 +46,7 @@
   .Locations_list_container {
     position: absolute;
     padding: 1rem;
-    z-index: 2;
+    z-index: 30;
     width: 100%;
     max-height: 30rem;
     min-height: 6rem;

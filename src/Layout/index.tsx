@@ -10,7 +10,7 @@ const ShowModalReducer = (current, action) => {
   if (action.type === "SET") return !current;
 };
 
-const Layout = props => {
+const Layout = (props) => {
   const [modalType, setModalType] = useState("Login");
   const [data, setData] = useState(null);
   const [Auth, setAuth] = useState(false);
@@ -40,13 +40,13 @@ const Layout = props => {
           show_modal: Show_Modal,
           modalHandler: (type, data) => {
             modal_handler(type, data);
-          }
+          },
         }}
       >
         <auth_context.Provider
           value={{
             Auth: Auth,
-            Auth_Manager: v => setAuth(v)
+            Auth_Manager: (v) => setAuth(v),
           }}
         >
           <Header

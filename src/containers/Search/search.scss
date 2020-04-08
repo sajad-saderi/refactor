@@ -1,4 +1,4 @@
-@import '../../styles/colors';
+@import "../../styles/colors";
 .search_box {
   width: 100%;
   display: flex;
@@ -17,9 +17,9 @@
       }
       .Search_Text_transparent {
         margin-bottom: 4px;
-    color: transparent;
-    cursor: default;
-    line-height: 1;
+        color: transparent;
+        cursor: default;
+        line-height: 1;
       }
       display: inline-block;
       width: 100%;
@@ -46,6 +46,37 @@
     }
     .search_Btn {
       width: 100%;
+    }
+  }
+}
+@media screen and(max-width:820px) {
+  .search_box_div {
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+@media screen and(max-width:720px) {
+  .search_box {
+    display: block;
+    form {
+      display: block;
+      .search_box_div {
+        p {
+          font-size: 1.4rem;
+        }
+        margin: 1rem auto;
+        input {
+        }
+        .Search_Text_transparent {
+        }
+        .DatePicker {
+          input {
+          }
+        }
+      }
+      .search_Btn {
+      }
     }
   }
 }

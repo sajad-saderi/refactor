@@ -6,6 +6,7 @@ html {
   direction: rtl;
   font-size: $font_size;
   font-family: $font_family_Farsi_Number;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -162,6 +163,7 @@ a {
 // MAIN
 main {
   background-color: #fafafa;
+  padding-bottom: 2.4rem;
 }
 
 // INPUT
@@ -217,6 +219,82 @@ input {
   background: rgba(216, 48, 48, 0.1) !important;
 }
 
+// SHARE STYLE
+.insuranceBox {
+  p {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  width: 25rem;
+  margin: auto;
+  display: block;
+  padding: 1rem;
+  margin-top: -3rem;
+  background: #fff;
+  text-align: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  position: relative;
+  z-index: 2;
+}
+.second_container {
+  box-shadow: $box_shadow;
+  background-color: #fff;
+  margin-top: -6.3rem;
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
+  p {
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+  .full_width {
+    text-align: right;
+    margin-bottom: 2.4rem;
+  }
+  .three_columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.4rem;
+    section {
+      width: 30%;
+      text-align: justify;
+    }
+  }
+  .add_car_section {
+    margin-bottom: 2.4rem;
+    text-align: center;
+    a {
+      color: $main__color;
+      font-size: 1.4rem;
+      display: block;
+    }
+    .add_car_custom {
+      display: inline-block;
+      padding: 1.1rem 3.1rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      background: $second__color;
+    }
+  }
+  @media (max-width: 720px) {
+    .three_columns {
+      display: block;
+      section {
+        width: 100%;
+      }
+    }
+  }
+}
+
 .Error_color {
   color: $Error_text_color;
 }
@@ -227,23 +305,17 @@ input {
 }
 
 .responsive {
-  width: 100%;
+  max-width: 114rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   margin-right: auto;
   margin-left: auto;
 
-  @media (min-width: 576px) {
-    max-width: 54rem;
-  }
-  @media (min-width: 768px) {
-    max-width: 72rem;
-  }
-  @media (min-width: 992px) {
+  @media (max-width: 1200px) {
     max-width: 96rem;
   }
-  @media (min-width: 1200px) {
-    max-width: 114rem;
+  @media (max-width: 1024px) {
+    max-width: 100%;
   }
 }
 
