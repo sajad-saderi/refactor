@@ -19,7 +19,7 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
           ("?limit=" + data.limit + "&page=" + data.page) +
           ("&" + queryString)
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           let statsObj = {};
           const extra_info = response.data.extra_info.stats;
@@ -27,26 +27,32 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
             (value, index) => ({
               value: value.id,
               text: value.name.fa,
-              count: value.count
+              count: value.count,
             })
           );
           statsObj = {
             extra_info: {
               body_style_id: body_style_id,
               deliver_at_renters_place: extra_info.deliver_at_renters_place,
-              with_driver: extra_info.with_driver
-            }
+              with_driver: extra_info.with_driver,
+            },
           };
           const results = response.data.items;
           if (results === undefined || results.length == 0) {
             resolve({
               results: [],
-              ...statsObj
+              total_count: response.data.total_count,
+              count: response.data.count,
+              remained_count: response.data.remained_count,
+              ...statsObj,
             });
           } else {
             resolve({
               results,
-              ...statsObj
+              total_count: response.data.total_count,
+              count: response.data.count,
+              remained_count: response.data.remained_count,
+              ...statsObj,
               // remained_count:response.data.remained_count,
               // latest_result_key: response.data.result_key,
               // total_count: response.data.total_count,

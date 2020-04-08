@@ -5,6 +5,7 @@ import Checkbox from "../../components/form/Checkbox";
 import filterContext from "../../context/filter-context";
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
+import { IoIosOptions } from "react-icons/io";
 
 let body_style_list = [];
 const Filters = (props: IFilter) => {
@@ -16,6 +17,7 @@ const Filters = (props: IFilter) => {
   const [Brand_id, setBrand_id] = useState(null);
   const [ModelList, setModelList] = useState([]);
   const [car_id, setcar_id] = useState(null);
+  const [show_filter, setShow_filter] = useState(false);
 
   const FilterContext = useContext(filterContext);
 
@@ -59,101 +61,120 @@ const Filters = (props: IFilter) => {
   };
 
   return (
-    <section className="filter_section">
-      <PriceSlider />
-      <Checkbox
-        initialValue={[deliver_at_renters_place]}
-        data={[
-          {
-            text: "تحویل در محل",
-            value: deliver_at_renters_place,
-          },
-        ]}
-        name="deliver_at_renters_place"
-        clearField={(item) => {
-          FilterContext.setDataForSearch({
-            deliver_at_renters_place: { status: false, value: 0 },
-          });
-          setDeliver_at_renters_place(0);
-        }}
-        Select={(item) => {
-          FilterContext.setDataForSearch({
-            deliver_at_renters_place: { status: true, value: 1 },
-          });
-          setDeliver_at_renters_place(1);
-        }}
-      />
-      <Checkbox
-        initialValue={[with_driver]}
-        data={[
-          {
-            text: "اجاره با راننده",
-            value: with_driver,
-          },
-        ]}
-        name="with_driver"
-        clearField={(item) => {
-          FilterContext.setDataForSearch({
-            with_driver: { status: false, value: 0 },
-          });
-          setwith_driver(0);
-        }}
-        Select={(item) => {
-          FilterContext.setDataForSearch({
-            with_driver: { status: true, value: 1 },
-          });
-          setwith_driver(1);
-        }}
-      />
-      <Checkbox
-        initialValue={body_style_set}
-        data={body_style_set}
-        name="body_style_set"
-        clearField={(item) => {
-          body_style_remove(item);
-        }}
-        Select={(item) => {
-          body_style_add(item);
-        }}
-      />
-      <DropdownSearch
-        InputDisable={true}
-        label="برند"
-        data={BrandList}
-        clearField={() => {
-          setBrand_id(null);
-          FilterContext.setDataForSearch({
-            brand_id: { status: false, value: null },
-          });
-        }}
-        Select={(i) => {
-          setBrand_id(i.value);
-          setModelList([]);
-          getModelList(i.value);
-          FilterContext.setDataForSearch({
-            brand_id: { status: true, value: i.value },
-          });
-        }}
-      />
-      <DropdownSearch
-        InputDisable={true}
-        disabled={!Brand_id ? true : false}
-        label="مدل"
-        data={ModelList}
-        clearField={() => {
-          setcar_id(null);
-          FilterContext.setDataForSearch({
-            car_id: { status: false, value: null },
-          });
-        }}
-        Select={(i) => {
-          setcar_id(i.value);
-          FilterContext.setDataForSearch({
-            car_id: { status: true, value: i.value },
-          });
-        }}
-      />
-    </section>
+    <>
+      <span className="show_filter" onClick={() => setShow_filter(true)}>
+        <IoIosOptions size="2rem" color="#656565" />
+        نمایش فیلترها
+      </span>
+      {show_filter && (
+        <div
+          onClick={() => setShow_filter(false)}
+          className="with_drawer"
+        ></div>
+      )}
+      <section
+        className={[
+          "filter_section",
+          show_filter ? "show_Filter_section" : null,
+        ].join(" ")}
+      >
+        <PriceSlider />
+        <h3>خدمات اجاره</h3>
+        <Checkbox
+          initialValue={[deliver_at_renters_place]}
+          data={[
+            {
+              text: "تحویل در محل به شما",
+              value: deliver_at_renters_place,
+            },
+          ]}
+          name="deliver_at_renters_place"
+          clearField={(item) => {
+            FilterContext.setDataForSearch({
+              deliver_at_renters_place: { status: false, value: 0 },
+            });
+            setDeliver_at_renters_place(0);
+          }}
+          Select={(item) => {
+            FilterContext.setDataForSearch({
+              deliver_at_renters_place: { status: true, value: 1 },
+            });
+            setDeliver_at_renters_place(1);
+          }}
+        />
+        <Checkbox
+          initialValue={[with_driver]}
+          data={[
+            {
+              text: "اجاره همراه با راننده",
+              value: with_driver,
+            },
+          ]}
+          name="with_driver"
+          clearField={(item) => {
+            FilterContext.setDataForSearch({
+              with_driver: { status: false, value: 0 },
+            });
+            setwith_driver(0);
+          }}
+          Select={(item) => {
+            FilterContext.setDataForSearch({
+              with_driver: { status: true, value: 1 },
+            });
+            setwith_driver(1);
+          }}
+        />
+        <h3>نوع شاسی</h3>
+        <Checkbox
+          initialValue={body_style_set}
+          data={body_style_set}
+          name="body_style_set"
+          clearField={(item) => {
+            body_style_remove(item);
+          }}
+          Select={(item) => {
+            body_style_add(item);
+          }}
+        />
+        <DropdownSearch
+          InputDisable={true}
+          label="برند"
+          data={BrandList}
+          clearField={() => {
+            setBrand_id(null);
+            FilterContext.setDataForSearch({
+              brand_id: { status: false, value: null },
+            });
+          }}
+          Select={(i) => {
+            setBrand_id(i.value);
+            setModelList([]);
+            getModelList(i.value);
+            FilterContext.setDataForSearch({
+              brand_id: { status: true, value: i.value },
+            });
+          }}
+        />
+        <DropdownSearch
+          InputDisable={true}
+          disabled={!Brand_id ? true : false}
+          label="مدل"
+          data={ModelList}
+          clearField={() => {
+            setcar_id(null);
+            FilterContext.setDataForSearch({
+              car_id: { status: false, value: null },
+            });
+          }}
+          Select={(i) => {
+            setcar_id(i.value);
+            FilterContext.setDataForSearch({
+              car_id: { status: true, value: i.value },
+            });
+          }}
+        />
+      </section>
+    </>
   );
 };
 

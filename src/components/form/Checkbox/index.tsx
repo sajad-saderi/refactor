@@ -24,13 +24,18 @@ const Checkbox = (props: ICheckbox) => {
           {Data.map((i, index) => (
             <label className="container" key={index}>
               {i.text}
-              {i.count && <span>{i.count}</span>}
+              {console.log(i.count)}
+              {i.count ? (
+                <span className="count">{i.count}</span>
+              ) : i.count === 0 ? (
+                <span className="count">-</span>
+              ) : null}
               <input
-                checked={initialValueList.find(item => {
+                checked={initialValueList.find((item) => {
                   return item === i.value ? true : false;
                 })}
                 type="checkbox"
-                onChange={e => {
+                onChange={(e) => {
                   e.persist();
                   if (e.target.checked) {
                     props.Select(i);

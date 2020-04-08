@@ -319,6 +319,57 @@ input {
   }
 }
 
+// Gradient Loader and animation
+
+.Gradient {
+  transition: 0.25s all;
+  background: linear-gradient(
+    -45deg,
+    #fff,
+    #f1f1f1,
+    #f0f0f0,
+    #fafafa
+  ) !important;
+  background-size: 200% 200% !important;
+  animation: Gradient 3s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @import "../components/form/Dropdown/DropDown.scss";
 @import "../components/form/Checkbox/Checkbox.scss";
 @import "../components/form/Radio/radio.scss";

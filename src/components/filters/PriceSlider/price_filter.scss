@@ -1,5 +1,17 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 .price_filter {
+  margin-bottom: 3rem;
+  .price_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .TA {
+      font-weight: 500;
+    }
+    p {
+      font-weight: 100;
+    }
+  }
   position: relative;
   .noUi-target {
     border: none;
@@ -7,8 +19,8 @@
     height: 5px;
     margin: 1rem 0;
     .noUi-origin {
-        left: 0;
-        right: -15px;
+      left: 0;
+      right: -15px;
       .noUi-handle {
         border: 3px solid $main__color;
         background-color: #fff;
@@ -29,7 +41,7 @@
       }
     }
     .noUi-connect {
-        background: $main__color;
+      background: $main__color;
     }
     .noUi-base,
     .noUi-connects {

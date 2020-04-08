@@ -1,3 +1,4 @@
+@import "../colors";
 .Homepage {
   .banner {
     height: 90vh;
@@ -15,8 +16,10 @@
       width: 100%;
       margin: 0;
       text-align: center;
+      text-shadow: $text_shadow;
     }
     h2 {
+      text-shadow: $text_shadow;
       font-weight: 300;
       width: 100%;
       color: #fff;

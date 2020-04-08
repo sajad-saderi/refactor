@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import "./car.scss";
 
-const Car = props => {
+const Car = (props) => {
   const [heightController, setheightController] = useState(0);
 
   const {
@@ -16,7 +16,7 @@ const Car = props => {
     avg_discounted_price_per_day_name,
     avg_discounted_price_per_day,
     deliver_at_renters_place,
-    with_driver
+    with_driver,
   } = props.data;
 
   let img = media_set[0].thumbnail_url;
@@ -33,7 +33,7 @@ const Car = props => {
 
   let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
   return (
-    <div className={`carcard`}>
+    <div className="carcard">
       <Link href={`/car/[id]?search_id=${search_id}`} as={link}>
         <a className={`CAR_CART_${title}`}>
           <figure>
@@ -48,7 +48,7 @@ const Car = props => {
               src={img}
               className="img-fluid"
               alt={title}
-              onLoadCapture={e => {
+              onLoadCapture={(e) => {
                 e.persist();
                 if (imageHeight > 200) {
                   setheightController(imageHeight - 200);

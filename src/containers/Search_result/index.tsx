@@ -30,8 +30,10 @@ let filtersChecker = {
   car_id: false,
 };
 const Search_result = () => {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
+  const [total_count, setTotal_count] = useState(0);
+  const [remained_count, setRemained_count] = useState(0);
 
   useEffect(() => {
     const { location_id, start_date, end_date } = Router.router.query;
@@ -67,7 +69,7 @@ const Search_result = () => {
   }, []);
 
   async function initSearch() {
-    setResult([]);
+    setResult(null);
     setExtra_info([]);
     let queryString = `location_id=${Location}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
     if (filtersChecker.price) {
@@ -93,7 +95,8 @@ const Search_result = () => {
       limit: 14,
       page,
     });
-    console.log(res);
+    setTotal_count(res.total_count);
+    setRemained_count(res.remained_count);
 
     if (loadMoreCar) {
       setExtra_info(res.extra_info);
@@ -145,8 +148,37 @@ const Search_result = () => {
   };
 
   return (
-    <article className=" responsive search_result_page_container">
-      <section className="content_container">
+    <article className="search_result_page_container">
+      {result
+        ? result.length > 0 && (
+            <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
+              5
+            )} تا ${result[0].end_date.slice(5)}`}</p>
+          )
+        : null}
+      <section className="responsive">
+        <div className="price_sort_container">
+          <span
+            className={o === "-price" ? "active" : null}
+            onClick={() => {
+              o = "-price";
+              initSearch();
+            }}
+          >
+            قیمت زیاد به کم
+          </span>
+          <span
+            className={o === "price" ? "active" : null}
+            onClick={() => {
+              o = "price";
+              initSearch();
+            }}
+          >
+            قیمت کم به زیاد
+          </span>
+        </div>
+      </section>
+      <section className="responsive content_container">
         <filterContext.Provider
           value={{
             setDataForSearch: (v) => {
@@ -158,7 +190,9 @@ const Search_result = () => {
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
-      <span onClick={() => loadMore()}>نمایش بیشتر</span>
+      {remained_count > 0 && (
+        <span className="Load_more_car" onClick={() => loadMore()}>نمایش بیشتر</span>
+      )}
     </article>
   );
 };
