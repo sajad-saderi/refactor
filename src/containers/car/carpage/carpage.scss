@@ -16,6 +16,9 @@
     vertical-align: top;
     border-radius: 4px;
     font-size: 1.4rem;
+    .avg_discounted_price_per_day {
+      display: none;
+    }
     h1 {
       font-size: 2.4rem;
       margin-bottom: 0;
@@ -153,6 +156,140 @@
       line-height: 1.5;
       text-align: center;
       display: block;
+    }
+  }
+}
+
+@media screen and(max-width:720px) {
+  .Car_page_container {
+    margin-top: -1rem;
+    position: relative;
+    z-index: 2;
+    display: block;
+    .carInfo_container {
+      width: 100%;
+      display: block;
+      position: relative;
+      h1 {
+        font-size: 1.8rem;
+      }
+      .avg_discounted_price_per_day {
+        display: block;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        background: #fff;
+        top: -2rem;
+        text-align: center;
+        left: 1rem;
+        box-shadow: $box_shadow;
+        border-radius: 4px;
+        p {
+          font-size: 2rem;
+          line-height: 1.5;
+        }
+        span.unit_name {
+          font-size: 1.2rem;
+        }
+      }
+      .info_container {
+        .alignThem {
+          .info_value {
+            width: 14rem;
+          }
+        }
+      }
+      .facilities_container {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        p {
+          color: rgb(101, 101, 101);
+          border: none;
+          background: rgb(230, 230, 230);
+          width: 126px;
+          border-radius: 4px;
+          text-align: center;
+          padding: 0.2rem 0.5rem;
+          margin: 6px;
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+      }
+      .car_Tags {
+        cursor: pointer;
+        display: inline-block;
+        color: $main__color;
+        border: none;
+        padding: 0.2rem 2.5rem;
+        text-indent: -14px;
+        margin: 0 0.6rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        svg {
+          vertical-align: middle;
+          margin-left: 0.4rem;
+        }
+      }
+    }
+    .onwnerInfo_container {
+      width: 100%;
+      margin-top: 1.4rem;
+      .avg_discounted_price_per_day {
+        display: none;
+        p {
+          font-weight: 500;
+          font-size: 2.8rem;
+          text-align: center;
+        }
+        span.unit_name {
+          font-size: 1.4rem;
+        }
+        span {
+          font-size: 1.2rem;
+          display: block;
+          text-align: center;
+          line-height: 1.5;
+        }
+      }
+      .owner_part {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        img {
+          width: 5.4rem;
+          border-radius: 4px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        p {
+          display: inline-block;
+          margin-right: 1.4rem;
+          font-size: 1.4rem;
+          font-weight: 500;
+        }
+      }
+      .continue_to_checkout {
+        z-index: 5;
+        position: fixed;
+        box-shadow: rgb(204, 204, 204) 0px -1px 3px;
+        width: 100%;
+        bottom: 0px;
+        right: 0;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        .localClass {
+          max-width: 18rem;
+          margin: auto;
+        }
+        .extra_info {
+          margin-right: 1rem;
+          text-align: right;
+          font-weight: 500;
+        }
+      }
     }
   }
 }

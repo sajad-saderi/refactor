@@ -91,7 +91,7 @@ img.TranslateLeft {
 .NavBotton {
   cursor: pointer;
   position: absolute;
-  bottom:44px;
+  bottom: 44px;
   right: 0;
   left: 0;
   margin: auto;
@@ -107,7 +107,7 @@ img.TranslateLeft {
   z-index: 3;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .carousel_container {
     height: 230px;
   }
@@ -125,14 +125,6 @@ img.TranslateLeft {
   .G_L {
     left: 0;
   }
-}
-
-@media (max-width: 991px) {
-  // .NavBotton {
-  //   bottom: 44px !important;
-  // }
-}
-@media (max-width: 768px) {
   .deactiveDot,
   .activeDot {
     margin: 4px !important;

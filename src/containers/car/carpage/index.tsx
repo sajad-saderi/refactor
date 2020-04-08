@@ -9,6 +9,8 @@ import { IoIosLink } from "react-icons/io";
 import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
+import { NextSeo } from "next-seo";
 
 const CarPage = () => {
   const [dayRange, setDayRange] = React.useState<DayRange>({
@@ -44,11 +46,14 @@ const CarPage = () => {
   const [search_id, setSearch_id] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCalender, setShowCalender] = useState(false);
+  const [is_mine, setIs_mine] = useState(false);
 
   useEffect(() => {
-    const { search_id, id } = Router.router.query;
+    const { search_id, id, owner } = Router.router.query;
     console.log(search_id, id);
-
+    if (owner) {
+      setIs_mine(true);
+    }
     if (search_id) {
       fetchData({ search_id });
     } else {
@@ -117,11 +122,37 @@ const CarPage = () => {
 
   return (
     <>
-      {media_set.length > 0 && (
+      {media_set.length > 0 ? (
         <>
+          <NextSeo
+            title={`${
+              owner.company_name
+                ? owner.company_name
+                : owner.first_name + " " + owner.last_name
+            } - ${car.brand.name.fa} ${car.name.fa} | اتولی`}
+            description="همین حالا اجاره کنید"
+            noindex={true}
+            openGraph={{
+              title: `اجاره ${car.brand.name.fa} ${car.name.fa} در اتولی`,
+              description: "همین حالا اجاره کنید",
+              site_name: "اتولی",
+            }}
+            twitter={{
+              handle: "@otoli_net",
+              site: "@otoli_net",
+              cardType: "summary_large_image",
+            }}
+          />
           <Slider Feed={media_set} alt={`sdfdsf`} />
           <article className="responsive Car_page_container">
             <section className="carInfo_container">
+              {avg_discounted_price_per_day && (
+                <div className="avg_discounted_price_per_day">
+                  <p>{avg_discounted_price_per_day}</p>
+                  <span className="unit_name">{unit} تومان</span>
+                  <span> در روز</span>
+                </div>
+              )}
               <h1>
                 {car.brand.name.fa} {car.name.fa}
               </h1>
@@ -221,21 +252,23 @@ const CarPage = () => {
                   <span> در روز</span>
                 </div>
               )}
-              {showCalender && (
-                <div className="search_box_div">
-                  <DatePicker
-                    inputPlaceholder="از تاریخ تا تاریخ"
-                    value={dayRange}
-                    onChange={setDayRange}
-                    shouldHighlightWeekends
-                    minimumDate={utils("fa").getToday()}
-                    locale="fa"
-                    colorPrimary="#4ba3ce"
-                    disabledDays={[utils("fa").getToday()]}
-                  />
-                  <p onClick={fetchData}>اعمال</p>
-                </div>
-              )}
+              {/* {!is_mine ? (
+                showCalender ? (
+                  <div className="search_box_div">
+                    <DatePicker
+                      inputPlaceholder="از تاریخ تا تاریخ"
+                      value={dayRange}
+                      onChange={setDayRange}
+                      shouldHighlightWeekends
+                      minimumDate={utils("fa").getToday()}
+                      locale="fa"
+                      colorPrimary="#4ba3ce"
+                      disabledDays={[utils("fa").getToday()]}
+                    />
+                    <p onClick={fetchData}>اعمال</p>
+                  </div>
+                ) : null
+              ) : null} */}
               <Link href={`/user/[id]`} as={`/user/${owner.id}`}>
                 <a>
                   <figure className="owner_part">
@@ -244,17 +277,27 @@ const CarPage = () => {
                   </figure>
                 </a>
               </Link>
-              <Button
-                value="ادامه"
-                class="Blue_BTN localClass"
-                loading={loading}
-                click={GoToCheckout}
-              />
-              <span className="extra_info">
-                هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد.
-              </span>
+              {avg_discounted_price_per_day && (
+                <div className="continue_to_checkout">
+                  <Button
+                    value="ادامه"
+                    class="Blue_BTN localClass"
+                    loading={loading}
+                    click={GoToCheckout}
+                  />
+                  <span className="extra_info">
+                    هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید
+                    کرد.
+                  </span>
+                </div>
+              )}
             </section>
           </article>
+        </>
+      ) : (
+        <>
+          <NextSeo title="خودرو | اتولی" />
+          <CarPageLoading />
         </>
       )}
     </>
