@@ -5,7 +5,7 @@ import "../src/styles/pages/otoli.scss";
 
 const AboutUs = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+    <Layout>
       <NextSeo
         title="اتولی چگونه کار می‌کند؟ | اتولی"
         description="اتولی چگونه کار می‌کند؟"
