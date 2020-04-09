@@ -191,7 +191,9 @@ const Search_result = () => {
         <SearchResultList result={result} />
       </section>
       {remained_count > 0 && (
-        <span className="Load_more_car" onClick={() => loadMore()}>نمایش بیشتر</span>
+        <span className="Load_more_car" onClick={() => loadMore()}>
+          نمایش بیشتر
+        </span>
       )}
     </article>
   );

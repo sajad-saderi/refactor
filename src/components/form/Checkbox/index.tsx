@@ -24,7 +24,6 @@ const Checkbox = (props: ICheckbox) => {
           {Data.map((i, index) => (
             <label className="container" key={index}>
               {i.text}
-              {console.log(i.count)}
               {i.count ? (
                 <span className="count">{i.count}</span>
               ) : i.count === 0 ? (

@@ -1,45 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import jsCookie from "js-cookie";
 import { REQUEST_GET_ORDER_REQUESTS } from "../../API";
 import Router from "next/router";
 import "./Requests_page.scss";
 import Request_cart from "./request_cart";
 import Requests_filter from "./Requests_filter";
+import Modal_context from "../../../src/context/Modal_context";
+import Auth_context from "../../../src/context/Auth_context";
+import PleaseLogin from "../../components/PleaseLogin";
+import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
 
 let filter_id = [];
 let page = 1;
-const token = jsCookie.get("token");
 
 const Requests_page = () => {
   const [result, setResult] = useState([]);
+  const [Authorize, setAuthorize] = useState(false);
+  const MODAL_CONTEXT = useContext(Modal_context);
+  const AUTH_CONTEXT = useContext(Auth_context);
 
   useEffect(() => {
-    const complete_register = jsCookie.get("complete_register");
-
-    // if (!complete_register) {
-    //   alert("you are mot login ");
-    //   return;
-    // }
-    fetchAPI({
-      page,
-    });
+    if (jsCookie.get("complete_register") === "true") {
+      setAuthorize(true);
+      fetchAPI({
+        page,
+      });
+    } else {
+      MODAL_CONTEXT.modalHandler("Login");
+    }
     return () => {
       filter_id = [];
       page = 1;
     };
   }, []);
 
+  useEffect(() => {
+    if (AUTH_CONTEXT.Auth) {
+      fetchAPI({
+        page,
+      });
+    }
+  }, [AUTH_CONTEXT.Auth]);
+
   const fetchAPI = async (data) => {
+    const token = jsCookie.get("token");
     setResult([]);
     try {
       const res: any = await REQUEST_GET_ORDER_REQUESTS({
         ...data,
         token: token,
       });
-      if (data.page > 1) {
+      if (page > 1) {
         setResult((result) => result.concat(res.items));
       } else {
         setResult(res.items);
+        console.log(res);
       }
     } catch (e) {
       console.log(e.response);
@@ -73,15 +88,13 @@ const Requests_page = () => {
     }
   };
 
-  return (
+  return Authorize || AUTH_CONTEXT.Auth ? (
     <article className="responsive ">
       <section className="requests_page_container">
-        <section className="filter_section">
-          <Requests_filter filter_list={filterHandler} />
-        </section>
-        {result.length > 0 ? (
-          <>
-            <section className="requests_section">
+        <Requests_filter filter_list={filterHandler} />
+        <section className="requests_section">
+          {result.length > 0 ? (
+            <>
               {result.map((item, i) => {
                 return (
                   <div className="Request_car" key={i}>
@@ -98,14 +111,23 @@ const Requests_page = () => {
                   </div>
                 );
               })}
-            </section>
-          </>
-        ) : (
-          <p>jsj</p>
-        )}
+            </>
+          ) : (
+            <>
+              <Requests_page_Loading />
+              <Requests_page_Loading />
+              <Requests_page_Loading />
+              <Requests_page_Loading />
+            </>
+          )}
+        </section>
       </section>
-      <p onClick={nextPage}>نمایش بیشتر</p>
+      <span className="Load_more_car" onClick={nextPage}>
+        نمایش بیشتر
+      </span>
     </article>
+  ) : (
+    <PleaseLogin />
   );
 };
 

@@ -9,11 +9,9 @@ const CarPageLoading = () => {
         <section className="carInfo_container">
           <h1 className="Gradient"></h1>
           <h4 className="Gradient"></h4>
-          <hr />
           <h2 className="Gradient"></h2>
           <p className="Gradient"></p>
           <p className="Gradient"></p>
-          <hr />
           <h2 className="Gradient"></h2>
           <span className="Gradient"></span>
         </section>

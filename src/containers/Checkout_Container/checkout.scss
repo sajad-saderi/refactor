@@ -1,4 +1,5 @@
 @import "../../styles/colors";
+@import "../../styles/units";
 
 .Checkout_container {
   position: relative;
@@ -6,11 +7,25 @@
   display: flex;
   justify-content: space-between;
   align-items: self-start;
-  padding-top: 3rem;
+  padding-top: $padding_top;
   .car_info_insurance {
     width: 63%;
     display: inline-block;
     vertical-align: top;
+    .Date_container {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: $box_shadow;
+      background: #fff;
+      padding: 1.6rem;
+      border-radius: 4px;
+      margin-bottom: 1.6rem;
+      p {
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+    }
     .car_info {
       box-shadow: $box_shadow;
       background: #fff;
@@ -85,11 +100,15 @@
       padding: 1.6rem;
       font-size: 1.4rem;
       border-radius: 4px;
+      margin-top: 1.6rem;
       h2 {
         margin: 0;
         font-size: 1.8rem;
         font-weight: 500;
         margin-bottom: 1rem;
+      }
+      .radio_container {
+        margin-bottom: 1.4rem;
       }
     }
   }
@@ -172,6 +191,86 @@
       line-height: 1.5;
       text-align: center;
       display: block;
+    }
+  }
+}
+
+@media screen and(max-width:720px) {
+  .Checkout_container {
+    display: block;
+    padding-top: 0rem;
+    .car_info_insurance {
+      width: 100%;
+      display: block;
+      .Date_container {
+        display: flex;
+      }
+      .car_info {
+        .car_owner_part {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          h1 {
+            font-size: 2rem;
+            width: 200px;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+    .payment_info_container {
+      width: 100%;
+      margin-top: 1.6rem;
+      margin-bottom: 6rem;
+      .Date_container {
+        display: none;
+      }
+      .number_of_days {
+        display: none;
+      }
+      .continue_to_pay {
+        z-index: 5;
+        position: fixed;
+        box-shadow: rgb(204, 204, 204) 0px -1px 3px;
+        width: 100%;
+        bottom: 0px;
+        right: 0;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        .localClass {
+          max-width: 18rem;
+          margin: 0;
+        }
+        .extra_info {
+          margin-right: 1rem;
+          text-align: right;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width:575px) {
+  .Checkout_container {
+    .car_info_insurance {
+      .car_info {
+        .car_owner_part {
+          display: block;
+          div,
+          .car_image {
+            display: inline-block;
+            width: 50%;
+            vertical-align: middle;
+          }
+        }
+      }
     }
   }
 }

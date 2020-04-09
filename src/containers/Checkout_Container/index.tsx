@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from "../../API";
 import Router from "next/router";
 import "./checkout.scss";
@@ -9,6 +9,10 @@ import moment from "moment-jalaali";
 import Insurance from "./insurance";
 import TextInput from "../../components/form/TextInput";
 import jsCookie from "js-cookie";
+import Checkout_Container_Loader from "../../components/cartPlaceholder/checkoutLoading";
+import Modal_context from "../../../src/context/Modal_context";
+import { NextSeo } from "next-seo";
+
 moment.loadPersian({ dialect: "persian-modern" });
 
 const token = jsCookie.get("token");
@@ -50,6 +54,7 @@ const Checkout_Container = () => {
   });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const MODAL_CONTEXT = useContext(Modal_context);
 
   useEffect(() => {
     const { search_id } = Router.router.query;
@@ -58,6 +63,8 @@ const Checkout_Container = () => {
 
   const fetchData = async (search_id) => {
     const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
+    console.log(res);
+
     set_CarInformation(res);
   };
 
@@ -129,6 +136,18 @@ const Checkout_Container = () => {
   };
 
   const GoToRequests = async () => {
+    setLoading(true);
+    if (!token) {
+      MODAL_CONTEXT.modalHandler("Login");
+      setLoading(false);
+      return;
+    }
+    const user_id = jsCookie.get("user_id");
+    if (user_id == owner.id) {
+      alert("شما نمیتوانید خودرو خودتان را اجاره کنید");
+      setLoading(false);
+      return;
+    }
     let data = {
       token,
       search_id,
@@ -138,13 +157,42 @@ const Checkout_Container = () => {
     try {
       const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
       Router.push("/requests");
-    } catch (e) {}
+    } catch (e) {
+      setLoading(false);
+    }
   };
 
-  return (
-    media_set.length > 0 && (
+  return media_set.length > 0 ? (
+    <>
+      <NextSeo
+        title={`ثبت درخواست اجاره ${car.brand.name.fa} ${car.name.fa} | اتولی`}
+        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        openGraph={{
+          title: `ثبت درخواست اجاره ${car.brand.name.fa} ${car.name.fa} | اتولی`,
+          description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
+          site_name: "اتولی",
+        }}
+        twitter={{
+          handle: "@otoli_net",
+          site: "@otoli_net",
+          cardType: "summary_large_image",
+        }}
+      />
       <article className="responsive Checkout_container">
         <section className="car_info_insurance">
+          <div className="Date_container">
+            <p>
+              {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
+              <br />
+              {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
+            </p>
+            <IoMdArrowRoundBack size="3rem" color="#202020" />
+            <p>
+              {moment(end_date, "jYYYY/jMM/jDD").format("dddd")}
+              <br />
+              {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
+            </p>
+          </div>
           <div className="car_info">
             <div className="car_owner_part">
               <div>
@@ -299,18 +347,29 @@ const Checkout_Container = () => {
               </span>
             </p>
           </div>
-          <Button
-            value="ثبت درخواست"
-            class="Blue_BTN localClass"
-            loading={loading}
-            click={GoToRequests}
-          />
-          <span className="extra_info">
-            هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد
-          </span>
+          <div className="continue_to_pay">
+            <Button
+              value="ثبت درخواست"
+              class="Blue_BTN localClass"
+              disable={loading}
+              loading={loading}
+              click={GoToRequests}
+            />
+            <span className="extra_info">
+              هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد
+            </span>
+          </div>
         </section>
       </article>
-    )
+    </>
+  ) : (
+    <>
+      <NextSeo
+        title={`ثبت درخواست اجاره | اتولی`}
+        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+      />
+      <Checkout_Container_Loader />
+    </>
   );
 };
 

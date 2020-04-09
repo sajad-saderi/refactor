@@ -10,7 +10,7 @@ const ShowModalReducer = (current, action) => {
   if (action.type === "SET") return !current;
 };
 
-const Layout = (props) => {
+const Layout = (props: ILayout) => {
   const [modalType, setModalType] = useState("Login");
   const [data, setData] = useState(null);
   const [Auth, setAuth] = useState(false);
@@ -57,9 +57,14 @@ const Layout = (props) => {
           <main>{props.children}</main>
         </auth_context.Provider>
       </modal_context.Provider>
-      <Footer />
+      <Footer hide={props.hide} />
     </>
   );
 };
+
+interface ILayout {
+  children: any;
+  hide?: boolean;
+}
 
 export default Layout;
