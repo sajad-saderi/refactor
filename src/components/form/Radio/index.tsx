@@ -16,7 +16,14 @@ const Radio = (props: IRadio) => {
 
   return props.data.map((i: any, index) => {
     return (
-      <div className="radio_container" key={index} ref={wrapperRef}>
+      <div
+        className={[
+          "radio_container",
+          checked === i.value ? "active_radio_item" : null,
+        ].join(" ")}
+        key={index}
+        ref={wrapperRef}
+      >
         <label className="container">
           {i.label}
           {i.extra_text && <p>{i.extra_text}</p>}

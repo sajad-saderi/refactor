@@ -5,6 +5,7 @@ import Profile_Cars from "./Profile_Cars";
 import jsCookie from "js-cookie";
 import Router from "next/router";
 import { REQUEST_GET_USER_INFO } from "../../API";
+import { NextSeo } from "next-seo";
 
 const Profile_container = () => {
   const [is_mine, setIs_mine] = useState(false);
@@ -26,8 +27,29 @@ const Profile_container = () => {
 
   return (
     <article className="responsive minHeight profile_container">
-      <Profile_info data={data} is_mine={is_mine} />
-      <Profile_Cars is_mine={is_mine} />
+      {data ? (
+        <>
+          <NextSeo
+            title={`اجاره خودرو از ${
+              data.company_name ? data.company_name : data.name
+            } | اتولی`}
+            description=" حساب کاربری"
+            openGraph={{
+              title: `اجاره خودرو از ${data.name} | اتولی`,
+              description: " حساب کاربری",
+            }}
+            twitter={{
+              handle: "@otoli_net",
+              site: "@otoli_net",
+              cardType: "summary_large_image",
+            }}
+          />
+          <Profile_info data={data} is_mine={is_mine} />
+          <Profile_Cars is_mine={is_mine} />
+        </>
+      ) : (
+        <NextSeo title="اجاره خودرو | اتولی" description=" حساب کاربری" />
+      )}
     </article>
   );
 };

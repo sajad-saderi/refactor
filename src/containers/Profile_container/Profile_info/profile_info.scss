@@ -1,11 +1,12 @@
 @import "../../../styles/colors";
 
 .Profile_info_container {
-  min-width: 30%;
+  min-width: 32%;
   background: #fff;
   border-radius: 4px;
   padding: 1.4rem;
   box-shadow: $box_shadow;
+  margin-bottom: 2rem;
   .user_information {
     display: flex;
     justify-content: start;
@@ -54,3 +55,7 @@
     }
   }
 }
+
+// @media screen and(max-width:1200){
+
+// }

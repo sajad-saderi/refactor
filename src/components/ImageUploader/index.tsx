@@ -13,8 +13,8 @@ const ImageUploader = (props: IImageUpload) => {
   const [loading, setloading] = useState(false);
   const wrapperRef = useRef(null);
 
-  const onDrop = useCallback(acceptedFiles => {
-    acceptedFiles.forEach(file => {
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.forEach((file) => {
       const reader: any = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -27,12 +27,12 @@ const ImageUploader = (props: IImageUpload) => {
     setPicturesPreview(props.default_image);
   }, [props.default_image]);
 
-  const RemoveAnImage = i => {
+  const RemoveAnImage = (i) => {
     REQUEST_REMOVE_CAR_MEDIA({
       token: token,
-      id: i
+      id: i,
     });
-    setPicturesPreview(picturesPreview =>
+    setPicturesPreview((picturesPreview) =>
       picturesPreview.filter((item, index) => {
         return item.id !== i;
       })
@@ -44,13 +44,13 @@ const ImageUploader = (props: IImageUpload) => {
     setloading(true);
     const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
       token: token,
-      file: file
+      file: file,
     });
     setloading(false);
-    setPicturesPreview(picturesPreview =>
+    setPicturesPreview((picturesPreview) =>
       picturesPreview.concat({
         img: result,
-        id: image_upload_res.id
+        id: image_upload_res.id,
       })
     );
     props.Upload_image(image_upload_res.id);
@@ -58,11 +58,13 @@ const ImageUploader = (props: IImageUpload) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: ".jpeg, .jpg, .png",
-    onDrop
+    onDrop,
   });
 
   useEffect(() => {
-    scrollTo(0, wrapperRef.current.offsetTop);
+    if (props.error_status) {
+      scrollTo(0, wrapperRef.current.offsetTop);
+    }
   }, [props.error_status]);
 
   return (
