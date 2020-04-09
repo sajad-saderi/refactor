@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const guideRenter = () => {
   return (
-    <Layout haveSubHeader={true} pageTitle={"Hello World"}>
+    <Layout >
       <NextSeo
         title="راهنمای اجاره دهنده | اتولی"
         description="راهنمای کامل اتولی برای اجاره‌دهنده"
