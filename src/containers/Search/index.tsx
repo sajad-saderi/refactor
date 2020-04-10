@@ -88,7 +88,7 @@ const Search = (props: ISearch) => {
     <section className="search_box">
       <form onSubmit={(e) => GotoSearchResult(e)}>
         <div className="search_box_div">
-          <p>خودرو خود را کجا تحویل میگیرید؟</p>
+          <p className="label">خودرو خود را کجا تحویل میگیرید؟</p>
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
@@ -102,7 +102,7 @@ const Search = (props: ISearch) => {
           />
         </div>
         <div className="search_box_div">
-          <p>انتخاب تاریخ تحویل و بازگشت خودرو</p>
+          <p className="label">انتخاب تاریخ تحویل و بازگشت خودرو</p>
           <DatePicker
             inputPlaceholder="از تاریخ تا تاریخ"
             value={dayRange}

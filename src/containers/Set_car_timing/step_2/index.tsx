@@ -737,7 +737,7 @@ const Add_Car_Step_2 = () => {
           )}
         </div>
         <div className="pelak_container">
-          <p>{`${Brand_Name} - ${CarModelName}`}</p>
+          {Brand_Name && <p>{`${Brand_Name} - ${CarModelName}`}</p>}
           <img />
           <PelakView
             registration_plate_first_part={state.registration_plate_first_part}

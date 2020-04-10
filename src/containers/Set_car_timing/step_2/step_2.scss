@@ -37,6 +37,16 @@
       font-size: 1.4rem;
       margin-right: 2rem;
       margin-top: 1rem;
+      .pelak_view_container {
+        width: 240px;
+        .first {
+          position: absolute;
+          width: 5rem;
+          left: 50px;
+          top: 9px;
+          font-size: 2rem;
+        }
+      }
       img {
         width: 20rem;
       }
@@ -44,7 +54,7 @@
   }
 
   .add_car_form_step_2 {
-    background: #fff; 
+    background: #fff;
     font-size: 1.4rem;
     border-radius: 4px;
     padding: 1.6rem;
@@ -78,16 +88,16 @@
         margin-right: 1rem;
       }
     }
-    .check_box_container{
+    .check_box_container {
       margin-bottom: 1.2rem;
     }
-    .Set_Price_date_options{
-      .radio_container{
+    .Set_Price_date_options {
+      .radio_container {
         display: block;
         margin-bottom: 1.2rem;
       }
-      hr{
-        border-color:$input_border;
+      hr {
+        border-color: $input_border;
         margin-bottom: 2rem;
       }
     }

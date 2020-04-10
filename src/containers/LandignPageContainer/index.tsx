@@ -1,11 +1,9 @@
-import react, { useState, useEffect, useReducer, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
-import Router from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import moment from "moment-jalaali";
-
 import "./Search_result.scss";
 import Search from "../Search";
 
@@ -35,8 +33,10 @@ let filtersChecker = {
 };
 
 const Landing_page_container = (props: ILanding_page_container) => {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
+  const [total_count, setTotal_count] = useState(0);
+  const [remained_count, setRemained_count] = useState(0);
 
   useEffect(() => {
     return () => {
@@ -71,12 +71,14 @@ const Landing_page_container = (props: ILanding_page_container) => {
     const Today = moment().format("jYYYY/jMM/jDD");
     Start_date = moment(Today).add(3, "day").format("YYYY/MM/DD");
     End_date = moment(Today).add(6, "day").format("YYYY/MM/DD");
+    console.log(props.landing_data);
+
     initSearch();
   }, [props.landing_data]);
 
   async function initSearch() {
     const searchParamKey: any = Object.keys(props.landing_data.search_params);
-    setResult([]);
+    setResult(null);
     setExtra_info([]);
     let queryString = `${searchParamKey}=${props.landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
     if (filtersChecker.Location) {
@@ -105,7 +107,8 @@ const Landing_page_container = (props: ILanding_page_container) => {
       limit: 14,
       page,
     });
-    console.log(res);
+    setTotal_count(res.total_count);
+    setRemained_count(res.remained_count);
 
     if (loadMoreCar) {
       setExtra_info(res.extra_info);
@@ -157,19 +160,52 @@ const Landing_page_container = (props: ILanding_page_container) => {
   };
 
   return (
-    <article className=" responsive search_result_page_container">
-      <Search
-        dynamic={true}
-        searchSubmit={(v) => {
-          if (v.location_id !== 1) {
-            filtersChecker.Location = true;
-          }
-          Start_date = v.date.Start_date;
-          End_date = v.date.End_date;
-          initSearch();
-        }}
-      />
-      <section className="content_container">
+    <article className="  search_result_page_container">
+      {result
+        ? result.length > 0 && (
+            <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
+              5
+            )} تا ${result[0].end_date.slice(5)}`}</p>
+          )
+        : null}
+      <section className="new_search_in_landing">
+        <div className="responsive">
+          <Search
+            dynamic={true}
+            searchSubmit={(v) => {
+              if (v.location_id !== 1) {
+                filtersChecker.Location = true;
+              }
+              Start_date = v.date.Start_date;
+              End_date = v.date.End_date;
+              initSearch();
+            }}
+          />
+        </div>
+      </section>
+      <section className="responsive">
+        <div className="price_sort_container">
+          <span
+            className={o === "-price" ? "active" : null}
+            onClick={() => {
+              o = "-price";
+              initSearch();
+            }}
+          >
+            قیمت زیاد به کم
+          </span>
+          <span
+            className={o === "price" ? "active" : null}
+            onClick={() => {
+              o = "price";
+              initSearch();
+            }}
+          >
+            قیمت کم به زیاد
+          </span>
+        </div>
+      </section>
+      <section className=" responsive content_container">
         <filterContext.Provider
           value={{
             setDataForSearch: (v) => {
@@ -181,7 +217,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
-      <span onClick={() => loadMore()}>نمایش بیشتر</span>
+      {remained_count > 0 && (
+        <span className="Load_more_car" onClick={() => loadMore()}>
+          نمایش بیشتر
+        </span>
+      )}
     </article>
   );
 };

@@ -1,10 +1,11 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
 import Router from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import "./Search_result.scss";
+import { NextSeo } from "next-seo";
 
 let Location: any = 1;
 let Start_date = null;
@@ -149,6 +150,23 @@ const Search_result = () => {
 
   return (
     <article className="search_result_page_container">
+      {result && (
+        <NextSeo
+          title={`جستجو برای تهران، از ${Start_date} تا ${End_date} | اتولی`}
+          description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+          openGraph={{
+            title: `درباره اتولی`,
+            description:
+              "اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.",
+            site_name: "اتولی",
+          }}
+          twitter={{
+            handle: "@otoli_net",
+            site: "@otoli_net",
+            cardType: "summary_large_image",
+          }}
+        />
+      )}
       {result
         ? result.length > 0 && (
             <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
