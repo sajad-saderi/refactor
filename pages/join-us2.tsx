@@ -35,30 +35,22 @@ const JoinUs2 = () => {
           cardType: "summary_large_image",
         }}
       />
-      <article>
-        <section>
-          <div className="hero_single injounUsHerooo2 version_4">
-            <h1 style={{ textShadow: "1px 1px 2px #000" }}>
-              اتولی، برای اوقات فراغت ماشین شما
-            </h1>
-            <h2 style={{ textShadow: "1px 1px 2px #000" }}>
-              به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب
-              کنید
-            </h2>
-            <div className="addCarnow addcarinjoinus2">
-              <Link href="/add-car">
-                <a
-                  style={{ width: "263px" }}
-                  className="addCar_bottom_joinus_b"
-                >
-                  ماشین‌تان را اضافه کنید
-                </a>
-              </Link>
-              <p>
-                ثبت خودرو در اتولی رایگان و ساده است و به کمتر از ده دقیقه زمان
-                نیاز دارد.
-              </p>
-            </div>
+      <article className="join_us">
+        <section className="banner">
+          <h1>اتولی، برای اوقات فراغت ماشین شما</h1>
+          <h2>
+            به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب کنید
+          </h2>
+          <div className="addCarnow">
+            <Link href="/add-car">
+              <a className="Blue_BTN addCar_bottom_joinus_b">
+                ماشین‌تان را اضافه کنید
+              </a>
+            </Link>
+            <p>
+              ثبت خودرو در اتولی رایگان و ساده است و به کمتر از ده دقیقه زمان
+              نیاز دارد.
+            </p>
           </div>
         </section>
         <Join_us_content />

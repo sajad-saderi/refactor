@@ -27,9 +27,6 @@ const Calculator = (props: ICalculator) => {
   const [weekly, setWeekly] = useState(0);
   const [monthly, setMonthly] = useState(0);
   const [showCalculateBox, setShowCalculateBox] = useState(true);
-  // dayUnit: "هزار تومان",
-  // weekUnit: "هزار تومان",
-  // monthUnit: "هزار تومان",
 
   useEffect(() => {
     fetchData();
@@ -49,18 +46,13 @@ const Calculator = (props: ICalculator) => {
     setModelList(model_list_res.data);
   };
 
-  // setBrandAndGetModels = brand_id => {
-  //   // console.log(brand_id);
-
-  //   this.fetchBrandId(brand_id);
-  //   // this.setState({
-  //   //   brand_id
-  //   // });
-  // };
-
   const calculator = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (value === "" || !brand.id || !model.id) {
+      setLoading(false);
+      return;
+    }
     const estimation_res = await REQUEST_GET_CAR_PRICE_ESTIMATION({
       car_id: model.id,
       price: value,
@@ -85,7 +77,7 @@ const Calculator = (props: ICalculator) => {
   return (
     <>
       {showCalculateBox ? (
-        <div className="calculator_container">
+        <>
           <h2>چقدر می‌توانید از ماشینتان کسب درآمد کنید؟</h2>
           <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
           <form onSubmit={calculator}>
@@ -100,6 +92,7 @@ const Calculator = (props: ICalculator) => {
               }
               Select={(v) => {
                 fetchModelList(v.value);
+                // TODO:
                 //   if(window.heap){
                 //     window.heap.addUserProperties({Calc_Car_Brand: `${e.text}`});
                 // }
@@ -146,7 +139,7 @@ const Calculator = (props: ICalculator) => {
                 min={7}
                 max={14}
                 value={value}
-                label="ارزش خودرو"
+                placeholder="ارزش خودرو"
               />
               <span>تومان</span>
             </div>
@@ -157,14 +150,14 @@ const Calculator = (props: ICalculator) => {
               loading={loading}
             />
           </form>
-        </div>
+        </>
       ) : (
         <>
           <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
 
           <div className="addCarnowInlanding">
             <Link href="/add-car">
-              <a className="addCar_top_joinus_a">
+              <a className="Blue_BTN addCar_top_joinus_a">
                 {props.AbText
                   ? "از درخواست‌های اجاره مرتبط باخبر شوید"
                   : "ماشین‌تان را اضافه کنید"}
@@ -175,12 +168,9 @@ const Calculator = (props: ICalculator) => {
             className="tryAgainCalc"
             onClick={() => {
               window.scrollTo(0, 0);
-              this.fetchData();
-              this.setState({
-                carValue: "",
-                spinner: false,
-                showCalculateBox: true,
-              });
+              setValue("");
+              setLoading(false);
+              setShowCalculateBox(true);
             }}
           >
             محاسبه مجدد

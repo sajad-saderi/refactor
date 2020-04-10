@@ -1,7 +1,7 @@
 @import "../../styles/colors";
-@import "../../styles/units";
 
 .complete_register_container {
+  max-width: 69rem;
   .pageTitle {
     position: relative;
     .Person_icon {
@@ -23,7 +23,7 @@
     border-radius: 4px;
     padding: 1.6rem;
     border: none;
-    box-shadow: $Box;
+    box-shadow: $box_shadow;
     .text_input_container {
       margin: 0 0 2rem;
       label {
@@ -46,19 +46,24 @@
         margin-bottom: 2rem;
         cursor: pointer;
       }
-      .text_input_container {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 2rem;
-        width: 90%;
-      }
-      span {
-        display: inline-block;
-        font-weight: 500;
-        font-size: 1.6rem;
-        color: $Error_text_color;
-        padding: 0 1.4rem;
-        cursor: pointer;
+      .add_company_input_container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .text_input_container {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 2rem;
+          width: 90%;
+        }
+        span {
+          display: inline-block;
+          font-weight: 500;
+          font-size: 1.6rem;
+          color: $Error_text_color;
+          padding: 0 1.4rem;
+          cursor: pointer;
+        }
       }
     }
     .date_birth {
@@ -84,6 +89,29 @@
       color: #656565;
       font-family: inherit;
       background-color: #e6e6e6;
+    }
+  }
+}
+
+@media screen and(max-width:575px) {
+  .complete_register_container {
+    .complete_register_form {
+      .name_container {
+        display: block;
+        .text_input_container {
+          width: 100%;
+        }
+      }
+      .date_birth {
+        display: block;
+        .text_input_container,
+        .DropDown_container {
+          width: 100%;
+        }
+        .DropDown_container {
+          margin-bottom: 2rem;
+        }
+      }
     }
   }
 }

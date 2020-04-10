@@ -169,7 +169,7 @@ const Complete_register_container = () => {
           {!showCompanyName ? (
             <p onClick={() => setShowCompanyName(true)}>افزودن نام شرکت</p>
           ) : (
-            <div>
+            <div className="add_company_input_container">
               <TextInput
                 name="company_name"
                 number={false}

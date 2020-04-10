@@ -290,6 +290,13 @@ input {
       margin-bottom: 1rem;
       background: $second__color;
     }
+    .call_us {
+      text-align: center;
+      font-weight: 500;
+      .TellPhone {
+        display: inline-block;
+      }
+    }
   }
   @media (max-width: 720px) {
     .three_columns {

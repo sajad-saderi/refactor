@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Layout from "../src/Layout";
-import backgroundImage from "../static/parking.jpg";
 import { NextSeo } from "next-seo";
 import Router from "next/router";
 import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content";
+import "../src/styles/pages/join-us.scss";
 
 const JoinUs = () => {
   useEffect(() => {
@@ -34,15 +34,15 @@ const JoinUs = () => {
           cardType: "summary_large_image",
         }}
       />
-      <article>
-        <section>
-          <h1 style={{ textShadow: "1px 1px 2px #000" }}>
-            اتولی، برای اوقات فراغت ماشین شما
-          </h1>
-          <h2 style={{ textShadow: "1px 1px 2px #000" }}>
+      <article className="join_us">
+        <section className="banner">
+          <h1>اتولی، برای اوقات فراغت ماشین شما</h1>
+          <h2>
             به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب کنید
           </h2>
-          <Calculator />
+          <div className="responsive calculator_container">
+            <Calculator />
+          </div>
         </section>
         <Join_us_content />
       </article>
