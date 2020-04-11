@@ -44,8 +44,6 @@ const TextInput = (props: ItextInput) => {
 
   useEffect(() => {
     if (props.error.status) {
-      console.log(TextInput.current.offsetTop);
-
       scrollTo(0, TextInput.current.offsetTop);
     }
   }, [props.error]);
