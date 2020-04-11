@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
@@ -54,6 +54,7 @@ const DiscountBox = (props: IDiscountBox) => {
     { key: "29", value: "29", text: "۲۹ روز" },
     { key: "30", value: "30", text: "۳۰ روز" },
   ];
+  const DiscountWrapper = useRef(null);
 
   const onConfirm = (data?, autoFill = false) => {
     if (autoFill) {
@@ -125,8 +126,14 @@ const DiscountBox = (props: IDiscountBox) => {
     }
   }, [props.initialDiscountList]);
 
+  useEffect(() => {
+    if (props.error) {
+      scrollTo(0, DiscountWrapper.current.offsetTop);
+    }
+  }, [props.error]);
+
   return (
-    <div className="Price_form_container">
+    <div className="Price_form_container" ref={DiscountWrapper}>
       <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
       <Checkbox
         initialValue={[Discountcheck]}
@@ -138,9 +145,11 @@ const DiscountBox = (props: IDiscountBox) => {
         ]}
         name="setDiscount"
         clearField={(item) => {
+          props.setShowBox(0);
           setDiscountcheck(0);
         }}
         Select={(item) => {
+          props.setShowBox(1);
           setDiscountcheck(1);
         }}
       />
@@ -157,7 +166,7 @@ const DiscountBox = (props: IDiscountBox) => {
                 }}
                 label="بیشتر از"
                 disableSearch={true}
-                error_status={Error_days_limit.status}
+                error_status={Error_days_limit.status || props.error}
                 InputDisable={true}
                 defaultVal={days_limit_name}
                 Select={(e) => {
@@ -176,7 +185,7 @@ const DiscountBox = (props: IDiscountBox) => {
                 name="price"
                 label="درصد تخفیف"
                 error={{
-                  status: Error_discount_percent.status,
+                  status: Error_discount_percent.status || props.error,
                   message: Error_discount_percent.message,
                 }}
                 value={discount_percent}
@@ -264,6 +273,8 @@ interface IDiscountBox {
   removeDiscountList: any;
   discountCheck: any;
   showDiscount: number;
+  setShowBox: any;
+  error?: boolean;
 }
 
 export default DiscountBox;

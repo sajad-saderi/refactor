@@ -23,6 +23,8 @@ const Profile_info = (props: IProfile_info) => {
   }, [props.data]);
 
   const Exit = () => {
+    jsCookie.remove("first_name");
+    jsCookie.remove("last_name");
     jsCookie.remove("company_name");
     jsCookie.remove("complete_register");
     jsCookie.remove("phone");

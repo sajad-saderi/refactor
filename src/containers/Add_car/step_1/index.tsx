@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState, useRef } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { IoIosCar } from "react-icons/io";
 import "./step_1.scss";
 import DropdownSearch from "../../../components/form/Dropdown";
@@ -111,6 +111,27 @@ const stateReducer = (current, action) => {
       return { ...current, is_out_of_service: action.is_out_of_service };
     case "min_days_to_rent":
       return { ...current, min_days_to_rent: action.min_days_to_rent };
+    case "days_to_get_reminded":
+      return { ...current, days_to_get_reminded: action.days_to_get_reminded };
+    case "max_km_per_day":
+      return { ...current, max_km_per_day: action.max_km_per_day };
+    case "extra_km_price":
+      return { ...current, extra_km_price: action.extra_km_price };
+    case "with_driver":
+      return {
+        ...current,
+        with_driver: action.with_driver,
+      };
+    case "price_per_day":
+      return {
+        ...current,
+        price_per_day: action.price_per_day,
+      };
+    case "cancellation_policy":
+      return {
+        ...current,
+        cancellation_policy: action.cancellation_policy,
+      };
     default:
       throw new Error("There is a problem!");
   }
@@ -291,9 +312,6 @@ const Add_Car_Step_1 = () => {
   const [colorList, setColorList] = useState([]);
   const [colorName, setColorName] = useState(null);
   const [Loading, setLoading] = useState(false);
-  // REFs
-  const valueRef = useRef(null);
-  const pelakRef = useRef(null);
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
     location_id: null,
@@ -473,6 +491,30 @@ const Add_Car_Step_1 = () => {
     });
 
     // SET EXTRA INFO
+    dispatch({
+      type: "cancellation_policy",
+      cancellation_policy: car.cancellation_policy,
+    });
+    dispatch({
+      type: "price_per_day",
+      price_per_day: car.price_per_day,
+    });
+    dispatch({
+      type: "with_driver",
+      with_driver: car.with_driver,
+    });
+    dispatch({
+      type: "extra_km_price",
+      extra_km_price: car.extra_km_price,
+    });
+    dispatch({
+      type: "max_km_per_day",
+      max_km_per_day: car.max_km_per_day,
+    });
+    dispatch({
+      type: "days_to_get_reminded",
+      days_to_get_reminded: car.days_to_get_reminded,
+    });
     dispatch({
       type: "deliver_at_renters_place",
       deliver_at_renters_place: car.deliver_at_renters_place,
@@ -664,7 +706,6 @@ const Add_Car_Step_1 = () => {
       });
     }
     if (!validator.isNumeric(`${state.value}`)) {
-      scrollTo(0, valueRef.current.offsetTop);
       ErrorDispatch({
         type: "value",
         value: true,
@@ -679,7 +720,6 @@ const Add_Car_Step_1 = () => {
       });
     }
     if (`${state.registration_plate_first_part}`.length !== 2) {
-      scrollTo(0, pelakRef.current.offsetTop);
       ErrorDispatch({
         type: "registration_plate_first_part",
         registration_plate_first_part: true,
@@ -694,7 +734,6 @@ const Add_Car_Step_1 = () => {
       });
     }
     if (!state.registration_plate_second_part) {
-      scrollTo(0, pelakRef.current.offsetTop);
       ErrorDispatch({
         type: "registration_plate_second_part",
         registration_plate_second_part: true,
@@ -709,7 +748,6 @@ const Add_Car_Step_1 = () => {
       });
     }
     if (`${state.registration_plate_third_part}`.length !== 3) {
-      scrollTo(0, pelakRef.current.offsetTop);
       ErrorDispatch({
         type: "registration_plate_third_part",
         registration_plate_third_part: true,
@@ -724,7 +762,6 @@ const Add_Car_Step_1 = () => {
       });
     }
     if (`${state.registration_plate_forth_part}`.length !== 2) {
-      scrollTo(0, pelakRef.current.offsetTop);
       ErrorDispatch({
         type: "registration_plate_forth_part",
         registration_plate_forth_part: true,
@@ -1021,7 +1058,7 @@ const Add_Car_Step_1 = () => {
             dispatch({ type: "mileage_range_id", mileage_range_id: i.value })
           }
         />
-        <div className="value_container" ref={valueRef}>
+        <div className="value_container">
           <TextInput
             name="value"
             number={true}
@@ -1049,7 +1086,7 @@ const Add_Car_Step_1 = () => {
           />
           <span>تومان</span>
         </div>
-        <div className="pelak_container" ref={pelakRef}>
+        <div className="pelak_container">
           <label>پلاک خودرو</label>
           <img src={pelak} alt="تصویر پلاک" />
           <p className="extra_text">
@@ -1242,7 +1279,7 @@ const Add_Car_Step_1 = () => {
           class="Blue_BTN local_style"
           click={() => {}}
         />
-        <p>{ErrorState.error_message}</p>
+        <p className="Error_message_text">{ErrorState.error_message}</p>
       </form>
     </article>
   );

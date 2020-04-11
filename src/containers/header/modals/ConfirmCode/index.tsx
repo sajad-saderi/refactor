@@ -50,17 +50,10 @@ const ConfirmCode = (props: IConfirmCode) => {
           //   console.log('window.heap',this.state.phone);
           // }
 
-          Router.push(
-            {
-              pathname: "/complete-register",
-            },
-            {
-              pathname: "/complete-register",
-            }
-          );
+          Router.push({
+            pathname: "/complete-register",
+          });
         } else if (response.data.token && response.data.has_name) {
-          console.log(response.data);
-
           const data = response.data;
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);

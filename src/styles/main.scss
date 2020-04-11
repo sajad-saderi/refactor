@@ -225,6 +225,13 @@ input {
   background: rgba(216, 48, 48, 0.1) !important;
 }
 
+.Error_message_text {
+  color: $Error_text_color;
+  font-weight: 500;
+  line-height: 2;
+  font-size: 1.2rem;
+}
+
 // SHARE STYLE
 .insuranceBox {
   p {

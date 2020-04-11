@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState, useRef } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { IoIosCalendar } from "react-icons/io";
 import "./step_2.scss";
 import {
@@ -28,6 +28,8 @@ const stateReducer = (current, action) => {
   switch (action.type) {
     case "id":
       return { ...current, id: action.id };
+    case "owner_id":
+      return { ...current, owner_id: action.owner_id };
     case "days_to_get_reminded":
       return { ...current, days_to_get_reminded: action.days_to_get_reminded };
     case "ADD_days_to_get_reminded":
@@ -99,100 +101,58 @@ const stateReducer = (current, action) => {
 
 const error_reducer = (current, action) => {
   switch (action.type) {
-    case "location_id":
+    case "id":
       return {
         ...current,
-        location_id: action.location_id,
+        id: action.id,
         error_message: action.error_message,
       };
-    case "car_id":
+    case "max_km_per_day":
       return {
         ...current,
-        car_id: action.car_id,
+        max_km_per_day: action.max_km_per_day,
         error_message: action.error_message,
       };
-    case "year_id":
+    case "extra_km_price":
       return {
         ...current,
-        year_id: action.year_id,
+        extra_km_price: action.extra_km_price,
         error_message: action.error_message,
       };
-    case "transmission_type_id":
+    case "days_to_get_reminded":
       return {
         ...current,
-        transmission_type_id: action.transmission_type_id,
+        days_to_get_reminded: action.days_to_get_reminded,
         error_message: action.error_message,
       };
-    case "body_style_id":
+    case "min_days_to_rent":
       return {
         ...current,
-        body_style_id: action.body_style_id,
+        min_days_to_rent: action.min_days_to_rent,
         error_message: action.error_message,
       };
-    case "cylinder_id":
+    case "price_per_day":
       return {
         ...current,
-        cylinder_id: action.cylinder_id,
+        price_per_day: action.price_per_day,
         error_message: action.error_message,
       };
-    case "capacity":
+    case "price_range":
       return {
         ...current,
-        capacity: action.capacity,
+        price_range: action.price_range,
         error_message: action.error_message,
       };
-    case "mileage_range_id":
+    case "discount_error":
       return {
         ...current,
-        mileage_range_id: action.mileage_range_id,
+        discount_error: action.discount_error,
         error_message: action.error_message,
       };
-    case "value":
+    case "cancellation_policy":
       return {
         ...current,
-        value: action.value,
-        error_message: action.error_message,
-      };
-    case "registration_plate_first_part":
-      return {
-        ...current,
-        registration_plate_first_part: action.registration_plate_first_part,
-        error_message: action.error_message,
-      };
-    case "registration_plate_second_part":
-      return {
-        ...current,
-        registration_plate_second_part: action.registration_plate_second_part,
-        error_message: action.error_message,
-      };
-    case "registration_plate_third_part":
-      return {
-        ...current,
-        registration_plate_third_part: action.registration_plate_third_part,
-        error_message: action.error_message,
-      };
-    case "registration_plate_forth_part":
-      return {
-        ...current,
-        registration_plate_forth_part: action.registration_plate_forth_part,
-        error_message: action.error_message,
-      };
-    case "facility_id":
-      return {
-        ...current,
-        facility_id: action.facility_id,
-        error_message: action.error_message,
-      };
-    case "media_id":
-      return {
-        ...current,
-        media_id: action.media_id,
-        error_message: action.error_message,
-      };
-    case "color_id":
-      return {
-        ...current,
-        color_id: action.color_id,
+        cancellation_policy: action.cancellation_policy,
         error_message: action.error_message,
       };
     case "error_message":
@@ -212,47 +172,40 @@ const Add_Car_Step_2 = () => {
 
   const [initialDiscountList, setInitialDiscountList] = useState([]);
   const [discountList, setDiscountList] = useState([]);
+
   const [showDiscount, setShowDiscount] = useState(0);
+
   const [initialImage, setInitialImage] = useState(null);
   const [Loading, setLoading] = useState(false);
   const [Brand_Name, setBrand_Name] = useState(null);
   const [CarModelName, setCarModelName] = useState(null);
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
-    location_id: null,
-    car_id: null,
-    year_id: null,
-    transmission_type_id: null,
-    capacity: null,
-    body_style_id: null,
-    mileage_range_id: null,
-    color_id: null,
-    // vin: null,
-    registration_plate_first_part: null,
-    registration_plate_second_part: null,
-    registration_plate_third_part: null,
-    registration_plate_forth_part: null,
-    facility_id: null,
-    media_id: null,
-    cylinder_id: null,
-    value: null,
-    max_km_per_day: null,
-    extra_km_price: null,
-    days_to_get_reminded: null,
-    min_days_to_rent: null,
-    price_per_day: null,
-    cancellation_policy: null,
+    id: false,
+    max_km_per_day: false,
+    extra_km_price: false,
+    days_to_get_reminded: false,
+    deliver_at_renters_place: false,
+    with_driver: false,
+    is_out_of_service: false,
+    min_days_to_rent: false,
+    price_per_day: false,
+    price_range: false,
+    discount_error: false,
+    cancellation_policy: false,
+    error_message: null,
   });
 
   const [state, dispatch] = useReducer(stateReducer, {
     id: null,
+    owner_id: null,
     registration_plate_first_part: "",
     registration_plate_second_part: null,
     registration_plate_third_part: "",
     registration_plate_forth_part: "",
     max_km_per_day: "",
     extra_km_price: "",
-    days_to_get_reminded: 0,
+    days_to_get_reminded: 1,
     deliver_at_renters_place: 0,
     with_driver: 0,
     is_out_of_service: false,
@@ -262,6 +215,7 @@ const Add_Car_Step_2 = () => {
   });
 
   useEffect(() => {
+    // scrollTo(0, 0);
     getCarInfoToEdit(Router.router.query.car_id);
     // if (Router.router.query.mode === "edit") {
     // } else {
@@ -274,6 +228,7 @@ const Add_Car_Step_2 = () => {
       id: id,
       token: token,
     });
+    console.log(car_info_res);
     SetCar(car_info_res);
     const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
       { id: id, token: token }
@@ -309,6 +264,9 @@ const Add_Car_Step_2 = () => {
     // SET CAR ID
     dispatch({ type: "id", id: car.id });
 
+    // SET OWNER ID
+    dispatch({ type: "owner_id", owner_id: car.owner.id });
+
     // SET CAR DAYS TO GET REMINDED
     dispatch({
       type: "days_to_get_reminded",
@@ -336,7 +294,7 @@ const Add_Car_Step_2 = () => {
     // SET CAR OUT OF SERVICE
     dispatch({
       type: "is_out_of_service",
-      is_out_of_service: false,
+      is_out_of_service: car.is_out_of_service,
     });
 
     // SET CAR WITH DRIVER
@@ -384,303 +342,187 @@ const Add_Car_Step_2 = () => {
 
   const submitHandler = async (e, state) => {
     e.preventDefault();
-    // setLoading(true);
-    // if (validation(state)) {
-    try {
-      if (DateAndPrice === 1) {
-        await REQUEST_SET_CAR_AVAILABILITY({
-          token,
-          rental_car_id: state.id,
-          data: JSON.stringify([
-            {
-              rental_car_id: state.id,
-              is_all_time: 1,
-              price_per_day: state.price_per_day,
-              status_id: "available",
-            },
-          ]),
-        });
-      } else {
-        await REQUEST_SET_CAR_AVAILABILITY({
-          token,
-          rental_car_id: state.id,
-          data: JSON.stringify(availabilityList),
-        });
-      }
+    setLoading(true);
+    if (validation(state)) {
+      try {
+        if (DateAndPrice === 1) {
+          await REQUEST_SET_CAR_AVAILABILITY({
+            token,
+            rental_car_id: state.id,
+            data: JSON.stringify([
+              {
+                rental_car_id: state.id,
+                is_all_time: 1,
+                price_per_day: state.price_per_day,
+                status_id: "available",
+              },
+            ]),
+          });
+        } else {
+          await REQUEST_SET_CAR_AVAILABILITY({
+            token,
+            rental_car_id: state.id,
+            data: JSON.stringify(availabilityList),
+          });
+        }
 
-      if (showDiscount === 1) {
-        await REQUEST_SET_CAR_DISCOUNT({
-          token,
-          rental_car_id: state.id,
-          data: JSON.stringify(discountList),
+        if (showDiscount === 1) {
+          await REQUEST_SET_CAR_DISCOUNT({
+            token,
+            rental_car_id: state.id,
+            data: JSON.stringify(discountList),
+          });
+        }
+        const partial_car_res = await REQUEST_SET_CAR_PARTIAL({
+          id: state.id,
+          deliver_at_renters_place: state.deliver_at_renters_place,
+          with_driver: state.with_driver,
+          max_km_per_day: state.max_km_per_day,
+          extra_km_price: state.extra_km_price,
+          cancellation_policy: state.cancellation_policy,
+          days_to_get_reminded: state.days_to_get_reminded,
+          min_days_to_rent: state.min_days_to_rent,
+          is_out_of_service: state.is_out_of_service,
+          token: token,
         });
+        Router.push(`/user/${state.owner_id}`);
+      } catch (error) {
+        setLoading(false);
       }
-      const partial_car_res = await REQUEST_SET_CAR_PARTIAL({
-        id: state.id,
-        deliver_at_renters_place: state.deliver_at_renters_place,
-        with_driver: state.with_driver,
-        max_km_per_day: state.max_km_per_day,
-        extra_km_price: state.extra_km_price,
-        cancellation_policy: state.cancellation_policy,
-        days_to_get_reminded: state.days_to_get_reminded,
-        min_days_to_rent: state.min_days_to_rent,
-        is_out_of_service: state.is_out_of_service,
-        token: token,
-      });
-    } catch (error) {
-      setLoading(false);
-    }
-    // } else setLoading(false);
+    } else setLoading(false);
   };
 
-  // const validation = (state) => {
-  //   if (!validator.isNumeric(`${state.location_id}`) && !showDistrict) {
-  //     ErrorDispatch({
-  //       type: "location_id",
-  //       location_id: true,
-  //       error_message: "لطفا شهر خودرو را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "location_id",
-  //       location_id: null,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (showDistrict) {
-  //     if (state.location_id === 1 || !state.location_id) {
-  //       ErrorDispatch({
-  //         type: "location_id",
-  //         location_id: true,
-  //         error_message: "لطفا محله را انتخاب کنید",
-  //       });
-  //       return false;
-  //     } else {
-  //       ErrorDispatch({
-  //         type: "location_id",
-  //         location_id: null,
-  //         error_message: null,
-  //       });
-  //     }
-  //   }
-  //   if (!validator.isNumeric(`${Brand_id}`)) {
-  //     setBrand_id_error(true);
-  //     ErrorDispatch({
-  //       type: "error_message",
-  //       error_message: "لطفا برند را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     setBrand_id_error(false);
-  //     ErrorDispatch({
-  //       type: "error_message",
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.car_id}`)) {
-  //     ErrorDispatch({
-  //       type: "car_id",
-  //       car_id: true,
-  //       error_message: "لطفا مدل را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "car_id",
-  //       car_id: null,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.year_id}`)) {
-  //     ErrorDispatch({
-  //       type: "year_id",
-  //       year_id: true,
-  //       error_message: " لطفا سال را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "year_id",
-  //       year_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.transmission_type_id}`)) {
-  //     ErrorDispatch({
-  //       type: "transmission_type_id",
-  //       transmission_type_id: true,
-  //       error_message: "لطفا نوع دنده را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "transmission_type_id",
-  //       transmission_type_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.body_style_id}`)) {
-  //     ErrorDispatch({
-  //       type: "body_style_id",
-  //       body_style_id: true,
-  //       error_message: "لطفا نوع دنده را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "body_style_id",
-  //       body_style_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.cylinder_id}`)) {
-  //     ErrorDispatch({
-  //       type: "cylinder_id",
-  //       cylinder_id: true,
-  //       error_message: "لطفا تعداد سیلندر را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "cylinder_id",
-  //       cylinder_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.capacity}`)) {
-  //     ErrorDispatch({
-  //       type: "capacity",
-  //       capacity: true,
-  //       error_message: "لطفا ظرفیت خودرو را انتخاب کنبد",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "capacity",
-  //       capacity: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.mileage_range_id}`)) {
-  //     ErrorDispatch({
-  //       type: "mileage_range_id",
-  //       mileage_range_id: true,
-  //       error_message: "لطفا کارکرد خودرو را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "mileage_range_id",
-  //       mileage_range_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.value}`)) {
-  //     scrollTo(0, valueRef.current.offsetTop);
-  //     ErrorDispatch({
-  //       type: "value",
-  //       value: true,
-  //       error_message: "لطفا ارزش خودرو را وارد کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "value",
-  //       value: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (`${state.registration_plate_first_part}`.length !== 2) {
-  //     scrollTo(0, pelakRef.current.offsetTop);
-  //     ErrorDispatch({
-  //       type: "registration_plate_first_part",
-  //       registration_plate_first_part: true,
-  //       error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "registration_plate_first_part",
-  //       registration_plate_first_part: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!state.registration_plate_second_part) {
-  //     scrollTo(0, pelakRef.current.offsetTop);
-  //     ErrorDispatch({
-  //       type: "registration_plate_second_part",
-  //       registration_plate_second_part: true,
-  //       error_message: "لطفا بخش دوم پلاک را کامل کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "registration_plate_second_part",
-  //       registration_plate_second_part: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (`${state.registration_plate_third_part}`.length !== 3) {
-  //     scrollTo(0, pelakRef.current.offsetTop);
-  //     ErrorDispatch({
-  //       type: "registration_plate_third_part",
-  //       registration_plate_third_part: true,
-  //       error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "registration_plate_third_part",
-  //       registration_plate_third_part: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (`${state.registration_plate_forth_part}`.length !== 2) {
-  //     scrollTo(0, pelakRef.current.offsetTop);
-  //     ErrorDispatch({
-  //       type: "registration_plate_forth_part",
-  //       registration_plate_forth_part: true,
-  //       error_message: "کد استانی شماره پلاک باید ۲ رقم باشد",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "registration_plate_forth_part",
-  //       registration_plate_forth_part: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (state.media_id.length < 1) {
-  //     ErrorDispatch({
-  //       type: "media_id",
-  //       media_id: true,
-  //       error_message: "لطفاً حداقل یک تصویر بارگذاری کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "media_id",
-  //       media_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   if (!validator.isNumeric(`${state.color_id}`)) {
-  //     ErrorDispatch({
-  //       type: "color_id",
-  //       color_id: true,
-  //       error_message: "لطفا رنگ خود را انتخاب کنید",
-  //     });
-  //     return false;
-  //   } else {
-  //     ErrorDispatch({
-  //       type: "color_id",
-  //       color_id: false,
-  //       error_message: null,
-  //     });
-  //   }
-  //   return true;
-  // };
+  const validation = (state) => {
+    if (!state.id) {
+      ErrorDispatch({
+        type: "id",
+        id: true,
+        error_message: "شما مجاز به انجام این فعالیت نیستید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "id",
+        id: false,
+        error_message: null,
+      });
+    }
+    if (state.days_to_get_reminded === 0) {
+      ErrorDispatch({
+        type: "days_to_get_reminded",
+        days_to_get_reminded: true,
+        error_message: "لطفا حداقل زمان اطلاع از اجاره را انتخاب کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "days_to_get_reminded",
+        days_to_get_reminded: false,
+        error_message: null,
+      });
+    }
+    if (state.min_days_to_rent === 0) {
+      ErrorDispatch({
+        type: "min_days_to_rent",
+        min_days_to_rent: true,
+        error_message: "لطفا  حداقل مدت اجاره را انتخاب کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "min_days_to_rent",
+        min_days_to_rent: false,
+        error_message: null,
+      });
+    }
+    if (state.max_km_per_day === "") {
+      ErrorDispatch({
+        type: "max_km_per_day",
+        max_km_per_day: true,
+        error_message: "لطفا محدودیت مسافت در روز را وارد کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "max_km_per_day",
+        max_km_per_day: false,
+        error_message: null,
+      });
+    }
+    if (state.extra_km_price === "") {
+      ErrorDispatch({
+        type: "extra_km_price",
+        extra_km_price: true,
+        error_message: " لطفا هزینه هر کیلومتر اضافه را وارد کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "extra_km_price",
+        extra_km_price: false,
+        error_message: null,
+      });
+    }
+    if (DateAndPrice === 1 && state.price_per_day === "") {
+      ErrorDispatch({
+        type: "price_per_day",
+        price_per_day: true,
+        error_message: "لطفا نرخ اجاره را وارد کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "price_per_day",
+        price_per_day: false,
+        error_message: null,
+      });
+    }
+    if (DateAndPrice === 2 && availabilityList.length === 0) {
+      ErrorDispatch({
+        type: "price_range",
+        price_range: true,
+        error_message: "لطفا نرخ اجاره را وارد کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "price_range",
+        price_range: false,
+        error_message: null,
+      });
+    }
+    console.log(showDiscount, discountList.length);
+    if (showDiscount !== 0 && discountList.length === 0) {
+      ErrorDispatch({
+        type: "discount_error",
+        discount_error: true,
+        error_message: "لطفا شرایط تخفیف را وارد کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "cancellation_policy",
+        discount_error: false,
+        error_message: null,
+      });
+    }
+
+    if (state.cancellation_policy === "" || !state.cancellation_policy) {
+      ErrorDispatch({
+        type: "cancellation_policy",
+        cancellation_policy: true,
+        error_message: "لطفا شرایط اجاره و کنسلی را وارد کنید",
+      });
+      return false;
+    } else {
+      ErrorDispatch({
+        type: "cancellation_policy",
+        cancellation_policy: false,
+        error_message: null,
+      });
+    }
+    return true;
+  };
 
   const addToAvailabilityList = (data, edit = false) => {
     if (edit) {
@@ -789,7 +631,7 @@ const Add_Car_Step_2 = () => {
               }
               error={{
                 status: ErrorState.max_km_per_day,
-                message: "",
+                message: null,
               }}
               min={2}
               max={5}
@@ -817,7 +659,7 @@ const Add_Car_Step_2 = () => {
               }
               error={{
                 status: ErrorState.extra_km_price,
-                message: "",
+                message: null,
               }}
               min={4}
               max={8}
@@ -882,7 +724,7 @@ const Add_Car_Step_2 = () => {
           >
             <Radio
               name="DateAndPrice"
-              error_status={ErrorState.transmission_type_id}
+              error_status={ErrorState.price_per_day}
               SelectHandler={(i) => setDateAndPrice(+i)}
               defaultCheck={DateAndPrice}
               data={[
@@ -940,6 +782,7 @@ const Add_Car_Step_2 = () => {
               initialAvailabilityList={initialAvailabilityList}
               addAvailList={addToAvailabilityList}
               removeAvailList={removeFromAvailabilityList}
+              error={ErrorState.price_range}
             />
           )}
         </div>
@@ -950,11 +793,16 @@ const Add_Car_Step_2 = () => {
             addDiscount={addToDiscountList}
             removeDiscountList={removeFromDiscountList}
             showDiscount={showDiscount}
+            setShowBox={(v) => setShowDiscount(v)}
             discountCheck={setShowDiscount}
+            error={ErrorState.discount_error}
           />
           <label>شرایط اجاره و کنسلی</label>
           <textarea
-            className="text_area_step_2"
+            className={[
+              "text_area_step_2",
+              ErrorState.cancellation_policy ? "inputError" : null,
+            ].join(" ")}
             placeholder="شرایط اجاره و کنسلی"
             value={state.cancellation_policy}
             onChange={(e) => {
@@ -971,7 +819,9 @@ const Add_Car_Step_2 = () => {
             class="Blue_BTN local_style"
             click={() => {}}
           />
-          <p>{ErrorState.error_message}</p>
+          {ErrorState.error_message ? (
+            <p className="Error_message_text">{ErrorState.error_message}</p>
+          ) : null}
         </div>
       </form>
     </article>

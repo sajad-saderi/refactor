@@ -1,12 +1,15 @@
-import React, { useReducer, useEffect, useState, useContext } from "react";
+import React, { useReducer, useState, useContext, useEffect } from "react";
 import "./complete_register.scss";
 import DropdownSearch from "../../components/form/Dropdown";
 import TextInput from "../../components/form/TextInput";
 import jsCookie from "js-cookie";
 import Button from "../../components/form/Button";
 import Modal_context from "../../context/Modal_context";
+import Auth_context from "../../../src/context/Auth_context";
 import { IoMdPersonAdd } from "react-icons/io";
 import { REQUEST_USER_INFO_UPDATE } from "../../API";
+import PleaseLogin from "../../components/PleaseLogin";
+import Router from "next/router";
 
 const token = jsCookie.get("token");
 
@@ -35,28 +38,28 @@ const stateErrorReducer = (current, action) => {
       return {
         ...current,
         first_name: action.first_name,
-        message: action.messsage,
+        message: action.message,
       };
     case "last_name":
       return {
         ...current,
         last_name: action.last_name,
-        message: action.messsage,
+        message: action.message,
       };
     case "company_name":
       return {
         ...current,
         company_name: action.company_name,
-        message: action.messsage,
+        message: action.message,
       };
     case "day":
-      return { ...current, day: action.day, message: action.messsage };
+      return { ...current, day: action.day, message: action.message };
     case "month":
-      return { ...current, month: action.month, message: action.messsage };
+      return { ...current, month: action.month, message: action.message };
     case "year":
-      return { ...current, year: action.year, message: action.messsage };
+      return { ...current, year: action.year, message: action.message };
     case "message":
-      return { ...current, year: action.year, message: action.messsage };
+      return { ...current, year: action.year, message: action.message };
     default:
       throw new Error("Something is wrong");
   }
@@ -65,6 +68,9 @@ const stateErrorReducer = (current, action) => {
 const Complete_register_container = () => {
   const [rolesCheck, setRolesCheck] = useState(false);
   const [showCompanyName, setShowCompanyName] = useState(false);
+  const [Authorize, setAuthorize] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [state, dispatch] = useReducer(stateReducer, {
     first_name: "",
     last_name: "",
@@ -81,7 +87,7 @@ const Complete_register_container = () => {
     day: false,
     month: false,
     year: false,
-    message: "",
+    message: null,
   });
 
   const monthsFarsi = [
@@ -99,43 +105,166 @@ const Complete_register_container = () => {
     { key: "12", value: "12", text: "اسفند" },
   ];
   const MODAL_CONTEXT = useContext(Modal_context);
+  const AUTH_CONTEXT = useContext(Auth_context);
 
-  const submitHandler = async (e) => {
+  useEffect(() => {
+    if (jsCookie.get("complete_register") === "true") {
+      setAuthorize(true);
+    } else {
+      MODAL_CONTEXT.modalHandler("Login");
+    }
+  }, []);
+
+  const submitHandler = async (e, state) => {
     e.preventDefault();
-    try {
-      const user_info_res = await REQUEST_USER_INFO_UPDATE({
-        token,
-        first_name: state.first_name,
-        last_name: state.last_name,
-        company_name: state.company_name === "" ? null : state.company_name,
-        birth_date: `${state.year}/${state.month}/${state.day}`,
-      });
-      const cook_option = {
-        expires: 100,
-      };
-      jsCookie.set("complete_register", true);
-      jsCookie.set("first_name", state.first_name);
-      jsCookie.set("last_name", state.last_name);
-      if (state.company_name !== "") {
-        jsCookie.set("company_name", state.company_name);
+    setLoading(true);
+    if (validation(state)) {
+      try {
+        const user_info_res = await REQUEST_USER_INFO_UPDATE({
+          token,
+          first_name: state.first_name,
+          last_name: state.last_name,
+          company_name: state.company_name === "" ? null : state.company_name,
+          birth_date: `${state.year}/${state.month}/${state.day}`,
+        });
+        const cook_option = {
+          expires: 100,
+        };
+        jsCookie.set("complete_register", true, cook_option);
+        jsCookie.set("first_name", state.first_name, cook_option);
+        jsCookie.set("last_name", state.last_name, cook_option);
+        if (state.company_name !== "") {
+          jsCookie.set("company_name", state.company_name, cook_option);
+        } else if (jsCookie.get("company_name")) {
+          jsCookie.remove("company_name");
+        }
+        Router.push({
+          pathname: `/user/${jsCookie.get("user_id")}`,
+        });
+      } catch (e) {
+        setLoading(false);
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+    } else {
+      setLoading(false);
     }
   };
 
-  return (
+  const validation = (state) => {
+    if (state.first_name === "") {
+      errorDispatch({
+        type: "first_name",
+        first_name: true,
+        message: "لطفاً نام خود را وارد کنید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "first_name",
+        first_name: false,
+        message: null,
+      });
+    }
+    if (state.last_name === "") {
+      errorDispatch({
+        type: "last_name",
+        last_name: true,
+        message: "لطفاً نام خانوادگی را وارد کنید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "last_name",
+        last_name: false,
+        message: null,
+      });
+    }
+    if (showCompanyName && state.company_name === "") {
+      errorDispatch({
+        type: "company_name",
+        company_name: true,
+        message: "لطفاً نام شرکت را وارد کنید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "company_name",
+        company_name: false,
+        message: null,
+      });
+    }
+    if (state.day === "") {
+      errorDispatch({
+        type: "day",
+        day: true,
+        message: "لطفاً روز را وارد کنید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "day",
+        day: false,
+        message: null,
+      });
+    }
+    if (!state.month) {
+      errorDispatch({
+        type: "month",
+        month: true,
+        message: "لطفاً ماه را وارد کنید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "month",
+        month: false,
+        message: null,
+      });
+    }
+    if (state.year === "") {
+      errorDispatch({
+        type: "year",
+        year: true,
+        message: "لطفاً سال را وارد کنید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "year",
+        year: false,
+        message: null,
+      });
+    }
+    if (!rolesCheck) {
+      errorDispatch({
+        type: "message",
+        message: "لطفا قوانین و مقررات را بپذیرید",
+      });
+      return;
+    } else {
+      errorDispatch({
+        type: "message",
+        message: null,
+      });
+    }
+    return true;
+  };
+
+  return Authorize || AUTH_CONTEXT.Auth ? (
     <article className="responsive  complete_register_container">
       <div className="pageTitle">
         <IoMdPersonAdd className="Person_icon" size="6rem" color="#4ba3ce" />
         <h3>تکمیل اطلاعات</h3>
       </div>
-      <form className="complete_register_form" onSubmit={submitHandler}>
+      <form
+        className="complete_register_form"
+        onSubmit={(e) => submitHandler(e, state)}
+      >
         <div className="name_container">
           <TextInput
             name="first_name"
             label="نام"
-            min={2}
+            // min={2}
             max={50}
             clearField={() => dispatch({ type: "first_name", first_name: "" })}
             onChangeHandler={(e) =>
@@ -145,12 +274,12 @@ const Complete_register_container = () => {
             autoFocus={false}
             error={{
               status: stateError.first_name,
-              message: stateError.message,
+              message: null,
             }}
           />
           <TextInput
             name="last_name"
-            min={2}
+            // min={2}
             label="نام خانوادگی"
             max={50}
             clearField={() => dispatch({ type: "last_name", last_name: "" })}
@@ -161,7 +290,7 @@ const Complete_register_container = () => {
             autoFocus={false}
             error={{
               status: stateError.last_name,
-              message: stateError.message,
+              message: null,
             }}
           />
         </div>
@@ -173,8 +302,8 @@ const Complete_register_container = () => {
               <TextInput
                 name="company_name"
                 number={false}
-                min={1}
-                max={70}
+                // min={1}
+                max={100}
                 label="نام شرکت"
                 clearField={() =>
                   dispatch({ type: "company_name", company_name: "" })
@@ -186,7 +315,7 @@ const Complete_register_container = () => {
                 autoFocus={false}
                 error={{
                   status: stateError.company_name,
-                  message: stateError.message,
+                  message: null,
                 }}
               />
               <span
@@ -214,7 +343,7 @@ const Complete_register_container = () => {
             autoFocus={false}
             error={{
               status: stateError.day,
-              message: stateError.message,
+              message: null,
             }}
           />
           <DropdownSearch
@@ -222,6 +351,7 @@ const Complete_register_container = () => {
             clearField={() => dispatch({ type: "month", month: null })}
             Select={(i) => dispatch({ type: "month", month: i.value })}
             disableSearch={true}
+            error_status={stateError.month}
           />
           <TextInput
             name="year"
@@ -236,7 +366,7 @@ const Complete_register_container = () => {
             localeString={true}
             error={{
               status: stateError.year,
-              message: stateError.message,
+              message: null,
             }}
           />
         </div>
@@ -275,16 +405,21 @@ const Complete_register_container = () => {
           </label>
         </div>
         <Button
-          class={["Blue_BTN local_BTN", rolesCheck ? null : "disable_BTN"].join(
-            " "
-          )}
-          disable={!rolesCheck}
+          class={[
+            "Blue_BTN local_BTN",
+            // , rolesCheck ? null : "disable_BTN"
+          ].join(" ")}
           value="تایید"
           click={() => {}}
-          loading={false}
+          loading={loading}
         />
+        {stateError.message ? (
+          <p className="Error_message_text"> {stateError.message}</p>
+        ) : null}
       </form>
     </article>
+  ) : (
+    <PleaseLogin />
   );
 };
 

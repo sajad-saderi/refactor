@@ -6,15 +6,16 @@ import Router from "next/router";
 
 const Menu = () => {
   const MODAL_CONTEXT = useContext(modal_context);
-  const complete_register = jsCookie.get("complete_register");
-  const token = jsCookie.get("token");
-  const img_profile = jsCookie.get("thumbnail_url");
-  const company_name = jsCookie.get("company_name");
-  const profile =
+  let complete_register = jsCookie.get("complete_register");
+  let token = jsCookie.get("token");
+  let img_profile = jsCookie.get("thumbnail_url");
+  let company_name = jsCookie.get("company_name");
+  let profile =
     company_name && company_name !== "null"
       ? company_name
       : `${jsCookie.get("user_name")}`;
-  const user_id = jsCookie.get("user_id");
+  let user_id = jsCookie.get("user_id");
+
   return (
     <ul>
       {token ? (

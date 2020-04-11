@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
@@ -27,6 +27,7 @@ const PriceBox = (props: IPriceBox) => {
     status: false,
     index: null,
   });
+  const priceWrapper = useRef(null);
 
   const convertDateToMoment = (date) => {
     if (!date) return;
@@ -203,13 +204,19 @@ const PriceBox = (props: IPriceBox) => {
     }
   }, [props.initialAvailabilityList]);
 
+  useEffect(() => {
+    if (props.error) {
+      scrollTo(0, priceWrapper.current.offsetTop);
+    }
+  }, [props.error]);
+
   return (
-    <div className="Price_form_container">
+    <div className="Price_form_container" ref={priceWrapper}>
       <div className="Price_container input_price_Box">
         <div
           className={[
             "divs",
-            dayRange_error.status ? "datePickerError" : null,
+            dayRange_error.status || props.error ? "datePickerError" : null,
           ].join(" ")}
         >
           <label className="Diff_margin">از تاریخ</label>
@@ -231,7 +238,7 @@ const PriceBox = (props: IPriceBox) => {
           <TextInput
             name="price_per_day"
             error={{
-              status: price_per_day_error.status,
+              status: price_per_day_error.status || props.error,
               message: price_per_day_error.message,
             }}
             label="قیمت"
@@ -342,6 +349,7 @@ interface IPriceBox {
   initialAvailabilityList?: any;
   addAvailList?: any;
   removeAvailList?: any;
+  error: boolean;
 }
 
 export default PriceBox;

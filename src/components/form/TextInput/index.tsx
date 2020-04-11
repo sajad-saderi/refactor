@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./inputStyle.scss";
 import { IoMdClose } from "react-icons/io";
 
 const TextInput = (props: ItextInput) => {
+  const TextInput = useRef(null);
+
   const ValueHandler = (e) => {
     let value = e.target.value;
     if (props.number) {
@@ -40,8 +42,16 @@ const TextInput = (props: ItextInput) => {
     } else props.onChangeHandler(value);
   };
 
+  useEffect(() => {
+    if (props.error.status) {
+      console.log(TextInput.current.offsetTop);
+
+      scrollTo(0, TextInput.current.offsetTop);
+    }
+  }, [props.error]);
+
   return (
-    <div className="text_input_container">
+    <div className="text_input_container" ref={TextInput}>
       <label
         style={{
           color: props.LabelColor,
@@ -51,6 +61,17 @@ const TextInput = (props: ItextInput) => {
         {props.label}
       </label>
       <input
+        onInvalid={(e: any) => {
+          if (props.value.length < props.min) {
+            e.target.setCustomValidity(
+              `حداقل ورودی باید ${props.min} کاراکتر باشد`
+            );
+          } else if (props.value.length > props.max) {
+            e.target.setCustomValidity(
+              `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+            );
+          }
+        }}
         autoFocus={props.autoFocus}
         className={[
           "text_input",
@@ -67,7 +88,10 @@ const TextInput = (props: ItextInput) => {
             : props.value
           // props.value
         }
-        onChange={ValueHandler}
+        onChange={(e: any) => {
+          e.target.setCustomValidity("");
+          ValueHandler(e);
+        }}
         disabled={props.disabled}
         maxLength={props.max}
         minLength={props.min}
