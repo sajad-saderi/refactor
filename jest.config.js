@@ -1,14 +1,16 @@
 module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js"],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.js?$": "ts-jest",
   },
-  testMatch: ["**/*.(test|spec).(ts|tsx)"],
+  testMatch: ["**/*.(test|spec).(ts|tsx|js)"],
   globals: {
     "ts-jest": {
       babelConfig: true,
-      tsConfig: "jest.tsconfig.json"
-    }
+      diagnostics: false,
+      tsConfig: "jest.tsconfig.json",
+    },
   },
   coveragePathIgnorePatterns: ["/node_modules/", "enzyme.js"],
   setupFilesAfterEnv: ["<rootDir>/enzyme.js"],
@@ -16,6 +18,6 @@ module.exports = {
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
       "<rootDir>/__mocks__/mocks.js",
-    "\\.(css|less|scss)$": "<rootDir>/__mocks__/mocks.js"
-  }
+    "\\.(css|less|scss)$": "<rootDir>/__mocks__/mocks.js",
+  },
 };
