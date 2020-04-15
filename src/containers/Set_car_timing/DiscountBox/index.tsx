@@ -3,6 +3,7 @@ import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
 import "./DiscountBox.scss";
+import { IoMdAdd } from "react-icons/io";
 
 const DiscountBox = (props: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");
@@ -135,27 +136,19 @@ const DiscountBox = (props: IDiscountBox) => {
   return (
     <div className="Price_form_container" ref={DiscountWrapper}>
       <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
-      <Checkbox
-        initialValue={[Discountcheck]}
-        data={[
-          {
-            text: "افزودن تخفیف",
-            value: Discountcheck,
-          },
-        ]}
-        name="setDiscount"
-        clearField={(item) => {
-          props.setShowBox(0);
-          setDiscountcheck(0);
-        }}
-        Select={(item) => {
+      <div
+        className="add_new_one"
+        onClick={() => {
           props.setShowBox(1);
           setDiscountcheck(1);
         }}
-      />
+      >
+        <p>
+          <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
+        </p>
+      </div>
       {Discountcheck === 1 && (
         <>
-          <hr />
           <div className="Discount_Controller">
             <div className="containers">
               <DropdownSearch
@@ -202,32 +195,34 @@ const DiscountBox = (props: IDiscountBox) => {
               />
               <span> %</span>
             </div>
-            <p className="confirm" onClick={onConfirm}>
-              ثبت
-            </p>
-            {mode.status && (
-              <p
-                className="cancel"
-                onClick={() => {
-                  setMode({
-                    status: false,
-                    index: null,
-                  });
-                  setDiscount_percent("");
-                  setDays_limit_name(null);
-                  setDays_limit(null);
-                }}
-              >
-                لغو
+            <div className="divs button_box">
+              <p className="confirm" onClick={onConfirm}>
+                ثبت
               </p>
-            )}
+              {mode.status && (
+                <p
+                  className="cancel"
+                  onClick={() => {
+                    setMode({
+                      status: false,
+                      index: null,
+                    });
+                    setDiscount_percent("");
+                    setDays_limit_name(null);
+                    setDays_limit(null);
+                  }}
+                >
+                  لغو
+                </p>
+              )}
+            </div>
           </div>
           <div className="Discount_list">
             {DiscountList.map((item, i) => {
               return (
-                <div key={i}>
+                <div key={i} className="discount_item">
                   <p>
-                    - برای اجاره‌ بیشتر از {item.days_limit} روز{" "}
+                    برای اجاره‌ بیشتر از {item.days_limit} روز <br />
                     {item.discount_percent} درصد تخفیف
                   </p>
                   <span

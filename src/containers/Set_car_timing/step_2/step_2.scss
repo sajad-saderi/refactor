@@ -54,6 +54,7 @@
   }
 
   .add_car_form_step_2 {
+    position: relative;
     background: #fff;
     font-size: 1.4rem;
     border-radius: 4px;
@@ -78,6 +79,7 @@
     }
     .custom_input_container_step_2 {
       max-width: 38rem;
+      margin-bottom: 3rem;
       .text_input_container {
         display: inline-block;
         vertical-align: middle;
@@ -96,9 +98,11 @@
         display: block;
         margin-bottom: 1.2rem;
       }
-      hr {
-        border-color: $input_border;
-        margin-bottom: 2rem;
+      .radio_container:last-child:not(.active_radio_item) {
+        position: absolute;
+        bottom: 1.6rem;
+        right: 1.6rem;
+        margin: 0;
       }
     }
     .text_area_step_2 {

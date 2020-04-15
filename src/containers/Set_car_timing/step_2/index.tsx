@@ -738,7 +738,6 @@ const Add_Car_Step_2 = () => {
                 },
               ]}
             />
-            <hr />
           </div>
           {DateAndPrice === 1 ? (
             <>
@@ -758,7 +757,6 @@ const Add_Car_Step_2 = () => {
                       price_per_day: "",
                     })
                   }
-                  label="قیمت روزانه"
                   error={{
                     status: ErrorState.price_per_day,
                     message: "",
@@ -768,14 +766,14 @@ const Add_Car_Step_2 = () => {
                   max={8}
                   value={state.price_per_day}
                 />
-                <span className="tail_text">تومان</span>
+                <span className="tail_text">تومان در روز</span>
               </div>
-              {state.price_per_day.length > 3 && (
+              {/* {state.price_per_day.length > 3 && (
                 <p>
                   اجاره خودرو شما در تمام روز ها با قیمت{" "}
                   {Number(state.price_per_day).toLocaleString()} تومان است
                 </p>
-              )}
+              )} */}
             </>
           ) : (
             <PriceBox

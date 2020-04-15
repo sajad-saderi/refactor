@@ -14,14 +14,20 @@ import Button from "../../components/form/Button";
 
 import modal_context from "../../context/Modal_context";
 
+moment.loadPersian({ dialect: "persian-modern" });
+
 const Search = (props: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
+  const [fromDay, setFromDay] = useState("");
+  const [toDay, setToDay] = useState("");
   const [dayRange, setDayRange] = React.useState<DayRange>({
     from: null,
     to: null,
   });
+
   const [locationsList, setLocationsList] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const MODAL_CONTEXT = useContext(modal_context);
 
   const get_car_location = async () => {
@@ -30,15 +36,25 @@ const Search = (props: ISearch) => {
   };
 
   useEffect(() => {
-    setDateFromStorage();
     get_car_location();
+    setDateFromStorage();
   }, []);
 
   const setDateFromStorage = () => {
     if (localStorage["start"] && localStorage["end"]) {
-      let start = JSON.parse(localStorage["start"]);
-      if (start.day > moment().jDate()) {
-        if (start.month >= moment().jMonth() + 1) {
+      if (localStorage["start"] !== null && localStorage["end"] !== null) {
+        let start = JSON.parse(localStorage["start"]);
+        if (start.day > moment().jDate()) {
+          if (start.month >= moment().jMonth() + 1) {
+            setDayRange({
+              from: JSON.parse(localStorage["start"]),
+              to: JSON.parse(localStorage["end"]),
+            });
+          } else {
+            localStorage.removeItem("start");
+            localStorage.removeItem("end");
+          }
+        } else if (start.month > moment().jMonth() + 1) {
           setDayRange({
             from: JSON.parse(localStorage["start"]),
             to: JSON.parse(localStorage["end"]),
@@ -47,41 +63,56 @@ const Search = (props: ISearch) => {
           localStorage.removeItem("start");
           localStorage.removeItem("end");
         }
-      } else if (start.month > moment().jMonth() + 1) {
-        setDayRange({
-          from: JSON.parse(localStorage["start"]),
-          to: JSON.parse(localStorage["end"]),
-        });
-      } else {
-        localStorage.removeItem("start");
-        localStorage.removeItem("end");
       }
     }
   };
 
   const GotoSearchResult = (e) => {
     e.preventDefault();
-    if (props.dynamic) {
-      props.searchSubmit({
-        location_id: 1,
-        date: {
-          Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-          End_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+    if (dayRange.from && dayRange.to) {
+      if (props.dynamic) {
+        props.searchSubmit({
+          location_id: 1,
+          date: {
+            Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+            End_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+          },
+        });
+        return;
+      }
+      localStorage["start"] = JSON.stringify(dayRange.from);
+      localStorage["end"] = JSON.stringify(dayRange.to);
+      setLoading(true);
+      Router.push({
+        pathname: "/search-result",
+        query: {
+          location_id: LocationId,
+          start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+          end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
         },
       });
-      return;
     }
-    localStorage["start"] = JSON.stringify(dayRange.from);
-    localStorage["end"] = JSON.stringify(dayRange.to);
-    setLoading(true);
-    Router.push({
-      pathname: "/search-result",
-      query: {
-        location_id: LocationId,
-        start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-        end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-      },
-    });
+  };
+
+  useEffect(() => {
+    if (dayRange.from) {
+      setFromDay(convertDate(dayRange.from));
+    } else {
+      setFromDay(" ");
+      setToDay(" ");
+    }
+    if (dayRange.to) {
+      setToDay(convertDate(dayRange.to));
+    } else {
+      setToDay(" ");
+    }
+  }, [dayRange]);
+
+  const convertDate = (v) => {
+    let value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
+      "dddd jDD jMMMM jYY"
+    );
+    return value;
   };
 
   return (
@@ -101,18 +132,29 @@ const Search = (props: ISearch) => {
             clearField={() => setLocationId(1)}
           />
         </div>
-        <div className="search_box_div">
-          <p className="label">انتخاب تاریخ تحویل و بازگشت خودرو</p>
-          <DatePicker
-            inputPlaceholder="از تاریخ تا تاریخ"
-            value={dayRange}
-            onChange={setDayRange}
-            shouldHighlightWeekends
-            minimumDate={utils("fa").getToday()}
-            locale="fa"
-            colorPrimary="#4ba3ce"
-            disabledDays={[utils("fa").getToday()]}
-          />
+        <div className="Date_picker_container">
+          <div className="date_Input_Container">
+            <DatePicker
+              value={dayRange}
+              onChange={setDayRange}
+              shouldHighlightWeekends
+              minimumDate={utils("fa").getToday()}
+              locale="fa"
+              colorPrimary="#4ba3ce"
+              disabledDays={[utils("fa").getToday()]}
+            />
+            <div className="input_container">
+              <p className="label">از تاریخ</p>
+              <input readOnly={true} value={fromDay ? fromDay : null}></input>
+            </div>
+            <div className="input_container">
+              <p className="label">تا تاریخ</p>
+              <input
+                className="exception_input"
+                value={toDay ? toDay : null}
+              ></input>
+            </div>
+          </div>
         </div>
         <div className="search_box_div">
           <p className="Search_Text_transparent">search</p>

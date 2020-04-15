@@ -4,6 +4,7 @@ import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
 import "./PriceBox.scss";
 import TextInput from "../../../components/form/TextInput";
+import { IoMdAdd } from "react-icons/io";
 // moment.loadPersian({ dialect: "persian-modern" });
 
 const PriceBox = (props: IPriceBox) => {
@@ -23,6 +24,7 @@ const PriceBox = (props: IPriceBox) => {
   const [DisableList, setDisableList] = useState([]);
   const [availList, setAvailList] = useState([]);
   const [DateDuration, setDateDuration] = useState([]);
+  const [show_input_price, setShow_input_price] = useState(true);
   const [EditMode, setEditMode] = useState({
     status: false,
     index: null,
@@ -161,6 +163,7 @@ const PriceBox = (props: IPriceBox) => {
         to: null,
       });
       setPrice_per_day("");
+      setShow_input_price(false);
     }
   };
 
@@ -212,135 +215,149 @@ const PriceBox = (props: IPriceBox) => {
 
   return (
     <div className="Price_form_container" ref={priceWrapper}>
-      <div className="Price_container input_price_Box">
-        <div
-          className={[
-            "divs",
-            dayRange_error.status || props.error ? "datePickerError" : null,
-          ].join(" ")}
-        >
-          <label className="Diff_margin">از تاریخ</label>
-          <DatePicker
-            inputPlaceholder="از تاریخ تا تاریخ"
-            value={dayRange}
-            onChange={setDayRange}
-            shouldHighlightWeekends
-            minimumDate={utils("fa").getToday()}
-            locale="fa"
-            colorPrimary="#4ba3ce"
-            disabledDays={DisableList}
-          />
-          {dayRange_error.status && (
-            <p className="input_error_message">{dayRange_error.message}</p>
-          )}
-        </div>
-        <div className="divs  tail">
-          <TextInput
-            name="price_per_day"
-            error={{
-              status: price_per_day_error.status || props.error,
-              message: price_per_day_error.message,
-            }}
-            label="قیمت"
-            value={price_per_day}
-            number={true}
-            autoFocus={false}
-            clearField={() => {
-              setPrice_per_day("");
-            }}
-            min={4}
-            max={10}
-            onChangeHandler={(e) => {
-              setPrice_per_day(e);
-            }}
-          />
-          <span>تومان</span>
-        </div>
-        <div className="divs button_box">
-          <p className="confirm" onClick={onConfirm}>
-            تایید
-          </p>
-          {EditMode.status && (
-            <p
-              className="cancel"
-              onClick={() => {
-                setEditMode({
-                  status: false,
-                  index: null,
-                });
-                setDayRange({
-                  from: null,
-                  to: null,
-                });
+      {show_input_price ? (
+        <div className="Price_container input_price_Box">
+          <div
+            className={[
+              "divs",
+              dayRange_error.status || props.error ? "datePickerError" : null,
+            ].join(" ")}
+          >
+            <label className="Diff_margin">از تاریخ</label>
+            <DatePicker
+              inputPlaceholder="از تاریخ تا تاریخ"
+              value={dayRange}
+              onChange={setDayRange}
+              shouldHighlightWeekends
+              minimumDate={utils("fa").getToday()}
+              locale="fa"
+              colorPrimary="#4ba3ce"
+              disabledDays={DisableList}
+            />
+            {dayRange_error.status && (
+              <p className="input_error_message">{dayRange_error.message}</p>
+            )}
+          </div>
+          <div className="divs  tail">
+            <TextInput
+              name="price_per_day"
+              error={{
+                status: price_per_day_error.status || props.error,
+                message: price_per_day_error.message,
+              }}
+              label="قیمت"
+              value={price_per_day}
+              number={true}
+              autoFocus={false}
+              clearField={() => {
                 setPrice_per_day("");
               }}
-            >
-              لغو
+              min={4}
+              max={10}
+              onChangeHandler={(e) => {
+                setPrice_per_day(e);
+              }}
+            />
+            <span>تومان</span>
+          </div>
+          <div className="divs button_box">
+            <p className="confirm" onClick={onConfirm}>
+              تایید
             </p>
-          )}
+            {EditMode.status && (
+              <p
+                className="cancel"
+                onClick={() => {
+                  setEditMode({
+                    status: false,
+                    index: null,
+                  });
+                  setDayRange({
+                    from: null,
+                    to: null,
+                  });
+                  setPrice_per_day("");
+                }}
+              >
+                لغو
+              </p>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="Price_container Date_list">
-        {availList.length > 0 ? (
-          <>
-            <p>خودرو شما فقط</p>
-            {availList.map((item, i) => {
-              return (
-                <div key={i}>
-                  <p>
-                    - از تاریخ {item.start_date} تا {item.end_date} با قیمت{" "}
-                    {Number(item.price_per_day).toLocaleString()} تومان
-                  </p>
-                  <div className="button_box">
-                    <span
-                      className="confirm"
-                      onClick={() => {
-                        setEditMode({
-                          status: true,
-                          index: i,
-                        });
-                        setPrice_per_day(item.price_per_day);
+      ) : (
+        <div className="add_new_one" onClick={() => setShow_input_price(true)}>
+          <p>
+            <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن بازه جدید
+          </p>
+        </div>
+      )}
+      {
+        availList.length > 0 ? (
+          <div className="Price_container Date_list">
+            <>
+              {/* <p>خودرو شما فقط</p> */}
+              {availList.map((item, i) => {
+                return (
+                  <div key={i}>
+                    <p>
+                      از تاریخ {item.start_date} تا {item.end_date}
+                      <br /> با قیمت{" "}
+                      {Number(item.price_per_day).toLocaleString()} تومان
+                    </p>
+                    <div className="button_box">
+                      <span
+                        className="confirm"
+                        onClick={() => {
+                          setShow_input_price(true);
+                          setEditMode({
+                            status: true,
+                            index: i,
+                          });
+                          setPrice_per_day(item.price_per_day);
 
-                        setDayRange({
-                          from: {
-                            year: +moment(item.start_date).format("YYYY"),
-                            month: +moment(item.start_date).format("MM"),
-                            day: +moment(item.start_date).format("DD"),
-                          },
-                          to: {
-                            year: +moment(item.end_date).format("YYYY"),
-                            month: +moment(item.end_date).format("MM"),
-                            day: +moment(item.end_date).format("DD"),
-                          },
-                        });
-                      }}
-                    >
-                      ویرایش
-                    </span>
-                    <span
-                      className="cancel"
-                      onClick={() => {
-                        releaseDisableDays(i);
-                        setAvailList((availList) =>
-                          availList.filter((_, index) => {
-                            return index !== i;
-                          })
-                        );
-                        props.removeAvailList(i);
-                      }}
-                    >
-                      حذف
-                    </span>
+                          setDayRange({
+                            from: {
+                              year: +moment(item.start_date).format("YYYY"),
+                              month: +moment(item.start_date).format("MM"),
+                              day: +moment(item.start_date).format("DD"),
+                            },
+                            to: {
+                              year: +moment(item.end_date).format("YYYY"),
+                              month: +moment(item.end_date).format("MM"),
+                              day: +moment(item.end_date).format("DD"),
+                            },
+                          });
+                        }}
+                      >
+                        ویرایش
+                      </span>
+                      <span
+                        className="cancel"
+                        onClick={() => {
+                          releaseDisableDays(i);
+                          setAvailList((availList) =>
+                            availList.filter((_, index) => {
+                              return index !== i;
+                            })
+                          );
+                          if (availList.length === 1) {
+                            setShow_input_price(true);
+                          }
+                          props.removeAvailList(i);
+                        }}
+                      >
+                        حذف
+                      </span>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <p>اجاره داده خواهد شد</p>
-          </>
-        ) : (
-          <p className="nothing">بازه زمانی ثبت شده ندارید</p>
-        )}
-      </div>
+                );
+              })}
+              {/* <p>اجاره داده خواهد شد</p> */}
+            </>
+          </div>
+        ) : null
+        //   <p className="nothing">بازه زمانی ثبت شده ندارید</p>
+      }
     </div>
   );
 };

@@ -1,37 +1,53 @@
 @import "../../../styles/colors";
 .Price_form_container {
   margin-bottom: 2rem;
-  .check_box_container {
+  .add_new_one {
+    cursor: pointer;
     margin-top: 1.6rem;
-  }
-  hr {
-    border-color: rgba(34, 36, 38, 0.15);
-    margin-bottom: 2rem;
-    width: 100%;
-  }
+    p {
+      color: $main__color;
+      font-size: 1.4rem;
+      display: inline-block;
+      border: 1px solid $main__color;
+      border-radius: 4px;
+      padding-left: 2rem;
+      svg {
+        padding: 0.5rem;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: rgba(0, 0, 0, 0.05);
+        margin-left: 1rem;
+      }
+    }
+  } 
   .Discount_Controller {
-    display: flex;
-    justify-content: start;
-    align-items: flex-start;
-    width: 100%;
+    display: block;
+    margin-top: 1.6rem;
+    max-width: 32rem;
+    padding: 1.6rem;
+    border: 1px solid $input_border;
+    border-radius: 4px;
     .DropDown_container,
     .text_input_container {
       margin-bottom: 0.5rem;
     }
     .containers {
-      width: 18rem;
-      margin-left: 2rem;
+      width: 100%;
+      margin-left: 0;
       .input_error_message {
         font-size: 1.2rem;
         color: $Error_text_color;
       }
     }
-    .confirm {
-      line-height: 5.5;
-      margin-left: 1.6rem;
-    }
-    .cancel {
-      line-height: 5.5;
+    .button_box {
+      justify-content: space-evenly;
+      align-items: center;
+      display: flex;
+      margin-top: 1.6rem;
+      p {
+        padding: 0 1.4rem;
+        cursor: pointer;
+      }
     }
     .tail {
       position: relative;
@@ -56,8 +72,12 @@
     }
   }
   .Discount_list {
-    div {
-      margin: 0.5rem 0;
+    .discount_item {
+      border: 1px solid $input_border;
+      padding: 1.2rem;
+      margin-top: 2rem;
+      display: inline-block;
+      border-radius: 4px;
       p {
         display: inline-block;
         vertical-align: middle;

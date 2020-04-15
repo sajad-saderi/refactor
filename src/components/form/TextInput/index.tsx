@@ -6,6 +6,7 @@ const TextInput = (props: ItextInput) => {
   const TextInput = useRef(null);
 
   const ValueHandler = (e) => {
+    
     let value = e.target.value;
     if (props.number) {
       const persianNumbers = [
@@ -59,17 +60,18 @@ const TextInput = (props: ItextInput) => {
         {props.label}
       </label>
       <input
-        onInvalid={(e: any) => {
-          if (props.value.length < props.min) {
-            e.target.setCustomValidity(
-              `حداقل ورودی باید ${props.min} کاراکتر باشد`
-            );
-          } else if (props.value.length > props.max) {
-            e.target.setCustomValidity(
-              `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
-            );
-          }
-        }}
+        data-test="input"
+        // onInvalid={(e: any) => {
+        //   if (props.value.length < props.min) {
+        //     e.target.setCustomValidity(
+        //       `حداقل ورودی باید ${props.min} کاراکتر باشد`
+        //     );
+        //   } else if (props.value.length > props.max) {
+        //     e.target.setCustomValidity(
+        //       `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+        //     );
+        //   }
+        // }}
         autoFocus={props.autoFocus}
         className={[
           "text_input",
@@ -87,7 +89,7 @@ const TextInput = (props: ItextInput) => {
           // props.value
         }
         onChange={(e: any) => {
-          e.target.setCustomValidity("");
+          // e.target.setCustomValidity("");
           ValueHandler(e);
         }}
         disabled={props.disabled}

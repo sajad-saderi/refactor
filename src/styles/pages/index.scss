@@ -6,7 +6,7 @@
     background-position: right center;
     background-size: cover;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     h1 {
@@ -17,6 +17,7 @@
       margin: 0;
       text-align: center;
       text-shadow: $text_shadow;
+      padding-top: 8vh;
     }
     h2 {
       text-shadow: $text_shadow;
@@ -53,6 +54,7 @@
       background-position: left;
       h1 {
         margin: 0;
+        padding-top: 0vh;
         font-size: 2.5rem;
       }
       h2 {
