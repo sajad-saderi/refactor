@@ -91,7 +91,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
       )}
       <div className="Load_more_car_container">
         <span className="Load_more_car" onClick={() => {}}>
-          نمایش بیشتر
+          نمایش ماشین‌های بیشتر
         </span>
       </div>
     </article>

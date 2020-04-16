@@ -879,7 +879,7 @@ const Add_Car_Step_1 = () => {
   return (
     <article className="responsive add_car_form_container">
       <div className="pageTitle">
-        <IoIosCar className="car_icon" size="6rem" color="#4ba3ce" />
+        <IoIosCar className="car_icon" size="3.3rem" color="#4ba3ce" />
         <h3>افزودن خودرو</h3>
       </div>
       <form

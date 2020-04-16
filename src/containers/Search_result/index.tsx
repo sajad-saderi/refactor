@@ -210,7 +210,7 @@ const Search_result = () => {
       </section>
       {remained_count > 0 && (
         <span className="Load_more_car" onClick={() => loadMore()}>
-          نمایش بیشتر
+          نمایش ماشین‌های بیشتر
         </span>
       )}
     </article>

@@ -567,7 +567,7 @@ const Add_Car_Step_2 = () => {
   return (
     <article className="responsive step_2_form_container">
       <div className="pageTitle">
-        <IoIosCalendar className="car_icon" size="6rem" color="#4ba3ce" />
+        <IoIosCalendar className="car_icon" size="2.6rem" color="#4ba3ce" />
         <h3>تعیین شرایط اجاره</h3>
       </div>
       <article className="step_2_image_pelak add_car_form_step_2">

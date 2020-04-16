@@ -18,13 +18,13 @@ const Header = (props: IHeader) => {
             </a>
           </Link>
         </section>
-        <section className="header_menu_bar" onClick={() => setShowMenu(true)}>
+        {/* <section className="header_menu_bar" onClick={() => setShowMenu(true)}>
           <IoIosMenu size="3rem" color="#fff" />
-        </section>
-        <div
+        </section> */}
+        {/* <div
           onClick={() => setShowMenu(false)}
           className={showMenu ? "show_menu_drawer" : "hide_menu_drawer"}
-        />
+        /> */}
         <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
           <Menu />
         </section>

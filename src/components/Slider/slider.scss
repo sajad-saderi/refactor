@@ -132,4 +132,10 @@ img.TranslateLeft {
   .NavBotton {
     bottom: 28px !important;
   }
+  .FullScreen {
+    svg {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
 }

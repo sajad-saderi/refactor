@@ -123,7 +123,7 @@ const Requests_page = () => {
         </section>
       </section>
       <span className="Load_more_car" onClick={nextPage}>
-        نمایش بیشتر
+        نمایش ماشین‌های بیشتر
       </span>
     </article>
   ) : (

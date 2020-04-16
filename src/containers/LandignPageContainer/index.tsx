@@ -219,7 +219,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
       </section>
       {remained_count > 0 && (
         <span className="Load_more_car" onClick={() => loadMore()}>
-          نمایش بیشتر
+          نمایش ماشین‌های بیشتر
         </span>
       )}
     </article>

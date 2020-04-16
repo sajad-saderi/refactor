@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IoIosArrowForward, IoIosArrowBack, IoIosExpand } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
 import "./slider.scss";
 import Gallery from "./Gallery";
 
@@ -69,63 +69,71 @@ const Slider = (props: ISlider) => {
         )}
         {carousel ? (
           <>
-            {Feed.map((item, i) => {
-              return (
-                <img
-                  key={i}
-                  onClick={CloseGallery}
-                  onTouchEnd={() => {
-                    setrightV(0);
-                    setfalgControl(false);
-                  }}
-                  onTouchStart={(e: any) => {
-                    e.persist();
-                    setstartPoint(e.changedTouches[0].screenX);
-                    setFromX(e.target.x);
-                    setfalgControl(true);
-                  }}
-                  onTouchMoveCapture={(e) => {
-                    e.persist();
-                    if (e.changedTouches[0].screenX > startPoint) {
-                      let right = e.changedTouches[0].screenX - startPoint;
-                      setrightV(-right);
-                      if (right > 100 && falgControl) {
-                        setfalgControl(false);
-                        SliderNav("left");
-                        return;
+            <div>
+              {carousel && (
+                <div className="FullScreen" onClick={CloseGallery}>
+                  <IoMdExpand size="4rem" />
+                </div>
+              )}
+              {Feed.map((item, i) => {
+                return (
+                  <img
+                    key={i}
+                    onClick={CloseGallery}
+                    onTouchEnd={() => {
+                      setrightV(0);
+                      setfalgControl(false);
+                    }}
+                    onTouchStart={(e: any) => {
+                      e.persist();
+                      setstartPoint(e.changedTouches[0].screenX);
+                      setFromX(e.target.x);
+                      setfalgControl(true);
+                    }}
+                    onTouchMoveCapture={(e) => {
+                      e.persist();
+                      if (e.changedTouches[0].screenX > startPoint) {
+                        let right = e.changedTouches[0].screenX - startPoint;
+                        setrightV(-right);
+                        if (right > 100 && falgControl) {
+                          setfalgControl(false);
+                          SliderNav("left");
+                          return;
+                        } else {
+                          // this.setState({
+                          //   rightV: "-" + 0
+                          // });
+                        }
                       } else {
-                        // this.setState({
-                        //   rightV: "-" + 0
-                        // });
+                        let left = startPoint - e.changedTouches[0].screenX;
+                        setrightV(left);
+                        if (left > 100 && falgControl) {
+                          // rightV: 0,
+                          setfalgControl(false);
+                          SliderNav("right");
+                          return;
+                        } else {
+                          // this.setState({
+                          //   rightV: 0
+                          // });
+                        }
                       }
-                    } else {
-                      let left = startPoint - e.changedTouches[0].screenX;
-                      setrightV(left);
-                      if (left > 100 && falgControl) {
-                        // rightV: 0,
-                        setfalgControl(false);
-                        SliderNav("right");
-                        return;
-                      } else {
-                        // this.setState({
-                        //   rightV: 0
-                        // });
-                      }
-                    }
-                  }}
-                  style={{
-                    right: rightV + "px",
-                  }}
-                  className={[
-                    slideIndex === i && "carousel_FrontImage",
-                    slideIndex < i && "carousel_FrontImage TranslateRight",
-                    slideIndex > i && "carousel_FrontImage TranslateLeft",
-                  ].join(" ")}
-                  src={item.url}
-                  alt={alt}
-                />
-              );
-            })}
+                    }}
+                    style={{
+                      right: rightV + "px",
+                    }}
+                    className={[
+                      slideIndex === i && "carousel_FrontImage",
+                      slideIndex < i && "carousel_FrontImage TranslateRight",
+                      slideIndex > i && "carousel_FrontImage TranslateLeft",
+                    ].join(" ")}
+                    src={item.url}
+                    alt={alt}
+                  />
+                );
+              })}
+            </div>
+
             <img
               className="carousel_BackImage"
               // className={[
@@ -195,11 +203,6 @@ const Slider = (props: ISlider) => {
                 ></span>
               );
             })}
-          </div>
-        )}
-        {carousel && (
-          <div className="FullScreen" onClick={CloseGallery}>
-            <IoIosExpand size="4rem" />
           </div>
         )}
       </div>

@@ -45,12 +45,6 @@
         display: inline-block;
         margin-left: 0.5rem;
         vertical-align: middle;
-        path:first-child {
-          color: $second__color;
-        }
-        path:last-child {
-          color: $main__color;
-        }
       }
     }
   }

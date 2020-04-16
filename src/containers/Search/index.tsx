@@ -145,13 +145,14 @@ const Search = (props: ISearch) => {
             />
             <div className="input_container">
               <p className="label">از تاریخ</p>
-              <input readOnly={true} value={fromDay ? fromDay : null}></input>
+              <input readOnly={true} value={fromDay ? fromDay : ""}></input>
             </div>
             <div className="input_container">
               <p className="label">تا تاریخ</p>
               <input
+                readOnly={true}
                 className="exception_input"
-                value={toDay ? toDay : null}
+                value={toDay ? toDay : ""}
               ></input>
             </div>
           </div>

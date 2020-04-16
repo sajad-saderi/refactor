@@ -122,6 +122,9 @@
       border-radius: 0.4rem;
       box-shadow: 0 0 0 0 transparent inset;
       box-sizing: border-box;
+      &::placeholder {
+        color: #dadada;
+      }
     }
   }
   .local_style {

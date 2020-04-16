@@ -6,7 +6,6 @@ const TextInput = (props: ItextInput) => {
   const TextInput = useRef(null);
 
   const ValueHandler = (e) => {
-    
     let value = e.target.value;
     if (props.number) {
       const persianNumbers = [
@@ -61,17 +60,17 @@ const TextInput = (props: ItextInput) => {
       </label>
       <input
         data-test="input"
-        // onInvalid={(e: any) => {
-        //   if (props.value.length < props.min) {
-        //     e.target.setCustomValidity(
-        //       `حداقل ورودی باید ${props.min} کاراکتر باشد`
-        //     );
-        //   } else if (props.value.length > props.max) {
-        //     e.target.setCustomValidity(
-        //       `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
-        //     );
-        //   }
-        // }}
+        onInvalid={(e: any) => {
+          if (props.value.length < props.min) {
+            e.target.setCustomValidity(
+              `حداقل ورودی باید ${props.min} کاراکتر باشد`
+            );
+          } else if (props.value.length > props.max) {
+            e.target.setCustomValidity(
+              `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+            );
+          }
+        }}
         autoFocus={props.autoFocus}
         className={[
           "text_input",
@@ -89,7 +88,7 @@ const TextInput = (props: ItextInput) => {
           // props.value
         }
         onChange={(e: any) => {
-          // e.target.setCustomValidity("");
+          e.target.setCustomValidity("");
           ValueHandler(e);
         }}
         disabled={props.disabled}
@@ -99,6 +98,7 @@ const TextInput = (props: ItextInput) => {
       />
       {props.value.length > 0 && !props.HideClearIcon && (
         <IoMdClose
+          data-test="svg-icon"
           color="rgb(165, 165, 165)"
           size="2rem"
           className="clean_icon"
@@ -106,7 +106,8 @@ const TextInput = (props: ItextInput) => {
         />
       )}
       {props.error.status && (
-        <p className="input_error_message">{props.error.message}</p>
+        <p 
+        data-test="input_error_message" className="input_error_message">{props.error.message}</p>
       )}
     </div>
   );

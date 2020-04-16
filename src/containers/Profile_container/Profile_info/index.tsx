@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profile_info.scss";
 import Edit_profile from "./Edit_profile";
-import { IoMdLogOut } from "react-icons/io";
+import { FiLogOut } from "react-icons/fi";
 import Button from "../../../components/form/Button";
 import Router from "next/router";
 import jsCookie from "js-cookie";
@@ -52,7 +52,7 @@ const Profile_info = (props: IProfile_info) => {
             {props.is_mine && (
               <div className="profile_controls">
                 <div className="Exit" onClick={Exit}>
-                  <IoMdLogOut size="3rem" />
+                  <FiLogOut size="2rem" color="#4ba3ce"/>
                   <p>خروج</p>
                 </div>
                 <Button
