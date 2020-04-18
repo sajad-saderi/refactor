@@ -17,32 +17,30 @@ const DropdownSearch = (props: IDropDown) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.defaultVal) {
       setInputValue(props.defaultVal);
     }
   }, [props.defaultVal]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setData(props.data);
   }, [props.data]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.error_status) {
       scrollTo(0, wrapperRef.current.offsetTop);
     }
   }, [props.error_status]);
 
   const DropDownController = () => {
-    console.log("Click");
-
     setShowController(!ShowController);
   };
 
@@ -82,7 +80,7 @@ const DropdownSearch = (props: IDropDown) => {
     >
       {props.label && (
         <label
-          data-test="label"
+          data-test-id="label"
           className={props.disabled ? "Disable_color" : null}
         >
           {props.label}
@@ -90,7 +88,7 @@ const DropdownSearch = (props: IDropDown) => {
       )}
       <div className="input_wrapper">
         <input
-          data-test="drop_down_input"
+          data-test-id="drop_down_input"
           className={[
             props.disabled ? "Disable_color" : null,
             props.styleClass ? props.styleClass : null,
@@ -124,7 +122,7 @@ const DropdownSearch = (props: IDropDown) => {
       </div>
       {ShowController ? (
         <div
-          data-test="Locations_list_container"
+          data-test-id="Locations_list_container"
           className="Locations_list_container"
         >
           {Data.length === 0 ? (
@@ -141,7 +139,7 @@ const DropdownSearch = (props: IDropDown) => {
             >
               {!props.disableSearch && (
                 <input
-                  data-test="search_input"
+                  data-test-id="search_input"
                   autoFocus
                   placeholder="جستجو"
                   name="search"
@@ -155,6 +153,7 @@ const DropdownSearch = (props: IDropDown) => {
               )}
               {Data.map((i, index) => (
                 <p
+                  data-test-id="Items"
                   className="Items"
                   onClick={() => {
                     setInputValue(i.text);

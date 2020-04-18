@@ -215,7 +215,7 @@ const Add_Car_Step_2 = () => {
   });
 
   useEffect(() => {
-    // scrollTo(0, 0);
+    scrollTo(0, 0);
     getCarInfoToEdit(Router.router.query.car_id);
     // if (Router.router.query.mode === "edit") {
     // } else {

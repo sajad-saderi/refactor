@@ -1,10 +1,10 @@
 import React from "react";
 import { mount } from "enzyme";
 import { FindByAttr } from "../../../../testUtil/FindByAttr";
-import Button from "./";
+import Dropdown from "./";
 
 const setup = (props) => {
-  return mount(<Button {...props} />);
+  return mount(<Dropdown {...props} />);
 };
 
 const clearFieldMock = jest.fn();
@@ -73,48 +73,54 @@ describe("/Dropdown component", () => {
     });
   });
 
-  // describe("test search array", () => {
-  //   let wrapper = setup(props);
-  //   const drop_down_input = FindByAttr(wrapper, "drop_down_input");
-  //   let search_input;
-  //   const setDataMock = jest.fn();
-  //   const useStateSpy = jest.spyOn(React, "useState");
-  //   beforeEach(() => {
-  //     drop_down_input.simulate("click");
-  //     search_input = FindByAttr(wrapper, "search_input");
-  //     search_input.simulate("change", { target: { value: "a" } });
-  //     setDataMock.mockClear();
-  //   });
-  //   test("update list after search ", () => {
-  //     useStateSpy.mockImplementation((init) => [init, setDataMock]);
-  //     expect(setDataMock).toHaveBeenCalledTimes(1);
-  //     expect(setDataMock).toHaveBeenCalledWith([{ text: "a", value: "a" }]);
-  //   });
-  // });
+  describe("search_input", () => {
+    let wrapper = setup(props);
+    const drop_down_input = FindByAttr(wrapper, "drop_down_input");
+    test("active `search_input` ", () => {
+      drop_down_input.simulate("click");
+      let search_input = FindByAttr(wrapper, "search_input");
+      search_input.simulate("change", { target: { value: "a" } });
+      expect(search_input.instance().value).toEqual("a");
+    });
+  });
 
-  // describe("search input handler", () => {
-  //   wrapper = setup({ ...props, disableSearch: false });
-  //   const drop_down_input = FindByAttr(wrapper, "drop_down_input");
-  //   drop_down_input.simulate("click");
-  //   const search_input = FindByAttr(wrapper, "search-input");
-  //   search_input.simulate("change", { target: { value: "a" } });
+  describe("filter result base on search input", () => {
+    let wrapper = setup(props);
+    const drop_down_input = FindByAttr(wrapper, "drop_down_input");
+    drop_down_input.simulate("click");
+    let search_input = FindByAttr(wrapper, "search_input");
+    test("input controller and filter array ", () => {
+      search_input.simulate("change", { target: { value: "a" } });
+      const Items = FindByAttr(wrapper, "Items");
+      expect(Items.length).toEqual(1);
+    });
+    test("input controller and filter array ", () => {
+      search_input.simulate("change", { target: { value: "ab" } });
+      const Items = FindByAttr(wrapper, "Items");
+      expect(Items.length).toEqual(1);
+    });
+    test("input controller and filter array ", () => {
+      search_input.simulate("change", { target: { value: "" } });
+      const Items = FindByAttr(wrapper, "Items");
+      expect(Items.length).toEqual(2);
+    });
+  });
 
-  //   beforeEach(() => {
-  //     wrapper.update()
-  //   });
-
-  //   test("search_value state", () => {
-  //     // const setSearch_valueMock = jest.fn();
-  //     // const useStateSpy = jest.spyOn(React, "useState");
-  //     // useStateSpy.mockImplementation((init) => [init, setSearch_valueMock]);
-  //     expect(search_input.text()).toEqual("text");
-
-  //     // expect(setSearch_valueMock).toHaveBeenCalledWith("Test");
-  //     // const setSearch_valueMock = jest.fn();
-  //     // const useStateSpy = jest.spyOn(React, "useState");
-  //     // const setSearch_valueMock = jest.fn();
-  //     // React.useState = jest.fn(() => ["", setSearch_valueMock]);
-  //     // expect(setSearch_valueMock).toHaveBeenCalledWith("text");
-  //   });
-  // });
+  describe("click on item", () => {
+    let wrapper = setup(props);
+    const drop_down_input = FindByAttr(wrapper, "drop_down_input");
+    drop_down_input.simulate("click");
+    const Items = FindByAttr(wrapper, "Items");
+    test("fill the input value and close the drop down box", () => {
+      Items.last().simulate("click");
+      expect(drop_down_input.instance().value).toEqual("b");
+      expect(SelectMock).toHaveBeenCalledTimes(1);
+      expect(SelectMock).toHaveBeenCalledWith({"text": "b", "value": "b"});
+      const Locations_list_container = FindByAttr(
+        wrapper,
+        "Locations_list_container"
+      );
+      expect(Locations_list_container.length).toEqual(0);
+    });
+  });
 });

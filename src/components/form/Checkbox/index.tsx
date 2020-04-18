@@ -10,19 +10,21 @@ const Checkbox = (props: ICheckbox) => {
   }, [props.data]);
 
   useEffect(() => {
-    setInitialValueList(props.initialValue);
+    if (props.initialValue) {
+      setInitialValueList(props.initialValue);
+    }
   }, [props.initialValue]);
 
   return (
     <>
       {Data.length === 0 ? (
-        <div className="resultList">
+        <div className="resultList" data-test-id="resultList">
           <Spinner display="block" width={21} color="#9E9E9E" />
         </div>
       ) : (
         <div className="check_box_container">
           {Data.map((i, index) => (
-            <label className="container" key={index}>
+            <label className="container" key={index} data-test-id="container">
               {i.text}
               {i.count ? (
                 <span className="count">{i.count}</span>
@@ -30,6 +32,7 @@ const Checkbox = (props: ICheckbox) => {
                 <span className="count">-</span>
               ) : null}
               <input
+                data-test-id="checkbox"
                 checked={initialValueList.find((item) => {
                   return item === i.value ? true : false;
                 })}

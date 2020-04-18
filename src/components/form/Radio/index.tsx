@@ -28,6 +28,7 @@ const Radio = (props: IRadio) => {
           {i.label}
           {i.extra_text && <p>{i.extra_text}</p>}
           <input
+          data-test-id="radio"
             type="radio"
             name={props.name}
             value={i.value}

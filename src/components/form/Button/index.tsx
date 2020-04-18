@@ -4,12 +4,12 @@ import "./Button.scss";
 const Button = (props: IButton) => {
   return (
     <button
-      data-test="btn"
+    data-test-id="btn"
       className={props.class}
       disabled={props.disable || props.loading}
       onClick={() => props.click()}
     >
-      {props.loading ? <span  data-test="Loading" className="Loading" /> : props.value}
+      {props.loading ? <span  data-test-id="Loading" className="Loading" /> : props.value}
     </button>
   );
 };

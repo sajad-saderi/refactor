@@ -59,7 +59,7 @@ const TextInput = (props: ItextInput) => {
         {props.label}
       </label>
       <input
-        data-test="input"
+        data-test-id="input"
         onInvalid={(e: any) => {
           if (props.value.length < props.min) {
             e.target.setCustomValidity(
@@ -98,7 +98,7 @@ const TextInput = (props: ItextInput) => {
       />
       {props.value.length > 0 && !props.HideClearIcon && (
         <IoMdClose
-          data-test="svg-icon"
+          data-test-id="svg-icon"
           color="rgb(165, 165, 165)"
           size="2rem"
           className="clean_icon"
@@ -107,7 +107,7 @@ const TextInput = (props: ItextInput) => {
       )}
       {props.error.status && (
         <p 
-        data-test="input_error_message" className="input_error_message">{props.error.message}</p>
+        data-test-id="input_error_message" className="input_error_message">{props.error.message}</p>
       )}
     </div>
   );
