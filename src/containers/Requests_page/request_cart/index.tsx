@@ -10,7 +10,7 @@ import {
   IoMdFlag,
   IoIosDownload,
   IoMdArrowRoundBack,
-  IoMdPerson
+  IoMdPerson,
 } from "react-icons/io";
 import PelakView from "../../../components/pelak";
 
@@ -54,7 +54,7 @@ const Request_cart = (props: IRequest_cart) => {
       const request_res: any = await REQUEST_REQUEST_ACTION({
         token,
         id: data.id,
-        action: data.action
+        action: data.action,
       });
       setButtonLoader(false);
       setRejectButtonLoader(false);
@@ -91,7 +91,7 @@ const Request_cart = (props: IRequest_cart) => {
                     class:
                       "Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST",
                     click: () =>
-                      setForRequest({ action: "approve", id: props.data.id })
+                      setForRequest({ action: "approve", id: props.data.id }),
                   },
                   {
                     value: "رد",
@@ -99,8 +99,8 @@ const Request_cart = (props: IRequest_cart) => {
                       "Blue_BTN request_car_reject REJECT_INCOMING_REQUEST",
                     loading: ButtonLoader,
                     click: () =>
-                      setForRequest({ action: "reject", id: props.data.id })
-                  }
+                      setForRequest({ action: "reject", id: props.data.id }),
+                  },
                 ]
               : []
           );
@@ -119,8 +119,8 @@ const Request_cart = (props: IRequest_cart) => {
                     value: "پرداخت",
                     class: "Blue_BTN request_car_pay GO_TO_BANK",
                     click: () =>
-                      setForRequest({ action: "pay", id: props.data.id })
-                  }
+                      setForRequest({ action: "pay", id: props.data.id }),
+                  },
                 ]
               : []
           );
@@ -155,8 +155,8 @@ const Request_cart = (props: IRequest_cart) => {
                     value: "خودرو را تحویل گرفتم",
                     class: "Blue_BTN request_car_pay CAR_DELIVERED",
                     click: () =>
-                      setForRequest({ action: "deliver", id: props.data.id })
-                  }
+                      setForRequest({ action: "deliver", id: props.data.id }),
+                  },
                 ]
               : []
           );
@@ -184,8 +184,8 @@ const Request_cart = (props: IRequest_cart) => {
                     class: "Blue_BTN request_car_pay",
                     click: () => {
                       setForRequest({ action: "return", id: props.data.id });
-                    }
-                  }
+                    },
+                  },
                 ]
               : []
           );
@@ -206,16 +206,16 @@ const Request_cart = (props: IRequest_cart) => {
                       value: "قبلا برای این سفارش نظر ثبت کرده اید",
                       disable: true,
                       class: "Blue_BTN request_car_pay disable_rate_btn",
-                      click: () => {}
-                    }
+                      click: () => {},
+                    },
                   ]
                 : [
                     {
                       value: "ثبت نظر",
                       class: "Blue_BTN request_car_pay",
                       click: () =>
-                        MODAL_CONTEXT.modalHandler("Renter", props.data)
-                    }
+                        MODAL_CONTEXT.modalHandler("Renter", props.data),
+                    },
                   ]
               : props.data.has_owner_reviewed_rent_order ||
                 props.data.has_owner_reviewed_renter
@@ -224,15 +224,16 @@ const Request_cart = (props: IRequest_cart) => {
                     value: "قبلا برای این سفارش نظر ثبت کرده اید",
                     disable: true,
                     class: "Blue_BTN request_car_pay disable_rate_btn",
-                    click: () => {}
-                  }
+                    click: () => {},
+                  },
                 ]
               : [
                   {
                     value: "ثبت نظر",
                     class: "Blue_BTN request_car_pay",
-                    click: () => MODAL_CONTEXT.modalHandler("Owner", props.data)
-                  }
+                    click: () =>
+                      MODAL_CONTEXT.modalHandler("Owner", props.data),
+                  },
                 ]
           );
           break;
@@ -265,7 +266,7 @@ const Request_cart = (props: IRequest_cart) => {
         registration_plate_third_part:
           props.data.rent_search_dump.registration_plate_third_part,
         registration_plate_forth_part:
-          props.data.rent_search_dump.registration_plate_forth_part
+          props.data.rent_search_dump.registration_plate_forth_part,
       });
     }
   }, [props.data]);
@@ -280,21 +281,32 @@ const Request_cart = (props: IRequest_cart) => {
               {car.brand.name.fa} {car.name.fa}
             </h2>
             <hr />
-            <h3>مدت اجاره {no_of_days} روز</h3>
-            <div className="rent_duration">
-              <p>
+
+            {/* <div className="rent_duration"> */}
+            <p>
+              <span>
                 {moment(start_date, "jYYYY/jMM/jDD").format("dddd")} <br />
-                {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
-              </p>
-              <IoMdArrowRoundBack size="2rem" color="#202020" />
-              <p>
+                <span>
+                  {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
+                </span>
+              </span>
+              {/* <IoMdArrowRoundBack size="2rem" color="#202020" /> */}
+              <span>
                 {moment(end_date, "jYYYY/jMM/jDD").format("dddd")} <br />
-                {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
-              </p>
-            </div>
-            <hr />
-            <h3>هزینه اجاره</h3>
-            <p>{discounted_total_price.toLocaleString()} تومان</p>
+                <span>
+                  {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
+                </span>
+              </span>
+            </p>
+            {/* </div> */}
+            <p>
+              <span>مدت اجاره</span>
+              <span>{no_of_days} روز</span>
+            </p>
+            <p>
+              <span>هزینه اجاره</span>
+              <span>{discounted_total_price.toLocaleString()} تومان</span>
+            </p>
           </div>
           <div className="image_pelak">
             <figure>

@@ -3,53 +3,55 @@ import { IoMdClose, IoIosArrowDown } from "react-icons/io";
 import Spinner from "../../Spinner";
 
 const DropdownSearch = (props: IDropDown) => {
-  const [InputValue, setInputValue] = useState("");
-  const [ShowController, setShowController] = useState(false);
-  const [Data, setData] = useState([]);
-  const [search_value, setSearch_value] = useState("");
+  const [InputValue, setInputValue] = React.useState("");
+  const [ShowController, setShowController] = React.useState(false);
+  const [Data, setData] = React.useState([]);
+  const [search_value, setSearch_value] = React.useState("");
 
   const wrapperRef = useRef(null);
 
-  const handleClickOutside = e => {
+  const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
       setShowController(false);
       return;
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (props.defaultVal) {
       setInputValue(props.defaultVal);
     }
   }, [props.defaultVal]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setData(props.data);
   }, [props.data]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (props.error_status) {
       scrollTo(0, wrapperRef.current.offsetTop);
     }
   }, [props.error_status]);
 
   const DropDownController = () => {
+    console.log("Click");
+
     setShowController(!ShowController);
   };
 
-  const searchHandler = e => {
+  const searchHandler = (e) => {
     if (e === "") {
       setData(props.data);
     }
 
-    let filter: any = props.data.filter(item => {
+    let filter: any = props.data.filter((item) => {
       return item.text.search(e) !== -1;
     });
     if (filter.length === 0)
@@ -57,8 +59,8 @@ const DropdownSearch = (props: IDropDown) => {
         {
           key: 0,
           text: "نتیجه ای یافت نشد",
-          value: 0
-        }
+          value: 0,
+        },
       ];
 
     setData(filter);
@@ -74,23 +76,28 @@ const DropdownSearch = (props: IDropDown) => {
     <div
       className={[
         "DropDown_container",
-        props.disabled ? "Disable_Container" : null
+        props.disabled ? "Disable_Container" : null,
       ].join(" ")}
       ref={wrapperRef}
     >
       {props.label && (
-        <label className={props.disabled ? "Disable_color" : null}>
+        <label
+          data-test="label"
+          className={props.disabled ? "Disable_color" : null}
+        >
           {props.label}
         </label>
       )}
       <div className="input_wrapper">
         <input
+          data-test="drop_down_input"
           className={[
             props.disabled ? "Disable_color" : null,
             props.styleClass ? props.styleClass : null,
-            props.error_status ? "inputError" : null
+            props.error_status ? "inputError" : null,
           ].join(" ")}
           data-hj-whitelist
+          onChange={() => {}}
           readOnly={props.InputDisable}
           disabled={props.disabled}
           value={props.hardValue ? props.hardValue : InputValue}
@@ -116,7 +123,10 @@ const DropdownSearch = (props: IDropDown) => {
         )}
       </div>
       {ShowController ? (
-        <div className="Locations_list_container">
+        <div
+          data-test="Locations_list_container"
+          className="Locations_list_container"
+        >
           {Data.length === 0 ? (
             <div
               className="resultList"
@@ -131,12 +141,13 @@ const DropdownSearch = (props: IDropDown) => {
             >
               {!props.disableSearch && (
                 <input
+                  data-test="search_input"
                   autoFocus
                   placeholder="جستجو"
                   name="search"
                   type="search"
                   value={search_value}
-                  onChange={e => {
+                  onChange={(e) => {
                     setSearch_value(e.target.value);
                     searchHandler(e.target.value);
                   }}

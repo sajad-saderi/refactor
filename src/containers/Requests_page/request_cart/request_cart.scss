@@ -1,9 +1,10 @@
 @import "../../../styles/colors";
 
 .Request_car {
+  width:100%;
+  max-width: 55rem;
   border-radius: 4px;
   margin: 0 2rem 2rem 0;
-  width: 100%;
   padding: 0rem;
   background: #fff;
   box-shadow: $box_shadow;
@@ -33,17 +34,18 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-top: 1.6rem;
+    // margin-top: 1.6rem;
     padding: 1rem;
+    padding-bottom: 0;
     .rent_info {
       width: 70%;
       h2 {
         margin-top: 0;
       }
-      h3 {
-        font-size: 1.4rem;
-        margin-top: 0;
-      }
+      // h3 {
+      //   font-size: 1.4rem;
+      //   margin-top: 0;
+      // }
       hr {
         border-width: 0.1rem;
         margin: 0.5rem 0;
@@ -53,6 +55,18 @@
       }
       p {
         font-size: 1.4rem;
+        margin-bottom: 1.6rem;
+        span {
+          width: 50%; 
+          display: inline-block;
+          font-weight: 500;
+          span{
+            font-weight: normal;
+            font-size: 1.2rem;
+            width:100%;
+            display: block;
+          }
+        }
       }
       .rent_duration {
         display: flex;
@@ -120,7 +134,7 @@
   }
 
   .Role_container {
-    padding: 0.5rem 1rem 1rem;
+    padding: 0rem 1rem 0rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -191,9 +205,9 @@
     }
     .cart {
       .rent_info {
-        h3 {
-          font-size: 1.2rem;
-        }
+        // h3 {
+        //   font-size: 1.2rem;
+        // }
         p {
           font-size: 1.2rem;
         }
