@@ -7,7 +7,7 @@ const Request = () => {
   return (
     <Layout>
       <NextSeo
-        title="رزرو‌های من | اتولی`"
+        title="رزرو‌های من | اتولی"
         description="رزرو‌های من | اتولی"
         openGraph={{
           title: `رزرو‌های من | اتولی`,
