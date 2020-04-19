@@ -56,7 +56,7 @@ const Calculator = (props: ICalculator) => {
     const estimation_res = await REQUEST_GET_CAR_PRICE_ESTIMATION({
       car_id: model.id,
       price: value,
-    }); 
+    });
 
     setLoading(false);
     setShowCalculateBox(false);
@@ -81,6 +81,7 @@ const Calculator = (props: ICalculator) => {
           <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
           <form data-test-id="form" onSubmit={calculator}>
             <DropdownSearch
+              data-test-id="brand"
               defaultVal={brand.name}
               data={brandList}
               clearField={() =>
@@ -143,6 +144,7 @@ const Calculator = (props: ICalculator) => {
               <span>تومان</span>
             </div>
             <Button
+              data-test-id="local_Button_joinUs"
               value="تخمین درآمد"
               click={() => {}}
               class="Blue_BTN local_Button_joinUs"
@@ -156,8 +158,10 @@ const Calculator = (props: ICalculator) => {
 
           <div className="addCarnowInlanding">
             <Link href="/add-car">
-              <a className="Blue_BTN addCar_top_joinus_a" 
-              data-test-id="addCar_top_joinus_a">
+              <a
+                className="Blue_BTN addCar_top_joinus_a"
+                data-test-id="addCar_top_joinus_a"
+              >
                 {props.AbText
                   ? "از درخواست‌های اجاره مرتبط باخبر شوید"
                   : "ماشین‌تان را اضافه کنید"}

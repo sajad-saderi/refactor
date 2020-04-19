@@ -3,6 +3,7 @@ import React from "react";
 const Spinner = (props: ISpinner) => {
   return (
     <span
+      data-test-id="span"
       style={{
         display: props.display,
         borderRightColor: props.color,

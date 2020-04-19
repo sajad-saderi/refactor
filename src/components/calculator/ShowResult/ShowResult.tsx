@@ -5,7 +5,7 @@ const ShowResult = (props: IShowResult) => {
     <div className="CalculatorResult" id="CalculatorResult">
       <div className="eachSvgBox">
         {props.weekly > 0 && (
-          <h3 className="CalcH3">
+          <h3 className="CalcH3" data-test-id="weekly">
             {props.weekly < 1000000
               ? props.weekly.toString().slice(0, 3)
               : props.weekly.toLocaleString().slice(0, 5)}
@@ -75,7 +75,7 @@ const ShowResult = (props: IShowResult) => {
       </div>
       <div className="eachSvgBox">
         {props.monthly && (
-          <h3 className="CalcH3">
+          <h3 className="CalcH3" data-test-id="monthly">
             {props.monthly.toLocaleString().slice(0, 5)}
             <p>{props.monthly >= 1000000 ? "میلیون" : "هزار"} تومان</p>
           </h3>
@@ -143,9 +143,11 @@ const ShowResult = (props: IShowResult) => {
       </div>
       <div className="eachSvgBox">
         {props.daily > 0 && (
-          <h3 className="CalcH3">
+          <h3 className="CalcH3" data-test-id="daily">
             {props.daily < 1000000
-              ? props.daily.toString().slice(0, 3)
+              ? props.daily < 100000
+                ? props.daily.toString().slice(0, 2)
+                : props.daily.toString().slice(0, 3)
               : props.daily.toLocaleString().slice(0, 5)}
             <p>{props.daily >= 1000000 ? "میلیون" : "هزار"} تومان</p>
           </h3>

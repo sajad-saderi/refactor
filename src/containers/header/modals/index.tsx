@@ -19,6 +19,7 @@ const Modals = (props) => {
   return (
     <div className="Modal">
       <div
+      data-test-id = "Container_class"
         className={[
           "modal_box",
           props.modal_type === "Login"
@@ -43,18 +44,21 @@ const Modals = (props) => {
         </div>
         {props.modal_type === "Login" ? (
           change ? (
-            <ConfirmCode panelController={panelController} />
+            <ConfirmCode
+              
+              panelController={panelController}
+            />
           ) : (
-            <GetUserCellPhone panelController={panelController} />
+            <GetUserCellPhone data-test-id="GetUserCellPhone" panelController={panelController} />
           )
         ) : props.modal_type === "TellMe" ? (
-          <TellMe />
+          <TellMe data-test-id="TellMe" />
         ) : props.modal_type === "Renter" ? (
-          <Renter data={props.data} />
+          <Renter data-test-id="Renter" data={props.data} />
         ) : props.modal_type === "Owner" ? (
-          <Owner data={props.data} />
+          <Owner data-test-id="Owner" data={props.data} />
         ) : props.modal_type === "Law" ? (
-          <Law />
+          <Law data-test-id="Law" />
         ) : null}
       </div>
       <div className="back_draw" onClick={() => Modal_context.modalHandler()} />

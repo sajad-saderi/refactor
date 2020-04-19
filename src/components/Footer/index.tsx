@@ -39,7 +39,7 @@ const Footer = (props: IFooter) => {
   };
 
   return (
-    <footer className={hide ? "hide_footer" : null}>
+    <footer data-test-id="footer" className={hide ? "hide_footer" : null}>
       <div
         className={["toTop", showTop ? "showTop" : null].join(" ")}
         onClick={toTop}

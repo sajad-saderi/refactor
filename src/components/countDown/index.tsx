@@ -42,7 +42,7 @@ const CountDown = (props: ITime) => {
       type: "REDUCE",
     });
   };
-  return <span>{Time}</span>;
+  return <span data-test-id="time">{Time}</span>;
 };
 
 interface ITime {
