@@ -117,7 +117,7 @@ const Search = (props: ISearch) => {
 
   return (
     <section className="search_box">
-      <form onSubmit={(e) => GotoSearchResult(e)}>
+      <form data-test-id="GotoSearchResult" onSubmit={(e) => GotoSearchResult(e)}>
         <div className="search_box_div">
           <p className="label">خودرو خود را کجا تحویل میگیرید؟</p>
           <DropdownSearch

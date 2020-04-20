@@ -6,7 +6,7 @@ import Router from "next/router";
 import jsCookie from "js-cookie";
 import {
   REQUEST_SET_OUT_OF_SERVICE,
-  REQUEST_DELETE_CAR
+  REQUEST_DELETE_CAR,
 } from "../../../../API";
 import Spinner from "../../../../components/Spinner";
 
@@ -38,7 +38,7 @@ const Car = (props: ICar) => {
     const service_res: any = await REQUEST_SET_OUT_OF_SERVICE({
       token,
       id: id,
-      value: !is_out_of_service
+      value: !is_out_of_service,
     });
     setIs_out_of_service(service_res);
     setIs_out_of_service_loading(false);
@@ -54,14 +54,17 @@ const Car = (props: ICar) => {
     car && (
       <div className="carcard">
         <Link href={`/car/[id]`} as={link}>
-          <a className={`CAR_CART_${car.brand.name.fa} ${car.name.fa}`}>
+          <a
+            data-test-id="Link"
+            className={`CAR_CART_${car.brand.name.fa} ${car.name.fa}`}
+          >
             <figure>
               <img
                 style={{ position: "absolute", top: -heightController + "px" }}
                 src={media_set[0].thumbnail_url}
                 className="img-fluid"
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
-                onLoadCapture={e => {
+                onLoadCapture={(e) => {
                   e.persist();
                   let imageHeight = media_set[0].thumbnail_height;
 
@@ -76,7 +79,7 @@ const Car = (props: ICar) => {
             </figure>
             <div className="info_box">
               <div className="car_brand">
-                <h3>{`${car.brand.name.fa} ${car.name.fa}`}</h3>
+                <h3 data-test-id="car_brand_h3">{`${car.brand.name.fa} ${car.name.fa}`}</h3>
                 <p>{year.name.fa}</p>
               </div>
             </div>
@@ -95,29 +98,29 @@ const Car = (props: ICar) => {
             {is_out_of_service_loading ? (
               <Spinner display="inline-block" width={20} color="#4ba3ce" />
             ) : (
-              <p className="OUT_OF_SERVICE" onClick={setServiceStatus}>
+              <p
+                data-test-id="OUT_OF_SERVICE"
+                className="OUT_OF_SERVICE"
+                onClick={setServiceStatus}
+              >
                 {is_out_of_service ? "نمایش مجدد خودرو" : "توقف نمایش"}
               </p>
             )}
             <span>
-              {
-                <IoMdCreate
-                  color="#4ba3ce"
-                  size="2rem"
-                  onClick={() => {
-                    Router.push(`/add-car?mode=edit&car_id=${id}`);
-                  }}
-                />
-              }
+              <IoMdCreate
+                color="#4ba3ce"
+                size="2rem"
+                onClick={() => {
+                  Router.push(`/add-car?mode=edit&car_id=${id}`);
+                }}
+              />
             </span>
             <span>
-              {
-                <IoIosTrash
-                  onClick={deleteTheCar}
-                  color="#4ba3ce"
-                  size="2rem"
-                />
-              }
+              <IoIosTrash
+                onClick={deleteTheCar}
+                color="#4ba3ce" 
+                size="2rem"
+              />
             </span>
           </div>
         )}

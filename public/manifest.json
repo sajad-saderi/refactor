@@ -1,0 +1,12 @@
+{
+  "name": "Otoli",
+  "short_name": "Otoli",
+  "theme_color": "#4ba3ce",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": null,
+  "splash_pages": null
+}
