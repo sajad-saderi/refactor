@@ -1,13 +1,13 @@
-"use strict";
+// "use strict";
 
 // var deferredPrompt;
 // const util = require("./util");
 
 // util();
 
-self.addEventListener("beforeinstallprompt", (event) => { 
-  console.log("[Service worker] beforeinstallprompt", event); 
-});
+// self.addEventListener("beforeinstallprompt", (event) => { 
+//   console.log("[Service worker] beforeinstallprompt", event); 
+// });
 // self.addEventListener("fetch", (event) => {
 //   console.log("[Service worker] Fetching something....", event);
 // });

@@ -110,7 +110,7 @@ const Search = (props: ISearch) => {
 
   const convertDate = (v) => {
     let value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
-      "dddd jDD jMMMM jYY"
+      "dddd jDD jMMMM"
     );
     return value;
   };

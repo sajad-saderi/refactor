@@ -11,13 +11,14 @@
     flex-direction: column;
     h1 {
       color: #fff;
-      font-size: 4.5rem;
+      font-size: 4rem;
       font-weight: 900;
       width: 100%;
       margin: 0;
       text-align: center;
       text-shadow: $text_shadow;
-      padding-top: 8vh;
+      padding-top: 14vh;
+      line-height: 1.7;
     }
     h2 {
       text-shadow: $text_shadow;
@@ -26,7 +27,7 @@
       color: #fff;
       font-size: 2.1rem;
       line-height: 1.5;
-      margin: 10px 0px 26px;
+      margin: 0px 0px 26px;
       text-align: center;
     }
     .search_container {

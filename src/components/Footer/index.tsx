@@ -6,10 +6,9 @@ import Router from "next/router";
 import {
   IoIosArrowDropup,
   IoLogoTwitter,
-  IoLogoInstagram,
-  IoIosSend,
+  IoLogoInstagram, 
 } from "react-icons/io";
-
+import { FaTelegram } from "react-icons/fa";
 const Footer = (props: IFooter) => {
   const [hide, setHide] = useState(false);
   const [showTop, setShowTop] = useState(false);
@@ -94,7 +93,7 @@ const Footer = (props: IFooter) => {
               <IoLogoTwitter size="3rem" color="#4ba3ce" />
             </a>
             <a target="_black" href="https://t.me/otoli_net">
-              <IoIosSend size="3rem" color="#4ba3ce" />
+              <FaTelegram size="3rem" color="#4ba3ce" />
             </a>
           </div>
           <p>

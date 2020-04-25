@@ -142,18 +142,18 @@
       .Date_picker_container {
         width: 100%;
         margin: 0;
-        .date_Input_Container {
-          margin: 0rem auto;
-          display: block;
-          .input_container {
-            margin-bottom: 1rem;
-            margin-bottom: 1rem;
-            input{
-              border: 1px solid $input_border;
-              border-radius: 4px !important;
-            }
-          }
-        }
+        // .date_Input_Container {
+        //   margin: 0rem auto;
+        //   display: block;
+        //   .input_container {
+        //     margin-bottom: 1rem;
+        //     margin-bottom: 1rem;
+        //     input{
+        //       border: 1px solid $input_border;
+        //       border-radius: 4px !important;
+        //     }
+        //   }
+        // }
       }
     }
   }
