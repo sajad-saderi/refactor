@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { REQUEST_GET_USER_CARS } from "../../../API";
 import Router from "next/router";
 import Car from "./car";
-import "./profile_car.scss";
+// import "./profile_car.scss";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 import Radio from "../../../components/form/Radio";
 

@@ -7,6 +7,8 @@
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
+  "dir":"rtl",
+  "lang":"fa-IR",
   "icons": [
     {
       "src": "/android-icon-36x36.png",

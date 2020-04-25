@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { REQUEST_GET_RENTAL_CAR } from "../../../../src/API";
 import Router from "next/router";
 import Slider from "../../../../src/components/Slider";
-import "./carpage.scss";
 import Button from "../../../components/form/Button";
 import { IoIosLink } from "react-icons/io";
 import Link from "next/link";
-import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker"; 
 import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
 import { NextSeo } from "next-seo";
+
+// import "./carpage.scss";
 
 const CarPage = () => {
   const [dayRange, setDayRange] = React.useState<DayRange>({

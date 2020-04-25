@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMdClose, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import "./Gallery.scss";
+// import "./Gallery.scss";
 
 const Gallery = (props: IGallery) => {
   const [Feed, setFeed] = useState([]);

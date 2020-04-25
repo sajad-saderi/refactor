@@ -4,7 +4,7 @@ import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import moment from "moment-jalaali";
-import "./Search_result.scss";
+// import "./Search_result.scss";
 import Search from "../Search";
 
 let Location = 1;

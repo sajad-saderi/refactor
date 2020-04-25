@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Counter.scss";
+// import "./Counter.scss";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
 const Counter = (props: ICounter) => {

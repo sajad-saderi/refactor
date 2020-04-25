@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./profile_info.scss";
+// import "./profile_info.scss";
 import Edit_profile from "./Edit_profile";
 import { FiLogOut } from "react-icons/fi";
 import Button from "../../../components/form/Button";

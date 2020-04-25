@@ -14,7 +14,7 @@ import {
 } from "react-icons/io";
 import PelakView from "../../../components/pelak";
 
-import "./request_cart.scss";
+// import "./request_cart.scss";
 import Link from "next/link";
 import Button from "../../../components/form/Button";
 import { REQUEST_REQUEST_ACTION } from "../../../API";

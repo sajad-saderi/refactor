@@ -1,7 +1,7 @@
 import React from "react";
 
 import Car from "./car";
-import "./search_result.scss";
+// import "./search_result.scss";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 
 const SearchResultList = (props) => {

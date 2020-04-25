@@ -405,9 +405,79 @@ input {
   }
 }
 
+
+// 3rd parties
+// @import "react-modern-calendar-datepicker/lib/DatePicker.css";
+// @import "nouislider/distribute/nouislider.css";
+
+// Pages
+@import "./pages/index.scss";
+@import "./pages/Failed_payment.scss";
+@import "./pages/faq.scss";
+@import "./pages/join-us.scss";
+@import "./pages/otoli.scss"; 
+@import "./pages/search_result.scss"; 
+@import "./pages/static_pages.scss"; 
+@import "./pages/Success_payment.scss"; 
+
+
+// Components
+// Form
 @import "../components/form/Dropdown/DropDown.scss";
 @import "../components/form/Checkbox/Checkbox.scss";
-@import "../components/form/Radio/radio.scss";
-@import "../components/form/Checkbox/Checkbox.scss";
-@import "./pages/static_pages.scss";
+@import "../components/form/Radio/radio.scss"; 
+@import "../components/form/TextInput/inputStyle.scss";
+@import "../components/form/Button/Button.scss";
+@import "../components/Accordion/Accordion.scss";
+
+// component
+@import "../components/cartPlaceholder/CarLoading/car_cart.scss";
+@import "../components/cartPlaceholder/carPageLoading/carPageLoading.scss";
+@import "../components/cartPlaceholder/checkoutLoading/checkoutLoading.scss";
+@import "../components/cartPlaceholder/requestLoading/requestLoading.scss";
+@import "../components/Counter/Counter.scss";
+@import "../components/Footer/footer.scss";
+@import "../components/ImageUploader/ImageUploader.scss";
+@import "../components/pelak/pelak.scss";
+@import "../components/PleaseLogin/please_login.scss";
+@import "../components/Slider/slider.scss";
+@import "../components/Slider/Gallery/Gallery.scss";
 @import "../components/Spinner/spinner.scss";
+@import "../components/TabCreator/TabCreator.scss";
+
+// Containers
+@import "../containers/Add_car/Add_car.scss";
+@import "../containers/Add_car/step_1/step_1.scss";
+@import "../containers/car/carpage/carpage.scss";
+@import "../containers/car/search-result/search_result.scss"; 
+@import "../containers/car/search-result/car/car.scss";
+@import "../containers/Checkout_Container/checkout.scss";
+@import "../containers/Checkout_Container/insurance/insurance.scss";
+@import "../containers/CompleteRegister/complete_register.scss";
+@import "../containers/Filters/Filter.scss";
+@import "../containers/header/header.scss";
+@import "../containers/header/modals/modal.scss";
+@import "../containers/header/modals/GetUserCellPhone/userCellphone.scss";
+@import "../containers/header/modals/Law/Law.scss";
+@import "../containers/header/modals/Owner/Owner.scss";
+@import "../containers/header/modals/Renter/Renter.scss";
+@import "../containers/header/modals/Tell_me/Tell_me.scss";
+@import "../containers/LandignPageContainer/Search_result.scss";
+@import "../containers/LandignPageContainer/landingPageContent/landingPageContent.scss";
+@import "../containers/Profile_container/Profile_container.scss";
+@import "../containers/Profile_container/Profile_Cars/profile_car.scss";
+@import "../containers/Profile_container/Profile_Cars/car/car.scss";
+@import "../containers/Profile_container/Profile_info/profile_info.scss";
+@import "../containers/Profile_container/Profile_info/Edit_profile/edit_profile.scss";
+@import "../containers/Request_page/Requests_page.scss";
+@import "../containers/Request_page/request_cart/request_cart.scss";
+@import "../containers/Requests_page/Requests_page.scss";
+@import "../containers/Requests_page/request_cart/request_cart.scss";
+@import "../containers/Search/search.scss";
+@import "../containers/Search_result/Search_result.scss";
+@import "../containers/Set_car_timing/set_car.scss";
+@import "../containers/Set_car_timing/step_2/step_2.scss";
+@import "../containers/Set_car_timing/PriceBox/PriceBox.scss";
+@import "../containers/Set_car_timing/DiscountBox/DiscountBox.scss";
+
+

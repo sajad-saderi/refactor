@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import "./Renter.scss";
+// import "./Renter.scss";
 import Button from "../../../../components/form/Button";
 import modal_context from "../../../../context/Modal_context";
 import StarRatings from "react-star-ratings";

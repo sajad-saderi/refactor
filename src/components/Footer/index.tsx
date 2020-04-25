@@ -1,9 +1,8 @@
-/* tslint:disable */
 import * as React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
-import "./footer.scss";
+// import "./footer.scss";
 import {
   IoIosArrowDropup,
   IoLogoTwitter,

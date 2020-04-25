@@ -1,5 +1,5 @@
 import React from "react";
-import "./carPageLoading.scss";
+// import "./carPageLoading.scss";
 
 const CarPageLoading = () => {
   return (

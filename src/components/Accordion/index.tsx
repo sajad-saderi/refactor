@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import "./Accordion.scss";
+// import "./Accordion.scss";
 
 const Accordion = (props: IAccordion) => {
   const [index, setIndex] = useState(0);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
-import "./slider.scss";
+// import "./slider.scss";
 import Gallery from "./Gallery";
 
 const Slider = (props: ISlider) => {

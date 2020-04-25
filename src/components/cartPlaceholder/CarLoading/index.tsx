@@ -1,5 +1,5 @@
 import React from "react";
-import "./car_cart.scss";
+// import "./car_cart.scss";
 
 const CarLoading = () => {
   return (

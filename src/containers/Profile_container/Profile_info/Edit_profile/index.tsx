@@ -7,7 +7,7 @@ import {
 } from "../../../../API";
 import Router from "next/router";
 import TextInput from "../../../../components/form/TextInput";
-import "./edit_profile.scss";
+// import "./edit_profile.scss";
 import Button from "../../../../components/form/Button";
 import jsCookie from "js-cookie";
 

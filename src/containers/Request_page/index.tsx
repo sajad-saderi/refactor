@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import jsCookie from "js-cookie";
 import { GET_ORDER_REQUEST } from "../../API";
 import Router from "next/router";
-import "./Requests_page.scss";
+// import "./Requests_page.scss";
 import Request_cart from "./request_cart";
 import Modal_context from "../../../src/context/Modal_context";
 import Auth_context from "../../../src/context/Auth_context";

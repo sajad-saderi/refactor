@@ -95,7 +95,7 @@ define("./sw.js",['./workbox-1a4a986e'], function (workbox) { 'use strict';
   * See https://goo.gl/2aRDsh
   */
 
-  importScripts();
+  importScripts("worker-development.js");
   workbox.skipWaiting();
   workbox.clientsClaim();
   /**
@@ -124,10 +124,10 @@ define("./sw.js",['./workbox-1a4a986e'], function (workbox) { 'use strict';
     "revision": "9e99330d7177a9df34074356546c67da"
   }, {
     "url": "/_next/static/runtime/webpack.js",
-    "revision": "7e6038d424b9c519bb80b20d4387aee6"
+    "revision": "452a7b25446c44ae493e5fc7f6f5c193"
   }, {
     "url": "/_next/static/runtime/webpack.js.map",
-    "revision": "c391f3df8439df1c21f59e0d60aae203"
+    "revision": "472630517f0f3b43c020dd292de22166"
   }], {
     "ignoreURLParametersMatching": [/ts/]
   });

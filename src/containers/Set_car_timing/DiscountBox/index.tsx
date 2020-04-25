@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
-import "./DiscountBox.scss";
+// import "./DiscountBox.scss";
 import { IoMdAdd } from "react-icons/io";
 
 const DiscountBox = (props: IDiscountBox) => {

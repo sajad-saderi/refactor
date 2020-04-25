@@ -9,7 +9,7 @@ import { REQUEST_GET_LOCATION } from "../../API/index";
 
 import Router from "next/router";
 
-import "./search.scss";
+// import "./search.scss";
 import Button from "../../components/form/Button";
 
 import modal_context from "../../context/Modal_context";

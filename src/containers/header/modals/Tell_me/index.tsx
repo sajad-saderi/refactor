@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import axios from "axios";
-import "./Tell_me.scss";
+// import "./Tell_me.scss";
 import Button from "../../../../components/form/Button";
 import modal_context from "../../../../context/Modal_context";
 

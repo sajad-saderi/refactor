@@ -1,5 +1,5 @@
 import React from "react";
-import "./landingPageContent.scss";
+// import "./landingPageContent.scss";
 
 const Landing_Page_Content = (props: ILanding_Page_Content) => {
   return (

@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useContext, useEffect } from "react";
-import "./complete_register.scss";
+// import "./complete_register.scss";
 import DropdownSearch from "../../components/form/Dropdown";
 import TextInput from "../../components/form/TextInput";
 import jsCookie from "js-cookie";

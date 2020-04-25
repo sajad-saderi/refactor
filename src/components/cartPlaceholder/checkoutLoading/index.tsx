@@ -1,5 +1,5 @@
 import React from "react";
-import "./checkoutLoading.scss";
+// import "./checkoutLoading.scss";
 
 const Checkout_Container_Loader = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Radio from "../../../components/form/Radio";
 
-import "./insurance.scss";
+// import "./insurance.scss";
 
 const Insurance = (props: IInsurance) => {
   const [value, setValue] = useState(2);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from "../../API";
 import Router from "next/router";
-import "./checkout.scss";
+// import "./checkout.scss";
 
 import Button from "../../components/form/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";

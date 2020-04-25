@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import "./car.scss";
+// import "./car.scss";
 
 const Car = (props) => {
   const [heightController, setheightController] = useState(0);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import "./TabCreator.scss";
+// import "./TabCreator.scss";
 import Link from "next/link";
 
 const TabCreator = (props: ITabCreator) => {

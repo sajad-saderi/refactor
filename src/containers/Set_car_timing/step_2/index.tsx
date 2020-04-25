@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { IoIosCalendar } from "react-icons/io";
-import "./step_2.scss";
+// import "./step_2.scss";
 import {
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_GET_RENTAL_CAR_AVAILABILITIES,
