@@ -5,6 +5,8 @@ import Header from "../containers/header";
 import "../styles/main.scss";
 import modal_context from "../context/Modal_context";
 import auth_context from "../context/Auth_context";
+import toast_context from "../context/Toast_context";
+import Toast from "../components/Toast";
 
 const ShowModalReducer = (current, action) => {
   if (action.type === "SET") return !current;
@@ -14,6 +16,9 @@ const Layout = (props: ILayout) => {
   const [modalType, setModalType] = useState("Login");
   const [data, setData] = useState(null);
   const [Auth, setAuth] = useState(false);
+  const [toast, setToast] = useState(true);
+  const [toastData, setToastData] = useState(null);
+
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
 
   useEffect(() => {
@@ -35,30 +40,47 @@ const Layout = (props: ILayout) => {
     setData(data);
   };
 
+  const toast_handler = (data) => {
+    setToastData(data);
+    // setToast(!toast);
+  };
+
   return (
     <>
-      <modal_context.Provider
+      <toast_context.Provider
         value={{
-          show_modal: Show_Modal,
-          modalHandler: (type, data) => {
-            modal_handler(type, data);
+          show_toast: toast,
+          toast_option: (data) => {
+            toast_handler(data);
           },
         }}
       >
-        <auth_context.Provider
+        <modal_context.Provider
           value={{
-            Auth: Auth,
-            Auth_Manager: (v) => setAuth(v),
+            show_modal: Show_Modal,
+            modalHandler: (type, data) => {
+              modal_handler(type, data);
+            },
           }}
         >
-          <Header
-            modalType={modalType}
-            Show_Modal={Show_Modal}
-            data={data}
-          ></Header>
-          <main>{props.children}</main>
-        </auth_context.Provider>
-      </modal_context.Provider>
+          <auth_context.Provider
+            value={{
+              Auth: Auth,
+              Auth_Manager: (v) => setAuth(v),
+            }}
+          >
+            <Header
+              modalType={modalType}
+              Show_Modal={Show_Modal}
+              data={data}
+            ></Header>
+            <main>{props.children}</main>
+          </auth_context.Provider>
+        </modal_context.Provider>
+        {toast ? (
+          <Toast message="tedt" closeHandler={() => setToast(false)} time={5} />
+        ) : null}
+      </toast_context.Provider>
       <Footer hide={props.hide} />
     </>
   );

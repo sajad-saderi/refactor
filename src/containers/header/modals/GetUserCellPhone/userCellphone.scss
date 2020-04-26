@@ -11,6 +11,11 @@
   width: 100%;
   form {
     width: 100%;
+    .text_input_container {
+      .text_input_label {
+        line-height: 1.5;
+      }
+    }
     .error_message {
       color: $Error_text_color;
       font-size: 1.2rem;

@@ -27,6 +27,7 @@ const Search = (props: ISearch) => {
 
   const [locationsList, setLocationsList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showBorder, setShowBorder] = useState(false);
 
   const MODAL_CONTEXT = useContext(modal_context);
 
@@ -102,6 +103,7 @@ const Search = (props: ISearch) => {
       setToDay(" ");
     }
     if (dayRange.to) {
+      setShowBorder(false)
       setToDay(convertDate(dayRange.to));
     } else {
       setToDay(" ");
@@ -117,7 +119,10 @@ const Search = (props: ISearch) => {
 
   return (
     <section className="search_box">
-      <form data-test-id="GotoSearchResult" onSubmit={(e) => GotoSearchResult(e)}>
+      <form
+        data-test-id="GotoSearchResult"
+        onSubmit={(e) => GotoSearchResult(e)}
+      >
         <div className="search_box_div">
           <p className="label">خودرو خود را کجا تحویل میگیرید؟</p>
           <DropdownSearch
@@ -133,7 +138,17 @@ const Search = (props: ISearch) => {
           />
         </div>
         <div className="Date_picker_container">
-          <div className="date_Input_Container">
+          <div
+            className={[
+              "date_Input_Container",
+              dayRange.from
+                ? dayRange.to
+                  ? "PushToRight"
+                  : "PushToLeft"
+                : "PushToRight",
+            ].join(" ")}
+            onClick={() => setShowBorder(true)}
+          >
             <DatePicker
               value={dayRange}
               onChange={setDayRange}
@@ -145,13 +160,36 @@ const Search = (props: ISearch) => {
             />
             <div className="input_container">
               <p className="label">از تاریخ</p>
-              <input readOnly={true} value={fromDay ? fromDay : ""}></input>
+              <input
+                className={
+                  showBorder
+                    ? dayRange.from
+                      ? dayRange.to
+                        ? "activeBorder"
+                        : null
+                      : "activeBorder"
+                    : null
+                }
+                readOnly={true}
+                value={fromDay ? fromDay : ""}
+              ></input>
             </div>
             <div className="input_container">
               <p className="label">تا تاریخ</p>
               <input
+                className={[
+                  "exception_input",
+                  showBorder
+                    ? dayRange.to
+                      ? dayRange.from
+                        ? null
+                        : null
+                      : dayRange.from
+                      ? "activeBorder"
+                      : null
+                    : null,
+                ].join(" ")}
                 readOnly={true}
-                className="exception_input"
                 value={toDay ? toDay : ""}
               ></input>
             </div>

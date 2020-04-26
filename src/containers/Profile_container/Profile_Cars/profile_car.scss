@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: flex-start;
+  width: 100%;
   .service_filer {
     width: 100%;
     text-align: left;
@@ -32,6 +33,15 @@
       label {
         color: rgba(0, 0, 0, 0.9);
       }
+    }
+  }
+  .noCar_added {
+    margin-top: 2rem;
+    text-align: center;
+    p {
+      font-weight: 500;
+      font-size: 1.4rem;
+      margin-bottom: 1.4rem;
     }
   }
   .Load_more_car_container {

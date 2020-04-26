@@ -48,6 +48,7 @@
     .send_again {
       cursor: pointer;
       color: $AnchorTag_Color;
+      text-align: right;
     }
     .go_back {
       display: inline-block;
@@ -58,14 +59,24 @@
         text-align: left;
       }
       .Edit_number {
+        text-align: left;
         cursor: pointer;
       }
       .Count_Down_text {
         cursor: not-allowed;
+        text-align: right;
       }
     }
     svg {
       cursor: pointer;
+    }
+  }
+}
+
+@media screen and(max-width:720px) {
+  .Modal {
+    .Tell_me {
+      width: 80%;
     }
   }
 }

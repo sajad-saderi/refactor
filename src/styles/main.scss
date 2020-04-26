@@ -134,6 +134,7 @@ section {
 }
 body {
   line-height: 1;
+  background-color:$page_background_color;
 }
 ol,
 ul {
@@ -168,7 +169,6 @@ strong {
 
 // MAIN
 main {
-  background-color: #fafafa;
   padding-bottom: 2.4rem;
 }
 
@@ -444,6 +444,7 @@ input {
 @import "../components/Slider/Gallery/Gallery.scss";
 @import "../components/Spinner/spinner.scss";
 @import "../components/TabCreator/TabCreator.scss";
+@import "../components/Toast/toast.scss";
 
 // Containers
 @import "../containers/Add_car/Add_car.scss";

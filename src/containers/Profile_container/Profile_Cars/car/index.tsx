@@ -103,7 +103,7 @@ const Car = (props: ICar) => {
                 className="OUT_OF_SERVICE"
                 onClick={setServiceStatus}
               >
-                {is_out_of_service ? "نمایش مجدد خودرو" : "توقف نمایش"}
+                {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
               </p>
             )}
             <span>

@@ -1,10 +1,12 @@
 @import "../colors";
+@import "../units";
 
 .FAQ_Page {
   background-color: #fff;
   box-shadow: $box-shadow;
   padding: 1.6rem;
   border-radius: 4px;
+  margin-top: $padding_top;
   h1 {
     font-size: 2rem;
     margin: 0;

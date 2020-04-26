@@ -5,10 +5,11 @@ import Car from "./car";
 // import "./profile_car.scss";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 import Radio from "../../../components/form/Radio";
+import Button from "../../../components/form/Button";
 
 let useFilter = false;
 const Profile_Cars = (props: IProfile_Cars) => {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [active, setActive] = useState(1);
   useEffect(() => {
     fetchApi();
@@ -18,7 +19,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
   }, []);
   const fetchApi = async (is_out_of_service?) => {
     let data: any = {};
-    setResult([]);
+    setResult(null);
     if (useFilter) {
       data = { id: `${Router.router.query.id}`, is_out_of_service };
     } else {
@@ -60,7 +61,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
               value: 1,
             },
             {
-              label: "خارج از سرویس",
+              label: "غیر فعال",
               value: 2,
             },
             {
@@ -70,17 +71,31 @@ const Profile_Cars = (props: IProfile_Cars) => {
           ]}
         />
       </div>
-      {result.length > 0 ? (
-        result.map((item, i) => {
-          return (
-            <Car
-              key={i}
-              data={item}
-              is_mine={props.is_mine}
-              getListAgain={fetchApi}
+      {result ? (
+        result.length > 0 ? (
+          result.map((item, i) => {
+            return (
+              <Car
+                key={i}
+                data={item}
+                is_mine={props.is_mine}
+                getListAgain={fetchApi}
+              />
+            );
+          })
+        ) : (
+          <div className="noCar_added">
+            <p>تا کنون خودرویی ثبت نکرده اید.</p>
+            <Button
+              value="+ افزودن خودرو"
+              class="Blue_BTN"
+              click={() => {
+                Router.push("/add-car");
+              }}
+              loading={false}
             />
-          );
-        })
+          </div>
+        )
       ) : (
         <>
           <CarLoading />
@@ -89,11 +104,15 @@ const Profile_Cars = (props: IProfile_Cars) => {
           <CarLoading />
         </>
       )}
-      <div className="Load_more_car_container">
-        <span className="Load_more_car" onClick={() => {}}>
-          نمایش ماشین‌های بیشتر
-        </span>
-      </div>
+      {result ? (
+        result.length !== 0 ? (
+          <div className="Load_more_car_container">
+            <span className="Load_more_car" onClick={() => {}}>
+              نمایش ماشین‌های بیشتر
+            </span>
+          </div>
+        ) : null
+      ) : null}
     </article>
   );
 };

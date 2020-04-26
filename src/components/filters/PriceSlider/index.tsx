@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 
 import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
 import "./price_filter.scss";
+import "nouislider/distribute/nouislider.css";
 
 import filterContext from "../../../context/filter-context";
 

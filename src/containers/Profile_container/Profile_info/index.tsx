@@ -52,7 +52,7 @@ const Profile_info = (props: IProfile_info) => {
             {props.is_mine && (
               <div className="profile_controls">
                 <div className="Exit" onClick={Exit}>
-                  <FiLogOut size="2rem" color="#4ba3ce"/>
+                  <FiLogOut size="2rem" color="#4ba3ce" />
                   <p>خروج</p>
                 </div>
                 <Button
@@ -67,7 +67,15 @@ const Profile_info = (props: IProfile_info) => {
             )}
           </>
         ) : (
-          <Edit_profile data={user_info} setEdit={() => setEdit(false)} />
+          <Edit_profile
+            data={user_info}
+            setEdit={(reload) => {
+              setEdit(!edit);
+              if (reload) {
+                Router.reload();
+              }
+            }}
+          />
         )
       ) : null}
     </article>
