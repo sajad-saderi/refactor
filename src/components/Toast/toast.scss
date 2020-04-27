@@ -4,8 +4,9 @@
   width: 100%;
   bottom: 0;
   right: 0;
+  z-index: 100;
   .toast_div {
-    max-width: 68rem;
+    max-width: 55rem;
     margin: auto;
     background-color: $back_ground_color;
     box-shadow: $box_shadow;

@@ -10,12 +10,12 @@ const SET_ORDER_RETURN = "/core/rental-car/order/return";
 const SET_ORDER_RATE = {
   OWNER: {
     USER: "/core/rental-car/review/renter/owner",
-    RENT_ORDER: "/core/rental-car/review/renter/rent-order"
+    RENT_ORDER: "/core/rental-car/review/renter/rent-order",
   },
   RENTER: {
     USER: "/core/rental-car/review/owner/renter",
-    RENT_ORDER: "/core/rental-car/review/owner/rent-order"
-  }
+    RENT_ORDER: "/core/rental-car/review/owner/rent-order",
+  },
 };
 
 export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
@@ -54,32 +54,30 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       case "rate":
         if (data.payload.toRate === "owner") {
           if (data.payload.type === "user") {
-            message = "امتیاز شما برای اجاره دهنده ثبت شد.";
-
+            // message = "امتیاز شما برای اجاره دهنده ثبت شد.";
             ACTION_URL = SET_ORDER_RATE.OWNER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
-              rate: data.payload.rate
+              rate: data.payload.rate,
             };
           }
           if (data.payload.type === "rent-order") {
-            message = "امتیاز شما برای خودرو ثبت شد.";
-
+            // message = "امتیاز شما برای خودرو ثبت شد.";
             ACTION_URL = SET_ORDER_RATE.OWNER.RENT_ORDER;
             more = {
               rent_order_id: data.id,
               rate: data.payload.rate,
-              review: data.payload.review
+              review: data.payload.review,
             };
           }
         } else if (data.payload.toRate === "renter") {
           if (data.payload.type === "user") {
-            message = "امتیاز شما برای اجاره گیرنده ثبت شد.";
+            // message = "امتیاز شما برای اجاره گیرنده ثبت شد.";
 
             ACTION_URL = SET_ORDER_RATE.RENTER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
-              rate: data.payload.rate
+              rate: data.payload.rate,
             };
           }
           // if (data.payload.type === 'rent-order') {
@@ -95,17 +93,17 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         DOMAIN + ACTION_URL,
         {
           id: data.id,
-          ...more
+          ...more,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         console.log(response);
-        resolve(response.data);
+        resolve({ ...response.data, message });
         // data.action !== "pay" &&
         //   toast.success(message, {
         //     position: "bottom-center",
@@ -116,9 +114,8 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         //     draggable: true
         //   });
       })
-      .catch(error => {
-        console.log(error.response);
-        reject(error);
+      .catch((error) => { 
+        reject(error.response);
       });
   });
 };

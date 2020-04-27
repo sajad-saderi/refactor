@@ -44,7 +44,7 @@ const Request_page = () => {
   };
 
   return Authorize || AUTH_CONTEXT.Auth ? (
-    <article className="responsive minHeight requests_page_container">
+    <article className="responsive minHeight request_page_container">
       <section className="request_section">
         {result.length > 0 ? (
           <>

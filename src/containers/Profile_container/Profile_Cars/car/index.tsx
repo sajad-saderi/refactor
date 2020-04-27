@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 // import "./car.scss";
 import { IoIosTrash, IoMdCreate } from "react-icons/io";
@@ -9,6 +9,7 @@ import {
   REQUEST_DELETE_CAR,
 } from "../../../../API";
 import Spinner from "../../../../components/Spinner";
+import Toast_context from "../../../../context/Toast_context";
 
 const token = jsCookie.get("token");
 
@@ -22,6 +23,7 @@ const Car = (props: ICar) => {
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
     false
   );
+  const TOAST_CONTEXT = useContext(Toast_context);
 
   useEffect(() => {
     if (props.data) {
@@ -41,6 +43,17 @@ const Car = (props: ICar) => {
       value: !is_out_of_service,
     });
     setIs_out_of_service(service_res);
+    TOAST_CONTEXT.toast_option({
+      message: service_res
+        ? `
+    خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده نخواهد شد.
+    `
+        : `
+    خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده خواهد شد.
+    `,
+      time: 7,
+      autoClose: false,
+    });
     setIs_out_of_service_loading(false);
   };
 
@@ -116,11 +129,7 @@ const Car = (props: ICar) => {
               />
             </span>
             <span>
-              <IoIosTrash
-                onClick={deleteTheCar}
-                color="#4ba3ce" 
-                size="2rem"
-              />
+              <IoIosTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
             </span>
           </div>
         )}

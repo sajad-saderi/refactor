@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 // import "./please_login.scss"; 
-import Modal_context from "../../../src/context/Modal_context";
+import Modal_context from "../../context/Modal_context";
 import { FiLogIn } from "react-icons/fi";
 
 const PleaseLogin = () => {

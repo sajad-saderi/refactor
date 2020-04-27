@@ -12,6 +12,7 @@ import jsCookie from "js-cookie";
 import Checkout_Container_Loader from "../../components/cartPlaceholder/checkoutLoading";
 import Modal_context from "../../../src/context/Modal_context";
 import { NextSeo } from "next-seo";
+import Toast_context from "../../context/Toast_context";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -55,6 +56,7 @@ const Checkout_Container = () => {
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
+  const TOAST_CONTEXT = useContext(Toast_context);
 
   useEffect(() => {
     const { search_id } = Router.router.query;
@@ -156,6 +158,12 @@ const Checkout_Container = () => {
     };
     try {
       const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
+      TOAST_CONTEXT.toast_option({
+        message:
+          "درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.",
+        time: 10,
+        autoClose: true,
+      });
       Router.push("/requests");
     } catch (e) {
       setLoading(false);

@@ -1,10 +1,10 @@
 @import "../../styles/colors";
-.requests_page_container {
+.request_page_container {
   display: flex;
   align-items: center;
   justify-content: center;
   .request_section {
-    width: 70%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@
 }
 
 @media screen and(max-width:720px) {
-  .requests_page_container {
+  .request_page_container {
     .request_section {
       width: 100%;
       display: flex;

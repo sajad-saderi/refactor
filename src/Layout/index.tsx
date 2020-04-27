@@ -16,7 +16,7 @@ const Layout = (props: ILayout) => {
   const [modalType, setModalType] = useState("Login");
   const [data, setData] = useState(null);
   const [Auth, setAuth] = useState(false);
-  const [toast, setToast] = useState(true);
+  const [toast, setToast] = useState(false);
   const [toastData, setToastData] = useState(null);
 
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
@@ -42,7 +42,7 @@ const Layout = (props: ILayout) => {
 
   const toast_handler = (data) => {
     setToastData(data);
-    // setToast(!toast);
+    setToast(!toast);
   };
 
   return (
@@ -78,7 +78,12 @@ const Layout = (props: ILayout) => {
           </auth_context.Provider>
         </modal_context.Provider>
         {toast ? (
-          <Toast message="tedt" closeHandler={() => setToast(false)} time={5} />
+          <Toast
+            message={toastData.message}
+            closeHandler={() => setToast(false)}
+            time={toastData.time}
+            autoClose={toastData.autoClose}
+          />
         ) : null}
       </toast_context.Provider>
       <Footer hide={props.hide} />

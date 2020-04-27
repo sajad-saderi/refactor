@@ -2,9 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 // import "./Renter.scss";
 import Button from "../../../../components/form/Button";
 import modal_context from "../../../../context/Modal_context";
+import Toast_context from "../../../../context/Toast_context";
 import StarRatings from "react-star-ratings";
 import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
+import Router from "next/router";
 
 const token = jsCookie.get("token");
 
@@ -15,12 +17,13 @@ const Renter = (props: IRenter) => {
   const [carRate, setCarRate] = useState(0);
   const [ownerRate, setOwnerRate] = useState(0);
   const Modal_context = useContext(modal_context);
+  const TOAST_CONTEXT = useContext(Toast_context);
 
   useEffect(() => {
     setRent_search_dump(props.data.rent_search_dump);
   }, []);
 
-//   console.log(props.data);
+  //   console.log(props.data);
 
   const setForRequest = async (e, data: any) => {
     e.preventDefault();
@@ -34,8 +37,8 @@ const Renter = (props: IRenter) => {
           toRate: "owner",
           type: "rent-order",
           rate: carRate,
-          review: textareaValue
-        }
+          review: textareaValue,
+        },
       }),
       REQUEST_REQUEST_ACTION({
         token,
@@ -45,16 +48,22 @@ const Renter = (props: IRenter) => {
           toRate: "owner",
           type: "user",
           user_profile_id: rent_search_dump.owner.id,
-          rate: ownerRate
-        }
-      })
+          rate: ownerRate,
+        },
+      }),
     ])
-      .then(response => {
+      .then((response) => {
         console.log(response);
+        TOAST_CONTEXT.toast_option({
+          message: "با موفقیت انجام شد",
+          time: 10,
+          autoClose: true,
+        });
         setLoading(false);
-        //   Modal_context.modalHandler("SET");
+        Modal_context.modalHandler("SET");
+        Router.reload();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         setLoading(false);
       });
@@ -66,10 +75,10 @@ const Renter = (props: IRenter) => {
         <div className="modal_box_div">
           <form
             className="rate_to_owner_car"
-            onSubmit={e => {
+            onSubmit={(e) => {
               setForRequest(e, {
                 id: props.data.id,
-                action: "rate"
+                action: "rate",
               });
             }}
           >
@@ -88,7 +97,7 @@ const Renter = (props: IRenter) => {
               starHoverColor="rgb(255, 204, 0)"
               starDimension="20px"
               starSpacing="5px"
-              changeRating={e => setCarRate(e)}
+              changeRating={(e) => setCarRate(e)}
               numberOfStars={5}
               name="carRate"
             />
@@ -104,14 +113,14 @@ const Renter = (props: IRenter) => {
               starHoverColor="rgb(255, 204, 0)"
               starDimension="20px"
               starSpacing="5px"
-              changeRating={e => setOwnerRate(e)}
+              changeRating={(e) => setOwnerRate(e)}
               numberOfStars={5}
               name="ownerRate"
             />
             <label>توضیح:</label>
             <textarea
               value={textareaValue}
-              onChange={e => {
+              onChange={(e) => {
                 setTextareaValue(e.target.value);
               }}
               placeholder="(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)"

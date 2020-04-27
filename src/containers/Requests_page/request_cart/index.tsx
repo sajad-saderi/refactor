@@ -20,6 +20,7 @@ import Button from "../../../components/form/Button";
 import { REQUEST_REQUEST_ACTION } from "../../../API";
 import jsCookie from "js-cookie";
 import Modal_context from "../../../context/Modal_context";
+import Toast_context from "../../../context/Toast_context";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -43,6 +44,7 @@ const Request_cart = (props: IRequest_cart) => {
   const [ButtonLoader, setButtonLoader] = useState(false);
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
+  const TOAST_CONTEXT = useContext(Toast_context);
 
   const setForRequest = async (data: any) => {
     if (data.action === "reject") {
@@ -61,6 +63,11 @@ const Request_cart = (props: IRequest_cart) => {
       if (data.action === "pay") {
         window.location.href = `${request_res.redirect_to}`;
       } else {
+        TOAST_CONTEXT.toast_option({
+          message: request_res.message,
+          time: 10,
+          autoClose: true,
+        });
         props.getDataAgain();
       }
     } catch (e) {
@@ -203,7 +210,7 @@ const Request_cart = (props: IRequest_cart) => {
                 props.data.has_renter_reviewed_rent_order
                 ? [
                     {
-                      value: "قبلا برای این سفارش نظر ثبت کرده اید",
+                      value: "قبلا برای این سفارش، نظر ثبت کرده اید",
                       disable: true,
                       class: "Blue_BTN request_car_pay disable_rate_btn",
                       click: () => {},
@@ -221,7 +228,7 @@ const Request_cart = (props: IRequest_cart) => {
                 props.data.has_owner_reviewed_renter
               ? [
                   {
-                    value: "قبلا برای این سفارش نظر ثبت کرده اید",
+                    value: "قبلا برای این سفارش، نظر ثبت کرده اید",
                     disable: true,
                     class: "Blue_BTN request_car_pay disable_rate_btn",
                     click: () => {},
