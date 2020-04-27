@@ -24,6 +24,22 @@ export default class MyDocument extends Document {
             name="apple-mobile-web-app-status-bar-style"
             content="default"
           />
+          <link href="apple-icon.png" rel="apple-touch-icon" />
+          <link
+            href="apple-icon-72x72.png"
+            rel="apple-touch-icon"
+            sizes="76x76"
+          />
+          <link
+            href="apple-icon-120x120.png"
+            rel="apple-touch-icon"
+            sizes="120x120"
+          />
+          <link
+            href="apple-icon-152x152.png"
+            rel="apple-touch-icon"
+            sizes="152x152"
+          />
 
           {/* Windows   */}
           <meta name="msapplication-navbutton-color" content="red" />
@@ -148,24 +164,6 @@ export default class MyDocument extends Document {
             sizes="48x48"
           />
 
-          {/* iOS   */}
-          {/* <link href="touch-icon-iphone.png" rel="apple-touch-icon" />
-          <link
-            href="touch-icon-ipad.png"
-            rel="apple-touch-icon"
-            sizes="76x76"
-          />
-          <link
-            href="touch-icon-iphone-retina.png"
-            rel="apple-touch-icon"
-            sizes="120x120"
-          />
-          <link
-            href="touch-icon-ipad-retina.png"
-            rel="apple-touch-icon"
-            sizes="152x152"
-          /> */}
-
           {/* Startup Image   */}
           <link
             href="touch-icon-start-up-320x480.png"
@@ -201,8 +199,64 @@ export default class MyDocument extends Document {
 
           {/* Manifest.json   */}
           <link href="/manifest.json" rel="manifest"></link>
+
+          {/* HotJar tag */}
+          <script
+            defer
+            dangerouslySetInnerHTML={{
+              __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
+              (function(h,o,t,j,a,r){
+                  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                  h._hjSettings={hjid:1564760,hjsv:6};
+                  a=o.getElementsByTagName('head')[0];
+                  r=o.createElement('script');r.async=1;
+                  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                  a.appendChild(r);
+              })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
+            }}
+          ></script>
+          {/* Google Tag Manager */}
+          <script
+            defer
+            dangerouslySetInnerHTML={{
+              __html: `<!-- Google Tag Manager -->
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TN3MV4L');
+        <!-- End Google Tag Manager -->`,
+            }}
+          ></script>
+          {process.env.NODE_ENV === "development" ? (
+            <script
+              defer
+              dangerouslySetInnerHTML={{
+                __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("3071100507");`,
+              }}
+            ></script>
+          ) : (
+            <script
+              defer
+              dangerouslySetInnerHTML={{
+                __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+            heap.load("329839554");`,
+              }}
+            ></script>
+          )}
+          <meta
+            name="google-site-verification"
+            content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto"
+          />
         </Head>
         <body>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TN3MV4L"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
           <Main />
           <NextScript />
         </body>

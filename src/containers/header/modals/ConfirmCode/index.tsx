@@ -45,10 +45,9 @@ const ConfirmCode = (props: IConfirmCode) => {
           jsCookie.set("user_id", data.user_profile.id.cook_option);
 
           // TODO: save data in cache and active heap
-          // if(window.heap){
-          //   window.heap.identify(`${this.state.phone}`);
-          //   console.log('window.heap',this.state.phone);
-          // }
+          if (window["heap"]) {
+            window["heap"].identify(`${data.user_profile.cell}`);
+          }
 
           Router.push({
             pathname: "/complete-register",
@@ -74,11 +73,12 @@ const ConfirmCode = (props: IConfirmCode) => {
             cook_option
           );
           // TODO: save data in cache and active heap
-          //       if(window.heap){
-          //         window.heap.identify(`${this.state.phone}`);
-          //         window.heap.addUserProperties({Name: `${response2.data.data.first_name}-${response2.data.data.last_name}`});
-          //         console.log('window.heap',this.state.phone);
-          //       }
+          if (window["heap"]) {
+            window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
+            window["heap"].addUserProperties({
+              Name: `${response.data.first_name}-${response.data.last_name}`,
+            });
+          }
           AUTH_CONTEXT.Auth_Manager(true);
           console.log(response.data);
         } else {

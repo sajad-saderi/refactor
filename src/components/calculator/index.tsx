@@ -93,9 +93,11 @@ const Calculator = (props: ICalculator) => {
               Select={(v) => {
                 fetchModelList(v.value);
                 // TODO:
-                //   if(window.heap){
-                //     window.heap.addUserProperties({Calc_Car_Brand: `${e.text}`});
-                // }
+                if (window["heap"]) {
+                  window["heap"].addUserProperties({
+                    Calc_Car_Brand: `${v.text}`,
+                  });
+                }
                 setBrand({
                   id: v.value,
                   name: v.text,
@@ -114,11 +116,11 @@ const Calculator = (props: ICalculator) => {
               disabled={!brand.id ? true : false}
               InputDisable={true}
               Select={(v) => {
-                // if (window.heap) {
-                //   window.heap.addUserProperties({
-                //     Calc_Car_Brand: `${e.text}`,
-                //   });
-                // }
+                if (window["heap"]) {
+                  window["heap"].addUserProperties({
+                    Calc_Car_Brand: `${v.text}`,
+                  });
+                }
                 setModel({ id: v.value, name: v.name });
               }}
               placeholder="مدل"
