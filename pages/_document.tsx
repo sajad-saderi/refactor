@@ -201,7 +201,7 @@ export default class MyDocument extends Document {
           <link href="/manifest.json" rel="manifest"></link>
 
           {/* HotJar tag */}
-          <script
+          {/* <script
             defer
             dangerouslySetInnerHTML={{
               __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
@@ -214,7 +214,7 @@ export default class MyDocument extends Document {
                   a.appendChild(r);
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
             }}
-          ></script>
+          ></script> */}
           {/* Google Tag Manager */}
           <script
             defer
@@ -228,7 +228,7 @@ export default class MyDocument extends Document {
         <!-- End Google Tag Manager -->`,
             }}
           ></script>
-          {process.env.NODE_ENV === "development" ? (
+          {/* {process.env.NODE_ENV === "development" ? (
             <script
               defer
               dangerouslySetInnerHTML={{
@@ -244,7 +244,7 @@ export default class MyDocument extends Document {
             heap.load("329839554");`,
               }}
             ></script>
-          )}
+          )} */}
           <meta
             name="google-site-verification"
             content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto"
