@@ -184,6 +184,7 @@ const PriceBox = (props: IPriceBox) => {
 
   useEffect(() => {
     if (props.initialAvailabilityList) {
+      setShow_input_price(false);
       props.initialAvailabilityList.forEach((item) => {
         onConfirm(
           {
@@ -264,24 +265,25 @@ const PriceBox = (props: IPriceBox) => {
             <p className="confirm" onClick={onConfirm}>
               تایید
             </p>
-            {EditMode.status && (
-              <p
-                className="cancel"
-                onClick={() => {
-                  setEditMode({
-                    status: false,
-                    index: null,
-                  });
-                  setDayRange({
-                    from: null,
-                    to: null,
-                  });
-                  setPrice_per_day("");
-                }}
-              >
-                لغو
-              </p>
-            )}
+            {/* {EditMode.status && ( */}
+            <p
+              className="cancel"
+              onClick={() => {
+                setEditMode({
+                  status: false,
+                  index: null,
+                });
+                setDayRange({
+                  from: null,
+                  to: null,
+                });
+                setShow_input_price(false);
+                setPrice_per_day("");
+              }}
+            >
+              لغو
+            </p>
+            {/* )} */}
           </div>
         </div>
       ) : (
@@ -293,61 +295,63 @@ const PriceBox = (props: IPriceBox) => {
       )}
       {
         availList.length > 0 ? (
-          <div className="Price_container Date_list">
+          <div className="Price_container ">
             <>
               {/* <p>خودرو شما فقط</p> */}
               {availList.map((item, i) => {
                 return (
-                  <div key={i}>
-                    <p>
-                      از تاریخ {item.start_date} تا {item.end_date}
-                      <br /> با قیمت{" "}
-                      {Number(item.price_per_day).toLocaleString()} تومان
-                    </p>
-                    <div className="button_box">
-                      <span
-                        className="confirm"
-                        onClick={() => {
-                          setShow_input_price(true);
-                          setEditMode({
-                            status: true,
-                            index: i,
-                          });
-                          setPrice_per_day(item.price_per_day);
-
-                          setDayRange({
-                            from: {
-                              year: +moment(item.start_date).format("YYYY"),
-                              month: +moment(item.start_date).format("MM"),
-                              day: +moment(item.start_date).format("DD"),
-                            },
-                            to: {
-                              year: +moment(item.end_date).format("YYYY"),
-                              month: +moment(item.end_date).format("MM"),
-                              day: +moment(item.end_date).format("DD"),
-                            },
-                          });
-                        }}
-                      >
-                        ویرایش
-                      </span>
-                      <span
-                        className="cancel"
-                        onClick={() => {
-                          releaseDisableDays(i);
-                          setAvailList((availList) =>
-                            availList.filter((_, index) => {
-                              return index !== i;
-                            })
-                          );
-                          if (availList.length === 1) {
+                  <div key={i} className="Date_list">
+                    <div className="Date_list_item">
+                      <p>
+                        از تاریخ {item.start_date} تا {item.end_date}
+                        <br /> با قیمت{" "}
+                        {Number(item.price_per_day).toLocaleString()} تومان
+                      </p>
+                      <div className="button_box">
+                        <span
+                          className="confirm"
+                          onClick={() => {
                             setShow_input_price(true);
-                          }
-                          props.removeAvailList(i);
-                        }}
-                      >
-                        حذف
-                      </span>
+                            setEditMode({
+                              status: true,
+                              index: i,
+                            });
+                            setPrice_per_day(item.price_per_day);
+
+                            setDayRange({
+                              from: {
+                                year: +moment(item.start_date).format("YYYY"),
+                                month: +moment(item.start_date).format("MM"),
+                                day: +moment(item.start_date).format("DD"),
+                              },
+                              to: {
+                                year: +moment(item.end_date).format("YYYY"),
+                                month: +moment(item.end_date).format("MM"),
+                                day: +moment(item.end_date).format("DD"),
+                              },
+                            });
+                          }}
+                        >
+                          ویرایش
+                        </span>
+                        <span
+                          className="cancel"
+                          onClick={() => {
+                            releaseDisableDays(i);
+                            setAvailList((availList) =>
+                              availList.filter((_, index) => {
+                                return index !== i;
+                              })
+                            );
+                            if (availList.length === 1) {
+                              setShow_input_price(true);
+                            }
+                            props.removeAvailList(i);
+                          }}
+                        >
+                          حذف
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );

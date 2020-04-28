@@ -8,39 +8,62 @@ import Radio from "../../../components/form/Radio";
 import Button from "../../../components/form/Button";
 
 let useFilter = false;
+let filterNumber = 0;
+let page = 1;
+
 const Profile_Cars = (props: IProfile_Cars) => {
   const [result, setResult] = useState(null);
   const [active, setActive] = useState(1);
+  const [showMoreButton, setShowMoreButton] = useState(false);
+
   useEffect(() => {
     fetchApi();
     return () => {
       useFilter = false;
+      page = 1;
+      filterNumber = 0;
     };
   }, []);
-  const fetchApi = async (is_out_of_service?) => {
+
+  const fetchApi = async (page?) => {
     let data: any = {};
-    setResult(null);
+    if (page <= 1) {
+      setResult(null);
+    }
     if (useFilter) {
-      data = { id: `${Router.router.query.id}`, is_out_of_service };
+      data = {
+        id: `${Router.router.query.id}`,
+        is_out_of_service: filterNumber,
+        page: page,
+      };
     } else {
-      data = { id: `${Router.router.query.id}` };
+      data = { id: `${Router.router.query.id}`, page: page };
     }
     const user_cars_res: any = await REQUEST_GET_USER_CARS(data);
-    setResult(user_cars_res);
-    props;
+    if (page > 1) {
+      setResult((result) => result.concat(user_cars_res.items));
+    } else {
+      setResult(user_cars_res.items);
+    }
+    if (user_cars_res.total_count > 14 && user_cars_res.remained_count > 0) {
+      setShowMoreButton(true);
+    } else setShowMoreButton(false);
     console.log(user_cars_res);
   };
 
   const activeFilter = (i) => {
+    page = 1;
     if (i === 1) {
       useFilter = false;
-      fetchApi();
+      fetchApi(1);
     } else if (i === 2) {
       useFilter = true;
+      filterNumber = 1;
       fetchApi(1);
     } else if (i === 3) {
       useFilter = true;
-      fetchApi(3);
+      filterNumber = 3;
+      fetchApi(1);
     }
   };
 
@@ -79,7 +102,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
                 key={i}
                 data={item}
                 is_mine={props.is_mine}
-                getListAgain={fetchApi}
+                getListAgain={() => fetchApi(1)}
               />
             );
           })
@@ -104,14 +127,18 @@ const Profile_Cars = (props: IProfile_Cars) => {
           <CarLoading />
         </>
       )}
-      {result ? (
-        result.length !== 0 ? (
-          <div className="Load_more_car_container">
-            <span className="Load_more_car" onClick={() => {}}>
-              نمایش ماشین‌های بیشتر
-            </span>
-          </div>
-        ) : null
+      {showMoreButton ? (
+        <div className="Load_more_car_container">
+          <span
+            className="Load_more_car"
+            onClick={() => {
+              page = 1 + page;
+              fetchApi(page);
+            }}
+          >
+            نمایش ماشین‌های بیشتر
+          </span>
+        </div>
       ) : null}
     </article>
   );

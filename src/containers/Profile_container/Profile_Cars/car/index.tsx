@@ -106,7 +106,7 @@ const Car = (props: ICar) => {
               }}
               className="EDIT_PRPICE_AND_TIME"
             >
-              تغیر تاریخ و قیمت
+              تغییر تاریخ و قیمت
             </p>
             {is_out_of_service_loading ? (
               <Spinner display="inline-block" width={20} color="#4ba3ce" />

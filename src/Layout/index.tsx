@@ -40,9 +40,9 @@ const Layout = (props: ILayout) => {
     setData(data);
   };
 
-  const toast_handler = (data) => {
+  const toast_handler = (data) => { 
     setToastData(data);
-    setToast(!toast);
+    setToast(true);
   };
 
   return (

@@ -16,6 +16,8 @@ let page = 1;
 const Requests_page = () => {
   const [result, setResult] = useState([]);
   const [Authorize, setAuthorize] = useState(false);
+  const [showMoreButton, setShowMoreButton] = useState(false);
+
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
 
@@ -44,7 +46,9 @@ const Requests_page = () => {
 
   const fetchAPI = async (data) => {
     const token = jsCookie.get("token");
-    setResult([]);
+    if (data.page <= 1) {
+      setResult([]);
+    }
     try {
       const res: any = await REQUEST_GET_ORDER_REQUESTS({
         ...data,
@@ -56,6 +60,9 @@ const Requests_page = () => {
         setResult(res.items);
         console.log(res);
       }
+      if (res.total_count > 14 && res.remained_count > 0) {
+        setShowMoreButton(true);
+      } else setShowMoreButton(false);
     } catch (e) {
       console.log(e.response);
     }
@@ -122,9 +129,11 @@ const Requests_page = () => {
           )}
         </section>
       </section>
-      <span className="Load_more_car" onClick={nextPage}>
-        نمایش ماشین‌های بیشتر
-      </span>
+      {showMoreButton ? (
+        <span className="Load_more_car" onClick={nextPage}>
+          نمایش ماشین‌های بیشتر
+        </span>
+      ) : null}
     </article>
   ) : (
     <PleaseLogin />

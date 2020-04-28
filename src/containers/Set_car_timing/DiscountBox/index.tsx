@@ -115,6 +115,7 @@ const DiscountBox = (props: IDiscountBox) => {
       setDiscount_percent("");
       setDays_limit_name(null);
       setDays_limit(null);
+      setDiscountcheck(0);
     }
   };
 
@@ -124,6 +125,7 @@ const DiscountBox = (props: IDiscountBox) => {
       props.initialDiscountList.forEach((item) => {
         onConfirm(item, true);
       });
+      setDiscountcheck(0);
     }
   }, [props.initialDiscountList]);
 
@@ -136,128 +138,129 @@ const DiscountBox = (props: IDiscountBox) => {
   return (
     <div className="Price_form_container" ref={DiscountWrapper}>
       <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
-      <div
-        className="add_new_one"
-        onClick={() => {
-          props.setShowBox(1);
-          setDiscountcheck(1);
-        }}
-      >
-        <p>
-          <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
-        </p>
-      </div>
-      {Discountcheck === 1 && (
-        <>
-          <div className="Discount_Controller">
-            <div className="containers">
-              <DropdownSearch
-                data={daysFarsi}
-                clearField={() => {
-                  setDays_limit_name(null);
-                  setDays_limit(null);
-                }}
-                label="بیشتر از"
-                disableSearch={true}
-                error_status={Error_days_limit.status || props.error}
-                InputDisable={true}
-                defaultVal={days_limit_name}
-                Select={(e) => {
-                  setDays_limit_name(e.text);
-                  setDays_limit(e.value);
-                }}
-              />
-              {Error_days_limit.status && (
-                <p className="input_error_message">
-                  {Error_days_limit.message}
+      {Discountcheck === 1 ? (
+        <div className="Discount_Controller">
+          <div className="containers">
+            <DropdownSearch
+              data={daysFarsi}
+              clearField={() => {
+                setDays_limit_name(null);
+                setDays_limit(null);
+              }}
+              label="بیشتر از"
+              disableSearch={true}
+              error_status={Error_days_limit.status || props.error}
+              InputDisable={true}
+              defaultVal={days_limit_name}
+              Select={(e) => {
+                setDays_limit_name(e.text);
+                setDays_limit(e.value);
+              }}
+            />
+            {Error_days_limit.status && (
+              <p className="input_error_message">{Error_days_limit.message}</p>
+            )}
+          </div>
+          <div className="tail containers">
+            <TextInput
+              name="price"
+              label="درصد تخفیف"
+              error={{
+                status: Error_discount_percent.status || props.error,
+                message: Error_discount_percent.message,
+              }}
+              value={discount_percent}
+              number={true}
+              autoFocus={false}
+              clearField={() => {
+                setDiscount_percent("");
+              }}
+              min={1}
+              max={2}
+              onChangeHandler={(e) => {
+                setDiscount_percent(e);
+              }}
+            />
+            <span> %</span>
+          </div>
+          <div className="divs button_box">
+            <p className="confirm" onClick={onConfirm}>
+              ثبت
+            </p>
+            {/* {mode.status && ( */}
+            <p
+              className="cancel"
+              onClick={() => {
+                setMode({
+                  status: false,
+                  index: null,
+                });
+                setDiscount_percent("");
+                setDays_limit_name(null);
+                setDays_limit(null);
+                setDiscountcheck(0);
+              }}
+            >
+              لغو
+            </p>
+            {/* )} */}
+          </div>
+        </div>
+      ) : (
+        <div
+          className="add_new_one"
+          onClick={() => {
+            props.setShowBox(1);
+            setDiscountcheck(1);
+          }}
+        >
+          <p>
+            <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
+          </p>
+        </div>
+      )}
+      <div className="Discount_list">
+        {DiscountList.map((item, i) => {
+          return (
+            <div key={i} className="discount_item_container">
+              <div className="discount_item">
+                <p>
+                  برای اجاره‌ بیشتر از {item.days_limit} روز <br />
+                  {item.discount_percent} درصد تخفیف
                 </p>
-              )}
-            </div>
-            <div className="tail containers">
-              <TextInput
-                name="price"
-                label="درصد تخفیف"
-                error={{
-                  status: Error_discount_percent.status || props.error,
-                  message: Error_discount_percent.message,
-                }}
-                value={discount_percent}
-                number={true}
-                autoFocus={false}
-                clearField={() => {
-                  setDiscount_percent("");
-                }}
-                min={1}
-                max={2}
-                onChangeHandler={(e) => {
-                  setDiscount_percent(e);
-                }}
-              />
-              <span> %</span>
-            </div>
-            <div className="divs button_box">
-              <p className="confirm" onClick={onConfirm}>
-                ثبت
-              </p>
-              {mode.status && (
-                <p
-                  className="cancel"
+                <span
+                  className="confirm"
                   onClick={() => {
                     setMode({
-                      status: false,
-                      index: null,
+                      status: true,
+                      index: i,
                     });
-                    setDiscount_percent("");
-                    setDays_limit_name(null);
-                    setDays_limit(null);
+                    setDays_limit(item.days_limit);
+                    setDays_limit_name(`${item.days_limit} روز`);
+                    setDiscountcheck(1);
+                    setDiscount_percent(item.discount_percent);
                   }}
                 >
-                  لغو
-                </p>
-              )}
+                  ویرایش
+                </span>
+                <span
+                  className="cancel"
+                  onClick={() => {
+                    setDiscountList((DiscountList) =>
+                      DiscountList.filter((_, index) => {
+                        return index !== i;
+                      })
+                    );
+                    props.removeDiscountList(i);
+                  }}
+                >
+                  حذف
+                </span>
+              </div>
             </div>
-          </div>
-          <div className="Discount_list">
-            {DiscountList.map((item, i) => {
-              return (
-                <div key={i} className="discount_item">
-                  <p>
-                    برای اجاره‌ بیشتر از {item.days_limit} روز <br />
-                    {item.discount_percent} درصد تخفیف
-                  </p>
-                  <span
-                    className="confirm"
-                    onClick={() => {
-                      setMode({
-                        status: true,
-                        index: i,
-                      });
-                      setDays_limit(item.days_limit);
-                      setDays_limit_name(`${item.days_limit} روز`);
-                      setDiscount_percent(item.discount_percent);
-                    }}
-                  >
-                    ویرایش
-                  </span>
-                  <span
-                    className="cancel"
-                    onClick={() => {
-                      setDiscountList((DiscountList) =>
-                        DiscountList.filter((_, index) => {
-                          return index !== i;
-                        })
-                      );
-                      props.removeDiscountList(i);
-                    }}
-                  >
-                    حذف
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@
         margin-left: 1rem;
       }
     }
-  } 
+  }
   .Discount_Controller {
     display: block;
     margin-top: 1.6rem;
@@ -72,22 +72,26 @@
     }
   }
   .Discount_list {
-    .discount_item {
-      border: 1px solid $input_border;
-      padding: 1.2rem;
-      margin-top: 2rem;
-      display: inline-block;
-      border-radius: 4px;
-      p {
+    .discount_item_container {
+      display: block;
+      .discount_item {
+        border: 1px solid $input_border;
+        padding: 1.2rem;
+        margin-top: 2rem;
         display: inline-block;
-        vertical-align: middle;
-        margin-left: 1rem;
-      }
-      span {
-        display: inline-block;
-        margin-left: 1rem;
-        font-size: 1.2rem;
-        padding: 0 0.5rem;
+        border-radius: 4px;
+        width: auto;
+        p {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 1rem;
+        }
+        span {
+          display: inline-block;
+          margin-left: 1rem;
+          font-size: 1.2rem;
+          padding: 0 0.5rem;
+        }
       }
     }
   }
