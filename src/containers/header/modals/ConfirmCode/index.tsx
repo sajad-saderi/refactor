@@ -45,8 +45,12 @@ const ConfirmCode = (props: IConfirmCode) => {
           jsCookie.set("user_id", data.user_profile.id.cook_option);
 
           // TODO: save data in cache and active heap
-          if (window["heap"]) {
-            window["heap"].identify(`${data.user_profile.cell}`);
+          try {
+            if (window["heap"]) {
+              window["heap"].identify(`${data.user_profile.cell}`);
+            }
+          } catch (e) {
+            console.log("Em...I think heap not work correctly :/");
           }
 
           Router.push({
@@ -73,11 +77,15 @@ const ConfirmCode = (props: IConfirmCode) => {
             cook_option
           );
           // TODO: save data in cache and active heap
-          if (window["heap"]) {
-            window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
-            window["heap"].addUserProperties({
-              Name: `${response.data.first_name}-${response.data.last_name}`,
-            });
+          try {
+            if (window["heap"]) {
+              window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
+              window["heap"].addUserProperties({
+                Name: `${response.data.first_name}-${response.data.last_name}`,
+              });
+            }
+          } catch (e) {
+            console.log("Em...I think heap not work correctly :/");
           }
           AUTH_CONTEXT.Auth_Manager(true);
           console.log(response.data);

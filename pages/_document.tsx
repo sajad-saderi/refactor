@@ -201,10 +201,11 @@ export default class MyDocument extends Document {
           <link href="/manifest.json" rel="manifest"></link>
 
           {/* HotJar tag */}
-          {/* <script
-            defer
-            dangerouslySetInnerHTML={{
-              __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
+          {process.env.NODE_ENV === "development" ? (
+            <script
+              defer
+              dangerouslySetInnerHTML={{
+                __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
               (function(h,o,t,j,a,r){
                   h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
                   h._hjSettings={hjid:1564760,hjsv:6};
@@ -213,8 +214,9 @@ export default class MyDocument extends Document {
                   r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
                   a.appendChild(r);
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
-            }}
-          ></script> */}
+              }}
+            ></script>
+          ) : null}
           {/* Google Tag Manager */}
           <script
             defer
@@ -228,7 +230,7 @@ export default class MyDocument extends Document {
         <!-- End Google Tag Manager -->`,
             }}
           ></script>
-          {/* {process.env.NODE_ENV === "development" ? (
+          {process.env.NODE_ENV === "development" ? (
             <script
               defer
               dangerouslySetInnerHTML={{
@@ -244,7 +246,7 @@ export default class MyDocument extends Document {
             heap.load("329839554");`,
               }}
             ></script>
-          )} */}
+          )}
           <meta
             name="google-site-verification"
             content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto"

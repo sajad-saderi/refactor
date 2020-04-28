@@ -25,14 +25,14 @@ const ShowResult = (props: IShowResult) => {
                     <stop
                       className="gaugeGradient-start"
                       offset="0%"
-                      stop-color="rgb(75,163,206)"
-                      stop-opacity="1"
+                      stopColor="rgb(75,163,206)"
+                      stopOpacity="1"
                     ></stop>
                     <stop
                       className="gaugeGradient-end"
                       offset="100%"
-                      stop-color="#a3678b"
-                      stop-opacity="1"
+                      stopColor="#a3678b"
+                      stopOpacity="1"
                     ></stop>
                   </linearGradient>
                 </defs>
@@ -45,14 +45,14 @@ const ShowResult = (props: IShowResult) => {
                     <stop
                       className="gaugeGradient-start"
                       offset="0%"
-                      stop-color="rgb(75,163,206)"
-                      stop-opacity="1"
+                      stopColor="rgb(75,163,206)"
+                      stopOpacity="1"
                     ></stop>
                     <stop
                       className="gaugeGradient-end"
                       offset="100%"
-                      stop-color="#a3678b"
-                      stop-opacity="1"
+                      stopColor="#a3678b"
+                      stopOpacity="1"
                     ></stop>
                   </linearGradient>
                 </defs>
@@ -93,14 +93,14 @@ const ShowResult = (props: IShowResult) => {
                     <stop
                       className="gaugeGradient-start"
                       offset="0%"
-                      stop-color="rgb(75,163,206)"
-                      stop-opacity="1"
+                      stopColor="rgb(75,163,206)"
+                      stopOpacity="1"
                     ></stop>
                     <stop
                       className="gaugeGradient-end"
                       offset="100%"
-                      stop-color="#a3678b"
-                      stop-opacity="1"
+                      stopColor="#a3678b"
+                      stopOpacity="1"
                     ></stop>
                   </linearGradient>
                 </defs>
@@ -113,14 +113,14 @@ const ShowResult = (props: IShowResult) => {
                     <stop
                       className="gaugeGradient-start"
                       offset="0%"
-                      stop-color="rgb(75,163,206)"
-                      stop-opacity="1"
+                      stopColor="rgb(75,163,206)"
+                      stopOpacity="1"
                     ></stop>
                     <stop
                       className="gaugeGradient-end"
                       offset="100%"
-                      stop-color="#a3678b"
-                      stop-opacity="1"
+                      stopColor="#a3678b"
+                      stopOpacity="1"
                     ></stop>
                   </linearGradient>
                 </defs>
@@ -165,14 +165,14 @@ const ShowResult = (props: IShowResult) => {
                     <stop
                       className="gaugeGradient-start"
                       offset="0%"
-                      stop-color="rgb(75,163,206)"
-                      stop-opacity="1"
+                      stopColor="rgb(75,163,206)"
+                      stopOpacity="1"
                     ></stop>
                     <stop
                       className="gaugeGradient-end"
                       offset="100%"
-                      stop-color="#a3678b"
-                      stop-opacity="1"
+                      stopColor="#a3678b"
+                      stopOpacity="1"
                     ></stop>
                   </linearGradient>
                 </defs>
@@ -185,14 +185,14 @@ const ShowResult = (props: IShowResult) => {
                     <stop
                       className="gaugeGradient-start"
                       offset="0%"
-                      stop-color="rgb(75,163,206)"
-                      stop-opacity="1"
+                      stopColor="rgb(75,163,206)"
+                      stopOpacity="1"
                     ></stop>
                     <stop
                       className="gaugeGradient-end"
                       offset="100%"
-                      stop-color="#a3678b"
-                      stop-opacity="1"
+                      stopColor="#a3678b"
+                      stopOpacity="1"
                     ></stop>
                   </linearGradient>
                 </defs>
