@@ -69,31 +69,33 @@ const Profile_Cars = (props: IProfile_Cars) => {
 
   return (
     <article className="Profile_car_container">
-      <div className="service_filer">
-        <Radio
-          name="show_car_Radio"
-          error_status={false}
-          SelectHandler={(i) => {
-            setActive(+i);
-            activeFilter(i);
-          }}
-          defaultCheck={active}
-          data={[
-            {
-              label: "همه",
-              value: 1,
-            },
-            {
-              label: "غیر فعال",
-              value: 2,
-            },
-            {
-              label: "فعال",
-              value: 3,
-            },
-          ]}
-        />
-      </div>
+      {props.is_mine && (
+        <div className="service_filer">
+          <Radio
+            name="show_car_Radio"
+            error_status={false}
+            SelectHandler={(i) => {
+              setActive(+i);
+              activeFilter(i);
+            }}
+            defaultCheck={active}
+            data={[
+              {
+                label: "همه",
+                value: 1,
+              },
+              {
+                label: "غیر فعال",
+                value: 2,
+              },
+              {
+                label: "فعال",
+                value: 3,
+              },
+            ]}
+          />
+        </div>
+      )}
       {result ? (
         result.length > 0 ? (
           result.map((item, i) => {
@@ -108,7 +110,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
           })
         ) : (
           <div className="noCar_added">
-            <p>تا کنون خودرویی ثبت نکرده اید.</p>
+            <p>خودرویی یافت نشد.</p>
             <Button
               value="+ افزودن خودرو"
               class="Blue_BTN"
