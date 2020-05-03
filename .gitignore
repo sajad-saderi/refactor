@@ -10,6 +10,7 @@
 
 #documentation
 /.docz/.cache
+/.docz/dist
 /.docz/node_modules
 
 # testing
