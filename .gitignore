@@ -8,6 +8,10 @@
 /.pnp
 .pnp.js
 
+#documentation
+/.docz/.cache
+/.docz/node_modules
+
 # testing
 /coverage
 
