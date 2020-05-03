@@ -100,9 +100,7 @@ const ImageUploader = (props: IImageUpload) => {
       </div>
     </div>
   );
-};
-// id: 940
-// id: 941
+}; 
 
 interface IImageUpload {
   Upload_image: any;

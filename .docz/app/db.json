@@ -154,9 +154,71 @@
             "value": "Accordion"
           },
           {
-            "slug": "screen-shot",
+            "slug": "screenshot",
             "depth": 2,
-            "value": "Screen shot"
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Counter/Counter.md",
+      "value": {
+        "name": "Counter",
+        "menu": "Components",
+        "route": "/components/counter",
+        "id": "ee7ea114fed43932ecbc9368a55df0b8",
+        "filepath": "src/components/Counter/Counter.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\Counter\\Counter.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-counter-counter",
+        "headings": [
+          {
+            "slug": "counter",
+            "depth": 1,
+            "value": "Counter"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/ImageUploader/Imageuploader.md",
+      "value": {
+        "name": "Image uploading",
+        "menu": "Components",
+        "route": "/components/imageuploader",
+        "id": "9c5f9c237e5fe7c76f43c5309ef8e441",
+        "filepath": "src/components/ImageUploader/Imageuploader.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\ImageUploader\\Imageuploader.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-image-uploader-imageuploader",
+        "headings": [
+          {
+            "slug": "image-uploading",
+            "depth": 1,
+            "value": "Image Uploading"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
           },
           {
             "slug": "basic-usage",
@@ -185,9 +247,9 @@
             "value": "Button"
           },
           {
-            "slug": "screen-shot",
+            "slug": "screenshot",
             "depth": 2,
-            "value": "Screen shot"
+            "value": "Screenshot"
           },
           {
             "slug": "basic-usage",
@@ -216,9 +278,9 @@
             "value": "Checkbox"
           },
           {
-            "slug": "screen-shot",
+            "slug": "screenshot",
             "depth": 2,
-            "value": "Screen shot"
+            "value": "Screenshot"
           },
           {
             "slug": "basic-usage",
@@ -247,9 +309,9 @@
             "value": "DropdownSearch"
           },
           {
-            "slug": "screen-shot",
+            "slug": "screenshot",
             "depth": 2,
-            "value": "Screen shot"
+            "value": "Screenshot"
           },
           {
             "slug": "basic-usage",
@@ -278,9 +340,9 @@
             "value": "Radio"
           },
           {
-            "slug": "screen-shot",
+            "slug": "screenshot",
             "depth": 2,
-            "value": "Screen shot"
+            "value": "Screenshot"
           },
           {
             "slug": "basic-usage",
@@ -309,9 +371,9 @@
             "value": "Radio"
           },
           {
-            "slug": "screen-shot",
+            "slug": "screenshot",
             "depth": 2,
-            "value": "Screen shot"
+            "value": "Screenshot"
           },
           {
             "slug": "basic-usage",
@@ -613,27 +675,6 @@
       ]
     },
     {
-      "key": "src/Layout/index.tsx",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Layout",
-          "methods": [],
-          "props": {
-            "hide": {
-              "defaultValue": null,
-              "description": "",
-              "name": "hide",
-              "required": false,
-              "type": {
-                "name": "boolean"
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
       "key": "pages/car/[id].tsx",
       "value": []
     },
@@ -665,6 +706,27 @@
     {
       "key": "pages/user/[id].tsx",
       "value": []
+    },
+    {
+      "key": "src/Layout/index.tsx",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Layout",
+          "methods": [],
+          "props": {
+            "hide": {
+              "defaultValue": null,
+              "description": "",
+              "name": "hide",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "key": "src/API/get/getBodyStyle.tsx",
@@ -2306,10 +2368,6 @@
       "value": []
     },
     {
-      "key": "src/components/calculator/Join_us_content/index.tsx",
-      "value": []
-    },
-    {
       "key": "src/components/calculator/ShowResult/ShowResult.tsx",
       "value": [
         {
@@ -2347,6 +2405,10 @@
           }
         }
       ]
+    },
+    {
+      "key": "src/components/calculator/Join_us_content/index.tsx",
+      "value": []
     },
     {
       "key": "src/components/cartPlaceholder/CarLoading/index.tsx",

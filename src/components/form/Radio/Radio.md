@@ -11,7 +11,7 @@ import Radio from './index.tsx'
 
 <Props of={Radio} />
 
-## Screen shot
+## Screenshot
 ![Radio](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/Radio.jpg?raw=true)
 ## Basic usage
 

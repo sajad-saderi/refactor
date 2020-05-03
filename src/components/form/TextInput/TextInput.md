@@ -11,7 +11,7 @@ import TextInput from './index.tsx'
 
 <Props of={TextInput} />
 
-## Screen shot
+## Screenshot
 ![TextInput](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/Textinput.jpg?raw=true)
 ## Basic usage
 

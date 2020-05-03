@@ -11,7 +11,7 @@ import DropdownSearch from './index.tsx'
 
 <Props of={DropdownSearch} />
 
-## Screen shot
+## Screenshot
 ![DropDown](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/Dropdown.jpg?raw=true)
 
 ## Basic usage

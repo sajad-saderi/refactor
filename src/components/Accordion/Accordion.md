@@ -11,7 +11,7 @@ import Accordion from './index.tsx'
 
 <Props of={Accordion} />
 
-## Screen shot
+## Screenshot
 ![Accordion](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/accordion.jpg?raw=true)
 
 ## Basic usage

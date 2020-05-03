@@ -11,7 +11,7 @@ import Checkbox from './index.tsx'
 
 <Props of={Checkbox} />
 
-## Screen shot
+## Screenshot
 ![Checkbox](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/Checkbox.jpg?raw=true)
 
 ## Basic usage

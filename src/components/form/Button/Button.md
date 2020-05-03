@@ -11,7 +11,7 @@ import Button from './index.tsx'
 
 <Props of={Button} />
 
-## Screen shot
+## Screenshot
 ![Button](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/Button.jpg?raw=true)
 ## Basic usage
 
