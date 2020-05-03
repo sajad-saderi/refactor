@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "SET NODE_ENV=development & next dev ",
     "build": "next build",
-    "start": "docz build",
+    "start": "docz build && docz serve",
     "test": "jest --config jest.config.js --no-cache",
     "test:watch": "SET NODE_ENV=development & jest --watch",
     "test:coverage": "SET NODE_ENV=development & jest --coverage",
