@@ -2,7 +2,7 @@
 name: Getting Started
 route: /
 ---
-![Otoli](.\public\logo_sticky.svg)  
+![Otoli](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/apple-icon-180x180.png?raw=true)  
 
 
 # Next.js Otoli Front-end
