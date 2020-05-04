@@ -3,6 +3,6 @@ export default {
   themeConfig: {
     initialColorMode: "dark",
   }, 
-  menu: ["Getting Started", "Components", "Containers", "pages"],
+  menu: ["Getting Started", "Components", "Containers"],
   typescript: true,
 };

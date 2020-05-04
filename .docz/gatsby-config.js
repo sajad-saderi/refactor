@@ -39,7 +39,7 @@ const config = {
         themesDir: 'src',
         mdxExtensions: ['.md', '.mdx'],
         docgenConfig: {},
-        menu: ['Getting Started', 'Components', 'Containers', 'pages'],
+        menu: ['Getting Started', 'Components', 'Containers'],
         mdPlugins: [],
         hastPlugins: [],
         ignore: [],

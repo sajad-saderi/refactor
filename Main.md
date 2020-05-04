@@ -13,7 +13,7 @@ route: /
 - **TypeScript** for sake of god
 - **SCSS** for styling components 
 - **SEO & analytics**(Google Analytics,Heap , HotJar, Next SEO) 
-- **Jest** & **Enzyme**
+- **Jest & Enzyme & React-test-renderer**
 - **Docz** for documenting
 
 ## Seting up
@@ -32,18 +32,20 @@ npm run test:coverage # report coverage
 ```
 
 ####  Docs
+To run documentation and find out more about deployment.
+
 ```bash
-npm run docz:dev # run docs web server in http://localhost:8000/
+npm run docz:dev # run docs web server in http://localhost:3000/
 npm run docz:build # build docs in docz
 ```
 
 
 #### Development
+For more information about development mode and Environment variables go to [Configuration Section](#configuration)
 ```bash
 npm run dev # run in development mode 
 ```
 
-For more information about development mode and Environment variables go to [Configuration Section](#configuration)
 
 #### Serve
 
@@ -67,21 +69,7 @@ To run in Development mode
 ```bash
 # "dev": "SET NODE_ENV=development & next dev"
 ```
-
-```typescript
-export const GA_TRACKING_ID = '';
-export const FB_TRACKING_ID = '';
-export const SENTRY_TRACKING_ID = '';
-
-// for meta tag <og & twitter>
-export const SITE_NAME = '';
-export const SITE_TITLE = '';
-export const SITE_DESCRIPTION = '';
-export const SITE_IMAGE = '';
-```
-
-If each variable evaluated false, it does not load related library
-
+ 
 ## Usage
 This project is build on top of [Next.js](https://nextjs.org/docs). 
 

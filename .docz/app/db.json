@@ -5,8 +5,7 @@
     "menu": [
       "Getting Started",
       "Components",
-      "Containers",
-      "pages"
+      "Containers"
     ],
     "version": "0.1.0",
     "repository": null,
@@ -92,47 +91,72 @@
     {
       "key": "README.md",
       "value": {
+        "name": "Getting Started",
+        "route": "/",
         "id": "04c6e90faac2675aa89e2176d2eec7d8",
         "filepath": "README.md",
         "fullpath": "C:\\Users\\Dell\\next\\README.md",
         "link": "",
         "hidden": false,
         "slug": "readme",
-        "route": "/readme",
-        "name": "Readme",
         "menu": "",
         "headings": [
           {
-            "slug": "getting-started",
-            "depth": 2,
-            "value": "Getting Started"
+            "slug": "nextjs-otoli-front-end",
+            "depth": 1,
+            "value": "Next.js Otoli Front-end"
           },
           {
-            "slug": "learn-more",
+            "slug": "stack",
             "depth": 2,
-            "value": "Learn More"
+            "value": "Stack"
           },
           {
-            "slug": "deploy-on-zeit-now",
+            "slug": "seting-up",
             "depth": 2,
-            "value": "Deploy on ZEIT Now"
+            "value": "Seting up"
+          },
+          {
+            "slug": "installation",
+            "depth": 3,
+            "value": "Installation"
+          },
+          {
+            "slug": "test",
+            "depth": 4,
+            "value": "Test"
+          },
+          {
+            "slug": "docs",
+            "depth": 4,
+            "value": "Docs"
+          },
+          {
+            "slug": "development",
+            "depth": 4,
+            "value": "Development"
+          },
+          {
+            "slug": "serve",
+            "depth": 4,
+            "value": "Serve"
+          },
+          {
+            "slug": "configuration",
+            "depth": 3,
+            "value": "Configuration"
+          },
+          {
+            "slug": "usage",
+            "depth": 2,
+            "value": "Usage"
+          },
+          {
+            "slug": "folder-structure",
+            "depth": 2,
+            "value": "Folder Structure"
           }
         ]
-      }
-    },
-    {
-      "key": "pages/index.md",
-      "value": {
-        "name": "index",
-        "menu": "Page",
-        "route": "/pages/",
-        "id": "3ff0627b4a78b86bb3d6ecf19a1580d1",
-        "filepath": "pages/index.md",
-        "fullpath": "C:\\Users\\Dell\\next\\pages\\index.md",
-        "link": "",
-        "hidden": false,
-        "slug": "pages-index",
-        "headings": []
       }
     },
     {
@@ -214,6 +238,161 @@
             "slug": "image-uploading",
             "depth": 1,
             "value": "Image Uploading"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/pelak/Pelak.md",
+      "value": {
+        "name": "Pelak",
+        "menu": "Components",
+        "route": "/components/pelak",
+        "id": "4a9cf1fc94e297ade6ecf10d0f9fe0db",
+        "filepath": "src/components/pelak/Pelak.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\pelak\\Pelak.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-pelak-pelak",
+        "headings": [
+          {
+            "slug": "pelak-view",
+            "depth": 1,
+            "value": "Pelak View"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Slider/Slider.md",
+      "value": {
+        "name": "Slider",
+        "menu": "Components",
+        "route": "/components/slider",
+        "id": "ea5c3ee59a47f6497b207af31009695b",
+        "filepath": "src/components/Slider/Slider.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\Slider\\Slider.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-slider-slider",
+        "headings": [
+          {
+            "slug": "slider",
+            "depth": 1,
+            "value": "Slider"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Spinner/Spinner.md",
+      "value": {
+        "name": "Spinner",
+        "menu": "Components",
+        "route": "/components/spinner",
+        "id": "a80436fef5388f7b6fe285a64aa51689",
+        "filepath": "src/components/Spinner/Spinner.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\Spinner\\Spinner.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-spinner-spinner",
+        "headings": [
+          {
+            "slug": "spinner",
+            "depth": 1,
+            "value": "Spinner"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/TabCreator/TabCreator.md",
+      "value": {
+        "name": "Tab Creator",
+        "menu": "Components",
+        "route": "/components/tabCreator",
+        "id": "a4bf4b7853da64b12218dd5eb73deae2",
+        "filepath": "src/components/TabCreator/TabCreator.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\TabCreator\\TabCreator.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-tab-creator-tab-creator",
+        "headings": [
+          {
+            "slug": "tabcreator",
+            "depth": 1,
+            "value": "TabCreator"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Toast/Toast.md",
+      "value": {
+        "name": "Toast",
+        "menu": "Components",
+        "route": "/components/toast",
+        "id": "ff4650b3360836134e367381f030070c",
+        "filepath": "src/components/Toast/Toast.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\Toast\\Toast.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-toast-toast",
+        "headings": [
+          {
+            "slug": "toast",
+            "depth": 1,
+            "value": "Toast"
           },
           {
             "slug": "screenshot",
@@ -369,6 +548,192 @@
             "slug": "radio",
             "depth": 1,
             "value": "Radio"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Slider/Gallery/Gallery.md",
+      "value": {
+        "name": "Gallery",
+        "menu": "Components",
+        "route": "/components/gallery",
+        "id": "349b848c2bb96cfd040218ecb772eedb",
+        "filepath": "src/components/Slider/Gallery/Gallery.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\components\\Slider\\Gallery\\Gallery.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-slider-gallery-gallery",
+        "headings": [
+          {
+            "slug": "gallery",
+            "depth": 1,
+            "value": "Gallery"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/containers/Request_page/request_cart/request_cart.md",
+      "value": {
+        "name": "Request Cart",
+        "menu": "Containers",
+        "route": "/components/request-cart",
+        "id": "1ded6d3444aa4067577212a9ee4338fb",
+        "filepath": "src/containers/Request_page/request_cart/request_cart.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\containers\\Request_page\\request_cart\\request_cart.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-containers-request-page-request-cart-request-cart",
+        "headings": [
+          {
+            "slug": "request-cart",
+            "depth": 1,
+            "value": "Request Cart"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/containers/Set_car_timing/DiscountBox/DiscounyPanel.md",
+      "value": {
+        "name": "Discount panel",
+        "menu": "Containers",
+        "route": "/components/DiscountPanel",
+        "id": "ac94ec3451bfb273d2f0031adc11fd37",
+        "filepath": "src/containers/Set_car_timing/DiscountBox/DiscounyPanel.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\containers\\Set_car_timing\\DiscountBox\\DiscounyPanel.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-containers-set-car-timing-discount-box-discouny-panel",
+        "headings": [
+          {
+            "slug": "discount-panel",
+            "depth": 1,
+            "value": "Discount panel"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/containers/Set_car_timing/PriceBox/PricePanel.md",
+      "value": {
+        "name": "Price panel",
+        "menu": "Containers",
+        "route": "/components/pricepanel",
+        "id": "f73951d8bb427048fb41dfb1426d7ec4",
+        "filepath": "src/containers/Set_car_timing/PriceBox/PricePanel.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\containers\\Set_car_timing\\PriceBox\\PricePanel.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-containers-set-car-timing-price-box-price-panel",
+        "headings": [
+          {
+            "slug": "price-panel",
+            "depth": 1,
+            "value": "Price panel"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/containers/car/search-result/car/car.md",
+      "value": {
+        "name": "Search Result Car",
+        "menu": "Containers",
+        "route": "/components/search-result-car",
+        "id": "ccbad2ce26a75bf299fab65cb94c7746",
+        "filepath": "src/containers/car/search-result/car/car.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\containers\\car\\search-result\\car\\car.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-containers-car-search-result-car-car",
+        "headings": [
+          {
+            "slug": "search-result-car",
+            "depth": 1,
+            "value": "Search Result Car"
+          },
+          {
+            "slug": "screenshot",
+            "depth": 2,
+            "value": "Screenshot"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/containers/Profile_container/Profile_Cars/car/profileCar.md",
+      "value": {
+        "name": "Profile Car",
+        "menu": "Containers",
+        "route": "/components/profileCar",
+        "id": "45a0e0480cc499b44621ac39b8c6a497",
+        "filepath": "src/containers/Profile_container/Profile_Cars/car/profileCar.md",
+        "fullpath": "C:\\Users\\Dell\\next\\src\\containers\\Profile_container\\Profile_Cars\\car\\profileCar.md",
+        "link": "",
+        "hidden": false,
+        "slug": "src-containers-profile-container-profile-cars-car-profile-car",
+        "headings": [
+          {
+            "slug": "profile-car",
+            "depth": 1,
+            "value": "Profile Car"
           },
           {
             "slug": "screenshot",
@@ -675,6 +1040,31 @@
       ]
     },
     {
+      "key": "src/Layout/index.tsx",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Layout",
+          "methods": [],
+          "props": {
+            "hide": {
+              "defaultValue": null,
+              "description": "",
+              "name": "hide",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "pages/request/[id].tsx",
+      "value": []
+    },
+    {
       "key": "pages/car/[id].tsx",
       "value": []
     },
@@ -700,33 +1090,8 @@
       ]
     },
     {
-      "key": "pages/request/[id].tsx",
-      "value": []
-    },
-    {
       "key": "pages/user/[id].tsx",
       "value": []
-    },
-    {
-      "key": "src/Layout/index.tsx",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Layout",
-          "methods": [],
-          "props": {
-            "hide": {
-              "defaultValue": null,
-              "description": "",
-              "name": "hide",
-              "required": false,
-              "type": {
-                "name": "boolean"
-              }
-            }
-          }
-        }
-      ]
     },
     {
       "key": "src/API/get/getBodyStyle.tsx",
@@ -2368,6 +2733,10 @@
       "value": []
     },
     {
+      "key": "src/components/calculator/Join_us_content/index.tsx",
+      "value": []
+    },
+    {
       "key": "src/components/calculator/ShowResult/ShowResult.tsx",
       "value": [
         {
@@ -2405,10 +2774,6 @@
           }
         }
       ]
-    },
-    {
-      "key": "src/components/calculator/Join_us_content/index.tsx",
-      "value": []
     },
     {
       "key": "src/components/cartPlaceholder/CarLoading/index.tsx",

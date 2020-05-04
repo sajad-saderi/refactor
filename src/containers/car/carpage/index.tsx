@@ -143,7 +143,7 @@ const CarPage = () => {
               cardType: "summary_large_image",
             }}
           />
-          <Slider Feed={media_set} alt={`sdfdsf`} />
+          <Slider Feed={media_set} alt={`${car.brand.name.fa} ${car.name.fa}`} />
           <article className="responsive Car_page_container">
             <section className="carInfo_container">
               {avg_discounted_price_per_day && (
