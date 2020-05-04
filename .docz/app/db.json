@@ -1040,31 +1040,6 @@
       ]
     },
     {
-      "key": "src/Layout/index.tsx",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Layout",
-          "methods": [],
-          "props": {
-            "hide": {
-              "defaultValue": null,
-              "description": "",
-              "name": "hide",
-              "required": false,
-              "type": {
-                "name": "boolean"
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "key": "pages/request/[id].tsx",
-      "value": []
-    },
-    {
       "key": "pages/car/[id].tsx",
       "value": []
     },
@@ -1090,8 +1065,33 @@
       ]
     },
     {
+      "key": "pages/request/[id].tsx",
+      "value": []
+    },
+    {
       "key": "pages/user/[id].tsx",
       "value": []
+    },
+    {
+      "key": "src/Layout/index.tsx",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Layout",
+          "methods": [],
+          "props": {
+            "hide": {
+              "defaultValue": null,
+              "description": "",
+              "name": "hide",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            }
+          }
+        }
+      ]
     },
     {
       "key": "src/API/get/getBodyStyle.tsx",
@@ -3655,11 +3655,11 @@
       ]
     },
     {
-      "key": "src/containers/header/modals/ConfirmCode/index.tsx",
+      "key": "src/containers/header/modals/GetUserCellPhone/index.tsx",
       "value": [
         {
           "description": "",
-          "displayName": "ConfirmCode",
+          "displayName": "GetUserCellPhone",
           "methods": [],
           "props": {
             "panelController": {
@@ -3676,11 +3676,11 @@
       ]
     },
     {
-      "key": "src/containers/header/modals/GetUserCellPhone/index.tsx",
+      "key": "src/containers/header/modals/ConfirmCode/index.tsx",
       "value": [
         {
           "description": "",
-          "displayName": "GetUserCellPhone",
+          "displayName": "ConfirmCode",
           "methods": [],
           "props": {
             "panelController": {

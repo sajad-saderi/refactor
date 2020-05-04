@@ -68,7 +68,7 @@ const config = {
         title: 'Otoli Documentation',
         description: 'My awesome app using docz',
         host: 'localhost',
-        port: 3000,
+        port: 3001,
         p: 3000,
         separator: '-',
         paths: {
