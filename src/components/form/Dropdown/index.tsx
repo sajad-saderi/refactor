@@ -7,6 +7,7 @@ const DropdownSearch = (props: IDropDown) => {
   const [ShowController, setShowController] = React.useState(false);
   const [Data, setData] = React.useState([]);
   const [search_value, setSearch_value] = React.useState("");
+  const [colorCode, setColorCode] = React.useState(null);
 
   const wrapperRef = useRef(null);
 
@@ -88,6 +89,13 @@ const DropdownSearch = (props: IDropDown) => {
       )}
       <div className="input_wrapper">
         <input
+          style={{
+            background: colorCode
+              ? colorCode
+              : props.colorPicker
+              ? InputValue
+              : null,
+          }}
           data-test-id="drop_down_input"
           className={[
             props.disabled ? "Disable_color" : null,
@@ -156,6 +164,9 @@ const DropdownSearch = (props: IDropDown) => {
                   data-test-id="Items"
                   className="Items"
                   onClick={() => {
+                    if (i.code) {
+                      setColorCode(i.code);
+                    }
                     setInputValue(i.text);
                     props.Select(i);
                     DropDownController();
@@ -194,6 +205,7 @@ interface IDropDown {
   disableSearch?: boolean;
   hideArrowDown?: boolean;
   hideClearField?: boolean;
+  colorPicker?: boolean;
 }
 
 export default DropdownSearch;

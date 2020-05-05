@@ -32,6 +32,7 @@ const Profile_info = (props: IProfile_info) => {
     jsCookie.remove("token");
     jsCookie.remove("user_id");
     jsCookie.remove("user_name");
+    jsCookie.remove("new_car");
     Router.push("/");
   };
 

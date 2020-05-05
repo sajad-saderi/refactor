@@ -373,6 +373,7 @@ const Add_Car_Step_2 = () => {
             data: JSON.stringify(discountList),
           });
         }
+        jsCookie.remove("new_car")
         const partial_car_res = await REQUEST_SET_CAR_PARTIAL({
           id: state.id,
           deliver_at_renters_place: state.deliver_at_renters_place,

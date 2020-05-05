@@ -154,6 +154,16 @@
         }
       }
     }
+    .colorPicker_container {
+      width: 18rem;
+      .DropDown_container {
+        .Locations_list_container {
+          p {
+            font-size: 0;
+          }
+        }
+      }
+    }
     .text_area_step_1 {
       min-height: 15rem;
       width: 100%;

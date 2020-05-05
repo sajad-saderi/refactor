@@ -26,6 +26,8 @@ import jsCookie from "js-cookie";
 import validator from "validator";
 
 const token = jsCookie.get("token");
+const user_id = jsCookie.get("user_id");
+const new_car = jsCookie.get("new_car");
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -310,7 +312,7 @@ const Add_Car_Step_1 = () => {
   const [facilitesList, setFacilitesList] = useState([]);
   const [initialImage, setInitialImage] = useState([]);
   const [colorList, setColorList] = useState([]);
-  const [colorName, setColorName] = useState(null);
+  const [colorCode, setColorCode] = useState(null);
   const [Loading, setLoading] = useState(false);
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
@@ -368,11 +370,21 @@ const Add_Car_Step_1 = () => {
     getInitials();
   }, []);
 
+  useEffect(() => {
+    const new_car = jsCookie.get("new_car");
+    if (new_car) {
+      getCarInfoToEdit(new_car);
+    }
+    console.log("titab", typeof new_car, new_car);
+  }, [new_car]);
+
   const getCarInfoToEdit = async (id) => {
     const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
       id: id,
       token: token,
     });
+    console.log(car_info_res);
+    
     SetCar(car_info_res);
   };
 
@@ -482,7 +494,7 @@ const Add_Car_Step_1 = () => {
       type: "color_id",
       color_id: car.color.id,
     });
-    setColorName(car.color.name.fa);
+    setColorCode(car.color.code);
 
     // SET DESCRIPTION
     dispatch({
@@ -555,7 +567,12 @@ const Add_Car_Step_1 = () => {
           data: state,
           token: token,
         });
-        Router.push(`/set-car-timing?car_id=${add_new_car_res.data.id}`);
+        if (Router.router.query.mode === "edit") {
+          Router.push(`/user/${user_id}`);
+        } else {
+          jsCookie.set("new_car", add_new_car_res.data.id);
+          Router.push(`/set-car-timing?car_id=${add_new_car_res.data.id}`);
+        }
       } catch (error) {
         setLoading(false);
       }
@@ -1236,26 +1253,30 @@ const Add_Car_Step_1 = () => {
             });
           }}
         />
-        <DropdownSearch
-          label="رنگ خودرو"
-          error_status={ErrorState.color_id}
-          InputDisable={true}
-          data={colorList}
-          defaultVal={colorName}
-          disableSearch={true}
-          clearField={() =>
-            dispatch({
-              type: "color_id",
-              color_id: null,
-            })
-          }
-          Select={(i) =>
-            dispatch({
-              type: "color_id",
-              color_id: i.value,
-            })
-          }
-        />
+        <div className="colorPicker_container">
+          <DropdownSearch
+            label="انتخاب رنگ"
+            error_status={ErrorState.color_id}
+            InputDisable={true}
+            data={colorList}
+            colorPicker={true}
+            defaultVal={colorCode}
+            hardValue="رنگ خودرو"
+            disableSearch={true}
+            clearField={() =>
+              dispatch({
+                type: "color_id",
+                color_id: null,
+              })
+            }
+            Select={(i) =>
+              dispatch({
+                type: "color_id",
+                color_id: i.value,
+              })
+            }
+          />
+        </div>
         <label>
           توضیحات<span> (اختیاری)</span>
         </label>

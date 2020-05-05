@@ -59,6 +59,7 @@ const Car = (props: ICar) => {
 
   const deleteTheCar = async () => {
     const delete_res = await REQUEST_DELETE_CAR({ token, id });
+    jsCookie.remove("new_car")
     props.getListAgain();
   };
 

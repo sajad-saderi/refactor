@@ -217,6 +217,27 @@ export default class MyDocument extends Document {
               }}
             ></script>
           ) : null}
+          {/* Google Analytics */}
+          {process.env.NODE_ENV === "development" ? null : (
+            <script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=UA-147651642-1"
+            ></script>
+          )}
+          {process.env.NODE_ENV === "development" ? null : (
+            <script
+              defer
+              dangerouslySetInnerHTML={{
+                __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'UA-147651642-1');
+                `,
+              }}
+            ></script>
+          )}
+
           {/* Google Tag Manager */}
           <script
             defer
