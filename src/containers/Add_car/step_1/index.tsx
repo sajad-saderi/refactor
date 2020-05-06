@@ -372,10 +372,9 @@ const Add_Car_Step_1 = () => {
 
   useEffect(() => {
     const new_car = jsCookie.get("new_car");
-    if (new_car) {
+    if (new_car && !Router.router.query.mode) {
       getCarInfoToEdit(new_car);
-    }
-    console.log("titab", typeof new_car, new_car);
+    } 
   }, [new_car]);
 
   const getCarInfoToEdit = async (id) => {
@@ -383,8 +382,6 @@ const Add_Car_Step_1 = () => {
       id: id,
       token: token,
     });
-    console.log(car_info_res);
-    
     SetCar(car_info_res);
   };
 
@@ -1263,6 +1260,7 @@ const Add_Car_Step_1 = () => {
             defaultVal={colorCode}
             hardValue="رنگ خودرو"
             disableSearch={true}
+            hideClearField={true} 
             clearField={() =>
               dispatch({
                 type: "color_id",

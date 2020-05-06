@@ -24,7 +24,9 @@ const ImageUploader = (props: IImageUpload) => {
   }, []);
 
   useEffect(() => {
-    setPicturesPreview(props.default_image);
+    if (props.default_image) {
+      setPicturesPreview(props.default_image);
+    }
   }, [props.default_image]);
 
   const RemoveAnImage = (i) => {
@@ -100,7 +102,7 @@ const ImageUploader = (props: IImageUpload) => {
       </div>
     </div>
   );
-}; 
+};
 
 interface IImageUpload {
   Upload_image: any;

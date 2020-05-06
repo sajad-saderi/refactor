@@ -89,13 +89,6 @@ const DropdownSearch = (props: IDropDown) => {
       )}
       <div className="input_wrapper">
         <input
-          style={{
-            background: colorCode
-              ? colorCode
-              : props.colorPicker
-              ? InputValue
-              : null,
-          }}
           data-test-id="drop_down_input"
           className={[
             props.disabled ? "Disable_color" : null,
@@ -119,6 +112,18 @@ const DropdownSearch = (props: IDropDown) => {
             onClick={clearField}
           />
         ) : null}
+        {props.colorPicker && InputValue && (
+          <div
+            className="color_Circle"
+            style={{
+              background: colorCode
+                ? colorCode
+                : props.colorPicker
+                ? InputValue
+                : null,
+            }}
+          ></div>
+        )}
         {!props.hideArrowDown && (
           <IoIosArrowDown
             color="rgb(165, 165, 165)"
