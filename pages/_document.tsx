@@ -151,12 +151,6 @@ export default class MyDocument extends Document {
             type="image/png"
             sizes="16x16"
           />
-          {/* <link
-            href="favicon-32.png"
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-          /> */}
           <link
             href="favicon-48.png"
             rel="icon"
@@ -201,10 +195,12 @@ export default class MyDocument extends Document {
           <link href="/manifest.json" rel="manifest"></link>
 
           {/* HotJar tag */}
-          {process.env.NODE_ENV === "development" ? (
+          {/* ANCHOR  Add Seo and Behavior tracker tags just in production mode */}
+          {process.env.NODE_ENV === "development" ? null : (
             <script
               defer
               dangerouslySetInnerHTML={{
+                // NOTE Remove the <script> tag from the given code to work properly
                 __html: `<!-- Hotjar Tracking Code for http://otoli.net/ -->
               (function(h,o,t,j,a,r){
                   h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -216,9 +212,9 @@ export default class MyDocument extends Document {
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
               }}
             ></script>
-          ) : null}
+          )}
           {/* Google Analytics */}
-          {process.env.NODE_ENV === "development" ? null : (
+          {/* {process.env.NODE_ENV === "development" ? null : (
             <script
               async
               src="https://www.googletagmanager.com/gtag/js?id=UA-147651642-1"
@@ -236,7 +232,7 @@ export default class MyDocument extends Document {
                 `,
               }}
             ></script>
-          )}
+          )} */}
 
           {/* Google Tag Manager */}
           <script
@@ -251,6 +247,7 @@ export default class MyDocument extends Document {
         <!-- End Google Tag Manager -->`,
             }}
           ></script>
+          {/* NOTE Heap Development code : 3071100507 and production code: 329839554 */}
           {process.env.NODE_ENV === "development" ? (
             <script
               defer
