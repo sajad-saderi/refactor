@@ -19,15 +19,18 @@ const Success_payment = () => {
     fetchAPI(Router.router.query.id);
   }, []);
 
-  const fetchAPI = async id => {
+  /**
+   *
+   * @param id
+   * Get the order info
+   */
+  const fetchAPI = async (id) => {
     try {
       const Order_res: any = await GET_ORDER_REQUEST({ token, id });
       setRent_search_dump(Order_res.data.rent_search_dump);
-      console.log(Order_res);
-
       setRenter(Order_res.data.renter);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log("!Error", error);
     }
   };
 

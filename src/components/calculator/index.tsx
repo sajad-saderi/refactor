@@ -33,45 +33,77 @@ const Calculator = (props: ICalculator) => {
   }, []);
 
   const fetchData = async () => {
-    const brand_list_res: any = await REQUEST_GET_CAR_BRAND();
-    console.log(brand_list_res);
-
-    setBrandList(brand_list_res.carBrands);
+    /**
+     * Get the Bran list from API
+     */
+    try {
+      const brand_list_res: any = await REQUEST_GET_CAR_BRAND();
+      setBrandList(brand_list_res.carBrands);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
+  /**
+   *
+   * @param brand_id
+   * Get the model List From API base on Brand Id
+   */
   const fetchModelList = async (brand_id) => {
-    console.log(brand_id);
-
-    const model_list_res: any = await REQUEST_GET_CAR_MODEL(brand_id);
-    setModelList(model_list_res.data);
+    try {
+      const model_list_res: any = await REQUEST_GET_CAR_MODEL(brand_id);
+      setModelList(model_list_res.data);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const calculator = async (e) => {
     e.preventDefault();
     setLoading(true);
+    /**
+     * validation to ignore empty values or if the inputted value is smaller then 10 million
+     */
     if (value === "" || !brand.id || !model.id) {
       setLoading(false);
       return;
     }
-    const estimation_res = await REQUEST_GET_CAR_PRICE_ESTIMATION({
-      car_id: model.id,
-      price: value,
-    });
-
-    setLoading(false);
-    setShowCalculateBox(false);
-    setDaily(0);
-    setWeekly(0);
-    setMonthly(0);
     if (+value < 10000000) return;
-    let conToNum = Number(value);
-    let eachDaily = conToNum * 0.0022;
-    let Round = Math.ceil(eachDaily / 10) * 10;
-    let eachWeek = Round * 7;
-    let eachMonth = Round * 30;
-    setDaily(eachDaily);
-    setWeekly(eachWeek);
-    setMonthly(eachMonth);
+
+    try {
+      // Don't care about the result
+      const estimation_res = await REQUEST_GET_CAR_PRICE_ESTIMATION({
+        car_id: model.id,
+        price: value,
+      });
+      setLoading(false);
+      // Show the calculator box
+      setShowCalculateBox(false);
+      // Reset old values in case they were set
+      setDaily(0);
+      setWeekly(0);
+      setMonthly(0);
+
+      // Convert the car value to Numner
+      let conToNum = Number(value);
+      // Constant base for daily rent: 0.0022
+      let eachDaily = conToNum * 0.0022;
+
+      //  Round the daily value before calculating monthly and weekly income
+      let Round = Math.ceil(eachDaily / 10) * 10;
+
+      // Multiply by 7 for weekly income
+      let eachWeek = Round * 7;
+
+      // Multiply by 30 for monthly income
+      let eachMonth = Round * 30;
+
+      setDaily(eachDaily);
+      setWeekly(eachWeek);
+      setMonthly(eachMonth);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
   return (
     <>
@@ -96,7 +128,6 @@ const Calculator = (props: ICalculator) => {
                   id: v.value,
                   name: v.text,
                 });
-                // TODO:
                 try {
                   if (window["heap"]) {
                     window["heap"].addUserProperties({
@@ -155,6 +186,7 @@ const Calculator = (props: ICalculator) => {
             </div>
             <Button
               data-test-id="local_Button_joinUs"
+              // onClick on this button nothing happened, the event listening to submitting the form
               value="تخمین درآمد"
               click={() => {}}
               class="Blue_BTN local_Button_joinUs"
@@ -165,23 +197,22 @@ const Calculator = (props: ICalculator) => {
       ) : (
         <>
           <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
-
           <div className="addCarnowInlanding">
             <Link href="/add-car">
               <a
                 className="Blue_BTN addCar_top_joinus_a"
                 data-test-id="addCar_top_joinus_a"
               >
-                {props.AbText
-                  ? "از درخواست‌های اجاره مرتبط باخبر شوید"
-                  : "ماشین‌تان را اضافه کنید"}
+                {props.AbText ? props.AbText : "ماشین‌تان را اضافه کنید"}
               </a>
             </Link>
           </div>
+          {/* show the calculation box */}
           <p
             className="tryAgainCalc"
             onClick={() => {
               window.scrollTo(0, 0);
+              // Reset the car value
               setValue("");
               setLoading(false);
               setShowCalculateBox(true);

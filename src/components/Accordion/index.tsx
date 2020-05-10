@@ -6,6 +6,7 @@ const Accordion = (props: IAccordion) => {
   const [index, setIndex] = useState(0);
 
   const ClickHandler = (i) => {
+    // If the given index is equal to the current index thi tab will be closing
     if (i === index) {
       setIndex(undefined);
     } else setIndex(i);
@@ -41,6 +42,10 @@ const Accordion = (props: IAccordion) => {
 };
 
 interface IAccordion {
+  /**
+   * @question_set
+   * A list of questions and answers
+   */
   question_set: any;
 }
 

@@ -6,10 +6,13 @@ const GET_CAR = "/core/rental-car/search-for-rent/get";
 export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
   return new Promise((resolve, reject) => {
     let queryString = "";
+    // If the data object has Coupon and search id, coupon has priority
     if (data.coupon) {
       queryString =
         queryString + `search_id=${data.search_id}&coupon_code=${data.coupon}`;
-    } else if (data.search_id) {
+    }
+    // search id has priority to start date and search by car id
+    else if (data.search_id) {
       queryString = queryString + `search_id=${data.search_id}`;
     } else if (data.start_date) {
       queryString =
@@ -18,7 +21,6 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
     } else if (data.id) {
       queryString = queryString + `rental_car_id=${data.id}`;
     }
-    console.log(queryString);
     axios
       .get(DOMAIN + GET_CAR + "?" + queryString)
       .then((response) => {
@@ -29,10 +31,7 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
         }
       })
       .catch((e) => {
-        if (e.response) reject(e.response.data.message);
-        else {
-          e.message;
-        }
+        reject(e.response);
       });
   });
 };

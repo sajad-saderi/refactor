@@ -20,6 +20,7 @@ const guideRenter = () => {
           cardType: "summary_large_image",
         }}
       />
+      {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
       <section className="responsive static_pages minHeight">
         <h1>راهنمای کامل اتولی برای اجاره‌دهنده</h1>
         <h2>قوانینی که باید قبل از ثبت خودرو بدانید</h2>
@@ -88,7 +89,7 @@ const guideRenter = () => {
         <h2>شرایطتان را برای اجاره تعیین کنید</h2>
         <p className="TextIndenter">
           شما به عنوان اجاره‌دهنده خودرو با رعایت چند اصل ساده می‌توانید با
-          خیالی راحت وسیله نقیله خود را در اختیار اجاره‌گیرنده قرار دهید.{" "}
+          خیالی راحت وسیله نقیله خود را در اختیار اجاره‌گیرنده قرار دهید.
         </p>
         <p className="TextIndenter">
           می‌توانید مدارکی به عنوان ضمانت از اجاره‌گیرنده دریافت کنید. این مدارک

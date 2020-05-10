@@ -4,21 +4,42 @@ import React from "react";
 const Button = (props: IButton) => {
   return (
     <button
-    data-test-id="btn"
+      data-test-id="btn"
       className={props.class}
       disabled={props.disable || props.loading}
       onClick={() => props.click()}
     >
-      {props.loading ? <span  data-test-id="Loading" className="Loading" /> : props.value}
+      {props.loading ? (
+        // this loading and the <Spinner/> component have save style
+        <span data-test-id="Loading" className="Loading" />
+      ) : (
+        props.value
+      )}
     </button>
   );
 };
 
 interface IButton {
+  // button's text
   value: string;
+
+  /**
+   * @class
+   *  you should set a class for button, the default button didn't have any class
+   */
   class: string;
+
+  // By default is false, if loading be true the spinner will shown
   loading: boolean;
+
+  // true => Disable the button
   disable?: boolean;
+
+  /**
+   * @click
+   * Click event.
+   * It can do nothing
+   */
   click: any;
 }
 

@@ -7,16 +7,19 @@ import Join_us_content from "../src/components/calculator/Join_us_content";
 import "../src/styles/pages/join-us.scss";
 
 const JoinUs1 = () => {
-  useEffect(() => {
-    if (Router.query.utm_source) {
-      localStorage["utm_source"] = Router.query.utm_source;
-      localStorage["utm_medium"] = Router.query.utm_medium;
-      localStorage["utm_campaign"] = Router.query.utm_campaign;
-      localStorage["utm_term"] = Router.query.utm_term;
-      localStorage["utm_content"] = Router.query.utm_content;
-      localStorage["utm_landing_url"] = "https://otoli.net/join-us1";
-    }
-  }, []);
+  /**
+   * @UTM attributes in URL have added to the local storage in layout container after mount
+   */
+  // useEffect(() => {
+  //   if (Router.query.utm_source) {
+  //     localStorage["utm_source"] = Router.query.utm_source;
+  //     localStorage["utm_medium"] = Router.query.utm_medium;
+  //     localStorage["utm_campaign"] = Router.query.utm_campaign;
+  //     localStorage["utm_term"] = Router.query.utm_term;
+  //     localStorage["utm_content"] = Router.query.utm_content;
+  //     localStorage["utm_landing_url"] = "https://otoli.net/join-us1";
+  //   }
+  // }, []);
 
   return (
     <Layout>
@@ -42,6 +45,7 @@ const JoinUs1 = () => {
             به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب کنید
           </h2>
           <div className="responsive calculator_container">
+            {/* You can set the Button text when you call the Calculator component */}
             <Calculator AbText="از درخواست‌های اجاره مرتبط باخبر شوید" />
           </div>
         </section>

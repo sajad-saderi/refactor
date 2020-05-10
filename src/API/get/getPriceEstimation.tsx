@@ -13,7 +13,7 @@ export const REQUEST_GET_CAR_PRICE_ESTIMATION = (data: IEstimation) => {
       .then((res) => {
         resolve(res);
       })
-      .catch((e) => reject(e));
+      .catch((e) => reject(e.response?.message));
   });
 };
 

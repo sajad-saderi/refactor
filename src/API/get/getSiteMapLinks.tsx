@@ -10,12 +10,10 @@ export const REQUEST_GET_URLS_FOR_SITE_MAP = () => {
       .then((response) => {
         if (response.data.success) {
           resolve(response.data);
-        } else {
-          reject(false);
         }
       })
-      .catch((err) => {
-        console.warn("profile request filed: ", err.message);
+      .catch((e) => {
+        console.log(e.response?.message);
       });
   });
 };

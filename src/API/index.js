@@ -1,3 +1,7 @@
+/**
+ * You can find the list of the all APIs in points.txt  
+ */
+
 import { REQUEST_GET_LOCATION } from "./get/getLocations";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "./get/getSearchForRent";
 import { REQUEST_GET_RENTAL_CAR } from "./get/getCar";

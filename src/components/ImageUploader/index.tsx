@@ -1,6 +1,16 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
 // import "./ImageUploader.scss";
 import jsCookie from "js-cookie";
+/**
+ *
+ * react-dropzone
+ *
+ * Npm
+ *  https://www.npmjs.com/package/react-dropzone
+ *
+ * Git
+ *  https://github.com/react-dropzone/react-dropzone
+ */
 import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 import { IoIosTrash } from "react-icons/io";
@@ -24,6 +34,7 @@ const ImageUploader = (props: IImageUpload) => {
   }, []);
 
   useEffect(() => {
+    // give the default images
     if (props.default_image) {
       setPicturesPreview(props.default_image);
     }
@@ -44,22 +55,28 @@ const ImageUploader = (props: IImageUpload) => {
 
   const sendTheImage = async (file, result) => {
     setloading(true);
+    // get the image by id from API
     const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
       token: token,
       file: file,
     });
     setloading(false);
+    // add the given image to preview list
     setPicturesPreview((picturesPreview) =>
       picturesPreview.concat({
         img: result,
         id: image_upload_res.id,
       })
     );
+    // sent the image id to parent component
     props.Upload_image(image_upload_res.id);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
+    // acceptable formats for upload
     accept: ".jpeg, .jpg, .png",
+
+    // active Drop and use custom function
     onDrop,
   });
 
@@ -80,6 +97,7 @@ const ImageUploader = (props: IImageUpload) => {
         </p>
       </div>
       <div
+        // if the image is uploading the drop-zone will be unreachable
         className={["Image_box", loading ? "loading_class" : null].join(" ")}
       >
         {loading ? (
@@ -89,6 +107,7 @@ const ImageUploader = (props: IImageUpload) => {
           picturesPreview.map((i, index) => {
             return (
               <div className="Each_image" key={index}>
+                {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
                 <IoIosTrash
                   size="2rem"
                   onClick={() => RemoveAnImage(i.id)}
@@ -105,8 +124,13 @@ const ImageUploader = (props: IImageUpload) => {
 };
 
 interface IImageUpload {
+  // Send the id after upload to the parent component
   Upload_image: any;
+
+  // Send the id of the deleted image to parent component
   delete_image: any;
+
+  // receive an array of image ids
   default_image?: any;
   error_status?: boolean;
 }

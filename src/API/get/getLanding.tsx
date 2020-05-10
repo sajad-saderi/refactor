@@ -13,7 +13,7 @@ export const REQUEST_GET_LANDING_PAGE = (data: ILanding) => {
         }
       })
       .catch((e) => {
-        console.log(e.response);
+        reject(e.response?.message);
       });
   });
 };

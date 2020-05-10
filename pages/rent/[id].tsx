@@ -29,15 +29,26 @@ const Rent_dynamic = (props) => {
   );
 };
 
+/**
+ *
+ * @param props
+ *  This page needs to render server-side and get the id of dynamic route
+ *  At incoming data there are meta data for dynamic page that should set on Next-Seo
+ *  With the id we do rest of work
+ */
 export async function getServerSideProps(props) {
-  const landing_res: any = await REQUEST_GET_LANDING_PAGE({
-    name: props.query.id,
-  });
-  return {
-    props: {
-      Landing_page: landing_res.data,
-    },
-  };
+  try {
+    const landing_res: any = await REQUEST_GET_LANDING_PAGE({
+      name: props.query.id,
+    });
+    return {
+      props: {
+        Landing_page: landing_res.data,
+      },
+    };
+  } catch (error) {
+    console.log("!Error", error);
+  }
 }
 
 export default Rent_dynamic;

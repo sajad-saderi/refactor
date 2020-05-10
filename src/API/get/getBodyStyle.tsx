@@ -20,7 +20,7 @@ export const REQUEST_GET_CAR_BODY_STYLE= () => {
         }
       })
       .catch(e => {
-        reject(e);
+        reject(e.response);
       });
   });
 };

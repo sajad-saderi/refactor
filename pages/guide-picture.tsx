@@ -19,6 +19,7 @@ const guidePicture = () => {
           cardType: "summary_large_image",
         }}
       />
+      {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
       <section className="responsive static_pages minHeight">
         <h1>راهنمای عکاسی برای ثبت خودرو در اتولی</h1>
         <p>

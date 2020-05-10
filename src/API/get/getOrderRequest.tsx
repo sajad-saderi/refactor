@@ -12,17 +12,17 @@ export const GET_ORDER_REQUEST = (data: IgetOrderRequest) => {
         { id },
         {
           headers: {
-            Authorization: "Bearer " + token
-          }
+            Authorization: "Bearer " + token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data);
         }
       })
-      .catch(e => {
-        reject(e);
+      .catch((e) => {
+        reject(e.response?.message);
       });
   });
 };

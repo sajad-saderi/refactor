@@ -31,12 +31,31 @@ const Counter = (props: ICounter) => {
 };
 
 interface ICounter {
+  /**
+   * @max
+   * maximum value you can use
+   */
   max: number;
+
+  /**
+   * @min
+   * the smallest value a user can reach
+   */
   min: number;
+
+  // responsible to Increase the value by 1
   AddTo: any;
+
+  // responsible to Reduce the value to 1
   reduceTo: any;
+
+  // Custom label
   label: string;
+
+  // a small tail text after Counter
   text: string;
+
+  // Initial value
   value: number;
 }
 

@@ -31,6 +31,7 @@ const HomePage = () => {
           <h1>اتولی، اجاره آسان خودرو</h1>
           <h2>ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.</h2>
           <div className="search_container responsive">
+            {/* Render search box in the Home page */}
             <Search />
           </div>
         </div>

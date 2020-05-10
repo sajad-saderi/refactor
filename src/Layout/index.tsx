@@ -78,7 +78,7 @@ const Layout = (props: ILayout) => {
       }
     }
 
-
+    // Initial React GA library after the mount
     if (!window["GA_INITIALIZED"]) {
       initGA()
       window["GA_INITIALIZED"] = true

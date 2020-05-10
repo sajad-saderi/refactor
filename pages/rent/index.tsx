@@ -19,7 +19,7 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین در بندر انزلی",
-          link: "/rent/Bandar-Anzali",
+          link: "/rent/bandar-anzali",
         },
         {
           title: "اجاره ماشین در اصفهان",
@@ -27,7 +27,7 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین در چالوس",
-          link: "/rent/Chalus",
+          link: "/rent/chalus",
         },
         {
           title: "اجاره ماشین در تهران",
@@ -39,7 +39,7 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین در کرمانشاه",
-          link: "/rent/Kermanshah",
+          link: "/rent/kermanshah",
         },
         {
           title: "اجاره ماشین در مشهد",
@@ -51,7 +51,7 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین در قشم",
-          link: "/rent/Qeshm",
+          link: "/rent/qeshm",
         },
         {
           title: "اجاره ماشین در رامسر",
@@ -75,11 +75,11 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین در فرودگاه مهرآباد تهران",
-          link: "/rent/Mehrabad-Airport-Car-Rental",
+          link: "/rent/mehrabad-airport-car-rental",
         },
         {
           title: "اجاره ماشین در فرودگاه امام خمینی",
-          link: "/rent/Car-rental-at-Tehran-Imam-Khomeini-Airport",
+          link: "/rent/car-rental-at-tehran-imam-khomeini-airport",
         },
       ],
     },
@@ -107,7 +107,7 @@ const Rent = () => {
         },
         {
           title: "لیست اجاره ماشین مزدا",
-          link: "/rent/Mazda",
+          link: "/rent/mazda",
         },
         {
           title: "اجاره پورشه ",
@@ -115,7 +115,7 @@ const Rent = () => {
         },
         {
           title: "اجاره رنو",
-          link: "/rent/Renault",
+          link: "/rent/renault",
         },
         {
           title: "اجاره تویوتا ",
@@ -123,7 +123,7 @@ const Rent = () => {
         },
         {
           title: "اجاره وانت ",
-          link: "/rent/Pickup",
+          link: "/rent/pickup",
         },
         { title: "اجاره ون", link: "/rent/van" },
       ],
@@ -137,19 +137,19 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین عروس",
-          link: "/rent/Bride-car-rental",
+          link: "/rent/bride-car-rental",
         },
         {
           title: "اجاره ماشین برای مسافرت",
-          link: "/rent/Car-rental-for-travel",
+          link: "/rent/car-rental-for-travel",
         },
         {
           title: "اجاره ماشین با راننده",
-          link: "/rent/Car-rental-with-driver",
+          link: "/rent/car-rental-with-driver",
         },
         {
           title: "اجاره ماشین کلاسیک",
-          link: "/rent/Classic",
+          link: "/rent/classic",
         },
         {
           title: "اجاره ماشین برای کویر",
@@ -157,7 +157,7 @@ const Rent = () => {
         },
         {
           title: "اجاره ماشین بدون راننده",
-          link: "/rent/Rent-a-car-without-a-driver",
+          link: "/rent/rent-a-car-without-a-driver",
         },
       ],
     },
@@ -330,10 +330,10 @@ const Rent = () => {
               هر یک از موارد فوق می‌تواند دلیل خوبی برای اجاره ماشین باشد، که
               اجاره ماشین از سامانه اتولی به شما این اطمینان را می‌دهد که ماشین
               به دلخواه خود را برای مدت معین با رعایت قوانین و مقررات مشخص شده،
-              در اختیار داشته باشید و از آن لذت ببرید.{" "}
+              در اختیار داشته باشید و از آن لذت ببرید.
             </p>
           </div>
-
+          {/* Creating tab menu */}
           <TabCreator data_arr={data} />
         </div>
       </article>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "../src/Layout";
 import Router from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";

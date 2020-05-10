@@ -7,11 +7,13 @@ const DropdownSearch = (props: IDropDown) => {
   const [ShowController, setShowController] = React.useState(false);
   const [Data, setData] = React.useState([]);
   const [search_value, setSearch_value] = React.useState("");
+  // this value is necessary to update the drop-down input in case of a default value
   const [colorCode, setColorCode] = React.useState(null);
 
   const wrapperRef = useRef(null);
 
   const handleClickOutside = (e) => {
+    // If the click is outside of the drop-down box the drop-down section will be close
     if (!wrapperRef.current.contains(e.target)) {
       setShowController(false);
       return;
@@ -27,6 +29,7 @@ const DropdownSearch = (props: IDropDown) => {
 
   useEffect(() => {
     if (props.defaultVal) {
+      // Set the value of the input to incoming value form parent
       setInputValue(props.defaultVal);
     }
   }, [props.defaultVal]);
@@ -36,6 +39,7 @@ const DropdownSearch = (props: IDropDown) => {
   }, [props.data]);
 
   useEffect(() => {
+    //  In case of error, the page will be scrolled to the invalid drop-down
     if (props.error_status) {
       scrollTo(0, wrapperRef.current.offsetTop);
     }
@@ -46,13 +50,16 @@ const DropdownSearch = (props: IDropDown) => {
   };
 
   const searchHandler = (e) => {
+    // show all the data if the input is clear
     if (e === "") {
       setData(props.data);
     }
 
     let filter: any = props.data.filter((item) => {
+      // search fo the given 'e' in the data list
       return item.text.search(e) !== -1;
     });
+    // If there wasn't any pair
     if (filter.length === 0)
       filter = [
         {
@@ -75,6 +82,7 @@ const DropdownSearch = (props: IDropDown) => {
     <div
       className={[
         "DropDown_container",
+        //  if the drop-down is disabled, it is shown by class
         props.disabled ? "Disable_Container" : null,
       ].join(" ")}
       ref={wrapperRef}
@@ -97,12 +105,15 @@ const DropdownSearch = (props: IDropDown) => {
           ].join(" ")}
           data-hj-whitelist
           onChange={() => {}}
+          // active readOnly for input
           readOnly={props.InputDisable}
           disabled={props.disabled}
+          // always HardValue has priority to a default value or components value
           value={props.hardValue ? props.hardValue : InputValue}
           placeholder={props.placeholder}
           onClick={DropDownController}
         />
+        {/* close icon in input */}
         {(InputValue.length > 0 || props.defaultVal) &&
         !props.hideClearField ? (
           <IoMdClose
@@ -112,6 +123,7 @@ const DropdownSearch = (props: IDropDown) => {
             onClick={clearField}
           />
         ) : null}
+        {/* Show the selected color in color picker drop-down */}
         {props.colorPicker && InputValue && (
           <div
             className="color_Circle"
@@ -124,6 +136,7 @@ const DropdownSearch = (props: IDropDown) => {
             }}
           ></div>
         )}
+        {/* Arrow down icon */}
         {!props.hideArrowDown && (
           <IoIosArrowDown
             color="rgb(165, 165, 165)"
@@ -139,27 +152,26 @@ const DropdownSearch = (props: IDropDown) => {
           className="Locations_list_container"
         >
           {Data.length === 0 ? (
-            <div
-              className="resultList"
-              // style={{ top: props.top + "px" }}
-            >
+            <div className="resultList">
               <Spinner display="block" width={21} color="#9E9E9E" />
             </div>
           ) : (
-            <div
-              className="resultList"
-              // style={{ top: props.top + "px" }}
-            >
+            <div className="resultList">
+              {/* You can control the performance of the search input */}
               {!props.disableSearch && (
                 <input
                   data-test-id="search_input"
+                  // When the drop-down is shown, the search input is ready to type
                   autoFocus
                   placeholder="جستجو"
                   name="search"
+                  // NOTE type of the input is 'search'
                   type="search"
                   value={search_value}
                   onChange={(e) => {
+                    // set the value in input
                     setSearch_value(e.target.value);
+                    // search the value in list
                     searchHandler(e.target.value);
                   }}
                 />
@@ -169,6 +181,7 @@ const DropdownSearch = (props: IDropDown) => {
                   data-test-id="Items"
                   className="Items"
                   onClick={() => {
+                    // this part just work for color picker
                     if (i.code) {
                       setColorCode(i.code);
                     }
@@ -179,6 +192,7 @@ const DropdownSearch = (props: IDropDown) => {
                   key={index}
                 >
                   {i.text}
+                  {/* this section will active just in the color picker */}
                   {i.code && (
                     <span
                       style={{ background: `${i.code}` }}
@@ -197,19 +211,37 @@ const DropdownSearch = (props: IDropDown) => {
 
 interface IDropDown {
   error_status?: boolean;
+
+  // disable the main input
   InputDisable?: boolean;
+
+  // disable the whole drop-down
   disabled?: boolean;
   placeholder?: string;
   data: any;
   defaultVal?: any;
+
+  // label of the drop-down
   label?: string;
+
+  // you can add custom class to the main input
   styleClass?: string;
   clearField: any;
   Select: any;
+
+  // deactivate default value and component's value
   hardValue?: string;
+
+  // the search input will be disappear
   disableSearch?: boolean;
+
+  // don't show the arrow down icon
   hideArrowDown?: boolean;
+
+  // don't show the close icon in main input
   hideClearField?: boolean;
+
+  // active the color-picker property at the component
   colorPicker?: boolean;
 }
 

@@ -6,17 +6,20 @@ import Router from "next/router";
 import {
   IoIosArrowDropup,
   IoLogoTwitter,
-  IoLogoInstagram, 
+  IoLogoInstagram,
 } from "react-icons/io";
 import { FaTelegram } from "react-icons/fa";
+
 const Footer = (props: IFooter) => {
   const [hide, setHide] = useState(false);
   const [showTop, setShowTop] = useState(false);
 
+  // Because the layout render once you should track the hide props for change
   useEffect(() => {
     if (props.hide) setHide(true);
   }, [props.hide]);
 
+  // Add an event listener on scroll to show the "Go To Top" button
   useEffect(() => {
     document.addEventListener("scroll", scrollCheck);
     return () => {
@@ -25,6 +28,10 @@ const Footer = (props: IFooter) => {
   }, []);
 
   const scrollCheck = () => {
+    /**
+     * window.@scroll
+     *  if it's bigger than 400px "GoToTop" will shown
+     */
     if (window.scrollY > 400) {
       setShowTop(true);
     } else {
@@ -32,6 +39,7 @@ const Footer = (props: IFooter) => {
     }
   };
 
+  // GoToTop functionality 
   const toTop = () => {
     scrollTo(0, 0);
   };
@@ -109,6 +117,7 @@ const Footer = (props: IFooter) => {
   );
 };
 interface IFooter {
+  // true === Hide -> the footer on the page
   hide?: boolean;
 }
 export default Footer;

@@ -15,12 +15,10 @@ export const REQUEST_GET_CAR_BRAND = () => {
             value: +value.id,
           }));
           resolve({ carBrands });
-        } else {
-          reject(response);
         }
       })
       .catch((e) => {
-        reject(e);
+        reject(e.response?.message);
       });
   });
 };

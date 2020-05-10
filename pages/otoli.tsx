@@ -19,6 +19,7 @@ const AboutUs = () => {
           cardType: "summary_large_image",
         }}
       />
+      {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
       <section className="responsive static_pages minHeight OTILI">
         <h1>اتولی چگونه کار می‌کند؟</h1>
         <div className="PartOne_OTOLI">

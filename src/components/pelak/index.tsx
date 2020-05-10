@@ -14,9 +14,13 @@ const PelakView = (props: IPelakView) => {
   );
 };
 interface IPelakView {
+  // It's the first box from left
   registration_plate_first_part: string;
+  // It's the second box from left
   registration_plate_second_part: string;
+  // It's the third box from left
   registration_plate_third_part: string;
+  // It's the fourth box from left
   registration_plate_forth_part: string;
 }
 

@@ -7,7 +7,12 @@ const ShowResult = (props: IShowResult) => {
         {props.weekly > 0 && (
           <h3 className="CalcH3" data-test-id="weekly">
             {props.weekly < 1000000
-              ? props.weekly.toString().slice(0, 3)
+              ? /**
+                 * @weekly
+                 *  If it's smaller then 1.000.000 for instance 999.000 then the result should be 999
+                 *  If it's equal or larger then 1.000.000 like 9.999.000 output is 9.9
+                 */
+                props.weekly.toString().slice(0, 3)
               : props.weekly.toLocaleString().slice(0, 5)}
             <p>{props.weekly >= 1000000 ? "میلیون" : "هزار"} تومان</p>
           </h3>
@@ -76,8 +81,13 @@ const ShowResult = (props: IShowResult) => {
       <div className="eachSvgBox">
         {props.monthly && (
           <h3 className="CalcH3" data-test-id="monthly">
-            {props.monthly.toLocaleString().slice(0, 5)}
-            <p>{props.monthly >= 1000000 ? "میلیون" : "هزار"} تومان</p>
+            {/**
+             * @monthly
+             *  The monthly value always is larger than one million
+             *  Instance: 9.999.000 output is 9.9
+             */
+            props.monthly.toLocaleString().slice(0, 5)}
+            <p>میلیون تومان</p>
           </h3>
         )}
         <div className="SvgDisc">
@@ -144,7 +154,13 @@ const ShowResult = (props: IShowResult) => {
       <div className="eachSvgBox">
         {props.daily > 0 && (
           <h3 className="CalcH3" data-test-id="daily">
-            {props.daily < 1000000
+            {/**
+             * @daily
+             *  If it's smaller then 100.000 for instance 99.000 then the result should be 99
+             *  If it's equal or bigger then 100.000 for instance 101.000 then the result should be 101
+             *  If it's equal or larger then 1.000.000 like 9.999.000 output is 9.9
+             */
+            props.daily < 1000000
               ? props.daily < 100000
                 ? props.daily.toString().slice(0, 2)
                 : props.daily.toString().slice(0, 3)
