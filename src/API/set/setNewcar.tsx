@@ -12,31 +12,16 @@ export const REQUEST_ADD_NEW_CAR = (info: IAddCar) => {
         { ...data },
         {
           headers: {
-            Authorization: "Bearer " + token
-          }
+            Authorization: "Bearer " + token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data);
-
-          //   if (this.props.edit_mode) {
-          //     localStorage.removeItem("CarEditId");
-          //     Router.push({
-          //       pathname: `/user/${jsCookie.get("user_id")}`
-          //     });
-          //   } else {
-          //     localStorage["CarEditId"] = response.data.data.id;
-          //     Router.push({
-          //       pathname: "/set-car-timing",
-          //       query: {
-          //         id: response.data.data.id
-          //       }
-          //     });
-          //   }
         }
       })
-      .catch(e => reject(e));
+      .catch((e) => reject(e.response?.message));
   });
 };
 

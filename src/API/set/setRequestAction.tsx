@@ -19,7 +19,6 @@ const SET_ORDER_RATE = {
 };
 
 export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
-  console.log(data);
   return new Promise((resolve, reject) => {
     let ACTION_URL;
     let more;
@@ -51,8 +50,13 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         message =
           "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد اجاره گیرنده را با سایر کاربران در میان بگذارید.";
         break;
+      // if you want to rate a car, renter or a owner
+      //  renter : اجاره گیرنده
+      // owner : اجاره دهنده
       case "rate":
+        // if you are a renter and wants to rate an owner or a car
         if (data.payload.toRate === "owner") {
+          // rate the owner person
           if (data.payload.type === "user") {
             // message = "امتیاز شما برای اجاره دهنده ثبت شد.";
             ACTION_URL = SET_ORDER_RATE.OWNER.USER;
@@ -61,6 +65,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
               rate: data.payload.rate,
             };
           }
+          // rate the order
           if (data.payload.type === "rent-order") {
             // message = "امتیاز شما برای خودرو ثبت شد.";
             ACTION_URL = SET_ORDER_RATE.OWNER.RENT_ORDER;
@@ -70,10 +75,12 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
               review: data.payload.review,
             };
           }
-        } else if (data.payload.toRate === "renter") {
+        }
+        // if you are am owner and you wants to rate a renter
+        else if (data.payload.toRate === "renter") {
+          // rate the renter person
           if (data.payload.type === "user") {
             // message = "امتیاز شما برای اجاره گیرنده ثبت شد.";
-
             ACTION_URL = SET_ORDER_RATE.RENTER.USER;
             more = {
               user_profile_id: data.payload.user_profile_id,
@@ -86,7 +93,6 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         }
         break;
     }
-    console.log("more", more);
 
     axios
       .post(
@@ -104,18 +110,9 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       .then((response) => {
         console.log(response);
         resolve({ ...response.data, message });
-        // data.action !== "pay" &&
-        //   toast.success(message, {
-        //     position: "bottom-center",
-        //     autoClose: 7000,
-        //     hideProgressBar: true,
-        //     closeOnClick: false,
-        //     pauseOnHover: true,
-        //     draggable: true
-        //   });
       })
-      .catch((error) => { 
-        reject(error.response);
+      .catch((error) => {
+        reject(error.response?.message);
       });
   });
 };

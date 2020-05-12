@@ -19,6 +19,7 @@ const TellMe = () => {
 
   const sendCellPhonenumber = (e) => {
     e.preventDefault();
+    // validation
     if (cellPhone.length < 11) {
       setError({
         status: true,
@@ -27,7 +28,6 @@ const TellMe = () => {
       return;
     }
     setLoading(true);
-    console.log(location_id);
 
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/service-request/new";
@@ -44,11 +44,13 @@ const TellMe = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error(error.response.data);
-        setError({
-          status: true,
-          message: error.response.data.message,
-        });
+        console.log("!Error", error.response?.message);
+        if (error.response?.data) {
+          setError({
+            status: true,
+            message: error.response.data.message,
+          });
+        }
       });
   };
 
@@ -88,6 +90,7 @@ const TellMe = () => {
             placeholder="شماره تلفن همراه"
             clearField={clearField}
           />
+          {/* show error message */}
           <span className="error_message">{error.message}</span>
           <p className="p3">{`وقتی در ${locationName} فعال شدیم خبرتان می‌کنیم.`}</p>
           <Button

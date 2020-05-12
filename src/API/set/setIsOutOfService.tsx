@@ -10,21 +10,21 @@ export const REQUEST_SET_OUT_OF_SERVICE = (data: IServiceSet) => {
         DOMAIN + SET_OUT_OF_SERVICE,
         {
           id: data.id,
-          value: data.value
+          value: data.value,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data.data.is_out_of_service);
         }
       })
-      .catch(error => {
-        reject(error);
+      .catch((error) => {
+        reject(error.response?.message);
       });
   });
 };
@@ -32,5 +32,6 @@ export const REQUEST_SET_OUT_OF_SERVICE = (data: IServiceSet) => {
 interface IServiceSet {
   token: string;
   id: string;
+  // status we want to set true = out fo service , false = active
   value: boolean;
 }

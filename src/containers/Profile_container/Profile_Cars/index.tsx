@@ -27,6 +27,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
 
   const fetchApi = async (page?) => {
     let data: any = {};
+    // reset the results
     if (page <= 1) {
       setResult(null);
     }
@@ -39,18 +40,22 @@ const Profile_Cars = (props: IProfile_Cars) => {
     } else {
       data = { id: `${Router.router.query.id}`, page: page };
     }
-    const user_cars_res: any = await REQUEST_GET_USER_CARS(data);
-    if (page > 1) {
-      setResult((result) => result.concat(user_cars_res.items));
-    } else {
-      setResult(user_cars_res.items);
+    try {
+      const user_cars_res: any = await REQUEST_GET_USER_CARS(data);
+      if (page > 1) {
+        setResult((result) => result.concat(user_cars_res.items));
+      } else {
+        setResult(user_cars_res.items);
+      }
+      if (user_cars_res.total_count > 14 && user_cars_res.remained_count > 0) {
+        setShowMoreButton(true);
+      } else setShowMoreButton(false); 
+    } catch (error) {
+      console.log("!Error", error);
     }
-    if (user_cars_res.total_count > 14 && user_cars_res.remained_count > 0) {
-      setShowMoreButton(true);
-    } else setShowMoreButton(false);
-    console.log(user_cars_res);
   };
 
+  // check the filter to sort by avtive or out of service status
   const activeFilter = (i) => {
     page = 1;
     if (i === 1) {
@@ -99,6 +104,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
       {result ? (
         result.length > 0 ? (
           result.map((item, i) => {
+            // car section
             return (
               <Car
                 key={i}

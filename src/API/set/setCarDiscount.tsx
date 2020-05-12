@@ -25,7 +25,7 @@ export const REQUEST_SET_CAR_DISCOUNT = (inputData: ISetCarDiscount) => {
         }
       })
       .catch((error) => {
-        reject(error.response);
+        reject(error.response?.message);
       });
   });
 };

@@ -108,6 +108,7 @@ const Complete_register_container = () => {
   const AUTH_CONTEXT = useContext(Auth_context);
 
   useEffect(() => {
+    // if the user is not register the login modal will show up
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
     } else {
@@ -118,15 +119,19 @@ const Complete_register_container = () => {
   const submitHandler = async (e, state) => {
     e.preventDefault();
     setLoading(true);
+    // if all the validation is true
     if (validation(state)) {
       try {
         const user_info_res = await REQUEST_USER_INFO_UPDATE({
           token,
           first_name: state.first_name,
           last_name: state.last_name,
+          // company_name is optional
           company_name: state.company_name === "" ? null : state.company_name,
+          // birth_date constructor 1399/01/01
           birth_date: `${state.year}/${state.month}/${state.day}`,
         });
+        // cache expire after 100 days
         const cook_option = {
           expires: 100,
         };
@@ -141,12 +146,28 @@ const Complete_register_container = () => {
         Router.push({
           pathname: `/user/${jsCookie.get("user_id")}`,
         });
-      } catch (e) {
+      } catch (error) {
         setLoading(false);
-        console.log(e);
+        console.log("!Error", error);
       }
     } else {
       setLoading(false);
+    }
+  };
+
+  // receive the Reducer type and reset the error status
+  const resetTheErrorStatus = (value_name) => {
+    if (value_name === "message") {
+      errorDispatch({
+        type: value_name,
+        message: null,
+      });
+    } else {
+      errorDispatch({
+        type: value_name,
+        [value_name]: null,
+        message: null,
+      });
     }
   };
 
@@ -159,11 +180,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "first_name",
-        first_name: false,
-        message: null,
-      });
+      resetTheErrorStatus("first_name");
     }
     if (state.last_name === "") {
       errorDispatch({
@@ -173,11 +190,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "last_name",
-        last_name: false,
-        message: null,
-      });
+      resetTheErrorStatus("last_name");
     }
     if (showCompanyName && state.company_name === "") {
       errorDispatch({
@@ -187,11 +200,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "company_name",
-        company_name: false,
-        message: null,
-      });
+      resetTheErrorStatus("company_name");
     }
     if (state.day === "") {
       errorDispatch({
@@ -201,11 +210,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "day",
-        day: false,
-        message: null,
-      });
+      resetTheErrorStatus("day");
     }
     if (!state.month) {
       errorDispatch({
@@ -215,11 +220,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "month",
-        month: false,
-        message: null,
-      });
+      resetTheErrorStatus("month");
     }
     if (state.year === "") {
       errorDispatch({
@@ -229,11 +230,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "year",
-        year: false,
-        message: null,
-      });
+      resetTheErrorStatus("year");
     }
     if (!rolesCheck) {
       errorDispatch({
@@ -242,10 +239,7 @@ const Complete_register_container = () => {
       });
       return;
     } else {
-      errorDispatch({
-        type: "message",
-        message: null,
-      });
+      resetTheErrorStatus("message");
     }
     return true;
   };

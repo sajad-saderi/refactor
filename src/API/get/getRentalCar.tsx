@@ -9,21 +9,23 @@ export const REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING = (data: IgetCar) => {
       .post(
         DOMAIN + GET_RENTAL_CAR_SET_CAR_TIMING,
         {
+          // this value is needed to show this is my car and I can edit this
           is_mine: 1,
-          id: data.id
+          id: data.id,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data.data);
-        } else {
-          reject(new Error("Error in loading rental car data!"));
         }
+      })
+      .catch((e) => {
+        reject(e.response?.message);
       });
   });
 };

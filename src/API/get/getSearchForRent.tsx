@@ -22,7 +22,10 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
       .then((response) => {
         if (response.data.success) {
           let statsObj = {};
+          // @extra_info like total count remain count and etc..
           const extra_info = response.data.extra_info.stats;
+
+          // set the body style check box list and update the count
           const body_style_id = extra_info.body_style_set.map(
             (value, index) => ({
               value: value.id,
@@ -30,6 +33,8 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
               count: value.count,
             })
           );
+
+          // set the filter data
           statsObj = {
             extra_info: {
               body_style_id: body_style_id,
@@ -53,20 +58,24 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
               count: response.data.count,
               remained_count: response.data.remained_count,
               ...statsObj,
-              // remained_count:response.data.remained_count,
-              // latest_result_key: response.data.result_key,
-              // total_count: response.data.total_count,
             });
           }
         }
+      })
+      .catch((error) => {
+        reject(error.response?.message);
       });
   });
 };
 
 interface IgetSearchForRent {
+  // number of the result length in each search
   limit: number;
+  // page number
   page: number;
+  // search by filters
   queryString?: string;
   result_key?: string;
+  // price sort
   o?: string;
 }

@@ -7,21 +7,19 @@ export const REQUEST_GET_CAR_COLORS = () => {
   return new Promise((resolve, reject) => {
     axios
       .get(DOMAIN + GET_CAR_COLORS)
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           const data = response.data.items.map((value, index) => ({
             key: value.id,
             text: value.name.fa,
             value: +value.id,
-            code: value.code
+            code: value.code,
           }));
           resolve({ data });
-        } else {
-          reject(response);
         }
       })
-      .catch(e => {
-        reject(e);
+      .catch((e) => {
+        reject(e.response?.message);
       });
   });
 };

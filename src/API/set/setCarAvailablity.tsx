@@ -27,7 +27,7 @@ export const REQUEST_SET_CAR_AVAILABILITY = (
         }
       })
       .catch((error) => {
-        reject(error.response);
+        reject(error.response?.message);
       });
   });
 };

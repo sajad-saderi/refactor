@@ -9,19 +9,19 @@ export const REQUEST_DELETE_CAR = (data: IDeleteCar) => {
       .post(
         DOMAIN + DELETE_CAR,
         {
-          id: data.id
+          id: data.id,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         resolve(response.data);
       })
-      .catch(error => {
-        reject(error);
+      .catch((error) => {
+        reject(error.response?.message);
       });
   });
 };

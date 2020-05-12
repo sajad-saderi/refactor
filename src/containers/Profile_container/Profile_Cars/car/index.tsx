@@ -27,6 +27,7 @@ const Car = (props: ICar) => {
 
   useEffect(() => {
     if (props.data) {
+      // set the data
       setIs_out_of_service(props.data.is_out_of_service);
       setId(props.data.id);
       setYear(props.data.year);
@@ -36,31 +37,43 @@ const Car = (props: ICar) => {
   }, [props.data]);
 
   const setServiceStatus = async () => {
+    // start showing the spinner
     setIs_out_of_service_loading(true);
-    const service_res: any = await REQUEST_SET_OUT_OF_SERVICE({
-      token,
-      id: id,
-      value: !is_out_of_service,
-    });
-    setIs_out_of_service(service_res);
-    TOAST_CONTEXT.toast_option({
-      message: service_res
-        ? `
+    try {
+      const service_res: any = await REQUEST_SET_OUT_OF_SERVICE({
+        token,
+        id: id,
+        // send apposite of current status
+        value: !is_out_of_service,
+      });
+      setIs_out_of_service(service_res);
+      // show toast
+      TOAST_CONTEXT.toast_option({
+        message: service_res
+          ? `
     خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده نخواهد شد.
     `
-        : `
+          : `
     خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده خواهد شد.
     `,
-      time: 7,
-      autoClose: true,
-    });
-    setIs_out_of_service_loading(false);
+        time: 7,
+        autoClose: true,
+      });
+      // hide the spinner
+      setIs_out_of_service_loading(false);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const deleteTheCar = async () => {
-    const delete_res = await REQUEST_DELETE_CAR({ token, id });
-    jsCookie.remove("new_car")
-    props.getListAgain();
+    try {
+      const delete_res = await REQUEST_DELETE_CAR({ token, id });
+      jsCookie.remove("new_car");
+      props.getListAgain();
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   let link = props.is_mine ? `/car/${id}?owner=true` : `/car/${id}`;
@@ -74,7 +87,11 @@ const Car = (props: ICar) => {
           >
             <figure>
               <img
-                style={{ position: "absolute", top: -heightController + "px" }}
+                style={{
+                  position: "absolute",
+                  // control the position of the image in its container
+                  top: -heightController + "px",
+                }}
                 src={media_set[0].thumbnail_url}
                 className="img-fluid"
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
@@ -82,6 +99,7 @@ const Car = (props: ICar) => {
                   e.persist();
                   let imageHeight = media_set[0].thumbnail_height;
 
+                  // just adjust the image if the hieght of it is bigger than 200 pixels
                   if (imageHeight > 200) {
                     setHeightController(imageHeight - 200);
                   }
@@ -142,6 +160,7 @@ const Car = (props: ICar) => {
 interface ICar {
   is_mine: boolean;
   data: any;
+  // update the car list
   getListAgain: any;
 }
 

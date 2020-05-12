@@ -70,16 +70,25 @@ const Request_cart = (props: IRequest_cart) => {
         });
         props.getDataAgain();
       }
-    } catch (e) {
+    } catch (error) {
+      console.log("!Error", error);
       setButtonLoader(false);
       setRejectButtonLoader(false);
-      console.log(e);
     }
   };
 
   useEffect(() => {
     if (props.data) {
+      /**
+       * @renter
+       * اجاره گیرنده
+       *
+       * @owner
+       * اجاره دهنده
+       */
       let renter = props.data.role === "renter" ? true : false;
+
+      // small portion at the top right on the request cart
       let RentStatus = null;
       setStatus_id(props.data.status.id);
       switch (props.data.status.id) {
@@ -90,6 +99,7 @@ const Request_cart = (props: IRequest_cart) => {
               <span>{props.data.status.name}</span>
             </div>
           );
+          // set the button attribute base on the role and action
           setButton_code(
             !renter
               ? [
@@ -221,6 +231,7 @@ const Request_cart = (props: IRequest_cart) => {
                       value: "ثبت نظر",
                       class: "Blue_BTN request_car_pay",
                       click: () =>
+                        // send this data to modal
                         MODAL_CONTEXT.modalHandler("Renter", props.data),
                     },
                   ]
@@ -239,6 +250,7 @@ const Request_cart = (props: IRequest_cart) => {
                     value: "ثبت نظر",
                     class: "Blue_BTN request_car_pay",
                     click: () =>
+                      // send this data to modal
                       MODAL_CONTEXT.modalHandler("Owner", props.data),
                   },
                 ]
@@ -253,6 +265,7 @@ const Request_cart = (props: IRequest_cart) => {
           );
           break;
       }
+      // set initials value
       setRentStatus(RentStatus);
       setCar(props.data.rent_search_dump.car);
       setStart_date(props.data.rent_search_dump.start_date);
@@ -292,8 +305,10 @@ const Request_cart = (props: IRequest_cart) => {
             {/* <div className="rent_duration"> */}
             <p>
               <span>
+                {/* day's name of week  */}
                 {moment(start_date, "jYYYY/jMM/jDD").format("dddd")} <br />
                 <span>
+                  {/* e.g, 99 01 23 */}
                   {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
                 </span>
               </span>
@@ -322,6 +337,7 @@ const Request_cart = (props: IRequest_cart) => {
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
               />
             </figure>
+            {/* if the status is not one of these status, show the PELAK */}
             {!role ||
             status_id === "paid" ||
             status_id === "delivered" ||
@@ -361,6 +377,7 @@ const Request_cart = (props: IRequest_cart) => {
                   {renter_info.name}
                 </a>
               </Link>
+              {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "approved" && (
                 <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
                   0{renter_info.cell}
@@ -376,6 +393,7 @@ const Request_cart = (props: IRequest_cart) => {
             button_code.map((item, i) => (
               <Button
                 key={i}
+                // the button props adjust in useEffect on data
                 value={item.value}
                 class={item.class}
                 loading={i === 1 ? rejectButtonLoader : ButtonLoader}

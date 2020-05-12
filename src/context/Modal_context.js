@@ -3,9 +3,8 @@ import React from "react";
 const modalContent = React.createContext({
   show_modal: false,
   modalHandler: (v, data) => {
-
-    // type: "Login" | "TellMe"
-  }
+    // "Login" |"TellMe" |"Renter" |"Owner" |"Law"
+  },
 });
 
 export default modalContent;

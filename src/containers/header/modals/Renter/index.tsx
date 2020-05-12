@@ -23,12 +23,11 @@ const Renter = (props: IRenter) => {
     setRent_search_dump(props.data.rent_search_dump);
   }, []);
 
-  //   console.log(props.data);
-
   const setForRequest = async (e, data: any) => {
     e.preventDefault();
     setLoading(true);
     Promise.all([
+      // rate the order
       REQUEST_REQUEST_ACTION({
         token,
         id: data.id,
@@ -40,6 +39,7 @@ const Renter = (props: IRenter) => {
           review: textareaValue,
         },
       }),
+      // rate to the owner
       REQUEST_REQUEST_ACTION({
         token,
         id: data.id,
@@ -64,7 +64,7 @@ const Renter = (props: IRenter) => {
         Router.reload();
       })
       .catch((e) => {
-        console.log(e);
+        console.log("!Error", e);
         setLoading(false);
       });
   };
@@ -82,6 +82,7 @@ const Renter = (props: IRenter) => {
               });
             }}
           >
+            {/* a image of the order */}
             <img
               src={rent_search_dump.media_set[0].thumbnail_url}
               alt={rent_search_dump.car.name.fa}
@@ -101,6 +102,7 @@ const Renter = (props: IRenter) => {
               numberOfStars={5}
               name="carRate"
             />
+            {/* the owner image */}
             <img
               src={rent_search_dump.owner.thumbnail_url}
               alt={rent_search_dump.owner.name}

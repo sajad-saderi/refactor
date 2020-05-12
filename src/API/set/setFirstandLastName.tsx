@@ -24,7 +24,7 @@ export const REQUEST_SET_FIRST_LAST_NAME = (data: INewRentRequest) => {
         }
       })
       .catch(error => {
-        reject(error.response);
+        reject(error.response?.message);
       });
   });
 };

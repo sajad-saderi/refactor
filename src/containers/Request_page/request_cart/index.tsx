@@ -10,7 +10,7 @@ import {
   IoMdFlag,
   IoIosDownload,
   IoMdArrowRoundBack,
-  IoMdPerson
+  IoMdPerson,
 } from "react-icons/io";
 import PelakView from "../../../components/pelak";
 
@@ -52,7 +52,7 @@ const Request_cart = (props: IRequest_cart) => {
       const request_res: any = await REQUEST_REQUEST_ACTION({
         token,
         id: data.id,
-        action: data.action
+        action: data.action,
       });
       setButtonLoader(false);
       setRejectButtonLoader(false);
@@ -61,16 +61,25 @@ const Request_cart = (props: IRequest_cart) => {
       } else {
         props.getDataAgain();
       }
-    } catch (e) {
+    } catch (error) {
       setButtonLoader(false);
       setRejectButtonLoader(false);
-      console.log(e);
+      console.log("!Error", error);
     }
   };
 
   useEffect(() => {
     if (props.data) {
+      /**
+       * @renter
+       * اجاره گیرنده
+       *
+       * @owner
+       * اجاره دهنده
+       */
       let renter = props.data.role === "renter" ? true : false;
+
+      // small portion at the top right on the request cart
       let RentStatus = null;
       setStatus_id(props.data.status.id);
       switch (props.data.status.id) {
@@ -81,6 +90,7 @@ const Request_cart = (props: IRequest_cart) => {
               <span>{props.data.status.name}</span>
             </div>
           );
+          // set the button attribute base on the role and action
           setButton_code(
             !renter
               ? [
@@ -89,7 +99,7 @@ const Request_cart = (props: IRequest_cart) => {
                     class:
                       "Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST",
                     click: () =>
-                      setForRequest({ action: "approve", id: props.data.id })
+                      setForRequest({ action: "approve", id: props.data.id }),
                   },
                   {
                     value: "رد",
@@ -97,8 +107,8 @@ const Request_cart = (props: IRequest_cart) => {
                       "Blue_BTN request_car_reject REJECT_INCOMING_REQUEST",
                     loading: ButtonLoader,
                     click: () =>
-                      setForRequest({ action: "reject", id: props.data.id })
-                  }
+                      setForRequest({ action: "reject", id: props.data.id }),
+                  },
                 ]
               : []
           );
@@ -117,8 +127,8 @@ const Request_cart = (props: IRequest_cart) => {
                     value: "پرداخت",
                     class: "Blue_BTN request_car_pay GO_TO_BANK",
                     click: () =>
-                      setForRequest({ action: "pay", id: props.data.id })
-                  }
+                      setForRequest({ action: "pay", id: props.data.id }),
+                  },
                 ]
               : []
           );
@@ -153,8 +163,8 @@ const Request_cart = (props: IRequest_cart) => {
                     value: "خودرو را تحویل گرفتم",
                     class: "Blue_BTN request_car_pay CAR_DELIVERED",
                     click: () =>
-                      setForRequest({ action: "deliver", id: props.data.id })
-                  }
+                      setForRequest({ action: "deliver", id: props.data.id }),
+                  },
                 ]
               : []
           );
@@ -180,8 +190,8 @@ const Request_cart = (props: IRequest_cart) => {
                   {
                     value: "خودرو را تحویل گرفتم",
                     class: "Blue_BTN request_car_pay",
-                    click: () => {}
-                  }
+                    click: () => {},
+                  },
                 ]
               : []
           );
@@ -199,15 +209,15 @@ const Request_cart = (props: IRequest_cart) => {
                   {
                     value: "ثبت نظر",
                     class: "Blue_BTN request_car_pay",
-                    click: () => {}
-                  }
+                    click: () => {},
+                  },
                 ]
               : [
                   {
                     value: "ثبت نظر",
                     class: "Blue_BTN request_car_pay",
-                    click: () => {}
-                  }
+                    click: () => {},
+                  },
                 ]
           );
           break;
@@ -220,6 +230,7 @@ const Request_cart = (props: IRequest_cart) => {
           );
           break;
       }
+      // set initials value
       setRentStatus(RentStatus);
       setCar(props.data.rent_search_dump.car);
       setStart_date(props.data.rent_search_dump.start_date);
@@ -240,7 +251,7 @@ const Request_cart = (props: IRequest_cart) => {
         registration_plate_third_part:
           props.data.rent_search_dump.registration_plate_third_part,
         registration_plate_forth_part:
-          props.data.rent_search_dump.registration_plate_forth_part
+          props.data.rent_search_dump.registration_plate_forth_part,
       });
     }
   }, [props.data]);
@@ -258,7 +269,9 @@ const Request_cart = (props: IRequest_cart) => {
             <h3>مدت اجاره {no_of_days} روز</h3>
             <div className="rent_duration">
               <p>
+                {/* day's name of week  */}
                 {moment(start_date, "jYYYY/jMM/jDD").format("dddd")} <br />
+                {/* e.g, 99 01 23 */}
                 {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
               </p>
               <IoMdArrowRoundBack size="2rem" color="#202020" />
@@ -278,6 +291,7 @@ const Request_cart = (props: IRequest_cart) => {
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
               />
             </figure>
+            {/* if the status is not one of these status, show the PELAK */}
             {!role ||
             status_id === "paid" ||
             status_id === "delivered" ||
@@ -317,6 +331,7 @@ const Request_cart = (props: IRequest_cart) => {
                   {renter_info.name}
                 </a>
               </Link>
+              {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "approved" && (
                 <a href={`tel:0${renter_info.cell}`}>
                   0{renter_info.cell}
@@ -332,6 +347,7 @@ const Request_cart = (props: IRequest_cart) => {
             button_code.map((item, i) => (
               <Button
                 key={i}
+                // the button props adjust in useEffect on data
                 value={item.value}
                 class={item.class}
                 loading={i === 1 ? rejectButtonLoader : ButtonLoader}
@@ -346,6 +362,7 @@ const Request_cart = (props: IRequest_cart) => {
 
 interface IRequest_cart {
   data: any;
+  // update the list
   getDataAgain?: any;
 }
 

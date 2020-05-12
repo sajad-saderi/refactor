@@ -8,6 +8,7 @@ const TabCreator = (props: ITabCreator) => {
   const [showTabContent, setShowTabContent] = useState(false);
 
   const TabClick = (i) => {
+    // set the active tab
     setActive(i);
     setShowTabContent(true);
   };
@@ -50,6 +51,7 @@ const TabCreator = (props: ITabCreator) => {
                 {item.links.map((i, index) => {
                   return (
                     <li key={index}>
+                      {/* to change the route and don't give any 404 error before push */} 
                       <Link href="/rent/[id]" as={i.link}>
                         <a>{i.title}</a>
                       </Link>

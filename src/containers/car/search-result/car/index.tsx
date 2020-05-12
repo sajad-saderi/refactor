@@ -44,23 +44,18 @@ const Car = (props) => {
             )}
             {has_system_discount && <span className="Special">ویژه</span>}
             <img
-              style={{ position: "absolute", top: -heightController + "px" }}
+              style={{ position: "absolute", 
+              // control the top position of the image by "setheightController()"
+              top: -heightController + "px" }}
               src={img}
               className="img-fluid"
               alt={title}
               onLoadCapture={(e) => {
                 e.persist();
+                // adjust the image at the center of division container
                 if (imageHeight > 200) {
                   setheightController(imageHeight - 200);
-                }
-                // let w = imageWidth;
-                // let h = imageHeight;
-                // if (w / h < 1.2) {
-                //   setheightController((w / h) * 100);
-                // }
-                // if (w / h < 0.9) {
-                //   setheightController((w / h) * 220);
-                // }
+                } 
               }}
             />
             <div className="read_more">

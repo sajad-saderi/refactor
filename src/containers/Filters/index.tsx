@@ -8,6 +8,7 @@ import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
 import { IoIosOptions } from "react-icons/io";
 
 let body_style_list = [];
+
 const Filters = (props: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
   const [with_driver, setwith_driver] = useState(0);
@@ -29,13 +30,21 @@ const Filters = (props: IFilter) => {
   }, []);
 
   const getBrandCarList = async () => {
-    const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
-    setBrandList(car_brand_Res.carBrands);
+    try {
+      const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
+      setBrandList(car_brand_Res.carBrands);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const getModelList = async (i) => {
-    const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
-    setModelList(car_model_res.data);
+    try {
+      const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
+      setModelList(car_model_res.data);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   useEffect(() => {
@@ -44,13 +53,16 @@ const Filters = (props: IFilter) => {
     }
   }, [props.extra_info]);
 
+  // add this filter to the filter context
   const body_style_add = (item) => {
     body_style_list.push(item.value);
+    // add body style to the filter context
     FilterContext.setDataForSearch({
       body_style_id: { status: true, value: body_style_list },
     });
   };
 
+  // remove the filter from the filter context
   const body_style_remove = (item) => {
     body_style_list = body_style_list.filter((i) => {
       return i !== item.value;
@@ -62,6 +74,7 @@ const Filters = (props: IFilter) => {
 
   return (
     <>
+      {/* Trigger icon in mobile view */}
       <span className="show_filter" onClick={() => setShow_filter(true)}>
         <IoIosOptions size="2rem" color="#656565" />
         نمایش فیلترها
@@ -96,6 +109,7 @@ const Filters = (props: IFilter) => {
             setDeliver_at_renters_place(0);
           }}
           Select={(item) => {
+            // add this filter to the filter context
             FilterContext.setDataForSearch({
               deliver_at_renters_place: { status: true, value: 1 },
             });
@@ -118,6 +132,7 @@ const Filters = (props: IFilter) => {
             setwith_driver(0);
           }}
           Select={(item) => {
+            // add this filter to the filter context
             FilterContext.setDataForSearch({
               with_driver: { status: true, value: 1 },
             });
@@ -150,6 +165,7 @@ const Filters = (props: IFilter) => {
             setBrand_id(i.value);
             setModelList([]);
             getModelList(i.value);
+            // add brand_id filter to the filter context
             FilterContext.setDataForSearch({
               brand_id: { status: true, value: i.value },
             });
@@ -168,6 +184,7 @@ const Filters = (props: IFilter) => {
           }}
           Select={(i) => {
             setcar_id(i.value);
+            // add car_id filter to the filter context
             FilterContext.setDataForSearch({
               car_id: { status: true, value: i.value },
             });
@@ -179,6 +196,7 @@ const Filters = (props: IFilter) => {
 };
 
 interface IFilter {
+  // list of car body style
   extra_info: any;
 }
 

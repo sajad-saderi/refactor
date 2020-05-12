@@ -9,21 +9,21 @@ export const REQUEST_SET_USERNAME = (data: ISetUsername) => {
       .post(
         DOMAIN + SET_USERNAME,
         {
-          username: data.username
+          username: data.username,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data.success);
         }
       })
-      .catch(error => {
-        reject(error.response);
+      .catch((error) => {
+        reject(error.response?.message);
       });
   });
 };

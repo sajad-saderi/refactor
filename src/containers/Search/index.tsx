@@ -31,9 +31,14 @@ const Search = (props: ISearch) => {
 
   const MODAL_CONTEXT = useContext(modal_context);
 
+  // get a list of cities
   const get_car_location = async () => {
-    const res: any = await REQUEST_GET_LOCATION();
-    setLocationsList(res.data);
+    try {
+      const res: any = await REQUEST_GET_LOCATION();
+      setLocationsList(res.data);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   useEffect(() => {
@@ -41,17 +46,21 @@ const Search = (props: ISearch) => {
     setDateFromStorage();
   }, []);
 
+  // set the start and end date from storage if there are there
   const setDateFromStorage = () => {
     if (localStorage["start"] && localStorage["end"]) {
       if (localStorage["start"] !== null && localStorage["end"] !== null) {
         let start = JSON.parse(localStorage["start"]);
+        // if the start date on storage is bigger then today
         if (start.day > moment().jDate()) {
           if (start.month >= moment().jMonth() + 1) {
             setDayRange({
               from: JSON.parse(localStorage["start"]),
               to: JSON.parse(localStorage["end"]),
             });
-          } else {
+          }
+          // id the day is smaller than the saved one but the current month is bigger then the month on storage
+          else {
             localStorage.removeItem("start");
             localStorage.removeItem("end");
           }
@@ -71,16 +80,19 @@ const Search = (props: ISearch) => {
   const GotoSearchResult = (e) => {
     e.preventDefault();
     if (dayRange.from && dayRange.to) {
+      // if we are on dynamic page don't change the route
       if (props.dynamic) {
         props.searchSubmit({
           location_id: 1,
           date: {
+            // convert dates to standard structure
             Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
             End_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
           },
         });
         return;
       }
+      // save date to storage as start and end dates
       localStorage["start"] = JSON.stringify(dayRange.from);
       localStorage["end"] = JSON.stringify(dayRange.to);
       setLoading(true);
@@ -103,7 +115,7 @@ const Search = (props: ISearch) => {
       setToDay(" ");
     }
     if (dayRange.to) {
-      setShowBorder(false)
+      setShowBorder(false);
       setToDay(convertDate(dayRange.to));
     } else {
       setToDay(" ");
@@ -210,6 +222,7 @@ const Search = (props: ISearch) => {
 };
 
 interface ISearch {
+  // if the search box is at the top of the dynamic page
   dynamic?: boolean;
   searchSubmit?: any;
 }

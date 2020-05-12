@@ -58,6 +58,7 @@ const DiscountBox = (props: IDiscountBox) => {
   const DiscountWrapper = useRef(null);
 
   const onConfirm = (data?, autoFill = false) => {
+    // if it's edit mode fill it 
     if (autoFill) {
       setDiscountList((DiscountList) =>
         DiscountList.concat({

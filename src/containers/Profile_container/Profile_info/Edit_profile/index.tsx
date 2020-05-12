@@ -157,14 +157,19 @@ const Edit_profile = (props: IEdit_profile) => {
     }
 
     if (newImage) {
-      await REQUEST_SET_USER_IMAGE({ token, file: newImage });
+      try {
+        await REQUEST_SET_USER_IMAGE({ token, file: newImage });
+      } catch (error) {
+        console.log("!Error", error);
+      }
     }
 
     try {
       if (state.username !== "") {
         await REQUEST_SET_USERNAME({ token, username: state.username });
       }
-    } catch (e) {
+    } catch (error) {
+      console.log("!Error", error);
       dispatchError({
         type: "username",
         username: true,
@@ -179,7 +184,8 @@ const Edit_profile = (props: IEdit_profile) => {
         first_name: state.first_name,
         last_name: state.last_name,
       });
-    } catch (e) {
+    } catch (error) {
+      console.log("!Error", error);
       dispatchError({
         type: "first_name",
         first_name: true,
@@ -196,7 +202,8 @@ const Edit_profile = (props: IEdit_profile) => {
           company_name: state.company_name,
         });
       }
-    } catch (e) {
+    } catch (error) {
+      console.log("!Error", error);
       setLoading(false);
       return;
     }

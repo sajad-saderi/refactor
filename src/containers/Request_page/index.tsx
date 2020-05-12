@@ -38,8 +38,8 @@ const Request_page = () => {
         token,
       });
       setResult([res.data]);
-    } catch (e) {
-      console.log(e.response);
+    } catch (error) {
+      console.log("!Error", error.response?.message);
     }
   };
 

@@ -6,13 +6,14 @@ import Slider from "../../../../src/components/Slider";
 import Button from "../../../components/form/Button";
 import { IoIosLink } from "react-icons/io";
 import Link from "next/link";
-import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker"; 
+import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
 import { NextSeo } from "next-seo";
 
 // import "./carpage.scss";
 
 const CarPage = () => {
+  // set date picker date to get new price and availability
   const [dayRange, setDayRange] = React.useState<DayRange>({
     from: null,
     to: null,
@@ -50,33 +51,40 @@ const CarPage = () => {
 
   useEffect(() => {
     const { search_id, id, owner } = Router.router.query;
-    console.log(search_id, id);
+    // if the car is mine, I can't rent it
     if (owner) {
       setIs_mine(true);
     }
+    // if the page have search id we can get the price
     if (search_id) {
       fetchData({ search_id });
-    } else {
+    }
+    // if doesn't have search id and it's not mine the user can select day range and get price and search id
+    else {
       setShowCalender(true);
+      // just get the main info about the car
       fetchData({ id });
     }
   }, []);
 
   const fetchData = async (data) => {
     let res: any = null;
-    if (dayRange.from && dayRange.to) {
-      res = await REQUEST_GET_RENTAL_CAR({
-        id: Router.router.query.id,
-        start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-        end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-      });
-    } else if (data.search_id) {
-      res = await REQUEST_GET_RENTAL_CAR({ search_id: data.search_id });
-    } else {
-      res = await REQUEST_GET_RENTAL_CAR({ id: data.id });
+    try {
+      if (dayRange.from && dayRange.to) {
+        res = await REQUEST_GET_RENTAL_CAR({
+          id: Router.router.query.id,
+          start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+          end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+        });
+      } else if (data.search_id) {
+        res = await REQUEST_GET_RENTAL_CAR({ search_id: data.search_id });
+      } else {
+        res = await REQUEST_GET_RENTAL_CAR({ id: data.id });
+      }
+      set_CarInformation(res);
+    } catch (error) {
+      console.log("!Error", error);
     }
-    console.log(res);
-    set_CarInformation(res);
   };
 
   const set_CarInformation = (res) => {
@@ -99,9 +107,9 @@ const CarPage = () => {
     setDescription(res.description);
     setMax_km_per_day(res.max_km_per_day);
     setExtra_km_price_name(res.extra_km_price_name);
-    setIs_out_of_service(res.is_out_of_service);
-    setId(res.id);
-    setDeliver_at_renters_place(res.deliver_at_renters_place);
+    // setIs_out_of_service(res.is_out_of_service);
+    // setId(res.id);
+    // setDeliver_at_renters_place(res.deliver_at_renters_place);
     setLocation(res.location);
     setMileage_range(res.mileage_range);
     setOwner(res.owner);
@@ -143,7 +151,12 @@ const CarPage = () => {
               cardType: "summary_large_image",
             }}
           />
-          <Slider Feed={media_set} alt={`${car.brand.name.fa} ${car.name.fa}`} />
+          {/* slider section */}
+          <Slider
+            Feed={media_set}
+            alt={`${car.brand.name.fa} ${car.name.fa}`}
+          />
+          {/* car info section */}
           <article className="responsive Car_page_container">
             <section className="carInfo_container">
               {avg_discounted_price_per_day && (
@@ -243,7 +256,7 @@ const CarPage = () => {
                 </>
               )}
             </section>
-
+            {/* user info section */}
             <section className="onwnerInfo_container">
               {avg_discounted_price_per_day && (
                 <div className="avg_discounted_price_per_day">

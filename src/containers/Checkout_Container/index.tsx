@@ -14,6 +14,7 @@ import Modal_context from "../../../src/context/Modal_context";
 import { NextSeo } from "next-seo";
 import Toast_context from "../../context/Toast_context";
 
+// use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
 
 const token = jsCookie.get("token");
@@ -64,10 +65,12 @@ const Checkout_Container = () => {
   }, []);
 
   const fetchData = async (search_id) => {
-    const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
-    console.log(res);
-
-    set_CarInformation(res);
+    try {
+      const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
+      set_CarInformation(res);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const set_CarInformation = (res) => {
@@ -95,6 +98,7 @@ const Checkout_Container = () => {
   };
 
   const hasInsurance = (e) => {
+    // show the insurance part in price box
     if (e == 2) setShowInsurance(true);
     else setShowInsurance(false);
   };
@@ -102,6 +106,7 @@ const Checkout_Container = () => {
   const couponHandler = async (e) => {
     e.preventDefault();
     setCoupanLoading(true);
+    // validation
     if (coupon.length === 0) {
       setCouponError({
         status: true,
@@ -165,8 +170,9 @@ const Checkout_Container = () => {
         autoClose: true,
       });
       Router.push("/requests");
-    } catch (e) {
+    } catch (error) {
       setLoading(false);
+      console.log("!Error", error);
     }
   };
 
@@ -190,14 +196,18 @@ const Checkout_Container = () => {
         <section className="car_info_insurance">
           <div className="Date_container">
             <p>
+              {/* convert date to days name */}
               {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
               <br />
+              {/* show the day date and month name */}
               {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
             </p>
             <IoMdArrowRoundBack size="3rem" color="#202020" />
             <p>
+              {/* convert date to days name */}
               {moment(end_date, "jYYYY/jMM/jDD").format("dddd")}
               <br />
+              {/* show the day date and month name */}
               {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
             </p>
           </div>
@@ -251,8 +261,10 @@ const Checkout_Container = () => {
         <section className="payment_info_container">
           <div className="Date_container">
             <p>
+              {/* convert date to days name */}
               {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
               <br />
+              {/* show the day date and month name */}
               {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
             </p>
             <IoMdArrowRoundBack size="3rem" color="#202020" />
@@ -371,6 +383,7 @@ const Checkout_Container = () => {
       </article>
     </>
   ) : (
+    // initial page title
     <>
       <NextSeo
         title={`ثبت درخواست اجاره | اتولی`}

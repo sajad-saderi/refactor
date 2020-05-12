@@ -6,12 +6,12 @@ const GET_CAR = "/core/rental-car/search-for-rent/get";
 export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
   return new Promise((resolve, reject) => {
     let queryString = "";
-    // If the data object has Coupon and search id, coupon has priority
+    // If the data object has Coupon and search id, search by the coupon has priority
     if (data.coupon) {
       queryString =
         queryString + `search_id=${data.search_id}&coupon_code=${data.coupon}`;
     }
-    // search id has priority to start date and search by car id
+    // search id has priority to start date and search by car's id
     else if (data.search_id) {
       queryString = queryString + `search_id=${data.search_id}`;
     } else if (data.start_date) {
@@ -26,12 +26,10 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
       .then((response) => {
         if (response.data.id) {
           resolve(response.data);
-        } else {
-          reject(false);
         }
       })
       .catch((e) => {
-        reject(e.response);
+        reject(e.response?.message);
       });
   });
 };

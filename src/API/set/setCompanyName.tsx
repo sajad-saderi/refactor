@@ -4,7 +4,7 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_COMPANY_NAME = "/core/user/set-company-name";
 
 const cook_option = {
-  expires: 100
+  expires: 100,
 };
 
 export const REQUEST_SET_COMPANY_NAME = (data: ICompanyName) => {
@@ -13,15 +13,15 @@ export const REQUEST_SET_COMPANY_NAME = (data: ICompanyName) => {
       .post(
         DOMAIN + SET_COMPANY_NAME,
         {
-          company_name: data.company_name
+          company_name: data.company_name,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           jsCookie.set(
             "company_name",
@@ -32,8 +32,8 @@ export const REQUEST_SET_COMPANY_NAME = (data: ICompanyName) => {
           resolve(response.data.success);
         }
       })
-      .catch(error => {
-        reject(error.response);
+      .catch((error) => {
+        reject(error.response?.message);
       });
   });
 };

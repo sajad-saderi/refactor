@@ -37,14 +37,17 @@ const ConfirmCode = (props: IConfirmCode) => {
         const cook_option = {
           expires: 100,
         };
+        // If the user hasn't completed the registration
         if (response.data.token && !response.data.has_name) {
           const data = response.data;
+
+          // save data in cache
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
           jsCookie.set("user_id", data.user_profile.id.cook_option);
 
-          // TODO: save data in cache and active heap
+          // NOTE: save data in cache and active heap
           try {
             if (window["heap"]) {
               window["heap"].identify(`${data.user_profile.cell}`);
@@ -56,13 +59,14 @@ const ConfirmCode = (props: IConfirmCode) => {
           Router.push({
             pathname: "/complete-register",
           });
-        } else if (response.data.token && response.data.has_name) {
+        } 
+        // if user completely registered 
+        else if (response.data.token && response.data.has_name) {
           const data = response.data;
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("user_name", data.user_profile.name, cook_option);
-          // jsCookie.set("last_name", data.user_profile.last_name, cook_option);
+          jsCookie.set("user_name", data.user_profile.name, cook_option); 
           jsCookie.set(
             "company_name",
             data.user_profile.company_name,
@@ -76,7 +80,7 @@ const ConfirmCode = (props: IConfirmCode) => {
               : "https://core.otoli.net/static/core/default_profile_pic.png",
             cook_option
           );
-          // TODO: save data in cache and active heap
+          // NOTE: activate heap
           try {
             if (window["heap"]) {
               window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
@@ -87,6 +91,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           } catch (e) {
             console.log("Em...I think heap not work correctly :/");
           }
+          // set authorize to auth context
           AUTH_CONTEXT.Auth_Manager(true);
           console.log(response.data);
         } else {
@@ -96,7 +101,7 @@ const ConfirmCode = (props: IConfirmCode) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error(error.response.data);
+        console.error(error.response?.message);
         setError({
           status: true,
           message: error.response.data.message,
@@ -104,6 +109,7 @@ const ConfirmCode = (props: IConfirmCode) => {
       });
   };
 
+  // The user can switch to last step
   const Done = () => {
     setActiveAgain(true);
   };

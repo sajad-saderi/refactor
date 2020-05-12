@@ -1332,6 +1332,7 @@ const Law = (props: ILaw) => {
           value="می‌پذیرم"
           class="Blue_BTN local_Style"
           loading={false}
+          // close the modal
           click={() => MODAL_CONTEXT.modalHandler()}
         />
       </div>

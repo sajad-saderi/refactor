@@ -7,14 +7,17 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 // import "./Search_result.scss";
 import { NextSeo } from "next-seo";
 
+// default location is Tehran
 let Location: any = 1;
 let Start_date = null;
 let End_date = null;
+// start page is 1
 let page = 1;
 let price = {
   min: null,
   max: null,
 };
+// default price sort is form highest to lowest price  -> descending
 let o = "-price";
 let loadMoreCar = false;
 let deliver_at_renters_place = 0;
@@ -22,6 +25,9 @@ let with_driver = 0;
 let body_style_id = [];
 let brand_id = null;
 let car_id = null;
+
+// this object check which filter is activated
+// you can combined several filter in a single search request
 let filtersChecker = {
   price: false,
   with_driver: false,
@@ -37,11 +43,14 @@ const Search_result = () => {
   const [remained_count, setRemained_count] = useState(0);
 
   useEffect(() => {
+    // get the data from url
     const { location_id, start_date, end_date } = Router.router.query;
     Location = location_id;
     Start_date = start_date;
     End_date = end_date;
     initSearch();
+
+    // reset the data
     return () => {
       Location = 1;
       Start_date = null;
@@ -70,45 +79,63 @@ const Search_result = () => {
   }, []);
 
   async function initSearch() {
+    // reset the data
     setResult(null);
+    // reset the filter
     setExtra_info([]);
     let queryString = `location_id=${Location}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
+    // check the price sort
     if (filtersChecker.price) {
       queryString += `&min_price=${price.min}&max_price=${price.max}`;
     }
+    // check the delivery option
     if (filtersChecker.deliver_at_renters_place) {
       queryString += `&deliver_at_renters_place=1`;
     }
+    // with driver
     if (filtersChecker.with_driver) {
       queryString += `&with_driver=1`;
     }
+    // body style
     if (filtersChecker.body_style_id) {
       queryString += `&body_style_id=${body_style_id.join(",")}`;
     }
+    // check the brand id
     if (filtersChecker.brand_id) {
       queryString += `&brand_id=${brand_id}`;
     }
+    // check the car id
     if (filtersChecker.car_id) {
       queryString += `&car_id=${car_id}`;
     }
-    const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
-      queryString,
-      limit: 14,
-      page,
-    });
-    setTotal_count(res.total_count);
-    setRemained_count(res.remained_count);
+    try {
+      const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
+        queryString,
+        limit: 14,
+        page,
+      });
+      setTotal_count(res.total_count);
+      setRemained_count(res.remained_count);
 
-    if (loadMoreCar) {
-      setExtra_info(res.extra_info);
-      setResult(result.concat(res.results));
-      loadMoreCar = false;
-    } else {
-      setExtra_info(res.extra_info);
-      setResult(res.results);
+      if (loadMoreCar) {
+        setExtra_info(res.extra_info);
+        setResult(result.concat(res.results));
+        loadMoreCar = false;
+      } else {
+        setExtra_info(res.extra_info);
+        setResult(res.results);
+      }
+    } catch (error) {
+      console.log("!Error", error);
     }
   }
 
+  // adjust the filter object to send for search
+  /**
+   *
+   * @param v
+   *  set the data from filter context
+   */
   function filterResults(v) {
     if (v.price) {
       filtersChecker.price = v.price.status;
@@ -167,6 +194,7 @@ const Search_result = () => {
           }}
         />
       )}
+      {/* result count section */}
       {result
         ? result.length > 0 && (
             <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
@@ -174,7 +202,9 @@ const Search_result = () => {
             )} تا ${result[0].end_date.slice(5)}`}</p>
           )
         : null}
+      {/* search box */}
       <section className="responsive">
+        {/* price sort part */}
         <div className="price_sort_container">
           <span
             className={o === "-price" ? "active" : null}
@@ -196,6 +226,7 @@ const Search_result = () => {
           </span>
         </div>
       </section>
+      {/* filters and result section */}
       <section className="responsive content_container">
         <filterContext.Provider
           value={{
@@ -208,6 +239,7 @@ const Search_result = () => {
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
+      {/* load more */}
       {remained_count > 0 && (
         <span className="Load_more_car" onClick={() => loadMore()}>
           نمایش ماشین‌های بیشتر

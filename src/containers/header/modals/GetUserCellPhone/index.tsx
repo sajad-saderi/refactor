@@ -10,15 +10,16 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
-    message: ""
+    message: "",
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
 
-  const sendConfirmCode = e => {
+  const sendConfirmCode = (e) => {
     e.preventDefault();
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/send-code";
+    // NOTE the utm data will be sent to API at this point
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellPhone,
@@ -37,22 +38,23 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
           : "",
         utm_landing_url: localStorage["utm_landing_url"]
           ? localStorage["utm_landing_url"]
-          : ""
+          : "",
       })
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
+          // save cell phone to cell phone context
           Cell_Phone_context.cell_phone = cellPhone;
           console.log(response.data);
           setLoading(false);
           props.panelController();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setLoading(false);
-        console.error(error.response.data);
+        console.error(error.response?.message);
         setError({
           status: true,
-          message: error.response.data.message
+          message: error.response.data.message,
         });
       });
   };
@@ -68,7 +70,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
           <TextInput
             error={error}
             name="cell Phone"
-            onChangeHandler={e => {
+            onChangeHandler={(e) => {
               setCellPhone(e);
             }}
             autoFocus={true}
@@ -79,6 +81,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             placeholder="لطفا شماره همراه خود را وارد کنید"
             clearField={clearField}
           />
+          {/* show an error message */}
           <span className="error_message">{error.message}</span>
           <Button
             class="Blue_BTN login_submit"

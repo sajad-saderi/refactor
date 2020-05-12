@@ -23,16 +23,40 @@ import ImageUploader from "../../../components/ImageUploader";
 import Button from "../../../components/form/Button";
 import Router from "next/router";
 import jsCookie from "js-cookie";
+
+/**
+ * validator
+ *
+ * NPM
+ * https://www.npmjs.com/package/validator
+ *
+ * GIT
+ * https://github.com/validatorjs/validator.js
+ */
 import validator from "validator";
 
 const token = jsCookie.get("token");
 const user_id = jsCookie.get("user_id");
+
+/**
+ * @new_car
+ *  If add car process is not complete and the user didn't fill up the step two form
+ *  until before browser close the car id will be saved at the cash
+ *  in case of a return.
+ *  This id will send to the API and get the car information and full fill the step 1 form
+ */
 const new_car = jsCookie.get("new_car");
 
 const stateReducer = (current, action) => {
   switch (action.type) {
     case "id":
       return { ...current, id: action.id };
+    /**
+     * @location_id
+     * for Tehran the "location_id" is district id
+     * To found out you getting a district id or city id
+     * check the parent id of incaming data
+     */
     case "location_id":
       return { ...current, location_id: action.location_id };
     case "car_id":
@@ -72,6 +96,10 @@ const stateReducer = (current, action) => {
         registration_plate_forth_part: action.registration_plate_forth_part,
       };
     case "facility_id":
+      /**
+       * @facility_id
+       * receive an id from the checkbox component and push that to the facilities ids list
+       */
       return {
         ...current,
         facility_id: current.facility_id.concat(action.facility_id),
@@ -82,6 +110,7 @@ const stateReducer = (current, action) => {
         facility_id: action.empty_facility_id,
       };
     case "Remove_facility_id":
+      // remove an id from list
       return {
         ...current,
         facility_id: current.facility_id.filter((item) => {
@@ -89,11 +118,13 @@ const stateReducer = (current, action) => {
         }),
       };
     case "media_id":
+      // a list of uploaded ids
       return {
         ...current,
         media_id: current.media_id.concat(action.media_id),
       };
     case "Remove_media_id":
+      // remove the given id from media list
       return {
         ...current,
         media_id: current.media_id.filter((item) => {
@@ -105,15 +136,19 @@ const stateReducer = (current, action) => {
     case "description":
       return { ...current, description: action.description };
     case "deliver_at_renters_place":
+      // default value is false
       return {
         ...current,
         deliver_at_renters_place: action.deliver_at_renters_place,
       };
     case "is_out_of_service":
+      // default value is true
       return { ...current, is_out_of_service: action.is_out_of_service };
     case "min_days_to_rent":
+      // default value is at least 1 day
       return { ...current, min_days_to_rent: action.min_days_to_rent };
     case "days_to_get_reminded":
+      // default value is at least 1 day
       return { ...current, days_to_get_reminded: action.days_to_get_reminded };
     case "max_km_per_day":
       return { ...current, max_km_per_day: action.max_km_per_day };
@@ -238,6 +273,7 @@ const error_reducer = (current, action) => {
         error_message: action.error_message,
       };
     case "error_message":
+      // you can just show an error message in case of APIs error
       return {
         ...current,
         error_message: action.error_message,
@@ -249,7 +285,9 @@ const error_reducer = (current, action) => {
 
 const Add_Car_Step_1 = () => {
   const [locationList, setLocationList] = useState([]);
+  // need to set the name of the location, to show it to the user if it selects other then Tehran
   const [locationName, setLocationName] = useState(null);
+  // if you select Tehran the distriction part will shown
   const [showDistrict, setShowDistrict] = useState(false);
   const [DistrictName, setDistrictName] = useState(null);
   const [districtList, setDistrictList] = useState([]);
@@ -310,6 +348,7 @@ const Add_Car_Step_1 = () => {
     { value: "ی", text: "ی" },
   ]);
   const [facilitesList, setFacilitesList] = useState([]);
+  //  If user is at the edit mode or has a uncompleted car, this list fill with car's id image
   const [initialImage, setInitialImage] = useState([]);
   const [colorList, setColorList] = useState([]);
   const [colorCode, setColorCode] = useState(null);
@@ -364,6 +403,7 @@ const Add_Car_Step_1 = () => {
   });
 
   useEffect(() => {
+    // check if the user edit the car
     if (Router.router.query.mode === "edit") {
       getCarInfoToEdit(Router.router.query.car_id);
     }
@@ -372,17 +412,22 @@ const Add_Car_Step_1 = () => {
 
   useEffect(() => {
     const new_car = jsCookie.get("new_car");
+    // if a user has a incomplete car and it's not edit mode
     if (new_car && !Router.router.query.mode) {
       getCarInfoToEdit(new_car);
-    } 
+    }
   }, [new_car]);
 
   const getCarInfoToEdit = async (id) => {
-    const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
-      id: id,
-      token: token,
-    });
-    SetCar(car_info_res);
+    try {
+      const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
+        id: id,
+        token: token,
+      });
+      SetCar(car_info_res);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const SetCar = (car) => {
@@ -392,10 +437,12 @@ const Add_Car_Step_1 = () => {
     // SET CAR LOCATION AND DISTRICT
     if (car.location.parent_id === 1) {
       setLocationName("تهران");
+      // if the location parent is the Tehran's id show the district part
       setShowDistrict(true);
       dispatch({ type: "location_id", location_id: car.location.id });
       setDistrictName(car.location.name.fa);
     } else {
+      // If user select other than Tehran the message about out of support will show up under the Drop-down
       setLocationName(car.location.name.fa);
       setShowDistrict(false);
       dispatch({ type: "location_id", location_id: car.location.id });
@@ -500,6 +547,7 @@ const Add_Car_Step_1 = () => {
     });
 
     // SET EXTRA INFO
+    // these infos will fill if we are in edit mode
     dispatch({
       type: "cancellation_policy",
       cancellation_policy: car.cancellation_policy,
@@ -539,41 +587,70 @@ const Add_Car_Step_1 = () => {
   };
 
   const getInitials = async () => {
-    const location_Res: any = await REQUEST_GET_LOCATION();
-    const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
-    const year_Res: any = await REQUEST_GET_YEAR();
-    const bodyStyle_res: any = await REQUEST_GET_CAR_BODY_STYLE();
-    const cylinder_res: any = await REQUEST_GET_CAR_CYLINDER();
-    const facilities_res: any = await REQUEST_GET_CAR_FACILITIES();
-    const colorList_res: any = await REQUEST_GET_CAR_COLORS();
-    setLocationList(location_Res.data);
-    setBrandList(car_brand_Res.carBrands);
-    setYearList(year_Res.data);
-    setBodyStyleList(bodyStyle_res.data);
-    setCylinderList(cylinder_res.data);
-    setFacilitesList(facilities_res.data);
-    setColorList(colorList_res.data);
+    try {
+      const location_Res: any = await REQUEST_GET_LOCATION();
+      const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
+      const year_Res: any = await REQUEST_GET_YEAR();
+      const bodyStyle_res: any = await REQUEST_GET_CAR_BODY_STYLE();
+      const cylinder_res: any = await REQUEST_GET_CAR_CYLINDER();
+      const facilities_res: any = await REQUEST_GET_CAR_FACILITIES();
+      const colorList_res: any = await REQUEST_GET_CAR_COLORS();
+      setLocationList(location_Res.data);
+      setBrandList(car_brand_Res.carBrands);
+      setYearList(year_Res.data);
+      setBodyStyleList(bodyStyle_res.data);
+      setCylinderList(cylinder_res.data);
+      setFacilitesList(facilities_res.data);
+      setColorList(colorList_res.data);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const submitHandler = async (e, state) => {
     e.preventDefault();
     setLoading(true);
+    // check the validation
     if (validation(state)) {
       try {
         const add_new_car_res: any = await REQUEST_ADD_NEW_CAR({
           data: state,
           token: token,
         });
+        /**
+         * after sent the information to the API,
+         * if we are in edit mode go to profile
+         */
         if (Router.router.query.mode === "edit") {
           Router.push(`/user/${user_id}`);
-        } else {
+        }
+        // else go to set car and timing
+        else {
+          // set the car id to catch if user didn't complete the step to of the add car form
           jsCookie.set("new_car", add_new_car_res.data.id);
           Router.push(`/set-car-timing?car_id=${add_new_car_res.data.id}`);
         }
       } catch (error) {
+        console.log("!Error", error);
         setLoading(false);
       }
     } else setLoading(false);
+  };
+
+  // receive the Reducer type and reset the error status
+  const resetTheErrorStatus = (value_name) => {
+    if (value_name === "error_message") {
+      ErrorDispatch({
+        type: value_name,
+        error_message: null,
+      });
+    } else {
+      ErrorDispatch({
+        type: value_name,
+        [value_name]: null,
+        error_message: null,
+      });
+    }
   };
 
   const validation = (state) => {
@@ -584,12 +661,10 @@ const Add_Car_Step_1 = () => {
         error_message: "لطفا شهر خودرو را انتخاب کنید",
       });
       return false;
-    } else {
-      ErrorDispatch({
-        type: "location_id",
-        location_id: null,
-        error_message: null,
-      });
+    }
+    // if there is no error empty the error object for this value
+    else {
+      resetTheErrorStatus("location_id");
     }
     if (showDistrict) {
       if (state.location_id === 1 || !state.location_id) {
@@ -600,11 +675,7 @@ const Add_Car_Step_1 = () => {
         });
         return false;
       } else {
-        ErrorDispatch({
-          type: "location_id",
-          location_id: null,
-          error_message: null,
-        });
+        resetTheErrorStatus("location_id");
       }
     }
     if (!validator.isNumeric(`${Brand_id}`)) {
@@ -616,10 +687,7 @@ const Add_Car_Step_1 = () => {
       return false;
     } else {
       setBrand_id_error(false);
-      ErrorDispatch({
-        type: "error_message",
-        error_message: null,
-      });
+      resetTheErrorStatus("error_message");
     }
     if (!validator.isNumeric(`${state.car_id}`)) {
       ErrorDispatch({
@@ -629,11 +697,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "car_id",
-        car_id: null,
-        error_message: null,
-      });
+      resetTheErrorStatus("car_id");
     }
     if (!validator.isNumeric(`${state.year_id}`)) {
       ErrorDispatch({
@@ -643,11 +707,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "year_id",
-        year_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("year_id");
     }
     if (!validator.isNumeric(`${state.transmission_type_id}`)) {
       ErrorDispatch({
@@ -657,11 +717,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "transmission_type_id",
-        transmission_type_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("transmission_type_id");
     }
     if (!validator.isNumeric(`${state.body_style_id}`)) {
       ErrorDispatch({
@@ -671,11 +727,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "body_style_id",
-        body_style_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("body_style_id");
     }
     if (!validator.isNumeric(`${state.cylinder_id}`)) {
       ErrorDispatch({
@@ -685,11 +737,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "cylinder_id",
-        cylinder_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("cylinder_id");
     }
     if (!validator.isNumeric(`${state.capacity}`)) {
       ErrorDispatch({
@@ -699,11 +747,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "capacity",
-        capacity: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("capacity");
     }
     if (!validator.isNumeric(`${state.mileage_range_id}`)) {
       ErrorDispatch({
@@ -713,11 +757,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "mileage_range_id",
-        mileage_range_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("mileage_range_id");
     }
     if (!validator.isNumeric(`${state.value}`)) {
       ErrorDispatch({
@@ -727,11 +767,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "value",
-        value: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("value");
     }
     if (`${state.registration_plate_first_part}`.length !== 2) {
       ErrorDispatch({
@@ -741,11 +777,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "registration_plate_first_part",
-        registration_plate_first_part: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("registration_plate_first_part");
     }
     if (!state.registration_plate_second_part) {
       ErrorDispatch({
@@ -755,11 +787,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "registration_plate_second_part",
-        registration_plate_second_part: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("registration_plate_second_part");
     }
     if (`${state.registration_plate_third_part}`.length !== 3) {
       ErrorDispatch({
@@ -769,11 +797,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "registration_plate_third_part",
-        registration_plate_third_part: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("registration_plate_third_part");
     }
     if (`${state.registration_plate_forth_part}`.length !== 2) {
       ErrorDispatch({
@@ -783,11 +807,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "registration_plate_forth_part",
-        registration_plate_forth_part: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("registration_plate_forth_part");
     }
     if (state.media_id.length < 1) {
       ErrorDispatch({
@@ -797,11 +817,7 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "media_id",
-        media_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("media_id");
     }
     if (!validator.isNumeric(`${state.color_id}`)) {
       ErrorDispatch({
@@ -811,23 +827,27 @@ const Add_Car_Step_1 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "color_id",
-        color_id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("color_id");
     }
     return true;
   };
 
   const getModelList = async (i) => {
-    const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
-    setModelList(car_model_res.data);
+    try {
+      const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
+      setModelList(car_model_res.data);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const getDistricts = async (parent_id) => {
-    const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
-    setDistrictList(car_districts_res.data);
+    try {
+      const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
+      setDistrictList(car_districts_res.data);
+    } catch (error) {
+      console.log("!Error", error);
+    }
   };
 
   const clearRelativeToModel = () => {
@@ -839,54 +859,75 @@ const Add_Car_Step_1 = () => {
     dispatch({ type: "empty_facility_id", empty_facility_id: [] });
     setBodyStyleName("");
   };
-
+  /**
+   *
+   * @param id
+   *  for the car id get all information about transmission, body style, etc...
+   */
   const getBrandInfo = async (id) => {
+    // if the fields are filled, first clear them
     clearRelativeToModel();
-    const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
-    console.log("model_info_res", model_info_res);
-    if (model_info_res.facility_set.length > 0) {
-      model_info_res.facility_set.forEach((item) => {
-        dispatch({ type: "facility_id", facility_id: item.id });
-      });
-    } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
-    if (model_info_res.capacity)
-      dispatch({ type: "capacity", capacity: model_info_res.capacity });
-    else dispatch({ type: "capacity", capacity: null });
-    if (model_info_res.transmission_type)
-      dispatch({
-        type: "transmission_type_id",
-        transmission_type_id: model_info_res.transmission_type.id,
-      });
-    else
-      dispatch({
-        type: "transmission_type_id",
-        transmission_type_id: null,
-      });
-    if (model_info_res.cylinder) {
-      dispatch({
-        type: "cylinder_id",
-        cylinder_id: model_info_res.cylinder.id,
-      });
-      setCylinderName(model_info_res.cylinder.name.fa);
-    } else {
-      dispatch({
-        type: "cylinder_id",
-        cylinder_id: null,
-      });
-      setCylinderName("");
-    }
-    if (model_info_res.body_style) {
-      dispatch({
-        type: "body_style_id",
-        body_style_id: model_info_res.body_style.id,
-      });
-      setBodyStyleName(model_info_res.body_style.name.fa);
-    } else {
-      dispatch({
-        type: "body_style_id",
-        body_style_id: null,
-      });
-      setBodyStyleName("");
+    try {
+      const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
+
+      // Set facilities
+      if (model_info_res.facility_set.length > 0) {
+        // if there is facility list add new facilities to those
+        model_info_res.facility_set.forEach((item) => {
+          dispatch({ type: "facility_id", facility_id: item.id });
+        });
+      }
+      // If facilities are filled, clear them
+      else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
+
+      // Set capacity
+      if (model_info_res.capacity)
+        dispatch({ type: "capacity", capacity: model_info_res.capacity });
+      else dispatch({ type: "capacity", capacity: null });
+
+      // set transmission type
+      if (model_info_res.transmission_type)
+        dispatch({
+          type: "transmission_type_id",
+          transmission_type_id: model_info_res.transmission_type.id,
+        });
+      else
+        dispatch({
+          type: "transmission_type_id",
+          transmission_type_id: null,
+        });
+
+      // Set cylinder
+      if (model_info_res.cylinder) {
+        dispatch({
+          type: "cylinder_id",
+          cylinder_id: model_info_res.cylinder.id,
+        });
+        setCylinderName(model_info_res.cylinder.name.fa);
+      } else {
+        dispatch({
+          type: "cylinder_id",
+          cylinder_id: null,
+        });
+        setCylinderName("");
+      }
+
+      // Set body-Style
+      if (model_info_res.body_style) {
+        dispatch({
+          type: "body_style_id",
+          body_style_id: model_info_res.body_style.id,
+        });
+        setBodyStyleName(model_info_res.body_style.name.fa);
+      } else {
+        dispatch({
+          type: "body_style_id",
+          body_style_id: null,
+        });
+        setBodyStyleName("");
+      }
+    } catch (error) {
+      console.log("!Error", error);
     }
   };
 
@@ -916,6 +957,7 @@ const Add_Car_Step_1 = () => {
           Select={(i) => {
             if (i.value === 1) setShowDistrict(true);
             else {
+              // if user select rather then Tehran save city name to show it in message
               setLocationName(i.text);
               setShowDistrict(false);
             }
@@ -931,11 +973,13 @@ const Add_Car_Step_1 = () => {
 
         {showDistrict && (
           <DropdownSearch
+            // if the user choose Tehran location_id error belong to district drop-down
             error_status={showDistrict ? ErrorState.location_id : false}
             InputDisable={true}
             label="محله"
             defaultVal={DistrictName}
             data={districtList}
+            // before location id select this box will have shown but its disabled
             disabled={!showDistrict}
             clearField={() =>
               dispatch({ type: "location_id", location_id: null })
@@ -1256,11 +1300,12 @@ const Add_Car_Step_1 = () => {
             error_status={ErrorState.color_id}
             InputDisable={true}
             data={colorList}
+            // active color picker drop downw
             colorPicker={true}
             defaultVal={colorCode}
             hardValue="رنگ خودرو"
             disableSearch={true}
-            hideClearField={true} 
+            hideClearField={true}
             clearField={() =>
               dispatch({
                 type: "color_id",
@@ -1296,8 +1341,10 @@ const Add_Car_Step_1 = () => {
           loading={Loading}
           disable={Loading}
           class="Blue_BTN local_style"
+          // onCLick nothing happend we listen to the form submition
           click={() => {}}
         />
+        {/* show the error message */}
         <p className="Error_message_text">{ErrorState.error_message}</p>
       </form>
     </article>

@@ -18,10 +18,12 @@ const Requests_filter = (props: IRequests_filter) => {
   const [status_id, setStatus_id] = useState([]);
   return (
     <>
+      {/* filter mobile */}
       <span className="show_filter" onClick={() => setShow_filter(true)}>
         <IoIosOptions size="2rem" color="#656565" />
         نمایش فیلترها
       </span>
+      {/* filter toggle Icon */}
       {show_filter && (
         <div
           onClick={() => setShow_filter(false)}
@@ -35,6 +37,7 @@ const Requests_filter = (props: IRequests_filter) => {
         ].join(" ")}
       >
         <h3>وضعیت درخواست</h3>
+        {/* render a list of status's base on status value */}
         <Checkbox
           initialValue={status_id}
           name="status"

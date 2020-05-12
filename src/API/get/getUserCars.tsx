@@ -24,8 +24,8 @@ export const REQUEST_GET_USER_CARS = (data: IGetUserCars) => {
         console.log(response.data);
         resolve(response.data);
       })
-      .catch((err) => {
-        console.warn("profile cars request filed: ", err.message);
+      .catch((e) => {
+        console.log(e.response?.message); 
       });
   });
 };

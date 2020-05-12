@@ -11,6 +11,7 @@ const Header = (props: IHeader) => {
   return (
     <header className="header">
       <article className="responsive">
+        {/* logo section */}
         <section className="Logo">
           <Link href="/">
             <a>
@@ -25,10 +26,12 @@ const Header = (props: IHeader) => {
           onClick={() => setShowMenu(false)}
           className={showMenu ? "show_menu_drawer" : "hide_menu_drawer"}
         /> */}
+        {/* Menu Links */}
         <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
           <Menu />
         </section>
       </article>
+      {/* NOTE Models */}
       {props.Show_Modal && (
         <Modal modal_type={props.modalType} data={props.data} />
       )}
@@ -37,8 +40,11 @@ const Header = (props: IHeader) => {
 };
 
 interface IHeader {
+  // control appearance of modal
   Show_Modal: boolean;
+  // set the modal type
   modalType: string;
+  // data we need in rate modals
   data?: any;
 }
 

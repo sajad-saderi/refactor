@@ -6,6 +6,7 @@ import Router from "next/router";
 
 const Menu = () => {
   const MODAL_CONTEXT = useContext(modal_context);
+
   let complete_register = jsCookie.get("complete_register");
   let token = jsCookie.get("token");
   let img_profile = jsCookie.get("thumbnail_url");
@@ -24,6 +25,7 @@ const Menu = () => {
             <a>
               <img
                 className="profile_icon"
+                // show user image or chow account icon
                 src={
                   img_profile ||
                   "https://core.otoli.net/static/core/default_profile_pic.png"
@@ -37,12 +39,14 @@ const Menu = () => {
       ) : (
         <li
           onClick={() => {
+            // set the 'login' model to appear
             MODAL_CONTEXT.modalHandler("Login");
           }}
         >
           ورود/ثبت نام
         </li>
       )}
+      {/* if the user had registered completely, can access to orders history */}
       {complete_register && (
         <li>
           <Link href="/requests">

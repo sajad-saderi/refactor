@@ -7,14 +7,17 @@ import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
 
+// default location is Tehran
 let Location = 1;
 let Start_date = null;
 let End_date = null;
+// start page is 1
 let page = 1;
 let price = {
   min: null,
   max: null,
 };
+// default price sort is form highest to lowest price  -> descending
 let o = "-price";
 let loadMoreCar = false;
 let deliver_at_renters_place = 0;
@@ -22,6 +25,9 @@ let with_driver = 0;
 let body_style_id = [];
 let brand_id = null;
 let car_id = null;
+
+// this object check which filter is activated
+// you can combined several filter in a single search request
 let filtersChecker = {
   Location: false,
   price: false,
@@ -39,6 +45,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
   const [remained_count, setRemained_count] = useState(0);
 
   useEffect(() => {
+    // reset the data
     return () => {
       Location = 1;
       Start_date = null;
@@ -68,58 +75,80 @@ const Landing_page_container = (props: ILanding_page_container) => {
   }, []);
 
   useEffect(() => {
+    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
     const Today = moment().format("jYYYY/jMM/jDD");
-    Start_date = moment(Today).add(3, "day").format("YYYY/MM/DD");
-    End_date = moment(Today).add(6, "day").format("YYYY/MM/DD");
-    console.log(props.landing_data);
-
+    Start_date = moment(Today)
+      .add(3, "day")
+      .format("YYYY/MM/DD");
+    End_date = moment(Today)
+      .add(6, "day")
+      .format("YYYY/MM/DD");
     initSearch();
   }, [props.landing_data]);
 
   async function initSearch() {
+    // set the filter name
     const searchParamKey: any = Object.keys(props.landing_data.search_params);
     setResult(null);
     setExtra_info([]);
+    // filter by landing page unique parameter
     let queryString = `${searchParamKey}=${props.landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
+    // check the location filer
     if (filtersChecker.Location) {
       queryString += `&location_id=${Location}`;
     }
+    // check the price sort
     if (filtersChecker.price) {
       queryString += `&min_price=${price.min}&max_price=${price.max}`;
     }
+    // check the delivery option
     if (filtersChecker.deliver_at_renters_place) {
       queryString += `&deliver_at_renters_place=1`;
     }
+    // with driver
     if (filtersChecker.with_driver) {
       queryString += `&with_driver=1`;
     }
+    // body style
     if (filtersChecker.body_style_id) {
       queryString += `&body_style_id=${body_style_id.join(",")}`;
     }
+    // check the brand id
     if (filtersChecker.brand_id) {
       queryString += `&brand_id=${brand_id}`;
     }
+    // check the car id
     if (filtersChecker.car_id) {
       queryString += `&car_id=${car_id}`;
     }
-    const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
-      queryString,
-      limit: 14,
-      page,
-    });
-    setTotal_count(res.total_count);
-    setRemained_count(res.remained_count);
+    try {
+      const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
+        queryString,
+        limit: 14,
+        page,
+      });
+      setTotal_count(res.total_count);
+      setRemained_count(res.remained_count);
 
-    if (loadMoreCar) {
       setExtra_info(res.extra_info);
-      setResult(result.concat(res.results));
-      loadMoreCar = false;
-    } else {
-      setExtra_info(res.extra_info);
-      setResult(res.results);
+      if (loadMoreCar) {
+        // add the new result to old result
+        setResult(result.concat(res.results));
+        loadMoreCar = false;
+      } else {
+        setResult(res.results);
+      }
+    } catch (error) {
+      console.log("!Error", error);
     }
   }
 
+  // adjust the filter object to send for search
+  /**
+   *
+   * @param v
+   *  set the data from filter context
+   */
   function filterResults(v) {
     if (v.price) {
       filtersChecker.price = v.price.status;
@@ -160,7 +189,8 @@ const Landing_page_container = (props: ILanding_page_container) => {
   };
 
   return (
-    <article className="  search_result_page_container">
+    <article className="search_result_page_container">
+      {/* result count section */}
       {result
         ? result.length > 0 && (
             <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
@@ -168,11 +198,13 @@ const Landing_page_container = (props: ILanding_page_container) => {
             )} تا ${result[0].end_date.slice(5)}`}</p>
           )
         : null}
+      {/* search box */}
       <section className="new_search_in_landing">
         <div className="responsive">
           <Search
             dynamic={true}
             searchSubmit={(v) => {
+              // if we are not in dynamic page don't need to check loaction filter
               if (v.location_id !== 1) {
                 filtersChecker.Location = true;
               }
@@ -183,6 +215,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           />
         </div>
       </section>
+      {/* price sort part */}
       <section className="responsive">
         <div className="price_sort_container">
           <span
@@ -205,6 +238,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           </span>
         </div>
       </section>
+      {/* filters and result section */}
       <section className=" responsive content_container">
         <filterContext.Provider
           value={{
@@ -217,6 +251,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
+      {/* load more */}
       {remained_count > 0 && (
         <span className="Load_more_car" onClick={() => loadMore()}>
           نمایش ماشین‌های بیشتر
@@ -227,6 +262,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
 };
 
 interface ILanding_page_container {
+  // dynamic page data
   landing_data: any;
 }
 

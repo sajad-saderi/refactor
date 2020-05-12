@@ -3,6 +3,15 @@ import React, { useState, useContext, useEffect } from "react";
 import Button from "../../../../components/form/Button";
 import modal_context from "../../../../context/Modal_context";
 import Toast_context from "../../../../context/Toast_context";
+/**
+ * React Star Ratings
+ *
+ * NPM
+ * https://www.npmjs.com/package/react-star-ratings
+ * GIT
+ *
+ * https://github.com/ekeric13/react-star-ratings
+ */
 import StarRatings from "react-star-ratings";
 import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
@@ -22,12 +31,11 @@ const Owner = (props: IRenter) => {
     setRenter(props.data.renter);
   }, []);
 
-  console.log(props.data);
-
   const setForRequest = async (e, data: any) => {
     e.preventDefault();
     setLoading(true);
     Promise.all([
+      // rate render
       REQUEST_REQUEST_ACTION({
         token,
         id: data.id,
@@ -52,7 +60,7 @@ const Owner = (props: IRenter) => {
         Router.reload();
       })
       .catch((e) => {
-        console.log(e);
+        console.log("!Error", e);
         setLoading(false);
       });
   };
@@ -103,6 +111,7 @@ const Owner = (props: IRenter) => {
                 value="لغو"
                 loading={loading}
                 click={() => {
+                  // close the modal
                   Modal_context.modalHandler("SET");
                 }}
               />

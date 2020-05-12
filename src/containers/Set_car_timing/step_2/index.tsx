@@ -224,30 +224,36 @@ const Add_Car_Step_2 = () => {
   }, []);
 
   const getCarInfoToEdit = async (id) => {
-    const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
-      id: id,
-      token: token,
-    });
-    console.log(car_info_res);
-    SetCar(car_info_res);
-    const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
-      { id: id, token: token }
-    );
-    if (car_availability_res.length > 0) {
-      AvailabilityController(car_availability_res);
-    }
-    const car_discount_res: any = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
-      id: id,
-      token: token,
-    });
-    if (car_discount_res.length > 0) {
-      setShowDiscount(1);
-      setDiscountList(car_discount_res);
-      setInitialDiscountList(car_discount_res);
+    try {
+      const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
+        id: id,
+        token: token,
+      });
+      SetCar(car_info_res);
+      const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
+        { id: id, token: token }
+      );
+      if (car_availability_res.length > 0) {
+        // get a list of available time to rent
+        AvailabilityController(car_availability_res);
+      }
+      // get a list of discounts
+      const car_discount_res: any = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
+        id: id,
+        token: token,
+      });
+      if (car_discount_res.length > 0) {
+        setShowDiscount(1);
+        setDiscountList(car_discount_res);
+        setInitialDiscountList(car_discount_res);
+      }
+    } catch (error) {
+      console.log("!Error", error);
     }
   };
 
   const AvailabilityController = (data) => {
+    // if car is available with same price all the time
     if (data[0].is_all_time) {
       setDateAndPrice(1);
       dispatch({
@@ -255,6 +261,7 @@ const Add_Car_Step_2 = () => {
         price_per_day: data[0].price_per_day,
       });
     } else {
+      // if the car have a range for price
       setDateAndPrice(2);
       setInitialAvailabilityList(data);
     }
@@ -373,7 +380,8 @@ const Add_Car_Step_2 = () => {
             data: JSON.stringify(discountList),
           });
         }
-        jsCookie.remove("new_car")
+        // remove the car id from storage
+        jsCookie.remove("new_car");
         const partial_car_res = await REQUEST_SET_CAR_PARTIAL({
           id: state.id,
           deliver_at_renters_place: state.deliver_at_renters_place,
@@ -389,8 +397,25 @@ const Add_Car_Step_2 = () => {
         Router.push(`/user/${state.owner_id}`);
       } catch (error) {
         setLoading(false);
+        console.log("!Error", error);
       }
     } else setLoading(false);
+  };
+
+  // receive the Reducer type and reset the error status
+  const resetTheErrorStatus = (value_name) => {
+    if (value_name === "error_message") {
+      ErrorDispatch({
+        type: value_name,
+        error_message: null,
+      });
+    } else {
+      ErrorDispatch({
+        type: value_name,
+        [value_name]: null,
+        error_message: null,
+      });
+    }
   };
 
   const validation = (state) => {
@@ -402,11 +427,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "id",
-        id: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("id");
     }
     if (state.days_to_get_reminded === 0) {
       ErrorDispatch({
@@ -416,11 +437,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "days_to_get_reminded",
-        days_to_get_reminded: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("days_to_get_reminded");
     }
     if (state.min_days_to_rent === 0) {
       ErrorDispatch({
@@ -430,11 +447,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "min_days_to_rent",
-        min_days_to_rent: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("min_days_to_rent");
     }
     if (state.max_km_per_day === "") {
       ErrorDispatch({
@@ -444,11 +457,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "max_km_per_day",
-        max_km_per_day: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("max_km_per_day");
     }
     if (state.extra_km_price === "") {
       ErrorDispatch({
@@ -458,11 +467,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "extra_km_price",
-        extra_km_price: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("extra_km_price");
     }
     if (DateAndPrice === 1 && state.price_per_day === "") {
       ErrorDispatch({
@@ -472,11 +477,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "price_per_day",
-        price_per_day: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("price_per_day");
     }
     if (DateAndPrice === 2 && availabilityList.length === 0) {
       ErrorDispatch({
@@ -486,11 +487,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "price_range",
-        price_range: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("price_range");
     }
     console.log(showDiscount, discountList.length);
     if (showDiscount !== 0 && discountList.length === 0) {
@@ -501,11 +498,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "cancellation_policy",
-        discount_error: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("cancellation_policy");
     }
 
     if (state.cancellation_policy === "" || !state.cancellation_policy) {
@@ -516,19 +509,21 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      ErrorDispatch({
-        type: "cancellation_policy",
-        cancellation_policy: false,
-        error_message: null,
-      });
+      resetTheErrorStatus("cancellation_policy");
     }
     return true;
   };
 
   const addToAvailabilityList = (data, edit = false) => {
+    // get the data and add new item to avail list
+    /**
+     * @edit
+     *  if a item edited update that in the array
+     */
     if (edit) {
       setAvailabilityList(data);
     } else {
+      // otherwise add new item to list
       setAvailabilityList((availabilityList) =>
         availabilityList.concat({
           start_date: data.start_date,
@@ -539,7 +534,9 @@ const Add_Car_Step_2 = () => {
       );
     }
   };
+
   const removeFromAvailabilityList = (i) => {
+    // remove an item from avail list
     setAvailabilityList((availabilityList) =>
       availabilityList.filter((_, index) => {
         return index !== i;
@@ -547,16 +544,22 @@ const Add_Car_Step_2 = () => {
     );
   };
 
+  /**
+   *
+   * @param edit
+   * if it's edit mode update the list
+   * @param data
+   * if it's new item add that to the list
+   */
   const addToDiscountList = (data, edit = false) => {
     if (edit) {
-      console.log("edit", data);
-
       setDiscountList(data);
     } else {
       setDiscountList((districtList) => districtList.concat(data));
     }
   };
 
+  // remove the given index from the lisr
   const removeFromDiscountList = (i) => {
     setDiscountList((discountList) =>
       discountList.filter((_, index) => {
@@ -723,6 +726,7 @@ const Add_Car_Step_2 = () => {
             //     ErrorState.transmission_type_id ? "Error_color" : null
             //   ].join(" ")}
           >
+            {/* toggle between same price for all time and custom range of price  */}
             <Radio
               name="DateAndPrice"
               error_status={ErrorState.price_per_day}
@@ -777,6 +781,7 @@ const Add_Car_Step_2 = () => {
               )} */}
             </>
           ) : (
+            //PriceBox component
             <PriceBox
               initialAvailabilityList={initialAvailabilityList}
               addAvailList={addToAvailabilityList}
@@ -787,6 +792,7 @@ const Add_Car_Step_2 = () => {
         </div>
         <div className="add_car_form_step_2">
           <h4 className="extra_text">تخفیف ها</h4>
+          {/* DiscountBox component  */}
           <DiscountBox
             initialDiscountList={initialDiscountList}
             addDiscount={addToDiscountList}

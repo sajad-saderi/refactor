@@ -5,6 +5,7 @@ const SET_RENT_REQUEST = "/core/rental-car/rent-request/new";
 
 export const REQUEST_SET_RENT_REQUEST = (data: IRentRequest) => {
   let query = "";
+  // if incoming data have coupon sent the coupon
   if (data.coupon_code) {
     query = `?coupon_code=${data.coupon_code}`;
   }
@@ -28,7 +29,7 @@ export const REQUEST_SET_RENT_REQUEST = (data: IRentRequest) => {
         }
       })
       .catch(error => {
-        reject(error.response);
+        reject(error.response?.message);
       });
   });
 };
