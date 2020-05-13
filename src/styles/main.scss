@@ -226,7 +226,7 @@ input {
   }
 }
 .cancel {
-  color: $Error_text_color;
+  color: $grey_color;
   cursor: pointer;
   &::selection {
     background-color: transparent;

@@ -4,10 +4,11 @@ import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
 // import "./PriceBox.scss";
 import TextInput from "../../../components/form/TextInput";
-import { IoMdAdd } from "react-icons/io";
+import { IoMdAdd, IoIosTrash, IoMdCreate } from "react-icons/io";
 // moment.loadPersian({ dialect: "persian-modern" });
 
 const PriceBox = (props: IPriceBox) => {
+  // start and end date
   const [dayRange, setDayRange] = useState<DayRange>({
     from: null,
     to: null,
@@ -21,8 +22,12 @@ const PriceBox = (props: IPriceBox) => {
     status: false,
     message: "",
   });
+
+  // list of disable days at calender
   const [DisableList, setDisableList] = useState([]);
+  // list of available dates for renting
   const [availList, setAvailList] = useState([]);
+  // list of duration of each date range
   const [DateDuration, setDateDuration] = useState([]);
   const [show_input_price, setShow_input_price] = useState(true);
   const [EditMode, setEditMode] = useState({
@@ -37,6 +42,7 @@ const PriceBox = (props: IPriceBox) => {
     return moment(formatedDate, "jYYYY/jMM/jDD");
   };
 
+  // convert the given date to standard structure e.g 1399/01/01
   const convertRangeDateToMoment = (date) => {
     if (!date) return;
     return {
@@ -47,6 +53,7 @@ const PriceBox = (props: IPriceBox) => {
 
   const convertMomentToDate = (date) => {
     if (!date) return;
+    // destructure the date
     return {
       day: Number(moment(date).format("jDD")),
       month: Number(moment(date).format("jMM")),
@@ -67,14 +74,18 @@ const PriceBox = (props: IPriceBox) => {
     if (from && to) {
       const days = [];
       const out = [];
+
+      // different between start date and end date
       const duration = from.diff(to, "days");
       setDateDuration((DateDuration) =>
         DateDuration.concat(Math.abs(duration) + 1)
       );
+      // base on duration calculate the date
       for (let i = 0; i <= -duration; i++) {
         days.push(moment(from).add(i, "days"));
       }
       days.map((value, index) => {
+        // add disable dates to disable list
         out.push(convertMomentToDate(value));
       });
       if (returnValue) {
@@ -84,6 +95,7 @@ const PriceBox = (props: IPriceBox) => {
   };
 
   const onConfirm = (data?, autoFill = false) => {
+    // check if we are in edit mode and should preset the data
     if (autoFill) {
       getBetweenRange(data.dayRange);
       setAvailList((availList) =>
@@ -267,7 +279,7 @@ const PriceBox = (props: IPriceBox) => {
             </p>
             {/* {EditMode.status && ( */}
             <p
-              className="cancel"
+              // className="cancel"
               onClick={() => {
                 setEditMode({
                   status: false,
@@ -293,74 +305,73 @@ const PriceBox = (props: IPriceBox) => {
           </p>
         </div>
       )}
-      {
-        availList.length > 0 ? (
-          <div className="Price_container ">
-            <>
-              {/* <p>خودرو شما فقط</p> */}
-              {availList.map((item, i) => {
-                return (
-                  <div key={i} className="Date_list">
-                    <div className="Date_list_item">
-                      <p>
-                        از تاریخ {item.start_date} تا {item.end_date}
-                        <br /> با قیمت{" "}
-                        {Number(item.price_per_day).toLocaleString()} تومان
-                      </p>
-                      <div className="button_box">
-                        <span
-                          className="confirm"
-                          onClick={() => {
-                            setShow_input_price(true);
-                            setEditMode({
-                              status: true,
-                              index: i,
-                            });
-                            setPrice_per_day(item.price_per_day);
+      {availList.length > 0 ? (
+        <div className="Price_container ">
+          <>
+            {/* <p>خودرو شما فقط</p> */}
+            {availList.map((item, i) => {
+              return (
+                <div key={i} className="Date_list">
+                  <div className="Date_list_item">
+                    <p>
+                      از تاریخ {item.start_date} تا {item.end_date}
+                      <br /> با قیمت{" "}
+                      {Number(item.price_per_day).toLocaleString()} تومان
+                    </p>
+                    <div className="button_box">
+                      <span
+                        // className="confirm"
+                        onClick={() => {
+                          setShow_input_price(true);
+                          setEditMode({
+                            status: true,
+                            index: i,
+                          });
+                          setPrice_per_day(item.price_per_day);
 
-                            setDayRange({
-                              from: {
-                                year: +moment(item.start_date).format("YYYY"),
-                                month: +moment(item.start_date).format("MM"),
-                                day: +moment(item.start_date).format("DD"),
-                              },
-                              to: {
-                                year: +moment(item.end_date).format("YYYY"),
-                                month: +moment(item.end_date).format("MM"),
-                                day: +moment(item.end_date).format("DD"),
-                              },
-                            });
-                          }}
-                        >
-                          ویرایش
-                        </span>
-                        <span
-                          className="cancel"
-                          onClick={() => {
-                            releaseDisableDays(i);
-                            setAvailList((availList) =>
-                              availList.filter((_, index) => {
-                                return index !== i;
-                              })
-                            );
-                            if (availList.length === 1) {
-                              setShow_input_price(true);
-                            }
-                            props.removeAvailList(i);
-                          }}
-                        >
-                          حذف
-                        </span>
-                      </div>
+                          setDayRange({
+                            from: {
+                              year: +moment(item.start_date).format("YYYY"),
+                              month: +moment(item.start_date).format("MM"),
+                              day: +moment(item.start_date).format("DD"),
+                            },
+                            to: {
+                              year: +moment(item.end_date).format("YYYY"),
+                              month: +moment(item.end_date).format("MM"),
+                              day: +moment(item.end_date).format("DD"),
+                            },
+                          });
+                        }}
+                      >
+                        <IoMdCreate size="2rem" />
+                      </span>
+                      <span
+                        // className="cancel"
+                        onClick={() => {
+                          releaseDisableDays(i);
+                          setAvailList((availList) =>
+                            availList.filter((_, index) => {
+                              return index !== i;
+                            })
+                          );
+                          if (availList.length === 1) {
+                            setShow_input_price(true);
+                          }
+                          props.removeAvailList(i);
+                        }}
+                      >
+                        <IoIosTrash size="2rem" />
+                      </span>
                     </div>
                   </div>
-                );
-              })}
-              {/* <p>اجاره داده خواهد شد</p> */}
-            </>
-          </div>
-        ) : null
-        //   <p className="nothing">بازه زمانی ثبت شده ندارید</p>
+                </div>
+              );
+            })}
+            {/* <p>اجاره داده خواهد شد</p> */}
+          </>
+        </div>
+      ) : null
+      //   <p className="nothing">بازه زمانی ثبت شده ندارید</p>
       }
     </div>
   );

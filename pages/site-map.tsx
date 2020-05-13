@@ -26,11 +26,11 @@ const Site_map = () => {
   return (
     <Layout>
       <NextSeo
-        title="Otoli | site map"
-        description="Otoli | site map"
+        title="Otoli | نقشه سایت"
+        description="Otoli | نقشه سایت"
         openGraph={{
-          title: "Otoli | site map",
-          description: "Otoli | site map",
+          title: "Otoli | نقشه سایت",
+          description: "Otoli | نقشه سایت",
           site_name: "Otoli",
         }}
         twitter={{

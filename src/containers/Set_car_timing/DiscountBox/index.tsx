@@ -3,7 +3,7 @@ import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
 // import "./DiscountBox.scss";
-import { IoMdAdd } from "react-icons/io";
+import { IoMdAdd, IoIosTrash, IoMdCreate } from "react-icons/io";
 
 const DiscountBox = (props: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");
@@ -58,7 +58,7 @@ const DiscountBox = (props: IDiscountBox) => {
   const DiscountWrapper = useRef(null);
 
   const onConfirm = (data?, autoFill = false) => {
-    // if it's edit mode fill it 
+    // if it's edit mode fill it
     if (autoFill) {
       setDiscountList((DiscountList) =>
         DiscountList.concat({
@@ -137,7 +137,7 @@ const DiscountBox = (props: IDiscountBox) => {
   }, [props.error]);
 
   return (
-    <div className="Price_form_container" ref={DiscountWrapper}>
+    <div className="Discount_form_container" ref={DiscountWrapper}>
       <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
       {Discountcheck === 1 ? (
         <div className="Discount_Controller">
@@ -190,7 +190,7 @@ const DiscountBox = (props: IDiscountBox) => {
             </p>
             {/* {mode.status && ( */}
             <p
-              className="cancel"
+              // className="cancel"
               onClick={() => {
                 setMode({
                   status: false,
@@ -230,7 +230,7 @@ const DiscountBox = (props: IDiscountBox) => {
                   {item.discount_percent} درصد تخفیف
                 </p>
                 <span
-                  className="confirm"
+                  // className="confirm"
                   onClick={() => {
                     setMode({
                       status: true,
@@ -242,10 +242,10 @@ const DiscountBox = (props: IDiscountBox) => {
                     setDiscount_percent(item.discount_percent);
                   }}
                 >
-                  ویرایش
+                  <IoMdCreate size="2rem" />
                 </span>
                 <span
-                  className="cancel"
+                  // className="cancel"
                   onClick={() => {
                     setDiscountList((DiscountList) =>
                       DiscountList.filter((_, index) => {
@@ -255,7 +255,7 @@ const DiscountBox = (props: IDiscountBox) => {
                     props.removeDiscountList(i);
                   }}
                 >
-                  حذف
+                  <IoIosTrash size="2rem" />
                 </span>
               </div>
             </div>

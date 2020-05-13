@@ -2,8 +2,10 @@
 
 .Price_form_container {
   width: auto;
+  position: relative;
+  padding-bottom: 5rem;
   .input_price_Box {
-    width: 32rem;
+    max-width: 32rem;
     padding: 1.6rem;
     border: 1px solid $input_border;
     border-radius: 4px;
@@ -57,16 +59,20 @@
       }
     }
     .button_box {
-      justify-content: space-evenly;
       align-items: center;
       display: flex;
+      justify-content: start;
       p {
+        cursor: pointer;
         padding: 0 1.4rem;
       }
     }
   }
   .add_new_one {
     cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0rem;
     p {
       color: $main__color;
       font-size: 1.4rem;
@@ -113,7 +119,6 @@
         margin-top: 2rem;
         display: inline-block;
         border-radius: 4px;
-
         p {
           color: $grey_color;
           font-weight: 500;
@@ -131,7 +136,9 @@
             display: inline-block;
             font-size: 1.2rem;
             margin: 0 1rem 0 0;
-            padding: 0 1rem;
+            padding-right: 2rem;
+            color: $grey_color;
+            cursor: pointer;
           }
         }
       }
