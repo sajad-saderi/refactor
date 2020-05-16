@@ -2,7 +2,7 @@
 
 .Profile_car_container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   flex-wrap: wrap;
   align-items: flex-start;
   width: 100%;
@@ -46,5 +46,11 @@
   }
   .Load_more_car_container {
     width: 100%;
+  }
+}
+
+@media screen and(max-width:960px) {
+  .Profile_car_container {
+    justify-content: space-around;
   }
 }

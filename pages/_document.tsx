@@ -236,7 +236,6 @@ export default class MyDocument extends Document {
 
           {/* Google Tag Manager */}
           <script
-            defer
             dangerouslySetInnerHTML={{
               __html: `<!-- Google Tag Manager -->
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -271,12 +270,16 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TN3MV4L"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
+          {/* <!-- Google Tag Manager (noscript) --> */}
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-TN3MV4L"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
+          {/* <!-- End Google Tag Manager (noscript) --> */}
           <Main />
           <NextScript />
         </body>
