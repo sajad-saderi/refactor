@@ -135,41 +135,41 @@ const PriceBox = (props: IPriceBox) => {
         status: false,
         message: "",
       });
-      if (EditMode.status) {
-        let tempArr = [...availList];
-        tempArr[EditMode.index] = {
+      // if (EditMode.status) {
+      //   let tempArr = [...availList];
+      //   tempArr[EditMode.index] = {
+      //     start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+      //     end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+      //     // start_date: dayRange.from,
+      //     // end_date: dayRange.to,
+      //     price_per_day: price_per_day,
+      //     status_id: "available",
+      //   };
+      //   props.addAvailList(tempArr, true);
+      //   setAvailList(tempArr);
+      //   setEditMode({
+      //     status: false,
+      //     index: null,
+      //   });
+      // } else {
+      getBetweenRange(dayRange);
+      setAvailList((availList) =>
+        availList.concat({
           start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
           end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
           // start_date: dayRange.from,
           // end_date: dayRange.to,
           price_per_day: price_per_day,
           status_id: "available",
-        };
-        props.addAvailList(tempArr, true);
-        setAvailList(tempArr);
-        setEditMode({
-          status: false,
-          index: null,
-        });
-      } else {
-        getBetweenRange(dayRange);
-        setAvailList((availList) =>
-          availList.concat({
-            start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-            end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-            // start_date: dayRange.from,
-            // end_date: dayRange.to,
-            price_per_day: price_per_day,
-            status_id: "available",
-          })
-        );
-        props.addAvailList({
-          start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-          end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-          price_per_day: price_per_day,
-          status_id: "available",
-        });
-      }
+        })
+      );
+      props.addAvailList({
+        start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+        end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+        price_per_day: price_per_day,
+        status_id: "available",
+      });
+      // }
       setDayRange({
         from: null,
         to: null,
@@ -277,25 +277,46 @@ const PriceBox = (props: IPriceBox) => {
             <p className="confirm" onClick={onConfirm}>
               تایید
             </p>
-            {/* {EditMode.status && ( */}
             <p
               // className="cancel"
               onClick={() => {
-                setEditMode({
-                  status: false,
-                  index: null,
-                });
-                setDayRange({
-                  from: null,
-                  to: null,
-                });
-                setShow_input_price(false);
-                setPrice_per_day("");
+                if (EditMode.status) {
+                  onConfirm();
+                } else {
+                  setEditMode({
+                    status: false,
+                    index: null,
+                  });
+                  setDayRange({
+                    from: null,
+                    to: null,
+                  });
+                  setShow_input_price(false);
+                  setPrice_per_day("");
+                }
               }}
             >
               لغو
             </p>
-            {/* )} */}
+            {EditMode.status && (
+              <IoMdTrash
+                className="Trash_icon_in_price_cart"
+                onClick={() => {
+                  setEditMode({
+                    status: false,
+                    index: null,
+                  });
+                  setDayRange({
+                    from: null,
+                    to: null,
+                  });
+                  setShow_input_price(false);
+                  setPrice_per_day("");
+                }}
+                color="#737373"
+                size="2rem"
+              />
+            )}
           </div>
         </div>
       ) : (
@@ -328,19 +349,42 @@ const PriceBox = (props: IPriceBox) => {
                             index: i,
                           });
                           setPrice_per_day(item.price_per_day);
-
                           setDayRange({
                             from: {
-                              year: +moment(item.start_date).format("YYYY"),
-                              month: +moment(item.start_date).format("MM"),
-                              day: +moment(item.start_date).format("DD"),
+                              year: +moment(
+                                item.start_date,
+                                "jYYYY/jM/jD"
+                              ).format("jYYYY"),
+                              month: +moment(
+                                item.start_date,
+                                "jYYYY/jM/jD"
+                              ).format("jMM"),
+                              day: +moment(
+                                item.start_date,
+                                "jYYYY/jM/jD"
+                              ).format("jDD"),
                             },
                             to: {
-                              year: +moment(item.end_date).format("YYYY"),
-                              month: +moment(item.end_date).format("MM"),
-                              day: +moment(item.end_date).format("DD"),
+                              year: +moment(
+                                item.end_date,
+                                "jYYYY/jM/jD"
+                              ).format("jYYYY"),
+                              month: +moment(
+                                item.end_date,
+                                "jYYYY/jM/jD"
+                              ).format("jMM"),
+                              day: +moment(item.end_date, "jYYYY/jM/jD").format(
+                                "jDD"
+                              ),
                             },
                           });
+                          releaseDisableDays(i);
+                          setAvailList((availList) =>
+                            availList.filter((_, index) => {
+                              return index !== i;
+                            })
+                          );
+                          props.removeAvailList(i);
                         }}
                       >
                         <IoMdCreate size="2rem" />

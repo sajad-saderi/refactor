@@ -89,30 +89,30 @@ const DiscountBox = (props: IDiscountBox) => {
         status: false,
         message: "",
       });
-      if (mode.status) {
-        let temp = [...DiscountList];
-        temp[mode.index] = {
+      // if (mode.status) {
+      //   let temp = [...DiscountList];
+      //   temp[mode.index] = {
+      //     days_limit: days_limit,
+      //     discount_percent: discount_percent,
+      //   };
+      //   setDiscountList(temp);
+      //   props.addDiscount(temp, true);
+      //   setMode({
+      //     status: false,
+      //     index: null,
+      //   });
+      // } else {
+      setDiscountList((DiscountList) =>
+        DiscountList.concat({
           days_limit: days_limit,
           discount_percent: discount_percent,
-        };
-        setDiscountList(temp);
-        props.addDiscount(temp, true);
-        setMode({
-          status: false,
-          index: null,
-        });
-      } else {
-        setDiscountList((DiscountList) =>
-          DiscountList.concat({
-            days_limit: days_limit,
-            discount_percent: discount_percent,
-          })
-        );
-        props.addDiscount({
-          days_limit: days_limit,
-          discount_percent: discount_percent,
-        });
-      }
+        })
+      );
+      props.addDiscount({
+        days_limit: days_limit,
+        discount_percent: discount_percent,
+      });
+      // }
       setDiscount_percent("");
       setDays_limit_name(null);
       setDays_limit(null);
@@ -188,23 +188,42 @@ const DiscountBox = (props: IDiscountBox) => {
             <p className="confirm" onClick={onConfirm}>
               ثبت
             </p>
-            {/* {mode.status && ( */}
             <p
               // className="cancel"
               onClick={() => {
-                setMode({
-                  status: false,
-                  index: null,
-                });
-                setDiscount_percent("");
-                setDays_limit_name(null);
-                setDays_limit(null);
-                setDiscountcheck(0);
+                if (mode.status) {
+                  onConfirm();
+                } else {
+                  setMode({
+                    status: false,
+                    index: null,
+                  });
+                  setDiscount_percent("");
+                  setDays_limit_name(null);
+                  setDays_limit(null);
+                  setDiscountcheck(0);
+                }
               }}
             >
               لغو
             </p>
-            {/* )} */}
+            {mode.status && (
+              <IoMdTrash
+                className="Trash_icon_in_price_cart"
+                onClick={() => {
+                  setMode({
+                    status: false,
+                    index: null,
+                  });
+                  setDiscount_percent("");
+                  setDays_limit_name(null);
+                  setDays_limit(null);
+                  setDiscountcheck(0);
+                }}
+                color="#737373"
+                size="2rem"
+              />
+            )}
           </div>
         </div>
       ) : (
@@ -240,6 +259,13 @@ const DiscountBox = (props: IDiscountBox) => {
                     setDays_limit_name(`${item.days_limit} روز`);
                     setDiscountcheck(1);
                     setDiscount_percent(item.discount_percent);
+
+                    setDiscountList((DiscountList) =>
+                      DiscountList.filter((_, index) => {
+                        return index !== i;
+                      })
+                    );
+                    props.removeDiscountList(i);
                   }}
                 >
                   <IoMdCreate size="2rem" />
