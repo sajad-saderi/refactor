@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 // import "./car.scss";
-import { IoIosTrash, IoMdCreate } from "react-icons/io";
+import { IoMdTrash, IoMdCreate } from "react-icons/io";
 import Router from "next/router";
 import jsCookie from "js-cookie";
 import {
@@ -148,7 +148,7 @@ const Car = (props: ICar) => {
               />
             </span>
             <span>
-              <IoIosTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
+              <IoMdTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
             </span>
           </div>
         )}

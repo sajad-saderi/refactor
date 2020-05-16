@@ -76,8 +76,8 @@ const Filters = (props: IFilter) => {
     <>
       {/* Trigger icon in mobile view */}
       <span className="show_filter" onClick={() => setShow_filter(true)}>
-        <IoIosOptions size="2rem" color="#656565" />
-        نمایش فیلترها
+        جستجوی پیشرفته
+        <IoIosOptions size="1.4rem" color="#656565" />
       </span>
       {show_filter && (
         <div

@@ -3,7 +3,7 @@ import TextInput from "../../../components/form/TextInput";
 import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
 // import "./DiscountBox.scss";
-import { IoMdAdd, IoIosTrash, IoMdCreate } from "react-icons/io";
+import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
 
 const DiscountBox = (props: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");
@@ -255,7 +255,7 @@ const DiscountBox = (props: IDiscountBox) => {
                     props.removeDiscountList(i);
                   }}
                 >
-                  <IoIosTrash size="2rem" />
+                  <IoMdTrash size="2rem" />
                 </span>
               </div>
             </div>

@@ -4,8 +4,10 @@
   .content_container {
     .show_filter {
       color: #656565;
-      display: inline-block;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       display: none;
+      font-size: 1.2rem;
+      padding: 0.4rem 1rem;
     }
     .filter_section {
       max-width: 27rem;
@@ -43,16 +45,14 @@
       .show_filter {
         position: absolute;
         right: 1.5rem;
-        top: -3.7rem;
+        top: -3.9rem;
         display: block;
         cursor: pointer;
         svg {
           display: inline-block;
           vertical-align: middle;
-          margin-left: 1rem;
+          margin-right: 1rem;
         }
-        font-weight: 500;
-        font-size: 1.4rem;
       }
       .with_drawer {
         top: 0;

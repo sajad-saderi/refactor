@@ -4,7 +4,7 @@ import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
 // import "./PriceBox.scss";
 import TextInput from "../../../components/form/TextInput";
-import { IoMdAdd, IoIosTrash, IoMdCreate } from "react-icons/io";
+import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
 // moment.loadPersian({ dialect: "persian-modern" });
 
 const PriceBox = (props: IPriceBox) => {
@@ -360,7 +360,7 @@ const PriceBox = (props: IPriceBox) => {
                           props.removeAvailList(i);
                         }}
                       >
-                        <IoIosTrash size="2rem" />
+                        <IoMdTrash size="2rem" />
                       </span>
                     </div>
                   </div>

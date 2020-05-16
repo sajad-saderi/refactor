@@ -13,7 +13,7 @@ import jsCookie from "js-cookie";
  */
 import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
-import { IoIosTrash } from "react-icons/io";
+import { IoMdTrash } from "react-icons/io";
 import Spinner from "../Spinner";
 
 const token = jsCookie.get("token");
@@ -108,7 +108,7 @@ const ImageUploader = (props: IImageUpload) => {
             return (
               <div className="Each_image" key={index}>
                 {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                <IoIosTrash
+                <IoMdTrash
                   size="2rem"
                   onClick={() => RemoveAnImage(i.id)}
                   color="#ea2d2d"
