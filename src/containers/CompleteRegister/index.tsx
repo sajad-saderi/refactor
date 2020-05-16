@@ -68,6 +68,7 @@ const stateErrorReducer = (current, action) => {
 const Complete_register_container = () => {
   const [rolesCheck, setRolesCheck] = useState(false);
   const [showCompanyName, setShowCompanyName] = useState(false);
+  const [show, setShow] = useState(false);
   const [Authorize, setAuthorize] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -114,6 +115,7 @@ const Complete_register_container = () => {
     } else {
       MODAL_CONTEXT.modalHandler("Login");
     }
+    setShow(true);
   }, []);
 
   const submitHandler = async (e, state) => {
@@ -244,176 +246,182 @@ const Complete_register_container = () => {
     return true;
   };
 
-  return Authorize || AUTH_CONTEXT.Auth ? (
-    <article className="responsive  complete_register_container">
-      <div className="pageTitle">
-        <IoMdPersonAdd className="Person_icon" size="6rem" color="#4ba3ce" />
-        <h3>تکمیل اطلاعات</h3>
-      </div>
-      <form
-        className="complete_register_form"
-        onSubmit={(e) => submitHandler(e, state)}
-      >
-        <div className="name_container">
-          <TextInput
-            name="first_name"
-            label="نام"
-            // min={2}
-            max={50}
-            clearField={() => dispatch({ type: "first_name", first_name: "" })}
-            onChangeHandler={(e) =>
-              dispatch({ type: "first_name", first_name: e })
-            }
-            value={state.first_name}
-            autoFocus={false}
-            error={{
-              status: stateError.first_name,
-              message: null,
-            }}
-          />
-          <TextInput
-            name="last_name"
-            // min={2}
-            label="نام خانوادگی"
-            max={50}
-            clearField={() => dispatch({ type: "last_name", last_name: "" })}
-            onChangeHandler={(e) =>
-              dispatch({ type: "last_name", last_name: e })
-            }
-            value={state.last_name}
-            autoFocus={false}
-            error={{
-              status: stateError.last_name,
-              message: null,
-            }}
-          />
+  return show ? (
+    Authorize || AUTH_CONTEXT.Auth ? (
+      <article className="responsive  complete_register_container">
+        <div className="pageTitle">
+          <IoMdPersonAdd className="Person_icon" size="6rem" color="#4ba3ce" />
+          <h3>تکمیل اطلاعات</h3>
         </div>
-        <div className="company_part">
-          {!showCompanyName ? (
-            <p onClick={() => setShowCompanyName(true)}>افزودن نام شرکت</p>
-          ) : (
-            <div className="add_company_input_container">
-              <TextInput
-                name="company_name"
-                number={false}
-                // min={1}
-                max={100}
-                label="نام شرکت"
-                clearField={() =>
-                  dispatch({ type: "company_name", company_name: "" })
-                }
-                onChangeHandler={(e) =>
-                  dispatch({ type: "company_name", company_name: e })
-                }
-                value={state.company_name}
-                autoFocus={false}
-                error={{
-                  status: stateError.company_name,
-                  message: null,
-                }}
-              />
+        <form
+          className="complete_register_form"
+          onSubmit={(e) => submitHandler(e, state)}
+        >
+          <div className="name_container">
+            <TextInput
+              name="first_name"
+              label="نام"
+              // min={2}
+              max={50}
+              clearField={() =>
+                dispatch({ type: "first_name", first_name: "" })
+              }
+              onChangeHandler={(e) =>
+                dispatch({ type: "first_name", first_name: e })
+              }
+              value={state.first_name}
+              autoFocus={false}
+              error={{
+                status: stateError.first_name,
+                message: null,
+              }}
+            />
+            <TextInput
+              name="last_name"
+              // min={2}
+              label="نام خانوادگی"
+              max={50}
+              clearField={() => dispatch({ type: "last_name", last_name: "" })}
+              onChangeHandler={(e) =>
+                dispatch({ type: "last_name", last_name: e })
+              }
+              value={state.last_name}
+              autoFocus={false}
+              error={{
+                status: stateError.last_name,
+                message: null,
+              }}
+            />
+          </div>
+          <div className="company_part">
+            {!showCompanyName ? (
+              <p onClick={() => setShowCompanyName(true)}>افزودن نام شرکت</p>
+            ) : (
+              <div className="add_company_input_container">
+                <TextInput
+                  name="company_name"
+                  number={false}
+                  // min={1}
+                  max={100}
+                  label="نام شرکت"
+                  clearField={() =>
+                    dispatch({ type: "company_name", company_name: "" })
+                  }
+                  onChangeHandler={(e) =>
+                    dispatch({ type: "company_name", company_name: e })
+                  }
+                  value={state.company_name}
+                  autoFocus={false}
+                  error={{
+                    status: stateError.company_name,
+                    message: null,
+                  }}
+                />
+                <span
+                  onClick={() => {
+                    dispatch({ type: "company_name", company_name: "" });
+                    setShowCompanyName(false);
+                  }}
+                >
+                  لغو
+                </span>
+              </div>
+            )}
+          </div>
+          <label>تاریخ تولد</label>
+          <div className="date_birth">
+            <TextInput
+              name="day"
+              number={true}
+              min={1}
+              max={2}
+              placeholder="روز"
+              clearField={() => dispatch({ type: "day", day: "" })}
+              onChangeHandler={(e) => dispatch({ type: "day", day: e })}
+              value={state.day}
+              autoFocus={false}
+              error={{
+                status: stateError.day,
+                message: null,
+              }}
+            />
+            <DropdownSearch
+              data={monthsFarsi}
+              clearField={() => dispatch({ type: "month", month: null })}
+              Select={(i) => dispatch({ type: "month", month: i.value })}
+              disableSearch={true}
+              error_status={stateError.month}
+            />
+            <TextInput
+              name="year"
+              number={true}
+              min={4}
+              max={4}
+              clearField={() => dispatch({ type: "year", year: "" })}
+              onChangeHandler={(e) => dispatch({ type: "year", year: e })}
+              value={state.year}
+              placeholder="مثال: 1369"
+              autoFocus={false}
+              localeString={true}
+              error={{
+                status: stateError.year,
+                message: null,
+              }}
+            />
+          </div>
+          <div className="check_box_container">
+            <label className="container">
               <span
-                onClick={() => {
-                  dispatch({ type: "company_name", company_name: "" });
-                  setShowCompanyName(false);
+                onClick={() => MODAL_CONTEXT.modalHandler("Law")}
+                style={{
+                  textDecoration: "underline",
+                  color: "#0099ff",
+                  cursor: "pointer",
+                  display: "inline-block",
+                  marginBottom: "11px",
                 }}
               >
-                لغو
+                {" "}
+                شرایط و مقررات
               </span>
-            </div>
-          )}
-        </div>
-        <label>تاریخ تولد</label>
-        <div className="date_birth">
-          <TextInput
-            name="day"
-            number={true}
-            min={1}
-            max={2}
-            placeholder="روز"
-            clearField={() => dispatch({ type: "day", day: "" })}
-            onChangeHandler={(e) => dispatch({ type: "day", day: e })}
-            value={state.day}
-            autoFocus={false}
-            error={{
-              status: stateError.day,
-              message: null,
-            }}
+              <span onClick={() => setRolesCheck(true)}>
+                {" "}
+                استفاده از اتولی را مطالعه کردم و می‌پذیرم.
+              </span>
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  e.persist();
+                  if (e.target.checked) {
+                    setRolesCheck(true);
+                  } else {
+                    setRolesCheck(false);
+                  }
+                }}
+                name="roles"
+              />
+              <span className="checkmark"></span>
+            </label>
+          </div>
+          <Button
+            class={[
+              "Blue_BTN local_BTN",
+              // , rolesCheck ? null : "disable_BTN"
+            ].join(" ")}
+            value="تایید"
+            click={() => {}}
+            loading={loading}
           />
-          <DropdownSearch
-            data={monthsFarsi}
-            clearField={() => dispatch({ type: "month", month: null })}
-            Select={(i) => dispatch({ type: "month", month: i.value })}
-            disableSearch={true}
-            error_status={stateError.month}
-          />
-          <TextInput
-            name="year"
-            number={true}
-            min={4}
-            max={4}
-            clearField={() => dispatch({ type: "year", year: "" })}
-            onChangeHandler={(e) => dispatch({ type: "year", year: e })}
-            value={state.year}
-            placeholder="مثال: 1369"
-            autoFocus={false}
-            localeString={true}
-            error={{
-              status: stateError.year,
-              message: null,
-            }}
-          />
-        </div>
-        <div className="check_box_container">
-          <label className="container">
-            <span
-              onClick={() => MODAL_CONTEXT.modalHandler("Law")}
-              style={{
-                textDecoration: "underline",
-                color: "#0099ff",
-                cursor: "pointer",
-                display: "inline-block",
-                marginBottom: "11px",
-              }}
-            >
-              {" "}
-              شرایط و مقررات
-            </span>
-            <span onClick={() => setRolesCheck(true)}>
-              {" "}
-              استفاده از اتولی را مطالعه کردم و می‌پذیرم.
-            </span>
-            <input
-              type="checkbox"
-              onChange={(e) => {
-                e.persist();
-                if (e.target.checked) {
-                  setRolesCheck(true);
-                } else {
-                  setRolesCheck(false);
-                }
-              }}
-              name="roles"
-            />
-            <span className="checkmark"></span>
-          </label>
-        </div>
-        <Button
-          class={[
-            "Blue_BTN local_BTN",
-            // , rolesCheck ? null : "disable_BTN"
-          ].join(" ")}
-          value="تایید"
-          click={() => {}}
-          loading={loading}
-        />
-        {stateError.message ? (
-          <p className="Error_message_text"> {stateError.message}</p>
-        ) : null}
-      </form>
-    </article>
+          {stateError.message ? (
+            <p className="Error_message_text"> {stateError.message}</p>
+          ) : null}
+        </form>
+      </article>
+    ) : (
+      <PleaseLogin />
+    )
   ) : (
-    <PleaseLogin />
+    <article className="minHeight"></article>
   );
 };
 

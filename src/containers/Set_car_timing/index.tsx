@@ -7,6 +7,7 @@ import Add_Car_Step_2 from "./step_2";
 
 const Set_car_timing = () => {
   const [Authorize, setAuthorize] = useState(false);
+  const [show, setShow] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
 
@@ -16,8 +17,17 @@ const Set_car_timing = () => {
     } else {
       MODAL_CONTEXT.modalHandler("Login");
     }
+    setShow(true);
   }, []);
-  return Authorize || AUTH_CONTEXT.Auth ? <Add_Car_Step_2 /> : <PleaseLogin />;
+  return show ? (
+    Authorize || AUTH_CONTEXT.Auth ? (
+      <Add_Car_Step_2 />
+    ) : (
+      <PleaseLogin />
+    )
+  ) : (
+    <article className="minHeight"></article>
+  );
 };
 
 export default Set_car_timing;
