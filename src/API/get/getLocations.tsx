@@ -2,7 +2,7 @@ import axios from "axios";
 import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-let GET_LOCATIONS = "/core/location/lsist?limit=500";
+let GET_LOCATIONS = "/core/location/list?limit=500";
 
 export const REQUEST_GET_LOCATION = (parent_id?: IGetLocation) => {
   // if you need to get districts of a city, pass the parent id
