@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_CAR_PARTIAL = "/core/rental-car/edit/partial";
@@ -42,8 +43,9 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
           resolve(response.data.success);
         }
       })
-      .catch((error) => {
-        reject(error.response);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

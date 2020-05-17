@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_URLS_FOR_SITE_MAP = "/core/landing/list";
@@ -13,7 +14,8 @@ export const REQUEST_GET_URLS_FOR_SITE_MAP = () => {
         }
       })
       .catch((e) => {
-        console.log(e.response?.message);
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_CAR_AVAILABILITY = "/core/rental-car/availability/replace-set";
@@ -26,8 +27,9 @@ export const REQUEST_SET_CAR_AVAILABILITY = (
           resolve(response.data.success);
         }
       })
-      .catch((error) => {
-        reject(error.response?.message);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

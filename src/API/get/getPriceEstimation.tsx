@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 let GET_CAR_PRICE_ESTIMATION = "/core/rent-price-estimation-request/new";
@@ -13,7 +14,10 @@ export const REQUEST_GET_CAR_PRICE_ESTIMATION = (data: IEstimation) => {
       .then((res) => {
         resolve(res);
       })
-      .catch((e) => reject(e.response?.message));
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
+      });
   });
 };
 

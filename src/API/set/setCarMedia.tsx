@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const NEW_CAR_MEDIA = "/core/rental-car/media/new";
@@ -15,16 +16,17 @@ export const REQUEST_NEW_CAR_MEDIA = (data: INewCarMedia) => {
       .post(DOMAIN + NEW_CAR_MEDIA, form, {
         headers: {
           Authorization: "Bearer " + token,
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       })
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data.data);
         }
       })
-      .catch(error => {
-        reject(error.response);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

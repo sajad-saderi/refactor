@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_ORDER_REQUESTS = "/core/rental-car/order/list";
@@ -22,6 +23,10 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
         if (response.data.success) {
           resolve(response.data);
         }
+      })
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

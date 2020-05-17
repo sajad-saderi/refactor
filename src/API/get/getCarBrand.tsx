@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 let GET_BRAND = "/core/brand/list?limit=500";
@@ -18,6 +19,7 @@ export const REQUEST_GET_CAR_BRAND = () => {
         }
       })
       .catch((e) => {
+        Error_middleware(e);
         reject(e.response?.message);
       });
   });

@@ -1,5 +1,7 @@
 import axios from "axios";
 import jsCookie from "js-cookie";
+import Error_middleware from "../ApiUtils";
+
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_COMPANY_NAME = "/core/user/set-company-name";
 
@@ -32,8 +34,9 @@ export const REQUEST_SET_COMPANY_NAME = (data: ICompanyName) => {
           resolve(response.data.success);
         }
       })
-      .catch((error) => {
-        reject(error.response?.message);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

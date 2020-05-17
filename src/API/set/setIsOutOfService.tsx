@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_OUT_OF_SERVICE = "/core/rental-car/set-is-out-of-service";
@@ -23,8 +24,9 @@ export const REQUEST_SET_OUT_OF_SERVICE = (data: IServiceSet) => {
           resolve(response.data.data.is_out_of_service);
         }
       })
-      .catch((error) => {
-        reject(error.response?.message);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

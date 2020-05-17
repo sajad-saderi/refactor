@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_ORDER_CANCEL = "/core/rental-car/order/cancel";
@@ -111,8 +112,9 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         console.log(response);
         resolve({ ...response.data, message });
       })
-      .catch((error) => {
-        reject(error.response?.message);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

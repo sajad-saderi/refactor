@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_CAR_CYLINDER = "/core/cylinder/list?limit=16";
@@ -18,6 +19,7 @@ export const REQUEST_GET_CAR_CYLINDER = () => {
         }
       })
       .catch((e) => {
+        Error_middleware(e);
         reject(e.response?.message);
       });
   });

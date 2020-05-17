@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 let GET_CAR_BODY_STYLE = "/core/body-style/list?limit=800";
@@ -18,6 +19,7 @@ export const REQUEST_GET_CAR_BODY_STYLE = () => {
         }
       })
       .catch((e) => {
+        Error_middleware(e)
         reject(e.response?.message);
       });
   });

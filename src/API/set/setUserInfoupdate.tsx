@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const USER_INFO_UPDATE = "/core/user/update";
@@ -22,14 +23,17 @@ export const REQUEST_USER_INFO_UPDATE = (data: IUserInfoUpdate) => {
         }
       )
       .then((res) => resolve(res))
-      .catch((e) => reject(e.response?.message));
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
+      });
   });
 };
 interface IUserInfoUpdate {
   first_name: string;
   last_name: string;
   company_name: string;
-  // date structure 1399/01/01 
+  // date structure 1399/01/01
   birth_date: string;
   token: string;
 }

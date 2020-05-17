@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_USERNAME = "/core/user/set-username";
@@ -22,8 +23,9 @@ export const REQUEST_SET_USERNAME = (data: ISetUsername) => {
           resolve(response.data.success);
         }
       })
-      .catch((error) => {
-        reject(error.response?.message);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

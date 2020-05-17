@@ -5,7 +5,7 @@
 html {
   direction: rtl;
   font-size: $font_size;
-  font-family: $font_family_Farsi_Number; 
+  font-family: $font_family_Farsi_Number;
 }
 
 html,
@@ -133,7 +133,7 @@ section {
 }
 body {
   line-height: 1;
-  background-color:$page_background_color;
+  background-color: $page_background_color;
 }
 ol,
 ul {
@@ -353,6 +353,37 @@ input {
   }
 }
 
+// 404 page
+._404PageImage {
+  display: block;
+  padding-top: $padding_top;
+  margin: auto;
+  @media (max-width: 720px) {
+    width: 100%;
+  }
+}
+._404PageAnchor {
+  text-align: center;
+  display: block;
+  width: 18rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+// 500 Page
+._500container {
+  position: relative;
+  p {
+    position: absolute;
+    bottom: 9rem;
+    right: 0;
+    left: 0;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+}
+
 // Gradient Loader and animation
 
 .Gradient {
@@ -404,7 +435,6 @@ input {
   }
 }
 
-
 // 3rd parties
 // @import "react-modern-calendar-datepicker/lib/DatePicker.css";
 // @import "nouislider/distribute/nouislider.css";
@@ -414,17 +444,16 @@ input {
 @import "./pages/Failed_payment.scss";
 @import "./pages/faq.scss";
 @import "./pages/join-us.scss";
-@import "./pages/otoli.scss"; 
-@import "./pages/search_result.scss"; 
-@import "./pages/static_pages.scss"; 
-@import "./pages/Success_payment.scss"; 
-
+@import "./pages/otoli.scss";
+@import "./pages/search_result.scss";
+@import "./pages/static_pages.scss";
+@import "./pages/Success_payment.scss";
 
 // Components
 // Form
 @import "../components/form/Dropdown/DropDown.scss";
 @import "../components/form/Checkbox/Checkbox.scss";
-@import "../components/form/Radio/radio.scss"; 
+@import "../components/form/Radio/radio.scss";
 @import "../components/form/TextInput/inputStyle.scss";
 @import "../components/form/Button/Button.scss";
 @import "../components/Accordion/Accordion.scss";
@@ -449,7 +478,7 @@ input {
 @import "../containers/Add_car/Add_car.scss";
 @import "../containers/Add_car/step_1/step_1.scss";
 @import "../containers/car/carpage/carpage.scss";
-@import "../containers/car/search-result/search_result.scss"; 
+@import "../containers/car/search-result/search_result.scss";
 @import "../containers/car/search-result/car/car.scss";
 @import "../containers/Checkout_Container/checkout.scss";
 @import "../containers/Checkout_Container/insurance/insurance.scss";
@@ -479,5 +508,3 @@ input {
 @import "../containers/Set_car_timing/step_2/step_2.scss";
 @import "../containers/Set_car_timing/PriceBox/PriceBox.scss";
 @import "../containers/Set_car_timing/DiscountBox/DiscountBox.scss";
-
-

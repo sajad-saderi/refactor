@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 let GET_CAR_FACILITIES = "/core/facility/list?limit=10000";
@@ -18,6 +19,7 @@ export const REQUEST_GET_CAR_FACILITIES = () => {
         }
       })
       .catch((e) => {
+        Error_middleware(e);
         reject(e.response?.message);
       });
   });

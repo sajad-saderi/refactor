@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const ADD_NEW_CAR = "/core/rental-car/new";
@@ -21,7 +22,10 @@ export const REQUEST_ADD_NEW_CAR = (info: IAddCar) => {
           resolve(response.data);
         }
       })
-      .catch((e) => reject(e.response?.message));
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
+      });
   });
 };
 

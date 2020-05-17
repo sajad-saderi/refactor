@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_RENT_REQUEST = "/core/rental-car/rent-request/new";
@@ -15,21 +16,22 @@ export const REQUEST_SET_RENT_REQUEST = (data: IRentRequest) => {
         DOMAIN + SET_RENT_REQUEST + query,
         {
           search_id: data.search_id,
-          has_insurance: data.has_insurance
+          has_insurance: data.has_insurance,
         },
         {
           headers: {
-            Authorization: "Bearer " + data.token
-          }
+            Authorization: "Bearer " + data.token,
+          },
         }
       )
-      .then(response => {
+      .then((response) => {
         if (response.data.success) {
           resolve(response.data.success);
         }
       })
-      .catch(error => {
-        reject(error.response?.message);
+      .catch((e) => {
+        Error_middleware(e);
+        reject(e.response?.message);
       });
   });
 };

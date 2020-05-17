@@ -1,4 +1,5 @@
 import axios from "axios";
+import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_RENTAL_CAR_SET_CAR_TIMING = "/core/rental-car/get";
@@ -25,6 +26,7 @@ export const REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING = (data: IgetCar) => {
         }
       })
       .catch((e) => {
+        Error_middleware(e);
         reject(e.response?.message);
       });
   });
