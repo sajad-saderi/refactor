@@ -9,6 +9,7 @@ import Modal_context from "../../../src/context/Modal_context";
 import Auth_context from "../../../src/context/Auth_context";
 import PleaseLogin from "../../components/PleaseLogin";
 import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
+import Spinner from "../../components/Spinner";
 
 let filter_id = [];
 let page = 1;
@@ -17,6 +18,7 @@ const Requests_page = () => {
   const [result, setResult] = useState([]);
   const [Authorize, setAuthorize] = useState(false);
   const [showMoreButton, setShowMoreButton] = useState(false);
+  const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
 
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
@@ -55,6 +57,7 @@ const Requests_page = () => {
         token: token,
       });
       if (page > 1) {
+        setShow_spinner_loadMore(false);
         setResult((result) => result.concat(res.items));
       } else {
         setResult(res.items);
@@ -83,6 +86,7 @@ const Requests_page = () => {
 
   const nextPage = () => {
     page = 1 + page;
+    setShow_spinner_loadMore(true);
     if (filter_id.length > 0) {
       fetchAPI({
         page,
@@ -131,7 +135,11 @@ const Requests_page = () => {
       </section>
       {showMoreButton ? (
         <span className="Load_more_car" onClick={nextPage}>
-          نمایش ماشین‌های بیشتر
+          {show_spinner_loadMore ? (
+            <Spinner display="block" width={20} color="#9E9E9E" />
+          ) : (
+            "نمایش ماشین‌های بیشتر"
+          )}
         </span>
       ) : null}
     </article>

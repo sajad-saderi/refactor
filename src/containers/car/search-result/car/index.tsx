@@ -26,9 +26,13 @@ const Car = (props) => {
   let link = `/car/${id}?search_id=${search_id}`;
   let price =
     avg_discounted_price_per_day >= 10000000
-      ? avg_discounted_price_per_day_name.slice(0, 4)
+      ? avg_discounted_price_per_day >= 10100000
+        ? avg_discounted_price_per_day_name.slice(0, 4)
+        : avg_discounted_price_per_day_name.slice(0, 2)
       : avg_discounted_price_per_day >= 1000000
-      ? avg_discounted_price_per_day_name.toString().slice(0, 3)
+      ? avg_discounted_price_per_day_name.slice(2, 3) === "۰"
+        ? avg_discounted_price_per_day_name.toString().slice(0, 1)
+        : avg_discounted_price_per_day_name.toString().slice(0, 3)
       : avg_discounted_price_per_day.toString().slice(0, 3);
 
   let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
@@ -44,9 +48,11 @@ const Car = (props) => {
             )}
             {has_system_discount && <span className="Special">ویژه</span>}
             <img
-              style={{ position: "absolute", 
-              // control the top position of the image by "setheightController()"
-              top: -heightController + "px" }}
+              style={{
+                position: "absolute",
+                // control the top position of the image by "setheightController()"
+                top: -heightController + "px",
+              }}
               src={img}
               className="img-fluid"
               alt={title}
@@ -55,7 +61,7 @@ const Car = (props) => {
                 // adjust the image at the center of division container
                 if (imageHeight > 200) {
                   setheightController(imageHeight - 200);
-                } 
+                }
               }}
             />
             <div className="read_more">

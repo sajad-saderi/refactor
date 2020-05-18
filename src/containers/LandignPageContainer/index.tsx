@@ -6,6 +6,7 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
+import Spinner from "../../components/Spinner";
 
 // default location is Tehran
 let Location = 1;
@@ -43,6 +44,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
+  const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
 
   useEffect(() => {
     // reset the data
@@ -89,7 +91,9 @@ const Landing_page_container = (props: ILanding_page_container) => {
   async function initSearch() {
     // set the filter name
     const searchParamKey: any = Object.keys(props.landing_data.search_params);
-    setResult(null);
+    if (!loadMoreCar) {
+      setResult(null);
+    }
     setExtra_info([]);
     // filter by landing page unique parameter
     let queryString = `${searchParamKey}=${props.landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
@@ -124,7 +128,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
     try {
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         queryString,
-        limit: 14,
+        limit: 16,
         page,
       });
       setTotal_count(res.total_count);
@@ -133,6 +137,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
       setExtra_info(res.extra_info);
       if (loadMoreCar) {
         // add the new result to old result
+        setShow_spinner_loadMore(false);
         setResult(result.concat(res.results));
         loadMoreCar = false;
       } else {
@@ -184,6 +189,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
 
   const loadMore = () => {
     page = 1 + page;
+    setShow_spinner_loadMore(true);
     loadMoreCar = true;
     initSearch();
   };
@@ -254,7 +260,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
       {/* load more */}
       {remained_count > 0 && (
         <span className="Load_more_car" onClick={() => loadMore()}>
-          نمایش ماشین‌های بیشتر
+          {show_spinner_loadMore ? (
+            <Spinner display="block" width={20} color="#9E9E9E" />
+          ) : (
+            "نمایش ماشین‌های بیشتر"
+          )}
         </span>
       )}
     </article>

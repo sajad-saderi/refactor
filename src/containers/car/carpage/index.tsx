@@ -94,9 +94,13 @@ const CarPage = () => {
     if (res.avg_discounted_price_per_day > 0) {
       setAvg_discounted_price_per_day(
         res.avg_discounted_price_per_day >= 10000000
-          ? res.avg_discounted_price_per_day_name.slice(0, 4)
+          ? res.avg_discounted_price_per_day >= 10100000
+            ? res.avg_discounted_price_per_day_name.slice(0, 4)
+            : res.avg_discounted_price_per_day_name.slice(0, 2)
           : res.avg_discounted_price_per_day >= 1000000
-          ? res.avg_discounted_price_per_day_name.toString().slice(0, 3)
+          ? res.avg_discounted_price_per_day_name.slice(2, 3) === "۰"
+            ? res.avg_discounted_price_per_day_name.toString().slice(0, 1)
+            : res.avg_discounted_price_per_day_name.toString().slice(0, 3)
           : res.avg_discounted_price_per_day.toString().slice(0, 3)
       );
     }

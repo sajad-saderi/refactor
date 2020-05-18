@@ -6,6 +6,7 @@ import Router from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 // import "./Search_result.scss";
 import { NextSeo } from "next-seo";
+import Spinner from "../../components/Spinner";
 
 // default location is Tehran
 let Location: any = 1;
@@ -41,6 +42,7 @@ const Search_result = () => {
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
+  const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
 
   useEffect(() => {
     // get the data from url
@@ -80,7 +82,9 @@ const Search_result = () => {
 
   async function initSearch() {
     // reset the data
-    setResult(null);
+    if (!loadMoreCar) {
+      setResult(null);
+    }
     // reset the filter
     setExtra_info([]);
     let queryString = `location_id=${Location}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
@@ -111,18 +115,18 @@ const Search_result = () => {
     try {
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         queryString,
-        limit: 14,
+        limit: 16,
         page,
       });
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
 
+      setExtra_info(res.extra_info);
       if (loadMoreCar) {
-        setExtra_info(res.extra_info);
+        setShow_spinner_loadMore(false);
         setResult(result.concat(res.results));
         loadMoreCar = false;
       } else {
-        setExtra_info(res.extra_info);
         setResult(res.results);
       }
     } catch (error) {
@@ -172,6 +176,7 @@ const Search_result = () => {
   const loadMore = () => {
     page = 1 + page;
     loadMoreCar = true;
+    setShow_spinner_loadMore(true);
     initSearch();
   };
 
@@ -242,7 +247,11 @@ const Search_result = () => {
       {/* load more */}
       {remained_count > 0 && (
         <span className="Load_more_car" onClick={() => loadMore()}>
-          نمایش ماشین‌های بیشتر
+          {show_spinner_loadMore ? (
+            <Spinner display="block" width={20} color="#9E9E9E" />
+          ) : (
+            "نمایش ماشین‌های بیشتر"
+          )}
         </span>
       )}
     </article>
