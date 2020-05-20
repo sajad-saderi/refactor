@@ -5,9 +5,6 @@ export const initGA = () => {
   ReactGA.initialize("UA-147651642-1");
 };
 export const logPageView = () => {
-  console.log(
-    `Logging pageview for ${window.location.pathname + window.location.search}`
-  );
   ReactGA.set({ page: window.location.pathname + window.location.search });
   ReactGA.pageview(window.location.pathname + window.location.search);
 };

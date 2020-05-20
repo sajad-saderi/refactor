@@ -7,7 +7,9 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 // import "./Search_result.scss";
 import { NextSeo } from "next-seo";
 import Spinner from "../../components/Spinner";
+import jsCookie from "js-cookie";
 
+let JumpTo = null;
 // default location is Tehran
 let Location: any = 1;
 let Start_date = null;
@@ -37,6 +39,10 @@ let filtersChecker = {
   brand_id: false,
   car_id: false,
 };
+
+// Set position
+let position = 0;
+
 const Search_result = () => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
@@ -52,8 +58,19 @@ const Search_result = () => {
     End_date = end_date;
     initSearch();
 
+    const handleRouteChange = (url) => {
+      if (url.includes("/car/")) {
+        jsCookie.set("page", page);
+      } else {
+        let JumpTo = null;
+        jsCookie.remove("JumpTo");
+      }
+    };
+
     // reset the data
+    Router.events.on("routeChangeStart", handleRouteChange);
     return () => {
+      Router.events.off("routeChangeStart", handleRouteChange);
       Location = 1;
       Start_date = null;
       End_date = null;
@@ -81,6 +98,8 @@ const Search_result = () => {
   }, []);
 
   async function initSearch() {
+    JumpTo = jsCookie.get("JumpTo");
+
     // reset the data
     if (!loadMoreCar) {
       setResult(null);
@@ -113,9 +132,13 @@ const Search_result = () => {
       queryString += `&car_id=${car_id}`;
     }
     try {
+      let limit = 16;
+      if (JumpTo === "1") {
+        limit = 16 * jsCookie.get("page");
+      }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         queryString,
-        limit: 16,
+        limit: limit,
         page,
       });
       setTotal_count(res.total_count);
@@ -128,6 +151,11 @@ const Search_result = () => {
         loadMoreCar = false;
       } else {
         setResult(res.results);
+      }
+      if (JumpTo === "1") {
+        window.scrollTo(0, position);
+        jsCookie.remove("JumpTo");
+        page = +jsCookie.get("page");
       }
     } catch (error) {
       console.log("!Error", error);
@@ -180,8 +208,15 @@ const Search_result = () => {
     initSearch();
   };
 
+  const getClickPosition = () => {
+    position = window.scrollY;
+  };
+
   return (
-    <article className="search_result_page_container">
+    <article
+      className="search_result_page_container"
+      onClick={getClickPosition}
+    >
       {result && (
         <NextSeo
           title={`جستجو برای تهران، از ${Start_date} تا ${End_date} | اتولی`}

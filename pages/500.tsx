@@ -20,13 +20,19 @@ const AboutUs = () => {
           cardType: "summary_large_image",
         }}
       />
-      <article className="minHeight">
-        <section className="_500container">
-          <img src={_500} alt="500" className="_404PageImage" />
-          <p>
-            مکشلی از سمت رخ داده است، لطفا بعد از چند دقیقه مجددا تلاش کنید.
-          </p>
-        </section>
+      <article className="minHeight _500container">
+        <img src={_500} alt="500" className="_404PageImage" />
+        <span>
+          به زودی این مشکل را برطرف خواهیم کرد. لطفا کمی بعد دوباره به ما سر
+          بزنید.
+        </span>
+        <p>
+          همیشه خوشحال می‌شویم صدای شما را از طریق تلفن بشنویم یا به وسیله چت با
+          شما در تماس باشیم.
+        </p>
+        <p>
+          شماره تماس: <a href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a>
+        </p>
         <Link href="/">
           <a className="_404PageAnchor Blue_BTN">بازگشت به صفحه اصلی</a>
         </Link>

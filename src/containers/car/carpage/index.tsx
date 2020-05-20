@@ -9,6 +9,7 @@ import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
 import { NextSeo } from "next-seo";
+import jsCookie from "js-cookie";
 
 // import "./carpage.scss";
 
@@ -65,6 +66,15 @@ const CarPage = () => {
       // just get the main info about the car
       fetchData({ id });
     }
+    const handleRouteChange = (url) => {
+      if (url.includes("/search-result")) {
+        jsCookie.set("JumpTo", 1);
+      }
+    };
+    Router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      Router.events.off("routeChangeStart", handleRouteChange);
+    };
   }, []);
 
   const fetchData = async (data) => {
