@@ -120,15 +120,21 @@
   }
 }
 
-// @media screen and(max-width:960px) {
-//   .carcard {
-//     margin: 0 1rem 2rem;
-//   }
-// }
+@media screen and(max-width:768px) {
+  .search_result_section {
+    .carCart {
+      width: 49%;
+      height: 300px;
+      figure {
+        height: 200px;
+      }
+    }
+  }
+}
 
 @media screen and(max-width:480px) {
   .search_result_section {
-    .carcard {
+    .carCart {
       width: 100%;
       margin: 0 0 2rem;
     }

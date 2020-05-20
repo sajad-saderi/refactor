@@ -128,7 +128,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
     try {
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         queryString,
-        limit: 16,
+        limit: 15,
         page,
       });
       setTotal_count(res.total_count);

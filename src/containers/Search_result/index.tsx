@@ -132,9 +132,9 @@ const Search_result = () => {
       queryString += `&car_id=${car_id}`;
     }
     try {
-      let limit = 16;
+      let limit = 15;
       if (JumpTo === "1") {
-        limit = 16 * jsCookie.get("page");
+        limit = 15 * jsCookie.get("page");
       }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         queryString,
