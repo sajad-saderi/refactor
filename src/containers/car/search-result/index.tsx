@@ -30,6 +30,8 @@ const SearchResultList = (props) => {
           <CarLoading />
           <CarLoading />
           <CarLoading />
+          <CarLoading />
+          <CarLoading />
         </>
       )}
     </section>
