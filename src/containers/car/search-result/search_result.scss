@@ -3,10 +3,10 @@
 .search_result_section {
   display: inline-block;
   width: 70%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: flex-start;
+  // flex-wrap: wrap;
   direction: ltr;
   margin-top: 2rem;
   .Not_Result {
@@ -23,5 +23,14 @@
 @media screen and(max-width:960px) {
   .search_result_section {
     width: 100%;
+  }
+}
+
+@media screen and(max-width:768px) {
+  .search_result_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 }

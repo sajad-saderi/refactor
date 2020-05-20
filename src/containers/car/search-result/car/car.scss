@@ -8,7 +8,7 @@
     border-radius: 4px;
     display: inline-block;
     vertical-align: top;
-    margin: 0 0 2% 0;
+    margin: 0 1.3% 1.3% 0;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.06);
     direction: rtl;
     figure {
@@ -125,6 +125,7 @@
     .carCart {
       width: 49%;
       height: 300px;
+      margin: 0 0 2% 0;
       figure {
         height: 200px;
       }
