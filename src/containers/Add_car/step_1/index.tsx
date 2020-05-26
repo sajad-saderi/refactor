@@ -142,7 +142,7 @@ const stateReducer = (current, action) => {
         deliver_at_renters_place: action.deliver_at_renters_place,
       };
     case "is_out_of_service":
-      // default value is true
+      // default value is false
       return { ...current, is_out_of_service: action.is_out_of_service };
     case "min_days_to_rent":
       // default value is at least 1 day
@@ -398,7 +398,7 @@ const Add_Car_Step_1 = () => {
     deliver_at_renters_place: 0,
     days_to_get_reminded: 1,
     special_type_id: 1,
-    is_out_of_service: true,
+    is_out_of_service: false,
     min_days_to_rent: 1,
   });
 

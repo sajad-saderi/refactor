@@ -3,7 +3,7 @@ import { REQUEST_GET_USER_CARS } from "../../../API";
 import Router from "next/router";
 import Car from "./car";
 // import "./profile_car.scss";
-import CarLoading from "../../../components/cartPlaceholder/CarLoading";
+import CarLoading from "../../../components/cartPlaceholder/CarLoadingProfile";
 import Radio from "../../../components/form/Radio";
 import Button from "../../../components/form/Button";
 
@@ -49,7 +49,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
       }
       if (user_cars_res.total_count > 14 && user_cars_res.remained_count > 0) {
         setShowMoreButton(true);
-      } else setShowMoreButton(false); 
+      } else setShowMoreButton(false);
     } catch (error) {
       console.log("!Error", error);
     }

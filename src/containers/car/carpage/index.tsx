@@ -123,7 +123,7 @@ const CarPage = () => {
     setExtra_km_price_name(res.extra_km_price_name);
     // setIs_out_of_service(res.is_out_of_service);
     // setId(res.id);
-    // setDeliver_at_renters_place(res.deliver_at_renters_place);
+    setDeliver_at_renters_place(res.deliver_at_renters_place);
     setLocation(res.location);
     setMileage_range(res.mileage_range);
     setOwner(res.owner);
@@ -187,9 +187,9 @@ const CarPage = () => {
               <hr />
               <h2>محل خودرو و تحویل</h2>
               <p>{location.name.breadcrumb_fa}</p>
-              {location.parent_id === 1 && (
+              {location.parent_id === 1 && deliver_at_renters_place ? (
                 <p>در محدوده تهران، خودرو در محل شما تحویل می‌شود.</p>
-              )}
+              ) : null}
               {with_driver && (
                 <>
                   <hr />

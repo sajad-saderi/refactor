@@ -7,6 +7,7 @@
   padding: 1.4rem;
   box-shadow: $box_shadow;
   margin-bottom: 2rem;
+  margin-left: 2rem;
   .user_information {
     display: flex;
     justify-content: start;
@@ -48,5 +49,11 @@
         vertical-align: middle;
       }
     }
+  }
+}
+
+@media screen and(max-width:960px) {
+  .Profile_info_container {
+    margin-left: 0rem;
   }
 }
