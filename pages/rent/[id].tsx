@@ -7,7 +7,7 @@ import Landing_Page_Content from "../../src/containers/LandignPageContainer/land
 
 const Rent_dynamic = (props) => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title={props.Landing_page.meta_title}
         description={props.Landing_page.meta_description}

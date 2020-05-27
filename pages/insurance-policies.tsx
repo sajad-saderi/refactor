@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 const InsurancePolicies = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="بیمه | اجاره آسان خودرو"
         description="پوشش بیمه برای اجاره خودرو در اتولی نیز یکی از سرمایه‌گذاری‌های ما برای جبران خطرات و خسارات احتمالی است که متوجه اجاره‌گیرنده ماشین خواهند بود."

@@ -118,6 +118,14 @@
       background: #555;
     }
   }
+  .popUpResult{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    min-height: 100%;
+  }
 }
 .Disable_Container {
   opacity: 0.5;

@@ -9,6 +9,7 @@ const DropdownSearch = (props: IDropDown) => {
   const [search_value, setSearch_value] = React.useState("");
   // this value is necessary to update the drop-down input in case of a default value
   const [colorCode, setColorCode] = React.useState(null);
+  const [popUpList, setPopUpList] = React.useState(false);
 
   const wrapperRef = useRef(null);
 
@@ -39,6 +40,10 @@ const DropdownSearch = (props: IDropDown) => {
   }, [props.data]);
 
   useEffect(() => {
+    setPopUpList(props.popUpList);
+  }, [props.popUpList]);
+
+  useEffect(() => {
     //  In case of error, the page will be scrolled to the invalid drop-down
     if (props.error_status) {
       scrollTo(0, wrapperRef.current.offsetTop);
@@ -46,6 +51,9 @@ const DropdownSearch = (props: IDropDown) => {
   }, [props.error_status]);
 
   const DropDownController = () => {
+    if (popUpList) {
+      props.popupController();
+    }
     setShowController(!ShowController);
   };
 
@@ -74,6 +82,9 @@ const DropdownSearch = (props: IDropDown) => {
 
   const clearField = () => {
     setInputValue("");
+    if (popUpList) {
+      props.popupController();
+    }
     setShowController(true);
     props.clearField();
   };
@@ -149,14 +160,21 @@ const DropdownSearch = (props: IDropDown) => {
       {ShowController ? (
         <div
           data-test-id="Locations_list_container"
-          className="Locations_list_container"
+          className={[
+            "Locations_list_container",
+            popUpList ? "popUpResult" : null,
+          ].join(" ")}
         >
           {Data.length === 0 ? (
             <div className="resultList">
               <Spinner display="block" width={21} color="#9E9E9E" />
             </div>
           ) : (
-            <div className="resultList">
+            <div
+              className={["resultList", popUpList ? "popUpTheList" : null].join(
+                " "
+              )}
+            >
               {/* You can control the performance of the search input */}
               {!props.disableSearch && (
                 <input
@@ -243,6 +261,10 @@ interface IDropDown {
 
   // active the color-picker property at the component
   colorPicker?: boolean;
+
+  // show the Drop down result in the popup container
+  popUpList?: boolean;
+  popupController?: any;
 }
 
 export default DropdownSearch;

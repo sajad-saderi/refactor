@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 const guidePicture = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="راهنمای عکس گرفتن | اتولی"
         description="راهنمای عکاسی برای ثبت خودرو در اتولی"

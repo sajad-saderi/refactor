@@ -24,6 +24,9 @@
       h3 {
         font-size: 1.4rem;
       }
+      .Close_filter {
+        display: none;
+      }
       .check_box_container {
         display: block;
         .count {
@@ -65,16 +68,36 @@
         right: 0;
         z-index: 30;
       }
+
       .filter_section {
         &.show_Filter_section {
           z-index: 31;
           opacity: 1;
           transform: translateX(0px);
         }
+        .Close_filter {
+          display: inline-block;
+          border-radius: 2rem;
+          border: 1px solid #909090;
+          padding: 0.2rem 0.5rem;
+          margin-right: 82%;
+          margin-left: -10px;
+          cursor: pointer;
+          p {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1rem;
+            color: #909090;
+          }
+          svg {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
         transition: 0.25s all;
         transform: translateX(1000px);
         opacity: 0;
-        width: 26rem;
+        width: 30rem;
         position: fixed;
         overflow-y: scroll;
         right: 0;
@@ -83,7 +106,7 @@
         margin-top: 0;
         border-radius: 0;
         &::-webkit-scrollbar {
-          width: 1rem;
+          width: 0.3rem;
         }
         /* Track */
         &::-webkit-scrollbar-track {
@@ -99,6 +122,23 @@
         &::-webkit-scrollbar-thumb:hover {
           background: #555;
         }
+      }
+      .showPopUp {
+        border-radius: 4px;
+        top: -10rem;
+        z-index: 31;
+        opacity: 1;
+        transform: translate(0px, 0px);
+        position: absolute;
+        width: 40rem;
+        min-width: auto;
+        max-width: auto;
+        right: 0px;
+        margin: auto;
+        left: 0;
+        height: 56rem;
+        min-height: 30rem;
+        overflow-y: hidden;
       }
     }
   }

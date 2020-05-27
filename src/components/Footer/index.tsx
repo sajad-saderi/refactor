@@ -12,11 +12,17 @@ import { FaTelegram } from "react-icons/fa";
 
 const Footer = (props: IFooter) => {
   const [hide, setHide] = useState(false);
+  const [activeToTop, setActiveToTop] = useState(false);
   const [showTop, setShowTop] = useState(false);
 
   // Because the layout render once you should track the hide props for change
   useEffect(() => {
     if (props.hide) setHide(true);
+  }, [props.hide]);
+
+  // Because the layout render once you should track the hide props for change
+  useEffect(() => {
+    if (props.showToTop) setActiveToTop(true);
   }, [props.hide]);
 
   // Add an event listener on scroll to show the "Go To Top" button
@@ -39,19 +45,21 @@ const Footer = (props: IFooter) => {
     }
   };
 
-  // GoToTop functionality 
+  // GoToTop functionality
   const toTop = () => {
     scrollTo(0, 0);
   };
 
   return (
     <footer data-test-id="footer" className={hide ? "hide_footer" : null}>
-      <div
-        className={["toTop", showTop ? "showTop" : null].join(" ")}
-        onClick={toTop}
-      >
-        <IoIosArrowDropup size="4rem" color="#4ba3ce" />
-      </div>
+      {activeToTop ? (
+        <div
+          className={["toTop", showTop ? "showTop" : null].join(" ")}
+          onClick={toTop}
+        >
+          <IoIosArrowDropup size="4rem" color="#4ba3ce" />
+        </div>
+      ) : null}
       <div className=" responsive plus_border">
         <ul className="links">
           <li>
@@ -119,5 +127,6 @@ const Footer = (props: IFooter) => {
 interface IFooter {
   // true === Hide -> the footer on the page
   hide?: boolean;
+  showToTop?: boolean;
 }
 export default Footer;

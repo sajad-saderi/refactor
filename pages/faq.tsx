@@ -16,7 +16,7 @@ const FAQ = () => {
     setItems(faq_res.items);
   };
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="سوال‌های پرتکرار | اتولی"
         description="پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم"

@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 const OtoliPolicies = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="قوانین و مقررات اتولی | اتولی"
         description="برای اجاره خودرو در اتولی چه قوانینی را باید رعایت کنیم."

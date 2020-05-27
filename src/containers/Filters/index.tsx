@@ -5,7 +5,7 @@ import Checkbox from "../../components/form/Checkbox";
 import filterContext from "../../context/filter-context";
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
-import { IoIosOptions } from "react-icons/io";
+import { IoIosOptions, IoMdClose } from "react-icons/io";
 
 let body_style_list = [];
 
@@ -19,6 +19,8 @@ const Filters = (props: IFilter) => {
   const [ModelList, setModelList] = useState([]);
   const [car_id, setcar_id] = useState(null);
   const [show_filter, setShow_filter] = useState(false);
+
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const FilterContext = useContext(filterContext);
 
@@ -81,7 +83,11 @@ const Filters = (props: IFilter) => {
       </span>
       {show_filter && (
         <div
-          onClick={() => setShow_filter(false)}
+          onClick={() => {
+            if (showPopUp) {
+              setShowPopUp(!showPopUp);
+            } else setShow_filter(false);
+          }}
           className="with_drawer"
         ></div>
       )}
@@ -89,8 +95,13 @@ const Filters = (props: IFilter) => {
         className={[
           "filter_section",
           show_filter ? "show_Filter_section" : null,
+          showPopUp ? "showPopUp" : null,
         ].join(" ")}
       >
+        <div className="Close_filter" onClick={() => setShow_filter(false)}>
+          <p>بستن</p>
+          <IoMdClose size="2rem" color="#909090" />
+        </div>
         <PriceSlider />
         <h3>خدمات اجاره</h3>
         <Checkbox
@@ -161,6 +172,8 @@ const Filters = (props: IFilter) => {
               brand_id: { status: false, value: null },
             });
           }}
+          popUpList={true}
+          popupController={() => setShowPopUp(!showPopUp)}
           Select={(i) => {
             setBrand_id(i.value);
             setModelList([]);
@@ -182,6 +195,8 @@ const Filters = (props: IFilter) => {
               car_id: { status: false, value: null },
             });
           }}
+          popUpList={true}
+          popupController={() => setShowPopUp(!showPopUp)}
           Select={(i) => {
             setcar_id(i.value);
             // add car_id filter to the filter context

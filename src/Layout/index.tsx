@@ -149,7 +149,7 @@ const Layout = (props: ILayout) => {
           IF you need to hide the footer at the page just pass {true} for "hide".
           you can set the "hide" property anywhere you imported the "layout" component
       */}
-      <Footer hide={props.hide} />
+      <Footer hide={props.hide} showToTop={props.showToTop}/>
     </>
   );
 };
@@ -157,6 +157,7 @@ const Layout = (props: ILayout) => {
 interface ILayout {
   children: any;
   hide?: boolean;
+  showToTop?:boolean
 }
 
 export default Layout;

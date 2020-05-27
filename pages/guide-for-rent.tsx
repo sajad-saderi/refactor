@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const guideForRent = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="راهنمای اجاره گیرنده | اتولی"
         description="راهنمای کامل اتولی برای اجاره‌گیرنده"

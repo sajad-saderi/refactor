@@ -4,7 +4,7 @@ import Layout from "../src/Layout";
 
 const gps = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="راهنمای انتخاب ردیاب | اتولی"
         description="راهنمای انتخاب ردیاب با توجه به نیاز‌های شما برای اجاره خودروتان"

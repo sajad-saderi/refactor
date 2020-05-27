@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 const AboutUs = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="درباره اتولی"
         description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."

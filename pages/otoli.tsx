@@ -5,7 +5,7 @@ import "../src/styles/pages/otoli.scss";
 
 const AboutUs = () => {
   return (
-    <Layout>
+    <Layout showToTop={true}>
       <NextSeo
         title="اتولی چگونه کار می‌کند؟ | اتولی"
         description="اتولی چگونه کار می‌کند؟"
