@@ -99,7 +99,7 @@ const DropdownSearch = (props: IDropDown) => {
         <IoIosArrowDown
           color="rgb(165, 165, 165)"
           size="2rem"
-          className="ArrowDown" 
+          className="ArrowDown"
         />
         <select className="default_select" onChange={(e) => {
           e.persist();
@@ -115,58 +115,58 @@ const DropdownSearch = (props: IDropDown) => {
           {Data.map((i, index) => <option key={index}
             value={JSON.stringify(i)}>{i.text}</option>)}
         </select>
-      </div> :
-        <div className="input_wrapper">
-          <input
-            data-test-id="drop_down_input"
-            className={[
-              props.disabled ? "Disable_color" : null,
-              props.styleClass ? props.styleClass : null,
-              props.error_status ? "inputError" : null,
-            ].join(" ")}
-            data-hj-whitelist
-            onChange={() => { }}
-            // active readOnly for input
-            readOnly={props.InputDisable}
-            disabled={props.disabled}
-            // always HardValue has priority to a default value or components value
-            value={props.hardValue ? props.hardValue : InputValue}
-            placeholder={props.placeholder}
-            onClick={DropDownController}
-          />
-          {/* close icon in input */}
-          {(InputValue.length > 0 || props.defaultVal) &&
-            !props.hideClearField ? (
-              <IoMdClose
-                color="rgb(165, 165, 165)"
-                size="2rem"
-                className="clean_icon"
-                onClick={clearField}
-              />
-            ) : null}
-          {/* Show the selected color in color picker drop-down */}
-          {props.colorPicker && InputValue && (
-            <div
-              className="color_Circle"
-              style={{
-                background: colorCode
-                  ? colorCode
-                  : props.colorPicker
-                    ? InputValue
-                    : null,
-              }}
-            ></div>
-          )}
-          {/* Arrow down icon */}
-          {!props.hideArrowDown && (
-            <IoIosArrowDown
+      </div> : null}
+      <div className={["input_wrapper", props.browserDropdown ? "hideInput_wrapper" : null].join(" ")}>
+        <input
+          data-test-id="drop_down_input"
+          className={[
+            props.disabled ? "Disable_color" : null,
+            props.styleClass ? props.styleClass : null,
+            props.error_status ? "inputError" : null,
+          ].join(" ")}
+          data-hj-whitelist
+          onChange={() => { }}
+          // active readOnly for input
+          readOnly={props.InputDisable}
+          disabled={props.disabled}
+          // always HardValue has priority to a default value or components value
+          value={props.hardValue ? props.hardValue : InputValue}
+          placeholder={props.placeholder}
+          onClick={DropDownController}
+        />
+        {/* close icon in input */}
+        {(InputValue.length > 0 || props.defaultVal) &&
+          !props.hideClearField ? (
+            <IoMdClose
               color="rgb(165, 165, 165)"
               size="2rem"
-              className="ArrowDown"
-              onClick={DropDownController}
+              className="clean_icon"
+              onClick={clearField}
             />
-          )}
-        </div>}
+          ) : null}
+        {/* Show the selected color in color picker drop-down */}
+        {props.colorPicker && InputValue && (
+          <div
+            className="color_Circle"
+            style={{
+              background: colorCode
+                ? colorCode
+                : props.colorPicker
+                  ? InputValue
+                  : null,
+            }}
+          ></div>
+        )}
+        {/* Arrow down icon */}
+        {!props.hideArrowDown && (
+          <IoIosArrowDown
+            color="rgb(165, 165, 165)"
+            size="2rem"
+            className="ArrowDown"
+            onClick={DropDownController}
+          />
+        )}
+      </div>
       {ShowController ? (
         <div
           data-test-id="Locations_list_container"

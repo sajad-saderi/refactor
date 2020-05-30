@@ -174,7 +174,7 @@ const Filters = (props: IFilter) => {
               brand_id: { status: true, value: i.value },
             });
           }}
-          browserDropdown={show_filter}
+          browserDropdown={true}
         />
         <DropdownSearch
           InputDisable={true}
@@ -194,7 +194,7 @@ const Filters = (props: IFilter) => {
               car_id: { status: true, value: i.value },
             });
           }}
-          browserDropdown={show_filter}
+          browserDropdown={true}
         />
       </section>
     </>
