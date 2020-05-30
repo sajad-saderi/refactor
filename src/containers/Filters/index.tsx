@@ -20,8 +20,6 @@ const Filters = (props: IFilter) => {
   const [car_id, setcar_id] = useState(null);
   const [show_filter, setShow_filter] = useState(false);
 
-  const [showPopUp, setShowPopUp] = useState(false);
-
   const FilterContext = useContext(filterContext);
 
   useEffect(() => {
@@ -83,19 +81,14 @@ const Filters = (props: IFilter) => {
       </span>
       {show_filter && (
         <div
-          onClick={() => {
-            if (showPopUp) {
-              setShowPopUp(!showPopUp);
-            } else setShow_filter(false);
-          }}
+          onClick={() => setShow_filter(false)}
           className="with_drawer"
         ></div>
       )}
       <section
         className={[
           "filter_section",
-          show_filter ? "show_Filter_section" : null,
-          showPopUp ? "showPopUp" : null,
+          show_filter ? "show_Filter_section" : null
         ].join(" ")}
       >
         <div className="Close_filter" onClick={() => setShow_filter(false)}>
@@ -172,8 +165,6 @@ const Filters = (props: IFilter) => {
               brand_id: { status: false, value: null },
             });
           }}
-          popUpList={true}
-          popupController={() => setShowPopUp(!showPopUp)}
           Select={(i) => {
             setBrand_id(i.value);
             setModelList([]);
@@ -183,6 +174,7 @@ const Filters = (props: IFilter) => {
               brand_id: { status: true, value: i.value },
             });
           }}
+          browserDropdown={show_filter}
         />
         <DropdownSearch
           InputDisable={true}
@@ -195,8 +187,6 @@ const Filters = (props: IFilter) => {
               car_id: { status: false, value: null },
             });
           }}
-          popUpList={true}
-          popupController={() => setShowPopUp(!showPopUp)}
           Select={(i) => {
             setcar_id(i.value);
             // add car_id filter to the filter context
@@ -204,6 +194,7 @@ const Filters = (props: IFilter) => {
               car_id: { status: true, value: i.value },
             });
           }}
+          browserDropdown={show_filter}
         />
       </section>
     </>

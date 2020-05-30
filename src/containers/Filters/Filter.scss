@@ -123,23 +123,6 @@
           background: #555;
         }
       }
-      .showPopUp {
-        border-radius: 4px;
-        top: -10rem;
-        z-index: 31;
-        opacity: 1;
-        transform: translate(0px, 0px);
-        position: absolute;
-        width: 40rem;
-        min-width: auto;
-        max-width: auto;
-        right: 0px;
-        margin: auto;
-        left: 0;
-        height: 56rem;
-        min-height: 30rem;
-        overflow-y: hidden;
-      }
     }
   }
 }
