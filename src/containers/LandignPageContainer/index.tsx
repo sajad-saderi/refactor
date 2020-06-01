@@ -199,10 +199,10 @@ const Landing_page_container = (props: ILanding_page_container) => {
       {/* result count section */}
       {result
         ? result.length > 0 && (
-            <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
-              5
-            )} تا ${result[0].end_date.slice(5)}`}</p>
-          )
+          <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
+            5
+          )} تا ${result[0].end_date.slice(5)}`}</p>
+        )
         : null}
       {/* search box */}
       <section className="new_search_in_landing">
@@ -253,7 +253,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             },
           }}
         >
-          <Filters extra_info={extra_info} />
+          <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }} />
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
@@ -263,8 +263,8 @@ const Landing_page_container = (props: ILanding_page_container) => {
           {show_spinner_loadMore ? (
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
-            "نمایش ماشین‌های بیشتر"
-          )}
+              "نمایش ماشین‌های بیشتر"
+            )}
         </span>
       )}
     </article>

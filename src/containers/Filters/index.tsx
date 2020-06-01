@@ -143,7 +143,7 @@ const Filters = (props: IFilter) => {
             setwith_driver(1);
           }}
         />
-        <h3>نوع شاسی</h3>
+        <h3>نوع بدنه</h3>
         <Checkbox
           initialValue={body_style_set}
           data={body_style_set}
