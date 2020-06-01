@@ -196,6 +196,9 @@ const Filters = (props: IFilter) => {
           }}
           browserDropdown={true}
         />
+        {show_filter ?
+          <h2 className="ResultCount">{`نمایش ${props.ResultCount.total_count - props.ResultCount.remained_count} از ${props.ResultCount.total_count} خودرو`}</h2>
+          : null}
       </section>
     </>
   );
@@ -204,6 +207,7 @@ const Filters = (props: IFilter) => {
 interface IFilter {
   // list of car body style
   extra_info: any;
+  ResultCount: any;
 }
 
 export default Filters;

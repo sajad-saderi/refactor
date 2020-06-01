@@ -114,7 +114,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };
@@ -122,13 +122,13 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
 interface InewRentRequest {
   id: string;
   action:
-    | "approve"
-    | "reject"
-    | "pay"
-    | "cancel"
-    | "deliver"
-    | "return"
-    | "rate";
+  | "approve"
+  | "reject"
+  | "pay"
+  | "cancel"
+  | "deliver"
+  | "return"
+  | "rate";
   token: string;
   payload?: {
     toRate: "owner" | "renter"; // only in rate action

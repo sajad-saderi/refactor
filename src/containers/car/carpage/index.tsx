@@ -202,7 +202,7 @@ const CarPage = () => {
               <hr />
               <h2>محدودیت مسافت</h2>
               <p>{max_km_per_day} کیلومتر در روز</p>
-              <p>هزینه هر کیلومتر اضافه {extra_km_price_name} تومان</p>
+              <p>هزینه هر کیلومتر اضافه {extra_km_price_name}</p>
               {description && (
                 <>
                   <hr />

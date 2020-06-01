@@ -275,7 +275,7 @@ const Search_result = () => {
             },
           }}
         >
-          <Filters extra_info={extra_info} />
+          <Filters extra_info={extra_info} ResultCount={{total_count,remained_count }}/>
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>

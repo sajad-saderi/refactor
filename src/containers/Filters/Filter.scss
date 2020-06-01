@@ -39,6 +39,18 @@
           font-size: 1.4rem;
         }
       }
+      .ResultCount {
+        font-size: 1.4rem;
+        font-weight: 500;
+        background-color: $background_color;
+        padding: 0.5rem 0;
+        margin-top: 2rem;
+        text-align: center;
+        width: 100%;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -71,7 +83,7 @@
 
       .filter_section {
         &.show_Filter_section {
-          z-index: 31;
+          z-index: 9999999999;
           opacity: 1;
           transform: translateX(0px);
         }

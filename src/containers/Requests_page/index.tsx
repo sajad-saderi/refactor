@@ -15,7 +15,7 @@ let filter_id = [];
 let page = 1;
 
 const Requests_page = () => {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [Authorize, setAuthorize] = useState(false);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
@@ -49,7 +49,7 @@ const Requests_page = () => {
   const fetchAPI = async (data) => {
     const token = jsCookie.get("token");
     if (data.page <= 1) {
-      setResult([]);
+      setResult(null);
     }
     try {
       const res: any = await REQUEST_GET_ORDER_REQUESTS({
@@ -67,7 +67,7 @@ const Requests_page = () => {
         setShowMoreButton(true);
       } else setShowMoreButton(false);
     } catch (e) {
-      console.log(e.response);
+      console.log(e);
     }
   };
 
@@ -104,33 +104,34 @@ const Requests_page = () => {
       <section className="requests_page_container">
         <Requests_filter filter_list={filterHandler} />
         <section className="requests_section">
-          {result.length > 0 ? (
-            <>
-              {result.map((item, i) => {
-                return (
-                  <div className="Request_car" key={i}>
-                    <Request_cart
-                      data={item}
-                      getDataAgain={() => {
-                        page = 1;
-                        fetchAPI({
-                          page: 1,
-                          status_id: filter_id.join(","),
-                        });
-                      }}
-                    />
-                  </div>
-                );
-              })}
-            </>
-          ) : (
-            <>
-              <Requests_page_Loading />
-              <Requests_page_Loading />
-              <Requests_page_Loading />
-              <Requests_page_Loading />
-            </>
-          )}
+          {result
+            ? result.length > 0 ? (
+              <>
+                {result.map((item, i) => {
+                  return (
+                    <div className="Request_car" key={i}>
+                      <Request_cart
+                        data={item}
+                        getDataAgain={() => {
+                          page = 1;
+                          fetchAPI({
+                            page: 1,
+                            status_id: filter_id.join(","),
+                          });
+                        }}
+                      />
+                    </div>
+                  );
+                })}
+              </>
+            ) : <p className="NoResult">نتیجه ای یافت نشد!</p> : (
+              <>
+                <Requests_page_Loading />
+                <Requests_page_Loading />
+                <Requests_page_Loading />
+                <Requests_page_Loading />
+              </>
+            )}
         </section>
       </section>
       {showMoreButton ? (
@@ -138,14 +139,14 @@ const Requests_page = () => {
           {show_spinner_loadMore ? (
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
-            "نمایش ماشین‌های بیشتر"
-          )}
+              "نمایش ماشین‌های بیشتر"
+            )}
         </span>
       ) : null}
     </article>
   ) : (
-    <PleaseLogin />
-  );
+      <PleaseLogin />
+    );
 };
 
 export default Requests_page;

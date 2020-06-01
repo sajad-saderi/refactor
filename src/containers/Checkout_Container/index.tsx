@@ -283,6 +283,14 @@ const Checkout_Container = () => {
                 <span className="Toman">تومان</span>
               </span>
             </p>
+            <br />
+            <p>
+              <span>{`اجاره ${no_of_days} روز`}</span>
+              <span>
+                {(avg_discounted_price_per_day * no_of_days).toLocaleString()}{" "}
+                <span className="Toman">تومان</span>{" "}
+              </span>
+            </p>
             {total_discount > 0 && (
               <p>
                 <span>
@@ -297,13 +305,6 @@ const Checkout_Container = () => {
               </p>
             )}
             <p>
-              <span>جمع اجاره</span>
-              <span>
-                {discounted_total_price.toLocaleString()}{" "}
-                <span className="Toman">تومان</span>{" "}
-              </span>
-            </p>
-            <p>
               <span>بیمه</span>
               <span>
                 {showInsurance ? (
@@ -312,8 +313,8 @@ const Checkout_Container = () => {
                     <span className="Toman">تومان</span>
                   </>
                 ) : (
-                  "ندارد"
-                )}
+                    "ندارد"
+                  )}
               </span>
             </p>
             {!useCouponPrice ? (
@@ -325,43 +326,43 @@ const Checkout_Container = () => {
                   کد تخفیف دارید؟
                 </p>
               ) : (
-                <form className="coupon_form" onSubmit={couponHandler}>
-                  <TextInput
-                    name="coupon"
-                    autoFocus={true}
-                    clearField={() => setCoupon("")}
-                    error={{
-                      status: couponError.status,
-                      message: couponError.message,
-                    }}
-                    value={coupon}
-                    placeholder="کد تخفیف خود را وارد کنید"
-                    onChangeHandler={(i) => setCoupon(i)}
-                  />
-                  <Button
-                    value="اعمال"
-                    class="Blue_BTN coupan_BTN"
-                    loading={coupanLoading}
-                    click={() => {}}
-                  />
-                </form>
-              )
+                  <form className="coupon_form" onSubmit={couponHandler}>
+                    <TextInput
+                      name="coupon"
+                      autoFocus={true}
+                      clearField={() => setCoupon("")}
+                      error={{
+                        status: couponError.status,
+                        message: couponError.message,
+                      }}
+                      value={coupon}
+                      placeholder="کد تخفیف خود را وارد کنید"
+                      onChangeHandler={(i) => setCoupon(i)}
+                    />
+                    <Button
+                      value="اعمال"
+                      class="Blue_BTN coupan_BTN"
+                      loading={coupanLoading}
+                      click={() => { }}
+                    />
+                  </form>
+                )
             ) : (
-              <p>
-                <span>کد تخفیف</span>
-                <span className="total_price_number">
-                  {couponDiscount.toLocaleString()}-
+                <p>
+                  <span>کد تخفیف</span>
+                  <span className="total_price_number">
+                    {couponDiscount.toLocaleString()}-
                   <span className="Toman"> تومان</span>
-                </span>
-              </p>
-            )}
+                  </span>
+                </p>
+              )}
             <p className="total_price">
               <span className="total_price_text">جمع کل</span>
               <span className="total_price_number">
                 {showInsurance
                   ? (
-                      discounted_total_price + insurance_total_price
-                    ).toLocaleString()
+                    discounted_total_price + insurance_total_price
+                  ).toLocaleString()
                   : discounted_total_price.toLocaleString()}{" "}
                 <span className="Toman">تومان</span>
               </span>
@@ -383,15 +384,15 @@ const Checkout_Container = () => {
       </article>
     </>
   ) : (
-    // initial page title
-    <>
-      <NextSeo
-        title={`ثبت درخواست اجاره | اتولی`}
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
-      />
-      <Checkout_Container_Loader />
-    </>
-  );
+      // initial page title
+      <>
+        <NextSeo
+          title={`ثبت درخواست اجاره | اتولی`}
+          description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        />
+        <Checkout_Container_Loader />
+      </>
+    );
 };
 
 export default Checkout_Container;

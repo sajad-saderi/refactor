@@ -41,8 +41,12 @@
     align-items: center;
     flex-wrap: wrap;
   }
+  .NoResult {
+    padding-top: 3rem;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
 }
- 
 
 @media screen and(max-width:720px) {
   .requests_page_container {

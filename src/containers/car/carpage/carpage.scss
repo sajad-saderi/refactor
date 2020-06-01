@@ -164,12 +164,14 @@
   .Car_page_container {
     margin-top: -1rem;
     position: relative;
+    padding: 0;
     z-index: 2;
     display: block;
     .carInfo_container {
       width: 100%;
       display: block;
       position: relative;
+      border-radius: 0;
       h1 {
         font-size: 1.8rem;
       }
@@ -178,10 +180,9 @@
         position: absolute;
         padding: 0.5rem 1rem;
         background: #fff;
-        top: -2rem;
+        top: 0rem;
         text-align: center;
-        left: 1rem;
-        box-shadow: $box_shadow;
+        left: 1rem; 
         border-radius: 4px;
         p {
           font-size: 2rem;
