@@ -8,7 +8,6 @@ import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
 import Router from "next/router";
 
-const token = jsCookie.get("token");
 
 const Renter = (props: IRenter) => {
   const [rent_search_dump, setRent_search_dump] = useState(null);
@@ -18,6 +17,8 @@ const Renter = (props: IRenter) => {
   const [ownerRate, setOwnerRate] = useState(0);
   const Modal_context = useContext(modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
+
+  const token = jsCookie.get("token");
 
   useEffect(() => {
     setRent_search_dump(props.data.rent_search_dump);
@@ -132,7 +133,7 @@ const Renter = (props: IRenter) => {
                 class="Blue_BTN submit_submit"
                 value="ثبت امتیاز"
                 loading={loading}
-                click={() => {}}
+                click={() => { }}
               />
               <Button
                 class="Blue_BTN cancel_submit"

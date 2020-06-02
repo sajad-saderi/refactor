@@ -11,7 +11,6 @@ import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import PleaseLogin from "../../components/PleaseLogin";
 import Router from "next/router";
 
-const token = jsCookie.get("token");
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -107,6 +106,9 @@ const Complete_register_container = () => {
   ];
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
+
+  const token = jsCookie.get("token");
+
 
   useEffect(() => {
     // if the user is not register the login modal will show up
@@ -297,36 +299,36 @@ const Complete_register_container = () => {
             {!showCompanyName ? (
               <p onClick={() => setShowCompanyName(true)}>افزودن نام شرکت</p>
             ) : (
-              <div className="add_company_input_container">
-                <TextInput
-                  name="company_name"
-                  number={false}
-                  // min={1}
-                  max={100}
-                  label="نام شرکت"
-                  clearField={() =>
-                    dispatch({ type: "company_name", company_name: "" })
-                  }
-                  onChangeHandler={(e) =>
-                    dispatch({ type: "company_name", company_name: e })
-                  }
-                  value={state.company_name}
-                  autoFocus={false}
-                  error={{
-                    status: stateError.company_name,
-                    message: null,
-                  }}
-                />
-                <span
-                  onClick={() => {
-                    dispatch({ type: "company_name", company_name: "" });
-                    setShowCompanyName(false);
-                  }}
-                >
-                  لغو
+                <div className="add_company_input_container">
+                  <TextInput
+                    name="company_name"
+                    number={false}
+                    // min={1}
+                    max={100}
+                    label="نام شرکت"
+                    clearField={() =>
+                      dispatch({ type: "company_name", company_name: "" })
+                    }
+                    onChangeHandler={(e) =>
+                      dispatch({ type: "company_name", company_name: e })
+                    }
+                    value={state.company_name}
+                    autoFocus={false}
+                    error={{
+                      status: stateError.company_name,
+                      message: null,
+                    }}
+                  />
+                  <span
+                    onClick={() => {
+                      dispatch({ type: "company_name", company_name: "" });
+                      setShowCompanyName(false);
+                    }}
+                  >
+                    لغو
                 </span>
-              </div>
-            )}
+                </div>
+              )}
           </div>
           <label>تاریخ تولد</label>
           <div className="date_birth">
@@ -409,7 +411,7 @@ const Complete_register_container = () => {
               // , rolesCheck ? null : "disable_BTN"
             ].join(" ")}
             value="تایید"
-            click={() => {}}
+            click={() => { }}
             loading={loading}
           />
           {stateError.message ? (
@@ -418,11 +420,11 @@ const Complete_register_container = () => {
         </form>
       </article>
     ) : (
-      <PleaseLogin />
-    )
+        <PleaseLogin />
+      )
   ) : (
-    <article className="minHeight"></article>
-  );
+      <article className="minHeight"></article>
+    );
 };
 
 export default Complete_register_container;

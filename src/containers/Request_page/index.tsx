@@ -15,6 +15,8 @@ const Request_page = () => {
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
 
+  const token = jsCookie.get("token");
+
   useEffect(() => {
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
@@ -31,7 +33,6 @@ const Request_page = () => {
   }, [AUTH_CONTEXT.Auth]);
 
   const fetchAPI = async (id) => {
-    const token = jsCookie.get("token");
     try {
       const res: any = await GET_ORDER_REQUEST({
         id,
@@ -57,13 +58,13 @@ const Request_page = () => {
             })}
           </>
         ) : (
-          <Requests_page_Loading />
-        )}
+            <Requests_page_Loading />
+          )}
       </section>
     </article>
   ) : (
-    <PleaseLogin />
-  );
+      <PleaseLogin />
+    );
 };
 
 export default Request_page;

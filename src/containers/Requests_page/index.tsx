@@ -23,6 +23,8 @@ const Requests_page = () => {
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
 
+  const token = jsCookie.get("token");
+
   useEffect(() => {
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
@@ -47,7 +49,6 @@ const Requests_page = () => {
   }, [AUTH_CONTEXT.Auth]);
 
   const fetchAPI = async (data) => {
-    const token = jsCookie.get("token");
     if (data.page <= 1) {
       setResult(null);
     }

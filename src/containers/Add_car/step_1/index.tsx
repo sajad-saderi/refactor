@@ -35,8 +35,6 @@ import jsCookie from "js-cookie";
  */
 import validator from "validator";
 
-const token = jsCookie.get("token");
-const user_id = jsCookie.get("user_id");
 
 /**
  * @new_car
@@ -401,6 +399,9 @@ const Add_Car_Step_1 = () => {
     is_out_of_service: false,
     min_days_to_rent: 1,
   });
+
+  const token = jsCookie.get("token");
+  const user_id = jsCookie.get("user_id");
 
   useEffect(() => {
     // check if the user edit the car
@@ -1342,7 +1343,7 @@ const Add_Car_Step_1 = () => {
           disable={Loading}
           class="Blue_BTN local_style"
           // onCLick nothing happend we listen to the form submition
-          click={() => {}}
+          click={() => { }}
         />
         {/* show the error message */}
         <p className="Error_message_text">{ErrorState.error_message}</p>

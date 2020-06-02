@@ -22,7 +22,6 @@ import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
 
-const token = jsCookie.get("token");
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -213,6 +212,9 @@ const Add_Car_Step_2 = () => {
     price_per_day: "",
     cancellation_policy: "",
   });
+
+  const token = jsCookie.get("token");
+
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -579,8 +581,8 @@ const Add_Car_Step_2 = () => {
           {initialImage ? (
             <img src={initialImage} alt="تصویر کوچک خودرو" />
           ) : (
-            <Spinner display="inline-block" width={30} color="#9E9E9E" />
-          )}
+              <Spinner display="inline-block" width={30} color="#9E9E9E" />
+            )}
         </div>
         <div className="pelak_container">
           {Brand_Name && <p>{`${Brand_Name} - ${CarModelName}`}</p>}
@@ -721,10 +723,10 @@ const Add_Car_Step_2 = () => {
           <h4 className="extra_text">تاریخ و نرخ اجاره</h4>
           <div
             className="Set_Price_date_options"
-            //   className={[
-            //     "transition_type_Label",
-            //     ErrorState.transmission_type_id ? "Error_color" : null
-            //   ].join(" ")}
+          //   className={[
+          //     "transition_type_Label",
+          //     ErrorState.transmission_type_id ? "Error_color" : null
+          //   ].join(" ")}
           >
             {/* toggle between same price for all time and custom range of price  */}
             <Radio
@@ -781,14 +783,14 @@ const Add_Car_Step_2 = () => {
               )} */}
             </>
           ) : (
-            //PriceBox component
-            <PriceBox
-              initialAvailabilityList={initialAvailabilityList}
-              addAvailList={addToAvailabilityList}
-              removeAvailList={removeFromAvailabilityList}
-              error={ErrorState.price_range}
-            />
-          )}
+              //PriceBox component
+              <PriceBox
+                initialAvailabilityList={initialAvailabilityList}
+                addAvailList={addToAvailabilityList}
+                removeAvailList={removeFromAvailabilityList}
+                error={ErrorState.price_range}
+              />
+            )}
         </div>
         <div className="add_car_form_step_2">
           <h4 className="extra_text">تخفیف ها</h4>
@@ -822,7 +824,7 @@ const Add_Car_Step_2 = () => {
             loading={Loading}
             disable={Loading}
             class="Blue_BTN local_style"
-            click={() => {}}
+            click={() => { }}
           />
           {ErrorState.error_message ? (
             <p className="Error_message_text">{ErrorState.error_message}</p>

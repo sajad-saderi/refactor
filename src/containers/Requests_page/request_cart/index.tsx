@@ -24,7 +24,6 @@ import Toast_context from "../../../context/Toast_context";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
-const token = jsCookie.get("token");
 
 const Request_cart = (props: IRequest_cart) => {
   const [rentStatus, setRentStatus] = useState(null);
@@ -45,6 +44,8 @@ const Request_cart = (props: IRequest_cart) => {
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
+
+  const token = jsCookie.get("token");
 
   const setForRequest = async (data: any) => {
     if (data.action === "reject") {
@@ -103,22 +104,22 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             !renter
               ? [
-                  {
-                    value: "قبول",
-                    class:
-                      "Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST",
-                    click: () =>
-                      setForRequest({ action: "approve", id: props.data.id }),
-                  },
-                  {
-                    value: "رد",
-                    class:
-                      "Blue_BTN request_car_reject REJECT_INCOMING_REQUEST",
-                    loading: ButtonLoader,
-                    click: () =>
-                      setForRequest({ action: "reject", id: props.data.id }),
-                  },
-                ]
+                {
+                  value: "قبول",
+                  class:
+                    "Blue_BTN request_car_accept ACCEPTED_INCOMING_REQUEST",
+                  click: () =>
+                    setForRequest({ action: "approve", id: props.data.id }),
+                },
+                {
+                  value: "رد",
+                  class:
+                    "Blue_BTN request_car_reject REJECT_INCOMING_REQUEST",
+                  loading: ButtonLoader,
+                  click: () =>
+                    setForRequest({ action: "reject", id: props.data.id }),
+                },
+              ]
               : []
           );
           break;
@@ -132,13 +133,13 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             renter
               ? [
-                  {
-                    value: "پرداخت",
-                    class: "Blue_BTN request_car_pay GO_TO_BANK",
-                    click: () =>
-                      setForRequest({ action: "pay", id: props.data.id }),
-                  },
-                ]
+                {
+                  value: "پرداخت",
+                  class: "Blue_BTN request_car_pay GO_TO_BANK",
+                  click: () =>
+                    setForRequest({ action: "pay", id: props.data.id }),
+                },
+              ]
               : []
           );
           break;
@@ -168,13 +169,13 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             renter
               ? [
-                  {
-                    value: "خودرو را تحویل گرفتم",
-                    class: "Blue_BTN request_car_pay CAR_DELIVERED",
-                    click: () =>
-                      setForRequest({ action: "deliver", id: props.data.id }),
-                  },
-                ]
+                {
+                  value: "خودرو را تحویل گرفتم",
+                  class: "Blue_BTN request_car_pay CAR_DELIVERED",
+                  click: () =>
+                    setForRequest({ action: "deliver", id: props.data.id }),
+                },
+              ]
               : []
           );
           break;
@@ -196,14 +197,14 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             !renter
               ? [
-                  {
-                    value: "خودرو را بازتحویل گرفتم",
-                    class: "Blue_BTN request_car_pay",
-                    click: () => {
-                      setForRequest({ action: "return", id: props.data.id });
-                    },
+                {
+                  value: "خودرو را بازتحویل گرفتم",
+                  class: "Blue_BTN request_car_pay",
+                  click: () => {
+                    setForRequest({ action: "return", id: props.data.id });
                   },
-                ]
+                },
+              ]
               : []
           );
           break;
@@ -219,33 +220,33 @@ const Request_cart = (props: IRequest_cart) => {
               ? props.data.has_renter_reviewed_owner ||
                 props.data.has_renter_reviewed_rent_order
                 ? [
-                    {
-                      value: "قبلا برای این سفارش، نظر ثبت کرده اید",
-                      disable: true,
-                      class: "Blue_BTN request_car_pay disable_rate_btn",
-                      click: () => {},
-                    },
-                  ]
-                : [
-                    {
-                      value: "ثبت نظر",
-                      class: "Blue_BTN request_car_pay",
-                      click: () =>
-                        // send this data to modal
-                        MODAL_CONTEXT.modalHandler("Renter", props.data),
-                    },
-                  ]
-              : props.data.has_owner_reviewed_rent_order ||
-                props.data.has_owner_reviewed_renter
-              ? [
                   {
                     value: "قبلا برای این سفارش، نظر ثبت کرده اید",
                     disable: true,
                     class: "Blue_BTN request_car_pay disable_rate_btn",
-                    click: () => {},
+                    click: () => { },
                   },
                 ]
-              : [
+                : [
+                  {
+                    value: "ثبت نظر",
+                    class: "Blue_BTN request_car_pay",
+                    click: () =>
+                      // send this data to modal
+                      MODAL_CONTEXT.modalHandler("Renter", props.data),
+                  },
+                ]
+              : props.data.has_owner_reviewed_rent_order ||
+                props.data.has_owner_reviewed_renter
+                ? [
+                  {
+                    value: "قبلا برای این سفارش، نظر ثبت کرده اید",
+                    disable: true,
+                    class: "Blue_BTN request_car_pay disable_rate_btn",
+                    click: () => { },
+                  },
+                ]
+                : [
                   {
                     value: "ثبت نظر",
                     class: "Blue_BTN request_car_pay",
@@ -339,24 +340,24 @@ const Request_cart = (props: IRequest_cart) => {
             </figure>
             {/* if the status is not one of these status, show the PELAK */}
             {!role ||
-            status_id === "paid" ||
-            status_id === "delivered" ||
-            status_id === "returned" ? (
-              <PelakView
-                registration_plate_first_part={
-                  pelak.registration_plate_first_part
-                }
-                registration_plate_second_part={
-                  pelak.registration_plate_second_part
-                }
-                registration_plate_third_part={
-                  pelak.registration_plate_third_part
-                }
-                registration_plate_forth_part={
-                  pelak.registration_plate_forth_part
-                }
-              />
-            ) : null}
+              status_id === "paid" ||
+              status_id === "delivered" ||
+              status_id === "returned" ? (
+                <PelakView
+                  registration_plate_first_part={
+                    pelak.registration_plate_first_part
+                  }
+                  registration_plate_second_part={
+                    pelak.registration_plate_second_part
+                  }
+                  registration_plate_third_part={
+                    pelak.registration_plate_third_part
+                  }
+                  registration_plate_forth_part={
+                    pelak.registration_plate_forth_part
+                  }
+                />
+              ) : null}
           </div>
         </div>
         <div className="Role_container">
@@ -370,22 +371,22 @@ const Request_cart = (props: IRequest_cart) => {
               </Link>
             </>
           ) : (
-            <>
-              <Link href="/">
-                <a>
-                  <IoMdPerson size="2rem" />
-                  {renter_info.name}
-                </a>
-              </Link>
-              {/* show the renter's cellphone to the owner if the status is "approved" */}
-              {status_id === "approved" && (
-                <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
-                  0{renter_info.cell}
-                  <span className="extra_Text"> :تماس با اجاره گیرنده</span>
-                </a>
-              )}
-            </>
-          )}
+              <>
+                <Link href="/">
+                  <a>
+                    <IoMdPerson size="2rem" />
+                    {renter_info.name}
+                  </a>
+                </Link>
+                {/* show the renter's cellphone to the owner if the status is "approved" */}
+                {status_id === "approved" && (
+                  <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
+                    0{renter_info.cell}
+                    <span className="extra_Text"> :تماس با اجاره گیرنده</span>
+                  </a>
+                )}
+              </>
+            )}
         </div>
         <div className="Button_container">
           {/* {button_code} */}

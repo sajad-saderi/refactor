@@ -17,7 +17,6 @@ import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
 import Router from "next/router";
 
-const token = jsCookie.get("token");
 
 const Owner = (props: IRenter) => {
   const [renter, setRenter] = useState(null);
@@ -26,6 +25,8 @@ const Owner = (props: IRenter) => {
   const [ownerRate, setOwnerRate] = useState(0);
   const Modal_context = useContext(modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
+
+  const token = jsCookie.get("token");
 
   useEffect(() => {
     setRenter(props.data.renter);
@@ -104,7 +105,7 @@ const Owner = (props: IRenter) => {
                 class="Blue_BTN submit_submit"
                 value="ثبت امتیاز"
                 loading={loading}
-                click={() => {}}
+                click={() => { }}
               />
               <Button
                 class="Blue_BTN cancel_submit"

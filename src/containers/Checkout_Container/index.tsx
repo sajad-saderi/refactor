@@ -17,7 +17,6 @@ import Toast_context from "../../context/Toast_context";
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
 
-const token = jsCookie.get("token");
 
 const Checkout_Container = () => {
   const [car, setCar] = useState(null);
@@ -58,6 +57,8 @@ const Checkout_Container = () => {
   const [loading, setLoading] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
+
+  const token = jsCookie.get("token");
 
   useEffect(() => {
     const { search_id } = Router.router.query;

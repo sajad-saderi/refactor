@@ -11,7 +11,6 @@ import {
 import Spinner from "../../../../components/Spinner";
 import Toast_context from "../../../../context/Toast_context";
 
-const token = jsCookie.get("token");
 
 const Car = (props: ICar) => {
   const [id, setId] = useState(null);
@@ -24,6 +23,8 @@ const Car = (props: ICar) => {
     false
   );
   const TOAST_CONTEXT = useContext(Toast_context);
+
+  const token = jsCookie.get("token");
 
   useEffect(() => {
     if (props.data) {
@@ -130,14 +131,14 @@ const Car = (props: ICar) => {
             {is_out_of_service_loading ? (
               <Spinner display="inline-block" width={20} color="#4ba3ce" />
             ) : (
-              <p
-                data-test-id="OUT_OF_SERVICE"
-                className="OUT_OF_SERVICE"
-                onClick={setServiceStatus}
-              >
-                {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
-              </p>
-            )}
+                <p
+                  data-test-id="OUT_OF_SERVICE"
+                  className="OUT_OF_SERVICE"
+                  onClick={setServiceStatus}
+                >
+                  {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
+                </p>
+              )}
             <span>
               <IoMdCreate
                 color="#4ba3ce"

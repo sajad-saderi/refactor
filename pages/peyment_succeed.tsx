@@ -9,11 +9,12 @@ import "../src/styles/pages/Success_payment.scss";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
-const token = jsCookie.get("token");
 
 const Success_payment = () => {
   const [renter, setRenter] = useState(null);
   const [rent_search_dump, setRent_search_dump] = useState(null);
+
+  const token = jsCookie.get("token");
 
   useEffect(() => {
     fetchAPI(Router.router.query.id);
@@ -93,8 +94,8 @@ const Success_payment = () => {
             </p>
           </section>
         ) : (
-          <p className="loading_text">در حال دریافت اطلاعات پرداخت...</p>
-        )}{" "}
+            <p className="loading_text">در حال دریافت اطلاعات پرداخت...</p>
+          )}{" "}
       </article>
     </Layout>
   );

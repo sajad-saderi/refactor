@@ -16,12 +16,13 @@ import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 import { IoMdTrash } from "react-icons/io";
 import Spinner from "../Spinner";
 
-const token = jsCookie.get("token");
 
 const ImageUploader = (props: IImageUpload) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
   const [loading, setloading] = useState(false);
   const wrapperRef = useRef(null);
+
+  const token = jsCookie.get("token");
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -103,21 +104,21 @@ const ImageUploader = (props: IImageUpload) => {
         {loading ? (
           <Spinner display="block" width={20} color="#b5b5b5" />
         ) : (
-          picturesPreview.length > 0 &&
-          picturesPreview.map((i, index) => {
-            return (
-              <div className="Each_image" key={index}>
-                {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                <IoMdTrash
-                  size="2rem"
-                  onClick={() => RemoveAnImage(i.id)}
-                  color="#ea2d2d"
-                />
-                <img src={i.img} alt={i.id} />
-              </div>
-            );
-          })
-        )}
+            picturesPreview.length > 0 &&
+            picturesPreview.map((i, index) => {
+              return (
+                <div className="Each_image" key={index}>
+                  {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
+                  <IoMdTrash
+                    size="2rem"
+                    onClick={() => RemoveAnImage(i.id)}
+                    color="#ea2d2d"
+                  />
+                  <img src={i.img} alt={i.id} />
+                </div>
+              );
+            })
+          )}
       </div>
     </div>
   );
