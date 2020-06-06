@@ -26,6 +26,7 @@ const Checkout_Container = () => {
     avg_discounted_price_per_day,
     setAvg_discounted_price_per_day,
   ] = useState(null);
+  const [total_price, setTotal_price] = useState(null);
   const [unit, setUnit] = useState("هراز");
   const [with_driver, setWith_driver] = useState(null);
   const [max_km_per_day, setMax_km_per_day] = useState(null);
@@ -39,7 +40,6 @@ const Checkout_Container = () => {
   const [start_date, setStart_date] = useState(null);
   const [end_date, setEnd_date] = useState(null);
   const [insurance_total_price, setInsurance_total_price] = useState(null);
-  const [total_price, setTotal_price] = useState(null);
   const [has_system_discount, setHas_system_discount] = useState(null);
   const [no_of_days, setNo_of_days] = useState(null);
   const [discounted_total_price, setDiscounted_total_price] = useState(null);
@@ -277,18 +277,18 @@ const Checkout_Container = () => {
           </div>
           <p className="number_of_days">{`مدت اجاره: ${no_of_days} روز`}</p>
           <div className="payment_information">
-            <p>
+            {/* <p>
               <span>قیمت روزانه</span>
               <span>
                 {avg_discounted_price_per_day.toLocaleString()}{" "}
                 <span className="Toman">تومان</span>
               </span>
-            </p>
+            </p> */}
             <br />
             <p>
               <span>{`اجاره ${no_of_days} روز`}</span>
               <span>
-                {(avg_discounted_price_per_day * no_of_days).toLocaleString()}{" "}
+                {(total_price).toLocaleString()}{" "}
                 <span className="Toman">تومان</span>{" "}
               </span>
             </p>
@@ -300,7 +300,7 @@ const Checkout_Container = () => {
                     : "تخفیف"}
                 </span>
                 <span>
-                  {(total_price - discounted_total_price).toLocaleString()}{" "}
+                  {(total_discount).toLocaleString()}- {" "}
                   <span className="Toman">تومان</span>
                 </span>
               </p>

@@ -27,6 +27,10 @@ const CarPage = () => {
     avg_discounted_price_per_day,
     setAvg_discounted_price_per_day,
   ] = useState(null);
+  const [
+    avg_price_per_day,
+    setAvg_price_per_day,
+  ] = useState(null);
   const [unit, setUnit] = useState("هراز");
   const [body_style, setBody_style] = useState(null);
   const [transmission_type, setTransmission_type] = useState(null);
@@ -49,6 +53,7 @@ const CarPage = () => {
   const [loading, setLoading] = useState(false);
   const [showCalender, setShowCalender] = useState(false);
   const [is_mine, setIs_mine] = useState(false);
+  const [total_discount, setTotal_discount] = useState(false);
 
   useEffect(() => {
     const { search_id, id, owner } = Router.router.query;
@@ -101,17 +106,18 @@ const CarPage = () => {
     setCar(res.car);
     setYear(res.year);
     setCapacity(res.capacity);
+    setAvg_price_per_day(res.avg_price_per_day)
     if (res.avg_discounted_price_per_day > 0) {
-      setAvg_discounted_price_per_day(
-        res.avg_discounted_price_per_day >= 10000000
-          ? res.avg_discounted_price_per_day >= 10100000
-            ? res.avg_discounted_price_per_day_name.slice(0, 4)
-            : res.avg_discounted_price_per_day_name.slice(0, 2)
-          : res.avg_discounted_price_per_day >= 1000000
-          ? res.avg_discounted_price_per_day_name.slice(2, 3) === "۰"
-            ? res.avg_discounted_price_per_day_name.toString().slice(0, 1)
-            : res.avg_discounted_price_per_day_name.toString().slice(0, 3)
-          : res.avg_discounted_price_per_day.toString().slice(0, 3)
+      setAvg_discounted_price_per_day(res.avg_discounted_price_per_day
+        // res.avg_discounted_price_per_day >= 10000000
+        //   ? res.avg_discounted_price_per_day >= 10100000
+        //     ? res.avg_discounted_price_per_day_name.slice(0, 4)
+        //     : res.avg_discounted_price_per_day_name.slice(0, 2)
+        //   : res.avg_discounted_price_per_day >= 1000000
+        //     ? res.avg_discounted_price_per_day_name.slice(2, 3) === "۰"
+        //       ? res.avg_discounted_price_per_day_name.toString().slice(0, 1)
+        //       : res.avg_discounted_price_per_day_name.toString().slice(0, 3)
+        //     : res.avg_discounted_price_per_day.toString().slice(0, 3)
       );
     }
     setUnit(res.avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار");
@@ -132,6 +138,8 @@ const CarPage = () => {
     setCancellation_policy(res.cancellation_policy);
     setMedia_set(res.media_set);
     setSearch_id(res.search_id);
+    setTotal_discount(res.total_discount);
+    setSearch_id(res.search_id);
   };
 
   const GoToCheckout = () => {
@@ -151,7 +159,7 @@ const CarPage = () => {
               owner.company_name
                 ? owner.company_name
                 : owner.first_name + " " + owner.last_name
-            } - ${car.brand.name.fa} ${car.name.fa} | اتولی`}
+              } - ${car.brand.name.fa} ${car.name.fa} | اتولی`}
             description="همین حالا اجاره کنید"
             noindex={true}
             openGraph={{
@@ -175,9 +183,10 @@ const CarPage = () => {
             <section className="carInfo_container">
               {avg_discounted_price_per_day && (
                 <div className="avg_discounted_price_per_day">
-                  <p>{avg_discounted_price_per_day}</p>
-                  <span className="unit_name">{unit} تومان</span>
-                  <span> در روز</span>
+                  <p className={total_discount ? "discount_price" : null}>{avg_price_per_day.toLocaleString()}</p>
+                  {total_discount ? <p>{avg_discounted_price_per_day.toLocaleString()}</p> : null}
+                  {/* <span className="unit_name">{unit} تومان</span> */}
+                  <span>تومان در روز</span>
                 </div>
               )}
               <h1>
@@ -274,9 +283,10 @@ const CarPage = () => {
             <section className="onwnerInfo_container">
               {avg_discounted_price_per_day && (
                 <div className="avg_discounted_price_per_day">
-                  <p>{avg_discounted_price_per_day}</p>
-                  <span className="unit_name">{unit} تومان</span>
-                  <span> در روز</span>
+                  <p className={total_discount ? "discount_price" : null}>{avg_price_per_day.toLocaleString()}</p>
+                  {total_discount ? <p>{avg_discounted_price_per_day.toLocaleString()}</p> : null}
+                  {/* <span className="unit_name">{unit} تومان</span> */}
+                  <span>تومان در روز</span>
                 </div>
               )}
               {/* {!is_mine ? (
@@ -322,11 +332,11 @@ const CarPage = () => {
           </article>
         </>
       ) : (
-        <>
-          <NextSeo title="خودرو | اتولی" />
-          <CarPageLoading />
-        </>
-      )}
+          <>
+            <NextSeo title="خودرو | اتولی" />
+            <CarPageLoading />
+          </>
+        )}
     </>
   );
 };

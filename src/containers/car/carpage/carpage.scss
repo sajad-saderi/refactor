@@ -116,6 +116,11 @@
     padding: 1.6rem;
     box-shadow: $box_shadow;
     .avg_discounted_price_per_day {
+      .discount_price {
+        color: firebrick;
+        text-decoration: line-through;
+        font-size: 1.8rem;
+      }
       p {
         font-weight: 500;
         font-size: 2.8rem;
@@ -182,7 +187,7 @@
         background: #fff;
         top: 0rem;
         text-align: center;
-        left: 1rem; 
+        left: 1rem;
         border-radius: 4px;
         p {
           font-size: 2rem;
