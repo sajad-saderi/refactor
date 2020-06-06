@@ -46,6 +46,7 @@ const Owner = (props: IRenter) => {
           type: "user",
           user_profile_id: renter.id,
           rate: ownerRate,
+          review: textareaValue,
         },
       }),
     ])

@@ -86,6 +86,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
             more = {
               user_profile_id: data.payload.user_profile_id,
               rate: data.payload.rate,
+              review: data.payload.review,
             };
           }
           // if (data.payload.type === 'rent-order') {
@@ -94,7 +95,6 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         }
         break;
     }
-
     axios
       .post(
         DOMAIN + ACTION_URL,
