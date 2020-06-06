@@ -42,6 +42,9 @@ const Request_cart = (props: IRequest_cart) => {
   const [button_code, setButton_code] = useState([]);
   const [ButtonLoader, setButtonLoader] = useState(false);
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
+  const [insurance_total_price, setInsurance_total_price] = useState(null)
+  const [coupon, setCoupon] = useState(null)
+  const [system_discount, setSystem_discount] = useState(null)
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
 
@@ -88,6 +91,7 @@ const Request_cart = (props: IRequest_cart) => {
        * اجاره دهنده
        */
       let renter = props.data.role === "renter" ? true : false;
+      let has_insurance = props.data.has_insurance ? true : false;
 
       // small portion at the top right on the request cart
       let RentStatus = null;
@@ -276,6 +280,9 @@ const Request_cart = (props: IRequest_cart) => {
       setDiscounted_total_price(
         props.data.rent_search_dump.discounted_total_price
       );
+      setInsurance_total_price(has_insurance ? props.data.rent_search_dump.insurance_total_price : 0);
+      setCoupon(props.data.rent_search_dump.coupon ? props.data.rent_search_dump.coupon.total_price : 0);
+      setSystem_discount(props.data.rent_search_dump.system_discount);
       setRole(renter);
       setOwner_Info(props.data.rent_search_dump.owner);
       setRenter_info(props.data.renter);
@@ -301,8 +308,6 @@ const Request_cart = (props: IRequest_cart) => {
             <h2>
               {car.brand.name.fa} {car.name.fa}
             </h2>
-            <hr />
-
             {/* <div className="rent_duration"> */}
             <p>
               <span>
@@ -328,7 +333,13 @@ const Request_cart = (props: IRequest_cart) => {
             </p>
             <p>
               <span>هزینه اجاره</span>
-              <span>{discounted_total_price.toLocaleString()} تومان</span>
+              {role
+                ? <span>
+                  {((discounted_total_price + insurance_total_price) - (
+                    coupon ? coupon - system_discount :
+                      system_discount ? system_discount : 0)).toLocaleString()} تومان</span>
+                : <span>{discounted_total_price.toLocaleString()} تومان</span>
+              }
             </p>
           </div>
           <div className="image_pelak">
