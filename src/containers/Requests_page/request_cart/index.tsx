@@ -44,7 +44,7 @@ const Request_cart = (props: IRequest_cart) => {
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
   const [insurance_total_price, setInsurance_total_price] = useState(null)
   const [coupon, setCoupon] = useState(null)
-  const [system_discount, setSystem_discount] = useState(null)
+  const [total_discount, setTotal_discount] = useState(null)
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
 
@@ -282,7 +282,7 @@ const Request_cart = (props: IRequest_cart) => {
       );
       setInsurance_total_price(has_insurance ? props.data.rent_search_dump.insurance_total_price : 0);
       setCoupon(props.data.rent_search_dump.coupon ? props.data.rent_search_dump.coupon.total_price : 0);
-      setSystem_discount(props.data.rent_search_dump.system_discount);
+      setTotal_discount(props.data.rent_search_dump.total_discount);
       setRole(renter);
       setOwner_Info(props.data.rent_search_dump.owner);
       setRenter_info(props.data.renter);
@@ -335,9 +335,9 @@ const Request_cart = (props: IRequest_cart) => {
               <span>هزینه اجاره</span>
               {role
                 ? <span>
-                  {((discounted_total_price + insurance_total_price) - (
-                    coupon ? coupon - system_discount :
-                      system_discount ? system_discount : 0)).toLocaleString()} تومان</span>
+                  {((discounted_total_price + insurance_total_price) - (coupon)
+                  ).toLocaleString()
+                  } تومان</span>
                 : <span>{discounted_total_price.toLocaleString()} تومان</span>
               }
             </p>
