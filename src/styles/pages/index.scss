@@ -37,6 +37,32 @@
       padding: 3.2rem;
     }
   }
+
+  .third_container {
+    box-shadow: $box_shadow;
+    background-color: #fff;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    .RentPage_Dynamic_links {
+      ul {
+        column-count: 3;
+        margin: 8px 0px;
+        li {
+          a {
+            line-height: 1.5;
+            font-weight: 500;
+            transition: 0.25s;
+            font-size: 1.4rem;
+            color: $main__color;
+            display: block;
+            &:hover {
+              padding-right: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and(max-width:1024px) {

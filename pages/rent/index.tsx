@@ -1,167 +1,181 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
 
 import Layout from "../../src/Layout";
 import Search from "../../src/containers/Search";
 import insurance from "../../public/image/SamanInsurance.png";
-import "../../src/styles/pages/index.scss";
+// import "../../src/styles/pages/index.scss";
 import Link from "next/link";
 import TabCreator from "../../src/components/TabCreator";
+import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 
 const Rent = () => {
-  const [data, setData] = useState([
-    {
-      title: "شهرها",
-      links: [
-        {
-          title: "اجاره ماشین در اهواز",
-          link: "/rent/ahvaz",
-        },
-        {
-          title: "اجاره ماشین در بندر انزلی",
-          link: "/rent/bandar-anzali",
-        },
-        {
-          title: "اجاره ماشین در اصفهان",
-          link: "/rent/isfahan",
-        },
-        {
-          title: "اجاره ماشین در چالوس",
-          link: "/rent/chalus",
-        },
-        {
-          title: "اجاره ماشین در تهران",
-          link: "/rent/tehran",
-        },
-        {
-          title: "اجاره ماشین در کرمان",
-          link: "/rent/kerman",
-        },
-        {
-          title: "اجاره ماشین در کرمانشاه",
-          link: "/rent/kermanshah",
-        },
-        {
-          title: "اجاره ماشین در مشهد",
-          link: "/rent/mashhad",
-        },
-        {
-          title: "اجاره ماشین در کیش",
-          link: "/rent/kish",
-        },
-        {
-          title: "اجاره ماشین در قشم",
-          link: "/rent/qeshm",
-        },
-        {
-          title: "اجاره ماشین در رامسر",
-          link: "/rent/ramsar",
-        },
-        {
-          title: "اجاره ماشین در رشت",
-          link: "/rent/rasht",
-        },
-        {
-          title: "اجاره ماشین در شیراز",
-          link: "/rent/shiraz",
-        },
-        {
-          title: "اجاره ماشین در تبریز",
-          link: "/rent/tabriz",
-        },
-        {
-          title: "اجاره ماشین در یزد",
-          link: "/rent/yazd",
-        },
-        {
-          title: "اجاره ماشین در فرودگاه مهرآباد تهران",
-          link: "/rent/mehrabad-airport-car-rental",
-        },
-        {
-          title: "اجاره ماشین در فرودگاه امام خمینی",
-          link: "/rent/car-rental-at-tehran-imam-khomeini-airport",
-        },
-      ],
-    },
-    {
-      title: "برندها",
-      links: [
-        { title: "اجاره 206", link: "/rent/206" },
-        {
-          title: "اجاره ماشین سراتو",
-          link: "/rent/cerato",
-        },
-        { title: "اجاره بنز", link: "/rent/benz" },
-        {
-          title: "اجاره بی ام وی",
-          link: "/rent/bmw",
-        },
-        {
-          title: "اجاره ماشین هیوندای",
-          link: "/rent/hyundai",
-        },
-        { title: "اجاره کیا", link: "/rent/kia" },
-        {
-          title: "اجاره مازراتی",
-          link: "/rent/maserati",
-        },
-        {
-          title: "لیست اجاره ماشین مزدا",
-          link: "/rent/mazda",
-        },
-        {
-          title: "اجاره پورشه ",
-          link: "/rent/porsche",
-        },
-        {
-          title: "اجاره رنو",
-          link: "/rent/renault",
-        },
-        {
-          title: "اجاره تویوتا ",
-          link: "/rent/toyota",
-        },
-        {
-          title: "اجاره وانت ",
-          link: "/rent/pickup",
-        },
-        { title: "اجاره ون", link: "/rent/van" },
-      ],
-    },
-    {
-      title: "پربازدید",
-      links: [
-        {
-          title: "همه ماشین های لوکس تهران اینجاست",
-          link: "/rent/luxury-tehran",
-        },
-        {
-          title: "اجاره ماشین عروس",
-          link: "/rent/bride-car-rental",
-        },
-        {
-          title: "اجاره ماشین برای مسافرت",
-          link: "/rent/car-rental-for-travel",
-        },
-        {
-          title: "اجاره ماشین با راننده",
-          link: "/rent/car-rental-with-driver",
-        },
-        {
-          title: "اجاره ماشین کلاسیک",
-          link: "/rent/classic",
-        },
-        {
-          title: "اجاره ماشین برای کویر",
-          link: "/rent/desert",
-        },
-        {
-          title: "اجاره ماشین بدون راننده",
-          link: "/rent/rent-a-car-without-a-driver",
-        },
-      ],
-    },
-  ]);
+  const [dynamicLinks, setDynamicLinks] = useState(null)
+  // const [data, setData] = useState([
+  //   {
+  //     title: "شهرها",
+  //     links: [
+  //       {
+  //         title: "اجاره ماشین در اهواز",
+  //         link: "/rent/ahvaz",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در بندر انزلی",
+  //         link: "/rent/bandar-anzali",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در اصفهان",
+  //         link: "/rent/isfahan",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در چالوس",
+  //         link: "/rent/chalus",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در تهران",
+  //         link: "/rent/tehran",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در کرمان",
+  //         link: "/rent/kerman",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در کرمانشاه",
+  //         link: "/rent/kermanshah",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در مشهد",
+  //         link: "/rent/mashhad",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در کیش",
+  //         link: "/rent/kish",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در قشم",
+  //         link: "/rent/qeshm",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در رامسر",
+  //         link: "/rent/ramsar",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در رشت",
+  //         link: "/rent/rasht",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در شیراز",
+  //         link: "/rent/shiraz",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در تبریز",
+  //         link: "/rent/tabriz",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در یزد",
+  //         link: "/rent/yazd",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در فرودگاه مهرآباد تهران",
+  //         link: "/rent/mehrabad-airport-car-rental",
+  //       },
+  //       {
+  //         title: "اجاره ماشین در فرودگاه امام خمینی",
+  //         link: "/rent/car-rental-at-tehran-imam-khomeini-airport",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "برندها",
+  //     links: [
+  //       { title: "اجاره 206", link: "/rent/206" },
+  //       {
+  //         title: "اجاره ماشین سراتو",
+  //         link: "/rent/cerato",
+  //       },
+  //       { title: "اجاره بنز", link: "/rent/benz" },
+  //       {
+  //         title: "اجاره بی ام وی",
+  //         link: "/rent/bmw",
+  //       },
+  //       {
+  //         title: "اجاره ماشین هیوندای",
+  //         link: "/rent/hyundai",
+  //       },
+  //       { title: "اجاره کیا", link: "/rent/kia" },
+  //       {
+  //         title: "اجاره مازراتی",
+  //         link: "/rent/maserati",
+  //       },
+  //       {
+  //         title: "لیست اجاره ماشین مزدا",
+  //         link: "/rent/mazda",
+  //       },
+  //       {
+  //         title: "اجاره پورشه ",
+  //         link: "/rent/porsche",
+  //       },
+  //       {
+  //         title: "اجاره رنو",
+  //         link: "/rent/renault",
+  //       },
+  //       {
+  //         title: "اجاره تویوتا ",
+  //         link: "/rent/toyota",
+  //       },
+  //       {
+  //         title: "اجاره وانت ",
+  //         link: "/rent/pickup",
+  //       },
+  //       { title: "اجاره ون", link: "/rent/van" },
+  //     ],
+  //   },
+  //   {
+  //     title: "پربازدید",
+  //     links: [
+  //       {
+  //         title: "همه ماشین های لوکس تهران اینجاست",
+  //         link: "/rent/luxury-tehran",
+  //       },
+  //       {
+  //         title: "اجاره ماشین عروس",
+  //         link: "/rent/bride-car-rental",
+  //       },
+  //       {
+  //         title: "اجاره ماشین برای مسافرت",
+  //         link: "/rent/car-rental-for-travel",
+  //       },
+  //       {
+  //         title: "اجاره ماشین با راننده",
+  //         link: "/rent/car-rental-with-driver",
+  //       },
+  //       {
+  //         title: "اجاره ماشین کلاسیک",
+  //         link: "/rent/classic",
+  //       },
+  //       {
+  //         title: "اجاره ماشین برای کویر",
+  //         link: "/rent/desert",
+  //       },
+  //       {
+  //         title: "اجاره ماشین بدون راننده",
+  //         link: "/rent/rent-a-car-without-a-driver",
+  //       },
+  //     ],
+  //   },
+  // ]);
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const landing_res: any = await REQUEST_GET_LANDING_PAGE({
+      name: "rent",
+    });
+    setDynamicLinks(landing_res.data.link_set);
+  }
+
 
   return (
     <Layout>
@@ -334,8 +348,20 @@ const Rent = () => {
             </p>
           </div>
           {/* Creating tab menu */}
-          <TabCreator data_arr={data} />
+          {/* <TabCreator data_arr={data} /> */}
         </div>
+        <section className="responsive third_container"> 
+          {dynamicLinks ? <div className="RentPage_Dynamic_links">
+            <ul>
+              {dynamicLinks.map(item => {
+                return <li>
+                  <a href={item.url}>{item.name}</a>
+                </li>
+              })}
+            </ul>
+          </div>
+            : null}
+        </section>
       </article>
     </Layout>
   );
