@@ -221,6 +221,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           />
         </div>
       </section>
+      <h1 className="responsive">{props.landing_data.short_description}</h1>
       {/* price sort part */}
       <section className="responsive">
         <div className="price_sort_container">

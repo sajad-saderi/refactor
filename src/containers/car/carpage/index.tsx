@@ -7,6 +7,7 @@ import Button from "../../../components/form/Button";
 import { IoIosLink } from "react-icons/io";
 import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
 import { NextSeo } from "next-seo";
 import jsCookie from "js-cookie";
@@ -57,6 +58,7 @@ const CarPage = () => {
 
   useEffect(() => {
     const { search_id, id, owner } = Router.router.query;
+
     // if the car is mine, I can't rent it
     if (owner) {
       setIs_mine(true);
@@ -67,9 +69,14 @@ const CarPage = () => {
     }
     // if doesn't have search id and it's not mine the user can select day range and get price and search id
     else {
-      setShowCalender(true);
-      // just get the main info about the car
-      fetchData({ id });
+      if (localStorage["start"]) {
+        // get the car information and price based on the start date and the end date, if there are on storage. 
+        DateSetter(id)
+      } else {
+        setShowCalender(true);
+        // just get the main info about the car 
+        fetchData({ id });
+      }
     }
     const handleRouteChange = (url) => {
       if (url.includes("/search-result")) {
@@ -83,24 +90,49 @@ const CarPage = () => {
   }, []);
 
   const fetchData = async (data) => {
-    let res: any = null;
+    let localData = null
     try {
-      if (dayRange.from && dayRange.to) {
-        res = await REQUEST_GET_RENTAL_CAR({
+      if (data.from && data.to) {
+        localData = {
+          id: Router.router.query.id,
+          start_date: `${data.from.year}/${data.from.month}/${data.from.day}`,
+          end_date: `${data.to.year}/${data.to.month}/${data.to.day}`,
+        };
+      } else if (dayRange.from && dayRange.to) {
+        localData = {
           id: Router.router.query.id,
           start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
           end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-        });
+        }
       } else if (data.search_id) {
-        res = await REQUEST_GET_RENTAL_CAR({ search_id: data.search_id });
+        localData = { search_id: data.search_id }
       } else {
-        res = await REQUEST_GET_RENTAL_CAR({ id: data.id });
+        localData = { id: data.id }
       }
+      const res: any = await REQUEST_GET_RENTAL_CAR(localData)
       set_CarInformation(res);
     } catch (error) {
+      if (error === "Invalid search_id.") {
+        DateSetter(Router.router.query.id)
+      }
       console.log("!Error", error);
     }
   };
+
+  const DateSetter = (data) => {
+    if (localStorage["start"]) {
+      fetchData({
+        id: data,
+        from: JSON.parse(localStorage["start"]),
+        to: JSON.parse(localStorage["end"]),
+      });
+    } else {
+      // show calender if the dates are not on storage
+      setShowCalender(true);
+      // just get the main info about the car 
+      fetchData({ id: data });
+    }
+  }
 
   const set_CarInformation = (res) => {
     setCar(res.car);
@@ -289,7 +321,7 @@ const CarPage = () => {
                   <span>تومان در روز</span>
                 </div>
               )}
-              {/* {!is_mine ? (
+              {!is_mine ? (
                 showCalender ? (
                   <div className="search_box_div">
                     <DatePicker
@@ -305,7 +337,7 @@ const CarPage = () => {
                     <p onClick={fetchData}>اعمال</p>
                   </div>
                 ) : null
-              ) : null} */}
+              ) : null}
               <Link href={`/user/[id]`} as={`/user/${owner.id}`}>
                 <a>
                   <figure className="owner_part">

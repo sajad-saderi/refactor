@@ -18,6 +18,11 @@
     font-size: 1.4rem;
     .avg_discounted_price_per_day {
       display: none;
+      .discount_price {
+        color: firebrick;
+        text-decoration: line-through;
+        font-size: 1.8rem;
+      }
     }
     h1 {
       font-size: 2.4rem;
