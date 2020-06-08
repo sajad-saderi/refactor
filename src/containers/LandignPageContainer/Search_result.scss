@@ -2,6 +2,7 @@
 @import "../../styles/colors";
 
 .search_result_page_container {
+  position: relative;
   .count_bar_count {
     text-align: center;
     font-weight: 500;
@@ -39,7 +40,6 @@
     }
   }
   .content_container {
-    position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

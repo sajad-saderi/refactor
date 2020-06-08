@@ -6,6 +6,7 @@ import filterContext from "../../context/filter-context";
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
 import { IoIosOptions, IoMdClose } from "react-icons/io";
+import Spinner from "../../components/Spinner";
 
 let body_style_list = [];
 
@@ -16,9 +17,12 @@ const Filters = (props: IFilter) => {
 
   const [BrandList, setBrandList] = useState([]);
   const [Brand_id, setBrand_id] = useState(null);
+  const [Brand_Name_ComponentReset, setBrand_Name_ComponentReset] = useState(false);
   const [ModelList, setModelList] = useState([]);
   const [car_id, setcar_id] = useState(null);
+  const [car_Name_ComponentReset, setCar_Name_ComponentReset] = useState(false);
   const [show_filter, setShow_filter] = useState(false);
+  const [hidePrice, setHidePrice] = useState(false);
 
   const FilterContext = useContext(filterContext);
 
@@ -62,6 +66,62 @@ const Filters = (props: IFilter) => {
     });
   };
 
+  useEffect(() => {
+    if (props.reset) {
+      if (props.reset.price) {
+        setHidePrice(true)
+        mounter("price")
+      }
+      if (props.reset.deliver_at_renters_place) {
+        setDeliver_at_renters_place(0)
+        props.clearReset("deliver_at_renters_place")
+      }
+      if (props.reset.with_driver) {
+        setwith_driver(0)
+        props.clearReset("with_driver")
+      }
+      if (props.reset.body_style_id) {
+        setbody_style_set([])
+        props.clearReset("body_style_id")
+      }
+      if (props.reset.brand_id) {
+        setBrand_Name_ComponentReset(true)
+        setBrand_id(null)
+        setModelList([]);
+        props.clearReset("brand_id")
+      }
+      if (props.reset.car_id) {
+        setCar_Name_ComponentReset(true)
+        setcar_id(null)
+        props.clearReset("car_id")
+      }
+      //     break;
+      //   case props.reset.with_driver:
+      //     break;
+      //   case props.reset.body_style_id:
+      //     break;
+      //   case props.reset.deliver_at_renters_place:
+      //     break;
+      //   case props.reset.brand_id:
+      //     break;
+      //   case props.reset.car_id:
+      //     break;
+      //   default:
+      //     break;
+      // }
+    }
+  }, [props.reset])
+
+  const mounter = (v) => {
+    if (v === "price") {
+      const hideTimer = setTimeout(() => {
+        setHidePrice(false)
+        clearTimeout(hideTimer)
+        props.clearReset(v)
+      }, 500);
+    }
+  }
+
   // remove the filter from the filter context
   const body_style_remove = (item) => {
     body_style_list = body_style_list.filter((i) => {
@@ -95,7 +155,7 @@ const Filters = (props: IFilter) => {
           <p>بستن</p>
           <IoMdClose size="2rem" color="#909090" />
         </div>
-        <PriceSlider />
+        {hidePrice ? <Spinner display="block" width={20} color="#737373" /> : <PriceSlider />}
         <h3>خدمات اجاره</h3>
         <Checkbox
           initialValue={[deliver_at_renters_place]}
@@ -165,6 +225,8 @@ const Filters = (props: IFilter) => {
               brand_id: { status: false, value: null },
             });
           }}
+          callClearFieldReset={() => { setBrand_Name_ComponentReset(false) }}
+          callClearField={Brand_Name_ComponentReset}
           Select={(i) => {
             setBrand_id(i.value);
             setModelList([]);
@@ -181,6 +243,8 @@ const Filters = (props: IFilter) => {
           disabled={!Brand_id ? true : false}
           label="مدل"
           data={ModelList}
+          callClearFieldReset={() => { setCar_Name_ComponentReset(false) }}
+          callClearField={car_Name_ComponentReset}
           clearField={() => {
             setcar_id(null);
             FilterContext.setDataForSearch({
@@ -208,6 +272,8 @@ interface IFilter {
   // list of car body style
   extra_info: any;
   ResultCount: any;
+  reset?: any;
+  clearReset?: any;
 }
 
 export default Filters;

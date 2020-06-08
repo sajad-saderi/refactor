@@ -38,6 +38,15 @@ const DropdownSearch = (props: IDropDown) => {
     setData(props.data);
   }, [props.data]);
 
+  // Reset the input field
+  useEffect(() => {
+    if (props.callClearField) {
+      setInputValue("");
+      props.clearField();
+      props.callClearFieldReset()
+    }
+  }, [props.callClearField]);
+
   useEffect(() => {
     //  In case of error, the page will be scrolled to the invalid drop-down
     if (props.error_status) {
@@ -267,6 +276,12 @@ interface IDropDown {
 
   // Show the default select-option instead of Dropdown component
   browserDropdown?: boolean
+
+  // clear the text inside the input field
+  callClearField?: boolean
+
+  // Reset the controller value of clear input from the parent component
+  callClearFieldReset?:any
 }
 
 export default DropdownSearch;

@@ -7,6 +7,7 @@ import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
 import Spinner from "../../components/Spinner";
+import { IoMdClose } from "react-icons/io";
 
 // default location is Tehran
 let Location = 1;
@@ -45,6 +46,14 @@ const Landing_page_container = (props: ILanding_page_container) => {
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
+  const [filterReset, setFilterReset] = useState({
+    price: false,
+    with_driver: false,
+    body_style_id: false,
+    deliver_at_renters_place: false,
+    brand_id: false,
+    car_id: false,
+  })
 
   useEffect(() => {
     // reset the data
@@ -194,6 +203,54 @@ const Landing_page_container = (props: ILanding_page_container) => {
     initSearch();
   };
 
+  const clearReset = (v) => {
+    switch (v) {
+      case "price":
+        setFilterReset(filterReset => {
+          return { ...filterReset, price: false }
+        })
+        break;
+      case "with_driver":
+        setFilterReset(filterReset => {
+          return { ...filterReset, with_driver: false }
+        })
+        break;
+
+      case "body_style_id":
+        setFilterReset(filterReset => {
+          return { ...filterReset, body_style_id: false }
+        })
+        break;
+
+      case "deliver_at_renters_place":
+        setFilterReset(filterReset => {
+          return { ...filterReset, deliver_at_renters_place: false }
+        })
+        break;
+      case "brand_id":
+        setFilterReset(filterReset => {
+          return { ...filterReset, brand_id: false }
+        })
+        break;
+      case "car_id":
+        setFilterReset(filterReset => {
+          return { ...filterReset, car_id: false }
+        })
+        break;
+
+      default:
+        setFilterReset({
+          price: false,
+          with_driver: false,
+          body_style_id: false,
+          deliver_at_renters_place: false,
+          brand_id: false,
+          car_id: false,
+        })
+        break;
+    }
+  }
+
   return (
     <article className="search_result_page_container">
       {/* result count section */}
@@ -245,6 +302,81 @@ const Landing_page_container = (props: ILanding_page_container) => {
           </span>
         </div>
       </section>
+      <section className="responsive minimal_filters">
+        {filtersChecker.price ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, price: true }
+          })
+          filtersChecker.price = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
+        </p>
+          : null
+        }
+        {filtersChecker.deliver_at_renters_place ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, deliver_at_renters_place: true }
+          })
+          filtersChecker.deliver_at_renters_place = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          تحویل در محل
+        </p>
+          : null
+        }
+        {filtersChecker.with_driver ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, with_driver: true }
+          })
+          filtersChecker.with_driver = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          اجاره همراه راننده
+        </p>
+          : null
+        }
+        {filtersChecker.body_style_id ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, body_style_id: true }
+          })
+          filtersChecker.body_style_id = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          فیلتر نوع بدنه
+        </p>
+          : null
+        }
+        {filtersChecker.brand_id ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, brand_id: true }
+          })
+          filtersChecker.brand_id = false;
+          filtersChecker.car_id = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          فیلتر برند
+        </p>
+          : null
+        }
+        {filtersChecker.car_id ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, car_id: true }
+          })
+          filtersChecker.car_id = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          فیلتر مدل
+        </p>
+          : null
+        }
+      </section>
       {/* filters and result section */}
       <section className=" responsive content_container">
         <filterContext.Provider
@@ -254,7 +386,8 @@ const Landing_page_container = (props: ILanding_page_container) => {
             },
           }}
         >
-          <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }} />
+          <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }} reset={filterReset}
+            clearReset={clearReset} />
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>

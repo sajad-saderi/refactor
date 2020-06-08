@@ -8,6 +8,7 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import { NextSeo } from "next-seo";
 import Spinner from "../../components/Spinner";
 import jsCookie from "js-cookie";
+import { IoMdClose } from "react-icons/io";
 
 let JumpTo = null;
 // default location is Tehran
@@ -49,6 +50,14 @@ const Search_result = () => {
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
+  const [filterReset, setFilterReset] = useState({
+    price: false,
+    with_driver: false,
+    body_style_id: false,
+    deliver_at_renters_place: false,
+    brand_id: false,
+    car_id: false,
+  })
 
   useEffect(() => {
     // get the data from url
@@ -212,6 +221,54 @@ const Search_result = () => {
     position = window.scrollY;
   };
 
+  const clearReset = (v) => {
+    switch (v) {
+      case "price":
+        setFilterReset(filterReset => {
+          return { ...filterReset, price: false }
+        })
+        break;
+      case "with_driver":
+        setFilterReset(filterReset => {
+          return { ...filterReset, with_driver: false }
+        })
+        break;
+
+      case "body_style_id":
+        setFilterReset(filterReset => {
+          return { ...filterReset, body_style_id: false }
+        })
+        break;
+
+      case "deliver_at_renters_place":
+        setFilterReset(filterReset => {
+          return { ...filterReset, deliver_at_renters_place: false }
+        })
+        break;
+      case "brand_id":
+        setFilterReset(filterReset => {
+          return { ...filterReset, brand_id: false }
+        })
+        break;
+      case "car_id":
+        setFilterReset(filterReset => {
+          return { ...filterReset, car_id: false }
+        })
+        break;
+
+      default:
+        setFilterReset({
+          price: false,
+          with_driver: false,
+          body_style_id: false,
+          deliver_at_renters_place: false,
+          brand_id: false,
+          car_id: false,
+        })
+        break;
+    }
+  }
+
   return (
     <article
       className="search_result_page_container"
@@ -237,11 +294,11 @@ const Search_result = () => {
       {/* result count section */}
       {result
         ? result.length > 0 && (
-            <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
-              5
-            )} تا ${result[0].end_date.slice(5)}`}</p>
-          )
-        : null}
+          <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
+            5
+          )} تا ${result[0].end_date.slice(5)}`}</p>
+        )
+        : <p className="count_bar_count_empty"></p>}
       {/* search box */}
       <section className="responsive">
         {/* price sort part */}
@@ -266,6 +323,81 @@ const Search_result = () => {
           </span>
         </div>
       </section>
+      <section className="responsive minimal_filters">
+        {filtersChecker.price ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, price: true }
+          })
+          filtersChecker.price = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
+        </p>
+          : null
+        }
+        {filtersChecker.deliver_at_renters_place ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, deliver_at_renters_place: true }
+          })
+          filtersChecker.deliver_at_renters_place = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          تحویل در محل
+        </p>
+          : null
+        }
+        {filtersChecker.with_driver ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, with_driver: true }
+          })
+          filtersChecker.with_driver = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          اجاره همراه راننده
+        </p>
+          : null
+        }
+        {filtersChecker.body_style_id ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, body_style_id: true }
+          })
+          filtersChecker.body_style_id = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          فیلتر نوع بدنه
+        </p>
+          : null
+        }
+        {filtersChecker.brand_id ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, brand_id: true }
+          })
+          filtersChecker.brand_id = false;
+          filtersChecker.car_id = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          فیلتر برند
+        </p>
+          : null
+        }
+        {filtersChecker.car_id ? <p className="minimal_filter_tags" onClick={() => {
+          setFilterReset(filterReset => {
+            return { ...filterReset, car_id: true }
+          })
+          filtersChecker.car_id = false;
+          initSearch()
+        }}>
+          <IoMdClose size="1.3rem" color="#ababab" />
+          فیلتر مدل
+        </p>
+          : null
+        }
+      </section>
       {/* filters and result section */}
       <section className="responsive content_container">
         <filterContext.Provider
@@ -275,21 +407,26 @@ const Search_result = () => {
             },
           }}
         >
-          <Filters extra_info={extra_info} ResultCount={{total_count,remained_count }}/>
+          <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }}
+            reset={filterReset}
+            clearReset={clearReset}
+          />
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
       {/* load more */}
-      {remained_count > 0 && (
-        <span className="Load_more_car" onClick={() => loadMore()}>
-          {show_spinner_loadMore ? (
-            <Spinner display="block" width={20} color="#9E9E9E" />
-          ) : (
-            "نمایش ماشین‌های بیشتر"
-          )}
-        </span>
-      )}
-    </article>
+      {
+        remained_count > 0 && (
+          <span className="Load_more_car" onClick={() => loadMore()}>
+            {show_spinner_loadMore ? (
+              <Spinner display="block" width={20} color="#9E9E9E" />
+            ) : (
+                "نمایش ماشین‌های بیشتر"
+              )}
+          </span>
+        )
+      }
+    </article >
   );
 };
 

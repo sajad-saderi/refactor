@@ -8,6 +8,10 @@
     background: #fff;
     line-height: 3;
     font-size: 1.4rem;
+    position: relative;
+  }
+  .count_bar_count_empty {
+    height: 42px;
   }
   .price_sort_container {
     padding: 1.5rem 0;
@@ -29,8 +33,24 @@
       }
     }
   }
+  .minimal_filters {
+    .minimal_filter_tags {
+      display: inline-block;
+      color: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      padding: 0.2rem 0.8rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      cursor: pointer;
+      svg {
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 1rem;
+      }
+    }
+  }
   .content_container {
-    position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
