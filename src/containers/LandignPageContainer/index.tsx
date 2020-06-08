@@ -260,7 +260,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             5
           )} تا ${result[0].end_date.slice(5)}`}</p>
         )
-        : null}
+        : <p className="count_bar_count_empty"></p>}
       {/* search box */}
       <section className="new_search_in_landing">
         <div className="responsive">
