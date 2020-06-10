@@ -30,7 +30,7 @@
       margin: auto 1rem;
       display: inline-block;
       width: 50%;
-
+      z-index: 10;
       .DatePicker__calendarArrow {
         display: none !important;
       }
@@ -66,7 +66,7 @@
             background: #fff;
             color: rgba(0, 0, 0, 0.87);
             box-shadow: 0 0 0 0 transparent inset;
-            &.activeBorder{
+            &.activeBorder {
               border-color: $main__color;
             }
           }
@@ -85,6 +85,7 @@
           position: absolute;
           width: 100%;
           height: 100%;
+          left: 0;
           input {
             cursor: pointer;
             opacity: 0;
