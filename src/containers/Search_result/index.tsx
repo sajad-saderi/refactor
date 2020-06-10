@@ -305,7 +305,14 @@ const Search_result = () => {
               <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
                 5
               )} تا ${result[0].end_date.slice(5)}`}</p>
-              <p className="change_search_btn" onClick={() => { setShowSearch(!showSearch) }}>تغییر جستجو</p>
+              <p className="change_search_btn" onClick={() => { setShowSearch(!showSearch) }}>
+                {showSearch
+                  ? <span className="close_text_btn">
+                    بستن
+                    <IoMdClose size="2rem" color="#dcdcdc" />
+                  </span>
+                  : "تغییر جستجو"}
+              </p>
             </div>
           )
           : <p className="count_bar_count_empty"></p>

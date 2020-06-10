@@ -23,6 +23,16 @@
         color: #dcdcdc;
         display: inline-block;
         cursor: pointer;
+        .close_text_btn {
+          color: #dcdcdc;
+          display: inline-block;
+          svg {
+            display: inline-block;
+            vertical-align: middle;
+            padding-bottom: 0;
+            padding-right: 0.5rem;
+          }
+        }
       }
     }
     .count_bar_count_empty {
