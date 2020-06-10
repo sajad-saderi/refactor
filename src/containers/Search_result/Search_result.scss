@@ -5,6 +5,7 @@
   .count_bar_container {
     background: #313131;
     .count_bar {
+      cursor: pointer;
       align-items: center;
       .count_bar_count {
         font-weight: 500;
