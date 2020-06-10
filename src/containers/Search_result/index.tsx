@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
@@ -8,7 +8,8 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import { NextSeo } from "next-seo";
 import Spinner from "../../components/Spinner";
 import jsCookie from "js-cookie";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoIosOptions, IoIosArrowUp } from "react-icons/io";
+import Search from "../Search";
 
 let JumpTo = null;
 // default location is Tehran
@@ -50,6 +51,8 @@ const Search_result = () => {
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
+  const [show_filter, setShow_filter] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [filterReset, setFilterReset] = useState({
     price: false,
     with_driver: false,
@@ -58,6 +61,9 @@ const Search_result = () => {
     brand_id: false,
     car_id: false,
   })
+
+  const new_search_ref = useRef(null)
+
 
   useEffect(() => {
     // get the data from url
@@ -292,13 +298,34 @@ const Search_result = () => {
         />
       )}
       {/* result count section */}
-      {result
-        ? result.length > 0 && (
-          <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
-            5
-          )} تا ${result[0].end_date.slice(5)}`}</p>
-        )
-        : <p className="count_bar_count_empty"></p>}
+      <div className="count_bar_container" ref={new_search_ref}>
+        {result
+          ? result.length > 0 && (
+            <div className="count_bar responsive" >
+              <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
+                5
+              )} تا ${result[0].end_date.slice(5)}`}</p>
+              <p className="change_search_btn" onClick={() => { setShowSearch(!showSearch) }}>تغییر جستجو</p>
+            </div>
+          )
+          : <p className="count_bar_count_empty"></p>
+        }
+        {/* search box */}
+        <section
+          className={["new_search_in_landing", showSearch ? "show_search_section" : null].join(" ")}>
+          <div className="responsive">
+            <Search
+              dynamic={true}
+              searchSubmit={(v) => {
+                Start_date = v.date.Start_date;
+                End_date = v.date.End_date;
+                initSearch();
+              }}
+            />
+          </div>
+        </section>
+        {showSearch ? <IoIosArrowUp color="#dcdcdc" size="2rem" onClick={() => setShowSearch(false)} /> : null}
+      </div>
       {/* search box */}
       <section className="responsive">
         {/* price sort part */}
@@ -321,6 +348,11 @@ const Search_result = () => {
           >
             قیمت کم به زیاد
           </span>
+          {/* Trigger icon in mobile view */}
+          <p className="show_filter" onClick={() => setShow_filter(true)}>
+            جستجوی پیشرفته
+            <IoIosOptions size="1.4rem" color="#656565" />
+          </p>
         </div>
       </section>
       <section className="responsive minimal_filters">
@@ -410,6 +442,8 @@ const Search_result = () => {
           <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }}
             reset={filterReset}
             clearReset={clearReset}
+            show_filter_prop={show_filter}
+            show_filter_prop_reset={() => { setShow_filter(false) }}
           />
         </filterContext.Provider>
         <SearchResultList result={result} />

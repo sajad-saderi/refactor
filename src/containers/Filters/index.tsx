@@ -57,6 +57,12 @@ const Filters = (props: IFilter) => {
     }
   }, [props.extra_info]);
 
+  useEffect(() => {
+    if (props.show_filter_prop) {
+      setShow_filter(true)
+    }
+  }, [props.show_filter_prop]);
+
   // add this filter to the filter context
   const body_style_add = (item) => {
     body_style_list.push(item.value);
@@ -134,14 +140,12 @@ const Filters = (props: IFilter) => {
 
   return (
     <>
-      {/* Trigger icon in mobile view */}
-      <span className="show_filter" onClick={() => setShow_filter(true)}>
-        جستجوی پیشرفته
-        <IoIosOptions size="1.4rem" color="#656565" />
-      </span>
       {show_filter && (
         <div
-          onClick={() => setShow_filter(false)}
+          onClick={() => {
+            setShow_filter(false)
+            props.show_filter_prop_reset()
+          }}
           className="with_drawer"
         ></div>
       )}
@@ -151,7 +155,10 @@ const Filters = (props: IFilter) => {
           show_filter ? "show_Filter_section" : null
         ].join(" ")}
       >
-        <div className="Close_filter" onClick={() => setShow_filter(false)}>
+        <div className="Close_filter" onClick={() => {
+          setShow_filter(false)
+          props.show_filter_prop_reset()
+        }}>
           <p>بستن</p>
           <IoMdClose size="2rem" color="#909090" />
         </div>
@@ -274,6 +281,8 @@ interface IFilter {
   ResultCount: any;
   reset?: any;
   clearReset?: any;
+  show_filter_prop: boolean
+  show_filter_prop_reset: any
 }
 
 export default Filters;

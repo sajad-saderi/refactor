@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
@@ -7,7 +7,7 @@ import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
 import Spinner from "../../components/Spinner";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoIosArrowUp, IoIosOptions } from "react-icons/io";
 
 // default location is Tehran
 let Location = 1;
@@ -46,6 +46,8 @@ const Landing_page_container = (props: ILanding_page_container) => {
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
+  const [show_filter, setShow_filter] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [filterReset, setFilterReset] = useState({
     price: false,
     with_driver: false,
@@ -55,7 +57,18 @@ const Landing_page_container = (props: ILanding_page_container) => {
     car_id: false,
   })
 
+  const new_search_ref = useRef(null)
+
+  const handleClickOutside = (e) => {
+    // If the click is outside of the drop-down box the drop-down section will be close
+    if (!new_search_ref.current.contains(e.target)) {
+      setShowSearch(false);
+      return;
+    }
+  };
+
   useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
     // reset the data
     return () => {
       Location = 1;
@@ -82,6 +95,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
         brand_id: false,
         car_id: false,
       };
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -254,30 +268,38 @@ const Landing_page_container = (props: ILanding_page_container) => {
   return (
     <article className="search_result_page_container">
       {/* result count section */}
-      {result
-        ? result.length > 0 && (
-          <p className="count_bar_count">{`${total_count} خودرو نتیجه جستجو از تاریخ ${result[0].start_date.slice(
-            5
-          )} تا ${result[0].end_date.slice(5)}`}</p>
-        )
-        : <p className="count_bar_count_empty"></p>}
-      {/* search box */}
-      <section className="new_search_in_landing">
-        <div className="responsive">
-          <Search
-            dynamic={true}
-            searchSubmit={(v) => {
-              // if we are not in dynamic page don't need to check loaction filter
-              if (v.location_id !== 1) {
-                filtersChecker.Location = true;
-              }
-              Start_date = v.date.Start_date;
-              End_date = v.date.End_date;
-              initSearch();
-            }}
-          />
-        </div>
-      </section>
+      <div className="count_bar_container" ref={new_search_ref}>
+        {result
+          ? result.length > 0 && (
+            <div className="count_bar responsive" >
+              <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
+                5
+              )} تا ${result[0].end_date.slice(5)}`}</p>
+              <p className="change_search_btn" onClick={() => { setShowSearch(!showSearch) }}>تغییر جستجو</p>
+            </div>
+          )
+          : <p className="count_bar_count_empty"></p>
+        }
+        {/* search box */}
+        <section
+          className={["new_search_in_landing", showSearch ? "show_search_section" : null].join(" ")}>
+          <div className="responsive">
+            <Search
+              dynamic={true}
+              searchSubmit={(v) => {
+                // if we are not in dynamic page don't need to check loaction filter
+                if (v.location_id !== 1) {
+                  filtersChecker.Location = true;
+                }
+                Start_date = v.date.Start_date;
+                End_date = v.date.End_date;
+                initSearch();
+              }}
+            />
+          </div>
+        </section>
+        {showSearch ? <IoIosArrowUp color="#dcdcdc" size="2rem" onClick={() => setShowSearch(false)} /> : null}
+      </div>
       <h1 className="responsive">{props.landing_data.short_description}</h1>
       {/* price sort part */}
       <section className="responsive">
@@ -300,6 +322,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
           >
             قیمت کم به زیاد
           </span>
+          {/* Trigger icon in mobile view */}
+          <p className="show_filter" onClick={() => setShow_filter(true)}>
+            جستجوی پیشرفته
+            <IoIosOptions size="1.4rem" color="#656565" />
+          </p>
         </div>
       </section>
       <section className="responsive minimal_filters">
@@ -386,8 +413,14 @@ const Landing_page_container = (props: ILanding_page_container) => {
             },
           }}
         >
-          <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }} reset={filterReset}
-            clearReset={clearReset} />
+          <Filters
+            extra_info={extra_info}
+            ResultCount={{ total_count, remained_count }}
+            reset={filterReset}
+            clearReset={clearReset}
+            show_filter_prop={show_filter}
+            show_filter_prop_reset={() => { setShow_filter(false) }}
+          />
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>

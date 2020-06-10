@@ -2,13 +2,6 @@
 
 .search_result_page_container {
   .content_container {
-    .show_filter {
-      color: #656565;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      display: none;
-      font-size: 1.2rem;
-      padding: 0.4rem 1rem;
-    }
     .filter_section {
       max-width: 30rem;
       padding: 2rem;
@@ -58,18 +51,6 @@
 @media screen and(max-width:960px) {
   .search_result_page_container {
     .content_container {
-      .show_filter {
-        position: absolute;
-        right: 1.5rem;
-        top: 5.7rem;
-        display: block;
-        cursor: pointer;
-        svg {
-          display: inline-block;
-          vertical-align: middle;
-          margin-right: 1rem;
-        }
-      }
       .with_drawer {
         top: 0;
         display: block;

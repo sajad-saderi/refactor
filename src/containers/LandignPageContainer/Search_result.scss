@@ -1,47 +1,6 @@
 @import "../../styles/units";
 @import "../../styles/colors";
 
-.search_result_page_container {
-  position: relative;
-  .count_bar_count {
-    text-align: center;
-    font-weight: 500;
-    background: #fff;
-    font-size: 1.4rem;
-    line-height: 3;
-  }
-  .new_search_in_landing {
-    margin-bottom: 1rem;
-    background: #fff;
-    padding-bottom: 1rem;
-    .label {
-      font-size: 0.8rem;
-      color: transparent;
-    }
-  }
-  .price_sort_container {
-    padding: 1.5rem 0;
-    text-align: left;
-    span {
-      cursor: pointer;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      color: rgba(0, 0, 0, 0.5);
-      border-right-color: transparent;
-      font-size: 1.2rem;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      display: inline-block;
-      &:first-child {
-        border-right-color: rgba(0, 0, 0, 0.08);
-      }
-      &.active {
-        color: rgba(0, 0, 0, 0.9);
-      }
-    }
-  }
-  .content_container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-}
+// .search_result_page_container {
+  
+// }
