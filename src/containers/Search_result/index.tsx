@@ -298,8 +298,8 @@ const Search_result = () => {
         />
       )}
       {/* result count section */}
-      <div className="count_bar_container" 
-      // ref={new_search_ref}
+      <div className="count_bar_container"
+        ref={new_search_ref}
       >
         {result
           ? result.length > 0 && (
