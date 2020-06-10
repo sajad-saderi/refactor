@@ -6,8 +6,6 @@
     background: #313131;
     .count_bar {
       align-items: center;
-      justify-content: space-between;
-      display: flex;
       .count_bar_count {
         font-weight: 500;
         line-height: 3;
@@ -18,11 +16,13 @@
       .change_search_btn {
         border-radius: 4px;
         padding: 0.2rem 0.6rem;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         border: 1px solid #dcdcdc;
         color: #dcdcdc;
         display: inline-block;
         cursor: pointer;
+        float: left;
+        margin-top: 0.7rem;
         .close_text_btn {
           color: #dcdcdc;
           display: inline-block;
@@ -54,6 +54,7 @@
       margin: auto;
       padding-bottom: 1rem;
       display: block;
+      cursor: pointer;
     }
   }
 
@@ -62,12 +63,13 @@
     text-align: left;
     span {
       cursor: pointer;
+      letter-spacing: -0.05rem;
       border: 1px solid rgba(0, 0, 0, 0.08);
       color: rgba(0, 0, 0, 0.5);
       border-right-color: transparent;
       font-size: 1.2rem;
       font-weight: 500;
-      padding: 0.5rem 1rem;
+      padding: 0.8rem 1rem;
       display: inline-block;
       &:first-child {
         border-right-color: rgba(0, 0, 0, 0.08);
@@ -117,6 +119,7 @@
       .show_filter {
         display: inline-block;
         vertical-align: middle;
+        padding: 0.7rem 1rem;
         cursor: pointer;
         svg {
           display: inline-block;
@@ -132,10 +135,10 @@
   .search_result_page_container {
     .price_sort_container {
       span {
-        padding: 0.5rem 0.3rem;
+        padding: 0.8rem 0.3rem;
       }
       .show_filter {
-        padding: 0.4rem 0.3rem;
+        padding: 0.7rem 0.3rem;
         svg {
           display: inline-block;
           vertical-align: middle;
