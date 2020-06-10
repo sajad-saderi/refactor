@@ -303,11 +303,11 @@ const Search_result = () => {
       >
         {result
           ? result.length > 0 && (
-            <div className="count_bar responsive" >
-              <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
+            <div className="count_bar responsive" onClick={() => { setShowSearch(!showSearch) }}>
+              {!showSearch ? <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
                 5
-              )} تا ${result[0].end_date.slice(5)}`}</p>
-              <p className="change_search_btn" onClick={() => { setShowSearch(!showSearch) }}>
+              )} تا ${result[0].end_date.slice(5)}`}</p> : null}
+              <p className="change_search_btn" >
                 {showSearch
                   ? <span className="close_text_btn">
                     بستن
