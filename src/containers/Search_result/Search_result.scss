@@ -127,3 +127,21 @@
     }
   }
 }
+
+@media screen and(max-width:375px) {
+  .search_result_page_container {
+    .price_sort_container {
+      span {
+        padding: 0.5rem 0.3rem;
+      }
+      .show_filter {
+        padding: 0.4rem 0.3rem;
+        svg {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
