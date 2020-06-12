@@ -268,7 +268,12 @@ const Filters = (props: IFilter) => {
           browserDropdown={true}
         />
         {show_filter ?
-          <h2 className="ResultCount">{`نمایش ${props.ResultCount.total_count - props.ResultCount.remained_count} از ${props.ResultCount.total_count} خودرو`}</h2>
+          <h2 className="ResultCount"
+            onClick={() => {
+              setShow_filter(false)
+              props.show_filter_prop_reset()
+            }}
+          >{`نمایش ${props.ResultCount.total_count - props.ResultCount.remained_count} از ${props.ResultCount.total_count} خودرو`}</h2>
           : null}
       </section>
     </>
