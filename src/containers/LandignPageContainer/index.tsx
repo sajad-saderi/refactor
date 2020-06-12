@@ -300,6 +300,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
                 }
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
+                setShowSearch(false)
                 initSearch();
               }}
             />

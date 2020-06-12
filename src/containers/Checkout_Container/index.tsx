@@ -293,7 +293,7 @@ const Checkout_Container = () => {
               </span>
             </p>
             {total_discount > 0 && (
-              <p>
+              <p className="Discount_color">
                 <span>
                   {!has_system_discount
                     ? `تخفیف برای ${no_of_days} روز`

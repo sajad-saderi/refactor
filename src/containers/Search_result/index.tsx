@@ -328,6 +328,7 @@ const Search_result = () => {
               searchSubmit={(v) => {
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
+                setShowSearch(false)
                 initSearch();
               }}
             />

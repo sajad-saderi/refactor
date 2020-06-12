@@ -139,6 +139,12 @@
         cursor: pointer;
         font-weight: 500;
       }
+      .Discount_color {
+        color: $discount_color;
+        span {
+          color: $discount_color;
+        }
+      }
       p {
         font-size: 1.4rem;
         display: flex;
