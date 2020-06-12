@@ -59,14 +59,14 @@ const ConfirmCode = (props: IConfirmCode) => {
           Router.push({
             pathname: "/complete-register",
           });
-        } 
+        }
         // if user completely registered 
         else if (response.data.token && response.data.has_name) {
           const data = response.data;
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("user_name", data.user_profile.name, cook_option); 
+          jsCookie.set("user_name", data.user_profile.name, cook_option);
           jsCookie.set(
             "company_name",
             data.user_profile.company_name,
@@ -80,12 +80,12 @@ const ConfirmCode = (props: IConfirmCode) => {
               : "https://core.otoli.net/static/core/default_profile_pic.png",
             cook_option
           );
-          // NOTE: activate heap
+          // NOTE: activate heap 
           try {
             if (window["heap"]) {
               window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
               window["heap"].addUserProperties({
-                Name: `${response.data.first_name}-${response.data.last_name}`,
+                Name: `${data.user_profile.first_name}-${data.user_profile.last_name}`,
               });
             }
           } catch (e) {
@@ -142,11 +142,11 @@ const ConfirmCode = (props: IConfirmCode) => {
               ارسال مجدد
             </p>
           ) : (
-            <div className="Count_Down_text">
-              <span>ارسال مجدد</span> <CountDown time={20} Done={Done} />{" "}
-              <span>ثانیه</span>
-            </div>
-          )}
+              <div className="Count_Down_text">
+                <span>ارسال مجدد</span> <CountDown time={20} Done={Done} />{" "}
+                <span>ثانیه</span>
+              </div>
+            )}
         </div>
         <div className="go_back" onClick={() => props.panelController()}>
           <p className="Edit_number">ویرایش شماره</p>
@@ -155,7 +155,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           class="Blue_BTN login_submit"
           value="ورود"
           loading={loading}
-          click={() => {}}
+          click={() => { }}
         />
       </form>
     </div>

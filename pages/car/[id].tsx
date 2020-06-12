@@ -1,18 +1,16 @@
 import React from "react";
 import Layout from "../../src/Layout";
 import CarPage from "../../src/containers/car/carpage";
-import Head from 'next/head';
+import { NextSeo } from "next-seo";
+
 const Car = () => {
   return (
-    <>
-      <Head>
-        <meta key="robots" name="robots" content="noindex,follow" />
-        <meta key="googlebot" name="googlebot" content="noindex,follow" />
-      </Head>
-      <Layout>
-        <CarPage />
-      </Layout>
-    </>
+    <Layout>
+      <NextSeo
+        noindex={true}
+      />
+      <CarPage />
+    </Layout>
   );
 };
 export default Car;
