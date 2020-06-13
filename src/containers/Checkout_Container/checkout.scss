@@ -270,6 +270,12 @@
       .car_info {
         .car_owner_part {
           display: block;
+          h1 {
+            width: 155px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
           div,
           .car_image {
             display: inline-block;
