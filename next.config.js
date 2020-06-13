@@ -18,6 +18,7 @@ module.exports = withPWA(
           env: {
             SITE_URL: "https://otoli.net",
             PRODUCTION_ENDPOINT: "https://core.otoli.net",
+            PORT: 8080,
           },
           compress: true,
           webpack(config, options) {
