@@ -27,7 +27,7 @@ export const REQUEST_SET_USER_IMAGE = (data: ISetUSerImage) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

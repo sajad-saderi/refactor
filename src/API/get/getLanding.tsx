@@ -15,7 +15,7 @@ export const REQUEST_GET_LANDING_PAGE = (data: ILanding) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

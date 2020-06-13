@@ -24,7 +24,7 @@ export const GET_ORDER_REQUEST = (data: IgetOrderRequest) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

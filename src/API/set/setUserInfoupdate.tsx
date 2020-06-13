@@ -25,7 +25,7 @@ export const REQUEST_USER_INFO_UPDATE = (data: IUserInfoUpdate) => {
       .then((res) => resolve(res))
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

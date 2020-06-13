@@ -14,6 +14,7 @@
     "docz:serve": "docz build && docz serve"
   },
   "dependencies": {
+    "@sentry/browser": "^5.17.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.2",

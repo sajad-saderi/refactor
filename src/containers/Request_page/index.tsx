@@ -40,7 +40,7 @@ const Request_page = () => {
       });
       setResult([res.data]);
     } catch (error) {
-      console.log("!Error", error.response?.message);
+      console.log("!Error", error);
     }
   };
 

@@ -20,7 +20,7 @@ export const REQUEST_GET_CAR_FACILITIES = () => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

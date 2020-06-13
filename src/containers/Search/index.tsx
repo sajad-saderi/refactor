@@ -136,7 +136,7 @@ const Search = (props: ISearch) => {
         onSubmit={(e) => GotoSearchResult(e)}
       >
         <div className="search_box_div">
-          <p className="label">خودرو خود را کجا تحویل میگیرید؟</p>
+          <p className="label">خودرو را کجا تحویل میگیرید؟</p>
           <DropdownSearch
             data={locationsList}
             InputDisable={true}

@@ -1,9 +1,18 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Head, Main, NextScript, Html } from "next/document";
+import * as Sentry from '@sentry/browser';
+
+process.on('unhandledRejection', (err) => {
+  Sentry.captureException(err);
+});
+
+process.on('uncaughtException', (err) => {
+  Sentry.captureException(err);
+});
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <html lang="fa" dir="rtl">
+      <Html lang="fa" dir="rtl">
         <Head>
           <meta charSet="utf-8" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -256,14 +265,14 @@ export default class MyDocument extends Document {
               }}
             ></script>
           ) : (
-            <script
-              defer
-              dangerouslySetInnerHTML={{
-                __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+              <script
+                defer
+                dangerouslySetInnerHTML={{
+                  __html: `window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
             heap.load("329839554");`,
-              }}
-            ></script>
-          )}
+                }}
+              ></script>
+            )}
           <meta
             name="google-site-verification"
             content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto"
@@ -283,7 +292,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

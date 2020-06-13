@@ -22,7 +22,7 @@ export const REQUEST_REMOVE_CAR_MEDIA = (data: IRemoveCarMedia) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

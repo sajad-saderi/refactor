@@ -24,7 +24,7 @@ export const REQUEST_ADD_NEW_CAR = (info: IAddCar) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

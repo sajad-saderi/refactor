@@ -27,7 +27,7 @@ export const REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING = (data: IgetCar) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };

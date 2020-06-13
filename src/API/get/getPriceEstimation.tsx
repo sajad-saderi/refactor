@@ -16,7 +16,7 @@ export const REQUEST_GET_CAR_PRICE_ESTIMATION = (data: IEstimation) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response?.message);
+        reject(e.response ? e.response.data.message : e.message);
       });
   });
 };
