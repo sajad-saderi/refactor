@@ -12,7 +12,7 @@
   }
   .text_input {
     font-family: inherit;
-    margin: 1rem auto;
+    margin: 1rem auto 0;
     display: block;
     width: 100%;
     outline: 0;
@@ -33,7 +33,7 @@
   .clean_icon {
     position: absolute;
     left: 10px;
-    bottom: 11px;
+    bottom: 15px;
     cursor: pointer;
   }
   .input_error_message {

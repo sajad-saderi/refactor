@@ -82,7 +82,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             clearField={clearField}
           />
           {/* show an error message */}
-          <span className="error_message">{error.message}</span>
+          {/* <span className="error_message">{error.message}</span> */}
           <Button
             class="Blue_BTN login_submit"
             value="ارسال کد ورود"
