@@ -54,7 +54,7 @@ const Owner = (props: IRenter) => {
         console.log(response);
         TOAST_CONTEXT.toast_option({
           message: "با موفقیت انجام شد",
-          time: 10,
+          time: 15,
           autoClose: true,
         });
         setLoading(false);

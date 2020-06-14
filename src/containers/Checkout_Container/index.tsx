@@ -167,7 +167,7 @@ const Checkout_Container = () => {
       TOAST_CONTEXT.toast_option({
         message:
           "درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.",
-        time: 10,
+        time: 15,
         autoClose: true,
       });
       Router.push("/requests");
