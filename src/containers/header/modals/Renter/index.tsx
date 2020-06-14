@@ -57,7 +57,7 @@ const Renter = (props: IRenter) => {
         console.log(response);
         TOAST_CONTEXT.toast_option({
           message: "با موفقیت انجام شد",
-          time: 15,
+          time: 7,
           autoClose: true,
         });
         setLoading(false);

@@ -57,8 +57,8 @@ const Car = (props: ICar) => {
           : `
     خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده خواهد شد.
     `,
-        time: 15,
-        autoClose: true,
+        time: 10,
+        autoClose: false,
       });
       // hide the spinner
       setIs_out_of_service_loading(false);

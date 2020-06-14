@@ -60,6 +60,8 @@ const Layout = (props: ILayout) => {
   // Reducers
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
 
+  const TOAST_CONTEXT = useContext(toast_context)
+
   useEffect(() => {
     if (Router.router) {
       /*
@@ -84,7 +86,7 @@ const Layout = (props: ILayout) => {
       window["GA_INITIALIZED"] = true
     }
     logPageView()
-
+    checkToast()
   }, []);
 
   const modal_handler = (type, data) => {
@@ -96,7 +98,16 @@ const Layout = (props: ILayout) => {
   const toast_handler = (data) => {
     setToastData(data);
     setToast(true);
+    localStorage["TOAST"] = JSON.stringify({ ...data });
   };
+
+  const checkToast = () => {
+    if (localStorage["TOAST"]) {
+      setToast(true);
+      let data = JSON.parse(localStorage["TOAST"])
+      setToastData(data);
+    }
+  }
 
   return (
     <>
@@ -138,7 +149,10 @@ const Layout = (props: ILayout) => {
         {toast ? (
           <Toast
             message={toastData.message}
-            closeHandler={() => setToast(false)}
+            closeHandler={() => {
+              if (localStorage["TOAST"]) localStorage.removeItem("TOAST");
+              setToast(false)
+            }}
             time={toastData.time}
             autoClose={toastData.autoClose}
           />
@@ -149,7 +163,7 @@ const Layout = (props: ILayout) => {
           IF you need to hide the footer at the page just pass {true} for "hide".
           you can set the "hide" property anywhere you imported the "layout" component
       */}
-      <Footer hide={props.hide} showToTop={props.showToTop}/>
+      <Footer hide={props.hide} showToTop={props.showToTop} />
     </>
   );
 };
@@ -157,7 +171,7 @@ const Layout = (props: ILayout) => {
 interface ILayout {
   children: any;
   hide?: boolean;
-  showToTop?:boolean
+  showToTop?: boolean
 }
 
 export default Layout;

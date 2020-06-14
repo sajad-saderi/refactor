@@ -69,7 +69,7 @@ const Request_cart = (props: IRequest_cart) => {
       } else {
         TOAST_CONTEXT.toast_option({
           message: request_res.message,
-          time: 15,
+          time: 10,
           autoClose: true,
         });
         props.getDataAgain();
