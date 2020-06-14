@@ -191,6 +191,7 @@ const DropdownSearch = (props: IDropDown) => {
                 {!props.disableSearch && (
                   <input
                     data-test-id="search_input"
+                    data-hj-whitelist
                     // When the drop-down is shown, the search input is ready to type
                     autoFocus
                     placeholder="جستجو"
@@ -200,9 +201,9 @@ const DropdownSearch = (props: IDropDown) => {
                     value={search_value}
                     onChange={(e) => {
                       // set the value in input
-                      setSearch_value(e.target.value);
+                      setSearch_value(e.target.value.trim());
                       // search the value in list
-                      searchHandler(e.target.value);
+                      searchHandler(e.target.value.trim());
                     }}
                   />
                 )}
@@ -281,7 +282,7 @@ interface IDropDown {
   callClearField?: boolean
 
   // Reset the controller value of clear input from the parent component
-  callClearFieldReset?:any
+  callClearFieldReset?: any
 }
 
 export default DropdownSearch;

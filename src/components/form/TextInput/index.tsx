@@ -57,10 +57,10 @@ const TextInput = (props: ItextInput) => {
       value = value.replace(/[^0-9]/g, "");
 
       // send the value to parent
-      props.onChangeHandler(value);
+      props.onChangeHandler(value.trim());
     }
     // if the input is not number return the input without any changes
-    else props.onChangeHandler(value);
+    else props.onChangeHandler(value.trim());
   };
 
   useEffect(() => {
@@ -85,6 +85,7 @@ const TextInput = (props: ItextInput) => {
       </label>
       <input
         data-test-id="input"
+        data-hj-whitelist
         onInvalid={(e: any) => {
           /**
            *
@@ -130,8 +131,8 @@ const TextInput = (props: ItextInput) => {
             ? props.value === ""
               ? props.value.toLocaleString()
               : props.localeString
-              ? props.value
-              : Number(props.value).toLocaleString()
+                ? props.value
+                : Number(props.value).toLocaleString()
             : props.value
           // props.value
         }

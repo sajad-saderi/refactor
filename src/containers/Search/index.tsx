@@ -173,6 +173,7 @@ const Search = (props: ISearch) => {
             <div className="input_container">
               <p className="label">از تاریخ</p>
               <input
+                data-hj-whitelist
                 className={
                   showBorder
                     ? dayRange.from
@@ -189,6 +190,7 @@ const Search = (props: ISearch) => {
             <div className="input_container">
               <p className="label">تا تاریخ</p>
               <input
+                data-hj-whitelist
                 className={[
                   "exception_input",
                   showBorder
@@ -197,8 +199,8 @@ const Search = (props: ISearch) => {
                         ? null
                         : null
                       : dayRange.from
-                      ? "activeBorder"
-                      : null
+                        ? "activeBorder"
+                        : null
                     : null,
                 ].join(" ")}
                 readOnly={true}
@@ -213,7 +215,7 @@ const Search = (props: ISearch) => {
             value="جستجو"
             class="Blue_BTN search_Btn"
             loading={loading}
-            click={() => {}}
+            click={() => { }}
           />
         </div>
       </form>
