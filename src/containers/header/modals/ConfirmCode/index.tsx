@@ -135,7 +135,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           placeholder="لطفا کد را وارد کنید"
           clearField={clearField}
         />
-        <span className="error_message">{error.message}</span>
+        {/* <span className="error_message">{error.message}</span> */}
         <div className="go_back">
           {ActiveAgain ? (
             <p onClick={() => props.panelController()} className="send_again">
