@@ -17,6 +17,7 @@ let page = 1;
 const Requests_page = () => {
   const [result, setResult] = useState(null);
   const [Authorize, setAuthorize] = useState(false);
+  const [show, setShow] = useState(false);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
 
@@ -34,6 +35,7 @@ const Requests_page = () => {
     } else {
       MODAL_CONTEXT.modalHandler("Login");
     }
+    setShow(true);
     return () => {
       filter_id = [];
       page = 1;
@@ -100,54 +102,56 @@ const Requests_page = () => {
     }
   };
 
-  return Authorize || AUTH_CONTEXT.Auth ? (
-    <article className="responsive ">
-      <section className="requests_page_container">
-        <Requests_filter filter_list={filterHandler} />
-        <section className="requests_section">
-          {result
-            ? result.length > 0 ? (
-              <>
-                {result.map((item, i) => {
-                  return (
-                    <div className="Request_car" key={i}>
-                      <Request_cart
-                        data={item}
-                        getDataAgain={() => {
-                          page = 1;
-                          fetchAPI({
-                            page: 1,
-                            status_id: filter_id.join(","),
-                          });
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </>
-            ) : <p className="NoResult">نتیجه ای یافت نشد!</p> : (
-              <>
-                <Requests_page_Loading />
-                <Requests_page_Loading />
-                <Requests_page_Loading />
-                <Requests_page_Loading />
-              </>
-            )}
+  return show ? (
+    Authorize || AUTH_CONTEXT.Auth ? (
+      <article className="responsive ">
+        <section className="requests_page_container">
+          <Requests_filter filter_list={filterHandler} />
+          <section className="requests_section">
+            {result
+              ? result.length > 0 ? (
+                <>
+                  {result.map((item, i) => {
+                    return (
+                      <div className="Request_car" key={i}>
+                        <Request_cart
+                          data={item}
+                          getDataAgain={() => {
+                            page = 1;
+                            fetchAPI({
+                              page: 1,
+                              status_id: filter_id.join(","),
+                            });
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
+                </>
+              ) : <p className="NoResult">نتیجه ای یافت نشد!</p> : (
+                <>
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                </>
+              )}
+          </section>
         </section>
-      </section>
-      {showMoreButton ? (
-        <span className="Load_more_car" onClick={nextPage}>
-          {show_spinner_loadMore ? (
-            <Spinner display="block" width={20} color="#9E9E9E" />
-          ) : (
-              "نمایش ماشین‌های بیشتر"
-            )}
-        </span>
-      ) : null}
-    </article>
-  ) : (
-      <PleaseLogin />
-    );
+        {showMoreButton ? (
+          <span className="Load_more_car" onClick={nextPage}>
+            {show_spinner_loadMore ? (
+              <Spinner display="block" width={20} color="#9E9E9E" />
+            ) : (
+                "نمایش ماشین‌های بیشتر"
+              )}
+          </span>
+        ) : null}
+      </article>
+    ) : (
+        <PleaseLogin />
+      )
+  ) : <article className="minHeight"></article>
 };
 
 export default Requests_page;

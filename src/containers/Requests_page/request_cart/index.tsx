@@ -374,7 +374,7 @@ const Request_cart = (props: IRequest_cart) => {
         <div className="Role_container">
           {role ? (
             <>
-              <Link href="/">
+              <Link href="/user/[id]" as={`/user/${owner_Info.id}`}>
                 <a>
                   <IoMdPerson size="2rem" />
                   {owner_Info.name}
@@ -383,7 +383,7 @@ const Request_cart = (props: IRequest_cart) => {
             </>
           ) : (
               <>
-                <Link href="/">
+                <Link href="/user/[id]" as={`/user/${renter_info.id}`}>
                   <a>
                     <IoMdPerson size="2rem" />
                     {renter_info.name}

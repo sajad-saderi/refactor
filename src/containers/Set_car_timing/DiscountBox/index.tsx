@@ -203,6 +203,7 @@ const DiscountBox = (props: IDiscountBox) => {
                   setDays_limit(null);
                   setDiscountcheck(0);
                 }
+                props.setShowBox(0);
               }}
             >
               لغو
@@ -227,18 +228,18 @@ const DiscountBox = (props: IDiscountBox) => {
           </div>
         </div>
       ) : (
-        <div
-          className="add_new_one"
-          onClick={() => {
-            props.setShowBox(1);
-            setDiscountcheck(1);
-          }}
-        >
-          <p>
-            <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
+          <div
+            className="add_new_one"
+            onClick={() => {
+              props.setShowBox(1);
+              setDiscountcheck(1);
+            }}
+          >
+            <p>
+              <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
           </p>
-        </div>
-      )}
+          </div>
+        )}
       <div className="Discount_list">
         {DiscountList.map((item, i) => {
           return (

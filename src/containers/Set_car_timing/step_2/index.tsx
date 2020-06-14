@@ -375,7 +375,7 @@ const Add_Car_Step_2 = () => {
           });
         }
 
-        if (showDiscount === 1) {
+        if (discountList.length > 0) {
           await REQUEST_SET_CAR_DISCOUNT({
             token,
             rental_car_id: state.id,

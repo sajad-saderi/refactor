@@ -12,6 +12,7 @@ import Requests_page_Loading from "../../components/cartPlaceholder/requestLoadi
 const Request_page = () => {
   const [result, setResult] = useState([]);
   const [Authorize, setAuthorize] = useState(false);
+  const [show, setShow] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
 
@@ -24,6 +25,7 @@ const Request_page = () => {
     } else {
       MODAL_CONTEXT.modalHandler("Login");
     }
+    setShow(true);
   }, []);
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const Request_page = () => {
     }
   };
 
-  return Authorize || AUTH_CONTEXT.Auth ? (
+  return show ? (Authorize || AUTH_CONTEXT.Auth ? (
     <article className="responsive minHeight request_page_container">
       <section className="request_section">
         {result.length > 0 ? (
@@ -64,7 +66,8 @@ const Request_page = () => {
     </article>
   ) : (
       <PleaseLogin />
-    );
+    )
+  ) : <article className="minHeight"></article>
 };
 
 export default Request_page;
