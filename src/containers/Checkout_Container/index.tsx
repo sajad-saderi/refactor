@@ -157,14 +157,14 @@ const Checkout_Container = () => {
   }
 
   const GoToRequests = async () => {
-    if (!checkRegister()) {
-      return
-    }
     setLoading(true);
     if (!token) {
       MODAL_CONTEXT.modalHandler("Login");
       setLoading(false);
       return;
+    }
+    if (!checkRegister()) {
+      return
     }
     const user_id = jsCookie.get("user_id");
     if (user_id == owner.id) {

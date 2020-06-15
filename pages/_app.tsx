@@ -7,12 +7,6 @@ Sentry.init({
     dsn: 'https://5457324b508844abba775737bc14838e@sentry.io/1547488'
 });
 
-
-
-Router.events.on('routeChangeComplete', () => {
-    window.scrollTo(0, 0);
-});
-
 Router.events.on('routeChangeError', (err, url) => {
     //console.log(`Error loading: ${url}`);
     Router.push('/500')

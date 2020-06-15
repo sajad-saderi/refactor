@@ -26,7 +26,7 @@ const Set_car_timing = () => {
 
   const checkRegister = () => {
     const complete_register = jsCookie.get("complete_register")
-    if (complete_register !== "true") {
+    if (complete_register === "false") {
       Router.push("/complete-register")
       return false
     } else {
