@@ -106,6 +106,11 @@ const Checkout_Container = () => {
 
   const couponHandler = async (e) => {
     e.preventDefault();
+    if (!token) {
+      MODAL_CONTEXT.modalHandler("Login");
+      setLoading(false);
+      return;
+    }
     if (!checkRegister()) {
       return
     }
