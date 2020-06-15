@@ -5,7 +5,6 @@ import Router from "next/router";
 // import "./Requests_page.scss";
 import Request_cart from "./request_cart";
 import Requests_filter from "./Requests_filter";
-import Modal_context from "../../../src/context/Modal_context";
 import Auth_context from "../../../src/context/Auth_context";
 import PleaseLogin from "../../components/PleaseLogin";
 import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
@@ -21,19 +20,19 @@ const Requests_page = () => {
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
 
-  const MODAL_CONTEXT = useContext(Modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
 
   const token = jsCookie.get("token");
 
   useEffect(() => {
-    if (jsCookie.get("complete_register") === "true") {
+    const complete_register = jsCookie.get("complete_register")
+    if (complete_register !== "true") {
+      Router.push("/complete-register")
+    } else if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
       fetchAPI({
         page,
       });
-    } else {
-      MODAL_CONTEXT.modalHandler("Login");
     }
     setShow(true);
     return () => {

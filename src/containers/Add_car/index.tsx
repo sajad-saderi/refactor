@@ -4,6 +4,7 @@ import Modal_context from "../../../src/context/Modal_context";
 import Auth_context from "../../../src/context/Auth_context";
 import PleaseLogin from "../../../src/components/PleaseLogin";
 import Add_Car_Step_1 from "./step_1";
+import Router from "next/router";
 
 const Add_car = () => {
   const [Authorize, setAuthorize] = useState(false);
@@ -12,6 +13,9 @@ const Add_car = () => {
   const AUTH_CONTEXT = useContext(Auth_context);
 
   useEffect(() => {
+    if (!checkRegister()) {
+      return
+    }
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
     } else {
@@ -20,15 +24,26 @@ const Add_car = () => {
     setShow(true);
   }, []);
 
+  const checkRegister = () => {
+    const complete_register = jsCookie.get("complete_register")
+    if (complete_register !== "true") {
+      Router.push("/complete-register")
+      return false
+    } else {
+      return true
+    }
+  }
+
+
   return show ? (
     Authorize || AUTH_CONTEXT.Auth ? (
       <Add_Car_Step_1 />
     ) : (
-      <PleaseLogin />
-    )
+        <PleaseLogin />
+      )
   ) : (
-    <article className="minHeight"></article>
-  );
+      <article className="minHeight"></article>
+    );
 };
 
 export default Add_car;

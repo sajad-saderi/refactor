@@ -112,10 +112,10 @@ const Complete_register_container = () => {
 
   useEffect(() => {
     // if the user is not register the login modal will show up
-    if (jsCookie.get("complete_register") === "true") {
+    if (jsCookie.get("complete_register") === "false") {
       setAuthorize(true);
     } else {
-      MODAL_CONTEXT.modalHandler("Login");
+      Router.push('/')
     }
     setShow(true);
   }, []);
@@ -142,6 +142,7 @@ const Complete_register_container = () => {
         jsCookie.set("complete_register", true, cook_option);
         jsCookie.set("first_name", state.first_name, cook_option);
         jsCookie.set("last_name", state.last_name, cook_option);
+        jsCookie.set("user_name", state.first_name + " " + state.last_name, cook_option);
         if (state.company_name !== "") {
           jsCookie.set("company_name", state.company_name, cook_option);
         } else if (jsCookie.get("company_name")) {

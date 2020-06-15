@@ -60,7 +60,7 @@ const TextInput = (props: ItextInput) => {
       props.onChangeHandler(value.trim());
     }
     // if the input is not number return the input without any changes
-    else props.onChangeHandler(value.trim());
+    else props.onChangeHandler(value);
   };
 
   useEffect(() => {

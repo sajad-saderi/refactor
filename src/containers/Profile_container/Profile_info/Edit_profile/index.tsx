@@ -138,7 +138,7 @@ const Edit_profile = (props: IEdit_profile) => {
       setLoading(false);
       return;
     }
-    if (!state.username) {
+    if (!state.username && privateLink) {
       dispatchError({
         type: "username",
         username: true,
@@ -147,7 +147,7 @@ const Edit_profile = (props: IEdit_profile) => {
       setLoading(false);
       return;
     }
-    if (!state.company_name) {
+    if (!state.company_name && showCompany) {
       dispatchError({
         type: "company_name",
         company_name: true,
@@ -167,6 +167,11 @@ const Edit_profile = (props: IEdit_profile) => {
 
     try {
       if (state.username !== "") {
+        jsCookie.set("user_name",
+          state.username,
+          {
+            expires: 100,
+          })
         await REQUEST_SET_USERNAME({ token, username: state.username });
       }
     } catch (error) {
@@ -180,6 +185,13 @@ const Edit_profile = (props: IEdit_profile) => {
       return;
     }
     try {
+      if (!privateLink && !showCompany) {
+        jsCookie.set("user_name",
+          state.first_name + " " + state.last_name,
+          {
+            expires: 100,
+          })
+      }
       await REQUEST_SET_FIRST_LAST_NAME({
         token,
         first_name: state.first_name,
@@ -198,6 +210,11 @@ const Edit_profile = (props: IEdit_profile) => {
 
     try {
       if (state.company_name !== "") {
+        jsCookie.set("company_name",
+          state.company_name,
+          {
+            expires: 100,
+          })
         await REQUEST_SET_COMPANY_NAME({
           token,
           company_name: state.company_name,

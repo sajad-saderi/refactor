@@ -13,6 +13,9 @@ const Profile_container = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    if (!checkRegister()) {
+      return
+    }
     fetchApi();
   }, []);
 
@@ -25,6 +28,18 @@ const Profile_container = () => {
     setData(user_cars_info);
   };
 
+  const checkRegister = () => {
+    const complete_register = jsCookie.get("complete_register")
+    console.log("complete_register", complete_register);
+
+    if (complete_register !== "true") {
+      Router.push("/complete-register")
+      return false
+    } else {
+      return true
+    }
+  }
+
   return (
     <article className="responsive minHeight profile_container">
       {data ? (
@@ -32,7 +47,7 @@ const Profile_container = () => {
           <NextSeo
             title={`اجاره خودرو از ${
               data.company_name ? data.company_name : data.name
-            } | اتولی`}
+              } | اتولی`}
             description=" حساب کاربری"
             openGraph={{
               title: `اجاره خودرو از ${data.name} | اتولی`,
@@ -48,8 +63,8 @@ const Profile_container = () => {
           <Profile_Cars is_mine={is_mine} />
         </>
       ) : (
-        <NextSeo title="اجاره خودرو | اتولی" description=" حساب کاربری" />
-      )}
+          <NextSeo title="اجاره خودرو | اتولی" description=" حساب کاربری" />
+        )}
     </article>
   );
 };

@@ -47,7 +47,7 @@ const Menu = () => {
         </li>
       )}
       {/* if the user had registered completely, can access to orders history */}
-      {complete_register && (
+      {complete_register === "true" && (
         <li>
           <Link href="/requests">
             <a>رزروهای من</a>

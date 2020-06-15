@@ -106,6 +106,9 @@ const Checkout_Container = () => {
 
   const couponHandler = async (e) => {
     e.preventDefault();
+    if (!checkRegister()) {
+      return
+    }
     setCoupanLoading(true);
     // validation
     if (coupon.length === 0) {
@@ -143,7 +146,20 @@ const Checkout_Container = () => {
     }
   };
 
+  const checkRegister = () => {
+    const complete_register = jsCookie.get("complete_register")
+    if (complete_register !== "true") {
+      Router.push("/complete-register")
+      return false
+    } else {
+      return true
+    }
+  }
+
   const GoToRequests = async () => {
+    if (!checkRegister()) {
+      return
+    }
     setLoading(true);
     if (!token) {
       MODAL_CONTEXT.modalHandler("Login");
