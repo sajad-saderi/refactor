@@ -6,6 +6,7 @@ import moment from "moment-jalaali";
 import Router from "next/router";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import "../src/styles/pages/Success_payment.scss";
+import { NextSeo } from "next-seo";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -37,6 +38,20 @@ const Success_payment = () => {
 
   return (
     <Layout>
+      <NextSeo
+        title="پرداخت موفق"
+        description="پرداخت موفق"
+        openGraph={{
+          title: "پرداخت موفق",
+          description:
+            "پرداخت موفق",
+        }}
+        twitter={{
+          handle: "@otoli_net",
+          site: "@otoli_net",
+          cardType: "summary_large_image",
+        }}
+      />
       <article className="responsive minHeight local_payment">
         {renter ? (
           <section className="payment_cart">

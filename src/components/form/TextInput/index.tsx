@@ -21,38 +21,35 @@ const TextInput = (props: ItextInput) => {
         /۸/g,
         /۹/g,
       ];
-      const arabicNumbers = [
-        /٠/g,
-        /١/g,
-        /٢/g,
-        /٣/g,
-        /٤/g,
-        /٥/g,
-        /٦/g,
-        /٧/g,
-        /٨/g,
-        /٩/g,
-      ];
-      const persianNumbersSTD = [
-        /۰/g,
-        /۱/g,
-        /۲/g,
-        /۳/g,
-        /۴/g,
-        /۵/g,
-        /۶/g,
-        /۷/g,
-        /۸/g,
-        /۹/g,
-      ];
+      // const arabicNumbers = [
+      //   /٠/g,
+      //   /١/g,
+      //   /٢/g,
+      //   /٣/g,
+      //   /٤/g,
+      //   /٥/g,
+      //   /٦/g,
+      //   /٧/g,
+      //   /٨/g,
+      //   /٩/g,
+      // ];
+      // const persianNumbersSTD = [
+      //   /۰/g,
+      //   /۱/g,
+      //   /۲/g,
+      //   /۳/g,
+      //   /۴/g,
+      //   /۵/g,
+      //   /۶/g,
+      //   /۷/g,
+      //   /۸/g,
+      //   /۹/g,
+      // ];
       // replace all the arabic or persian character with english number
       for (var i = 0; i < 10; i++) {
         value = value
           .replace(persianNumbers[i], i)
-          .replace(persianNumbersSTD[i], i)
-          .replace(arabicNumbers[i], i);
       }
-
       // remove all the non-numeric char from string
       value = value.replace(/[^0-9]/g, "");
 
