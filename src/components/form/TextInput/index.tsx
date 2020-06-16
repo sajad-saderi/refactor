@@ -7,64 +7,63 @@ const TextInput = (props: ItextInput) => {
 
   const ValueHandler = (e) => {
     let value = e.target.value;
+    // check the given character and convert it to english
+    const persianNumbers = [
+      /۰/g,
+      /۱/g,
+      /۲/g,
+      /۳/g,
+      /۴/g,
+      /۵/g,
+      /۶/g,
+      /۷/g,
+      /۸/g,
+      /۹/g,
+    ];
+    const arabicNumbers = [
+      /٠/g,
+      /١/g,
+      /٢/g,
+      /٣/g,
+      /٤/g,
+      /٥/g,
+      /٦/g,
+      /٧/g,
+      /٨/g,
+      /٩/g,
+    ];
+    const persianNumbersSTD = [
+      /۰/g,
+      /۱/g,
+      /۲/g,
+      /۳/g,
+      /۴/g,
+      /۵/g,
+      /۶/g,
+      /۷/g,
+      /۸/g,
+      /۹/g,
+    ];
+    // replace all the arabic or persian character with english number
+    for (var i = 0; i < 10; i++) {
+      value = value
+        .replace(persianNumbers[i], i)
+        .replace(persianNumbersSTD[i], i)
+        .replace(arabicNumbers[i], i);
+    }
     if (props.number) {
-      // check the given character and convert it to english
-      const persianNumbers = [
-        /۰/g,
-        /۱/g,
-        /۲/g,
-        /۳/g,
-        /۴/g,
-        /۵/g,
-        /۶/g,
-        /۷/g,
-        /۸/g,
-        /۹/g,
-      ];
-      // const arabicNumbers = [
-      //   /٠/g,
-      //   /١/g,
-      //   /٢/g,
-      //   /٣/g,
-      //   /٤/g,
-      //   /٥/g,
-      //   /٦/g,
-      //   /٧/g,
-      //   /٨/g,
-      //   /٩/g,
-      // ];
-      // const persianNumbersSTD = [
-      //   /۰/g,
-      //   /۱/g,
-      //   /۲/g,
-      //   /۳/g,
-      //   /۴/g,
-      //   /۵/g,
-      //   /۶/g,
-      //   /۷/g,
-      //   /۸/g,
-      //   /۹/g,
-      // ];
-      // replace all the arabic or persian character with english number
-      for (var i = 0; i < 10; i++) {
-        value = value
-          .replace(persianNumbers[i], i)
-      }
       // remove all the non-numeric char from string
       value = value.replace(/[^0-9]/g, "");
-
-      // send the value to parent
-      props.onChangeHandler(value.trim());
     }
     // if the input is not number return the input without any changes
-    else props.onChangeHandler(value);
+    props.onChangeHandler(value);
   };
 
-  useEffect(() => {
-    if (props.error.status) {
-      scrollTo(0, TextInput.current.offsetTop);
-    }
-  }, [props.error]);
+  // useEffect(() => {
+  //   if (props.error.status) {
+  //     scrollTo(0, TextInput.current.offsetTop);
+  //   }
+  // }, [props.error]);
 
   return (
     <div className="text_input_container" ref={TextInput}>
@@ -82,7 +81,7 @@ const TextInput = (props: ItextInput) => {
       </label>
       <input
         data-test-id="input"
-        data-hj-whitelist
+        data-hj-whitelist="true"
         onInvalid={(e: any) => {
           /**
            *

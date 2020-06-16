@@ -112,11 +112,11 @@ const Complete_register_container = () => {
 
   useEffect(() => {
     // if the user is not register the login modal will show up
-    if (jsCookie.get("complete_register") === "false") {
+    // if (jsCookie.get("complete_register") === "false") {
       setAuthorize(true);
-    } else {
-      Router.push('/')
-    }
+    // } else {
+      // Router.push('/')
+    // }
     setShow(true);
   }, []);
 

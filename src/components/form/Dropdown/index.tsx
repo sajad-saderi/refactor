@@ -47,12 +47,12 @@ const DropdownSearch = (props: IDropDown) => {
     }
   }, [props.callClearField]);
 
-  useEffect(() => {
-    //  In case of error, the page will be scrolled to the invalid drop-down
-    if (props.error_status) {
-      scrollTo(0, wrapperRef.current.offsetTop);
-    }
-  }, [props.error_status]);
+  // useEffect(() => {
+  //   //  In case of error, the page will be scrolled to the invalid drop-down
+  //   if (props.error_status) {
+  //     scrollTo(0, wrapperRef.current.offsetTop);
+  //   }
+  // }, [props.error_status]);
 
   const DropDownController = () => {
     setShowController(!ShowController);

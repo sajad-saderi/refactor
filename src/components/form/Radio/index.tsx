@@ -8,12 +8,12 @@ const Radio = (props: IRadio) => {
     setChecked(props.defaultCheck);
   }, [props.defaultCheck]);
 
-  useEffect(() => {
-    //  In case of error, the page will be scrolled to the invalid radio button section
-    if (props.error_status) {
-      scrollTo(0, wrapperRef.current.offsetTop);
-    }
-  }, [props.error_status]);
+  // useEffect(() => {
+  //   //  In case of error, the page will be scrolled to the invalid radio button section
+  //   if (props.error_status) {
+  //     scrollTo(0, wrapperRef.current.offsetTop);
+  //   }
+  // }, [props.error_status]);
 
   return props.data.map((i: any, index) => {
     return (

@@ -72,8 +72,9 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             name="cell Phone"
             onChangeHandler={(e) => {
               setCellPhone(e);
-            }}
+            }} 
             autoFocus={true}
+            localeString={false}
             value={cellPhone}
             min={11}
             max={11}
@@ -87,7 +88,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             class="Blue_BTN login_submit"
             value="ارسال کد ورود"
             loading={loading}
-            click={() => {}}
+            click={() => { }}
           />
         </form>
       </div>
