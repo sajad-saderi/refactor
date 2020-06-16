@@ -181,10 +181,10 @@ const Rent = () => {
     <Layout>
       <NextSeo
         canonical="https://otoli.net/"
-        title="اتولی | اجاره آسان خودرو"
+        title="اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | اتولی"
         description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
         openGraph={{
-          title: "اتولی | اجاره آسان خودرو",
+          title: "اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | اتولی",
           description:
             "اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.",
           site_name: "اتولی",
@@ -350,7 +350,7 @@ const Rent = () => {
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}
         </div>
-        <section className="responsive third_container"> 
+        <section className="responsive third_container">
           {dynamicLinks ? <div className="RentPage_Dynamic_links">
             <ul>
               {dynamicLinks.map(item => {
