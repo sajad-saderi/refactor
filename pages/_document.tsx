@@ -189,9 +189,6 @@ export default class MyDocument extends Document {
           <link href="icon-192x192.png" rel="icon" sizes="192x192" />
           <link href="icon-128x128.png" rel="icon" sizes="128x128" />
 
-          {/* Others  */}
-          <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
           {/* UC Browser   */}
           <link
             href="images/icon-52x52.png"
