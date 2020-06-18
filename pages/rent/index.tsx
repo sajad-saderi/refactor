@@ -180,7 +180,7 @@ const Rent = () => {
   return (
     <Layout>
       <NextSeo
-        canonical="https://otoli.net/"
+        canonical="https://otoli.net/rent"
         title="اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | اتولی"
         description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
         openGraph={{

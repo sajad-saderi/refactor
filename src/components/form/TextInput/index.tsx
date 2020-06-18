@@ -100,7 +100,7 @@ const TextInput = (props: ItextInput) => {
         }}
         autoFocus={props.autoFocus}
         className={[
-          "text_input",
+          "text_input","data-hj-whitelist",
           props.error.status ? "inputError" : null,
         ].join(" ")}
         name={props.name}

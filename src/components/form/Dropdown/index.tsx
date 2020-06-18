@@ -129,6 +129,7 @@ const DropdownSearch = (props: IDropDown) => {
         <input
           data-test-id="drop_down_input"
           className={[
+            "data-hj-whitelist",
             props.disabled ? "Disable_color" : null,
             props.styleClass ? props.styleClass : null,
             props.error_status ? "inputError" : null,
