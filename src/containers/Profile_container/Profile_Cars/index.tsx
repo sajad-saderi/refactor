@@ -74,7 +74,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
 
   return (
     <article className="Profile_car_container">
-      {props.is_mine && (
+      {props.is_mine && result ? result.length > 3 && (
         <div className="service_filer">
           <Radio
             name="show_car_Radio"
@@ -100,7 +100,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
             ]}
           />
         </div>
-      )}
+      ) : null}
       {result ? (
         result.length > 0 ? (
           result.map((item, i) => {
@@ -114,27 +114,28 @@ const Profile_Cars = (props: IProfile_Cars) => {
               />
             );
           })
-        ) : (
-          <div className="noCar_added">
-            <p>خودرویی یافت نشد.</p>
-            <Button
-              value="+ افزودن خودرو"
-              class="Blue_BTN HEAP_Profile_Btn_AddCar"
-              click={() => {
-                Router.push("/add-car");
-              }}
-              loading={false}
-            />
-          </div>
-        )
+        ) : null
+        // (
+        //   <div className="noCar_added">
+        //     <p>خودرویی یافت نشد.</p>
+        //     <Button
+        //       value="+ افزودن خودرو"
+        //       class="Blue_BTN HEAP_Profile_Btn_AddCar"
+        //       click={() => {
+        //         Router.push("/add-car");
+        //       }}
+        //       loading={false}
+        //     />
+        //   </div>
+        // )
       ) : (
-        <>
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-        </>
-      )}
+          <>
+            <CarLoading />
+            <CarLoading />
+            <CarLoading />
+            <CarLoading />
+          </>
+        )}
       {showMoreButton ? (
         <div className="Load_more_car_container">
           <span
