@@ -409,7 +409,7 @@ const CarPage = () => {
               }
               {!is_mine ? (
                 showCalender ? (
-                  <div className="search_box_div" onClick={() => setCalenderClick(true)}>
+                  <div className="search_box_div HEAP_Car_Input_Calender" onClick={() => setCalenderClick(true)}>
                     <DatePicker
                       inputPlaceholder="از تاریخ تا تاریخ"
                       value={dayRange}
@@ -424,7 +424,7 @@ const CarPage = () => {
                 ) : null
               ) : null}
               <Link href={`/user/[id]`} as={`/user/${owner.id}`}>
-                <a>
+                <a className="HEAP_Car_Link_Profile">
                   <figure className="owner_part">
                     <img src={owner.thumbnail_url} alt={owner.name} />
                     <p>{owner.name}</p>
@@ -435,7 +435,7 @@ const CarPage = () => {
                 <div className="continue_to_checkout">
                   <Button
                     value="ادامه"
-                    class="Blue_BTN localClass"
+                    class="Blue_BTN localClass HEAP_Car_Btn_Continue"
                     loading={loading}
                     click={GoToCheckout}
                   />

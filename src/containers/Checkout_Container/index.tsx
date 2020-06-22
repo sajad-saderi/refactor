@@ -342,7 +342,7 @@ const Checkout_Container = () => {
             {!useCouponPrice ? (
               !showcoupon ? (
                 <p
-                  className="coupon_Text_show"
+                  className="coupon_Text_show HEAP_Checkout_Btn_Coupon"
                   onClick={() => setShowcoupon(true)}
                 >
                   کد تخفیف دارید؟
@@ -363,7 +363,7 @@ const Checkout_Container = () => {
                     />
                     <Button
                       value="اعمال"
-                      class="Blue_BTN coupan_BTN"
+                      class="Blue_BTN coupan_BTN HEAP_Checkout_Btn_CouponSubmit"
                       loading={coupanLoading}
                       click={() => { }}
                     />
@@ -393,7 +393,7 @@ const Checkout_Container = () => {
           <div className="continue_to_pay">
             <Button
               value="ثبت درخواست"
-              class="Blue_BTN localClass"
+              class="Blue_BTN localClass HEAP_Checkout_Btn_Book"
               disable={loading}
               loading={loading}
               click={GoToRequests}

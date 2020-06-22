@@ -823,7 +823,7 @@ const Add_Car_Step_2 = () => {
             value="ثبت"
             loading={Loading}
             disable={Loading}
-            class="Blue_BTN local_style"
+            class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
             click={() => { }}
           />
           {ErrorState.error_message ? (

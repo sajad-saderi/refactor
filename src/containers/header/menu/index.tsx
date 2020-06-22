@@ -37,20 +37,21 @@ const Menu = () => {
           </Link>
         </li>
       ) : (
-        <li
-          onClick={() => {
-            // set the 'login' model to appear
-            MODAL_CONTEXT.modalHandler("Login");
-          }}
-        >
-          ورود/ثبت نام
-        </li>
-      )}
+          <li
+            className="HEAP_Header_Btn_Login"
+            onClick={() => {
+              // set the 'login' model to appear
+              MODAL_CONTEXT.modalHandler("Login");
+            }}
+          >
+            ورود/ثبت نام
+          </li>
+        )}
       {/* if the user had registered completely, can access to orders history */}
       {complete_register === "true" && (
         <li>
           <Link href="/requests">
-            <a>رزروهای من</a>
+            <a className="HEAP_Header_Link_MyOrders">رزروهای من</a>
           </Link>
         </li>
       )}

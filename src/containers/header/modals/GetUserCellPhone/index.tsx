@@ -85,7 +85,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
           {/* show an error message */}
           {/* <span className="error_message">{error.message}</span> */}
           <Button
-            class="Blue_BTN login_submit"
+            class="Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode"
             value="ارسال کد ورود"
             loading={loading}
             click={() => { }}

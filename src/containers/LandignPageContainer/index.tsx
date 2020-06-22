@@ -275,7 +275,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               {!showSearch ? <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
                 5
               )} تا ${result[0].end_date.slice(5)}`}</p> : null}
-              <p className="change_search_btn" >
+              <p className="change_search_btn HEAP_LandingPages_Btn_ChangeSearch" >
                 {showSearch
                   ? <span className="close_text_btn">
                     بستن
@@ -434,7 +434,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
       </section>
       {/* load more */}
       {remained_count > 0 && (
-        <span className="Load_more_car" onClick={() => loadMore()}>
+        <span className="Load_more_car HEAP_LandingPages_Btn_ShowMore" onClick={() => loadMore()}>
           {show_spinner_loadMore ? (
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (

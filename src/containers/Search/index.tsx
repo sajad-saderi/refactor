@@ -213,7 +213,7 @@ const Search = (props: ISearch) => {
           <p className="Search_Text_transparent">search</p>
           <Button
             value="جستجو"
-            class="Blue_BTN search_Btn"
+            class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
             loading={loading}
             click={() => { }}
           />

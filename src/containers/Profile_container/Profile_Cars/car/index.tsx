@@ -84,7 +84,7 @@ const Car = (props: ICar) => {
         <Link href={`/car/[id]`} as={link}>
           <a
             data-test-id="Link"
-            className={`CAR_CART_${car.brand.name.fa} ${car.name.fa}`}
+            className="HEAP_Profile_Card_Car"
           >
             <figure>
               <img
@@ -124,7 +124,7 @@ const Car = (props: ICar) => {
               onClick={() => {
                 Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
               }}
-              className="EDIT_PRPICE_AND_TIME"
+              className="HEAP_Profile_Btn_ChangeCarTiming"
             >
               تغییر تاریخ و قیمت
             </p>
@@ -133,13 +133,13 @@ const Car = (props: ICar) => {
             ) : (
                 <p
                   data-test-id="OUT_OF_SERVICE"
-                  className="OUT_OF_SERVICE"
+                  className="HEAP_Profile_Btn_OutOfService"
                   onClick={setServiceStatus}
                 >
                   {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
                 </p>
               )}
-            <span>
+            <span className="HEAP_Profile_Btn_EditCarDetails">
               <IoMdCreate
                 color="#4ba3ce"
                 size="2rem"
@@ -148,7 +148,7 @@ const Car = (props: ICar) => {
                 }}
               />
             </span>
-            <span>
+            <span className="HEAP_Profile_Btn_Delete">
               <IoMdTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
             </span>
           </div>

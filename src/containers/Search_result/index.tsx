@@ -461,7 +461,7 @@ const Search_result = () => {
       {/* load more */}
       {
         remained_count > 0 && (
-          <span className="Load_more_car" onClick={() => loadMore()}>
+          <span className="Load_more_car HEAP_SearchResult_Btn_ShowMore" onClick={() => loadMore()}>
             {show_spinner_loadMore ? (
               <Spinner display="block" width={20} color="#9E9E9E" />
             ) : (

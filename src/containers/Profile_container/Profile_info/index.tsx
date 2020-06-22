@@ -58,7 +58,7 @@ const Profile_info = (props: IProfile_info) => {
                 </div>
                 <Button
                   value="+ افزودن خودرو"
-                  class="Blue_BTN"
+                  class="Blue_BTN HEAP_Profile_Btn_AddCar"
                   click={() => {
                     Router.push("/add-car");
                   }}

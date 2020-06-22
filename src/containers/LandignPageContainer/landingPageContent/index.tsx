@@ -15,7 +15,7 @@ const Landing_Page_Content = (props: ILanding_Page_Content) => {
             {props.data.link_set.map((item) => {
               return (
                 <li>
-                  <a href={item.url}>{item.name}</a>
+                  <a className="HEAP_LandingPages_Link_RelatedLinks" href={item.url}>{item.name}</a>
                 </li>
               );
             })}

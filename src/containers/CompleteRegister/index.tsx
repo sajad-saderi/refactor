@@ -408,7 +408,7 @@ const Complete_register_container = () => {
           </div>
           <Button
             class={[
-              "Blue_BTN local_BTN",
+              "Blue_BTN local_BTN HEAP_CompleteRegister_Btn_Submit",
               // , rolesCheck ? null : "disable_BTN"
             ].join(" ")}
             value="تایید"

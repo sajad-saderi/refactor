@@ -119,7 +119,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
             <p>خودرویی یافت نشد.</p>
             <Button
               value="+ افزودن خودرو"
-              class="Blue_BTN"
+              class="Blue_BTN HEAP_Profile_Btn_AddCar"
               click={() => {
                 Router.push("/add-car");
               }}
@@ -138,7 +138,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
       {showMoreButton ? (
         <div className="Load_more_car_container">
           <span
-            className="Load_more_car"
+            className="Load_more_car HEAP_Profile_Btn_ShowMore"
             onClick={() => {
               page = 1 + page;
               fetchApi(page);

@@ -229,7 +229,7 @@ const DiscountBox = (props: IDiscountBox) => {
         </div>
       ) : (
           <div
-            className="add_new_one"
+            className="add_new_one HEAP_SetCarAndTiming_Btn_AddDiscount"
             onClick={() => {
               props.setShowBox(1);
               setDiscountcheck(1);

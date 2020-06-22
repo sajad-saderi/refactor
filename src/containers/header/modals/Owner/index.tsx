@@ -103,7 +103,7 @@ const Owner = (props: IRenter) => {
             />
             <div className="rate_buttons">
               <Button
-                class="Blue_BTN submit_submit"
+                class="Blue_BTN submit_submit HEAP_ModalReviewOwnerToRenter_Btn_Submit"
                 value="ثبت امتیاز"
                 loading={loading}
                 click={() => { }}

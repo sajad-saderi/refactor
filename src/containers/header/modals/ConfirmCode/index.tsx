@@ -153,7 +153,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           <p className="Edit_number">ویرایش شماره</p>
         </div>
         <Button
-          class="Blue_BTN login_submit"
+          class="Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login"
           value="ورود"
           loading={loading}
           click={() => { }}

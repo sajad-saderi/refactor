@@ -1341,7 +1341,7 @@ const Add_Car_Step_1 = () => {
           value="ثبت"
           loading={Loading}
           disable={Loading}
-          class="Blue_BTN local_style"
+          class="Blue_BTN local_style HEAP_AddCar_Btn_Submit"
           // onCLick nothing happend we listen to the form submition
           click={() => { }}
         />

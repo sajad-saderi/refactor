@@ -50,7 +50,7 @@ const Join_us_content = () => {
         </div>
         <div className="add_car_section">
           <Link href="/add-car">
-            <a className="Blue_BTN add_car_custom">ماشین‌تان را اضافه کنید</a>
+            <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">ماشین‌تان را اضافه کنید</a>
           </Link>
           <p className="call_us">
             سوالی دارید؟ با ما تماس بگیرید:‌{" "}

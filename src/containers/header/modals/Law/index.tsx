@@ -1330,7 +1330,7 @@ const Law = (props: ILaw) => {
         </div>
         <Button
           value="می‌پذیرم"
-          class="Blue_BTN local_Style"
+          class="Blue_BTN local_Style HEAP_ModalLaws_Btn_Accept"
           loading={false}
           // close the modal
           click={() => MODAL_CONTEXT.modalHandler()}
