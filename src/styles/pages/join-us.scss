@@ -72,11 +72,16 @@
           width: 24%;
         }
         .value_container {
+          .text_input_container {
+            .text_input {
+              margin: 0;
+            }
+          }
           position: relative;
           span {
             position: absolute;
             left: 10px;
-            top: 27px;
+            top: 17px;
             font-size: 1.2rem;
           }
           .clean_icon {
@@ -157,11 +162,6 @@
           .local_Button_joinUs {
             width: 100%;
             margin-bottom: 1.4rem;
-          }
-          .value_container {
-            span {
-              top: 17px;
-            }
           }
         }
         .CalculatorResult {
