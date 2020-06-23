@@ -334,7 +334,7 @@ const Search_result = () => {
             />
           </div>
         </section>
-        {showSearch ? <IoIosArrowUp color="#dcdcdc" size="2rem" onClick={() => setShowSearch(false)} /> : null}
+        {showSearch ? <IoIosArrowUp className="Arrow_up_change_search" color="#dcdcdc" size="2rem" onClick={() => setShowSearch(false)} /> : null}
       </div>
       {/* search box */}
       <section className="responsive">

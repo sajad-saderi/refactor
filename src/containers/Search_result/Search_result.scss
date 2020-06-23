@@ -58,6 +58,9 @@
       display: block;
       cursor: pointer;
     }
+    .Arrow_up_change_search {
+      width: 2rem;
+    }
   }
 
   .price_sort_container {
@@ -127,6 +130,7 @@
           display: inline-block;
           vertical-align: middle;
           margin-right: 1rem;
+          width: 1.4rem;
         }
       }
     }
