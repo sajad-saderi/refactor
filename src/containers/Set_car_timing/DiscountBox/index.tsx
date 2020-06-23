@@ -55,7 +55,7 @@ const DiscountBox = (props: IDiscountBox) => {
     { key: "29", value: "29", text: "۲۹ روز" },
     { key: "30", value: "30", text: "۳۰ روز" },
   ];
-  const DiscountWrapper = useRef(null);
+  // const DiscountWrapper = useRef(null);
 
   const onConfirm = (data?, autoFill = false) => {
     // if it's edit mode fill it
@@ -130,14 +130,14 @@ const DiscountBox = (props: IDiscountBox) => {
     }
   }, [props.initialDiscountList]);
 
-  useEffect(() => {
-    if (props.error) {
-      scrollTo(0, DiscountWrapper.current.offsetTop);
-    }
-  }, [props.error]);
+  // useEffect(() => {
+  //   if (props.error) {
+  //     scrollTo(0, DiscountWrapper.current.offsetTop);
+  //   }
+  // }, [props.error]);
 
   return (
-    <div className="Discount_form_container" ref={DiscountWrapper}>
+    <div className="Discount_form_container" >
       <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
       {Discountcheck === 1 ? (
         <div className="Discount_Controller">
@@ -220,6 +220,7 @@ const DiscountBox = (props: IDiscountBox) => {
                   setDays_limit_name(null);
                   setDays_limit(null);
                   setDiscountcheck(0);
+                  props.setShowBox(0);
                 }}
                 color="#737373"
                 size="2rem"
@@ -279,7 +280,9 @@ const DiscountBox = (props: IDiscountBox) => {
                         return index !== i;
                       })
                     );
+                    setDiscountcheck(0);
                     props.removeDiscountList(i);
+                    props.setShowBox(0);
                   }}
                 >
                   <IoMdTrash size="2rem" />

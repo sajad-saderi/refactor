@@ -102,7 +102,7 @@ const ConfirmCode = (props: IConfirmCode) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error(error.response?.message);
+        console.error("!Error", error.response ? error.response.data.message : error.message);
         setError({
           status: true,
           message: error.response.data.message,
@@ -128,10 +128,10 @@ const ConfirmCode = (props: IConfirmCode) => {
           onChangeHandler={(e) => {
             setCode(e);
           }}
-          autoFocus={true} 
+          autoFocus={true}
           value={code}
           min={4}
-          max={4} 
+          max={4}
           label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
           placeholder="لطفا کد را وارد کنید"
           clearField={clearField}

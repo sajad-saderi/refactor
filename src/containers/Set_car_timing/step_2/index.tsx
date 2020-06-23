@@ -375,13 +375,13 @@ const Add_Car_Step_2 = () => {
           });
         }
 
-        if (discountList.length > 0) {
-          await REQUEST_SET_CAR_DISCOUNT({
-            token,
-            rental_car_id: state.id,
-            data: JSON.stringify(discountList),
-          });
-        }
+        // if (discountList.length > 0) {
+        await REQUEST_SET_CAR_DISCOUNT({
+          token,
+          rental_car_id: state.id,
+          data: JSON.stringify(discountList),
+        });
+        // }
         // remove the car id from storage
         jsCookie.remove("new_car");
         const partial_car_res = await REQUEST_SET_CAR_PARTIAL({

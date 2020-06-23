@@ -51,7 +51,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error(error.response?.message);
+        console.error("!Error", error.response ? error.response.data.message : error.message);
         setError({
           status: true,
           message: error.response.data.message,
@@ -72,7 +72,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             name="cell Phone"
             onChangeHandler={(e) => {
               setCellPhone(e);
-            }} 
+            }}
             autoFocus={true}
             localeString={false}
             value={cellPhone}

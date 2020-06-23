@@ -44,7 +44,7 @@ const TellMe = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log("!Error", error.response?.message);
+        console.error("!Error", error.response ? error.response.data.message : error.message);
         if (error.response?.data) {
           setError({
             status: true,
@@ -97,7 +97,7 @@ const TellMe = () => {
             class="Blue_BTN login_submit HEAP_ModalInformMeMyCity_Btn_Submit"
             value="ارسال کد ورود"
             loading={loading}
-            click={() => {}}
+            click={() => { }}
           />
         </form>
       </div>
