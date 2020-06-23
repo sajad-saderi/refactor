@@ -1,7 +1,7 @@
 @import "../../styles/colors";
 
 .complete_register_container {
-  max-width: 69rem; 
+  max-width: 69rem;
   .pageTitle {
     position: relative;
     .Person_icon {
@@ -9,6 +9,7 @@
       margin-right: 0;
       display: inline-block;
       vertical-align: middle;
+      width: 6rem;
     }
     h3 {
       font-size: 1.8rem;

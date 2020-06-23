@@ -50,6 +50,11 @@
       color: $AnchorTag_Color;
       text-align: right;
     }
+    .modal_box_div {
+      .close_btn {
+        width: 2rem;
+      }
+    }
     .go_back {
       display: inline-block;
       width: 50%;

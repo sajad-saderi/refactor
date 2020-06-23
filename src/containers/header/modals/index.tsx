@@ -26,19 +26,20 @@ const Modals = (props) => {
           props.modal_type === "Login"
             ? "login_modal"
             : props.modal_type === "TellMe"
-            ? "Tell_me"
-            : props.modal_type === "Renter"
-            ? "Renter"
-            : props.modal_type === "Owner"
-            ? "Owner"
-            : props.modal_type === "Law"
-            ? "Law"
-            : null,
+              ? "Tell_me"
+              : props.modal_type === "Renter"
+                ? "Renter"
+                : props.modal_type === "Owner"
+                  ? "Owner"
+                  : props.modal_type === "Law"
+                    ? "Law"
+                    : null,
         ].join(" ")}
       >
         {/* close Icon */}
         <div className="modal_box_div">
           <IoMdClose
+            className="close_btn"
             color="rgb(165, 165, 165)"
             size="2rem"
             onClick={() => Modal_context.modalHandler()}
@@ -50,11 +51,11 @@ const Modals = (props) => {
           change ? (
             <ConfirmCode panelController={panelController} />
           ) : (
-            <GetUserCellPhone
-              data-test-id="GetUserCellPhone"
-              panelController={panelController}
-            />
-          )
+              <GetUserCellPhone
+                data-test-id="GetUserCellPhone"
+                panelController={panelController}
+              />
+            )
         ) : props.modal_type === "TellMe" ? (
           <TellMe data-test-id="TellMe" />
         ) : props.modal_type === "Renter" ? (

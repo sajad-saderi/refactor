@@ -25,6 +25,9 @@
         font-weight: 500;
         font-size: 1.4rem;
       }
+      svg {
+        width: 3rem;
+      }
     }
     .car_info {
       box-shadow: $box_shadow;
@@ -126,6 +129,9 @@
       p {
         font-weight: 500;
         font-size: 1.4rem;
+      }
+      svg {
+        width: 3rem;
       }
     }
     .number_of_days {
