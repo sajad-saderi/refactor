@@ -29,10 +29,9 @@ const Profile_container = () => {
   };
 
   const checkRegister = () => {
+    const user_id = jsCookie.get("user_id")
     const complete_register = jsCookie.get("complete_register")
-    console.log("complete_register", complete_register);
-
-    if (complete_register !== "true") {
+    if (user_id && complete_register !== "true") {
       Router.push("/complete-register")
       return false
     } else {

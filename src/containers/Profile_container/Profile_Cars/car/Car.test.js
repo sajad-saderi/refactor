@@ -54,6 +54,6 @@ describe("my account", () => {
   });
   it("OUT_OF_SERVICE", () => {
     const OUT_OF_SERVICE = FindByAttr(wrapper, "OUT_OF_SERVICE");
-    expect(OUT_OF_SERVICE.text()).toEqual("نمایش مجدد خودرو");
+    expect(OUT_OF_SERVICE.text()).toEqual("فعال کردن خودرو");
   });
 });

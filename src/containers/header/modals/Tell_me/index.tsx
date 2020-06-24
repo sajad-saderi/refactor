@@ -45,11 +45,13 @@ const TellMe = () => {
       .catch((error) => {
         setLoading(false);
         console.error("!Error", error.response ? error.response.data.message : error.message);
-        if (error.response?.data) {
-          setError({
-            status: true,
-            message: error.response.data.message,
-          });
+        if (error.response) {
+          if (error.response.data) {
+            setError({
+              status: true,
+              message: error.response.data.message,
+            });
+          }
         }
       });
   };
