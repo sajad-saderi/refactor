@@ -15,12 +15,12 @@ Router.events.on('routeChangeError', (err, url) => {
 Router.events.on('routeChangeStart', url => {
     console.log("dataLayer", `${url}`);
     // window["dataLayer"].push({ 'event': 'virtualPageView' });
-    dataLayer.push({
-        'event':'virtualPageView',
-        'page':{ 
-          'url':`${url}`
+    window["dataLayer"].push({
+        'event': 'virtualPageView',
+        'page': {
+            'url': `${url}`
         }
-      });
+    });
 });
 
 class App_Otoli extends App {
