@@ -751,6 +751,14 @@
   ],
   "props": [
     {
+      "key": "pages/404.tsx",
+      "value": []
+    },
+    {
+      "key": "pages/500.tsx",
+      "value": []
+    },
+    {
       "key": "pages/about-us.tsx",
       "value": []
     },
@@ -839,6 +847,63 @@
       "value": []
     },
     {
+      "key": "pages/_app.tsx",
+      "value": [
+        {
+          "description": "",
+          "displayName": "App_Otoli",
+          "methods": [],
+          "props": {
+            "pageProps": {
+              "defaultValue": null,
+              "description": "",
+              "name": "pageProps",
+              "required": true,
+              "type": {
+                "name": "any"
+              }
+            },
+            "Component": {
+              "defaultValue": null,
+              "description": "",
+              "name": "Component",
+              "required": true,
+              "type": {
+                "name": "NextComponentType<NextPageContext, any, {}>"
+              }
+            },
+            "router": {
+              "defaultValue": null,
+              "description": "",
+              "name": "router",
+              "required": true,
+              "type": {
+                "name": "Router"
+              }
+            },
+            "__N_SSG": {
+              "defaultValue": null,
+              "description": "",
+              "name": "__N_SSG",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "__N_SSP": {
+              "defaultValue": null,
+              "description": "",
+              "name": "__N_SSP",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "key": "pages/_document.tsx",
       "value": [
         {
@@ -870,7 +935,7 @@
               "name": "styles",
               "required": false,
               "type": {
-                "name": "{} | ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<any, any, any>)>[] | ReactNodeArray"
+                "name": "{} | ReactNodeArray | ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<any, any, any>)>[]"
               }
             },
             "__NEXT_DATA__": {
@@ -1051,7 +1116,7 @@
       "key": "pages/rent/[id].tsx",
       "value": [
         {
-          "description": "",
+          "description": "@param props This page needs to render server-side and get the id of dynamic route\rAt incoming data there are meta data for dynamic page that should set on Next-Seo\rWith the id we do rest of work",
           "displayName": "getServerSideProps",
           "methods": [],
           "props": {}
@@ -1084,6 +1149,15 @@
               "defaultValue": null,
               "description": "",
               "name": "hide",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "showToTop": {
+              "defaultValue": null,
+              "description": "",
+              "name": "showToTop",
               "required": false,
               "type": {
                 "name": "boolean"
@@ -2193,7 +2267,7 @@
           "props": {
             "question_set": {
               "defaultValue": null,
-              "description": "",
+              "description": "@question_set A list of questions and answers",
               "name": "question_set",
               "required": true,
               "type": {
@@ -2265,7 +2339,7 @@
           "props": {
             "max": {
               "defaultValue": null,
-              "description": "",
+              "description": "@max maximum value you can use",
               "name": "max",
               "required": true,
               "type": {
@@ -2274,7 +2348,7 @@
             },
             "min": {
               "defaultValue": null,
-              "description": "",
+              "description": "@min the smallest value a user can reach",
               "name": "min",
               "required": true,
               "type": {
@@ -2342,6 +2416,15 @@
               "defaultValue": null,
               "description": "",
               "name": "hide",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "showToTop": {
+              "defaultValue": null,
+              "description": "",
+              "name": "showToTop",
               "required": false,
               "type": {
                 "name": "boolean"
@@ -2491,7 +2574,7 @@
           "props": {
             "display": {
               "defaultValue": null,
-              "description": "",
+              "description": "you can adjust the spinner should have\n\"display\", \"inline\" or even \"flex\" display style",
               "name": "display",
               "required": true,
               "type": {
@@ -2551,7 +2634,7 @@
           "props": {
             "message": {
               "defaultValue": null,
-              "description": "",
+              "description": "@message set the message of toast",
               "name": "message",
               "required": true,
               "type": {
@@ -2560,7 +2643,7 @@
             },
             "closeHandler": {
               "defaultValue": null,
-              "description": "",
+              "description": "@closeHandler listen to click on a close icon or ending the time",
               "name": "closeHandler",
               "required": true,
               "type": {
@@ -2569,7 +2652,7 @@
             },
             "time": {
               "defaultValue": null,
-              "description": "",
+              "description": "@time  you can set how many second should toast shown",
               "name": "time",
               "required": false,
               "type": {
@@ -2578,7 +2661,7 @@
             },
             "autoClose": {
               "defaultValue": null,
-              "description": "",
+              "description": "@autoClose should component disappear after a while or not",
               "name": "autoClose",
               "required": false,
               "type": {
@@ -2613,6 +2696,51 @@
               "defaultValue": null,
               "description": "",
               "name": "extra_info",
+              "required": true,
+              "type": {
+                "name": "any"
+              }
+            },
+            "ResultCount": {
+              "defaultValue": null,
+              "description": "",
+              "name": "ResultCount",
+              "required": true,
+              "type": {
+                "name": "any"
+              }
+            },
+            "reset": {
+              "defaultValue": null,
+              "description": "",
+              "name": "reset",
+              "required": false,
+              "type": {
+                "name": "any"
+              }
+            },
+            "clearReset": {
+              "defaultValue": null,
+              "description": "",
+              "name": "clearReset",
+              "required": false,
+              "type": {
+                "name": "any"
+              }
+            },
+            "show_filter_prop": {
+              "defaultValue": null,
+              "description": "",
+              "name": "show_filter_prop",
+              "required": true,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "show_filter_prop_reset": {
+              "defaultValue": null,
+              "description": "",
+              "name": "show_filter_prop_reset",
               "required": true,
               "type": {
                 "name": "any"
@@ -2780,6 +2908,10 @@
       "value": []
     },
     {
+      "key": "src/components/cartPlaceholder/CarLoadingProfile/index.tsx",
+      "value": []
+    },
+    {
       "key": "src/components/cartPlaceholder/carPageLoading/index.tsx",
       "value": []
     },
@@ -2814,7 +2946,7 @@
             },
             "class": {
               "defaultValue": null,
-              "description": "",
+              "description": "@class  you should set a class for button, the default button didn't have any class",
               "name": "class",
               "required": true,
               "type": {
@@ -2841,7 +2973,7 @@
             },
             "click": {
               "defaultValue": null,
-              "description": "",
+              "description": "@click Click event.\rIt can do nothing",
               "name": "click",
               "required": true,
               "type": {
@@ -2862,7 +2994,7 @@
           "props": {
             "data": {
               "defaultValue": null,
-              "description": "",
+              "description": "@data  The incoming data from parent component",
               "name": "data",
               "required": true,
               "type": {
@@ -2871,7 +3003,7 @@
             },
             "name": {
               "defaultValue": null,
-              "description": "",
+              "description": "@name  The name of the check box",
               "name": "name",
               "required": true,
               "type": {
@@ -2880,7 +3012,7 @@
             },
             "clearField": {
               "defaultValue": null,
-              "description": "",
+              "description": "@clearField  Responsible to clear the checkbox value",
               "name": "clearField",
               "required": true,
               "type": {
@@ -2889,7 +3021,7 @@
             },
             "Select": {
               "defaultValue": null,
-              "description": "",
+              "description": "@Select  Responsible to get the value of the checked checkbox",
               "name": "Select",
               "required": true,
               "type": {
@@ -2898,7 +3030,7 @@
             },
             "initialValue": {
               "defaultValue": null,
-              "description": "",
+              "description": "@initialValue  default values",
               "name": "initialValue",
               "required": false,
               "type": {
@@ -3041,6 +3173,42 @@
               "required": false,
               "type": {
                 "name": "boolean"
+              }
+            },
+            "colorPicker": {
+              "defaultValue": null,
+              "description": "",
+              "name": "colorPicker",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "browserDropdown": {
+              "defaultValue": null,
+              "description": "",
+              "name": "browserDropdown",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "callClearField": {
+              "defaultValue": null,
+              "description": "",
+              "name": "callClearField",
+              "required": false,
+              "type": {
+                "name": "boolean"
+              }
+            },
+            "callClearFieldReset": {
+              "defaultValue": null,
+              "description": "",
+              "name": "callClearFieldReset",
+              "required": false,
+              "type": {
+                "name": "any"
               }
             }
           }
@@ -3655,11 +3823,11 @@
       ]
     },
     {
-      "key": "src/containers/header/modals/GetUserCellPhone/index.tsx",
+      "key": "src/containers/header/modals/ConfirmCode/index.tsx",
       "value": [
         {
           "description": "",
-          "displayName": "GetUserCellPhone",
+          "displayName": "ConfirmCode",
           "methods": [],
           "props": {
             "panelController": {
@@ -3676,11 +3844,11 @@
       ]
     },
     {
-      "key": "src/containers/header/modals/ConfirmCode/index.tsx",
+      "key": "src/containers/header/modals/GetUserCellPhone/index.tsx",
       "value": [
         {
           "description": "",
-          "displayName": "ConfirmCode",
+          "displayName": "GetUserCellPhone",
           "methods": [],
           "props": {
             "panelController": {
