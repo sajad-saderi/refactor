@@ -12,6 +12,11 @@ Router.events.on('routeChangeError', (err, url) => {
     Router.push('/500')
 });
 
+Router.events.on('routeChangeStart', url => {
+    console.log("dataLayer", `${url}`);
+    window["dataLayer"].push({ 'event': 'virtualPageView' });
+});
+
 class App_Otoli extends App {
 
     static async getInitialProps({ Component, ctx }) {
