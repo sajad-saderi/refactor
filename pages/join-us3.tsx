@@ -45,10 +45,10 @@ const JoinUs1 = () => {
           </h2>
           <div className="responsive calculator_container">
             {/* You can set the Button text when you call the Calculator component */}
-            <Calculator AbText="از درخواست‌های اجاره مرتبط باخبر شوید" />
+            <Calculator AbText="شروع کسب درآمد" />
           </div>
         </section>
-        <Join_us_content AbText="از درخواست‌های اجاره مرتبط باخبر شوید" />
+        <Join_us_content AbText="شروع کسب درآمد"/>
       </article>
     </Layout>
   );

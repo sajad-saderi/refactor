@@ -46,7 +46,7 @@ const JoinUs = () => {
             <Calculator />
           </div>
         </section>
-        <Join_us_content />
+        <Join_us_content AbText="ماشین‌تان را اضافه کنید" />
       </article>
     </Layout>
   );

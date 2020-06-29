@@ -2,7 +2,7 @@ import React from "react";
 import insurance from "../../../../public/image/SamanInsurance.png";
 import Link from "next/link";
 
-const Join_us_content = () => {
+const Join_us_content = (props: IJoin_us_content) => {
   return (
     <>
       <div className="insuranceBox">
@@ -53,7 +53,7 @@ const Join_us_content = () => {
         </div>
         <div className="add_car_section">
           <Link href="/add-car">
-            <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">ماشین‌تان را اضافه کنید</a>
+            <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">{props.AbText}</a>
           </Link>
           <p className="call_us">
             سوالی دارید؟ با ما تماس بگیرید:‌{" "}
@@ -67,4 +67,7 @@ const Join_us_content = () => {
   );
 };
 
+interface IJoin_us_content {
+  AbText: string
+}
 export default Join_us_content;

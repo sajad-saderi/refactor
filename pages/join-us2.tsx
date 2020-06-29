@@ -57,7 +57,7 @@ const JoinUs2 = () => {
             </p>
           </div>
         </section>
-        <Join_us_content />
+        <Join_us_content AbText="ماشین‌تان را اضافه کنید" />
       </article>
     </Layout>
   );
