@@ -390,7 +390,7 @@ const Add_Car_Step_2 = () => {
           with_driver: state.with_driver,
           max_km_per_day: state.max_km_per_day,
           extra_km_price: state.extra_km_price,
-          cancellation_policy: state.cancellation_policy,
+          cancellation_policy: state.cancellation_policy.trim(),
           days_to_get_reminded: state.days_to_get_reminded,
           min_days_to_rent: state.min_days_to_rent,
           is_out_of_service: state.is_out_of_service,
@@ -503,7 +503,7 @@ const Add_Car_Step_2 = () => {
       resetTheErrorStatus("discount_error");
     }
 
-    if (state.cancellation_policy === "" || !state.cancellation_policy) {
+    if (state.cancellation_policy.trim() === "" || !state.cancellation_policy) {
       ErrorDispatch({
         type: "cancellation_policy",
         cancellation_policy: true,

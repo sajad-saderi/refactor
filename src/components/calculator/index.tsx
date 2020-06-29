@@ -176,7 +176,7 @@ const Calculator = (props: ICalculator) => {
                 InputDisable={true}
                 error_status={brandError.status}
               />
-              <span>{brandError.message}</span>
+              <span className="error_Field">{brandError.message}</span>
             </div>
             <div className="calculator_dropDown">
               <DropdownSearch
@@ -202,7 +202,7 @@ const Calculator = (props: ICalculator) => {
                 placeholder="مدل"
                 error_status={modelError.status}
               />
-              <span>{modelError.message}</span>
+              <span className="error_Field">{modelError.message}</span>
             </div>
             <div className="value_container">
               <TextInput
