@@ -47,6 +47,7 @@
       .date_Input_Container {
         display: flex;
         .input_container {
+          position: relative;
           width: 100%;
           input {
             font-family: inherit;
@@ -79,6 +80,12 @@
             border-top-right-radius: 0px;
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 0px;
+          }
+          span {
+            position: absolute;
+            font-size: 1rem;
+            color: firebrick;
+            font-weight: 500;
           }
         }
         .DatePicker {

@@ -4,7 +4,6 @@ import { NextSeo } from "next-seo";
 import Router from "next/router";
 import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content";
-import "../src/styles/pages/join-us.scss";
 
 const JoinUs1 = () => {
   /**

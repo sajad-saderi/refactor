@@ -78,7 +78,7 @@ const TellMe = () => {
           </p>
           {/* <p className="p2"></p> */}
           <TextInput
-            error={error}
+            error={{ status: error.status, message: "" }}
             name="cell Phone"
             onChangeHandler={(e) => {
               setCellPhone(e);

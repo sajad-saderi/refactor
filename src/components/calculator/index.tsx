@@ -14,15 +14,18 @@ const Calculator = (props: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
   const [modelList, setModelList] = useState([]);
   const [value, setValue] = useState("");
+  const [valueError, setValueError] = useState({ status: false, message: "" });
   const [loading, setLoading] = useState(false);
   const [brand, setBrand] = useState({
     name: null,
     id: null,
   });
+  const [brandError, setBrandError] = useState({ status: false, message: "" });
   const [model, setModel] = useState({
     name: null,
     id: null,
   });
+  const [modelError, setModelError] = useState({ status: false, message: "" });
   const [daily, setDaily] = useState(0);
   const [weekly, setWeekly] = useState(0);
   const [monthly, setMonthly] = useState(0);
@@ -31,6 +34,22 @@ const Calculator = (props: ICalculator) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (value) {
+      setValueError({ status: false, message: "" })
+    }
+  }, [value])
+  useEffect(() => {
+    if (brand.id) {
+      setBrandError({ status: false, message: "" })
+    }
+  }, [brand.id])
+  useEffect(() => {
+    if (model.id) {
+      setModelError({ status: false, message: "" })
+    }
+  }, [model.id])
 
   const fetchData = async () => {
     /**
@@ -64,11 +83,24 @@ const Calculator = (props: ICalculator) => {
     /**
      * validation to ignore empty values or if the inputted value is smaller then 10 million
      */
-    if (value === "" || !brand.id || !model.id) {
+    if (!brand.id) {
+      setBrandError({ status: true, message: "شرکت سازنده را انتخاب کنید" })
+      setLoading(false);
+      return;
+    } else if (!model.id) {
+      setModelError({ status: true, message: "نام مدل را انتخاب کنید" })
+      setLoading(false);
+      return;
+    } else if (value === "") {
+      setValueError({ status: true, message: "ارزش خودرو را وارد کنید" })
       setLoading(false);
       return;
     }
-    if (+value < 10000000) return;
+    if (+value < 10000000) {
+      setValueError({ status: true, message: "ارزش خودرو کمتر از حد مجاز" })
+      setLoading(false);
+      return;
+    }
 
     try {
       // Don't care about the result
@@ -105,6 +137,7 @@ const Calculator = (props: ICalculator) => {
       console.log("!Error", error);
     }
   };
+
   return (
     <>
       {showCalculateBox ? (
@@ -112,58 +145,65 @@ const Calculator = (props: ICalculator) => {
           <h2>چقدر می‌توانید از ماشینتان کسب درآمد کنید؟</h2>
           <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
           <form data-test-id="form" onSubmit={calculator}>
-            <DropdownSearch
-              data-test-id="brand"
-              defaultVal={brand.name}
-              data={brandList}
-              clearField={() =>
-                setBrand({
-                  id: null,
-                  name: null,
-                })
-              }
-              Select={(v) => {
-                fetchModelList(v.value);
-                setBrand({
-                  id: v.value,
-                  name: v.text,
-                });
-                try {
-                  if (window["heap"]) {
-                    window["heap"].addUserProperties({
-                      Calc_Car_Brand: `${v.text}`,
-                    });
-                  }
-                } catch (e) {
-                  console.log("Em...I think heap not work correctly :/");
+            <div className="calculator_dropDown">
+              <DropdownSearch
+                data-test-id="brand"
+                defaultVal={brand.name}
+                data={brandList}
+                clearField={() =>
+                  setBrand({
+                    id: null,
+                    name: null,
+                  })
                 }
-              }}
-              placeholder="برند"
-              InputDisable={true}
-            />
-
-            <DropdownSearch
-              defaultVal={model.name}
-              data={modelList}
-              clearField={() => {
-                setModel({ id: null, name: null });
-              }}
-              disabled={!brand.id ? true : false}
-              InputDisable={true}
-              Select={(v) => {
-                try {
-                  if (window["heap"]) {
-                    window["heap"].addUserProperties({
-                      Calc_Car_Brand: `${v.text}`,
-                    });
+                Select={(v) => {
+                  fetchModelList(v.value);
+                  setBrand({
+                    id: v.value,
+                    name: v.text,
+                  });
+                  try {
+                    if (window["heap"]) {
+                      window["heap"].addUserProperties({
+                        Calc_Car_Brand: `${v.text}`,
+                      });
+                    }
+                  } catch (e) {
+                    console.log("Em...I think heap not work correctly :/");
                   }
-                } catch (e) {
-                  console.log("Em...I think heap not work correctly :/");
-                }
-                setModel({ id: v.value, name: v.name });
-              }}
-              placeholder="مدل"
-            />
+                }}
+                placeholder="برند"
+                InputDisable={true}
+                error_status={brandError.status}
+              />
+              <span>{brandError.message}</span>
+            </div>
+            <div className="calculator_dropDown">
+              <DropdownSearch
+                defaultVal={model.name}
+                data={modelList}
+                clearField={() => {
+                  setModel({ id: null, name: null });
+                }}
+                disabled={!brand.id ? true : false}
+                InputDisable={true}
+                Select={(v) => {
+                  try {
+                    if (window["heap"]) {
+                      window["heap"].addUserProperties({
+                        Calc_Car_Brand: `${v.text}`,
+                      });
+                    }
+                  } catch (e) {
+                    console.log("Em...I think heap not work correctly :/");
+                  }
+                  setModel({ id: v.value, name: v.name });
+                }}
+                placeholder="مدل"
+                error_status={modelError.status}
+              />
+              <span>{modelError.message}</span>
+            </div>
             <div className="value_container">
               <TextInput
                 name="value"
@@ -174,8 +214,8 @@ const Calculator = (props: ICalculator) => {
                 clearField={() => setValue("")}
                 autoFocus={false}
                 error={{
-                  status: false,
-                  message: "",
+                  status: valueError.status,
+                  message: valueError.message,
                 }}
                 min={7}
                 max={14}
@@ -188,40 +228,48 @@ const Calculator = (props: ICalculator) => {
               data-test-id="local_Button_joinUs"
               // onClick on this button nothing happened, the event listening to submitting the form
               value="تخمین درآمد"
-              click={() => {}}
+              click={() => { }}
               class="Blue_BTN local_Button_joinUs"
               loading={loading}
             />
           </form>
         </>
       ) : (
-        <>
-          <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
-          <div className="addCarnowInlanding">
-            <Link href="/add-car">
-              <a
-                className="Blue_BTN addCar_top_joinus_a"
-                data-test-id="addCar_top_joinus_a"
-              >
-                {props.AbText ? props.AbText : "ماشین‌تان را اضافه کنید"}
-              </a>
-            </Link>
-          </div>
-          {/* show the calculation box */}
-          <p
-            className="tryAgainCalc"
-            onClick={() => {
-              window.scrollTo(0, 0);
-              // Reset the car value
-              setValue("");
-              setLoading(false);
-              setShowCalculateBox(true);
-            }}
-          >
-            محاسبه مجدد
+          <>
+            <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
+            <div className="addCarnowInlanding">
+              <Link href="/add-car">
+                <a
+                  className="Blue_BTN addCar_top_joinus_a"
+                  data-test-id="addCar_top_joinus_a"
+                >
+                  {props.AbText ? props.AbText : "ماشین‌تان را اضافه کنید"}
+                </a>
+              </Link>
+            </div>
+            {/* show the calculation box */}
+            <p
+              className="tryAgainCalc"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                // Reset the car value
+                setValue("");
+                setBrand({
+                  name: null,
+                  id: null,
+                });
+                setModel({
+                  name: null,
+                  id: null,
+                });
+                setLoading(false);
+                setShowCalculateBox(true);
+              }}
+            >
+              محاسبه مجدد
           </p>
-        </>
-      )}
+          </>
+        )}
     </>
   );
 };

@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "testUtil/FindByAttr.js"
+    "**/*.tsx", "testUtil/FindByAttr.js", "utils/validationCenter.js"
   ]
 }

@@ -178,7 +178,7 @@ input {
 }
 
 .input_Error {
-  border: 1px solid #e0b4b4;
+  border: 1px solid #e0b4b4 !important;
   background: rgb(255, 246, 246) !important;
 }
 
@@ -395,7 +395,7 @@ input {
 .Gradient {
   transition: 0.25s all;
   background: linear-gradient(
-    -45deg,
+    90deg,
     #fff,
     #f1f1f1,
     #dcdbdb,

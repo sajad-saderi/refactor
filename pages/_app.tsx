@@ -12,16 +12,18 @@ Router.events.on('routeChangeError', (err, url) => {
     Router.push('/500')
 });
 
-Router.events.on('routeChangeStart', url => {
-    console.log("dataLayer", `${url}`);
-    // window["dataLayer"].push({ 'event': 'virtualPageView' });
-    window["dataLayer"].push({
-        'event': 'virtualPageView',
-        'page': {
-            'url': `${url}`
-        }
-    });
-});
+
+// Send the Data Layer to the GTA on a route starting to change
+// Router.events.on('routeChangeStart', url => {
+//     console.log("dataLayer", `${url}`);
+//     // window["dataLayer"].push({ 'event': 'virtualPageView' });
+//     window["dataLayer"].push({
+//         'event': 'virtualPageView',
+//         'page': {
+//             'url': `${url}`
+//         }
+//     });
+// });
 
 class App_Otoli extends App {
 

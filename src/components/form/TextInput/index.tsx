@@ -65,6 +65,23 @@ const TextInput = (props: ItextInput) => {
   //   }
   // }, [props.error]);
 
+
+  // const validation = (data) =>{
+  //   if(data.number){
+  //     if(data.length){}
+  //     if(data.min){}
+  //     if(data.max){}
+  //   }
+  //   if(data.string){
+  //     if(data.length){}
+  //     if(data.minLength){}
+  //     if(data.maxLength){}
+  //   }
+  //   if(data.require){
+
+  //   }
+  // }
+
   return (
     <div className="text_input_container" ref={TextInput}>
       <label
@@ -100,7 +117,7 @@ const TextInput = (props: ItextInput) => {
         }}
         autoFocus={props.autoFocus}
         className={[
-          "text_input","data-hj-whitelist",
+          "text_input", "data-hj-whitelist",
           props.error.status ? "inputError" : null,
         ].join(" ")}
         name={props.name}
@@ -140,6 +157,8 @@ const TextInput = (props: ItextInput) => {
         maxLength={props.max}
         minLength={props.min}
         placeholder={props.placeholder}
+        // check the validation on blur event listener
+        // onBlur={() => validation(props.validation)}
       />
       {props.value.length > 0 && !props.HideClearIcon && (
         <IoMdClose
@@ -196,6 +215,9 @@ interface ItextInput {
 
   // control on converting the value inside the input to local string
   localeString?: boolean;
+
+  // validation rules and requirements
+  validation?: any
 }
 
 export default TextInput;

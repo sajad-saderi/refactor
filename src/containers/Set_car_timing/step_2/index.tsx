@@ -500,7 +500,7 @@ const Add_Car_Step_2 = () => {
       });
       return false;
     } else {
-      resetTheErrorStatus("cancellation_policy");
+      resetTheErrorStatus("discount_error");
     }
 
     if (state.cancellation_policy === "" || !state.cancellation_policy) {

@@ -28,6 +28,12 @@ const Search = (props: ISearch) => {
   const [locationsList, setLocationsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
+  const [fromError, setFromError] = useState({
+    status: false, message: ""
+  })
+  const [toError, setToError] = useState({
+    status: false, message: ""
+  })
 
   const MODAL_CONTEXT = useContext(modal_context);
 
@@ -104,17 +110,23 @@ const Search = (props: ISearch) => {
           end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
         },
       });
+    } else if (!dayRange.from) {
+      setFromError({ status: true, message: "تاریخ شروع را انتخاب کنید" })
+    } else if (!dayRange.to) {
+      setToError({ status: true, message: "تاریخ پایان را انتخاب کنید" })
     }
   };
 
   useEffect(() => {
     if (dayRange.from) {
+      setFromError({ status: false, message: "" })
       setFromDay(convertDate(dayRange.from));
     } else {
       setFromDay(" ");
       setToDay(" ");
     }
     if (dayRange.to) {
+      setToError({ status: false, message: "" })
       setShowBorder(false);
       setToDay(convertDate(dayRange.to));
     } else {
@@ -175,17 +187,20 @@ const Search = (props: ISearch) => {
               <input
                 data-hj-whitelist
                 className={
-                  showBorder
-                    ? dayRange.from
-                      ? dayRange.to
-                        ? "activeBorder"
-                        : null
-                      : "activeBorder"
-                    : null
+                  fromError.status ? "input_Error"
+                    : showBorder
+                      ? dayRange.from
+                        ? dayRange.to
+                          ? "activeBorder"
+                          : null
+                        : "activeBorder"
+                      : null
                 }
                 readOnly={true}
                 value={fromDay ? fromDay : ""}
-              ></input>
+              />
+              {/* appear the error for the start date here */}
+              <span>{fromError.message}</span>
             </div>
             <div className="input_container">
               <p className="label">تا تاریخ</p>
@@ -193,19 +208,22 @@ const Search = (props: ISearch) => {
                 data-hj-whitelist
                 className={[
                   "exception_input",
-                  showBorder
-                    ? dayRange.to
-                      ? dayRange.from
-                        ? null
-                        : null
-                      : dayRange.from
-                        ? "activeBorder"
-                        : null
-                    : null,
+                  toError.status ? "input_Error"
+                    : showBorder
+                      ? dayRange.to
+                        ? dayRange.from
+                          ? null
+                          : null
+                        : dayRange.from
+                          ? "activeBorder"
+                          : null
+                      : null,
                 ].join(" ")}
                 readOnly={true}
                 value={toDay ? toDay : ""}
-              ></input>
+              />
+              {/* appear the error for the end date here */}
+              <span>{toError.message}</span>
             </div>
           </div>
         </div>
