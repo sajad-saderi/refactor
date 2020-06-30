@@ -96,7 +96,7 @@ const ImageUploader = (props: IImageUpload) => {
         <p>
           جهت بارگذاری تصاویر خودرو اینجا کلیک کنید یا آن را داخل این کادر بیندازید. عکس‌های با کیفیت و در زوایای مختلف جذابیت خودرو شما را بیشتر میکند.
         </p>
-        <img className="vector_car_upload" src={carVector}/>
+        <img className="vector_car_upload" src={carVector} alt="car vector image"/>
       </div>
       <div
         // if the image is uploading the drop-zone will be unreachable

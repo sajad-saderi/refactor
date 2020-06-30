@@ -17,6 +17,7 @@ const Car = (props: ICar) => {
   const [media_set, setMedia_set] = useState(null);
   const [car, setCar] = useState(null);
   const [year, setYear] = useState(null);
+  const [uncompletedCar, setUncompletedCar] = useState(false);
   const [heightController, setHeightController] = useState(0);
   const [is_out_of_service, setIs_out_of_service] = useState(false);
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
@@ -28,22 +29,36 @@ const Car = (props: ICar) => {
 
   useEffect(() => {
     if (props.data) {
-      // set the data
-      setIs_out_of_service(props.data.is_out_of_service);
+      /**
+       * @cancellation_policy
+       * if this value is correct car will be active otherwise tha car
+       * is out of service
+       */
       setId(props.data.id);
+      if (props.data.cancellation_policy) {
+        // set the data
+        setIs_out_of_service(props.data.is_out_of_service);
+      } else if (!props.data.is_out_of_service) {
+        setUncompletedCar(true)
+        setIs_out_of_service(false)
+        setServiceStatus(props.data.id)
+      } else {
+        setUncompletedCar(true)
+        setIs_out_of_service(false)
+      }
       setYear(props.data.year);
       setMedia_set(props.data.media_set);
       setCar(props.data.car);
     }
   }, [props.data]);
 
-  const setServiceStatus = async () => {
+  const setServiceStatus = async (localId?) => {
     // start showing the spinner
     setIs_out_of_service_loading(true);
     try {
       const service_res: any = await REQUEST_SET_OUT_OF_SERVICE({
         token,
-        id: id,
+        id: id || localId,
         // send apposite of current status
         value: !is_out_of_service,
       });
@@ -94,7 +109,7 @@ const Car = (props: ICar) => {
                   top: -heightController + "px",
                 }}
                 src={media_set[0].thumbnail_url}
-                className="img-fluid"
+                className={["img-fluid", uncompletedCar ? "grey_car" : null].join(" ")}
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
                 onLoadCapture={(e) => {
                   e.persist();
@@ -109,6 +124,12 @@ const Car = (props: ICar) => {
               <div className="read_more">
                 <span>مشاهده مشخصات</span>
               </div>
+              {uncompletedCar ?
+                <div className="alert_for_car">
+                  <p>برای نمایش خودرو در نتایج جستجو باید در بخش «تغییر تاریخ و قیمت» شرایط اجاره خودروتان را تعیین کنید</p>
+                </div>
+                : null
+              }
             </figure>
             <div className="info_box">
               <div className="car_brand">
@@ -126,31 +147,36 @@ const Car = (props: ICar) => {
               }}
               className="HEAP_Profile_Btn_ChangeCarTiming"
             >
-              تغییر تاریخ و قیمت
+              {uncompletedCar ? "تعیین تاریخ و قیمت" : "تغییر تاریخ و قیمت"}
             </p>
-            {is_out_of_service_loading ? (
-              <Spinner display="inline-block" width={20} color="#4ba3ce" />
-            ) : (
-                <p
-                  data-test-id="OUT_OF_SERVICE"
-                  className="HEAP_Profile_Btn_OutOfService"
-                  onClick={setServiceStatus}
-                >
-                  {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
-                </p>
-              )}
-            <span className="HEAP_Profile_Btn_EditCarDetails">
-              <IoMdCreate
-                color="#4ba3ce"
-                size="2rem"
-                onClick={() => {
-                  Router.push(`/add-car?mode=edit&car_id=${id}`);
-                }}
-              />
-            </span>
-            <span className="HEAP_Profile_Btn_Delete">
-              <IoMdTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
-            </span>
+            {uncompletedCar
+              ? null
+              : is_out_of_service_loading ? (
+                <Spinner display="inline-block" width={20} color="#4ba3ce" />
+              ) : (
+                  <p
+                    data-test-id="OUT_OF_SERVICE"
+                    className="HEAP_Profile_Btn_OutOfService"
+                    onClick={setServiceStatus}
+                  >
+                    {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
+                  </p>
+                )
+            }
+            <div className="icon_container">
+              <span className="HEAP_Profile_Btn_EditCarDetails">
+                <IoMdCreate
+                  color="#4ba3ce"
+                  size="2rem"
+                  onClick={() => {
+                    Router.push(`/add-car?mode=edit&car_id=${id}`);
+                  }}
+                />
+              </span>
+              <span className="HEAP_Profile_Btn_Delete">
+                <IoMdTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
+              </span>
+            </div>
           </div>
         )}
       </div>
