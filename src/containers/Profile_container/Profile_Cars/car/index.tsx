@@ -124,9 +124,9 @@ const Car = (props: ICar) => {
               <div className="read_more">
                 <span>مشاهده مشخصات</span>
               </div>
-              {uncompletedCar ?
+              {uncompletedCar && props.is_mine ?
                 <div className="alert_for_car">
-                  <p>برای نمایش خودرو در نتایج جستجو باید در بخش «تغییر تاریخ و قیمت» شرایط اجاره خودروتان را تعیین کنید</p>
+                  <p>برای نمایش خودرو، در بخش «تعیین تاریخ و قیمت» شرایط اجاره خودروتان را تعیین کنید.</p>
                 </div>
                 : null
               }
@@ -145,7 +145,7 @@ const Car = (props: ICar) => {
               onClick={() => {
                 Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
               }}
-              className="HEAP_Profile_Btn_ChangeCarTiming"
+              className={["HEAP_Profile_Btn_ChangeCarTiming", uncompletedCar ? "set_car_timing_btn" : null].join(" ")}
             >
               {uncompletedCar ? "تعیین تاریخ و قیمت" : "تغییر تاریخ و قیمت"}
             </p>

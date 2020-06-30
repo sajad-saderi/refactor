@@ -86,6 +86,15 @@
         font-size: 1.2rem;
         color: $main__color;
       }
+      .set_car_timing_btn {
+        background: #4ba3ce;
+        border-radius: 4px;
+        color: #fff;
+        padding: 0.3rem 1rem;
+        display: block;
+        margin-top: -6px;
+        height: 27px;
+      }
       svg {
         cursor: pointer;
         width: 2rem;
