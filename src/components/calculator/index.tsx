@@ -172,7 +172,7 @@ const Calculator = (props: ICalculator) => {
                     console.log("Em...I think heap not work correctly :/");
                   }
                 }}
-                placeholder="برند"
+                placeholder="شرکت سازنده"
                 InputDisable={true}
                 error_status={brandError.status}
               />
@@ -199,7 +199,7 @@ const Calculator = (props: ICalculator) => {
                   }
                   setModel({ id: v.value, name: v.name });
                 }}
-                placeholder="مدل"
+                placeholder="نام خودرو (مدل)"
                 error_status={modelError.status}
               />
               <span className="error_Field">{modelError.message}</span>
