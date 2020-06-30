@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
 // import "./ImageUploader.scss";
 import jsCookie from "js-cookie";
+import carVector from "../../../public/image/car_vector.png"
 /**
  *
  * react-dropzone
@@ -89,13 +90,13 @@ const ImageUploader = (props: IImageUpload) => {
 
   return (
     <div ref={wrapperRef}>
-      <label>بارگذاری عکس ها</label>
+      <label>تصاویر خودرو</label>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
         <p>
-          جهت بارگذاری عکس اینجا کلیک کنید و یا عکس خود را داخل این کادر
-          بیاندازید
+          جهت بارگذاری تصاویر خودرو اینجا کلیک کنید یا آن را داخل این کادر بیندازید. عکس‌های با کیفیت و در زوایای مختلف جذابیت خودرو شما را بیشتر میکند.
         </p>
+        <img className="vector_car_upload" src={carVector}/>
       </div>
       <div
         // if the image is uploading the drop-zone will be unreachable

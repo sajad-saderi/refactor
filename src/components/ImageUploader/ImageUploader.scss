@@ -8,13 +8,22 @@
   color: rgb(189, 189, 189);
   cursor: pointer;
   flex: 1 1 0%;
-  padding: 2rem;
+  padding: 2rem 4rem;
   border-width: 2px;
   border-color: rgb(238, 238, 238);
   border-style: dashed;
   outline: none;
   transition: border 0.24s ease-in-out 0s;
   border-radius: 0.4rem;
+  p {
+    line-height: 2;
+    text-align: justify;
+  }
+  .vector_car_upload {
+    max-width: 50%;
+    opacity: 0.1;
+    margin-top: 2rem;
+  }
 }
 .Image_box {
   margin-bottom: 2rem;
