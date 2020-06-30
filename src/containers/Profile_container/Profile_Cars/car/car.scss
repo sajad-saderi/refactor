@@ -41,7 +41,7 @@
         width: 100%;
       }
       .grey_car {
-        filter: grayscale(1);
+        filter: grayscale(70%);
         opacity: 0.5;
       }
       .alert_for_car {
@@ -50,6 +50,7 @@
         right: 0;
         p {
           padding: 0.3rem;
+          font-size: 1.2rem;
           background-color: #fff;
         }
       }
@@ -68,7 +69,8 @@
           text-overflow: ellipsis;
         }
         p {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
+          margin-top: -0.8rem;
         }
       }
     }
@@ -76,7 +78,7 @@
       display: flex;
       justify-content: space-between;
       padding: 0 0.8rem;
-      margin-top: 0.6rem;
+      margin-top: 1.5rem;
       .Loading {
         margin: 0 1rem;
       }
@@ -87,13 +89,13 @@
         color: $main__color;
       }
       .set_car_timing_btn {
-        background: #4ba3ce;
-        border-radius: 4px;
-        color: #fff;
-        padding: 0.3rem 1rem;
+        background: #038ed21c;
+        border-radius: 3px;
+        color: #007cb9;
+        padding: 0.6rem 1rem;
         display: block;
-        margin-top: -6px;
-        height: 27px;
+        margin-top: -8px;
+        height: 28px;
       }
       svg {
         cursor: pointer;
