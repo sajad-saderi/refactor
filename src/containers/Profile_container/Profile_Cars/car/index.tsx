@@ -10,7 +10,7 @@ import {
 } from "../../../../API";
 import Spinner from "../../../../components/Spinner";
 import Toast_context from "../../../../context/Toast_context";
-
+import Modal_context from "../../../../context/Modal_context";
 
 const Car = (props: ICar) => {
   const [id, setId] = useState(null);
@@ -23,6 +23,7 @@ const Car = (props: ICar) => {
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
     false
   );
+  const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
 
   const token = jsCookie.get("token");
@@ -39,12 +40,12 @@ const Car = (props: ICar) => {
         // set the data
         setIs_out_of_service(props.data.is_out_of_service);
       } else if (!props.data.is_out_of_service) {
-        setUncompletedCar(true)
-        setIs_out_of_service(false)
-        setServiceStatus(props.data.id)
+        setUncompletedCar(true);
+        setIs_out_of_service(false);
+        setServiceStatus(props.data.id);
       } else {
-        setUncompletedCar(true)
-        setIs_out_of_service(false)
+        setUncompletedCar(true);
+        setIs_out_of_service(false);
       }
       setYear(props.data.year);
       setMedia_set(props.data.media_set);
@@ -97,10 +98,7 @@ const Car = (props: ICar) => {
     car && (
       <div className="carcard">
         <Link href={`/car/[id]`} as={link}>
-          <a
-            data-test-id="Link"
-            className="HEAP_Profile_Card_Car"
-          >
+          <a data-test-id="Link" className="HEAP_Profile_Card_Car">
             <figure>
               <img
                 style={{
@@ -109,7 +107,10 @@ const Car = (props: ICar) => {
                   top: -heightController + "px",
                 }}
                 src={media_set[0].thumbnail_url}
-                className={["img-fluid", uncompletedCar ? "grey_car" : null].join(" ")}
+                className={[
+                  "img-fluid",
+                  uncompletedCar ? "grey_car" : null,
+                ].join(" ")}
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
                 onLoadCapture={(e) => {
                   e.persist();
@@ -124,12 +125,14 @@ const Car = (props: ICar) => {
               <div className="read_more">
                 <span>مشاهده مشخصات</span>
               </div>
-              {uncompletedCar && props.is_mine ?
+              {uncompletedCar && props.is_mine ? (
                 <div className="alert_for_car">
-                  <p>برای نمایش خودرو، در بخش «تعیین تاریخ و قیمت» شرایط اجاره خودروتان را تعیین کنید.</p>
+                  <p>
+                    برای نمایش خودرو، در بخش «تعیین تاریخ و قیمت» شرایط اجاره
+                    خودروتان را تعیین کنید.
+                  </p>
                 </div>
-                : null
-              }
+              ) : null}
             </figure>
             <div className="info_box">
               <div className="car_brand">
@@ -145,24 +148,24 @@ const Car = (props: ICar) => {
               onClick={() => {
                 Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
               }}
-              className={["HEAP_Profile_Btn_ChangeCarTiming", uncompletedCar ? "set_car_timing_btn" : null].join(" ")}
+              className={[
+                "HEAP_Profile_Btn_ChangeCarTiming",
+                uncompletedCar ? "set_car_timing_btn" : null,
+              ].join(" ")}
             >
               {uncompletedCar ? "تعیین تاریخ و قیمت" : "تغییر تاریخ و قیمت"}
             </p>
-            {uncompletedCar
-              ? null
-              : is_out_of_service_loading ? (
-                <Spinner display="inline-block" width={20} color="#4ba3ce" />
-              ) : (
-                  <p
-                    data-test-id="OUT_OF_SERVICE"
-                    className="HEAP_Profile_Btn_OutOfService"
-                    onClick={setServiceStatus}
-                  >
-                    {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
-                  </p>
-                )
-            }
+            {uncompletedCar ? null : is_out_of_service_loading ? (
+              <Spinner display="inline-block" width={20} color="#4ba3ce" />
+            ) : (
+              <p
+                data-test-id="OUT_OF_SERVICE"
+                className="HEAP_Profile_Btn_OutOfService"
+                onClick={setServiceStatus}
+              >
+                {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
+              </p>
+            )}
             <div className="icon_container">
               <span className="HEAP_Profile_Btn_EditCarDetails">
                 <IoMdCreate
@@ -174,7 +177,17 @@ const Car = (props: ICar) => {
                 />
               </span>
               <span className="HEAP_Profile_Btn_Delete">
-                <IoMdTrash onClick={deleteTheCar} color="#4ba3ce" size="2rem" />
+                <IoMdTrash
+                  onClick={() =>
+                    MODAL_CONTEXT.modalHandler("ConfirmDelete", {
+                      model: car.name.fa,
+                      brand: car.brand.name.fa,
+                      id:id
+                    })
+                  }
+                  color="#4ba3ce"
+                  size="2rem"
+                />
               </span>
             </div>
           </div>

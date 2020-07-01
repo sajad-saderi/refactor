@@ -7,6 +7,7 @@ import TellMe from "./Tell_me";
 import Renter from "./Renter";
 import Owner from "./Owner";
 import Law from "./Law";
+import ConfirmDelete from "./ConfirmDelete";
 
 const Modals = (props) => {
   const [change, setChange] = useState(false);
@@ -26,14 +27,14 @@ const Modals = (props) => {
           props.modal_type === "Login"
             ? "login_modal"
             : props.modal_type === "TellMe"
-              ? "Tell_me"
-              : props.modal_type === "Renter"
-                ? "Renter"
-                : props.modal_type === "Owner"
-                  ? "Owner"
-                  : props.modal_type === "Law"
-                    ? "Law"
-                    : null,
+            ? "Tell_me"
+            : props.modal_type === "Renter"
+            ? "Renter"
+            : props.modal_type === "Owner"
+            ? "Owner"
+            : props.modal_type === "Law"
+            ? "Law"
+            : null,
         ].join(" ")}
       >
         {/* close Icon */}
@@ -51,11 +52,11 @@ const Modals = (props) => {
           change ? (
             <ConfirmCode panelController={panelController} />
           ) : (
-              <GetUserCellPhone
-                data-test-id="GetUserCellPhone"
-                panelController={panelController}
-              />
-            )
+            <GetUserCellPhone
+              data-test-id="GetUserCellPhone"
+              panelController={panelController}
+            />
+          )
         ) : props.modal_type === "TellMe" ? (
           <TellMe data-test-id="TellMe" />
         ) : props.modal_type === "Renter" ? (
@@ -64,6 +65,8 @@ const Modals = (props) => {
           <Owner data-test-id="Owner" data={props.data} />
         ) : props.modal_type === "Law" ? (
           <Law data-test-id="Law" />
+        ) : props.modal_type === "ConfirmDelete" ? (
+          <ConfirmDelete data-test-id="ConfirmDelete" data={props.data} />
         ) : null}
       </div>
       <div className="back_draw" onClick={() => Modal_context.modalHandler()} />
