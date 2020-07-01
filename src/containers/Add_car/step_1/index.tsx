@@ -35,7 +35,6 @@ import jsCookie from "js-cookie";
  */
 import validator from "validator";
 
-
 /**
  * @new_car
  *  If add car process is not complete and the user didn't fill up the step two form
@@ -1324,11 +1323,15 @@ const Add_Car_Step_1 = () => {
         <label>
           توضیحات<span> (اختیاری)</span>
         </label>
+        <p className="step_one_under_label_descripe">
+          برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود. برای
+          ماشین‌تان اسمی انتخاب کرده‌اید؟ آن را بنویسید. چرا این اسم را برایش
+          انتخاب کرده‌اید؟ با ماشین‌تان به جای خاصی رفته‌اید؟ خریدش داستان جذابی
+          دارد؟ برای ما تعریف کنید. در اتولی دوست داریم داستان ماشین‌ها را
+          بخوانیم.
+        </p>
         <textarea
           className="text_area_step_1"
-          placeholder={
-            "برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود.\nاگر برای اجاره شرایط خاصی، مثل سیگار نکشیدن، دارید می‌توانید اینجا وارد کنید."
-          }
           value={state.description}
           onChange={(e) => {
             dispatch({
