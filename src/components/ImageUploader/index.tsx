@@ -91,7 +91,7 @@ const ImageUploader = (props: IImageUpload) => {
     <div ref={wrapperRef}>
       <label>تصاویر خودرو</label>
       <p className="image_upload_under_label">
-        عکس‌های با کیفیت و در زوایای مختلف جذابیت خودرو شما را بیشتر میکند.
+        عکس‌های باکیفیت و در زوایای مختلف جذابیت خودرو شما را بیشتر میکند.
       </p>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
