@@ -32,14 +32,31 @@
     .text_input_container {
       margin: 0 0 2rem;
     }
+    .radio_father {
+      .radio_container {
+        .container {
+          font-weight: 300;
+          .checkmark {
+            border: 1px solid rgba(34, 36, 38, 0.15);
+            &::after {
+              top: 5px;
+              left: 5px;
+            }
+          }
+        }
+      }
+    }
     .check_box_container {
       .container {
         margin-bottom: 2rem;
+        font-weight: 300;
+        color: #808080;
       }
     }
     .extra_text {
       margin: 0.4rem 0 1.6rem 0;
       font-size: 1.2rem;
+      color: $grey_color;
     }
     .DropDown_container label,
     label {
@@ -53,6 +70,12 @@
     }
     .add_car_Facilities_label {
       margin-bottom: 1.6rem;
+    }
+    .Step1_checkoout_placeholder {
+      .CheckBox_Loader_placeHolder {
+        margin-bottom: 2rem !important;
+        display: inline-block;
+      }
     }
     .transition_type_Label {
       display: block;
@@ -168,6 +191,9 @@
     .step_one_under_label_descripe {
       margin-bottom: 1.5rem;
       font-size: 1.3rem;
+      margin-top: 0.8rem;
+      line-height: 1.7;
+      color: $grey_color;
     }
     .text_area_step_1 {
       min-height: 15rem;

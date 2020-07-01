@@ -394,14 +394,8 @@ input {
 
 .Gradient {
   transition: 0.25s all;
-  background: linear-gradient(
-    90deg,
-    #fff,
-    #f1f1f1,
-    #dcdbdb,
-    #fafafa
-  ) ;
-  background-size: 200% 200% ;
+  background: linear-gradient(90deg, #fff, #f1f1f1, #dcdbdb, #fafafa);
+  background-size: 200% 200%;
   animation: Gradient 2s ease infinite;
 }
 
@@ -441,6 +435,48 @@ input {
   }
 }
 
+// Fade In and Out Animation
+.FadeInOutAnimation {
+  opacity: 1;
+  animation: Fade 2s ease infinite;
+}
+
+@-webkit-keyframes Fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes Fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 // 3rd parties
 // @import "react-modern-calendar-datepicker/lib/DatePicker.css";
 // @import "nouislider/distribute/nouislider.css";
@@ -466,10 +502,13 @@ input {
 
 // component
 @import "../components/cartPlaceholder/CarLoading/car_cart.scss";
+// Place holders
 @import "../components/cartPlaceholder/carPageLoading/carPageLoading.scss";
 @import "../components/cartPlaceholder/CarLoadingProfile/profile_car_cart.scss";
 @import "../components/cartPlaceholder/checkoutLoading/checkoutLoading.scss";
 @import "../components/cartPlaceholder/requestLoading/requestLoading.scss";
+@import "../components/cartPlaceholder/checkBoxLoading/checkBoxLoading.scss";
+
 @import "../components/Counter/Counter.scss";
 @import "../components/Footer/footer.scss";
 @import "../components/ImageUploader/ImageUploader.scss";

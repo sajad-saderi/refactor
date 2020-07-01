@@ -34,6 +34,7 @@ import jsCookie from "js-cookie";
  * https://github.com/validatorjs/validator.js
  */
 import validator from "validator";
+import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading";
 
 /**
  * @new_car
@@ -279,6 +280,8 @@ const error_reducer = (current, action) => {
       throw new Error("There is a problem!");
   }
 };
+
+const checkListLoaderLength = Array(30).fill(0);
 
 const Add_Car_Step_1 = () => {
   const [locationList, setLocationList] = useState([]);
@@ -1261,23 +1264,32 @@ const Add_Car_Step_1 = () => {
           </div>
         </div>
         <label className="add_car_Facilities_label">امکانات خودرو</label>
-        <Checkbox
-          initialValue={state.facility_id}
-          data={facilitesList}
-          name="facility_id"
-          clearField={(item) =>
-            dispatch({
-              type: "Remove_facility_id",
-              remove_id: item.value,
-            })
-          }
-          Select={(item) => {
-            dispatch({
-              type: "facility_id",
-              facility_id: item.value,
-            });
-          }}
-        />
+        {/* {facilitesList.length === 0 ? ( */}
+        {0 === 0 ? (
+          <div className="Step1_checkoout_placeholder">
+            {checkListLoaderLength.map(() => (
+              <CheckBox_Loader />
+            ))}
+          </div>
+        ) : (
+          <Checkbox
+            initialValue={state.facility_id}
+            data={facilitesList}
+            name="facility_id"
+            clearField={(item) =>
+              dispatch({
+                type: "Remove_facility_id",
+                remove_id: item.value,
+              })
+            }
+            Select={(item) => {
+              dispatch({
+                type: "facility_id",
+                facility_id: item.value,
+              });
+            }}
+          />
+        )}
         <ImageUploader
           Upload_image={(id) => {
             dispatch({
@@ -1346,7 +1358,7 @@ const Add_Car_Step_1 = () => {
           disable={Loading}
           class="Blue_BTN local_style HEAP_AddCar_Btn_Submit"
           // onCLick nothing happend we listen to the form submition
-          click={() => { }}
+          click={() => {}}
         />
         {/* show the error message */}
         <p className="Error_message_text">{ErrorState.error_message}</p>

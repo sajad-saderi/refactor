@@ -1,6 +1,10 @@
-.image_upload_under_label{
+@import "../../styles/colors";
+
+.image_upload_under_label {
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
+  color: $grey_color;
+  margin-top: 0.8rem;
 }
 .drop_zone {
   display: flex;
@@ -25,7 +29,7 @@
   }
   .vector_car_upload {
     max-width: 50%;
-    opacity: 0.1;
+    opacity: 0.06;
     margin-top: 2rem;
   }
 }
