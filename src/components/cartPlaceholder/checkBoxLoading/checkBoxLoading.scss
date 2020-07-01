@@ -1,6 +1,9 @@
 .CheckBox_Loader_placeHolder {
   width: 20rem;
   margin-bottom: 0.8rem;
+  .Gradient {
+    background: linear-gradient(90deg, #f1f1f1, #f1f1f1, #e8e8e8, #f1f1f1);
+  }
   p {
     display: inline-block;
     width: 1.6rem;
@@ -12,7 +15,7 @@
   }
   span {
     width: 12rem;
-    height: 1.4rem; 
+    height: 1.4rem;
     display: inline-block;
     border-radius: 3px;
     vertical-align: middle;
