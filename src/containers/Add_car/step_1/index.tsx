@@ -1264,8 +1264,7 @@ const Add_Car_Step_1 = () => {
           </div>
         </div>
         <label className="add_car_Facilities_label">امکانات خودرو</label>
-        {/* {facilitesList.length === 0 ? (  */}
-        {true ? ( 
+        {facilitesList.length === 0 ? (
           <div className="Step1_checkoout_placeholder">
             {checkListLoaderLength.map(() => (
               <CheckBox_Loader />
