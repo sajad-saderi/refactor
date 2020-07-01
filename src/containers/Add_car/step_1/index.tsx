@@ -996,7 +996,7 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             error_status={Brand_id_error}
-            label="برند"
+            label="شرکت سازنده"
             defaultVal={Brand_Name}
             data={BrandList}
             clearField={() => {
@@ -1013,7 +1013,7 @@ const Add_Car_Step_1 = () => {
             error_status={ErrorState.car_id}
             disabled={!Brand_id ? true : false}
             defaultVal={CarModelName}
-            label="مدل"
+            label="نام مدل"
             data={ModelList}
             clearField={() => dispatch({ type: "car_id", car_id: null })}
             Select={(i) => {
@@ -1264,7 +1264,8 @@ const Add_Car_Step_1 = () => {
           </div>
         </div>
         <label className="add_car_Facilities_label">امکانات خودرو</label>
-        {facilitesList.length === 0 ? ( 
+        {/* {facilitesList.length === 0 ? (  */}
+        {true ? ( 
           <div className="Step1_checkoout_placeholder">
             {checkListLoaderLength.map(() => (
               <CheckBox_Loader />

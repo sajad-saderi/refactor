@@ -224,7 +224,7 @@ const Filters = (props: IFilter) => {
         />
         <DropdownSearch
           InputDisable={true}
-          label="برند"
+          label="شرکت سازنده"
           data={BrandList}
           clearField={() => {
             setBrand_id(null);
@@ -248,7 +248,7 @@ const Filters = (props: IFilter) => {
         <DropdownSearch
           InputDisable={true}
           disabled={!Brand_id ? true : false}
-          label="مدل"
+          label="نام مدل"
           data={ModelList}
           callClearFieldReset={() => { setCar_Name_ComponentReset(false) }}
           callClearField={car_Name_ComponentReset}

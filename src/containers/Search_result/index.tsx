@@ -423,7 +423,7 @@ const Search_result = () => {
           initSearch()
         }}>
           <IoMdClose size="1.3rem" color="#ababab" />
-          فیلتر برند
+          فیلتر براساس شرکت سازنده
         </p>
           : null
         }
@@ -435,7 +435,7 @@ const Search_result = () => {
           initSearch()
         }}>
           <IoMdClose size="1.3rem" color="#ababab" />
-          فیلتر مدل
+          فیلتر براساس نام مدل
         </p>
           : null
         }

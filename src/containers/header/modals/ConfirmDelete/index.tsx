@@ -32,39 +32,13 @@ const ConfirmDelete = (props: IConfirmDelete) => {
       });
       console.log("!Error", error);
     }
-    // axios
-    //   .post(DOMAIN + SEND_CONFIRM_CODE, {
-    //     cell: cellPhone,
-    //     location_id: location_id,
-    //   })
-    //   .then((response) => {
-    //     if (response.data.success) {
-    //       Modal_context.modalHandler("SET");
-    //       setLoading(false);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     setLoading(false);
-    //     console.error(
-    //       "!Error",
-    //       error.response ? error.response.data.message : error.message
-    //     );
-    //     if (error.response) {
-    //       if (error.response.data) {
-    //         setError({
-    //           status: true,
-    //           message: error.response.data.message,
-    //         });
-    //       }
-    //     }
-    //   });
   };
 
   return (
     <>
       <div className="modal_box_div">
         <form onSubmit={deleteCarHandler}>
-          <p>{`آیا می‌خواهید ماشین ${props.data.brand} ${props.data.model} را حذف کنید؟`}</p>
+          <p className="modal_content_confirm_delete">{`آیا می‌خواهید ماشین ${props.data.brand} ${props.data.model} را حذف کنید؟`}</p>
           {error.status ? (
             <span className="error_message">{error.message}</span>
           ) : null}
