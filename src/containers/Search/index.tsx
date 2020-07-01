@@ -55,7 +55,7 @@ const Search = (props: ISearch) => {
   // set the start and end date from storage if there are there
   const setDateFromStorage = () => {
     if (localStorage["start"] && localStorage["end"]) {
-      if (localStorage["start"] !== null && localStorage["end"] !== null) {
+      if (localStorage["start"] !== "null" && localStorage["end"] !== "null") {
         let start = JSON.parse(localStorage["start"]);
         // if the start date on storage is bigger then today
         if (start.day > moment().jDate()) {

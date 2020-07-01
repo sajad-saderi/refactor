@@ -11,7 +11,6 @@ import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import PleaseLogin from "../../components/PleaseLogin";
 import Router from "next/router";
 
-
 const stateReducer = (current, action) => {
   switch (action.type) {
     case "first_name":
@@ -109,13 +108,12 @@ const Complete_register_container = () => {
 
   const token = jsCookie.get("token");
 
-
   useEffect(() => {
     // if the user is not register the login modal will show up
     if (jsCookie.get("complete_register") === "false") {
       setAuthorize(true);
     } else {
-      Router.push('/')
+      Router.push("/");
     }
     setShow(true);
   }, []);
@@ -142,7 +140,11 @@ const Complete_register_container = () => {
         jsCookie.set("complete_register", true, cook_option);
         jsCookie.set("first_name", state.first_name, cook_option);
         jsCookie.set("last_name", state.last_name, cook_option);
-        jsCookie.set("user_name", state.first_name + " " + state.last_name, cook_option);
+        jsCookie.set(
+          "user_name",
+          state.first_name + " " + state.last_name,
+          cook_option
+        );
         if (state.company_name !== "") {
           jsCookie.set("company_name", state.company_name, cook_option);
         } else if (jsCookie.get("company_name")) {
@@ -212,6 +214,13 @@ const Complete_register_container = () => {
         type: "day",
         day: true,
         message: "لطفاً روز را وارد کنید",
+      });
+      return;
+    } else if (+state.day > 31) {
+      errorDispatch({
+        type: "day",
+        day: true,
+        message: "مقدار وارد شده نامعتبر است",
       });
       return;
     } else {
@@ -300,36 +309,36 @@ const Complete_register_container = () => {
             {!showCompanyName ? (
               <p onClick={() => setShowCompanyName(true)}>افزودن نام شرکت</p>
             ) : (
-                <div className="add_company_input_container">
-                  <TextInput
-                    name="company_name"
-                    number={false}
-                    // min={1}
-                    max={100}
-                    label="نام شرکت"
-                    clearField={() =>
-                      dispatch({ type: "company_name", company_name: "" })
-                    }
-                    onChangeHandler={(e) =>
-                      dispatch({ type: "company_name", company_name: e })
-                    }
-                    value={state.company_name}
-                    autoFocus={false}
-                    error={{
-                      status: stateError.company_name,
-                      message: null,
-                    }}
-                  />
-                  <span
-                    onClick={() => {
-                      dispatch({ type: "company_name", company_name: "" });
-                      setShowCompanyName(false);
-                    }}
-                  >
-                    لغو
+              <div className="add_company_input_container">
+                <TextInput
+                  name="company_name"
+                  number={false}
+                  // min={1}
+                  max={100}
+                  label="نام شرکت"
+                  clearField={() =>
+                    dispatch({ type: "company_name", company_name: "" })
+                  }
+                  onChangeHandler={(e) =>
+                    dispatch({ type: "company_name", company_name: e })
+                  }
+                  value={state.company_name}
+                  autoFocus={false}
+                  error={{
+                    status: stateError.company_name,
+                    message: null,
+                  }}
+                />
+                <span
+                  onClick={() => {
+                    dispatch({ type: "company_name", company_name: "" });
+                    setShowCompanyName(false);
+                  }}
+                >
+                  لغو
                 </span>
-                </div>
-              )}
+              </div>
+            )}
           </div>
           <label>تاریخ تولد</label>
           <div className="date_birth">
@@ -412,7 +421,7 @@ const Complete_register_container = () => {
               // , rolesCheck ? null : "disable_BTN"
             ].join(" ")}
             value="تایید"
-            click={() => { }}
+            click={() => {}}
             loading={loading}
           />
           {stateError.message ? (
@@ -421,11 +430,11 @@ const Complete_register_container = () => {
         </form>
       </article>
     ) : (
-        <PleaseLogin />
-      )
+      <PleaseLogin />
+    )
   ) : (
-      <article className="minHeight"></article>
-    );
+    <article className="minHeight"></article>
+  );
 };
 
 export default Complete_register_container;
