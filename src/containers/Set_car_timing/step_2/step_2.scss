@@ -33,6 +33,12 @@
         width: 100%;
         border-radius: 4px;
       }
+      .car_card_placeHolder_step2 {
+        height: 10.8rem;
+        width: 15rem;
+        border-radius: 4px;
+        display: inline-block;
+      }
     }
     .pelak_container {
       font-size: 1.4rem;
@@ -89,6 +95,26 @@
       .tail_text {
         display: inline-block;
         margin-right: 1rem;
+      }
+    }
+    .DropDown_extra_km {
+      .DropDown_container {
+        margin: 0;
+        display: inline-block;
+        width: 15rem;
+        .input_wrapper {
+          .clean_icon {
+            top: 1.6rem;
+            left: 4rem;
+          }
+          .ArrowDown {
+            top: 1.7rem;
+          }
+          input {
+            height: 5.1rem;
+            font-size: 1.4em;
+          }
+        }
       }
     }
     .check_box_container {

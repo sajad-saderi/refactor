@@ -7,7 +7,8 @@ import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 const SearchResultList = (props) => {
   return (
     <section className="search_result_section minHeight">
-      {props.result ? (
+      {/* {props.result ? ( */}
+      {false ? (
         props.result.length > 0 ? (
           props.result.map((item, i) => {
             return <Car key={i} data={item} />;

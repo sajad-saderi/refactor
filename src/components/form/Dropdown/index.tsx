@@ -16,7 +16,7 @@ const DropdownSearch = (props: IDropDown) => {
     // If the click is outside of the drop-down box the drop-down section will be close
     if (!wrapperRef.current.contains(e.target)) {
       setSearch_value("")
-      searchHandler("")
+      setData(props.data);
       setShowController(false);
       return;
     }
@@ -58,7 +58,7 @@ const DropdownSearch = (props: IDropDown) => {
 
   const DropDownController = () => {
     setSearch_value("")
-    searchHandler("")
+    setData(props.data);
     setShowController(!ShowController);
   };
 

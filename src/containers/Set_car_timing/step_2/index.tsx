@@ -21,7 +21,7 @@ import Spinner from "../../../components/Spinner";
 import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
-
+import DropdownSearch from "../../../components/form/Dropdown";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -202,7 +202,7 @@ const Add_Car_Step_2 = () => {
     registration_plate_second_part: null,
     registration_plate_third_part: "",
     registration_plate_forth_part: "",
-    max_km_per_day: "",
+    max_km_per_day: 250,
     extra_km_price: "",
     days_to_get_reminded: 1,
     deliver_at_renters_place: 0,
@@ -214,7 +214,6 @@ const Add_Car_Step_2 = () => {
   });
 
   const token = jsCookie.get("token");
-
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -503,7 +502,14 @@ const Add_Car_Step_2 = () => {
       resetTheErrorStatus("discount_error");
     }
 
-    if (state.cancellation_policy.trim() === "" || !state.cancellation_policy) {
+    if (!state.cancellation_policy) {
+      ErrorDispatch({
+        type: "cancellation_policy",
+        cancellation_policy: true,
+        error_message: "لطفا شرایط اجاره و کنسلی را وارد کنید",
+      });
+      return false;
+    } else if (state.cancellation_policy.trim() === "") {
       ErrorDispatch({
         type: "cancellation_policy",
         cancellation_policy: true,
@@ -581,8 +587,8 @@ const Add_Car_Step_2 = () => {
           {initialImage ? (
             <img src={initialImage} alt="تصویر کوچک خودرو" />
           ) : (
-              <Spinner display="inline-block" width={30} color="#9E9E9E" />
-            )}
+            <div className="Gradient car_card_placeHolder_step2" />
+          )}
         </div>
         <div className="pelak_container">
           {Brand_Name && <p>{`${Brand_Name} - ${CarModelName}`}</p>}
@@ -598,6 +604,93 @@ const Add_Car_Step_2 = () => {
         </div>
       </article>
       <form onSubmit={(e) => submitHandler(e, state)}>
+        <div className="add_car_form_step_2">
+          <h4 className="extra_text">تاریخ و نرخ اجاره</h4>
+          <div
+            className="Set_Price_date_options"
+            //   className={[
+            //     "transition_type_Label",
+            //     ErrorState.transmission_type_id ? "Error_color" : null
+            //   ].join(" ")}
+          >
+            {/* toggle between same price for all time and custom range of price  */}
+            <Radio
+              name="DateAndPrice"
+              error_status={ErrorState.price_per_day}
+              SelectHandler={(i) => {
+                setDateAndPrice(+i);
+                if (i !== "1") {
+                  dispatch({
+                    type: "extra_km_price",
+                    extra_km_price: "",
+                  });
+                }
+              }}
+              defaultCheck={DateAndPrice}
+              data={[
+                {
+                  label: "موجود در تمام تاریخ‌ها با قیمت یکسان",
+                  value: 1,
+                },
+                {
+                  label: "موجود در بازه‌های زمانی مختلف با قیمت‌های متفاوت",
+                  value: 2,
+                },
+              ]}
+            />
+          </div>
+          {DateAndPrice === 1 ? (
+            <>
+              <div className="custom_input_container_step_2">
+                <TextInput
+                  name="price_per_day"
+                  number={true}
+                  onChangeHandler={(e) => {
+                    dispatch({
+                      type: "price_per_day",
+                      price_per_day: e,
+                    });
+                    if (state.max_km_per_day) {
+                      dispatch({
+                        type: "extra_km_price",
+                        extra_km_price: Math.floor(+e / state.max_km_per_day),
+                      });
+                    }
+                  }}
+                  clearField={() =>
+                    dispatch({
+                      type: "price_per_day",
+                      price_per_day: "",
+                    })
+                  }
+                  error={{
+                    status: ErrorState.price_per_day,
+                    message: "",
+                  }}
+                  autoFocus={false}
+                  min={4}
+                  max={8}
+                  value={state.price_per_day}
+                />
+                <span className="tail_text">تومان در روز</span>
+              </div>
+              {/* {state.price_per_day.length > 3 && (
+                <p>
+                  اجاره خودرو شما در تمام روز ها با قیمت{" "}
+                  {Number(state.price_per_day).toLocaleString()} تومان است
+                </p>
+              )} */}
+            </>
+          ) : (
+            //PriceBox component
+            <PriceBox
+              initialAvailabilityList={initialAvailabilityList}
+              addAvailList={addToAvailabilityList}
+              removeAvailList={removeFromAvailabilityList}
+              error={ErrorState.price_range}
+            />
+          )}
+        </div>
         <div className="add_car_form_step_2">
           <h4 className="extra_text">شرایط اجاره</h4>
           <Counter
@@ -618,31 +711,42 @@ const Add_Car_Step_2 = () => {
             text="روز"
             value={state.min_days_to_rent}
           />
-          <div className="custom_input_container_step_2">
-            <TextInput
-              name="max_km_per_day"
-              number={true}
-              autoFocus={false}
-              onChangeHandler={(e) => {
-                dispatch({
-                  type: "max_km_per_day",
-                  max_km_per_day: e,
-                });
-              }}
-              clearField={() =>
+          <div className="custom_input_container_step_2 DropDown_extra_km">
+            <DropdownSearch
+              label="محدودیت مسافت"
+              InputDisable={true}
+              error_status={ErrorState.max_km_per_day}
+              data={[
+                { value: 100, text: 100 },
+                { value: 150, text: 150 },
+                { value: 200, text: 200 },
+                { value: 250, text: 250 },
+                { value: 300, text: 300 },
+              ]}
+              disableSearch={true}
+              defaultVal={state.max_km_per_day}
+              clearField={() => {
                 dispatch({
                   type: "max_km_per_day",
                   max_km_per_day: "",
-                })
-              }
-              error={{
-                status: ErrorState.max_km_per_day,
-                message: null,
+                });
+                dispatch({
+                  type: "extra_km_price",
+                  extra_km_price: "",
+                });
               }}
-              min={2}
-              max={5}
-              value={state.max_km_per_day}
-              label="محدودیت مسافت"
+              Select={(i) => {
+                dispatch({
+                  type: "max_km_per_day",
+                  max_km_per_day: i.value,
+                });
+                if (DateAndPrice === 1 && state.price_per_day) {
+                  dispatch({
+                    type: "extra_km_price",
+                    extra_km_price: Math.floor(+state.price_per_day / i.value),
+                  });
+                }
+              }}
             />
             <span className="tail_text">کیلومتر در روز</span>
           </div>
@@ -720,79 +824,6 @@ const Add_Car_Step_2 = () => {
           />
         </div>
         <div className="add_car_form_step_2">
-          <h4 className="extra_text">تاریخ و نرخ اجاره</h4>
-          <div
-            className="Set_Price_date_options"
-          //   className={[
-          //     "transition_type_Label",
-          //     ErrorState.transmission_type_id ? "Error_color" : null
-          //   ].join(" ")}
-          >
-            {/* toggle between same price for all time and custom range of price  */}
-            <Radio
-              name="DateAndPrice"
-              error_status={ErrorState.price_per_day}
-              SelectHandler={(i) => setDateAndPrice(+i)}
-              defaultCheck={DateAndPrice}
-              data={[
-                {
-                  label: "موجود در تمام تاریخ‌ها با قیمت یکسان",
-                  value: 1,
-                },
-                {
-                  label: "موجود در بازه‌های زمانی مختلف با قیمت‌های متفاوت",
-                  value: 2,
-                },
-              ]}
-            />
-          </div>
-          {DateAndPrice === 1 ? (
-            <>
-              <div className="custom_input_container_step_2">
-                <TextInput
-                  name="price_per_day"
-                  number={true}
-                  onChangeHandler={(e) => {
-                    dispatch({
-                      type: "price_per_day",
-                      price_per_day: e,
-                    });
-                  }}
-                  clearField={() =>
-                    dispatch({
-                      type: "price_per_day",
-                      price_per_day: "",
-                    })
-                  }
-                  error={{
-                    status: ErrorState.price_per_day,
-                    message: "",
-                  }}
-                  autoFocus={false}
-                  min={4}
-                  max={8}
-                  value={state.price_per_day}
-                />
-                <span className="tail_text">تومان در روز</span>
-              </div>
-              {/* {state.price_per_day.length > 3 && (
-                <p>
-                  اجاره خودرو شما در تمام روز ها با قیمت{" "}
-                  {Number(state.price_per_day).toLocaleString()} تومان است
-                </p>
-              )} */}
-            </>
-          ) : (
-              //PriceBox component
-              <PriceBox
-                initialAvailabilityList={initialAvailabilityList}
-                addAvailList={addToAvailabilityList}
-                removeAvailList={removeFromAvailabilityList}
-                error={ErrorState.price_range}
-              />
-            )}
-        </div>
-        <div className="add_car_form_step_2">
           <h4 className="extra_text">تخفیف ها</h4>
           {/* DiscountBox component  */}
           <DiscountBox
@@ -824,7 +855,7 @@ const Add_Car_Step_2 = () => {
             loading={Loading}
             disable={Loading}
             class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
-            click={() => { }}
+            click={() => {}}
           />
           {ErrorState.error_message ? (
             <p className="Error_message_text">{ErrorState.error_message}</p>
