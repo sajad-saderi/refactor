@@ -15,8 +15,7 @@ const DropdownSearch = (props: IDropDown) => {
   const handleClickOutside = (e) => {
     // If the click is outside of the drop-down box the drop-down section will be close
     if (!wrapperRef.current.contains(e.target)) {
-      setSearch_value("")
-      setData(props.data);
+      setSearch_value(""); 
       setShowController(false);
       return;
     }
@@ -45,7 +44,7 @@ const DropdownSearch = (props: IDropDown) => {
     if (props.callClearField) {
       setInputValue("");
       props.clearField();
-      props.callClearFieldReset()
+      props.callClearFieldReset();
     }
   }, [props.callClearField]);
 
@@ -57,7 +56,7 @@ const DropdownSearch = (props: IDropDown) => {
   // }, [props.error_status]);
 
   const DropDownController = () => {
-    setSearch_value("")
+    setSearch_value("");
     setData(props.data);
     setShowController(!ShowController);
   };
@@ -108,28 +107,40 @@ const DropdownSearch = (props: IDropDown) => {
           {props.label}
         </label>
       )}
-      {props.browserDropdown ? <div className="select_container">
-        <IoIosArrowDown
-          color="rgb(165, 165, 165)"
-          size="2rem"
-          className="ArrowDown"
-        />
-        <select className="default_select" onChange={(e) => {
-          e.persist();
-          let value = JSON.parse(e.target.value)
-          if (value.value === -1) {
-            props.clearField();
-          } else {
-            props.Select(value);
-          }
-        }}>
-          <option
-            value={JSON.stringify({ value: -1 })}></option>
-          {Data.map((i, index) => <option key={index}
-            value={JSON.stringify(i)}>{i.text}</option>)}
-        </select>
-      </div> : null}
-      <div className={["input_wrapper", props.browserDropdown ? "hideInput_wrapper" : null].join(" ")}>
+      {props.browserDropdown ? (
+        <div className="select_container">
+          <IoIosArrowDown
+            color="rgb(165, 165, 165)"
+            size="2rem"
+            className="ArrowDown"
+          />
+          <select
+            className="default_select"
+            onChange={(e) => {
+              e.persist();
+              let value = JSON.parse(e.target.value);
+              if (value.value === -1) {
+                props.clearField();
+              } else {
+                props.Select(value);
+              }
+            }}
+          >
+            <option value={JSON.stringify({ value: -1 })}></option>
+            {Data.map((i, index) => (
+              <option key={index} value={JSON.stringify(i)}>
+                {i.text}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
+      <div
+        className={[
+          "input_wrapper",
+          props.browserDropdown ? "hideInput_wrapper" : null,
+        ].join(" ")}
+      >
         <input
           data-test-id="drop_down_input"
           className={[
@@ -139,7 +150,7 @@ const DropdownSearch = (props: IDropDown) => {
             props.error_status ? "inputError" : null,
           ].join(" ")}
           data-hj-whitelist
-          onChange={() => { }}
+          onChange={() => {}}
           // active readOnly for input
           readOnly={props.InputDisable}
           disabled={props.disabled}
@@ -150,14 +161,14 @@ const DropdownSearch = (props: IDropDown) => {
         />
         {/* close icon in input */}
         {(InputValue.length > 0 || props.defaultVal) &&
-          !props.hideClearField ? (
-            <IoMdClose
-              color="rgb(165, 165, 165)"
-              size="2rem"
-              className="clean_icon"
-              onClick={clearField}
-            />
-          ) : null}
+        !props.hideClearField ? (
+          <IoMdClose
+            color="rgb(165, 165, 165)"
+            size="2rem"
+            className="clean_icon"
+            onClick={clearField}
+          />
+        ) : null}
         {/* Show the selected color in color picker drop-down */}
         {props.colorPicker && InputValue && (
           <div
@@ -166,8 +177,8 @@ const DropdownSearch = (props: IDropDown) => {
               background: colorCode
                 ? colorCode
                 : props.colorPicker
-                  ? InputValue
-                  : null,
+                ? InputValue
+                : null,
             }}
           ></div>
         )}
@@ -191,54 +202,54 @@ const DropdownSearch = (props: IDropDown) => {
               <Spinner display="block" width={21} color="#9E9E9E" />
             </div>
           ) : (
-              <div className="resultList">
-                {/* You can control the performance of the search input */}
-                {!props.disableSearch && (
-                  <input
-                    data-test-id="search_input"
-                    data-hj-whitelist
-                    // When the drop-down is shown, the search input is ready to type
-                    autoFocus
-                    placeholder="جستجو"
-                    name="search"
-                    // NOTE type of the input is 'search'
-                    type="search"
-                    value={search_value}
-                    onChange={(e) => {
-                      // set the value in input
-                      setSearch_value(e.target.value.trim());
-                      // search the value in list
-                      searchHandler(e.target.value.trim());
-                    }}
-                  />
-                )}
-                {Data.map((i, index) => (
-                  <p
-                    data-test-id="Items"
-                    className="Items"
-                    onClick={() => {
-                      // this part just work for color picker
-                      if (i.code) {
-                        setColorCode(i.code);
-                      }
-                      setInputValue(i.text);
-                      props.Select(i);
-                      DropDownController();
-                    }}
-                    key={index}
-                  >
-                    {i.text}
-                    {/* this section will active just in the color picker */}
-                    {i.code && (
-                      <span
-                        style={{ background: `${i.code}` }}
-                        className="Color_box"
-                      ></span>
-                    )}
-                  </p>
-                ))}
-              </div>
-            )}
+            <div className="resultList">
+              {/* You can control the performance of the search input */}
+              {!props.disableSearch && (
+                <input
+                  data-test-id="search_input"
+                  data-hj-whitelist
+                  // When the drop-down is shown, the search input is ready to type
+                  autoFocus
+                  placeholder="جستجو"
+                  name="search"
+                  // NOTE type of the input is 'search'
+                  type="search"
+                  value={search_value}
+                  onChange={(e) => {
+                    // set the value in input
+                    setSearch_value(e.target.value.trim());
+                    // search the value in list
+                    searchHandler(e.target.value.trim());
+                  }}
+                />
+              )}
+              {Data.map((i, index) => (
+                <p
+                  data-test-id="Items"
+                  className="Items"
+                  onClick={() => {
+                    // this part just work for color picker
+                    if (i.code) {
+                      setColorCode(i.code);
+                    }
+                    setInputValue(i.text);
+                    props.Select(i);
+                    DropDownController();
+                  }}
+                  key={index}
+                >
+                  {i.text}
+                  {/* this section will active just in the color picker */}
+                  {i.code && (
+                    <span
+                      style={{ background: `${i.code}` }}
+                      className="Color_box"
+                    ></span>
+                  )}
+                </p>
+              ))}
+            </div>
+          )}
         </div>
       ) : null}
     </div>
@@ -281,13 +292,13 @@ interface IDropDown {
   colorPicker?: boolean;
 
   // Show the default select-option instead of Dropdown component
-  browserDropdown?: boolean
+  browserDropdown?: boolean;
 
   // clear the text inside the input field
-  callClearField?: boolean
+  callClearField?: boolean;
 
   // Reset the controller value of clear input from the parent component
-  callClearFieldReset?: any
+  callClearFieldReset?: any;
 }
 
 export default DropdownSearch;
