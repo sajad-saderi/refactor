@@ -996,7 +996,7 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             error_status={Brand_id_error}
-            label="شرکت سازنده"
+            label="سازنده"
             defaultVal={Brand_Name}
             data={BrandList}
             clearField={() => {

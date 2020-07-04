@@ -423,7 +423,7 @@ const Search_result = () => {
           initSearch()
         }}>
           <IoMdClose size="1.3rem" color="#ababab" />
-          فیلتر براساس شرکت سازنده
+          فیلتر براساس سازنده
         </p>
           : null
         }

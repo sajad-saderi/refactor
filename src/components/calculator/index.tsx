@@ -84,7 +84,7 @@ const Calculator = (props: ICalculator) => {
      * validation to ignore empty values or if the inputted value is smaller then 10 million
      */
     if (!brand.id) {
-      setBrandError({ status: true, message: "شرکت سازنده را انتخاب کنید" })
+      setBrandError({ status: true, message: "سازنده را انتخاب کنید" })
       setLoading(false);
       return;
     } else if (!model.id) {
@@ -172,7 +172,7 @@ const Calculator = (props: ICalculator) => {
                     console.log("Em...I think heap not work correctly :/");
                   }
                 }}
-                placeholder="شرکت سازنده"
+                placeholder="سازنده"
                 InputDisable={true}
                 error_status={brandError.status}
               />

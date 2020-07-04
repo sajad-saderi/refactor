@@ -224,7 +224,7 @@ const Filters = (props: IFilter) => {
         />
         <DropdownSearch
           InputDisable={true}
-          label="شرکت سازنده"
+          label="سازنده"
           data={BrandList}
           clearField={() => {
             setBrand_id(null);

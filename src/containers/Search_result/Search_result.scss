@@ -97,17 +97,18 @@
   .minimal_filters {
     .minimal_filter_tags {
       display: inline-block;
-      color: rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
-      padding: 0.2rem 0.8rem;
-      font-weight: 500;
+      border-radius: 20px;
+      padding: 0.7rem 1rem;
+      font-weight: normal;
       margin-left: 2rem;
+      cursor: pointer;
+      background: #e3e3e3;
+      color: #262626;
       cursor: pointer;
       svg {
         display: inline-block;
         vertical-align: top;
-        padding-left: 1rem;
+        padding-left: 0.5rem;
         width: 1.3rem;
       }
     }

@@ -395,7 +395,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           initSearch()
         }}>
           <IoMdClose size="1.3rem" color="#ababab" />
-          فیلتر براساس شرکت سازنده
+          فیلتر براساس سازنده
         </p>
           : null
         }
