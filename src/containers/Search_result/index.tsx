@@ -373,7 +373,7 @@ const Search_result = () => {
           filtersChecker.price = false;
           initSearch()
         }}>
-          <IoMdClose size="1.3rem" color="#ababab" />
+          <IoMdClose size="1.3rem" color="#8c8c8c" />
           قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
         </p>
           : null
@@ -385,7 +385,7 @@ const Search_result = () => {
           filtersChecker.deliver_at_renters_place = false;
           initSearch()
         }}>
-          <IoMdClose size="1.3rem" color="#ababab" />
+          <IoMdClose size="1.3rem" color="#8c8c8c" />
           تحویل در محل
         </p>
           : null
@@ -397,7 +397,7 @@ const Search_result = () => {
           filtersChecker.with_driver = false;
           initSearch()
         }}>
-          <IoMdClose size="1.3rem" color="#ababab" />
+          <IoMdClose size="1.3rem" color="#8c8c8c" />
           اجاره همراه راننده
         </p>
           : null
@@ -409,7 +409,7 @@ const Search_result = () => {
           filtersChecker.body_style_id = false;
           initSearch()
         }}>
-          <IoMdClose size="1.3rem" color="#ababab" />
+          <IoMdClose size="1.3rem" color="#8c8c8c" />
           فیلتر نوع بدنه
         </p>
           : null
@@ -422,7 +422,7 @@ const Search_result = () => {
           filtersChecker.car_id = false;
           initSearch()
         }}>
-          <IoMdClose size="1.3rem" color="#ababab" />
+          <IoMdClose size="1.3rem" color="#8c8c8c" />
           فیلتر براساس سازنده
         </p>
           : null
@@ -434,7 +434,7 @@ const Search_result = () => {
           filtersChecker.car_id = false;
           initSearch()
         }}>
-          <IoMdClose size="1.3rem" color="#ababab" />
+          <IoMdClose size="1.3rem" color="#8c8c8c" />
           فیلتر براساس نام مدل
         </p>
           : null
