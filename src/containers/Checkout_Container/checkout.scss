@@ -172,14 +172,29 @@
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
-        .text_input_container {
+        .coupon_container {
+          position: relative;
           margin-left: 1rem;
-          input {
-            margin: 0;
+          width: 100%;
+          .close_icon {
+            position: absolute;
+            top: 11px;
+            left: 1rem;
           }
-          .input_error_message {
-            font-size: 1.2rem;
+          .text_input_container {
+            input {
+              margin: 0;
+            }
+            .input_error_message {
+              font-size: 1.2rem;
+            }
           }
+        }
+        .coupan_BTN {
+          background: #fff;
+          border: 1px solid $main__color;
+          color: $main__color;
+          padding: 1rem 2.1rem;
         }
       }
       .total_price {

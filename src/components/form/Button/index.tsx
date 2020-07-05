@@ -11,7 +11,13 @@ const Button = (props: IButton) => {
     >
       {props.loading ? (
         // this loading and the <Spinner/> component have save style
-        <span data-test-id="Loading" className="Loading" />
+        <span
+          style={{
+            borderRightColor: props.loadingColor,
+          }}
+          data-test-id="Loading"
+          className="Loading"
+        />
       ) : (
         props.value
       )}
@@ -41,6 +47,12 @@ interface IButton {
    * It can do nothing
    */
   click: any;
+
+  /**
+   * @laodingColor
+   * border color for spinner
+   */
+  loadingColor?: string;
 }
 
 export default Button;

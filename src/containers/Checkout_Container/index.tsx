@@ -4,7 +4,7 @@ import Router from "next/router";
 // import "./checkout.scss";
 
 import Button from "../../components/form/Button";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
 import moment from "moment-jalaali";
 import Insurance from "./insurance";
 import TextInput from "../../components/form/TextInput";
@@ -16,7 +16,6 @@ import Toast_context from "../../context/Toast_context";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
-
 
 const Checkout_Container = () => {
   const [car, setCar] = useState(null);
@@ -112,7 +111,7 @@ const Checkout_Container = () => {
       return;
     }
     if (!checkRegister()) {
-      return
+      return;
     }
     setCoupanLoading(true);
     // validation
@@ -152,14 +151,14 @@ const Checkout_Container = () => {
   };
 
   const checkRegister = () => {
-    const complete_register = jsCookie.get("complete_register")
+    const complete_register = jsCookie.get("complete_register");
     if (complete_register !== "true") {
-      Router.push("/complete-register")
-      return false
+      Router.push("/complete-register");
+      return false;
     } else {
-      return true
+      return true;
     }
-  }
+  };
 
   const GoToRequests = async () => {
     setLoading(true);
@@ -169,7 +168,7 @@ const Checkout_Container = () => {
       return;
     }
     if (!checkRegister()) {
-      return
+      return;
     }
     const user_id = jsCookie.get("user_id");
     if (user_id == owner.id) {
@@ -309,7 +308,7 @@ const Checkout_Container = () => {
             <p>
               <span>{`اجاره ${no_of_days} روز`}</span>
               <span>
-                {(total_price).toLocaleString()}{" "}
+                {total_price.toLocaleString()}{" "}
                 <span className="Toman">تومان</span>{" "}
               </span>
             </p>
@@ -321,7 +320,7 @@ const Checkout_Container = () => {
                     : "تخفیف"}
                 </span>
                 <span>
-                  {(total_discount).toLocaleString()}- {" "}
+                  {total_discount.toLocaleString()}-{" "}
                   <span className="Toman">تومان</span>
                 </span>
               </p>
@@ -335,8 +334,8 @@ const Checkout_Container = () => {
                     <span className="Toman">تومان</span>
                   </>
                 ) : (
-                    "ندارد"
-                  )}
+                  "ندارد"
+                )}
               </span>
             </p>
             {!useCouponPrice ? (
@@ -348,7 +347,8 @@ const Checkout_Container = () => {
                   کد تخفیف دارید؟
                 </p>
               ) : (
-                  <form className="coupon_form" onSubmit={couponHandler}>
+                <form className="coupon_form" onSubmit={couponHandler}>
+                  <div className="coupon_container">
                     <TextInput
                       name="coupon"
                       autoFocus={true}
@@ -360,31 +360,42 @@ const Checkout_Container = () => {
                       value={coupon}
                       placeholder="کد تخفیف خود را وارد کنید"
                       onChangeHandler={(i) => setCoupon(i)}
+                      HideClearIcon={true}
                     />
-                    <Button
-                      value="اعمال"
-                      class="Blue_BTN coupan_BTN HEAP_Checkout_Btn_CouponSubmit"
-                      loading={coupanLoading}
-                      click={() => { }}
-                    />
-                  </form>
-                )
+                    {coupon && (
+                      <IoMdClose
+                        className="close_icon"
+                        onClick={() => setShowcoupon(false)}
+                        color="737373"
+                        size="2rem"
+                      />
+                    )}
+                  </div>
+                  <Button
+                    value="اعمال"
+                    class="Blue_BTN coupan_BTN HEAP_Checkout_Btn_CouponSubmit"
+                    loading={coupanLoading}
+                    click={() => {}}
+                    loadingColor="#4ba3ce"
+                  />
+                </form>
+              )
             ) : (
-                <p>
-                  <span>کد تخفیف</span>
-                  <span className="total_price_number">
-                    {couponDiscount.toLocaleString()}-
+              <p>
+                <span>کد تخفیف</span>
+                <span className="total_price_number">
+                  {couponDiscount.toLocaleString()}-
                   <span className="Toman"> تومان</span>
-                  </span>
-                </p>
-              )}
+                </span>
+              </p>
+            )}
             <p className="total_price">
               <span className="total_price_text">جمع کل</span>
               <span className="total_price_number">
                 {showInsurance
                   ? (
-                    discounted_total_price + insurance_total_price
-                  ).toLocaleString()
+                      discounted_total_price + insurance_total_price
+                    ).toLocaleString()
                   : discounted_total_price.toLocaleString()}{" "}
                 <span className="Toman">تومان</span>
               </span>
@@ -406,15 +417,15 @@ const Checkout_Container = () => {
       </article>
     </>
   ) : (
-      // initial page title
-      <>
-        <NextSeo
-          title={`ثبت درخواست اجاره | اتولی`}
-          description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
-        />
-        <Checkout_Container_Loader />
-      </>
-    );
+    // initial page title
+    <>
+      <NextSeo
+        title={`ثبت درخواست اجاره | اتولی`}
+        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+      />
+      <Checkout_Container_Loader />
+    </>
+  );
 };
 
 export default Checkout_Container;
