@@ -37,16 +37,16 @@ const Menu = () => {
           </Link>
         </li>
       ) : (
-          <li
-            className="HEAP_Header_Btn_Login"
-            onClick={() => {
-              // set the 'login' model to appear
-              MODAL_CONTEXT.modalHandler("Login");
-            }}
-          >
-            ورود/ثبت نام
-          </li>
-        )}
+        <li
+          className="HEAP_Header_Btn_Login"
+          onClick={() => {
+            // set the 'login' model to appear
+            MODAL_CONTEXT.modalHandler("Login");
+          }}
+        >
+          ورود/ثبت نام
+        </li>
+      )}
       {/* if the user had registered completely, can access to orders history */}
       {complete_register === "true" && (
         <li>
@@ -76,6 +76,16 @@ const Menu = () => {
           <li>
             <Link href="/guide-renter">
               <a>راهنمای اجاره دهنده</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/assurance">
+              <a>مدارک و ضمانت های لازم</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/evaluation">
+              <a>اعتبار سنجی مشتریان</a>
             </Link>
           </li>
           <li>

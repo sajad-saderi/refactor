@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { IoMdClose, IoIosArrowDown } from "react-icons/io";
+import { IoMdClose, IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import Spinner from "../../Spinner";
 
 const DropdownSearch = (props: IDropDown) => {
@@ -187,7 +187,10 @@ const DropdownSearch = (props: IDropDown) => {
           <IoIosArrowDown
             color="rgb(165, 165, 165)"
             size="2rem"
-            className="ArrowDown"
+            className={[
+              "ArrowDown",
+              ShowController ? "rotate_arrow_down_icon" : null,
+            ].join(" ")}
             onClick={DropDownController}
           />
         )}
@@ -205,23 +208,26 @@ const DropdownSearch = (props: IDropDown) => {
             <div className="resultList">
               {/* You can control the performance of the search input */}
               {!props.disableSearch && (
-                <input
-                  data-test-id="search_input"
-                  data-hj-whitelist
-                  // When the drop-down is shown, the search input is ready to type
-                  // autoFocus
-                  placeholder="جستجو"
-                  name="search"
-                  // NOTE type of the input is 'search'
-                  type="search"
-                  value={search_value}
-                  onChange={(e) => {
-                    // set the value in input
-                    setSearch_value(e.target.value.trim());
-                    // search the value in list
-                    searchHandler(e.target.value.trim());
-                  }}
-                />
+                <div className="search_input_container">
+                  <input
+                    data-test-id="search_input"
+                    data-hj-whitelist
+                    // When the drop-down is shown, the search input is ready to type
+                    // autoFocus
+                    placeholder="جستجو"
+                    name="search"
+                    // NOTE type of the input is 'search'
+                    type="search"
+                    value={search_value}
+                    onChange={(e) => {
+                      // set the value in input
+                      setSearch_value(e.target.value.trim());
+                      // search the value in list
+                      searchHandler(e.target.value.trim());
+                    }}
+                  />
+                  {!search_value && <IoIosSearch size="2rem" color="#737373" />}
+                </div>
               )}
               {Data.map((i, index) => (
                 <p
