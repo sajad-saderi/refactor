@@ -15,7 +15,7 @@ const DropdownSearch = (props: IDropDown) => {
   const handleClickOutside = (e) => {
     // If the click is outside of the drop-down box the drop-down section will be close
     if (!wrapperRef.current.contains(e.target)) {
-      setSearch_value(""); 
+      setSearch_value("");
       setShowController(false);
       return;
     }
@@ -75,9 +75,9 @@ const DropdownSearch = (props: IDropDown) => {
     if (filter.length === 0)
       filter = [
         {
-          key: 0,
+          key: -1,
           text: "نتیجه ای یافت نشد",
-          value: 0,
+          value: -1,
         },
       ];
 
@@ -209,7 +209,7 @@ const DropdownSearch = (props: IDropDown) => {
                   data-test-id="search_input"
                   data-hj-whitelist
                   // When the drop-down is shown, the search input is ready to type
-                  autoFocus
+                  // autoFocus
                   placeholder="جستجو"
                   name="search"
                   // NOTE type of the input is 'search'
@@ -228,6 +228,7 @@ const DropdownSearch = (props: IDropDown) => {
                   data-test-id="Items"
                   className="Items"
                   onClick={() => {
+                    if (i.value === -1) return;
                     // this part just work for color picker
                     if (i.code) {
                       setColorCode(i.code);

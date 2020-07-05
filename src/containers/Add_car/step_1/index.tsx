@@ -656,11 +656,18 @@ const Add_Car_Step_1 = () => {
     }
   };
 
+  const Dispatcher = (data) => {
+    ErrorDispatch({
+      type: data.type,
+      [data.type]: true,
+      error_message: data.error_message,
+    });
+  };
+
   const validation = (state) => {
     if (!validator.isNumeric(`${state.location_id}`) && !showDistrict) {
-      ErrorDispatch({
+      Dispatcher({
         type: "location_id",
-        location_id: true,
         error_message: "لطفا شهر خودرو را انتخاب کنید",
       });
       return false;
@@ -671,9 +678,8 @@ const Add_Car_Step_1 = () => {
     }
     if (showDistrict) {
       if (state.location_id === 1 || !state.location_id) {
-        ErrorDispatch({
+        Dispatcher({
           type: "location_id",
-          location_id: true,
           error_message: "لطفا محله را انتخاب کنید",
         });
         return false;
@@ -683,9 +689,9 @@ const Add_Car_Step_1 = () => {
     }
     if (!validator.isNumeric(`${Brand_id}`)) {
       setBrand_id_error(true);
-      ErrorDispatch({
+      Dispatcher({
         type: "error_message",
-        error_message: "لطفا برند را انتخاب کنید",
+        error_message: "لطفا سازنده را انتخاب کنید",
       });
       return false;
     } else {
@@ -693,9 +699,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("error_message");
     }
     if (!validator.isNumeric(`${state.car_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "car_id",
-        car_id: true,
         error_message: "لطفا مدل را انتخاب کنید",
       });
       return false;
@@ -703,9 +708,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("car_id");
     }
     if (!validator.isNumeric(`${state.year_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "year_id",
-        year_id: true,
         error_message: " لطفا سال را انتخاب کنید",
       });
       return false;
@@ -713,9 +717,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("year_id");
     }
     if (!validator.isNumeric(`${state.transmission_type_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "transmission_type_id",
-        transmission_type_id: true,
         error_message: "لطفا نوع دنده را انتخاب کنید",
       });
       return false;
@@ -723,19 +726,17 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("transmission_type_id");
     }
     if (!validator.isNumeric(`${state.body_style_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "body_style_id",
-        body_style_id: true,
-        error_message: "لطفا نوع دنده را انتخاب کنید",
+        error_message: "لطفا نوع شاسی را انتخاب کنید",
       });
       return false;
     } else {
       resetTheErrorStatus("body_style_id");
     }
     if (!validator.isNumeric(`${state.cylinder_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "cylinder_id",
-        cylinder_id: true,
         error_message: "لطفا تعداد سیلندر را انتخاب کنید",
       });
       return false;
@@ -743,9 +744,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("cylinder_id");
     }
     if (!validator.isNumeric(`${state.capacity}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "capacity",
-        capacity: true,
         error_message: "لطفا ظرفیت خودرو را انتخاب کنبد",
       });
       return false;
@@ -753,9 +753,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("capacity");
     }
     if (!validator.isNumeric(`${state.mileage_range_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "mileage_range_id",
-        mileage_range_id: true,
         error_message: "لطفا کارکرد خودرو را انتخاب کنید",
       });
       return false;
@@ -763,9 +762,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("mileage_range_id");
     }
     if (!validator.isNumeric(`${state.value}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "value",
-        value: true,
         error_message: "لطفا ارزش خودرو را وارد کنید",
       });
       return false;
@@ -773,9 +771,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("value");
     }
     if (`${state.registration_plate_first_part}`.length !== 2) {
-      ErrorDispatch({
+      Dispatcher({
         type: "registration_plate_first_part",
-        registration_plate_first_part: true,
         error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد",
       });
       return false;
@@ -783,9 +780,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("registration_plate_first_part");
     }
     if (!state.registration_plate_second_part) {
-      ErrorDispatch({
+      Dispatcher({
         type: "registration_plate_second_part",
-        registration_plate_second_part: true,
         error_message: "لطفا بخش دوم پلاک را کامل کنید",
       });
       return false;
@@ -793,9 +789,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("registration_plate_second_part");
     }
     if (`${state.registration_plate_third_part}`.length !== 3) {
-      ErrorDispatch({
+      Dispatcher({
         type: "registration_plate_third_part",
-        registration_plate_third_part: true,
         error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد",
       });
       return false;
@@ -803,9 +798,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("registration_plate_third_part");
     }
     if (`${state.registration_plate_forth_part}`.length !== 2) {
-      ErrorDispatch({
+      Dispatcher({
         type: "registration_plate_forth_part",
-        registration_plate_forth_part: true,
         error_message: "کد استانی شماره پلاک باید ۲ رقم باشد",
       });
       return false;
@@ -813,9 +807,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("registration_plate_forth_part");
     }
     if (state.media_id.length < 1) {
-      ErrorDispatch({
+      Dispatcher({
         type: "media_id",
-        media_id: true,
         error_message: "لطفاً حداقل یک تصویر بارگذاری کنید",
       });
       return false;
@@ -823,9 +816,8 @@ const Add_Car_Step_1 = () => {
       resetTheErrorStatus("media_id");
     }
     if (!validator.isNumeric(`${state.color_id}`)) {
-      ErrorDispatch({
+      Dispatcher({
         type: "color_id",
-        color_id: true,
         error_message: "لطفا رنگ خود را انتخاب کنید",
       });
       return false;
@@ -1266,8 +1258,8 @@ const Add_Car_Step_1 = () => {
         <label className="add_car_Facilities_label">امکانات خودرو</label>
         {facilitesList.length === 0 ? (
           <div className="Step1_checkoout_placeholder">
-            {checkListLoaderLength.map(() => (
-              <CheckBox_Loader />
+            {checkListLoaderLength.map((_, i) => (
+              <CheckBox_Loader key={i} />
             ))}
           </div>
         ) : (

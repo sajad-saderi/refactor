@@ -99,7 +99,7 @@ const Footer = (props: IFooter) => {
           </li>
         </ul>
 
-        <div className="social_container">
+        <div className="social_container_footer">
           <h3>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
           <div>
             <a target="_black" href="https://www.instagram.com/otoli_net/">
