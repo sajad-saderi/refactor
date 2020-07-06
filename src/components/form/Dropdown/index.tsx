@@ -76,7 +76,7 @@ const DropdownSearch = (props: IDropDown) => {
       filter = [
         {
           key: -1,
-          text: "نتیجه ای یافت نشد",
+          text: "نتیجه‌ای یافت نشد",
           value: -1,
         },
       ];

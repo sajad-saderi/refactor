@@ -127,7 +127,7 @@ const Requests_page = () => {
                     );
                   })}
                 </>
-              ) : <p className="NoResult">نتیجه ای یافت نشد!</p> : (
+              ) : <p className="NoResult">نتیجه‌ای یافت نشد!</p> : (
                 <>
                   <Requests_page_Loading />
                   <Requests_page_Loading />
