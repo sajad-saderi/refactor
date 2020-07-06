@@ -148,6 +148,7 @@ const DropdownSearch = (props: IDropDown) => {
             props.disabled ? "Disable_color" : null,
             props.styleClass ? props.styleClass : null,
             props.error_status ? "inputError" : null,
+            ShowController ? "dropdownIsActive" : null,
           ].join(" ")}
           data-hj-whitelist
           onChange={() => {}}
