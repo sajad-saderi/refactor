@@ -202,7 +202,7 @@ const DropdownSearch = (props: IDropDown) => {
           className="Locations_list_container"
         >
           {Data.length === 0 ? (
-            <div className="resultList">
+            <div className="resultList spinnerPlaceholder">
               <Spinner display="block" width={21} color="#9E9E9E" />
             </div>
           ) : (

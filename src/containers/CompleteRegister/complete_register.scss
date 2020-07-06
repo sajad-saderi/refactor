@@ -18,7 +18,7 @@
     }
   }
   .complete_register_form {
-    background: #fff;
+    background: #fdfdfd;
     border: 1px solid $input_border;
     font-size: 1.4rem;
     border-radius: 4px;
@@ -78,7 +78,7 @@
       .DropDown_container {
         input {
           height: 5.1rem;
-          margin: 1rem 0;
+          margin: 1rem 0 0;
         }
       }
     }
@@ -97,6 +97,8 @@
 @media screen and(max-width:575px) {
   .complete_register_container {
     .complete_register_form {
+      background-color: transparent;
+      box-shadow: none;
       .name_container {
         display: block;
         .text_input_container {
