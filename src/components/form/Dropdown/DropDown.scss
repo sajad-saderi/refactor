@@ -87,12 +87,12 @@
         outline: 0;
         -webkit-appearance: none;
         line-height: 1;
-        padding: 0.5rem;
+        padding: 1rem;
         font-size: 1.4rem;
         background: #fff;
-        border: 1px solid $input_border;
-        color: rgba(0, 0, 0, 0.87);
-        border-radius: 0.4rem;
+        border: none;
+        border-bottom: 1px solid $input_border;
+        color: rgba(0, 0, 0, 0.87); 
         box-shadow: 0 0 0 0 transparent inset;
       }
       svg {
@@ -100,6 +100,7 @@
         width: 2rem;
         left: 0.4rem;
         top: 0.77rem;
+        cursor: pointer;
       }
     }
     p {

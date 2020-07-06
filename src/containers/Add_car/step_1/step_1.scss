@@ -225,6 +225,13 @@
     max-width: 68rem;
 
     .add_car_form_step_1 {
+      box-shadow: none;
+      padding: 1.6rem 0;
+      .DropDown_container,
+      .radio_father,
+      .text_input_container {
+        margin: 0 0 3rem;
+      }
       .Car_info_step_1 {
         display: block;
         .DropDown_container {

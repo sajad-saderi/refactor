@@ -160,7 +160,7 @@ const DropdownSearch = (props: IDropDown) => {
           onClick={DropDownController}
         />
         {/* close icon in input */}
-        {(InputValue.length > 0 || props.defaultVal) &&
+        {/* {(InputValue.length > 0 || props.defaultVal) &&
         !props.hideClearField ? (
           <IoMdClose
             color="rgb(165, 165, 165)"
@@ -168,7 +168,7 @@ const DropdownSearch = (props: IDropDown) => {
             className="clean_icon"
             onClick={clearField}
           />
-        ) : null}
+        ) : null} */}
         {/* Show the selected color in color picker drop-down */}
         {props.colorPicker && InputValue && (
           <div
@@ -216,8 +216,8 @@ const DropdownSearch = (props: IDropDown) => {
                     // autoFocus
                     placeholder="جستجو"
                     name="search"
-                    // NOTE type of the input is 'search'
-                    type="search"
+                    // NOTE type of the input is 'text'
+                    type="text"
                     value={search_value}
                     onChange={(e) => {
                       // set the value in input
@@ -227,6 +227,16 @@ const DropdownSearch = (props: IDropDown) => {
                     }}
                   />
                   {!search_value && <IoIosSearch size="2rem" color="#737373" />}
+                  {search_value && (
+                    <IoMdClose
+                      onClick={() => {
+                        setSearch_value("");
+                        searchHandler("");
+                      }}
+                      size="2rem"
+                      color="#737373"
+                    />
+                  )}
                 </div>
               )}
               {Data.map((i, index) => (
