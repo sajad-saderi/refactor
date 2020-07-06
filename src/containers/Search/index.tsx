@@ -29,11 +29,13 @@ const Search = (props: ISearch) => {
   const [loading, setLoading] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
   const [fromError, setFromError] = useState({
-    status: false, message: ""
-  })
+    status: false,
+    message: "",
+  });
   const [toError, setToError] = useState({
-    status: false, message: ""
-  })
+    status: false,
+    message: "",
+  });
 
   const MODAL_CONTEXT = useContext(modal_context);
 
@@ -111,22 +113,22 @@ const Search = (props: ISearch) => {
         },
       });
     } else if (!dayRange.from) {
-      setFromError({ status: true, message: "تاریخ شروع را انتخاب کنید" })
+      setFromError({ status: true, message: "تاریخ شروع را انتخاب کنید" });
     } else if (!dayRange.to) {
-      setToError({ status: true, message: "تاریخ پایان را انتخاب کنید" })
+      setToError({ status: true, message: "تاریخ پایان را انتخاب کنید" });
     }
   };
 
   useEffect(() => {
     if (dayRange.from) {
-      setFromError({ status: false, message: "" })
+      setFromError({ status: false, message: "" });
       setFromDay(convertDate(dayRange.from));
     } else {
       setFromDay(" ");
       setToDay(" ");
     }
     if (dayRange.to) {
-      setToError({ status: false, message: "" })
+      setToError({ status: false, message: "" });
       setShowBorder(false);
       setToDay(convertDate(dayRange.to));
     } else {
@@ -155,9 +157,11 @@ const Search = (props: ISearch) => {
             hardValue="تهران"
             search_place_holder="در نام شهرها"
             Select={(i) => {
-              // setLocationId(i.key);
-              localStorage["User_Location"] = JSON.stringify(i);
-              MODAL_CONTEXT.modalHandler("TellMe");
+              if (i.value !== 1) {
+                // setLocationId(i.key);
+                localStorage["User_Location"] = JSON.stringify(i);
+                MODAL_CONTEXT.modalHandler("TellMe");
+              }
             }}
             clearField={() => setLocationId(1)}
           />
@@ -188,14 +192,15 @@ const Search = (props: ISearch) => {
               <input
                 data-hj-whitelist
                 className={
-                  fromError.status ? "input_Error"
+                  fromError.status
+                    ? "input_Error"
                     : showBorder
-                      ? dayRange.from
-                        ? dayRange.to
-                          ? "activeBorder"
-                          : null
-                        : "activeBorder"
-                      : null
+                    ? dayRange.from
+                      ? dayRange.to
+                        ? "activeBorder"
+                        : null
+                      : "activeBorder"
+                    : null
                 }
                 readOnly={true}
                 value={fromDay ? fromDay : ""}
@@ -209,16 +214,17 @@ const Search = (props: ISearch) => {
                 data-hj-whitelist
                 className={[
                   "exception_input",
-                  toError.status ? "input_Error"
+                  toError.status
+                    ? "input_Error"
                     : showBorder
-                      ? dayRange.to
-                        ? dayRange.from
-                          ? null
-                          : null
-                        : dayRange.from
-                          ? "activeBorder"
-                          : null
-                      : null,
+                    ? dayRange.to
+                      ? dayRange.from
+                        ? null
+                        : null
+                      : dayRange.from
+                      ? "activeBorder"
+                      : null
+                    : null,
                 ].join(" ")}
                 readOnly={true}
                 value={toDay ? toDay : ""}
@@ -234,7 +240,7 @@ const Search = (props: ISearch) => {
             value="جستجو"
             class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
             loading={loading}
-            click={() => { }}
+            click={() => {}}
           />
         </div>
       </form>
