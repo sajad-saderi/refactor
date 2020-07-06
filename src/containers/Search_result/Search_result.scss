@@ -49,17 +49,24 @@
         margin-bottom: 0.5rem;
         color: #dcdcdc;
       }
+      .DropDown_container {
+        .input_wrapper {
+          input{
+            background: #fff;
+          }
+        }
+      }
     }
     .show_search_section {
       display: block;
     }
     svg {
       margin: auto;
-      padding-bottom: 1rem;
       display: block;
       cursor: pointer;
     }
     .Arrow_up_change_search {
+      padding: 1rem 2rem;  
       width: 2rem;
     }
   }

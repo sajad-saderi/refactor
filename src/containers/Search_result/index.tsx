@@ -60,10 +60,9 @@ const Search_result = () => {
     deliver_at_renters_place: false,
     brand_id: false,
     car_id: false,
-  })
+  });
 
-  const new_search_ref = useRef(null)
-
+  const new_search_ref = useRef(null);
 
   useEffect(() => {
     // get the data from url
@@ -230,36 +229,36 @@ const Search_result = () => {
   const clearReset = (v) => {
     switch (v) {
       case "price":
-        setFilterReset(filterReset => {
-          return { ...filterReset, price: false }
-        })
+        setFilterReset((filterReset) => {
+          return { ...filterReset, price: false };
+        });
         break;
       case "with_driver":
-        setFilterReset(filterReset => {
-          return { ...filterReset, with_driver: false }
-        })
+        setFilterReset((filterReset) => {
+          return { ...filterReset, with_driver: false };
+        });
         break;
 
       case "body_style_id":
-        setFilterReset(filterReset => {
-          return { ...filterReset, body_style_id: false }
-        })
+        setFilterReset((filterReset) => {
+          return { ...filterReset, body_style_id: false };
+        });
         break;
 
       case "deliver_at_renters_place":
-        setFilterReset(filterReset => {
-          return { ...filterReset, deliver_at_renters_place: false }
-        })
+        setFilterReset((filterReset) => {
+          return { ...filterReset, deliver_at_renters_place: false };
+        });
         break;
       case "brand_id":
-        setFilterReset(filterReset => {
-          return { ...filterReset, brand_id: false }
-        })
+        setFilterReset((filterReset) => {
+          return { ...filterReset, brand_id: false };
+        });
         break;
       case "car_id":
-        setFilterReset(filterReset => {
-          return { ...filterReset, car_id: false }
-        })
+        setFilterReset((filterReset) => {
+          return { ...filterReset, car_id: false };
+        });
         break;
 
       default:
@@ -270,10 +269,10 @@ const Search_result = () => {
           deliver_at_renters_place: false,
           brand_id: false,
           car_id: false,
-        })
+        });
         break;
     }
-  }
+  };
 
   return (
     <article
@@ -298,43 +297,62 @@ const Search_result = () => {
         />
       )}
       {/* result count section */}
-      <div className="count_bar_container"
-        ref={new_search_ref}
-      >
-        {result
-          ? result.length > 0 && (
-            <div className="count_bar responsive" onClick={() => { setShowSearch(!showSearch) }}>
-              {!showSearch ? <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
-                5
-              )} تا ${result[0].end_date.slice(5)}`}</p> : null}
-              <p className="change_search_btn" >
-                {showSearch
-                  ? <span className="close_text_btn">
+      <div className="count_bar_container" ref={new_search_ref}>
+        {result ? (
+          result.length > 0 && (
+            <div
+              className="count_bar responsive"
+              onClick={() => {
+                setShowSearch(!showSearch);
+              }}
+            >
+              {!showSearch ? (
+                <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
+                  5
+                )} تا ${result[0].end_date.slice(5)}`}</p>
+              ) : null}
+              <p className="change_search_btn">
+                {showSearch ? (
+                  <span className="close_text_btn">
                     بستن
                     <IoMdClose size="2rem" color="#dcdcdc" />
                   </span>
-                  : "تغییر جستجو"}
+                ) : (
+                  "تغییر جستجو"
+                )}
               </p>
             </div>
           )
-          : <p className="count_bar_count_empty"></p>
-        }
+        ) : (
+          <p className="count_bar_count_empty"></p>
+        )}
         {/* search box */}
         <section
-          className={["new_search_in_landing", showSearch ? "show_search_section" : null].join(" ")}>
+          className={[
+            "new_search_in_landing",
+            showSearch ? "show_search_section" : null,
+          ].join(" ")}
+        >
           <div className="responsive">
             <Search
               dynamic={true}
               searchSubmit={(v) => {
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
-                setShowSearch(false)
+                setShowSearch(false);
                 initSearch();
               }}
             />
           </div>
         </section>
-        {showSearch ? <IoIosArrowUp className="Arrow_up_change_search" color="#dcdcdc" size="2rem" onClick={() => setShowSearch(false)} /> : null}
+        {showSearch ? (
+          <IoIosArrowUp
+            className="Arrow_up_change_search"
+            color="#dcdcdc"
+            size="2rem"
+            onClick={() => setShowSearch(false)}
+          />
+        ) : null}
       </div>
       {/* search box */}
       <section className="responsive">
@@ -366,79 +384,97 @@ const Search_result = () => {
         </div>
       </section>
       <section className="responsive minimal_filters">
-        {filtersChecker.price ? <p className="minimal_filter_tags" onClick={() => {
-          setFilterReset(filterReset => {
-            return { ...filterReset, price: true }
-          })
-          filtersChecker.price = false;
-          initSearch()
-        }}>
-          <IoMdClose size="1.3rem" color="#8c8c8c" />
-          قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
-        </p>
-          : null
-        }
-        {filtersChecker.deliver_at_renters_place ? <p className="minimal_filter_tags" onClick={() => {
-          setFilterReset(filterReset => {
-            return { ...filterReset, deliver_at_renters_place: true }
-          })
-          filtersChecker.deliver_at_renters_place = false;
-          initSearch()
-        }}>
-          <IoMdClose size="1.3rem" color="#8c8c8c" />
-          تحویل در محل
-        </p>
-          : null
-        }
-        {filtersChecker.with_driver ? <p className="minimal_filter_tags" onClick={() => {
-          setFilterReset(filterReset => {
-            return { ...filterReset, with_driver: true }
-          })
-          filtersChecker.with_driver = false;
-          initSearch()
-        }}>
-          <IoMdClose size="1.3rem" color="#8c8c8c" />
-          اجاره همراه راننده
-        </p>
-          : null
-        }
-        {filtersChecker.body_style_id ? <p className="minimal_filter_tags" onClick={() => {
-          setFilterReset(filterReset => {
-            return { ...filterReset, body_style_id: true }
-          })
-          filtersChecker.body_style_id = false;
-          initSearch()
-        }}>
-          <IoMdClose size="1.3rem" color="#8c8c8c" />
-          فیلتر نوع بدنه
-        </p>
-          : null
-        }
-        {filtersChecker.brand_id ? <p className="minimal_filter_tags" onClick={() => {
-          setFilterReset(filterReset => {
-            return { ...filterReset, brand_id: true }
-          })
-          filtersChecker.brand_id = false;
-          filtersChecker.car_id = false;
-          initSearch()
-        }}>
-          <IoMdClose size="1.3rem" color="#8c8c8c" />
-          فیلتر براساس سازنده
-        </p>
-          : null
-        }
-        {filtersChecker.car_id ? <p className="minimal_filter_tags" onClick={() => {
-          setFilterReset(filterReset => {
-            return { ...filterReset, car_id: true }
-          })
-          filtersChecker.car_id = false;
-          initSearch()
-        }}>
-          <IoMdClose size="1.3rem" color="#8c8c8c" />
-          فیلتر براساس نام مدل
-        </p>
-          : null
-        }
+        {filtersChecker.price ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, price: true };
+              });
+              filtersChecker.price = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
+          </p>
+        ) : null}
+        {filtersChecker.deliver_at_renters_place ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, deliver_at_renters_place: true };
+              });
+              filtersChecker.deliver_at_renters_place = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            تحویل در محل
+          </p>
+        ) : null}
+        {filtersChecker.with_driver ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, with_driver: true };
+              });
+              filtersChecker.with_driver = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            اجاره همراه راننده
+          </p>
+        ) : null}
+        {filtersChecker.body_style_id ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, body_style_id: true };
+              });
+              filtersChecker.body_style_id = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            فیلتر نوع بدنه
+          </p>
+        ) : null}
+        {filtersChecker.brand_id ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, brand_id: true };
+              });
+              filtersChecker.brand_id = false;
+              filtersChecker.car_id = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            فیلتر براساس سازنده
+          </p>
+        ) : null}
+        {filtersChecker.car_id ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, car_id: true };
+              });
+              filtersChecker.car_id = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            فیلتر براساس نام مدل
+          </p>
+        ) : null}
       </section>
       {/* filters and result section */}
       <section className="responsive content_container">
@@ -449,28 +485,33 @@ const Search_result = () => {
             },
           }}
         >
-          <Filters extra_info={extra_info} ResultCount={{ total_count, remained_count }}
+          <Filters
+            extra_info={extra_info}
+            ResultCount={{ total_count, remained_count }}
             reset={filterReset}
             clearReset={clearReset}
             show_filter_prop={show_filter}
-            show_filter_prop_reset={() => { setShow_filter(false) }}
+            show_filter_prop_reset={() => {
+              setShow_filter(false);
+            }}
           />
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
       {/* load more */}
-      {
-        remained_count > 0 && (
-          <span className="Load_more_car HEAP_SearchResult_Btn_ShowMore" onClick={() => loadMore()}>
-            {show_spinner_loadMore ? (
-              <Spinner display="block" width={20} color="#9E9E9E" />
-            ) : (
-                "نمایش ماشین‌های بیشتر"
-              )}
-          </span>
-        )
-      }
-    </article >
+      {remained_count > 0 && (
+        <span
+          className="Load_more_car HEAP_SearchResult_Btn_ShowMore"
+          onClick={() => loadMore()}
+        >
+          {show_spinner_loadMore ? (
+            <Spinner display="block" width={20} color="#9E9E9E" />
+          ) : (
+            "نمایش ماشین‌های بیشتر"
+          )}
+        </span>
+      )}
+    </article>
   );
 };
 
