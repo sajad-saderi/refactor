@@ -215,7 +215,7 @@ const DropdownSearch = (props: IDropDown) => {
                     data-hj-whitelist
                     // When the drop-down is shown, the search input is ready to type
                     // autoFocus
-                    placeholder="جستجو"
+                    placeholder={`جستجو ${props.search_place_holder} `}
                     name="search"
                     // NOTE type of the input is 'text'
                     type="text"
@@ -317,6 +317,9 @@ interface IDropDown {
 
   // Reset the controller value of clear input from the parent component
   callClearFieldReset?: any;
+
+  // Reset the controller value of clear input from the parent component
+  search_place_holder?: string;
 }
 
 export default DropdownSearch;

@@ -943,6 +943,7 @@ const Add_Car_Step_1 = () => {
           InputDisable={true}
           error_status={!showDistrict ? ErrorState.location_id : false}
           label="ماشین شما کجاست؟"
+          search_place_holder="در نام شهرها"
           data={locationList}
           defaultVal={locationName}
           clearField={() => {
@@ -972,6 +973,7 @@ const Add_Car_Step_1 = () => {
             error_status={showDistrict ? ErrorState.location_id : false}
             InputDisable={true}
             label="محله"
+            search_place_holder="در محله‌ها"
             defaultVal={DistrictName}
             data={districtList}
             // before location id select this box will have shown but its disabled
@@ -989,6 +991,7 @@ const Add_Car_Step_1 = () => {
             InputDisable={true}
             error_status={Brand_id_error}
             label="سازنده"
+            search_place_holder="در سازنده‌ها"
             defaultVal={Brand_Name}
             data={BrandList}
             clearField={() => {
@@ -1006,6 +1009,7 @@ const Add_Car_Step_1 = () => {
             disabled={!Brand_id ? true : false}
             defaultVal={CarModelName}
             label="نام مدل"
+            search_place_holder="در نام مدل‌ها"
             data={ModelList}
             clearField={() => dispatch({ type: "car_id", car_id: null })}
             Select={(i) => {

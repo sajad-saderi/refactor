@@ -153,6 +153,7 @@ const Search = (props: ISearch) => {
             data={locationsList}
             InputDisable={true}
             hardValue="تهران"
+            search_place_holder="در نام شهرها"
             Select={(i) => {
               // setLocationId(i.key);
               localStorage["User_Location"] = JSON.stringify(i);

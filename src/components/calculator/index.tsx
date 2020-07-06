@@ -37,19 +37,19 @@ const Calculator = (props: ICalculator) => {
 
   useEffect(() => {
     if (value) {
-      setValueError({ status: false, message: "" })
+      setValueError({ status: false, message: "" });
     }
-  }, [value])
+  }, [value]);
   useEffect(() => {
     if (brand.id) {
-      setBrandError({ status: false, message: "" })
+      setBrandError({ status: false, message: "" });
     }
-  }, [brand.id])
+  }, [brand.id]);
   useEffect(() => {
     if (model.id) {
-      setModelError({ status: false, message: "" })
+      setModelError({ status: false, message: "" });
     }
-  }, [model.id])
+  }, [model.id]);
 
   const fetchData = async () => {
     /**
@@ -84,20 +84,20 @@ const Calculator = (props: ICalculator) => {
      * validation to ignore empty values or if the inputted value is smaller then 10 million
      */
     if (!brand.id) {
-      setBrandError({ status: true, message: "سازنده را انتخاب کنید" })
+      setBrandError({ status: true, message: "سازنده را انتخاب کنید" });
       setLoading(false);
       return;
     } else if (!model.id) {
-      setModelError({ status: true, message: "نام مدل را انتخاب کنید" })
+      setModelError({ status: true, message: "نام مدل را انتخاب کنید" });
       setLoading(false);
       return;
     } else if (value === "") {
-      setValueError({ status: true, message: "ارزش خودرو را وارد کنید" })
+      setValueError({ status: true, message: "ارزش خودرو را وارد کنید" });
       setLoading(false);
       return;
     }
     if (+value < 10000000) {
-      setValueError({ status: true, message: "ارزش خودرو کمتر از حد مجاز" })
+      setValueError({ status: true, message: "ارزش خودرو کمتر از حد مجاز" });
       setLoading(false);
       return;
     }
@@ -148,6 +148,7 @@ const Calculator = (props: ICalculator) => {
             <div className="calculator_dropDown">
               <DropdownSearch
                 data-test-id="brand"
+                search_place_holder="در نام در سازنده‌ها"
                 defaultVal={brand.name}
                 data={brandList}
                 clearField={() =>
@@ -182,6 +183,7 @@ const Calculator = (props: ICalculator) => {
               <DropdownSearch
                 defaultVal={model.name}
                 data={modelList}
+                search_place_holder="در نام مدل‌ها"
                 clearField={() => {
                   setModel({ id: null, name: null });
                 }}
@@ -228,48 +230,48 @@ const Calculator = (props: ICalculator) => {
               data-test-id="local_Button_joinUs"
               // onClick on this button nothing happened, the event listening to submitting the form
               value="تخمین درآمد"
-              click={() => { }}
+              click={() => {}}
               class="Blue_BTN local_Button_joinUs"
               loading={loading}
             />
           </form>
         </>
       ) : (
-          <>
-            <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
-            <div className="addCarnowInlanding">
-              <Link href="/add-car">
-                <a
-                  className="Blue_BTN addCar_top_joinus_a"
-                  data-test-id="addCar_top_joinus_a"
-                >
-                  {props.AbText ? props.AbText : "ماشین‌تان را اضافه کنید"}
-                </a>
-              </Link>
-            </div>
-            {/* show the calculation box */}
-            <p
-              className="tryAgainCalc"
-              onClick={() => {
-                window.scrollTo(0, 0);
-                // Reset the car value
-                setValue("");
-                setBrand({
-                  name: null,
-                  id: null,
-                });
-                setModel({
-                  name: null,
-                  id: null,
-                });
-                setLoading(false);
-                setShowCalculateBox(true);
-              }}
-            >
-              محاسبه مجدد
+        <>
+          <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
+          <div className="addCarnowInlanding">
+            <Link href="/add-car">
+              <a
+                className="Blue_BTN addCar_top_joinus_a"
+                data-test-id="addCar_top_joinus_a"
+              >
+                {props.AbText ? props.AbText : "ماشین‌تان را اضافه کنید"}
+              </a>
+            </Link>
+          </div>
+          {/* show the calculation box */}
+          <p
+            className="tryAgainCalc"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              // Reset the car value
+              setValue("");
+              setBrand({
+                name: null,
+                id: null,
+              });
+              setModel({
+                name: null,
+                id: null,
+              });
+              setLoading(false);
+              setShowCalculateBox(true);
+            }}
+          >
+            محاسبه مجدد
           </p>
-          </>
-        )}
+        </>
+      )}
     </>
   );
 };

@@ -87,7 +87,7 @@
     // top: 5rem;
     background: #fff;
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
-    .spinnerPlaceholder{
+    .spinnerPlaceholder {
       padding-top: 1.4rem;
     }
     .search_input_container {
@@ -107,6 +107,15 @@
         border-bottom: 1px solid $input_border;
         color: rgba(0, 0, 0, 0.87);
         box-shadow: 0 0 0 0 transparent inset;
+        &:focus::placeholder {
+          color: transparent;
+        }
+        &:focus::-moz-placeholder {
+          color: transparent;
+        }
+        &:focus:-moz-placeholder {
+          color: transparent;
+        }
       }
       svg {
         position: absolute;

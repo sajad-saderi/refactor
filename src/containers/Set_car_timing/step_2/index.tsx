@@ -22,6 +22,7 @@ import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
 import DropdownSearch from "../../../components/form/Dropdown";
+import Link from "next/link";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -835,13 +836,17 @@ const Add_Car_Step_2 = () => {
             discountCheck={setShowDiscount}
             error={ErrorState.discount_error}
           />
-          <label>شرایط اجاره و کنسلی</label>
+          <label>
+            شرایط اجاره و کنسلی
+            <Link href="/assurance">
+              <a className="anchorTagInStep2">چه مدارک و ضمانت‌هایی بگیریم؟</a>
+            </Link>
+          </label>
           <textarea
             className={[
               "text_area_step_2",
               ErrorState.cancellation_policy ? "inputError" : null,
             ].join(" ")}
-            placeholder="شرایط اجاره و کنسلی"
             value={state.cancellation_policy}
             onChange={(e) => {
               dispatch({
