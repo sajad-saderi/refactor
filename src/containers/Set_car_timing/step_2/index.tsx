@@ -782,7 +782,7 @@ const Add_Car_Step_2 = () => {
             initialValue={[state.deliver_at_renters_place]}
             data={[
               {
-                text: "در محل اجاره‌گیرنده تحویل می‌دهم",
+                text: "در محل مهمان تحویل می‌دهم",
                 value: state.deliver_at_renters_place,
               },
             ]}

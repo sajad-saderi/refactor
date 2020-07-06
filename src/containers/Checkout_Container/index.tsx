@@ -186,7 +186,7 @@ const Checkout_Container = () => {
       const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
       TOAST_CONTEXT.toast_option({
         message:
-          "درخواست شما ثبت شد. اجاره‌ دهنده پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.",
+          "درخواست شما ثبت شد. میزبان پس از بررسی، درخواست را قبول یا رد خواهد کرد. نتیجه را از طریق پیامک به اطلاعتان می‌رسانیم.",
         time: 10,
         autoClose: true,
       });

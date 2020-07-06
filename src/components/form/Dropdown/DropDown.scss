@@ -28,7 +28,7 @@
       line-height: 1;
       padding: 0.5rem;
       font-size: 1.4rem;
-      background: #fff;
+      background: transparent;
       border: 1px solid $input_border;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
@@ -36,9 +36,10 @@
       cursor: pointer;
     }
     .dropdownIsActive {
+      box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
       border-bottom-left-radius: 0px;
       border-bottom-right-radius: 0px;
-      margin-bottom: 0;
+      background: #fff;
     }
     .clean_icon {
       position: absolute;
@@ -81,9 +82,11 @@
     min-height: 6rem;
     overflow-x: hidden;
     overflow-y: scroll;
+    border: 1px solid rgba(34, 36, 38, 0.18);
+    border-top: none;
     // top: 5rem;
     background: #fff;
-    box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.176);
+    box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
     .search_input_container {
       position: relative;
       input {
@@ -137,7 +140,7 @@
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: #888;
+      background: #c6c6c6;
     }
 
     /* Handle on hover */

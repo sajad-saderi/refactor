@@ -28,7 +28,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       case "approve":
         ACTION_URL = SET_ORDER_APPROVE;
         message =
-          "تایید درخواست ثبت شد. در صورتی که اجاره‌ گیرنده مبلغ اجاره را پرداخت کند، درخواست قطعی می‌شود و از طریق پیامک به اطلاع شما می‌رسد.";
+          "تایید درخواست ثبت شد. در صورتی که مهمان مبلغ اجاره را پرداخت کند، درخواست قطعی می‌شود و از طریق پیامک به اطلاع شما می‌رسد.";
         break;
       case "reject":
         ACTION_URL = SET_ORDER_REJECT;

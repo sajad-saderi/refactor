@@ -82,7 +82,7 @@ const Owner = (props: IRenter) => {
           >
             <img src={renter.thumbnail_url} alt={renter.name} />
             <h3>{renter.name}</h3>
-            <p>امتیاز شما به اجاره‌گیرنده</p>
+            <p>امتیاز شما به مهمان</p>
             <StarRatings
               rating={ownerRate}
               starRatedColor="rgb(255, 204, 0)"

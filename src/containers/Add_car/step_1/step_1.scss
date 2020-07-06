@@ -20,7 +20,7 @@
   }
 
   .add_car_form_step_1 {
-    background: #fff;
+    background: #fdfdfd;
     border: 1px solid $input_border;
     font-size: 1.4rem;
     border-radius: 4px;
@@ -156,6 +156,11 @@
               font-size: 1.6rem;
               font-weight: 500;
             }
+            .resultList{
+              .Items{
+                padding: 1rem 0;
+              }
+            }
           }
           .First_part_pelak {
             position: absolute;
@@ -206,12 +211,15 @@
       line-height: 2;
       padding: 0.5rem;
       font-size: 1.4rem;
-      background: #fff;
+      background: transparent;
       border: 1px solid $input_border;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
       box-shadow: 0 0 0 0 transparent inset;
       box-sizing: border-box;
+      &:focus {
+        background-color: #fff;
+      }
     }
     .local_style {
       display: block;
@@ -223,10 +231,10 @@
 @media screen and(max-width:720px) {
   .add_car_form_container {
     max-width: 68rem;
-
     .add_car_form_step_1 {
       box-shadow: none;
       padding: 1.6rem 0;
+      background-color: transparent;
       .DropDown_container,
       .radio_father,
       .text_input_container {

@@ -62,7 +62,7 @@
 
   .add_car_form_step_2 {
     position: relative;
-    background: #fff;
+    background: #fdfdfd;
     font-size: 1.4rem;
     border-radius: 4px;
     padding: 1.6rem;
@@ -143,7 +143,7 @@
       line-height: 2;
       padding: 0.5rem;
       font-size: 1.4rem;
-      background: #fff;
+      background: transparent;
       border: 1px solid $input_border;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
@@ -151,6 +151,9 @@
       box-sizing: border-box;
       &::placeholder {
         color: #dadada;
+      }
+      &:focus{
+        background: #fff;
       }
     }
   }

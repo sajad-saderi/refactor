@@ -70,12 +70,17 @@ const Menu = () => {
           </li>
           <li>
             <Link href="/guide-for-rent">
-              <a>راهنمای اجاره گیرنده</a>
+              <a>راهنمای مهمان</a>
             </Link>
           </li>
           <li>
             <Link href="/guide-renter">
-              <a>راهنمای اجاره دهنده</a>
+              <a>راهنمای میزبان</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/car-insurance">
+              <a>بیمه اجاره خودرو</a>
             </Link>
           </li>
           <li>

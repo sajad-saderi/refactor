@@ -109,7 +109,7 @@ const Renter = (props: IRenter) => {
               alt={rent_search_dump.owner.name}
             />
             <h3>{rent_search_dump.owner.name}</h3>
-            <p>امتیاز شما به اجاره‌دهنده</p>
+            <p>امتیاز شما به میزبان</p>
             <StarRatings
               rating={ownerRate}
               starRatedColor="rgb(255, 204, 0)"

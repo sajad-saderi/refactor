@@ -20,7 +20,7 @@
     line-height: 1.5;
     padding: 1rem;
     font-size: 1.4em;
-    background: #fff;
+    background: transparent;
     border: 1px solid $input_border;
     color: rgba(0, 0, 0, 0.87);
     border-radius: 0.4rem;
@@ -28,6 +28,9 @@
     &:invalid {
       border: 1px solid #d83030 !important;
       background: rgba(216, 48, 48, 0.1) !important;
+    }
+    &:focus {
+      background-color: #ffffff;
     }
   }
   .clean_icon {
