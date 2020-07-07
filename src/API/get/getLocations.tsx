@@ -4,7 +4,7 @@ import Error_middleware from "../ApiUtils";
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 
 export const REQUEST_GET_LOCATION = (parent_id: IGetLocation = null) => {
-  let GET_LOCATIONS = "/core/location/list?limit=500";
+  let GET_LOCATIONS = "/core/location/list?limit=500&brief=1";
   // if you need to get districts of a city, pass the parent id
   if (parent_id) {
     GET_LOCATIONS = GET_LOCATIONS + `&parent_id=${parent_id}`;
