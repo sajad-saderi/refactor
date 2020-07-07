@@ -15,6 +15,13 @@
       .text_input_label {
         line-height: 1.5;
       }
+      input {
+        margin-bottom: 0.3rem;
+      }
+      .clean_icon {
+        bottom: 0;
+        top: 4.3rem;
+      }
     }
     .error_message {
       color: $Error_text_color;

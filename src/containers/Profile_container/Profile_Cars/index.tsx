@@ -74,47 +74,57 @@ const Profile_Cars = (props: IProfile_Cars) => {
 
   return (
     <article className="Profile_car_container">
-      {props.is_mine && result ? result.length > 3 && (
-        <div className="service_filer">
-          <Radio
-            name="show_car_Radio"
-            error_status={false}
-            SelectHandler={(i) => {
-              setActive(+i);
-              activeFilter(i);
-            }}
-            defaultCheck={active}
-            data={[
-              {
-                label: "همه",
-                value: 1,
-              },
-              {
-                label: "غیر فعال",
-                value: 2,
-              },
-              {
-                label: "فعال",
-                value: 3,
-              },
-            ]}
-          />
-        </div>
-      ) : null}
+      {props.is_mine && result
+        ? result.length > 3 && (
+            <div className="service_filer">
+              <Radio
+                name="show_car_Radio"
+                error_status={false}
+                SelectHandler={(i) => {
+                  setActive(+i);
+                  activeFilter(i);
+                }}
+                defaultCheck={active}
+                data={[
+                  {
+                    label: "همه",
+                    value: 1,
+                  },
+                  {
+                    label: "غیر فعال",
+                    value: 2,
+                  },
+                  {
+                    label: "فعال",
+                    value: 3,
+                  },
+                ]}
+              />
+            </div>
+          )
+        : null}
       {result ? (
         result.length > 0 ? (
           result.map((item, i) => {
             // car section
-            return (
+            return props.is_mine ? (
               <Car
                 key={i}
                 data={item}
                 is_mine={props.is_mine}
                 getListAgain={() => fetchApi(1)}
               />
-            );
+            ) : !item.is_out_of_service ? (
+              <Car
+                key={i}
+                data={item}
+                is_mine={false}
+                getListAgain={() => fetchApi(1)}
+              />
+            ) : null;
           })
         ) : null
+      ) : (
         // (
         //   <div className="noCar_added">
         //     <p>خودرویی یافت نشد.</p>
@@ -128,14 +138,13 @@ const Profile_Cars = (props: IProfile_Cars) => {
         //     />
         //   </div>
         // )
-      ) : (
-          <>
-            <CarLoading />
-            <CarLoading />
-            <CarLoading />
-            <CarLoading />
-          </>
-        )}
+        <>
+          <CarLoading />
+          <CarLoading />
+          <CarLoading />
+          <CarLoading />
+        </>
+      )}
       {showMoreButton ? (
         <div className="Load_more_car_container">
           <span

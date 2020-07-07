@@ -199,6 +199,9 @@ input {
   &:hover {
     background-color: $background_hover;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 // Load more
@@ -390,7 +393,7 @@ input {
   }
 }
 
-.Calendar__day.-rtl.-selectedBetween{
+.Calendar__day.-rtl.-selectedBetween {
   background: #038ed21c !important;
 }
 

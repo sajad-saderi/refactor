@@ -4,6 +4,7 @@ import axios from "axios";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 // import "./userCellphone.scss";
 import Button from "../../../../components/form/Button";
+import Router from "next/router";
 
 const GetUserCellPhone = (props: IGetUserCellPhone) => {
   const [cellPhone, setCellPhone] = useState("");
@@ -16,6 +17,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
+    localStorage["last_location"] = Router.router.asPath;
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/send-code";
@@ -51,7 +53,10 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error("!Error", error.response ? error.response.data.message : error.message);
+        console.error(
+          "!Error",
+          error.response ? error.response.data.message : error.message
+        );
         setError({
           status: true,
           message: error.response.data.message,
@@ -88,7 +93,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             class="Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode"
             value="ارسال کد ورود"
             loading={loading}
-            click={() => { }}
+            click={() => {}}
           />
         </form>
       </div>

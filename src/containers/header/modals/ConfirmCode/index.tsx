@@ -33,7 +33,6 @@ const ConfirmCode = (props: IConfirmCode) => {
       })
       .then((response) => {
         setLoading(false);
-        Modal_context.modalHandler("SET");
         const cook_option = {
           expires: 100,
         };
@@ -56,12 +55,11 @@ const ConfirmCode = (props: IConfirmCode) => {
           } catch (e) {
             console.log("Em...I think heap not work correctly :/");
           }
-
           Router.push({
             pathname: "/complete-register",
           });
         }
-        // if user completely registered 
+        // if user completely registered
         else if (response.data.token && response.data.has_name) {
           const data = response.data;
           jsCookie.set("token", data.token, cook_option);
@@ -81,7 +79,7 @@ const ConfirmCode = (props: IConfirmCode) => {
               : "https://core.otoli.net/static/core/default_profile_pic.png",
             cook_option
           );
-          // NOTE: activate heap 
+          // NOTE: activate heap
           try {
             if (window["heap"]) {
               window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
@@ -99,10 +97,14 @@ const ConfirmCode = (props: IConfirmCode) => {
           // TODO: handle errors
           console.error("error");
         }
+        Modal_context.modalHandler("SET");
       })
       .catch((error) => {
         setLoading(false);
-        console.error("!Error", error.response ? error.response.data.message : error.message);
+        console.error(
+          "!Error",
+          error.response ? error.response.data.message : error.message
+        );
         setError({
           status: true,
           message: error.response.data.message,
@@ -143,11 +145,11 @@ const ConfirmCode = (props: IConfirmCode) => {
               ارسال مجدد
             </p>
           ) : (
-              <div className="Count_Down_text">
-                <span>ارسال مجدد</span> <CountDown time={20} Done={Done} />{" "}
-                <span>ثانیه</span>
-              </div>
-            )}
+            <div className="Count_Down_text">
+              <span>ارسال مجدد</span> <CountDown time={20} Done={Done} />{" "}
+              <span>ثانیه</span>
+            </div>
+          )}
         </div>
         <div className="go_back" onClick={() => props.panelController()}>
           <p className="Edit_number">ویرایش شماره</p>
@@ -156,7 +158,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           class="Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login"
           value="ورود"
           loading={loading}
-          click={() => { }}
+          click={() => {}}
         />
       </form>
     </div>

@@ -150,9 +150,13 @@ const Complete_register_container = () => {
         } else if (jsCookie.get("company_name")) {
           jsCookie.remove("company_name");
         }
-        Router.push({
-          pathname: `/user/${jsCookie.get("user_id")}`,
-        });
+        if (localStorage["last_location"]) {
+          Router.push(localStorage["last_location"]);
+        } else {
+          Router.push({
+            pathname: `/user/${jsCookie.get("user_id")}`,
+          });
+        }
       } catch (error) {
         setLoading(false);
         console.log("!Error", error);
