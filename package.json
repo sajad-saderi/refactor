@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "SET NODE_ENV=development & next dev ",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start -p $PORT",
     "test": "jest --config jest.config.js --no-cache",
     "test:watch": "SET NODE_ENV=development & jest --watch",
