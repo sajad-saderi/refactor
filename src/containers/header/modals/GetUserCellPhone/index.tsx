@@ -86,6 +86,11 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             label="شماره تلفن همراه"
             placeholder="لطفا شماره همراه خود را وارد کنید"
             clearField={clearField}
+            validation={{
+              number:true,
+              length:11,
+              required: true
+            }}
           />
           {/* show an error message */}
           {/* <span className="error_message">{error.message}</span> */}

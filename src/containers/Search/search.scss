@@ -31,17 +31,38 @@
       display: inline-block;
       width: 50%;
       z-index: 10;
+      .Calendar {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
+      }
       .DatePicker__calendarArrow {
         display: none !important;
       }
       .PushToRight {
         .DatePicker__calendarContainer {
-          transform: translateX(-20%) !important;
+          // transform: translateX(-20%) !important;
+          top: 95%;
+          right: 0%;
+          left: auto;
+          transform: translateX(0) !important;
+          // border: 1px solid rgba(34, 36, 38, 0.15);
+          // border-radius: 4px;
+          // border-top-right-radius: 0px;
+          // box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
         }
       }
       .PushToLeft {
         .DatePicker__calendarContainer {
-          transform: translateX(-80%) !important;
+          // transform: translateX(-80%) !important;
+          top: 95%;
+          left: 0%;
+          transform: translateX(0) !important;
+          // border: 1px solid rgba(34, 36, 38, 0.15);
+          // border-radius: 4px;
+          // box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
+          // border-top-left-radius: 0px;
         }
       }
       .date_Input_Container {
@@ -69,6 +90,10 @@
             box-shadow: 0 0 0 0 transparent inset;
             &.activeBorder {
               border-color: $main__color;
+              border-left: 1px solid $main__color;
+              border-bottom-right-radius: 0px;
+              border-bottom-left-radius: 0px;
+              box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
             }
           }
           .exception_input {
@@ -139,12 +164,14 @@
         margin: 1rem auto;
         .PushToRight {
           .DatePicker__calendarContainer {
-            transform: translateX(-5%) !important;
+            top: 96%;
+            // transform: translateX(-5%) !important;
           }
         }
         .PushToLeft {
           .DatePicker__calendarContainer {
-            transform: translateX(-95%) !important;
+            top: 96%;
+            // transform: translateX(-95%) !important;
           }
         }
       }
@@ -165,12 +192,12 @@
       .Date_picker_container {
         .PushToRight {
           .DatePicker__calendarContainer {
-            transform: translateX(-30%) !important;
+            // transform: translateX(-30%) !important;
           }
         }
         .PushToLeft {
           .DatePicker__calendarContainer {
-            transform: translateX(-70%) !important;
+            // transform: translateX(-70%) !important;
           }
         }
       }
@@ -184,12 +211,12 @@
       .Date_picker_container {
         .PushToRight {
           .DatePicker__calendarContainer {
-            transform: translateX(-40%) !important;
+            // transform: translateX(-40%) !important;
           }
         }
         .PushToLeft {
           .DatePicker__calendarContainer {
-            transform: translateX(-60%) !important;
+            // transform: translateX(-60%) !important;
           }
         }
       }
@@ -207,12 +234,12 @@
         margin: 0;
         .PushToRight {
           .DatePicker__calendarContainer {
-            transform: translateX(-45%) !important;
+            // transform: translateX(-45%) !important;
           }
         }
         .PushToLeft {
           .DatePicker__calendarContainer {
-            transform: translateX(-55%) !important;
+            // transform: translateX(-55%) !important;
           }
         }
         // .date_Input_Container {

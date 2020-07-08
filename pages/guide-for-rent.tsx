@@ -7,10 +7,10 @@ const guideForRent = () => {
   return (
     <Layout showToTop={true}>
       <NextSeo
-        title="راهنمای اجاره گیرنده | اتولی"
+        title="راهنمای مهمان | اتولی"
         description="راهنمای کامل اتولی برای مهمان"
         openGraph={{
-          title: "راهنمای اجاره گیرنده | اتولی",
+          title: "راهنمای مهمان | اتولی",
           description: "راهنمای کامل اتولی برای مهمان",
           site_name: "اتولی",
         }}

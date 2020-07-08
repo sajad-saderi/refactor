@@ -32,7 +32,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
         break;
       case "reject":
         ACTION_URL = SET_ORDER_REJECT;
-        message = "رد درخواست اجاره ثبت شد و به اطلاع اجاره گیرنده می‌رسد.";
+        message = "رد درخواست اجاره ثبت شد و به اطلاع مهمان می‌رسد.";
         break;
       case "cancel":
         ACTION_URL = SET_ORDER_CANCEL;
@@ -44,12 +44,12 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       case "deliver":
         ACTION_URL = SET_ORDER_DELIVER;
         message =
-          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با اجاره گیرنده یا اتولی تماس بگیرید.";
+          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با مهمان یا اتولی تماس بگیرید.";
         break;
       case "return":
         ACTION_URL = SET_ORDER_RETURN;
         message =
-          "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد اجاره گیرنده را با سایر کاربران در میان بگذارید.";
+          "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد مهمان را با سایر کاربران در میان بگذارید.";
         break;
       // if you want to rate a car, renter or a owner
       //  renter : اجاره گیرنده

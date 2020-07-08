@@ -393,7 +393,7 @@ const Request_cart = (props: IRequest_cart) => {
                 {status_id === "approved" && (
                   <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
                     0{renter_info.cell}
-                    <span className="extra_Text"> :تماس با اجاره گیرنده</span>
+                    <span className="extra_Text"> :تماس با مهمان</span>
                   </a>
                 )}
               </>

@@ -1,8 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 // import "./inputStyle.scss";
 import { IoMdClose } from "react-icons/io";
 
 const TextInput = (props: ItextInput) => {
+  const [localError, setLocalError] = useState({
+    status: false,
+    message: "",
+  });
   const TextInput = useRef(null);
 
   const ValueHandler = (e) => {
@@ -65,22 +69,36 @@ const TextInput = (props: ItextInput) => {
   //   }
   // }, [props.error]);
 
-
-  // const validation = (data) =>{
-  //   if(data.number){
-  //     if(data.length){}
-  //     if(data.min){}
-  //     if(data.max){}
+  // const validation = (data) => {
+  //   console.log(localError, props.error);
+  //   if (!props.validation) {
+  //     return;
   //   }
-  //   if(data.string){
-  //     if(data.length){}
-  //     if(data.minLength){}
-  //     if(data.maxLength){}
+  //   if (data.required) {
+  //     if (props.value === "") {
+  //       setLocalError({
+  //         status: true,
+  //         message: "فیلد اجباری",
+  //       });
+  //     }
   //   }
-  //   if(data.require){
-
+  //   if (data.number) {
+  //     if (/[^0-9]/g.test(props.value.toString())) {
+  //       setLocalError({
+  //         status: true,
+  //         message: "شماره نامعتبر",
+  //       });
+  //     }
+  //     // if(data.length){}
+  //     // if(data.min){}
+  //     // if(data.max){}
   //   }
-  // }
+  //   // if(data.string){
+  //   //   if(data.length){}
+  //   //   if(data.minLength){}
+  //   //   if(data.maxLength){}
+  //   // }
+  // };
 
   return (
     <div className="text_input_container" ref={TextInput}>
@@ -99,25 +117,26 @@ const TextInput = (props: ItextInput) => {
       <input
         data-test-id="input"
         data-hj-whitelist="true"
-        onInvalid={(e: any) => {
-          /**
-           *
-           * this part it just works in numeric status
-           * If the length of the input is smaller then props.min input is invalid and error style will shown
-           */
-          if (props.value.length < props.min) {
-            e.target.setCustomValidity(
-              `حداقل ورودی باید ${props.min} کاراکتر باشد`
-            );
-          } else if (props.value.length > props.max) {
-            e.target.setCustomValidity(
-              `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
-            );
-          }
-        }}
+        // onInvalid={(e: any) => {
+        //   /**
+        //    *
+        //    * this part it just works in numeric status
+        //    * If the length of the input is smaller then props.min input is invalid and error style will shown
+        //    */
+        //   if (props.value.length < props.min) {
+        //     e.target.setCustomValidity(
+        //       `حداقل ورودی باید ${props.min} کاراکتر باشد`
+        //     );
+        //   } else if (props.value.length > props.max) {
+        //     e.target.setCustomValidity(
+        //       `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+        //     );
+        //   }
+        // }}
         autoFocus={props.autoFocus}
         className={[
-          "text_input", "data-hj-whitelist",
+          "text_input",
+          "data-hj-whitelist",
           props.error.status ? "inputError" : null,
         ].join(" ")}
         name={props.name}
@@ -144,8 +163,8 @@ const TextInput = (props: ItextInput) => {
             ? props.value === ""
               ? props.value.toLocaleString()
               : props.localeString
-                ? props.value
-                : Number(props.value).toLocaleString()
+              ? props.value
+              : Number(props.value).toLocaleString()
             : props.value
           // props.value
         }
@@ -159,6 +178,12 @@ const TextInput = (props: ItextInput) => {
         placeholder={props.placeholder}
         // check the validation on blur event listener
         // onBlur={() => validation(props.validation)}
+        // onFocus={() => {
+        //   setLocalError({
+        //     status: false,
+        //     message: "",
+        //   });
+        // }}
       />
       {props.value.length > 0 && !props.HideClearIcon && (
         <IoMdClose
@@ -175,7 +200,7 @@ const TextInput = (props: ItextInput) => {
       */}
       {props.error.status && (
         <p data-test-id="input_error_message" className="input_error_message">
-          {props.error.message}
+          {props.error.message || localError.message}
         </p>
       )}
     </div>
@@ -217,7 +242,7 @@ interface ItextInput {
   localeString?: boolean;
 
   // validation rules and requirements
-  validation?: any
+  validation?: any;
 }
 
 export default TextInput;
