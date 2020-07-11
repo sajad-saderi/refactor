@@ -672,6 +672,11 @@ const Add_Car_Step_2 = () => {
                   min={4}
                   max={8}
                   value={state.price_per_day}
+                  validation={{
+                    number: true,
+                    min: 50000,
+                    required: true,
+                  }}
                 />
                 <span className="tail_text">تومان در روز</span>
               </div>
@@ -751,7 +756,7 @@ const Add_Car_Step_2 = () => {
             />
             <span className="tail_text">کیلومتر در روز</span>
           </div>
-          <div className="custom_input_container_step_2">
+          <div className="custom_input_container_step_2 extra_km_price_container">
             <TextInput
               name="extra_km_price"
               number={true}
@@ -776,6 +781,9 @@ const Add_Car_Step_2 = () => {
               max={8}
               value={state.extra_km_price}
               label="هزینه هر کیلومتر اضافه"
+              validation={{
+                required: true,
+              }}
             />
             <span className="tail_text">تومان</span>
           </div>

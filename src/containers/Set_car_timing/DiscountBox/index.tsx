@@ -137,7 +137,7 @@ const DiscountBox = (props: IDiscountBox) => {
   // }, [props.error]);
 
   return (
-    <div className="Discount_form_container" >
+    <div className="Discount_form_container">
       <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
       {Discountcheck === 1 ? (
         <div className="Discount_Controller">
@@ -180,6 +180,9 @@ const DiscountBox = (props: IDiscountBox) => {
               max={2}
               onChangeHandler={(e) => {
                 setDiscount_percent(e);
+              }}
+              validation={{
+                required: true,
               }}
             />
             <span> %</span>
@@ -229,18 +232,18 @@ const DiscountBox = (props: IDiscountBox) => {
           </div>
         </div>
       ) : (
-          <div
-            className="add_new_one HEAP_SetCarAndTiming_Btn_AddDiscount"
-            onClick={() => {
-              props.setShowBox(1);
-              setDiscountcheck(1);
-            }}
-          >
-            <p>
-              <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
+        <div
+          className="add_new_one HEAP_SetCarAndTiming_Btn_AddDiscount"
+          onClick={() => {
+            props.setShowBox(1);
+            setDiscountcheck(1);
+          }}
+        >
+          <p>
+            <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
           </p>
-          </div>
-        )}
+        </div>
+      )}
       <div className="Discount_list">
         {DiscountList.map((item, i) => {
           return (

@@ -270,6 +270,11 @@ const PriceBox = (props: IPriceBox) => {
               onChangeHandler={(e) => {
                 setPrice_per_day(e);
               }}
+              validation={{
+                number: true,
+                min: 50000,
+                required: true,
+              }}
             />
             <span>تومان</span>
           </div>
@@ -320,7 +325,10 @@ const PriceBox = (props: IPriceBox) => {
           </div>
         </div>
       ) : (
-        <div className="add_new_one HEAP_SetCarAndTiming_Btn_PriceRange" onClick={() => setShow_input_price(true)}>
+        <div
+          className="add_new_one HEAP_SetCarAndTiming_Btn_PriceRange"
+          onClick={() => setShow_input_price(true)}
+        >
           <p>
             <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن بازه جدید
           </p>

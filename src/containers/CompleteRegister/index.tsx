@@ -291,6 +291,9 @@ const Complete_register_container = () => {
                 status: stateError.first_name,
                 message: null,
               }}
+              validation={{
+                required: true,
+              }}
             />
             <TextInput
               name="last_name"
@@ -306,6 +309,9 @@ const Complete_register_container = () => {
               error={{
                 status: stateError.last_name,
                 message: null,
+              }}
+              validation={{
+                required: true,
               }}
             />
           </div>
@@ -360,6 +366,12 @@ const Complete_register_container = () => {
                 status: stateError.day,
                 message: null,
               }}
+              validation={{
+                number: true,
+                min: 1,
+                max: 31,
+                required: true,
+              }}
             />
             <DropdownSearch
               data={monthsFarsi}
@@ -382,6 +394,11 @@ const Complete_register_container = () => {
               error={{
                 status: stateError.year,
                 message: null,
+              }}
+              validation={{
+                number: true,
+                length: 4,
+                required: true,
               }}
             />
           </div>

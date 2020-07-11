@@ -1140,6 +1140,11 @@ const Add_Car_Step_1 = () => {
             max={14}
             value={state.value}
             label="ارزش خودرو"
+            validation={{
+              number: true,
+              min: 20000000,
+              required: true,
+            }}
           />
           <span>تومان</span>
         </div>

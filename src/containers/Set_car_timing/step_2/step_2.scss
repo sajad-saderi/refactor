@@ -91,10 +91,22 @@
         display: inline-block;
         vertical-align: middle;
         width: 15rem;
+        .clean_icon {
+          top: 2.8rem;
+          bottom: auto;
+        }
       }
       .tail_text {
         display: inline-block;
         margin-right: 1rem;
+      }
+    }
+    .extra_km_price_container {
+      .text_input_container {
+        .clean_icon {
+          top: auto;
+          bottom: 15px;
+        }
       }
     }
     .DropDown_extra_km {
@@ -132,7 +144,7 @@
         margin: 0;
       }
     }
-    .anchorTagInStep2{
+    .anchorTagInStep2 {
       float: left;
       color: $main__color;
       font-size: 1.2rem;
@@ -157,7 +169,7 @@
       &::placeholder {
         color: #dadada;
       }
-      &:focus{
+      &:focus {
         background: #fff;
       }
     }
@@ -165,5 +177,17 @@
   .local_style {
     display: block;
     width: 100%;
+  }
+}
+
+@media screen and(max-width:557px) {
+  .step_2_form_container {
+    .step_2_image_pelak {
+      .Image_container {
+        .car_card_placeHolder_step2 {
+          width: 100%;
+        }
+      }
+    }
   }
 }

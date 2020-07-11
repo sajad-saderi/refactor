@@ -69,36 +69,64 @@ const TextInput = (props: ItextInput) => {
   //   }
   // }, [props.error]);
 
-  // const validation = (data) => {
-  //   console.log(localError, props.error);
-  //   if (!props.validation) {
-  //     return;
-  //   }
-  //   if (data.required) {
-  //     if (props.value === "") {
-  //       setLocalError({
-  //         status: true,
-  //         message: "فیلد اجباری",
-  //       });
-  //     }
-  //   }
-  //   if (data.number) {
-  //     if (/[^0-9]/g.test(props.value.toString())) {
-  //       setLocalError({
-  //         status: true,
-  //         message: "شماره نامعتبر",
-  //       });
-  //     }
-  //     // if(data.length){}
-  //     // if(data.min){}
-  //     // if(data.max){}
-  //   }
-  //   // if(data.string){
-  //   //   if(data.length){}
-  //   //   if(data.minLength){}
-  //   //   if(data.maxLength){}
-  //   // }
-  // };
+  const validation = (data) => { 
+    if (!props.validation) {
+      return;
+    }
+    let value: string | number = props.value;
+    if (data.required) {
+      if (props.value === "") {
+        setLocalError({
+          status: true,
+          message: "فیلد اجباری",
+        });
+        return;
+      } else {
+        setLocalError({
+          status: false,
+          message: "",
+        });
+      }
+    }
+    if (data.number) {
+      if (props.number) {
+        value = Number(props.value.replace(/,/gi, ""));
+      }
+      if (/[^0-9]/g.test(value.toString())) {
+        setLocalError({
+          status: true,
+          message: "شماره نامعتبر",
+        });
+      } else if (data.length) {
+        if (value.toString().length < data.length) {
+          setLocalError({
+            status: true,
+            message: `طول ورودی باید ${data.length} کاراکتر باشد`,
+          });
+        }
+      } else if (data.min && value < data.min) {
+        setLocalError({
+          status: true,
+          message: `حداقل ${data.min.toLocaleString()}`,
+        });
+      } else if (data.max && value > data.max) {
+        setLocalError({
+          status: true,
+          message: `حداکثر ${data.max.toLocaleString()}`,
+        });
+      } else {
+        setLocalError({
+          status: false,
+          message: "",
+        });
+      }
+    }
+    // if(data.string){
+    //   if(data.length){}
+    //   if(data.minLength){}
+    //   if(data.maxLength){}
+    // }
+  };
 
   return (
     <div className="text_input_container" ref={TextInput}>
@@ -137,7 +165,7 @@ const TextInput = (props: ItextInput) => {
         className={[
           "text_input",
           "data-hj-whitelist",
-          props.error.status ? "inputError" : null,
+          props.error.status || localError.status ? "inputError" : null,
         ].join(" ")}
         name={props.name}
         value={
@@ -177,13 +205,13 @@ const TextInput = (props: ItextInput) => {
         minLength={props.min}
         placeholder={props.placeholder}
         // check the validation on blur event listener
-        // onBlur={() => validation(props.validation)}
-        // onFocus={() => {
-        //   setLocalError({
-        //     status: false,
-        //     message: "",
-        //   });
-        // }}
+        onBlur={() => validation(props.validation)}
+        onFocus={() => {
+          setLocalError({
+            status: false,
+            message: "",
+          });
+        }}
       />
       {props.value.length > 0 && !props.HideClearIcon && (
         <IoMdClose
@@ -198,7 +226,7 @@ const TextInput = (props: ItextInput) => {
         If the props.error.status === true and props.error.message has a value,
         the Error message shown under the input box 
       */}
-      {props.error.status && (
+      {(props.error.status || localError.status) && (
         <p data-test-id="input_error_message" className="input_error_message">
           {props.error.message || localError.message}
         </p>

@@ -25,10 +25,10 @@
     color: rgba(0, 0, 0, 0.87);
     border-radius: 0.4rem;
     box-shadow: 0 0 0 0 transparent inset;
-    &:invalid {
-      border: 1px solid #d83030 !important;
-      background: rgba(216, 48, 48, 0.1) !important;
-    }
+    // &:invalid {
+    //   border: 1px solid #d83030 !important;
+    //   background: rgba(216, 48, 48, 0.1) !important;
+    // }
     &:focus {
       background-color: #ffffff;
     }

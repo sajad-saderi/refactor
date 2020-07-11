@@ -223,6 +223,11 @@ const Calculator = (props: ICalculator) => {
                 max={14}
                 value={value}
                 placeholder="ارزش خودرو"
+                validation={{
+                  number: true,
+                  min: 20000000,
+                  required: true,
+                }}
               />
               <span>تومان</span>
             </div>

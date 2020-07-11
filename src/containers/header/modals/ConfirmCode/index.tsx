@@ -20,9 +20,9 @@ const ConfirmCode = (props: IConfirmCode) => {
   const Cell_Phone_context = useContext(cell_Phone_context);
   const Modal_context = useContext(modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
+
   const sendConfirmCode = (e) => {
     e.preventDefault();
-
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/login";
@@ -122,7 +122,7 @@ const ConfirmCode = (props: IConfirmCode) => {
   };
 
   return (
-    <div className="modal_box_div">
+    <div className="modal_box_div confirm_code">
       <form onSubmit={sendConfirmCode}>
         <TextInput
           error={error}
@@ -137,6 +137,11 @@ const ConfirmCode = (props: IConfirmCode) => {
           label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
           placeholder="لطفا کد را وارد کنید"
           clearField={clearField}
+          validation={{
+            number:true,
+            length:4,
+            required: true
+          }}
         />
         {/* <span className="error_message">{error.message}</span> */}
         <div className="go_back">
