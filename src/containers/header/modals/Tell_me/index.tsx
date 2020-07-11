@@ -44,7 +44,10 @@ const TellMe = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error("!Error", error.response ? error.response.data.message : error.message);
+        console.error(
+          "!Error",
+          error.response ? error.response.data.message : error.message
+        );
         if (error.response) {
           if (error.response.data) {
             setError({
@@ -78,7 +81,7 @@ const TellMe = () => {
           </p>
           {/* <p className="p2"></p> */}
           <TextInput
-            error={{ status: error.status, message: "" }}
+            error={{ status: error.status, message:error.message }}
             name="cell Phone"
             onChangeHandler={(e) => {
               setCellPhone(e);
@@ -91,15 +94,18 @@ const TellMe = () => {
             label="شماره همراهتان را وارد کنید"
             placeholder="شماره تلفن همراه"
             clearField={clearField}
+            validation={{
+              required: true,
+            }}
           />
           {/* show error message */}
-          <span className="error_message">{error.message}</span>
+          {/* <span className="error_message">{error.message}</span> */}
           <p className="p3">{`وقتی در ${locationName} فعال شدیم خبرتان می‌کنیم.`}</p>
           <Button
             class="Blue_BTN login_submit HEAP_ModalInformMeMyCity_Btn_Submit"
             value="ارسال کد ورود"
             loading={loading}
-            click={() => { }}
+            click={() => {}}
           />
         </form>
       </div>

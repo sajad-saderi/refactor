@@ -96,7 +96,7 @@ const Calculator = (props: ICalculator) => {
       setLoading(false);
       return;
     }
-    if (+value < 10000000) {
+    if (+value < 20000000) {
       setValueError({ status: true, message: "ارزش خودرو کمتر از حد مجاز" });
       setLoading(false);
       return;

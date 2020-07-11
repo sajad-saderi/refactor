@@ -215,7 +215,7 @@ const DropdownSearch = (props: IDropDown) => {
                     data-hj-whitelist
                     // When the drop-down is shown, the search input is ready to type
                     // autoFocus
-                    placeholder={`جستجو ${props.search_place_holder} `}
+                    placeholder={`جستجو ${props.search_place_holder} ..`}
                     name="search"
                     // NOTE type of the input is 'text'
                     type="text"

@@ -431,6 +431,27 @@ const Add_Car_Step_2 = () => {
     } else {
       resetTheErrorStatus("id");
     }
+
+    if (DateAndPrice === 1 && state.price_per_day === "") {
+      ErrorDispatch({
+        type: "price_per_day",
+        price_per_day: true,
+        error_message: "لطفا نرخ اجاره را وارد کنید",
+      });
+      return false;
+    } else {
+      resetTheErrorStatus("price_per_day");
+    }
+    if (DateAndPrice === 2 && availabilityList.length === 0) {
+      ErrorDispatch({
+        type: "price_range",
+        price_range: true,
+        error_message: "لطفا نرخ اجاره را وارد کنید",
+      });
+      return false;
+    } else {
+      resetTheErrorStatus("price_range");
+    }
     if (state.days_to_get_reminded === 0) {
       ErrorDispatch({
         type: "days_to_get_reminded",
@@ -470,26 +491,6 @@ const Add_Car_Step_2 = () => {
       return false;
     } else {
       resetTheErrorStatus("extra_km_price");
-    }
-    if (DateAndPrice === 1 && state.price_per_day === "") {
-      ErrorDispatch({
-        type: "price_per_day",
-        price_per_day: true,
-        error_message: "لطفا نرخ اجاره را وارد کنید",
-      });
-      return false;
-    } else {
-      resetTheErrorStatus("price_per_day");
-    }
-    if (DateAndPrice === 2 && availabilityList.length === 0) {
-      ErrorDispatch({
-        type: "price_range",
-        price_range: true,
-        error_message: "لطفا نرخ اجاره را وارد کنید",
-      });
-      return false;
-    } else {
-      resetTheErrorStatus("price_range");
     }
     console.log(showDiscount, discountList.length);
     if (showDiscount !== 0 && discountList.length === 0) {
@@ -857,6 +858,11 @@ const Add_Car_Step_2 = () => {
             ].join(" ")}
             value={state.cancellation_policy}
             onChange={(e) => {
+              ErrorDispatch({
+                type: "cancellation_policy",
+                cancellation_policy: false,
+                error_message: "",
+              });
               dispatch({
                 type: "cancellation_policy",
                 cancellation_policy: e.target.value,

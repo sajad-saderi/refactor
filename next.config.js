@@ -19,8 +19,8 @@ module.exports = withPWA(
             SITE_URL: "https://otoli.net",
             PRODUCTION_ENDPOINT: "https://core.otoli.net",
           },
-          compress: true,
           webpack(config, options) {
+            compress = true;
             return config;
           },
         })
