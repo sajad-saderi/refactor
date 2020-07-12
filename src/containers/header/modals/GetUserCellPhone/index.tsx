@@ -87,8 +87,8 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             autoFocus={true}
             localeString={false}
             value={cellPhone}
-            min={11}
-            max={11}
+            // min={11}
+            // max={11}
             label="شماره تلفن همراه"
             placeholder="مثال: 09121234567"
             clearField={clearField}

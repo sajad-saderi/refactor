@@ -132,8 +132,8 @@ const ConfirmCode = (props: IConfirmCode) => {
           }}
           autoFocus={true}
           value={code}
-          min={4}
-          max={4}
+          // min={4}
+          // max={4}
           label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
           placeholder="لطفا کد را وارد کنید"
           clearField={clearField}

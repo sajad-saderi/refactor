@@ -145,22 +145,22 @@ const TextInput = (props: ItextInput) => {
       <input
         data-test-id="input"
         data-hj-whitelist="true"
-        // onInvalid={(e: any) => {
-        //   /**
-        //    *
-        //    * this part it just works in numeric status
-        //    * If the length of the input is smaller then props.min input is invalid and error style will shown
-        //    */
-        //   if (props.value.length < props.min) {
-        //     e.target.setCustomValidity(
-        //       `حداقل ورودی باید ${props.min} کاراکتر باشد`
-        //     );
-        //   } else if (props.value.length > props.max) {
-        //     e.target.setCustomValidity(
-        //       `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
-        //     );
-        //   }
-        // }}
+        onInvalid={(e: any) => {
+          /**
+           *
+           * this part it just works in numeric status
+           * If the length of the input is smaller then props.min input is invalid and error style will shown
+           */
+          if (props.value.length < props.min) {
+            e.target.setCustomValidity(
+              `حداقل ورودی باید ${props.min} کاراکتر باشد`
+            );
+          } else if (props.value.length > props.max) {
+            e.target.setCustomValidity(
+              `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+            );
+          }
+        }}
         autoFocus={props.autoFocus}
         className={[
           "text_input",
