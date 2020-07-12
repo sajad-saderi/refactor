@@ -95,8 +95,8 @@ const Search = (props: ISearch) => {
         .split("/");
 
       setDayRange({
-        from: { day: from_date[2], month: from_date[1], year: from_date[0] },
-        to: { day: to_date[2], month: to_date[1], year: to_date[0] },
+        from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },
+        to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] },
       });
     }
   };
