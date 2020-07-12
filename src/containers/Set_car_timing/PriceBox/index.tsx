@@ -268,6 +268,12 @@ const PriceBox = (props: IPriceBox) => {
               min={4}
               max={10}
               onChangeHandler={(e) => {
+                if (price_per_day_error.status) {
+                  setprice_per_day_error({
+                    status: false,
+                    message: "",
+                  });
+                }
                 setPrice_per_day(e);
               }}
               validation={{

@@ -154,6 +154,12 @@ const DiscountBox = (props: IDiscountBox) => {
               InputDisable={true}
               defaultVal={days_limit_name}
               Select={(e) => {
+                if (Error_days_limit.status) {
+                  setError_days_limit({
+                    status: false,
+                    message: "",
+                  });
+                }
                 setDays_limit_name(e.text);
                 setDays_limit(e.value);
               }}
@@ -179,6 +185,12 @@ const DiscountBox = (props: IDiscountBox) => {
               min={1}
               max={2}
               onChangeHandler={(e) => {
+                if (Error_discount_percent.status) {
+                  setError_discount_percent({
+                    status: false,
+                    message: "",
+                  });
+                }
                 setDiscount_percent(e);
               }}
               validation={{

@@ -76,6 +76,12 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             error={error}
             name="cell Phone"
             onChangeHandler={(e) => {
+              if (error.status) {
+                setError({
+                  status: false,
+                  message: "",
+                });
+              }
               setCellPhone(e);
             }}
             autoFocus={true}
@@ -84,12 +90,12 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             min={11}
             max={11}
             label="شماره تلفن همراه"
-            placeholder="لطفا شماره همراه خود را وارد کنید"
+            placeholder="مثال: 09121234567"
             clearField={clearField}
             validation={{
-              number:true,
-              length:11,
-              required: true
+              number: true,
+              length: 11,
+              required: true,
             }}
           />
           {/* show an error message */}

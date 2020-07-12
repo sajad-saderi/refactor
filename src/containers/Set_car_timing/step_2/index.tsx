@@ -648,6 +648,13 @@ const Add_Car_Step_2 = () => {
                   name="price_per_day"
                   number={true}
                   onChangeHandler={(e) => {
+                    if (ErrorState.price_per_day) {
+                      ErrorDispatch({
+                        type: "price_per_day",
+                        price_per_day: false,
+                        error_message: "",
+                      });
+                    }
                     dispatch({
                       type: "price_per_day",
                       price_per_day: e,
@@ -763,6 +770,13 @@ const Add_Car_Step_2 = () => {
               number={true}
               autoFocus={false}
               onChangeHandler={(e) => {
+                if (ErrorState.extra_km_price) {
+                  ErrorDispatch({
+                    type: "extra_km_price",
+                    extra_km_price: false,
+                    error_message: "",
+                  });
+                }
                 dispatch({
                   type: "extra_km_price",
                   extra_km_price: e,
@@ -858,6 +872,13 @@ const Add_Car_Step_2 = () => {
             ].join(" ")}
             value={state.cancellation_policy}
             onChange={(e) => {
+              if (ErrorState.cancellation_policy) {
+                ErrorDispatch({
+                  type: "cancellation_policy",
+                  cancellation_policy: false,
+                  error_message: "",
+                });
+              }
               ErrorDispatch({
                 type: "cancellation_policy",
                 cancellation_policy: false,

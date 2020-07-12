@@ -951,6 +951,13 @@ const Add_Car_Step_1 = () => {
             setShowDistrict(false);
           }}
           Select={(i) => {
+            if (!showDistrict && ErrorState.location_id) {
+              ErrorDispatch({
+                type: "location_id",
+                location_id: null,
+                error_message: "",
+              });
+            }
             if (i.value === 1) setShowDistrict(true);
             else {
               // if user select rather then Tehran save city name to show it in message
@@ -981,9 +988,16 @@ const Add_Car_Step_1 = () => {
             clearField={() =>
               dispatch({ type: "location_id", location_id: null })
             }
-            Select={(i) =>
-              dispatch({ type: "location_id", location_id: i.value })
-            }
+            Select={(i) => {
+              if (showDistrict && ErrorState.location_id) {
+                ErrorDispatch({
+                  type: "location_id",
+                  location_id: null,
+                  error_message: "",
+                });
+              }
+              dispatch({ type: "location_id", location_id: i.value });
+            }}
           />
         )}
         <div className="Car_info_step_1">
@@ -998,6 +1012,9 @@ const Add_Car_Step_1 = () => {
               setBrand_id(null);
             }}
             Select={(i) => {
+              if (Brand_id_error) {
+                setBrand_id_error(false);
+              }
               setBrand_id(i.value);
               setModelList([]);
               getModelList(i.value);
@@ -1013,6 +1030,13 @@ const Add_Car_Step_1 = () => {
             data={ModelList}
             clearField={() => dispatch({ type: "car_id", car_id: null })}
             Select={(i) => {
+              if (ErrorState.car_id) {
+                ErrorDispatch({
+                  type: "car_id",
+                  car_id: null,
+                  error_message: "",
+                });
+              }
               getBrandInfo(i.value);
               dispatch({ type: "car_id", car_id: i.value });
             }}
@@ -1025,7 +1049,16 @@ const Add_Car_Step_1 = () => {
             disableSearch={true}
             data={YearList}
             clearField={() => dispatch({ type: "year_id", year_id: null })}
-            Select={(i) => dispatch({ type: "year_id", year_id: i.value })}
+            Select={(i) => {
+              if (ErrorState.year_id) {
+                ErrorDispatch({
+                  type: "year_id",
+                  year_id: null,
+                  error_message: "",
+                });
+              }
+              dispatch({ type: "year_id", year_id: i.value });
+            }}
           />
         </div>
         <div className="radio_father">
@@ -1040,12 +1073,19 @@ const Add_Car_Step_1 = () => {
           <Radio
             name="transmission_type_id"
             error_status={ErrorState.transmission_type_id}
-            SelectHandler={(i) =>
+            SelectHandler={(i) => {
+              if (ErrorState.transmission_type_id) {
+                ErrorDispatch({
+                  type: "transmission_type_id",
+                  transmission_type_id: null,
+                  error_message: "",
+                });
+              }
               dispatch({
                 type: "transmission_type_id",
                 transmission_type_id: +i,
-              })
-            }
+              });
+            }}
             defaultCheck={state.transmission_type_id}
             data={[
               {
@@ -1069,9 +1109,16 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({ type: "body_style_id", body_style_id: null })
           }
-          Select={(i) =>
-            dispatch({ type: "body_style_id", body_style_id: i.value })
-          }
+          Select={(i) => {
+            if (ErrorState.body_style_id) {
+              ErrorDispatch({
+                type: "body_style_id",
+                body_style_id: null,
+                error_message: "",
+              });
+            }
+            dispatch({ type: "body_style_id", body_style_id: i.value });
+          }}
         />
         <DropdownSearch
           InputDisable={true}
@@ -1083,9 +1130,16 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({ type: "cylinder_id", cylinder_id: null })
           }
-          Select={(i) =>
-            dispatch({ type: "cylinder_id", cylinder_id: i.value })
-          }
+          Select={(i) => {
+            if (ErrorState.cylinder_id) {
+              ErrorDispatch({
+                type: "cylinder_id",
+                cylinder_id: null,
+                error_message: "",
+              });
+            }
+            dispatch({ type: "cylinder_id", cylinder_id: i.value });
+          }}
         />
         <DropdownSearch
           InputDisable={true}
@@ -1095,7 +1149,16 @@ const Add_Car_Step_1 = () => {
           disableSearch={true}
           defaultVal={state.capacity}
           clearField={() => dispatch({ type: "capacity", capacity: null })}
-          Select={(i) => dispatch({ type: "capacity", capacity: i.value })}
+          Select={(i) => {
+            if (ErrorState.capacity) {
+              ErrorDispatch({
+                type: "capacity",
+                capacity: null,
+                error_message: "",
+              });
+            }
+            dispatch({ type: "capacity", capacity: i.value });
+          }}
         />
         <DropdownSearch
           InputDisable={true}
@@ -1111,15 +1174,29 @@ const Add_Car_Step_1 = () => {
           clearField={() =>
             dispatch({ type: "mileage_range_id", mileage_range_id: null })
           }
-          Select={(i) =>
-            dispatch({ type: "mileage_range_id", mileage_range_id: i.value })
-          }
+          Select={(i) => {
+            if (ErrorState.mileage_range_id) {
+              ErrorDispatch({
+                type: "mileage_range_id",
+                mileage_range_id: null,
+                error_message: "",
+              });
+            }
+            dispatch({ type: "mileage_range_id", mileage_range_id: i.value });
+          }}
         />
         <div className="value_container">
           <TextInput
             name="value"
             number={true}
             onChangeHandler={(e) => {
+              if (ErrorState.value) {
+                ErrorDispatch({
+                  type: "value",
+                  value: null,
+                  error_message: "",
+                });
+              }
               dispatch({
                 type: "value",
                 value: e,
@@ -1169,6 +1246,13 @@ const Add_Car_Step_1 = () => {
                   }
                   HideClearIcon={true}
                   onChangeHandler={(e) => {
+                    if (ErrorState.registration_plate_forth_part) {
+                      ErrorDispatch({
+                        type: "registration_plate_forth_part",
+                        registration_plate_forth_part: null,
+                        error_message: "",
+                      });
+                    }
                     dispatch({
                       type: "registration_plate_forth_part",
                       registration_plate_forth_part: e,
@@ -1203,12 +1287,19 @@ const Add_Car_Step_1 = () => {
                     status: ErrorState.registration_plate_third_part,
                     message: "",
                   }}
-                  onChangeHandler={(e) =>
+                  onChangeHandler={(e) => {
+                    if (ErrorState.registration_plate_third_part) {
+                      ErrorDispatch({
+                        type: "registration_plate_third_part",
+                        registration_plate_third_part: null,
+                        error_message: "",
+                      });
+                    }
                     dispatch({
                       type: "registration_plate_third_part",
                       registration_plate_third_part: e,
-                    })
-                  }
+                    });
+                  }}
                 />
               </div>
               <div className="Second_part_pelak">
@@ -1224,12 +1315,19 @@ const Add_Car_Step_1 = () => {
                       registration_plate_second_part: null,
                     })
                   }
-                  Select={(i) =>
+                  Select={(i) => {
+                    if (ErrorState.registration_plate_second_part) {
+                      ErrorDispatch({
+                        type: "registration_plate_second_part",
+                        registration_plate_second_part: null,
+                        error_message: "",
+                      });
+                    }
                     dispatch({
                       type: "registration_plate_second_part",
                       registration_plate_second_part: i.value,
-                    })
-                  }
+                    });
+                  }}
                   hideArrowDown={true}
                   hideClearField={true}
                 />
@@ -1252,12 +1350,19 @@ const Add_Car_Step_1 = () => {
                       registration_plate_first_part: "",
                     })
                   }
-                  onChangeHandler={(e) =>
+                  onChangeHandler={(e) => {
+                    if (ErrorState.registration_plate_first_part) {
+                      ErrorDispatch({
+                        type: "registration_plate_first_part",
+                        registration_plate_first_part: null,
+                        error_message: "",
+                      });
+                    }
                     dispatch({
                       type: "registration_plate_first_part",
                       registration_plate_first_part: e,
-                    })
-                  }
+                    });
+                  }}
                   autoFocus={false}
                 />
               </div>
@@ -1324,12 +1429,19 @@ const Add_Car_Step_1 = () => {
                 color_id: null,
               })
             }
-            Select={(i) =>
+            Select={(i) => {
+              if (ErrorState.color_id) {
+                ErrorDispatch({
+                  type: "color_id",
+                  color_id: null,
+                  error_message: "",
+                });
+              }
               dispatch({
                 type: "color_id",
                 color_id: i.value,
-              })
-            }
+              });
+            }}
           />
         </div>
         <label>
