@@ -684,6 +684,10 @@ const Add_Car_Step_2 = () => {
                     number: true,
                     min: 50000,
                     required: true,
+                    messages: {
+                      required: "وارد کردن قیمت روزانه اجباری است",
+                      min: "شروع قیمت روزانه از 50.000 تومان است",
+                    },
                   }}
                 />
                 <span className="tail_text">تومان در روز</span>
@@ -798,6 +802,9 @@ const Add_Car_Step_2 = () => {
               label="هزینه هر کیلومتر اضافه"
               validation={{
                 required: true,
+                messages: {
+                  required: "وارد کردن هزینه هر کیلومتر اضافه اجباری است", 
+                },
               }}
             />
             <span className="tail_text">تومان</span>

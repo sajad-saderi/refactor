@@ -95,6 +95,10 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             validation={{
               number: true,
               length: 11,
+              messages: {
+                required: "وارد کردن تلفن همراه اجباری است",
+                length: "شماره همراه باید 11 رقم باشد",
+              },
               required: true,
             }}
           />

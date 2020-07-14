@@ -280,6 +280,10 @@ const PriceBox = (props: IPriceBox) => {
                 number: true,
                 min: 50000,
                 required: true,
+                messages: {
+                  required: "وارد کردن قیمت روزانه اجباری است",
+                  min: "شروع قیمت روزانه از 50.000 تومان است",
+                },
               }}
             />
             <span>تومان</span>

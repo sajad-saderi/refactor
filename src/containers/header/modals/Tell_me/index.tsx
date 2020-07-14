@@ -81,7 +81,7 @@ const TellMe = () => {
           </p>
           {/* <p className="p2"></p> */}
           <TextInput
-            error={{ status: error.status, message:error.message }}
+            error={{ status: error.status, message: error.message }}
             name="cell Phone"
             onChangeHandler={(e) => {
               setCellPhone(e);
@@ -96,6 +96,9 @@ const TellMe = () => {
             clearField={clearField}
             validation={{
               required: true,
+              messages: {
+                required: "وارد کردن تلفن همراه اجباری است",
+              },
             }}
           />
           {/* show error message */}

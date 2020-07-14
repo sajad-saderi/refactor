@@ -226,6 +226,10 @@ const Calculator = (props: ICalculator) => {
                 validation={{
                   number: true,
                   min: 20000000,
+                  messages: {
+                    required: "وارد کردن ارزش خودرو اجباری است",
+                    min: "ارزش خودرو باید بیشتر از 20.000.000 تومان باشد",
+                  },
                   required: true,
                 }}
               />

@@ -293,6 +293,9 @@ const Complete_register_container = () => {
               }}
               validation={{
                 required: true,
+                messages: {
+                  required: "نام خود را بنویسید", 
+                }
               }}
             />
             <TextInput
@@ -312,6 +315,9 @@ const Complete_register_container = () => {
               }}
               validation={{
                 required: true,
+                messages: {
+                  required: "نام خانوادگی خود را بنویسید", 
+                }
               }}
             />
           </div>
@@ -371,6 +377,11 @@ const Complete_register_container = () => {
                 min: 1,
                 max: 31,
                 required: true,
+                messages: {
+                  required: "روز تاریخ تولد اجباری است",
+                  min: "روز نمی‌تواند کمتر از 1 باشد",
+                  max: "روز نمی‌تواند بیشتر از 31 باشد",
+                },
               }}
             />
             <DropdownSearch
@@ -398,6 +409,9 @@ const Complete_register_container = () => {
               validation={{
                 number: true,
                 length: 4,
+                messages: {
+                  required: "سال نمی‌تواند 5 رقمی باشد", 
+                },
                 required: true,
               }}
             />

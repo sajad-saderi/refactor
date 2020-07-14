@@ -140,6 +140,10 @@ const ConfirmCode = (props: IConfirmCode) => {
           validation={{
             number:true,
             length:4,
+            messages: {
+              required: "وارد کردن کد تایید اجباری است",
+              length: "کد تایید باید 4 رقم باشد",
+            },
             required: true
           }}
         />

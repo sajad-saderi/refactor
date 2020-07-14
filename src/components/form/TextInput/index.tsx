@@ -69,7 +69,7 @@ const TextInput = (props: ItextInput) => {
   //   }
   // }, [props.error]);
 
-  const validation = (data) => { 
+  const validation = (data) => {
     if (!props.validation) {
       return;
     }
@@ -78,7 +78,7 @@ const TextInput = (props: ItextInput) => {
       if (props.value === "") {
         setLocalError({
           status: true,
-          message: "فیلد اجباری",
+          message: data.messages.required,
         });
         return;
       } else {
@@ -95,24 +95,24 @@ const TextInput = (props: ItextInput) => {
       if (/[^0-9]/g.test(value.toString())) {
         setLocalError({
           status: true,
-          message: "شماره نامعتبر",
+          message: "ورودی نامعتبر",
         });
       } else if (data.length) {
         if (value.toString().length < data.length) {
           setLocalError({
             status: true,
-            message: `طول ورودی باید ${data.length} کاراکتر باشد`,
+            message: data.messages.length,
           });
         }
       } else if (data.min && value < data.min) {
         setLocalError({
           status: true,
-          message: `حداقل ${data.min.toLocaleString()}`,
+          message: data.messages.min,
         });
       } else if (data.max && value > data.max) {
         setLocalError({
           status: true,
-          message: `حداکثر ${data.max.toLocaleString()}`,
+          message: data.messages.max,
         });
       } else {
         setLocalError({
