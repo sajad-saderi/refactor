@@ -21,7 +21,7 @@ const Menu = () => {
     <ul>
       {token ? (
         <li className="first_element_li">
-          <Link href={`/user/${user_id}`} as={`/user/${user_id}`}>
+          <Link href={`/user/[id]`} as={`/user/${user_id}`}>
             <a>
               <img
                 className="profile_icon"

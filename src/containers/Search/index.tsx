@@ -80,25 +80,30 @@ const Search = (props: ISearch) => {
         } else {
           localStorage.removeItem("start");
           localStorage.removeItem("end");
+          set_default_date_for_search();
         }
       }
     } else {
-      // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-      const Today = moment().format("jYYYY/jMM/jDD");
-      let from_date = moment(Today)
-        .add(3, "day")
-        .format("YYYY/MM/DD")
-        .split("/");
-      let to_date = moment(Today)
-        .add(6, "day")
-        .format("YYYY/MM/DD")
-        .split("/");
-
-      setDayRange({
-        from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },
-        to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] },
-      });
+      set_default_date_for_search();
     }
+  };
+
+  const set_default_date_for_search = () => {
+    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
+    const Today = moment().format("jYYYY/jMM/jDD");
+    let from_date = moment(Today)
+      .add(3, "day")
+      .format("YYYY/MM/DD")
+      .split("/");
+    let to_date = moment(Today)
+      .add(6, "day")
+      .format("YYYY/MM/DD")
+      .split("/");
+
+    setDayRange({
+      from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },
+      to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] },
+    });
   };
 
   const GotoSearchResult = (e) => {
