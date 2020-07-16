@@ -23,6 +23,7 @@ module.exports = withPWA(
             compress = true;
             return config;
           },
+          crossOrigin: "anonymous",
         })
       )
     )
