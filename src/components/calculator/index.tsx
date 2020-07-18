@@ -227,7 +227,7 @@ const Calculator = (props: ICalculator) => {
                   number: true,
                   min: 20000000,
                   messages: {
-                    required: "وارد کردن ارزش خودرو اجباری است",
+                    required: "لطفا ارزش خودرو را وارد کنید",
                     min: "ارزش خودرو باید بیشتر از 20.000.000 تومان باشد",
                   },
                   required: true,

@@ -17,6 +17,9 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
+    if(!cellPhone){
+      return
+    }
     localStorage["last_location"] = Router.router.asPath;
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
@@ -96,7 +99,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
               number: true,
               length: 11,
               messages: {
-                required: "وارد کردن تلفن همراه اجباری است",
+                required: "لطفا تلفن همراه را وارد کنید",
                 length: "شماره همراه باید 11 رقم باشد",
               },
               required: true,

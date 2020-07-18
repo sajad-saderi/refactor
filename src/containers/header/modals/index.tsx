@@ -7,6 +7,7 @@ import TellMe from "./Tell_me";
 import Renter from "./Renter";
 import Owner from "./Owner";
 import Law from "./Law";
+import Assurance from "./Assurance";
 import ConfirmDelete from "./ConfirmDelete";
 
 const Modals = (props) => {
@@ -34,6 +35,8 @@ const Modals = (props) => {
             ? "Owner"
             : props.modal_type === "Law"
             ? "Law"
+            : props.modal_type === "Assurance"
+            ? "Assurance"
             : null,
         ].join(" ")}
       >
@@ -67,6 +70,8 @@ const Modals = (props) => {
           <Law data-test-id="Law" />
         ) : props.modal_type === "ConfirmDelete" ? (
           <ConfirmDelete data-test-id="ConfirmDelete" data={props.data} />
+        ) : props.modal_type === "Assurance" ? (
+          <Assurance data-test-id="Assurance" />
         ) : null}
       </div>
       <div className="back_draw" onClick={() => Modal_context.modalHandler()} />

@@ -195,7 +195,7 @@ const PriceBox = (props: IPriceBox) => {
   };
 
   useEffect(() => {
-    if (props.initialAvailabilityList) {
+    if (props.initialAvailabilityList.length > 0) {
       setShow_input_price(false);
       props.initialAvailabilityList.forEach((item) => {
         onConfirm(
@@ -281,7 +281,7 @@ const PriceBox = (props: IPriceBox) => {
                 min: 50000,
                 required: true,
                 messages: {
-                  required: "وارد کردن قیمت روزانه اجباری است",
+                  required: "لطفا  قیمت روزانه را وارد کنید",
                   min: "شروع قیمت روزانه از 50.000 تومان است",
                 },
               }}

@@ -537,7 +537,9 @@ input {
 @import "../containers/Checkout_Container/insurance/insurance.scss";
 @import "../containers/CompleteRegister/complete_register.scss";
 @import "../containers/Filters/Filter.scss";
+// Header
 @import "../containers/header/header.scss";
+// Modals
 @import "../containers/header/modals/modal.scss";
 @import "../containers/header/modals/GetUserCellPhone/userCellphone.scss";
 @import "../containers/header/modals/Law/Law.scss";
@@ -545,6 +547,8 @@ input {
 @import "../containers/header/modals/Renter/Renter.scss";
 @import "../containers/header/modals/Tell_me/Tell_me.scss";
 @import "../containers/header/modals/ConfirmDelete/Confirm_delete.scss";
+@import "../containers/header/modals/Assurance/Assurance_modal.scss";
+
 @import "../containers/LandignPageContainer/Search_result.scss";
 @import "../containers/LandignPageContainer/landingPageContent/landingPageContent.scss";
 @import "../containers/Profile_container/Profile_container.scss";

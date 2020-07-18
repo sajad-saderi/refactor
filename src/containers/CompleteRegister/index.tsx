@@ -378,7 +378,7 @@ const Complete_register_container = () => {
                 max: 31,
                 required: true,
                 messages: {
-                  required: "روز تاریخ تولد اجباری است",
+                  required: "لطفا تاریخ تولد را وارد کنید",
                   min: "روز نمی‌تواند کمتر از 1 باشد",
                   max: "روز نمی‌تواند بیشتر از 31 باشد",
                 },

@@ -23,6 +23,9 @@ const ConfirmCode = (props: IConfirmCode) => {
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
+    if(!code){
+      return
+    }
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/login";
@@ -141,7 +144,7 @@ const ConfirmCode = (props: IConfirmCode) => {
             number:true,
             length:4,
             messages: {
-              required: "وارد کردن کد تایید اجباری است",
+              required: "لطفا کد تایید را وارد کنید",
               length: "کد تایید باید 4 رقم باشد",
             },
             required: true

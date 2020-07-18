@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState, useContext } from "react";
 import { IoIosCalendar } from "react-icons/io";
 // import "./step_2.scss";
 import {
@@ -18,11 +18,11 @@ import jsCookie from "js-cookie";
 import validator from "validator";
 import PelakView from "../../../components/pelak";
 import Spinner from "../../../components/Spinner";
+import Modal_context from "../../../context/Modal_context";
 import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
-import DropdownSearch from "../../../components/form/Dropdown";
-import Link from "next/link";
+import DropdownSearch from "../../../components/form/Dropdown"; 
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -213,7 +213,7 @@ const Add_Car_Step_2 = () => {
     price_per_day: "",
     cancellation_policy: "",
   });
-
+  const MODAL_CONTEXT = useContext(Modal_context);
   const token = jsCookie.get("token");
 
   useEffect(() => {
@@ -685,7 +685,7 @@ const Add_Car_Step_2 = () => {
                     min: 50000,
                     required: true,
                     messages: {
-                      required: "وارد کردن قیمت روزانه اجباری است",
+                      required: "لطفا  قیمت روزانه را وارد کنید",
                       min: "شروع قیمت روزانه از 50.000 تومان است",
                     },
                   }}
@@ -803,7 +803,7 @@ const Add_Car_Step_2 = () => {
               validation={{
                 required: true,
                 messages: {
-                  required: "وارد کردن هزینه هر کیلومتر اضافه اجباری است", 
+                  required: "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
                 },
               }}
             />
@@ -868,9 +868,12 @@ const Add_Car_Step_2 = () => {
           />
           <label>
             شرایط اجاره و کنسلی
-            <Link href="/assurance">
-              <a className="anchorTagInStep2">چه مدارک و ضمانت‌هایی بگیریم؟</a>
-            </Link>
+            <span
+              onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
+              className="anchorTagInStep2"
+            >
+              چه مدارک و ضمانت‌هایی بگیریم؟
+            </span>
           </label>
           <textarea
             className={[

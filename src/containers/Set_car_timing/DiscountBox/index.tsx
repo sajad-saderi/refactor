@@ -196,7 +196,7 @@ const DiscountBox = (props: IDiscountBox) => {
               validation={{
                 required: true,
                 messages: {
-                  required: "وارد کردن درصد تخفیف اجباری است",
+                  required: "لطفا درصد تخفیف را وارد کنید",
                 },
               }}
             />

@@ -97,7 +97,7 @@ const TellMe = () => {
             validation={{
               required: true,
               messages: {
-                required: "وارد کردن تلفن همراه اجباری است",
+                required: "لطفا تلفن همراه را وارد کنید",
               },
             }}
           />
