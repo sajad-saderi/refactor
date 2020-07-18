@@ -5,13 +5,17 @@
   "scripts": {
     "dev": "next dev ",
     "build": "NODE_ENV=production next build",
-    "start": "NODE_ENV=production next start -p 8080",
+    "start": "NODE_ENV=production next start -p $PORT",
     "test": "jest --config jest.config.js --no-cache",
     "test:watch": "SET NODE_ENV=development & jest --watch",
     "test:coverage": "SET NODE_ENV=development & jest --coverage",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz build && docz serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/otoli/mvp-front"
   },
   "dependencies": {
     "@sentry/browser": "^5.17.0",
