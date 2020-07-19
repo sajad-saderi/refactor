@@ -60,7 +60,7 @@
           display: inline-block;
           vertical-align: middle;
           font-size: 1.3rem;
-          span{
+          span {
             display: inline-block;
           }
         }
@@ -73,7 +73,7 @@
         display: none;
         .PushToRight {
           .DatePicker__calendarContainer {
-            // transform: translateX(-20%) !important; 
+            // transform: translateX(-20%) !important;
             right: 0%;
             left: auto;
             transform: translateX(0) !important;
@@ -85,7 +85,7 @@
         }
         .PushToLeft {
           .DatePicker__calendarContainer {
-            // transform: translateX(-80%) !important; 
+            // transform: translateX(-80%) !important;
             left: 0%;
             transform: translateX(0) !important;
             // border: 1px solid rgba(34, 36, 38, 0.15);
@@ -580,23 +580,7 @@
         }
       }
       .Rent_date {
-        text-align: right;
-        font-weight: 500;
-        font-size: 1.2rem;
-        margin-top: 2.5rem;
-        margin-bottom: 4rem;
-        display: flex;
-        justify-content: space-around;
-        p,
-        svg {
-          display: inline-block;
-          vertical-align: middle;
-          font-size: 1.3rem;
-        }
-        .change_date_in_car_page {
-          cursor: pointer;
-          color: $main__color;
-        }
+        display: none;
       }
       .search_box_div {
         display: none;

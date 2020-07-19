@@ -215,6 +215,8 @@ const CarPage = () => {
 
   const GoToCheckout = () => {
     setLoading(true);
+    localStorage["start"] = JSON.stringify(dayRange.from);
+    localStorage["end"] = JSON.stringify(dayRange.to);
     Router.push({
       pathname: "/checkout",
       query: { search_id: search_id },
