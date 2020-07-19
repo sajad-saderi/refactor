@@ -111,7 +111,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
               <Car
                 key={i}
                 data={item}
-                is_mine={props.is_mine}
+                is_mine={true}
                 getListAgain={() => fetchApi(1)}
               />
             ) : !item.is_out_of_service ? (

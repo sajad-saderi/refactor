@@ -4,7 +4,7 @@ import { REQUEST_GET_RENTAL_CAR } from "../../../../src/API";
 import Router from "next/router";
 import Slider from "../../../../src/components/Slider";
 import Button from "../../../components/form/Button";
-import { IoIosLink } from "react-icons/io";
+import { IoIosLink, IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
@@ -32,10 +32,7 @@ const CarPage = () => {
     avg_discounted_price_per_day,
     setAvg_discounted_price_per_day,
   ] = useState(null);
-  const [
-    avg_price_per_day,
-    setAvg_price_per_day,
-  ] = useState(null);
+  const [avg_price_per_day, setAvg_price_per_day] = useState(null);
   const [unit, setUnit] = useState("هراز");
   const [body_style, setBody_style] = useState(null);
   const [transmission_type, setTransmission_type] = useState(null);
@@ -62,6 +59,10 @@ const CarPage = () => {
   const [calenderClick, setCalenderClick] = useState(false);
   const [showPriceLoading, setShowPriceLoading] = useState(false);
 
+  const [showBorder, setShowBorder] = useState(false);
+  const [fromDay, setFromDay] = useState("");
+  const [toDay, setToDay] = useState("");
+  const [showDateText, setShowDateText] = useState(true);
 
   useEffect(() => {
     const { search_id, id, owner } = Router.router.query;
@@ -77,11 +78,11 @@ const CarPage = () => {
     // if doesn't have search id and it's not mine the user can select day range and get price and search id
     else {
       if (localStorage["start"]) {
-        // get the car information and price based on the start date and the end date, if there are on storage. 
-        DateSetter(id)
+        // get the car information and price based on the start date and the end date, if there are on storage.
+        DateSetter(id);
       } else {
-        // just get the main info about the car  
-        DateSetter(id)
+        // just get the main info about the car
+        DateSetter(id);
       }
     }
     const handleRouteChange = (url) => {
@@ -96,14 +97,14 @@ const CarPage = () => {
   }, []);
 
   const fetchData = async (data) => {
-    let localData = null
-    setShowPriceLoading(true)
+    let localData = null;
+    setShowPriceLoading(true);
     try {
       if (data.from && data.to) {
         setDayRange({
           from: data.from,
-          to: data.to
-        })
+          to: data.to,
+        });
         localData = {
           id: Router.router.query.id,
           start_date: `${data.from.year}/${data.from.month}/${data.from.day}`,
@@ -114,18 +115,18 @@ const CarPage = () => {
           id: Router.router.query.id,
           start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
           end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-        }
+        };
       } else if (data.search_id) {
-        localData = { search_id: data.search_id }
+        localData = { search_id: data.search_id };
       } else {
-        localData = { id: data.id }
+        localData = { id: data.id };
       }
-      const res: any = await REQUEST_GET_RENTAL_CAR(localData)
+      const res: any = await REQUEST_GET_RENTAL_CAR(localData);
       set_CarInformation(res);
-      setShowPriceLoading(false)
+      setShowPriceLoading(false);
     } catch (error) {
       if (error === "Invalid search_id.") {
-        DateSetter(Router.router.query.id)
+        DateSetter(Router.router.query.id);
       }
       console.log("!Error", error);
     }
@@ -148,9 +149,9 @@ const CarPage = () => {
       let End_date = moment(Today)
         .add(6, "day")
         .format("YYYY/MM/DD");
-      let SplitStartDate = Start_date.split("/")
-      let SplitEndDate = End_date.split("/")
-      // just get the main info about the car 
+      let SplitStartDate = Start_date.split("/");
+      let SplitEndDate = End_date.split("/");
+      // just get the main info about the car
       console.log(+SplitStartDate[0]);
 
       // show calender if the dates are not on storage
@@ -160,25 +161,25 @@ const CarPage = () => {
         from: {
           year: +SplitStartDate[0],
           month: +SplitStartDate[1],
-          day: +SplitStartDate[2]
+          day: +SplitStartDate[2],
         },
         to: {
           year: +SplitEndDate[0],
           month: +SplitEndDate[1],
-          day: +SplitEndDate[2]
-        }
+          day: +SplitEndDate[2],
+        },
       });
-
     }
-  }
+  };
 
   const set_CarInformation = (res) => {
     setCar(res.car);
     setYear(res.year);
     setCapacity(res.capacity);
-    setAvg_price_per_day(res.avg_price_per_day)
+    setAvg_price_per_day(res.avg_price_per_day);
     if (res.avg_discounted_price_per_day > 0) {
-      setAvg_discounted_price_per_day(res.avg_discounted_price_per_day
+      setAvg_discounted_price_per_day(
+        res.avg_discounted_price_per_day
         // res.avg_discounted_price_per_day >= 10000000
         //   ? res.avg_discounted_price_per_day >= 10100000
         //     ? res.avg_discounted_price_per_day_name.slice(0, 4)
@@ -222,13 +223,31 @@ const CarPage = () => {
 
   useEffect(() => {
     if (showCalender && calenderClick) {
-      console.log("?");
-
       if (dayRange.from?.day && dayRange.to?.day) {
-        fetchData({ id: Router.router.query.id })
+        fetchData({ id: Router.router.query.id });
+        setShowDateText(true);
       }
     }
-  }, [dayRange])
+    if (dayRange.from) {
+      setFromDay(convertDate(dayRange.from));
+    } else {
+      setFromDay(" ");
+      setToDay(" ");
+    }
+    if (dayRange.to) {
+      setShowBorder(false);
+      setToDay(convertDate(dayRange.to));
+    } else {
+      setToDay(" ");
+    }
+  }, [dayRange]);
+
+  const convertDate = (v) => {
+    let value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
+      "dddd jDD jMMMM"
+    );
+    return value;
+  };
 
   return (
     <>
@@ -239,7 +258,7 @@ const CarPage = () => {
               owner.company_name
                 ? owner.company_name
                 : owner.first_name + " " + owner.last_name
-              } - ${car.brand.name.fa} ${car.name.fa} | اتولی`}
+            } - ${car.brand.name.fa} ${car.name.fa} | اتولی`}
             description="همین حالا اجاره کنید"
             noindex={true}
             openGraph={{
@@ -253,13 +272,17 @@ const CarPage = () => {
               cardType: "summary_large_image",
             }}
           />
-          {
-            dayRange.from?.day && dayRange.to?.day
-              ? <div className="Top_Rent_date">
-                <p>{`از ${dayRange.from.day} ${moment(dayRange.from.month, "jM").format("jMMMM")} تا ${dayRange.to.day} ${moment(dayRange.to.month, "jM").format("jMMMM")}`}</p>
-              </div>
-              : null
-          }
+          {dayRange.from?.day && dayRange.to?.day ? (
+            <div className="Top_Rent_date">
+              <p>{`از ${dayRange.from.day} ${moment(
+                dayRange.from.month,
+                "jM"
+              ).format("jMMMM")} تا ${dayRange.to.day} ${moment(
+                dayRange.to.month,
+                "jM"
+              ).format("jMMMM")}`}</p>
+            </div>
+          ) : null}
           {/* slider section */}
           <Slider
             Feed={media_set}
@@ -268,35 +291,144 @@ const CarPage = () => {
           {/* car info section */}
           <article className="responsive Car_page_container">
             <section className="carInfo_container">
-              {showPriceLoading
-                ? <div className="price_place_holder">
+              {showPriceLoading ? (
+                <div className="price_place_holder">
                   <Spinner color="#737373" display="block" width={20} />
                 </div>
-                : avg_discounted_price_per_day && (
+              ) : (
+                avg_discounted_price_per_day && (
                   <div className="avg_discounted_price_per_day">
-                    <p className={total_discount ? "discount_price" : null}>{avg_price_per_day.toLocaleString()}</p>
-                    {total_discount ? <p>{avg_discounted_price_per_day.toLocaleString()}</p> : null}
+                    <p className={total_discount ? "discount_price" : null}>
+                      {avg_price_per_day.toLocaleString()}
+                    </p>
+                    {total_discount ? (
+                      <p>{avg_discounted_price_per_day.toLocaleString()}</p>
+                    ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
                     <span>تومان در روز</span>
                   </div>
-                )}
+                )
+              )}
               <h1>
                 {car.brand.name.fa} {car.name.fa}
               </h1>
               <h4>{year.name.fa}</h4>
               {!is_mine ? (
                 showCalender ? (
-                  <div className="search_box_div" onClick={() => setCalenderClick(true)}>
-                    <DatePicker
-                      inputPlaceholder="از تاریخ تا تاریخ"
-                      value={dayRange}
-                      onChange={setDayRange}
-                      shouldHighlightWeekends
-                      minimumDate={utils("fa").getToday()}
-                      locale="fa"
-                      colorPrimary="#4ba3ce"
-                      disabledDays={[utils("fa").getToday()]}
-                    />
+                  <div className="calender_section_mobile_view">
+                    <hr />
+                    <h2>تاریخ اجاره</h2>
+                    {showDateText ? (
+                      <div className="Rent_date">
+                        <p>
+                          <span className="day_name">{`${moment(
+                            `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
+                          ).format("dddd")},`}</span>
+                          {` ${dayRange.from.day} ${moment(
+                            dayRange.from.month,
+                            "jM"
+                          ).format("jMMMM")}`}
+                          <IoIosArrowRoundBack size="2rem" color="#202020" />
+                          <span className="day_name">{`${moment(
+                            `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
+                          ).format("dddd")},`}</span>
+                          {` ${dayRange.to.day} ${moment(
+                            dayRange.to.month,
+                            "jM"
+                          ).format("jMMMM")}`}{" "}
+                          (
+                          {moment([
+                            dayRange.from.year,
+                            dayRange.from.month,
+                            dayRange.from.day,
+                          ])
+                            .diff(
+                              moment([
+                                dayRange.to.year,
+                                dayRange.to.month,
+                                dayRange.to.day,
+                              ]),
+                              "days"
+                            )
+                            .toString()
+                            .replace("-", "")}
+                          روز)
+                        </p>
+                        <p
+                          className="change_date_in_car_page"
+                          onClick={() => {
+                            setShowDateText(false);
+                            setShowCalender(true);
+                          }}
+                        >
+                          تغییر تاریخ
+                        </p>
+                      </div>
+                    ) : (
+                      <div
+                        className="search_box_div"
+                        onClick={() => setCalenderClick(true)}
+                      >
+                        <div
+                          className={[
+                            "date_Input_Container",
+                            dayRange.from
+                              ? dayRange.to
+                                ? "PushToRight"
+                                : "PushToLeft"
+                              : "PushToRight",
+                          ].join(" ")}
+                          onClick={() => setShowBorder(true)}
+                        >
+                          <DatePicker
+                            value={dayRange}
+                            onChange={setDayRange}
+                            shouldHighlightWeekends
+                            minimumDate={utils("fa").getToday()}
+                            locale="fa"
+                            colorPrimary="#4ba3ce"
+                            disabledDays={[utils("fa").getToday()]}
+                          />
+                          <div className="input_container">
+                            <p className="label">از تاریخ</p>
+                            <input
+                              data-hj-whitelist
+                              className={
+                                showBorder
+                                  ? dayRange.from
+                                    ? dayRange.to
+                                      ? "activeBorder"
+                                      : null
+                                    : "activeBorder"
+                                  : null
+                              }
+                              readOnly={true}
+                              value={fromDay ? fromDay : ""}
+                            />
+                          </div>
+                          <div className="input_container">
+                            <p className="label">تا تاریخ</p>
+                            <input
+                              data-hj-whitelist
+                              className={[
+                                "exception_input",
+                                showBorder
+                                  ? dayRange.to
+                                    ? dayRange.from
+                                      ? null
+                                      : null
+                                    : dayRange.from
+                                    ? "activeBorder"
+                                    : null
+                                  : null,
+                              ].join(" ")}
+                              readOnly={true}
+                              value={toDay ? toDay : ""}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ) : null
               ) : null}
@@ -388,38 +520,137 @@ const CarPage = () => {
             </section>
             {/* user info section */}
             <section className="onwnerInfo_container">
-              {showPriceLoading
-                ? <div className="price_place_holder">
+              {showPriceLoading ? (
+                <div className="price_place_holder">
                   <Spinner color="#737373" display="block" width={20} />
                 </div>
-                : avg_discounted_price_per_day && (
+              ) : (
+                avg_discounted_price_per_day && (
                   <div className="avg_discounted_price_per_day">
-                    <p className={total_discount ? "discount_price" : null}>{avg_price_per_day.toLocaleString()}</p>
-                    {total_discount ? <p>{avg_discounted_price_per_day.toLocaleString()}</p> : null}
+                    <p className={total_discount ? "discount_price" : null}>
+                      {avg_price_per_day.toLocaleString()}
+                    </p>
+                    {total_discount ? (
+                      <p>{avg_discounted_price_per_day.toLocaleString()}</p>
+                    ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
                     <span>تومان در روز</span>
                   </div>
-                )}
-              {
-                dayRange.from?.day && dayRange.to?.day
-                  ? <div className="Rent_date">
-                    <p>{`از ${dayRange.from.day} ${moment(dayRange.from.month, "jM").format("jMMMM")} تا ${dayRange.to.day} ${moment(dayRange.to.month, "jM").format("jMMMM")}`}</p>
-                  </div>
-                  : null
-              }
+                )
+              )}
+              {showDateText && !is_mine ? (
+                <div className="Rent_date">
+                  <p>
+                    <span className="day_name">
+                      {`${moment(
+                        `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
+                      ).format("dddd")},`}
+                    </span>
+                    {`${dayRange.from.day} ${moment(
+                      dayRange.from.month,
+                      "jM"
+                    ).format("jMMMM")}`}
+                    <IoIosArrowRoundBack size="2rem" color="#202020" />
+                    <span className="day_name">{`${moment(
+                      `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
+                    ).format("dddd")},`}</span>
+                    {`${dayRange.to.day} ${moment(
+                      dayRange.to.month,
+                      "jM"
+                    ).format("jMMMM")}`}{" "}
+                    (
+                    {moment([
+                      dayRange.from.year,
+                      dayRange.from.month,
+                      dayRange.from.day,
+                    ])
+                      .diff(
+                        moment([
+                          dayRange.to.year,
+                          dayRange.to.month,
+                          dayRange.to.day,
+                        ]),
+                        "days"
+                      )
+                      .toString()
+                      .replace("-", "")}
+                    روز)
+                  </p>
+                  <p
+                    className="change_date_in_car_page"
+                    onClick={() => {
+                      setShowDateText(false);
+                      setShowCalender(true);
+                    }}
+                  >
+                    تغییر تاریخ
+                  </p>
+                </div>
+              ) : null}
               {!is_mine ? (
-                showCalender ? (
-                  <div className="search_box_div HEAP_Car_Input_Calender" onClick={() => setCalenderClick(true)}>
-                    <DatePicker
-                      inputPlaceholder="از تاریخ تا تاریخ"
-                      value={dayRange}
-                      onChange={setDayRange}
-                      shouldHighlightWeekends
-                      minimumDate={utils("fa").getToday()}
-                      locale="fa"
-                      colorPrimary="#4ba3ce"
-                      disabledDays={[utils("fa").getToday()]}
-                    />
+                showCalender && !showDateText ? (
+                  <div
+                    className="search_box_div HEAP_Car_Input_Calender"
+                    onClick={() => setCalenderClick(true)}
+                  >
+                    <div
+                      className={[
+                        "date_Input_Container",
+                        dayRange.from
+                          ? dayRange.to
+                            ? "PushToRight"
+                            : "PushToLeft"
+                          : "PushToRight",
+                      ].join(" ")}
+                      onClick={() => setShowBorder(true)}
+                    >
+                      <DatePicker
+                        value={dayRange}
+                        onChange={setDayRange}
+                        shouldHighlightWeekends
+                        minimumDate={utils("fa").getToday()}
+                        locale="fa"
+                        colorPrimary="#4ba3ce"
+                        disabledDays={[utils("fa").getToday()]}
+                      />
+                      <div className="input_container">
+                        <p className="label">از تاریخ</p>
+                        <input
+                          data-hj-whitelist
+                          className={
+                            showBorder
+                              ? dayRange.from
+                                ? dayRange.to
+                                  ? "activeBorder"
+                                  : null
+                                : "activeBorder"
+                              : null
+                          }
+                          readOnly={true}
+                          value={fromDay ? fromDay : ""}
+                        />
+                      </div>
+                      <div className="input_container">
+                        <p className="label">تا تاریخ</p>
+                        <input
+                          data-hj-whitelist
+                          className={[
+                            "exception_input",
+                            showBorder
+                              ? dayRange.to
+                                ? dayRange.from
+                                  ? null
+                                  : null
+                                : dayRange.from
+                                ? "activeBorder"
+                                : null
+                              : null,
+                          ].join(" ")}
+                          readOnly={true}
+                          value={toDay ? toDay : ""}
+                        />
+                      </div>
+                    </div>
                   </div>
                 ) : null
               ) : null}
@@ -431,7 +662,7 @@ const CarPage = () => {
                   </figure>
                 </a>
               </Link>
-              {avg_discounted_price_per_day && (
+              {avg_discounted_price_per_day && !is_mine ? (
                 <div className="continue_to_checkout">
                   <Button
                     value="ادامه"
@@ -444,18 +675,16 @@ const CarPage = () => {
                     کرد.
                   </span>
                 </div>
-              )}
+              ) : null}
             </section>
           </article>
         </>
       ) : (
-          <>
-            <NextSeo title="خودرو | اتولی"
-              noindex={true}
-            />
-            <CarPageLoading />
-          </>
-        )}
+        <>
+          <NextSeo title="خودرو | اتولی" noindex={true} />
+          <CarPageLoading />
+        </>
+      )}
     </>
   );
 };
