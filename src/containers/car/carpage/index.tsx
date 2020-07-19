@@ -287,7 +287,7 @@ const CarPage = () => {
               cardType: "summary_large_image",
             }}
           />
-          {dayRange.from?.day && dayRange.to?.day && !is_mine ? (
+          {/* {dayRange.from?.day && dayRange.to?.day && !is_mine ? (
             <div className="Top_Rent_date">
               <p>{`از ${dayRange.from.day} ${moment(
                 dayRange.from.month,
@@ -297,7 +297,7 @@ const CarPage = () => {
                 "jM"
               ).format("jMMMM")}`}</p>
             </div>
-          ) : null}
+          ) : null} */}
           {/* slider section */}
           <Slider
             Feed={media_set}
