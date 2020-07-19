@@ -561,7 +561,7 @@ const CarPage = () => {
                         `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
                       ).format("dddd")}،`}
                     </span>
-                    {`${dayRange.from.day} ${moment(
+                    {` ${dayRange.from.day} ${moment(
                       dayRange.from.month,
                       "jM"
                     ).format("jMMMM")}`}
@@ -569,7 +569,7 @@ const CarPage = () => {
                     <span className="day_name">{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
                     ).format("dddd")}،`}</span>
-                    {`${dayRange.to.day} ${moment(
+                    {` ${dayRange.to.day} ${moment(
                       dayRange.to.month,
                       "jM"
                     ).format("jMMMM")}`}{" "}

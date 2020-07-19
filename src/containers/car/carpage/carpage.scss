@@ -37,6 +37,10 @@
         text-decoration: line-through;
         font-size: 1.8rem;
       }
+      span {
+        color: $grey_color;
+        line-height: 0.7;
+      }
     }
     h1 {
       font-size: 2.4rem;
@@ -209,7 +213,7 @@
       margin-top: 2.2rem;
       margin-bottom: 1.2rem;
       border-bottom-width: 0;
-      border-color: $input_border;
+      border-color: rgba(34, 36, 38, 0.1);
     }
     .info_container {
       p:last-child span {
@@ -298,8 +302,9 @@
       span {
         font-size: 1.2rem;
         display: block;
+        color: $grey_color;
         text-align: center;
-        line-height: 1.5;
+        line-height: 0.7;
       }
     }
     .search_box_div {
