@@ -274,7 +274,7 @@ const CarPage = () => {
               cardType: "summary_large_image",
             }}
           />
-          {dayRange.from?.day && dayRange.to?.day ? (
+          {dayRange.from?.day && dayRange.to?.day && !is_mine ? (
             <div className="Top_Rent_date">
               <p>{`از ${dayRange.from.day} ${moment(
                 dayRange.from.month,
@@ -320,7 +320,7 @@ const CarPage = () => {
                   <div className="calender_section_mobile_view">
                     <hr />
                     <h2>تاریخ اجاره</h2>
-                    {showDateText ? (
+                    {showDateText && dayRange.from ? (
                       <div className="Rent_date">
                         <p>
                           <span className="day_name">{`${moment(
@@ -540,7 +540,7 @@ const CarPage = () => {
                   </div>
                 )
               )}
-              {showDateText && !is_mine ? (
+              {showDateText && !is_mine && dayRange.from ? (
                 <div className="Rent_date">
                   <p>
                     <span className="day_name">

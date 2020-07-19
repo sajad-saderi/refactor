@@ -354,7 +354,7 @@ const Rent = () => {
               <ul>
                 {dynamicLinks.map((item) => {
                   return (
-                    <li>
+                    <li key={item.name}>
                       <a href={item.url}>{item.name}</a>
                     </li>
                   );

@@ -94,10 +94,11 @@ const Car = (props: ICar) => {
   };
 
   let link = props.is_mine ? `/car/${id}?owner=true` : `/car/${id}`;
+  let hrefProp = props.is_mine ? `/car/[id]?owner=true` : `/car/[id]`;
   return (
     car && (
       <div className="carcard">
-        <Link href={`/car/[id]`} as={link}>
+        <Link href={hrefProp} as={link}>
           <a data-test-id="Link" className="HEAP_Profile_Card_Car">
             <figure>
               <img
@@ -182,7 +183,7 @@ const Car = (props: ICar) => {
                     MODAL_CONTEXT.modalHandler("ConfirmDelete", {
                       model: car.name.fa,
                       brand: car.brand.name.fa,
-                      id:id
+                      id: id,
                     })
                   }
                   color="#4ba3ce"
