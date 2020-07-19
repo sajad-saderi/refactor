@@ -74,6 +74,19 @@ const CarPage = () => {
     // if the page have search id we can get the price
     if (search_id) {
       fetchData({ search_id });
+      if (localStorage["start"]) {
+        let startDate = JSON.parse(localStorage["start"]);
+        let endDate = JSON.parse(localStorage["end"]);         
+        setDayRange({
+          from: {
+            year: startDate.year,
+            month: startDate.month,
+            day: startDate.day,
+          },
+          to: { year: endDate.year, month: endDate.month, day: endDate.day },
+        });
+        setShowCalender(true);
+      }
     }
     // if doesn't have search id and it's not mine the user can select day range and get price and search id
     else {
@@ -325,7 +338,7 @@ const CarPage = () => {
                         <p>
                           <span className="day_name">{`${moment(
                             `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
-                          ).format("dddd")},`}</span>
+                          ).format("dddd")}،`}</span>
                           {` ${dayRange.from.day} ${moment(
                             dayRange.from.month,
                             "jM"
@@ -333,7 +346,7 @@ const CarPage = () => {
                           <IoIosArrowRoundBack size="2rem" color="#202020" />
                           <span className="day_name">{`${moment(
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
-                          ).format("dddd")},`}</span>
+                          ).format("dddd")}،`}</span>
                           {` ${dayRange.to.day} ${moment(
                             dayRange.to.month,
                             "jM"
@@ -546,7 +559,7 @@ const CarPage = () => {
                     <span className="day_name">
                       {`${moment(
                         `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
-                      ).format("dddd")},`}
+                      ).format("dddd")}،`}
                     </span>
                     {`${dayRange.from.day} ${moment(
                       dayRange.from.month,
@@ -555,7 +568,7 @@ const CarPage = () => {
                     <IoIosArrowRoundBack size="2rem" color="#202020" />
                     <span className="day_name">{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
-                    ).format("dddd")},`}</span>
+                    ).format("dddd")}،`}</span>
                     {`${dayRange.to.day} ${moment(
                       dayRange.to.month,
                       "jM"
