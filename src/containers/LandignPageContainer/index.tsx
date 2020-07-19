@@ -100,14 +100,21 @@ const Landing_page_container = (props: ILanding_page_container) => {
   }, []);
 
   useEffect(() => {
-    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-    const Today = moment().format("jYYYY/jMM/jDD");
-    Start_date = moment(Today)
-      .add(3, "day")
-      .format("YYYY/MM/DD");
-    End_date = moment(Today)
-      .add(6, "day")
-      .format("YYYY/MM/DD");
+    if (localStorage["start"] && localStorage["start"] !== "null") {
+      let start = JSON.parse(localStorage["start"]);
+      let end = JSON.parse(localStorage["end"]);
+      Start_date = `${start.year}/${start.month}/${start.day}`;
+      End_date = `${end.year}/${end.month}/${end.day}`;
+    } else {
+      // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
+      const Today = moment().format("jYYYY/jMM/jDD");
+      Start_date = moment(Today)
+        .add(3, "day")
+        .format("YYYY/MM/DD");
+      End_date = moment(Today)
+        .add(6, "day")
+        .format("YYYY/MM/DD");
+    }
     initSearch();
   }, [props.landing_data]);
 
