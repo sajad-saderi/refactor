@@ -22,7 +22,7 @@ import Modal_context from "../../../context/Modal_context";
 import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
-import DropdownSearch from "../../../components/form/Dropdown"; 
+import DropdownSearch from "../../../components/form/Dropdown";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -431,12 +431,18 @@ const Add_Car_Step_2 = () => {
     } else {
       resetTheErrorStatus("id");
     }
-
     if (DateAndPrice === 1 && state.price_per_day === "") {
       ErrorDispatch({
         type: "price_per_day",
         price_per_day: true,
         error_message: "لطفا نرخ اجاره را وارد کنید",
+      });
+      return false;
+    } else if (DateAndPrice === 1 && +state.price_per_day < 50000) {
+      ErrorDispatch({
+        type: "price_per_day",
+        price_per_day: true,
+        error_message: "شروع قیمت روزانه از 50.000 تومان است",
       });
       return false;
     } else {
@@ -489,10 +495,16 @@ const Add_Car_Step_2 = () => {
         error_message: " لطفا هزینه هر کیلومتر اضافه را وارد کنید",
       });
       return false;
+    } else if (+state.extra_km_price < 100) {
+      ErrorDispatch({
+        type: "extra_km_price",
+        extra_km_price: true,
+        error_message: "حداقل هزینه هر کیلومتر اضافه از 500 تومان است",
+      });
+      return false;
     } else {
       resetTheErrorStatus("extra_km_price");
     }
-    console.log(showDiscount, discountList.length);
     if (showDiscount !== 0 && discountList.length === 0) {
       ErrorDispatch({
         type: "discount_error",
@@ -677,8 +689,9 @@ const Add_Car_Step_2 = () => {
                     message: "",
                   }}
                   autoFocus={false}
-                  min={4}
+                  // min={4}
                   max={8}
+                  placeholder="مثال: 50,000"
                   value={state.price_per_day}
                   validation={{
                     number: true,
@@ -796,14 +809,18 @@ const Add_Car_Step_2 = () => {
                 status: ErrorState.extra_km_price,
                 message: null,
               }}
-              min={4}
+              // min={4}
               max={8}
+              placeholder="مثال: 100"
               value={state.extra_km_price}
               label="هزینه هر کیلومتر اضافه"
               validation={{
+                number: true,
                 required: true,
+                min: 100,
                 messages: {
                   required: "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
+                  min: "شروع قیمت روزانه از 100 تومان است",
                 },
               }}
             />

@@ -76,7 +76,7 @@ const CarPage = () => {
       fetchData({ search_id });
       if (localStorage["start"]) {
         let startDate = JSON.parse(localStorage["start"]);
-        let endDate = JSON.parse(localStorage["end"]);         
+        let endDate = JSON.parse(localStorage["end"]);
         setDayRange({
           from: {
             year: startDate.year,
@@ -90,13 +90,13 @@ const CarPage = () => {
     }
     // if doesn't have search id and it's not mine the user can select day range and get price and search id
     else {
-      if (localStorage["start"]) {
-        // get the car information and price based on the start date and the end date, if there are on storage.
-        DateSetter(id);
-      } else {
-        // just get the main info about the car
-        DateSetter(id);
-      }
+      // if (localStorage["start"]) {
+      // get the car information and price based on the start date and the end date, if there are on storage.
+      DateSetter(id);
+      // } else {
+      // just get the main info about the car
+      // DateSetter(id);
+      // }
     }
     const handleRouteChange = (url) => {
       if (url.includes("/search-result")) {
@@ -165,8 +165,6 @@ const CarPage = () => {
       let SplitStartDate = Start_date.split("/");
       let SplitEndDate = End_date.split("/");
       // just get the main info about the car
-      console.log(+SplitStartDate[0]);
-
       // show calender if the dates are not on storage
       setShowCalender(true);
       fetchData({
