@@ -499,7 +499,7 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "extra_km_price",
         extra_km_price: true,
-        error_message: "حداقل هزینه هر کیلومتر اضافه از 500 تومان است",
+        error_message: "حداقل هزینه هر کیلومتر اضافه از 100 تومان است",
       });
       return false;
     } else {
