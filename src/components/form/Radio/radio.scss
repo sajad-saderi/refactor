@@ -3,10 +3,10 @@
 /* Customize the label (the container) */
 
 .radio_container {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 2rem;
-    transition: 0.2s;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2rem;
+  transition: 0.2s;
   /* Customize the label (the container) */
   .container {
     display: block;
@@ -44,8 +44,8 @@
     border-radius: 50%;
   }
 
-  .container:hover{
-      color: $Main_black_Text_Color;
+  .container:hover {
+    color: $Main_black_Text_Color;
   }
   /* On mouse-over, add a grey background color */
   .container:hover input ~ .checkmark {
@@ -78,5 +78,16 @@
     height: 8px;
     border-radius: 50%;
     background: $main__color;
+  }
+}
+
+.active_radio_item {
+  label {
+    color: $Main_black_Text_Color !important;
+    font-weight: 500 !important;
+    p {
+      color: #2a2a2a !important;
+      font-weight: 500 !important;
+    }
   }
 }

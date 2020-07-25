@@ -12,6 +12,7 @@ const Profile_info = (props: IProfile_info) => {
   const [company_name, setCompany_name] = useState(null);
   const [edit, setEdit] = useState(false);
   const [user_info, setUser_info] = useState(null);
+  const [triggerUpload, setTriggerUpload] = useState(false);
 
   useEffect(() => {
     if (props.data) {
@@ -33,6 +34,7 @@ const Profile_info = (props: IProfile_info) => {
     jsCookie.remove("user_id");
     jsCookie.remove("user_name");
     jsCookie.remove("new_car");
+    localStorage.removeItem("red_dot");
     Router.push("/");
   };
 
@@ -42,7 +44,13 @@ const Profile_info = (props: IProfile_info) => {
         !edit ? (
           <>
             <div className="user_information">
-              <img src={image} alt={name} />
+              <img
+                src={image}
+                alt={name}
+                onClick={() => {
+                  setEdit(true), setTriggerUpload(true);
+                }}
+              />
               <div>
                 <h3>{company_name ? company_name : name}</h3>
                 {props.is_mine && (
@@ -70,8 +78,10 @@ const Profile_info = (props: IProfile_info) => {
         ) : (
           <Edit_profile
             data={user_info}
+            triggerUpload={triggerUpload}
             setEdit={(reload) => {
               setEdit(!edit);
+              setTriggerUpload(false);
               if (reload) {
                 Router.reload();
               }

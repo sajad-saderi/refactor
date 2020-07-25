@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer, useRef } from "react";
 import {
   REQUEST_SET_USER_IMAGE,
   REQUEST_SET_FIRST_LAST_NAME,
@@ -10,7 +10,6 @@ import TextInput from "../../../../components/form/TextInput";
 // import "./edit_profile.scss";
 import Button from "../../../../components/form/Button";
 import jsCookie from "js-cookie";
-
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -88,6 +87,8 @@ const Edit_profile = (props: IEdit_profile) => {
     message: "",
   });
 
+  const file_input = useRef(null);
+
   const token = jsCookie.get("token");
 
   const ResetError = () => {
@@ -113,6 +114,17 @@ const Edit_profile = (props: IEdit_profile) => {
     if (props.data.username) {
       setPrivateLink(true);
       dispatch({ type: "username", username: props.data.username });
+    }
+  }, [props.data]);
+
+  useEffect(() => {
+    if (props.triggerUpload) {
+      if (
+        props.data.thumbnail_url ===
+        "https://core.otoli.net/static/core/default_profile_pic.png"
+      ) {
+        file_input.current.click();
+      }
     }
   }, [props.data]);
 
@@ -167,11 +179,9 @@ const Edit_profile = (props: IEdit_profile) => {
 
     try {
       if (state.username !== "") {
-        jsCookie.set("user_name",
-          state.username,
-          {
-            expires: 100,
-          })
+        jsCookie.set("user_name", state.username, {
+          expires: 100,
+        });
         await REQUEST_SET_USERNAME({ token, username: state.username });
       }
     } catch (error) {
@@ -186,11 +196,9 @@ const Edit_profile = (props: IEdit_profile) => {
     }
     try {
       if (!privateLink && !showCompany) {
-        jsCookie.set("user_name",
-          state.first_name + " " + state.last_name,
-          {
-            expires: 100,
-          })
+        jsCookie.set("user_name", state.first_name + " " + state.last_name, {
+          expires: 100,
+        });
       }
       await REQUEST_SET_FIRST_LAST_NAME({
         token,
@@ -210,11 +218,9 @@ const Edit_profile = (props: IEdit_profile) => {
 
     try {
       if (state.company_name !== "") {
-        jsCookie.set("company_name",
-          state.company_name,
-          {
-            expires: 100,
-          })
+        jsCookie.set("company_name", state.company_name, {
+          expires: 100,
+        });
         await REQUEST_SET_COMPANY_NAME({
           token,
           company_name: state.company_name,
@@ -246,6 +252,7 @@ const Edit_profile = (props: IEdit_profile) => {
           type="file"
           id="file"
           accept=".jpg,.jpeg,.png"
+          ref={file_input}
           onChange={(e) => {
             let file = e.target.files[0];
             const types = ["image/png", "image/jpeg", "image/png"];
@@ -299,54 +306,54 @@ const Edit_profile = (props: IEdit_profile) => {
           نام شرکت
         </p>
       ) : (
-          <TextInput
-            name="company_name"
-            number={false}
-            onChangeHandler={(e) => {
-              dispatch({ type: "company_name", company_name: e });
-            }}
-            clearField={() =>
-              dispatch({ type: "company_name", company_name: "" })
-            }
-            autoFocus={false}
-            error={{
-              status: ErrorState.company_name,
-              message: "",
-            }}
-            min={2}
-            max={50}
-            value={state.company_name}
-            label="نام شرکت"
-          />
-        )}
+        <TextInput
+          name="company_name"
+          number={false}
+          onChangeHandler={(e) => {
+            dispatch({ type: "company_name", company_name: e });
+          }}
+          clearField={() =>
+            dispatch({ type: "company_name", company_name: "" })
+          }
+          autoFocus={false}
+          error={{
+            status: ErrorState.company_name,
+            message: "",
+          }}
+          min={2}
+          max={50}
+          value={state.company_name}
+          label="نام شرکت"
+        />
+      )}
       {!privateLink ? (
         <p className="link_text" onClick={() => setPrivateLink(true)}>
           ایجاد آدرس اختصاصی
         </p>
       ) : (
-          <TextInput
-            name="username"
-            number={false}
-            onChangeHandler={(e) => {
-              dispatch({ type: "username", username: e });
-            }}
-            clearField={() => dispatch({ type: "username", username: "" })}
-            autoFocus={false}
-            error={{
-              status: ErrorState.username,
-              message: "",
-            }}
-            min={2}
-            max={50}
-            value={state.username}
-            label="آدرس اختصاصی"
-          />
-        )}
+        <TextInput
+          name="username"
+          number={false}
+          onChangeHandler={(e) => {
+            dispatch({ type: "username", username: e });
+          }}
+          clearField={() => dispatch({ type: "username", username: "" })}
+          autoFocus={false}
+          error={{
+            status: ErrorState.username,
+            message: "",
+          }}
+          min={2}
+          max={50}
+          value={state.username}
+          label="آدرس اختصاصی"
+        />
+      )}
       <div className="BTN_container">
         <Button
           class="Blue_BTN local_class"
           value="تایید"
-          click={() => { }}
+          click={() => {}}
           loading={loading}
         />
         <Button
@@ -365,5 +372,7 @@ const Edit_profile = (props: IEdit_profile) => {
 interface IEdit_profile {
   data: any;
   setEdit: any;
+  // Open the file input by click on the avatar image
+  triggerUpload?: boolean;
 }
 export default Edit_profile;

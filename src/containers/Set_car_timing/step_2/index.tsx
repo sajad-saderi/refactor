@@ -262,11 +262,12 @@ const Add_Car_Step_2 = () => {
         type: "price_per_day",
         price_per_day: data[0].price_per_day,
       });
-    } else {
-      // if the car have a range for price
-      setDateAndPrice(2);
-      setInitialAvailabilityList(data);
     }
+    //  else {
+    //   // if the car have a range for price
+    //   setDateAndPrice(2);
+    //   setInitialAvailabilityList(data);
+    // }
   };
 
   const SetCar = (car) => {
@@ -448,16 +449,17 @@ const Add_Car_Step_2 = () => {
     } else {
       resetTheErrorStatus("price_per_day");
     }
-    if (DateAndPrice === 2 && availabilityList.length === 0) {
-      ErrorDispatch({
-        type: "price_range",
-        price_range: true,
-        error_message: "لطفا نرخ اجاره را وارد کنید",
-      });
-      return false;
-    } else {
-      resetTheErrorStatus("price_range");
-    }
+    // Commented for a while ***
+    // if (DateAndPrice === 2 && availabilityList.length === 0) {
+    //   ErrorDispatch({
+    //     type: "price_range",
+    //     price_range: true,
+    //     error_message: "لطفا نرخ اجاره را وارد کنید",
+    //   });
+    //   return false;
+    // } else {
+    //   resetTheErrorStatus("price_range");
+    // }
     if (state.days_to_get_reminded === 0) {
       ErrorDispatch({
         type: "days_to_get_reminded",
@@ -628,7 +630,7 @@ const Add_Car_Step_2 = () => {
             //   ].join(" ")}
           >
             {/* toggle between same price for all time and custom range of price  */}
-            <Radio
+            {/* <Radio
               name="DateAndPrice"
               error_status={ErrorState.price_per_day}
               SelectHandler={(i) => {
@@ -651,68 +653,68 @@ const Add_Car_Step_2 = () => {
                   value: 2,
                 },
               ]}
-            />
+            /> */}
           </div>
-          {DateAndPrice === 1 ? (
-            <>
-              <div className="custom_input_container_step_2">
-                <TextInput
-                  name="price_per_day"
-                  number={true}
-                  onChangeHandler={(e) => {
-                    if (ErrorState.price_per_day) {
-                      ErrorDispatch({
-                        type: "price_per_day",
-                        price_per_day: false,
-                        error_message: "",
-                      });
-                    }
-                    dispatch({
-                      type: "price_per_day",
-                      price_per_day: e,
-                    });
-                    if (state.max_km_per_day) {
-                      dispatch({
-                        type: "extra_km_price",
-                        extra_km_price: Math.floor(+e / state.max_km_per_day),
-                      });
-                    }
-                  }}
-                  clearField={() =>
-                    dispatch({
-                      type: "price_per_day",
-                      price_per_day: "",
-                    })
-                  }
-                  error={{
-                    status: ErrorState.price_per_day,
-                    message: "",
-                  }}
-                  autoFocus={false}
-                  // min={4}
-                  max={8}
-                  placeholder="مثال: 50,000"
-                  value={state.price_per_day}
-                  validation={{
-                    number: true,
-                    min: 50000,
-                    required: true,
-                    messages: {
-                      required: "لطفا  قیمت روزانه را وارد کنید",
-                      min: "شروع قیمت روزانه از 50.000 تومان است",
-                    },
-                  }}
-                />
-                <span className="tail_text">تومان در روز</span>
-              </div>
-              {/* {state.price_per_day.length > 3 && (
+          {/* {DateAndPrice === 1 ? ( */}
+          {/* <> */}
+          <div className="custom_input_container_step_2">
+            <TextInput
+              name="price_per_day"
+              number={true}
+              onChangeHandler={(e) => {
+                if (ErrorState.price_per_day) {
+                  ErrorDispatch({
+                    type: "price_per_day",
+                    price_per_day: false,
+                    error_message: "",
+                  });
+                }
+                dispatch({
+                  type: "price_per_day",
+                  price_per_day: e,
+                });
+                if (state.max_km_per_day) {
+                  dispatch({
+                    type: "extra_km_price",
+                    extra_km_price: Math.floor(+e / state.max_km_per_day),
+                  });
+                }
+              }}
+              clearField={() =>
+                dispatch({
+                  type: "price_per_day",
+                  price_per_day: "",
+                })
+              }
+              error={{
+                status: ErrorState.price_per_day,
+                message: "",
+              }}
+              autoFocus={false}
+              // min={4}
+              max={8}
+              placeholder="مثال: 50,000"
+              value={state.price_per_day}
+              validation={{
+                number: true,
+                min: 50000,
+                required: true,
+                messages: {
+                  required: "لطفا  قیمت روزانه را وارد کنید",
+                  min: "شروع قیمت روزانه از 50.000 تومان است",
+                },
+              }}
+            />
+            <span className="tail_text">تومان در روز</span>
+          </div>
+          {/* {state.price_per_day.length > 3 && (
                 <p>
                   اجاره خودرو شما در تمام روز ها با قیمت{" "}
                   {Number(state.price_per_day).toLocaleString()} تومان است
                 </p>
               )} */}
-            </>
-          ) : (
+          {/* </> */}
+          {/* ) : (
             //PriceBox component
             <PriceBox
               initialAvailabilityList={initialAvailabilityList}
@@ -720,7 +722,7 @@ const Add_Car_Step_2 = () => {
               removeAvailList={removeFromAvailabilityList}
               error={ErrorState.price_range}
             />
-          )}
+          )} */}
         </div>
         <div className="add_car_form_step_2">
           <h4 className="extra_text">شرایط اجاره</h4>

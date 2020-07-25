@@ -5,7 +5,7 @@ import { NextSeo } from "next-seo";
 
 const AddCar = () => {
   return (
-    <Layout>
+    <Layout LinkControl={true}>
       <NextSeo
         title="افزودن خودرو | اتولی"
         description="افزودن خودرو | اتولی"

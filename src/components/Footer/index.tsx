@@ -87,16 +87,32 @@ const Footer = (props: IFooter) => {
               <a>شرایط و پوشش‌های بیمه</a>
             </Link>
           </li>
-          <li>
-            <Link href="/rent">
-              <a>اجاره ماشین</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/site-map">
-              <a>نقشه سایت</a>
-            </Link>
-          </li>
+          {props.LinkControl ? (
+            <li>
+              <Link href="/evaluation">
+                <a>اعتبار سنجی مشتریان</a>
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link href="/rent">
+                <a>اجاره ماشین</a>
+              </Link>
+            </li>
+          )}
+          {props.LinkControl ? (
+            <li>
+              <Link href="/guide-renter">
+                <a>راهنمای میزبان</a>
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link href="/site-map">
+                <a>نقشه سایت</a>
+              </Link>
+            </li>
+          )}
         </ul>
 
         <div className="social_container_footer">
@@ -113,7 +129,10 @@ const Footer = (props: IFooter) => {
             </a>
           </div>
           <p>
-            شماره تماس: <a href="tel:02188567759" className="HEAP_Footer_Link_Phone">۰۲۱۸۸۵۶۷۷۵۹</a>
+            شماره تماس:{" "}
+            <a href="tel:02188567759" className="HEAP_Footer_Link_Phone">
+              ۰۲۱۸۸۵۶۷۷۵۹
+            </a>
           </p>
         </div>
       </div>
@@ -128,5 +147,6 @@ interface IFooter {
   // true === Hide -> the footer on the page
   hide?: boolean;
   showToTop?: boolean;
+  LinkControl?: boolean;
 }
 export default Footer;

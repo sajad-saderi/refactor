@@ -127,7 +127,7 @@ const Requests_page = () => {
                     );
                   })}
                 </>
-              ) : <p className="NoResult">نتیجه‌ای یافت نشد!</p> : (
+              ) : <p className="NoResult">تا به حال سفارشی نداشته‌اید.</p> : (
                 <>
                   <Requests_page_Loading />
                   <Requests_page_Loading />

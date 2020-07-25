@@ -47,6 +47,14 @@ const Profile_Cars = (props: IProfile_Cars) => {
       } else {
         setResult(user_cars_res.items);
       }
+      let uncompleted_item = user_cars_res.items.filter(
+        (item) => !item.cancellation_policy
+      );
+      if (uncompleted_item.length > 0) {
+        localStorage["red_dot"] = 1;
+      } else {
+        localStorage.removeItem("red_dot");
+      }
       if (user_cars_res.total_count > 14 && user_cars_res.remained_count > 0) {
         setShowMoreButton(true);
       } else setShowMoreButton(false);

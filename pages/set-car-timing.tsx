@@ -5,7 +5,7 @@ import { NextSeo } from "next-seo";
 
 const SetTimeAndPrice = () => {
   return (
-    <Layout>
+    <Layout LinkControl={true}>
       <NextSeo
         title="تعیین شرایط اجاره | اتولی"
         description="تعیین شرایط اجاره | اتولی"

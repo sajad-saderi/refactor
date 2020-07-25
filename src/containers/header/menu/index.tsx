@@ -33,6 +33,7 @@ const Menu = () => {
                 alt={profile}
               />
               <span>{profile}</span>
+              {localStorage["red_dot"] === "1" && <span className="red_dot" />}
             </a>
           </Link>
         </li>

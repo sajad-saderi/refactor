@@ -20,7 +20,7 @@ import toast_context from "../context/Toast_context";
 import Toast from "../components/Toast";
 
 // Google Analytics
-import { initGA, logPageView } from '../../utils/analytics'
+import { initGA, logPageView } from "../../utils/analytics";
 
 const ShowModalReducer = (current, action) => {
   /* 
@@ -60,7 +60,7 @@ const Layout = (props: ILayout) => {
   // Reducers
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
 
-  const TOAST_CONTEXT = useContext(toast_context)
+  const TOAST_CONTEXT = useContext(toast_context);
 
   useEffect(() => {
     if (Router.router) {
@@ -82,11 +82,11 @@ const Layout = (props: ILayout) => {
 
     // Initial React GA library after the mount
     if (!window["GA_INITIALIZED"]) {
-      initGA()
-      window["GA_INITIALIZED"] = true
+      initGA();
+      window["GA_INITIALIZED"] = true;
     }
-    logPageView()
-    checkToast()
+    logPageView();
+    checkToast();
   }, []);
 
   const modal_handler = (type, data) => {
@@ -104,10 +104,10 @@ const Layout = (props: ILayout) => {
   const checkToast = () => {
     if (localStorage["TOAST"]) {
       setToast(true);
-      let data = JSON.parse(localStorage["TOAST"])
+      let data = JSON.parse(localStorage["TOAST"]);
       setToastData(data);
     }
-  }
+  };
 
   return (
     <>
@@ -151,7 +151,7 @@ const Layout = (props: ILayout) => {
             message={toastData.message}
             closeHandler={() => {
               if (localStorage["TOAST"]) localStorage.removeItem("TOAST");
-              setToast(false)
+              setToast(false);
             }}
             time={toastData.time}
             autoClose={toastData.autoClose}
@@ -163,7 +163,11 @@ const Layout = (props: ILayout) => {
           IF you need to hide the footer at the page just pass {true} for "hide".
           you can set the "hide" property anywhere you imported the "layout" component
       */}
-      <Footer hide={props.hide} showToTop={props.showToTop} />
+      <Footer
+        hide={props.hide}
+        showToTop={props.showToTop}
+        LinkControl={props.LinkControl}
+      />
     </>
   );
 };
@@ -171,7 +175,8 @@ const Layout = (props: ILayout) => {
 interface ILayout {
   children: any;
   hide?: boolean;
-  showToTop?: boolean
+  showToTop?: boolean;
+  LinkControl?: boolean;
 }
 
 export default Layout;
