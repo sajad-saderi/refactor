@@ -128,7 +128,12 @@ const Car = (props: ICar) => {
               </div>
               {uncompletedCar && props.is_mine ? (
                 <div className="alert_for_car">
-                  <p>
+                  <p
+                    onClick={(e) => {
+                      e.preventDefault();
+                      Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
+                    }}
+                  >
                     برای نمایش خودرو، در بخش «تعیین تاریخ و قیمت» شرایط اجاره
                     خودروتان را تعیین کنید.
                   </p>
