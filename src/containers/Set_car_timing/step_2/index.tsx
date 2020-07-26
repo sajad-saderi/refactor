@@ -397,6 +397,7 @@ const Add_Car_Step_2 = () => {
           is_out_of_service: state.is_out_of_service,
           token: token,
         });
+        localStorage.removeItem("red_dot")
         Router.push(`/user/${state.owner_id}`);
       } catch (error) {
         setLoading(false);

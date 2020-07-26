@@ -17,6 +17,7 @@ const Requests_page = () => {
   const [result, setResult] = useState(null);
   const [Authorize, setAuthorize] = useState(false);
   const [show, setShow] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
 
@@ -25,9 +26,9 @@ const Requests_page = () => {
   const token = jsCookie.get("token");
 
   useEffect(() => {
-    const complete_register = jsCookie.get("complete_register")
+    const complete_register = jsCookie.get("complete_register");
     if (complete_register !== "true") {
-      Router.push("/complete-register")
+      Router.push("/complete-register");
     } else if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
       fetchAPI({
@@ -58,6 +59,7 @@ const Requests_page = () => {
         ...data,
         token: token,
       });
+      setTotalCount(res.total_count);
       if (page > 1) {
         setShow_spinner_loadMore(false);
         setResult((result) => result.concat(res.items));
@@ -105,10 +107,18 @@ const Requests_page = () => {
     Authorize || AUTH_CONTEXT.Auth ? (
       <article className="responsive ">
         <section className="requests_page_container">
-          <Requests_filter filter_list={filterHandler} />
-          <section className="requests_section">
-            {result
-              ? result.length > 0 ? (
+          <Requests_filter
+            filter_list={filterHandler}
+            total_count={totalCount}
+          />
+          <section
+            className={[
+              "requests_section",
+              totalCount === 0 ? "blockSection" : null,
+            ].join(" ")}
+          >
+            {result ? (
+              result.length > 0 ? (
                 <>
                   {result.map((item, i) => {
                     return (
@@ -127,14 +137,17 @@ const Requests_page = () => {
                     );
                   })}
                 </>
-              ) : <p className="NoResult">تا به حال سفارشی نداشته‌اید.</p> : (
-                <>
-                  <Requests_page_Loading />
-                  <Requests_page_Loading />
-                  <Requests_page_Loading />
-                  <Requests_page_Loading />
-                </>
-              )}
+              ) : (
+                <p className="NoResult">تا به حال سفارشی نداشته‌اید.</p>
+              )
+            ) : (
+              <>
+                <Requests_page_Loading />
+                <Requests_page_Loading />
+                <Requests_page_Loading />
+                <Requests_page_Loading />
+              </>
+            )}
           </section>
         </section>
         {showMoreButton ? (
@@ -142,15 +155,17 @@ const Requests_page = () => {
             {show_spinner_loadMore ? (
               <Spinner display="block" width={20} color="#9E9E9E" />
             ) : (
-                "نمایش ماشین‌های بیشتر"
-              )}
+              "نمایش ماشین‌های بیشتر"
+            )}
           </span>
         ) : null}
       </article>
     ) : (
-        <PleaseLogin />
-      )
-  ) : <article className="minHeight"></article>
+      <PleaseLogin />
+    )
+  ) : (
+    <article className="minHeight"></article>
+  );
 };
 
 export default Requests_page;

@@ -12,6 +12,9 @@
     display: inline-block;
     display: none;
   }
+  .notAllowedToShowFilter {
+    display: none !important;
+  }
   .filter_section {
     max-width: 27rem;
     padding: 2rem;
@@ -32,6 +35,12 @@
       margin: 0;
       margin-bottom: 1.4rem;
     }
+  }
+  .blockSection {
+    text-align: center;
+    display: block !important;
+    width: 100% !important;
+    min-height: 30rem;
   }
   .requests_section {
     display: inline-block;
