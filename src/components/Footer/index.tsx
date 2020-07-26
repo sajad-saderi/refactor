@@ -72,6 +72,20 @@ const Footer = (props: IFooter) => {
               <a>اتولی چگونه کار می‌کند؟</a>
             </Link>
           </li>
+          {props.LinkControl ? (
+            <li>
+              <Link href="/guide-renter">
+                <a>راهنمای میزبان</a>
+              </Link>
+            </li>
+          ) : null}
+          {props.LinkControl ? (
+            <li>
+              <Link href="/evaluation">
+                <a>اعتبار سنجی مشتریان</a>
+              </Link>
+            </li>
+          ) : null}
           <li>
             <Link href="/faq">
               <a>سوالات متداول</a>
@@ -87,26 +101,14 @@ const Footer = (props: IFooter) => {
               <a>شرایط و پوشش‌های بیمه</a>
             </Link>
           </li>
-          {props.LinkControl ? (
-            <li>
-              <Link href="/evaluation">
-                <a>اعتبار سنجی مشتریان</a>
-              </Link>
-            </li>
-          ) : (
+          {props.LinkControl ? null : (
             <li>
               <Link href="/rent">
                 <a>اجاره ماشین</a>
               </Link>
             </li>
           )}
-          {props.LinkControl ? (
-            <li>
-              <Link href="/guide-renter">
-                <a>راهنمای میزبان</a>
-              </Link>
-            </li>
-          ) : (
+          {props.LinkControl ? null : (
             <li>
               <Link href="/site-map">
                 <a>نقشه سایت</a>
