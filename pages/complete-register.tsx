@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../src/Layout";
 import Complete_register_container from "../src/containers/CompleteRegister";
 import { NextSeo } from "next-seo";
 
 const CompleteRegister = () => {
+  useEffect(() => {
+    console.log(location.pathname);
+    window["ga"]("send", {
+      hitType: "pageview",
+      page: location.pathname,
+    });
+  }, []);
+
   return (
     <Layout>
       <NextSeo

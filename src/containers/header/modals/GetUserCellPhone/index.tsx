@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TextInput from "../../../../components/form/TextInput";
 import axios from "axios";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
@@ -15,10 +15,18 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
 
+  useEffect(() => {
+    console.log("/log-in-modal");
+    window["ga"]("send", {
+      hitType: "pageview",
+      page: "/log-in-modal",
+    });
+  }, []);
+
   const sendConfirmCode = (e) => {
     e.preventDefault();
-    if(!cellPhone){
-      return
+    if (!cellPhone) {
+      return;
     }
     localStorage["last_location"] = Router.router.asPath;
     setLoading(true);
