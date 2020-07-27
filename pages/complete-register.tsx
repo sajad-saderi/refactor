@@ -5,7 +5,6 @@ import { NextSeo } from "next-seo";
 
 const CompleteRegister = () => {
   useEffect(() => {
-    console.log(location.pathname);
     window["ga"]("send", {
       hitType: "pageview",
       page: location.pathname,

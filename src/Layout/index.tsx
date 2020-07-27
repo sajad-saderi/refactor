@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState, useContext } from "react";
 import Router from "next/router";
 import Footer from "../components/Footer";
 import Header from "../containers/header";
+import logo from "../../public/android-icon-48x48.png";
 
 // Main Scss file
 // All Scss files are imported to the main.scss
@@ -21,6 +22,7 @@ import Toast from "../components/Toast";
 
 // Google Analytics
 import { initGA, logPageView } from "../../utils/analytics";
+import { IoIosClose } from "react-icons/io";
 
 const ShowModalReducer = (current, action) => {
   /* 
@@ -28,9 +30,12 @@ const ShowModalReducer = (current, action) => {
       "SET" type set the status for the modal component
         true : show 
         false : will not render at the page
-  */
+        */
   if (action.type === "SET") return !current;
 };
+
+let deferredPrompt = null;
+let pwa_flag = false;
 
 const Layout = (props: ILayout) => {
   /*
@@ -46,6 +51,7 @@ const Layout = (props: ILayout) => {
   */
   const [modalType, setModalType] = useState("Login");
   const [data, setData] = useState(null);
+  const [showPwaBanner, setShowPwaBanner] = useState(false);
 
   // By default, no users are authenticated or logged in
   const [Auth, setAuth] = useState(false);
@@ -63,6 +69,17 @@ const Layout = (props: ILayout) => {
   const TOAST_CONTEXT = useContext(toast_context);
 
   useEffect(() => {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      console.log(" beforeinstallprompt setShowPwaBanner");
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      if (!pwa_flag) {
+        setShowPwaBanner(true);
+      }
+      return false;
+    });
     if (Router.router) {
       /*
         It checks the current URL if there are any UTM values in there
@@ -109,12 +126,46 @@ const Layout = (props: ILayout) => {
     }
   };
 
+  const customPwaPrompt = () => {
+    if (deferredPrompt) {
+      // Show the install prompt
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
+        pwa_flag = true;
+        deferredPrompt = null;
+        setShowPwaBanner(false);
+      });
+    }
+  };
+
   return (
     <>
       {/* 
         NOTE 
           context Providers wrap the Header and main section in the app to track data change in content   
       */}
+      {showPwaBanner ? (
+        <section className="pwa_invitation_banner">
+          <div className="pwa_content" onClick={customPwaPrompt}>
+            <img src={logo} alt="pwa logo icon" />
+            اپلیکیشن اتولی را نصب کنید
+          </div>
+          <p
+            className="close_pwa_invitation"
+            onClick={() => {
+              setShowPwaBanner(false);
+            }}
+          >
+            <IoIosClose color="#737373" size="2rem" />
+            بستن
+          </p>
+        </section>
+      ) : null}
       <toast_context.Provider
         value={{
           show_toast: toast,
