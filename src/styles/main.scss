@@ -362,9 +362,13 @@ input {
     }
   }
   @media (max-width: 720px) {
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    z-index: 999;
+    background: #fff;
   }
 }
 

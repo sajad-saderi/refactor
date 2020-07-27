@@ -16,10 +16,12 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   const Cell_Phone_context = useContext(cell_Phone_context);
 
   useEffect(() => {
-    window["ga"]("send", {
-      hitType: "pageview",
-      page: "/log-in-modal",
-    });
+    if (window["ga"]) {
+      window["ga"]("send", {
+        hitType: "pageview",
+        page: "/log-in-modal",
+      });
+    }
   }, []);
 
   const sendConfirmCode = (e) => {

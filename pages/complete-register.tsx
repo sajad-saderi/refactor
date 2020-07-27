@@ -5,10 +5,12 @@ import { NextSeo } from "next-seo";
 
 const CompleteRegister = () => {
   useEffect(() => {
-    window["ga"]("send", {
-      hitType: "pageview",
-      page: location.pathname,
-    });
+    if (window["ga"]) {
+      window["ga"]("send", {
+        hitType: "pageview",
+        page: location.pathname,
+      });
+    }
   }, []);
 
   return (
