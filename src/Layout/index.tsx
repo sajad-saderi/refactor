@@ -76,6 +76,7 @@ const Layout = (props: ILayout) => {
       // Stash the event so it can be triggered later.
       deferredPrompt = e;
       if (!pwa_flag) {
+        AnalyticsEvent("pwa", "install-banner", "shown");
         setShowPwaBanner(true);
       }
       return false;
@@ -94,6 +95,10 @@ const Layout = (props: ILayout) => {
         localStorage["utm_term"] = Router.query.utm_term;
         localStorage["utm_content"] = Router.query.utm_content;
         localStorage["utm_landing_url"] = "https://otoli.net/join-us";
+      } else if(!localStorage["utm_source"]) {
+        localStorage["utm_source"] = "google";
+        localStorage["utm_medium"] = "organic";
+        localStorage["utm_landing_url"] = Router.router.asPath;
       }
     }
 
@@ -126,6 +131,17 @@ const Layout = (props: ILayout) => {
     }
   };
 
+  const AnalyticsEvent = (eventCategory, eventAction, eventLabel) => {
+    if (window["ga"]) {
+      window["ga"]("send", {
+        hitType: "event",
+        eventCategory,
+        eventAction,
+        eventLabel,
+      });
+    }
+  };
+
   const customPwaPrompt = () => {
     if (deferredPrompt) {
       // Show the install prompt
@@ -133,8 +149,10 @@ const Layout = (props: ILayout) => {
       deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === "accepted") {
           console.log("User accepted the install prompt");
+          AnalyticsEvent("pwa", "install-prompt", "accepted");
         } else {
           console.log("User dismissed the install prompt");
+          AnalyticsEvent("pwa", "install-prompt", "rejected");
         }
         pwa_flag = true;
         deferredPrompt = null;
@@ -151,13 +169,17 @@ const Layout = (props: ILayout) => {
       */}
       {showPwaBanner ? (
         <section className="pwa_invitation_banner">
-          <div className="pwa_content" onClick={customPwaPrompt}>
+          <div
+            className="pwa_content HEAP_PWA_INVITATION"
+            onClick={customPwaPrompt}
+          >
             <img src={logo} alt="pwa logo icon" />
             اپلیکیشن اتولی را نصب کنید
           </div>
           <p
             className="close_pwa_invitation"
             onClick={() => {
+              AnalyticsEvent("pwa", "install-banner", "closed");
               setShowPwaBanner(false);
             }}
           >
