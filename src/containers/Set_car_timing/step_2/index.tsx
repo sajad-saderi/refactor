@@ -622,7 +622,7 @@ const Add_Car_Step_2 = () => {
       </article>
       <form onSubmit={(e) => submitHandler(e, state)}>
         <div className="add_car_form_step_2">
-          <h4 className="extra_text">تاریخ و نرخ اجاره</h4>
+          <h4 className="extra_text">نرخ اجاره</h4>
           <div
             className="Set_Price_date_options"
             //   className={[

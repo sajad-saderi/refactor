@@ -850,9 +850,10 @@ const Add_Car_Step_1 = () => {
     // RESET ALL BRAND RELATED FIELDS
     dispatch({ type: "capacity", capacity: null });
     dispatch({ type: "transmission_type_id", transmission_type_id: null });
-    dispatch({ type: "cylinder_id", cylinder_id: null });
+    // dispatch({ type: "cylinder_id", cylinder_id: null });
     dispatch({ type: "body_style_id", body_style_id: null });
     dispatch({ type: "empty_facility_id", empty_facility_id: [] });
+    // setCylinderName("");
     setBodyStyleName("");
   };
   /**
@@ -900,13 +901,14 @@ const Add_Car_Step_1 = () => {
           cylinder_id: model_info_res.cylinder.id,
         });
         setCylinderName(model_info_res.cylinder.name.fa);
-      } else {
-        dispatch({
-          type: "cylinder_id",
-          cylinder_id: null,
-        });
-        setCylinderName("");
-      }
+      } 
+      // else {
+      //   dispatch({
+      //     type: "cylinder_id",
+      //     cylinder_id: null,
+      //   });
+      //   setCylinderName("");
+      // }
 
       // Set body-Style
       if (model_info_res.body_style) {

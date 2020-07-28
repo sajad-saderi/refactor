@@ -52,6 +52,9 @@
           padding: 0.3rem;
           font-size: 1.2rem;
           background-color: #fff;
+          span {
+            color: $main__color;
+          }
         }
       }
     }

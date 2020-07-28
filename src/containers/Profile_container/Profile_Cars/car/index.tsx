@@ -134,7 +134,7 @@ const Car = (props: ICar) => {
                       Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
                     }}
                   >
-                    برای نمایش خودرو، در بخش «تعیین تاریخ و قیمت» شرایط اجاره
+                    برای نمایش خودرو لازم است <span>شرایط اجاره </span>
                     خودروتان را تعیین کنید.
                   </p>
                 </div>
@@ -159,7 +159,7 @@ const Car = (props: ICar) => {
                 uncompletedCar ? "set_car_timing_btn" : null,
               ].join(" ")}
             >
-              {uncompletedCar ? "تعیین تاریخ و قیمت" : "تغییر تاریخ و قیمت"}
+              {uncompletedCar ? "شرایط اجاره" : "تغییر تاریخ و قیمت"}
             </p>
             {uncompletedCar ? null : is_out_of_service_loading ? (
               <Spinner display="inline-block" width={20} color="#4ba3ce" />
