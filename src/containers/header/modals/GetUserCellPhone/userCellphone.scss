@@ -17,6 +17,15 @@
       }
       input {
         margin-bottom: 0.3rem;
+        &:focus::placeholder {
+          color: transparent;
+        }
+        &:focus::-moz-placeholder {
+          color: transparent;
+        }
+        &:focus:-moz-placeholder {
+          color: transparent;
+        }
       }
       .clean_icon {
         bottom: 0;

@@ -69,8 +69,7 @@ const Layout = (props: ILayout) => {
   const TOAST_CONTEXT = useContext(toast_context);
 
   useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (e) => {
-      console.log(" beforeinstallprompt setShowPwaBanner");
+    window.addEventListener("beforeinstallprompt", (e) => { 
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.

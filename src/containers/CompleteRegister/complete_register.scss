@@ -75,8 +75,8 @@
       .DropDown_container {
         width: 32%;
       }
-      .text_input_container{
-        .clean_icon{
+      .text_input_container {
+        .clean_icon {
           top: 2.5rem;
         }
       }
@@ -86,6 +86,15 @@
           margin: 1rem 0 0;
         }
       }
+    }
+    .check_box_container {
+      .container {
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+      }
+    }
+    .red_check_box {
+      border-color: $Error_text_color;
     }
     .local_BTN {
       display: block;

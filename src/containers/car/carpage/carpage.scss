@@ -59,13 +59,16 @@
         margin-top: 2.5rem;
         display: flex;
         justify-content: space-between;
-        p,
-        svg {
-          display: inline-block;
-          vertical-align: middle;
-          font-size: 1.3rem;
-          span {
+        p {
+          svg {
             display: inline-block;
+            vertical-align: middle;
+            font-size: 1.3rem;
+            width: 2rem;
+          }
+          .day_name {
+            display: inline-block;
+            vertical-align: middle;
           }
         }
         .change_date_in_car_page {
@@ -417,11 +420,17 @@
       margin-bottom: 4rem;
       display: flex;
       justify-content: space-around;
-      p,
-      svg {
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 1.3rem;
+      p {
+        svg {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 1.3rem;
+          width: 2rem;
+        }
+        .day_name {
+          display: inline-block;
+          vertical-align: middle;
+        }
       }
       .change_date_in_car_page {
         cursor: pointer;

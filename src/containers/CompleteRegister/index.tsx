@@ -56,6 +56,12 @@ const stateErrorReducer = (current, action) => {
       return { ...current, month: action.month, message: action.message };
     case "year":
       return { ...current, year: action.year, message: action.message };
+    case "condition":
+      return {
+        ...current,
+        condition: action.condition,
+        message: action.message,
+      };
     case "message":
       return { ...current, year: action.year, message: action.message };
     default:
@@ -86,6 +92,7 @@ const Complete_register_container = () => {
     day: false,
     month: false,
     year: false,
+    condition: false,
     message: null,
   });
 
@@ -252,7 +259,8 @@ const Complete_register_container = () => {
     }
     if (!rolesCheck) {
       errorDispatch({
-        type: "message",
+        type: "condition",
+        condition: true,
         message: "لطفا قوانین و مقررات را بپذیرید",
       });
       return;
@@ -261,6 +269,16 @@ const Complete_register_container = () => {
     }
     return true;
   };
+
+  useEffect(() => {
+    if (rolesCheck) {
+      errorDispatch({
+        type: "condition",
+        condition: false,
+        message: "",
+      });
+    }
+  }, [rolesCheck]);
 
   return show ? (
     Authorize || AUTH_CONTEXT.Auth ? (
@@ -294,8 +312,8 @@ const Complete_register_container = () => {
               validation={{
                 required: true,
                 messages: {
-                  required: "نام خود را بنویسید", 
-                }
+                  required: "نام خود را بنویسید",
+                },
               }}
             />
             <TextInput
@@ -316,8 +334,8 @@ const Complete_register_container = () => {
               validation={{
                 required: true,
                 messages: {
-                  required: "نام خانوادگی خود را بنویسید", 
-                }
+                  required: "نام خانوادگی خود را بنویسید",
+                },
               }}
             />
           </div>
@@ -410,7 +428,7 @@ const Complete_register_container = () => {
                 number: true,
                 length: 4,
                 messages: {
-                  required: "سال نمی‌تواند 5 رقمی باشد", 
+                  required: "سال نمی‌تواند 5 رقمی باشد",
                 },
                 required: true,
               }}
@@ -447,7 +465,12 @@ const Complete_register_container = () => {
                 }}
                 name="roles"
               />
-              <span className="checkmark"></span>
+              <span
+                className={[
+                  "checkmark",
+                  stateError.condition ? "red_check_box" : null,
+                ].join(" ")}
+              ></span>
             </label>
           </div>
           <Button

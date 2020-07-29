@@ -96,7 +96,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
               }
               setCellPhone(e);
             }}
-            autoFocus={true}
+            // autoFocus={true}
             localeString={false}
             value={cellPhone}
             // min={11}

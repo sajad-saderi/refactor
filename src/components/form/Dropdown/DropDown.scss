@@ -94,8 +94,9 @@
       position: sticky;
       top: 0;
       input {
+        text-indent: 21px;
         font-family: inherit;
-        margin: 0.3rem auto 0.5rem;
+        margin: 1rem auto 0rem;
         display: block;
         width: 100%;
         outline: 0;
@@ -105,7 +106,8 @@
         font-size: 1.3rem;
         background: #fff;
         border: none;
-        border-bottom: 1px solid $input_border;
+        border: 1px solid $input_border;
+        border-radius: 4px;
         color: rgba(0, 0, 0, 0.87);
         box-shadow: 0 0 0 0 transparent inset;
         &:focus::placeholder {
@@ -121,8 +123,8 @@
       svg {
         position: absolute;
         width: 2rem;
-        left: 0.4rem;
-        top: 1rem;
+        right: 0.84rem;
+        top: 1.2rem;
         cursor: pointer;
       }
     }
