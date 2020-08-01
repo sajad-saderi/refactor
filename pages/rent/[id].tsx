@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Landing_page_container from "../../src/containers/LandignPageContainer";
 import Layout from "../../src/Layout";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
+import Router from "next/router";
 
 const Rent_dynamic = (props) => {
-  return (
+
+  useEffect(() => {
+    if(!props.Landing_page){
+      Router.push("/404")
+    }
+  }, []);
+  
+  return props.Landing_page ? (
     <Layout showToTop={true}>
       <NextSeo
         title={props.Landing_page.meta_title}
@@ -26,7 +34,7 @@ const Rent_dynamic = (props) => {
       <Landing_page_container landing_data={props.Landing_page} />
       <Landing_Page_Content data={props.Landing_page} />
     </Layout>
-  );
+  ) : null;
 };
 
 /**
@@ -48,6 +56,11 @@ export async function getServerSideProps(props) {
     };
   } catch (error) {
     console.log("!Error", error);
+    return {
+      props: {
+        Landing_page: false,
+      },
+    };
   }
 }
 
