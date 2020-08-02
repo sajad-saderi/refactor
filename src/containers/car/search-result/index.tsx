@@ -41,35 +41,40 @@ const SearchResultList = (props: ISearchResultList) => {
         props.result.length > 0 ? (
           props.result.map((item, i) => {
             return i === 3 && !quickAccessClick && !props.noQuickAccess ? (
-              <section className="quick_access_middle_searchResult">
-                <h2>دسترسی سریع</h2>
-                <div className="quick_access_child_container">
-                  <div
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      quickAccessClick = true;
-                      props.setFilterForSearch({
-                        body_style_id: { value: [2], status: true },
-                      });
-                    }}
-                  >
-                    <img src={offRoad} alt="خودرو های شاسی‌بلند" />
-                    <p>خودرو های شاسی‌بلند</p>
+              <>
+                <section className="quick_access_middle_searchResult">
+                  <h2>دسترسی سریع</h2>
+                  <div className="quick_access_child_container">
+                    <div
+                    className="HEAP_Search_Result_Quick_Access_SUV"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        quickAccessClick = true;
+                        props.setFilterForSearch({
+                          body_style_id: { value: [2], status: true },
+                        });
+                      }}
+                    >
+                      <img src={offRoad} alt="خودرو های شاسی‌بلند" />
+                      <p>خودرو های شاسی‌بلند</p>
+                    </div>
+                    <div
+                    className="HEAP_Search_Result_Quick_Access_Economic"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        quickAccessClick = true;
+                        props.setFilterForSearch({
+                          price: { value: ["0", "1000000"], status: true },
+                        });
+                      }}
+                    >
+                      <img src={economic} alt="خودرو های اقتصادی" />
+                      <p>خودرو های اقتصادی</p>
+                    </div>
                   </div>
-                  <div
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      quickAccessClick = true;
-                      props.setFilterForSearch({
-                        price: { value: ["0", "1000000"], status: true },
-                      });
-                    }}
-                  >
-                    <img src={economic} alt="خودرو های اقتصادی" />
-                    <p>خودرو های اقتصادی</p>
-                  </div>
-                </div>
-              </section>
+                </section>
+                <Car key={i} data={item} />
+              </>
             ) : (
               <Car key={i} data={item} />
             );

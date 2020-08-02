@@ -152,7 +152,13 @@ const Requests_page = () => {
           </section>
         </section>
         {showMoreButton ? (
-          <span className="Load_more_car" onClick={nextPage}>
+          <span
+            className={[
+              "Load_more_car",
+              show_spinner_loadMore ? "no_padding" : null,
+            ].join(" ")}
+            onClick={nextPage}
+          >
             {show_spinner_loadMore ? (
               <Spinner display="block" width={20} color="#9E9E9E" />
             ) : (

@@ -487,7 +487,10 @@ const Landing_page_container = (props: ILanding_page_container) => {
       {/* load more */}
       {remained_count > 0 && (
         <span
-          className="Load_more_car HEAP_LandingPages_Btn_ShowMore"
+          className={[
+            "Load_more_car HEAP_LandingPages_Btn_ShowMore",
+            show_spinner_loadMore ? "no_padding" : null,
+          ].join(" ")}
           onClick={() => loadMore()}
         >
           {show_spinner_loadMore ? (

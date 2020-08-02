@@ -524,7 +524,10 @@ const Search_result = () => {
       {/* load more */}
       {remained_count > 0 && (
         <span
-          className="Load_more_car HEAP_SearchResult_Btn_ShowMore"
+          className={[
+            "Load_more_car HEAP_SearchResult_Btn_ShowMore",
+            show_spinner_loadMore ? "no_padding" : null,
+          ].join(" ")}
           onClick={() => loadMore()}
         >
           {show_spinner_loadMore ? (
