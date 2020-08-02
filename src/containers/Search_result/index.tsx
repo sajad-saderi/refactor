@@ -8,7 +8,12 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import { NextSeo } from "next-seo";
 import Spinner from "../../components/Spinner";
 import jsCookie from "js-cookie";
-import { IoMdClose, IoIosOptions, IoIosArrowUp } from "react-icons/io";
+import {
+  IoMdClose,
+  IoIosOptions,
+  IoIosArrowUp,
+  IoIosArrowDown,
+} from "react-icons/io";
 import Search from "../Search";
 
 let JumpTo = null;
@@ -190,7 +195,7 @@ const Search_result = () => {
    * @param v
    *  set the data from filter context
    */
-  function filterResults(v) {    
+  function filterResults(v) {
     if (v.price) {
       filtersChecker.price = v.price.status;
       price = {
@@ -511,7 +516,7 @@ const Search_result = () => {
         </filterContext.Provider>
         <SearchResultList
           result={result}
-          setFilterForSearch={(v) => { 
+          setFilterForSearch={(v) => {
             filterResults(v);
           }}
         />
@@ -525,7 +530,10 @@ const Search_result = () => {
           {show_spinner_loadMore ? (
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
-            "نمایش ماشین‌های بیشتر"
+            <>
+              <IoIosArrowDown color="#202020" size="1.8rem" />
+              نمایش ماشین‌های بیشتر
+            </>
           )}
         </span>
       )}

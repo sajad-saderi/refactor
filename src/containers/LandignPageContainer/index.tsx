@@ -7,8 +7,12 @@ import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
 import Spinner from "../../components/Spinner";
-import { IoMdClose, IoIosArrowUp, IoIosOptions } from "react-icons/io";
-
+import {
+  IoMdClose,
+  IoIosArrowUp,
+  IoIosOptions,
+  IoIosArrowDown,
+} from "react-icons/io";
 // default location is Tehran
 let Location = 1;
 let Start_date = null;
@@ -489,7 +493,10 @@ const Landing_page_container = (props: ILanding_page_container) => {
           {show_spinner_loadMore ? (
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
-            "نمایش ماشین‌های بیشتر"
+            <>
+              <IoIosArrowDown color="#202020" size="1.8rem" />
+              نمایش ماشین‌های بیشتر
+            </>
           )}
         </span>
       )}

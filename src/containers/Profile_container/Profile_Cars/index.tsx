@@ -6,6 +6,7 @@ import Car from "./car";
 import CarLoading from "../../../components/cartPlaceholder/CarLoadingProfile";
 import Radio from "../../../components/form/Radio";
 import Button from "../../../components/form/Button";
+import { IoIosArrowDown } from "react-icons/io";
 
 let useFilter = false;
 let filterNumber = 0;
@@ -162,6 +163,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
               fetchApi(page);
             }}
           >
+            <IoIosArrowDown color="#202020" size="1.8rem" />
             نمایش ماشین‌های بیشتر
           </span>
         </div>

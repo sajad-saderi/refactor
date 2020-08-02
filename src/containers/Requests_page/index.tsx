@@ -9,6 +9,7 @@ import Auth_context from "../../../src/context/Auth_context";
 import PleaseLogin from "../../components/PleaseLogin";
 import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
 import Spinner from "../../components/Spinner";
+import { IoIosArrowDown } from "react-icons/io";
 
 let filter_id = [];
 let page = 1;
@@ -155,7 +156,10 @@ const Requests_page = () => {
             {show_spinner_loadMore ? (
               <Spinner display="block" width={20} color="#9E9E9E" />
             ) : (
-              "نمایش ماشین‌های بیشتر"
+              <>
+                <IoIosArrowDown color="#202020" size="1.8rem" />
+                نمایش ماشین‌های بیشتر
+              </>
             )}
           </span>
         ) : null}
