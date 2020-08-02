@@ -30,6 +30,7 @@ let with_driver = 0;
 let body_style_id = [];
 let brand_id = null;
 let car_id = null;
+let category_id = null;
 
 // this object check which filter is activated
 // you can combined several filter in a single search request
@@ -40,6 +41,7 @@ let filtersChecker = {
   deliver_at_renters_place: false,
   brand_id: false,
   car_id: false,
+  category_id: false,
 };
 
 // Set position
@@ -60,6 +62,7 @@ const Search_result = () => {
     deliver_at_renters_place: false,
     brand_id: false,
     car_id: false,
+    category_id: false,
   });
 
   const new_search_ref = useRef(null);
@@ -100,6 +103,7 @@ const Search_result = () => {
       body_style_id = [];
       brand_id = null;
       car_id = null;
+      category_id = null;
       filtersChecker = {
         price: false,
         with_driver: false,
@@ -107,6 +111,7 @@ const Search_result = () => {
         deliver_at_renters_place: false,
         brand_id: false,
         car_id: false,
+        category_id: false,
       };
     };
   }, []);
@@ -145,6 +150,9 @@ const Search_result = () => {
     if (filtersChecker.car_id) {
       queryString += `&car_id=${car_id}`;
     }
+    if (filtersChecker.category_id) {
+      queryString += `&category_id=${category_id}`;
+    }
     try {
       let limit = 15;
       if (JumpTo === "1") {
@@ -182,7 +190,7 @@ const Search_result = () => {
    * @param v
    *  set the data from filter context
    */
-  function filterResults(v) {
+  function filterResults(v) {    
     if (v.price) {
       filtersChecker.price = v.price.status;
       price = {
@@ -210,6 +218,10 @@ const Search_result = () => {
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_id = v.car_id.value;
+    }
+    if (v.category_id) {
+      filtersChecker.category_id = v.category_id.status;
+      category_id = v.category_id.value;
     }
     page = 1;
     initSearch();
@@ -269,6 +281,7 @@ const Search_result = () => {
           deliver_at_renters_place: false,
           brand_id: false,
           car_id: false,
+          category_id: false,
         });
         break;
     }
@@ -496,7 +509,12 @@ const Search_result = () => {
             }}
           />
         </filterContext.Provider>
-        <SearchResultList result={result} />
+        <SearchResultList
+          result={result}
+          setFilterForSearch={(v) => { 
+            filterResults(v);
+          }}
+        />
       </section>
       {/* load more */}
       {remained_count > 0 && (

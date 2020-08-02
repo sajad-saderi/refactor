@@ -173,7 +173,7 @@ const Layout = (props: ILayout) => {
             onClick={customPwaPrompt}
           >
             <img src={logo} alt="pwa logo icon" />
-            اپلیکیشن اتولی را نصب کنید
+            اپلیکیشن اتولی را نصب کنید.
           </div>
           <p
             className="close_pwa_invitation"
