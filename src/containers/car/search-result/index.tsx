@@ -46,7 +46,7 @@ const SearchResultList = (props: ISearchResultList) => {
                   <h2>دسترسی سریع</h2>
                   <div className="quick_access_child_container">
                     <div
-                    className="HEAP_Search_Result_Quick_Access_SUV"
+                      className="HEAP_Search_Result_Quick_Access_SUV"
                       onClick={() => {
                         window.scrollTo(0, 0);
                         quickAccessClick = true;
@@ -59,7 +59,7 @@ const SearchResultList = (props: ISearchResultList) => {
                       <p>خودرو های شاسی‌بلند</p>
                     </div>
                     <div
-                    className="HEAP_Search_Result_Quick_Access_Economic"
+                      className="HEAP_Search_Result_Quick_Access_Economy"
                       onClick={() => {
                         window.scrollTo(0, 0);
                         quickAccessClick = true;
