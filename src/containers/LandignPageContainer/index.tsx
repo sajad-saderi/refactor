@@ -478,7 +478,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           />
         </filterContext.Provider>
-        <SearchResultList result={result} />
+        <SearchResultList result={result} noQuickAccess={true} />
       </section>
       {/* load more */}
       {remained_count > 0 && (

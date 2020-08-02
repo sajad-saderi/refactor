@@ -40,7 +40,7 @@ const SearchResultList = (props: ISearchResultList) => {
       {props.result ? (
         props.result.length > 0 ? (
           props.result.map((item, i) => {
-            return i === 3 && !quickAccessClick ? (
+            return i === 3 && !quickAccessClick && !props.noQuickAccess ? (
               <section className="quick_access_middle_searchResult">
                 <h2>دسترسی سریع</h2>
                 <div className="quick_access_child_container">
@@ -101,7 +101,8 @@ const SearchResultList = (props: ISearchResultList) => {
 };
 
 interface ISearchResultList {
-  setFilterForSearch: any;
+  setFilterForSearch?: any;
+  noQuickAccess?: boolean;
   result: any;
 }
 
