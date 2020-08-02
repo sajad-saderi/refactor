@@ -126,6 +126,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
     // set the filter name
     const searchParamKey: any = Object.keys(props.landing_data.search_params);
     if (!loadMoreCar) {
+      page = 1;
       setResult(null);
     }
     setExtra_info([]);
@@ -348,6 +349,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             className={o === "-price" ? "active" : null}
             onClick={() => {
               o = "-price";
+              loadMoreCar = false;
               initSearch();
             }}
           >
@@ -357,6 +359,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             className={o === "price" ? "active" : null}
             onClick={() => {
               o = "price";
+              loadMoreCar = false;
               initSearch();
             }}
           >
@@ -377,6 +380,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, price: true };
               });
+              loadMoreCar = false;
               filtersChecker.price = false;
               initSearch();
             }}
@@ -392,6 +396,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, deliver_at_renters_place: true };
               });
+              loadMoreCar = false;
               filtersChecker.deliver_at_renters_place = false;
               initSearch();
             }}
@@ -407,6 +412,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, with_driver: true };
               });
+              loadMoreCar = false;
               filtersChecker.with_driver = false;
               initSearch();
             }}
@@ -422,6 +428,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, body_style_id: true };
               });
+              loadMoreCar = false;
               filtersChecker.body_style_id = false;
               initSearch();
             }}
@@ -437,6 +444,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, brand_id: true };
               });
+              loadMoreCar = false;
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
               initSearch();
@@ -453,6 +461,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, car_id: true };
               });
+              loadMoreCar = false;
               filtersChecker.car_id = false;
               initSearch();
             }}
