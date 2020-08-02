@@ -81,11 +81,11 @@ const ImageUploader = (props: IImageUpload) => {
     onDrop,
   });
 
-  useEffect(() => {
-    if (props.error_status) {
-      scrollTo(0, wrapperRef.current.offsetTop);
-    }
-  }, [props.error_status]);
+  // useEffect(() => {
+  //   if (props.error_status) {
+  //     scrollTo(0, wrapperRef.current.offsetTop);
+  //   }
+  // }, [props.error_status]);
 
   return (
     <div ref={wrapperRef}>

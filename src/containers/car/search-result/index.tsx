@@ -55,8 +55,8 @@ const SearchResultList = (props: ISearchResultList) => {
                         });
                       }}
                     >
-                      <img src={offRoad} alt="خودرو های شاسی‌بلند" />
-                      <p>خودرو های شاسی‌بلند</p>
+                      <img src={offRoad} alt="خودروهای شاسی‌بلند" />
+                      <p>خودروهای شاسی‌بلند</p>
                     </div>
                     <div
                       className="HEAP_Search_Result_Quick_Access_Economy"
@@ -64,12 +64,13 @@ const SearchResultList = (props: ISearchResultList) => {
                         window.scrollTo(0, 0);
                         quickAccessClick = true;
                         props.setFilterForSearch({
+                          o: "-price",
                           price: { value: ["0", "1000000"], status: true },
                         });
                       }}
                     >
-                      <img src={economic} alt="خودرو های اقتصادی" />
-                      <p>خودرو های اقتصادی</p>
+                      <img src={economic} alt="خودروهای اقتصادی" />
+                      <p>خودروهای اقتصادی</p>
                     </div>
                   </div>
                 </section>

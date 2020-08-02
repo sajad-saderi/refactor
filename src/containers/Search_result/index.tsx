@@ -380,6 +380,7 @@ const Search_result = () => {
             className={o === "-price" ? "active" : null}
             onClick={() => {
               o = "-price";
+              page = 1;
               initSearch();
             }}
           >
@@ -389,6 +390,7 @@ const Search_result = () => {
             className={o === "price" ? "active" : null}
             onClick={() => {
               o = "price";
+              page = 1;
               initSearch();
             }}
           >
@@ -517,6 +519,9 @@ const Search_result = () => {
         <SearchResultList
           result={result}
           setFilterForSearch={(v) => {
+            if (v.o) {
+              o = "price";
+            }
             filterResults(v);
           }}
         />
