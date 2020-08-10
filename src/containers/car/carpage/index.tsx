@@ -13,6 +13,7 @@ import { NextSeo } from "next-seo";
 import jsCookie from "js-cookie";
 import moment from "moment-jalaali";
 import Spinner from "../../../components/Spinner";
+import carImage from "../../../../public/image/car-image.jpg";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -218,7 +219,8 @@ const CarPage = () => {
     setCylinder(res.cylinder);
     setFacility_set(res.facility_set);
     setCancellation_policy(res.cancellation_policy);
-    setMedia_set(res.media_set);
+    if (res.has_media) setMedia_set(res.media_set);
+    else setMedia_set([{url:carImage}]);
     setSearch_id(res.search_id);
     setTotal_discount(res.total_discount);
     setSearch_id(res.search_id);

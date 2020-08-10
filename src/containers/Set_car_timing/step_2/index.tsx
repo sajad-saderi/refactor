@@ -23,6 +23,7 @@ import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
 import DropdownSearch from "../../../components/form/Dropdown";
+import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -337,8 +338,8 @@ const Add_Car_Step_2 = () => {
       registration_plate_forth_part: car.registration_plate_forth_part,
     });
 
-    setInitialImage(car.media_set[0].thumbnail_url);
-
+    if (car.has_media) setInitialImage(car.media_set[0].thumbnail_url);
+    else setInitialImage(carThumbnail);
     // SET CAR CANCELLATION POLICY
     dispatch({
       type: "cancellation_policy",
@@ -397,7 +398,7 @@ const Add_Car_Step_2 = () => {
           is_out_of_service: state.is_out_of_service,
           token: token,
         });
-        localStorage.removeItem("red_dot")
+        localStorage.removeItem("red_dot");
         Router.push(`/user/${state.owner_id}`);
       } catch (error) {
         setLoading(false);

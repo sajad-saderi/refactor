@@ -11,10 +11,12 @@ import {
 import Spinner from "../../../../components/Spinner";
 import Toast_context from "../../../../context/Toast_context";
 import Modal_context from "../../../../context/Modal_context";
+import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
 
 const Car = (props: ICar) => {
   const [id, setId] = useState(null);
   const [media_set, setMedia_set] = useState(null);
+  const [hasMedia, setHasMedia] = useState(true);
   const [car, setCar] = useState(null);
   const [year, setYear] = useState(null);
   const [uncompletedCar, setUncompletedCar] = useState(false);
@@ -48,7 +50,9 @@ const Car = (props: ICar) => {
         setIs_out_of_service(false);
       }
       setYear(props.data.year);
-      setMedia_set(props.data.media_set);
+      if (props.data.has_media) {
+        setMedia_set(props.data.media_set);
+      } else setHasMedia(false);
       setCar(props.data.car);
     }
   }, [props.data]);
@@ -101,28 +105,32 @@ const Car = (props: ICar) => {
         <Link href={hrefProp} as={link}>
           <a data-test-id="Link" className="HEAP_Profile_Card_Car">
             <figure>
-              <img
-                style={{
-                  position: "absolute",
-                  // control the position of the image in its container
-                  top: -heightController + "px",
-                }}
-                src={media_set[0].thumbnail_url}
-                className={[
-                  "img-fluid",
-                  uncompletedCar ? "grey_car" : null,
-                ].join(" ")}
-                alt={`${car.brand.name.fa} ${car.name.fa}`}
-                onLoadCapture={(e) => {
-                  e.persist();
-                  let imageHeight = media_set[0].thumbnail_height;
+              {hasMedia ? (
+                <img
+                  style={{
+                    position: "absolute",
+                    // control the position of the image in its container
+                    top: -heightController + "px",
+                  }}
+                  src={media_set[0].thumbnail_url}
+                  className={[
+                    "img-fluid",
+                    uncompletedCar ? "grey_car" : null,
+                  ].join(" ")}
+                  alt={`${car.brand.name.fa} ${car.name.fa}`}
+                  onLoadCapture={(e) => {
+                    e.persist();
+                    let imageHeight = media_set[0].thumbnail_height;
 
-                  // just adjust the image if the hieght of it is bigger than 200 pixels
-                  if (imageHeight > 200) {
-                    setHeightController(imageHeight - 200);
-                  }
-                }}
-              />
+                    // just adjust the image if the hieght of it is bigger than 200 pixels
+                    if (imageHeight > 200) {
+                      setHeightController(imageHeight - 200);
+                    }
+                  }}
+                />
+              ) : (
+                <img src={carThumbnail} alt={`تصویر پیش فرض خودرو`} />
+              )}
               <div className="read_more">
                 <span>مشاهده مشخصات</span>
               </div>

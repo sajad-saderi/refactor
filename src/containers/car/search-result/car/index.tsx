@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
 // import "./car.scss";
 
 const Car = (props) => {
@@ -17,11 +18,12 @@ const Car = (props) => {
     avg_discounted_price_per_day,
     deliver_at_renters_place,
     with_driver,
+    has_media,
   } = props.data;
 
-  let img = media_set[0].thumbnail_url;
-  let imageWidth = media_set[0].thumbnail_width;
-  let imageHeight = media_set[0].thumbnail_height;
+  let img = has_media ? media_set[0].thumbnail_url : carImage;
+  let imageWidth = has_media ? media_set[0].thumbnail_width : null;
+  let imageHeight = has_media ? media_set[0].thumbnail_height : null;
   let title = car.brand.name.fa + " " + car.name.fa;
   let link = `/car/${id}?search_id=${search_id}`;
   let price =
@@ -47,23 +49,27 @@ const Car = (props) => {
               </span>
             )}
             {has_system_discount && <span className="Special">ویژه</span>}
-            <img
-              style={{
-                position: "absolute",
-                // control the top position of the image by "setheightController()"
-                top: -heightController + "px",
-              }}
-              src={img}
-              className="img-fluid"
-              alt={title}
-              onLoadCapture={(e) => {
-                e.persist();
-                // adjust the image at the center of division container
-                if (imageHeight > 200) {
-                  setheightController(imageHeight - 200);
-                }
-              }}
-            />
+            {has_media ? (
+              <img
+                style={{
+                  position: "absolute",
+                  // control the top position of the image by "setheightController()"
+                  top: -heightController + "px",
+                }}
+                src={img}
+                className="img-fluid"
+                alt={title}
+                onLoadCapture={(e) => {
+                  e.persist();
+                  // adjust the image at the center of division container
+                  if (imageHeight > 200) {
+                    setheightController(imageHeight - 200);
+                  }
+                }}
+              />
+            ) : (
+              <img src={img} alt={"تصویر پیش فرض خودرو"} />
+            )}
             <div className="read_more">
               <span>مشاهده مشخصات</span>
             </div>

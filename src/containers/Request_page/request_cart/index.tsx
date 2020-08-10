@@ -14,6 +14,8 @@ import {
 } from "react-icons/io";
 import PelakView from "../../../components/pelak";
 
+import carImage from "../../../../public/image/car-image-thumbnail.jpg";
+
 // import "./request_cart.scss";
 import Link from "next/link";
 import Button from "../../../components/form/Button";
@@ -21,7 +23,6 @@ import { REQUEST_REQUEST_ACTION } from "../../../API";
 import jsCookie from "js-cookie";
 
 moment.loadPersian({ dialect: "persian-modern" });
-
 
 const Request_cart = (props: IRequest_cart) => {
   const [rentStatus, setRentStatus] = useState(null);
@@ -40,9 +41,9 @@ const Request_cart = (props: IRequest_cart) => {
   const [button_code, setButton_code] = useState([]);
   const [ButtonLoader, setButtonLoader] = useState(false);
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
-  const [insurance_total_price, setInsurance_total_price] = useState(null)
-  const [coupon, setCoupon] = useState(null)
-  const [system_discount, setSystem_discount] = useState(null)
+  const [insurance_total_price, setInsurance_total_price] = useState(null);
+  const [coupon, setCoupon] = useState(null);
+  const [system_discount, setSystem_discount] = useState(null);
 
   const token = jsCookie.get("token");
 
@@ -99,22 +100,22 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             !renter
               ? [
-                {
-                  value: "قبول",
-                  class:
-                    "Blue_BTN request_car_accept HEAP_Requests_Btn_Accept ACCEPTED_INCOMING_REQUEST",
-                  click: () =>
-                    setForRequest({ action: "approve", id: props.data.id }),
-                },
-                {
-                  value: "رد",
-                  class:
-                    "Blue_BTN request_car_reject HEAP_Requests_Btn_Reject REJECT_INCOMING_REQUEST",
-                  loading: ButtonLoader,
-                  click: () =>
-                    setForRequest({ action: "reject", id: props.data.id }),
-                },
-              ]
+                  {
+                    value: "قبول",
+                    class:
+                      "Blue_BTN request_car_accept HEAP_Requests_Btn_Accept ACCEPTED_INCOMING_REQUEST",
+                    click: () =>
+                      setForRequest({ action: "approve", id: props.data.id }),
+                  },
+                  {
+                    value: "رد",
+                    class:
+                      "Blue_BTN request_car_reject HEAP_Requests_Btn_Reject REJECT_INCOMING_REQUEST",
+                    loading: ButtonLoader,
+                    click: () =>
+                      setForRequest({ action: "reject", id: props.data.id }),
+                  },
+                ]
               : []
           );
           break;
@@ -128,13 +129,14 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             renter
               ? [
-                {
-                  value: "پرداخت",
-                  class: "Blue_BTN request_car_pay GO_TO_BANK HEAP_Requests_Btn_GotoBank",
-                  click: () =>
-                    setForRequest({ action: "pay", id: props.data.id }),
-                },
-              ]
+                  {
+                    value: "پرداخت",
+                    class:
+                      "Blue_BTN request_car_pay GO_TO_BANK HEAP_Requests_Btn_GotoBank",
+                    click: () =>
+                      setForRequest({ action: "pay", id: props.data.id }),
+                  },
+                ]
               : []
           );
           break;
@@ -164,13 +166,14 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             renter
               ? [
-                {
-                  value: "خودرو را تحویل گرفتم",
-                  class: "Blue_BTN request_car_pay HEAP_Requests_Btn_CarDelivered CAR_DELIVERED",
-                  click: () =>
-                    setForRequest({ action: "deliver", id: props.data.id }),
-                },
-              ]
+                  {
+                    value: "خودرو را تحویل گرفتم",
+                    class:
+                      "Blue_BTN request_car_pay HEAP_Requests_Btn_CarDelivered CAR_DELIVERED",
+                    click: () =>
+                      setForRequest({ action: "deliver", id: props.data.id }),
+                  },
+                ]
               : []
           );
           break;
@@ -192,12 +195,15 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             !renter
               ? [
-                {
-                  value: "خودرو را بازتحویل گرفتم",
-                  class: "Blue_BTN request_car_pay HEAP_Requests_Btn_CarReturned",
-                  click: () => { setForRequest({ action: "return", id: props.data.id }); },
-                },
-              ]
+                  {
+                    value: "خودرو را بازتحویل گرفتم",
+                    class:
+                      "Blue_BTN request_car_pay HEAP_Requests_Btn_CarReturned",
+                    click: () => {
+                      setForRequest({ action: "return", id: props.data.id });
+                    },
+                  },
+                ]
               : []
           );
           break;
@@ -211,19 +217,19 @@ const Request_cart = (props: IRequest_cart) => {
           setButton_code(
             renter
               ? [
-                {
-                  value: "ثبت نظر",
-                  class: "Blue_BTN request_car_pay",
-                  click: () => { },
-                },
-              ]
+                  {
+                    value: "ثبت نظر",
+                    class: "Blue_BTN request_car_pay",
+                    click: () => {},
+                  },
+                ]
               : [
-                {
-                  value: "ثبت نظر",
-                  class: "Blue_BTN request_car_pay",
-                  click: () => { },
-                },
-              ]
+                  {
+                    value: "ثبت نظر",
+                    class: "Blue_BTN request_car_pay",
+                    click: () => {},
+                  },
+                ]
           );
           break;
         default:
@@ -241,12 +247,20 @@ const Request_cart = (props: IRequest_cart) => {
       setStart_date(props.data.rent_search_dump.start_date);
       setEnd_date(props.data.rent_search_dump.end_date);
       setNo_of_days(props.data.rent_search_dump.no_of_days);
-      setMedia_set(props.data.rent_search_dump.media_set[0]);
+      if (props.data.rent_search_dump.media_set.length > 0)
+        setMedia_set(props.data.rent_search_dump.media_set[0]);
+      else setMedia_set({ thumbnail_url: carImage });
       setDiscounted_total_price(
         props.data.rent_search_dump.discounted_total_price
       );
-      setInsurance_total_price(has_insurance ? props.data.rent_search_dump.insurance_total_price : 0);
-      setCoupon(props.data.rent_search_dump.coupon ? props.data.rent_search_dump.coupon.total_price : 0);
+      setInsurance_total_price(
+        has_insurance ? props.data.rent_search_dump.insurance_total_price : 0
+      );
+      setCoupon(
+        props.data.rent_search_dump.coupon
+          ? props.data.rent_search_dump.coupon.total_price
+          : 0
+      );
       setSystem_discount(props.data.rent_search_dump.system_discount);
       setRole(renter);
       setOwner_Info(props.data.rent_search_dump.owner);
@@ -299,13 +313,22 @@ const Request_cart = (props: IRequest_cart) => {
             </p>
             <p>
               <span>هزینه اجاره</span>
-              {role
-                ? <span>
-                  {((discounted_total_price + insurance_total_price) - (
-                    coupon ? coupon - system_discount :
-                      system_discount ? system_discount : 0)).toLocaleString()} تومان</span>
-                : <span>{discounted_total_price.toLocaleString()} تومان</span>
-              }
+              {role ? (
+                <span>
+                  {(
+                    discounted_total_price +
+                    insurance_total_price -
+                    (coupon
+                      ? coupon - system_discount
+                      : system_discount
+                      ? system_discount
+                      : 0)
+                  ).toLocaleString()}{" "}
+                  تومان
+                </span>
+              ) : (
+                <span>{discounted_total_price.toLocaleString()} تومان</span>
+              )}
             </p>
           </div>
           <div className="image_pelak">
@@ -317,24 +340,24 @@ const Request_cart = (props: IRequest_cart) => {
             </figure>
             {/* if the status is not one of these status, show the PELAK */}
             {!role ||
-              status_id === "paid" ||
-              status_id === "delivered" ||
-              status_id === "returned" ? (
-                <PelakView
-                  registration_plate_first_part={
-                    pelak.registration_plate_first_part
-                  }
-                  registration_plate_second_part={
-                    pelak.registration_plate_second_part
-                  }
-                  registration_plate_third_part={
-                    pelak.registration_plate_third_part
-                  }
-                  registration_plate_forth_part={
-                    pelak.registration_plate_forth_part
-                  }
-                />
-              ) : null}
+            status_id === "paid" ||
+            status_id === "delivered" ||
+            status_id === "returned" ? (
+              <PelakView
+                registration_plate_first_part={
+                  pelak.registration_plate_first_part
+                }
+                registration_plate_second_part={
+                  pelak.registration_plate_second_part
+                }
+                registration_plate_third_part={
+                  pelak.registration_plate_third_part
+                }
+                registration_plate_forth_part={
+                  pelak.registration_plate_forth_part
+                }
+              />
+            ) : null}
           </div>
         </div>
         <div className="Role_container">
@@ -348,22 +371,22 @@ const Request_cart = (props: IRequest_cart) => {
               </Link>
             </>
           ) : (
-              <>
-                <Link href="/user/[id]" as={`/user/${renter_info.id}`}>
-                  <a>
-                    <IoMdPerson size="2rem" />
-                    {renter_info.name}
-                  </a>
-                </Link>
-                {/* show the renter's cellphone to the owner if the status is "approved" */}
-                {status_id === "approved" && (
-                  <a href={`tel:0${renter_info.cell}`}>
-                    0{renter_info.cell}
-                    <span className="extra_Text"> :تماس با اجاره گیرنده</span>
-                  </a>
-                )}
-              </>
-            )}
+            <>
+              <Link href="/user/[id]" as={`/user/${renter_info.id}`}>
+                <a>
+                  <IoMdPerson size="2rem" />
+                  {renter_info.name}
+                </a>
+              </Link>
+              {/* show the renter's cellphone to the owner if the status is "approved" */}
+              {status_id === "approved" && (
+                <a href={`tel:0${renter_info.cell}`}>
+                  0{renter_info.cell}
+                  <span className="extra_Text"> :تماس با اجاره گیرنده</span>
+                </a>
+              )}
+            </>
+          )}
         </div>
         <div className="Button_container">
           {/* {button_code} */}

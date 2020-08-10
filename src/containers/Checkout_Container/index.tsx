@@ -13,6 +13,7 @@ import Checkout_Container_Loader from "../../components/cartPlaceholder/checkout
 import Modal_context from "../../../src/context/Modal_context";
 import { NextSeo } from "next-seo";
 import Toast_context from "../../context/Toast_context";
+import carImage from "../../../public/image/car-image-thumbnail.jpg";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -91,7 +92,8 @@ const Checkout_Container = () => {
     setLocation(res.location);
     setOwner(res.owner);
     setCancellation_policy(res.cancellation_policy);
-    setMedia_set(res.media_set);
+    if (res.has_media) setMedia_set(res.media_set);
+    else setMedia_set([{ thumbnail_url: carImage }]);
     setSearch_id(res.search_id);
     setStart_date(res.start_date);
     setEnd_date(res.end_date);

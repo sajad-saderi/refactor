@@ -807,15 +807,15 @@ const Add_Car_Step_1 = () => {
     } else {
       resetTheErrorStatus("registration_plate_forth_part");
     }
-    if (state.media_id.length < 1) {
-      Dispatcher({
-        type: "media_id",
-        error_message: "لطفاً حداقل یک تصویر بارگذاری کنید",
-      });
-      return false;
-    } else {
-      resetTheErrorStatus("media_id");
-    }
+    // if (state.media_id.length < 1) {
+    //   Dispatcher({
+    //     type: "media_id",
+    //     error_message: "لطفاً حداقل یک تصویر بارگذاری کنید",
+    //   });
+    //   return false;
+    // } else {
+    //   resetTheErrorStatus("media_id");
+    // }
     if (!validator.isNumeric(`${state.color_id}`)) {
       Dispatcher({
         type: "color_id",
