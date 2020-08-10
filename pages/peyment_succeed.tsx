@@ -6,10 +6,11 @@ import moment from "moment-jalaali";
 import Router from "next/router";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import "../src/styles/pages/Success_payment.scss";
+import carImage from "../public/image/car-image-thumbnail.jpg";
+
 import { NextSeo } from "next-seo";
 
 moment.loadPersian({ dialect: "persian-modern" });
-
 
 const Success_payment = () => {
   const [renter, setRenter] = useState(null);
@@ -43,8 +44,7 @@ const Success_payment = () => {
         description="پرداخت موفق"
         openGraph={{
           title: "پرداخت موفق",
-          description:
-            "پرداخت موفق",
+          description: "پرداخت موفق",
         }}
         twitter={{
           handle: "@otoli_net",
@@ -59,7 +59,14 @@ const Success_payment = () => {
             <div>
               <h4>پرداخت با موفقیت انجام شد</h4>
               {rent_search_dump.media_set.length > 0 && (
-                <img src={rent_search_dump.media_set[0].thumbnail_url} />
+                <img
+                  alt="تصویر خودرو"
+                  src={
+                    rent_search_dump.media_set.length > 0
+                      ? rent_search_dump.media_set[0].thumbnail_url
+                      : carImage
+                  }
+                />
               )}
               <h2 className="center">{rent_search_dump.car.name.fa}</h2>
               <h3 className="center">
@@ -109,8 +116,8 @@ const Success_payment = () => {
             </p>
           </section>
         ) : (
-            <p className="loading_text">در حال دریافت اطلاعات پرداخت...</p>
-          )}{" "}
+          <p className="loading_text">در حال دریافت اطلاعات پرداخت...</p>
+        )}{" "}
       </article>
     </Layout>
   );
