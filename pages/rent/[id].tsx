@@ -7,15 +7,14 @@ import Landing_Page_Content from "../../src/containers/LandignPageContainer/land
 import Router from "next/router";
 
 const Rent_dynamic = (props) => {
-
   useEffect(() => {
-    if(!props.Landing_page){
-      Router.push("/404")
+    if (!props.Landing_page) {
+      Router.push("/404");
     }
   }, []);
-  
+
   return props.Landing_page ? (
-    <Layout showToTop={true}>
+    <Layout>
       <NextSeo
         title={props.Landing_page.meta_title}
         description={props.Landing_page.meta_description}

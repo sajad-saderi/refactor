@@ -35,6 +35,8 @@ const Car = (props) => {
       ? avg_discounted_price_per_day_name.slice(2, 3) === "۰"
         ? avg_discounted_price_per_day_name.toString().slice(0, 1)
         : avg_discounted_price_per_day_name.toString().slice(0, 3)
+      : avg_discounted_price_per_day < 100000
+      ? avg_discounted_price_per_day.toString().slice(0, 2)
       : avg_discounted_price_per_day.toString().slice(0, 3);
 
   let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
