@@ -1,13 +1,24 @@
 import Router from "next/router";
+import * as Sentry from "@sentry/browser";
 
-const flag = 0;
 const Error_middleware = (error) => {
-  // console.log(flag);
-  // if (error.response) {
-  //   if (error.response.status === 500) {
-  //     Router.push("/500");
-  //   }
-  // }
+  window.hj =
+    window.hj ||
+    function() {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  if (error.response) {
+    if (error.response.status === 500) {
+      hj("tagRecording", ["505 PAGE"]);
+      Sentry.captureException(error);
+      Router.push("/500");
+    }
+    if (error.response.status === 404) {
+      hj("tagRecording", ["404 API NOT FOUND"]);
+      Sentry.captureException(error);
+      Router.push("/500");
+    }
+  }
 };
 
 export default Error_middleware;

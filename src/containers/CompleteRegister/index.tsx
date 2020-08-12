@@ -210,16 +210,16 @@ const Complete_register_container = () => {
     } else {
       resetTheErrorStatus("last_name");
     }
-    if (showCompanyName && state.company_name === "") {
-      errorDispatch({
-        type: "company_name",
-        company_name: true,
-        message: "لطفاً نام شرکت را وارد کنید",
-      });
-      return;
-    } else {
-      resetTheErrorStatus("company_name");
-    }
+    // if (showCompanyName && state.company_name === "") {
+    //   errorDispatch({
+    //     type: "company_name",
+    //     company_name: true,
+    //     message: "لطفاً نام شرکت را وارد کنید",
+    //   });
+    //   return;
+    // } else {
+    //   resetTheErrorStatus("company_name");
+    // }
     if (state.day === "") {
       errorDispatch({
         type: "day",
