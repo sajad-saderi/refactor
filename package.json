@@ -15,7 +15,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/otoli/mvp-front"
+    "url": "https://gitlab.com/otoli/mvp-front",
+    "Heroku": "https://github.com/Doctor-Strange/Refactor"
   },
   "dependencies": {
     "@sentry/browser": "^5.17.0",

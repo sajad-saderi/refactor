@@ -638,6 +638,7 @@ const Add_Car_Step_1 = () => {
          * after sent the information to the API,
          * if we are in edit mode go to profile
          */
+        localStorage.removeItem("car_info");
         localStorage["red_dot"] = 1;
         if (Router.router.query.mode === "edit") {
           Router.push(`/user/${user_id}`);
