@@ -182,7 +182,7 @@ const Layout = (props: ILayout) => {
               setShowPwaBanner(false);
             }}
           >
-            <IoIosClose color="#737373" size="2rem" />
+            <IoIosClose color="#fff" size="2rem" />
             بستن
           </p>
         </section>

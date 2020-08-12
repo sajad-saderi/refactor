@@ -227,7 +227,7 @@ input {
     position: absolute;
   }
 }
-.no_padding{
+.no_padding {
   padding: 1rem;
 }
 // CONFIRM and CANCEL
@@ -343,6 +343,8 @@ input {
   }
 }
 
+// PWA Styles
+
 .pwa_invitation_banner {
   padding: 0.5rem 1.5rem;
   display: none;
@@ -351,6 +353,7 @@ input {
     cursor: pointer;
     font-weight: 500;
     font-size: 1.4rem;
+    color: #fff;
     img {
       border-radius: 1rem;
       width: 3.6rem;
@@ -361,10 +364,10 @@ input {
   }
   .close_pwa_invitation {
     cursor: pointer;
-    border: 1px solid $input_border;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     font-weight: 500;
     font-size: 1.1rem;
-    color: $grey_color;
+    color: #fff;
     border-radius: 2rem;
     padding: 0.3rem 0.5rem 0.3rem 1rem;
     svg {
@@ -374,13 +377,13 @@ input {
     }
   }
   @media (max-width: 720px) {
-    position: fixed;
+    // position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     z-index: 999;
-    background: #fff;
+    background: #313131;
   }
 }
 
