@@ -58,12 +58,12 @@ const Join_us_content_AB_test = (props: IJoin_us_content) => {
               {props.AbText}
             </a>
           </Link>
-          <p className="call_us">
+          {/* <p className="call_us">
             سوالی دارید؟ با ما تماس بگیرید:‌{" "}
             <a className="TellPhone" href="tel:02188567759">
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
-          </p>
+          </p> */}
         </div>
       </div>
     </>

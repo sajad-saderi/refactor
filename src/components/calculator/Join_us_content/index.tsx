@@ -55,12 +55,12 @@ const Join_us_content = (props: IJoin_us_content) => {
           <Link href="/add-car">
             <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">{props.AbText}</a>
           </Link>
-          <p className="call_us">
+          {/* <p className="call_us">
             سوالی دارید؟ با ما تماس بگیرید:‌{" "}
             <a className="TellPhone" href="tel:02188567759">
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
-          </p>
+          </p> */}
         </div>
       </div>
     </>
