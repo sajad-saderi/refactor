@@ -30,6 +30,11 @@ const Calculator = (props: ICalculator) => {
   const [weekly, setWeekly] = useState(0);
   const [monthly, setMonthly] = useState(0);
   const [showCalculateBox, setShowCalculateBox] = useState(true);
+  const [saveCarInfo, setSaveCarInfo] = useState({
+    brand: null,
+    model: null,
+    value: null,
+  });
 
   useEffect(() => {
     fetchData();
@@ -109,6 +114,7 @@ const Calculator = (props: ICalculator) => {
         price: value,
       });
       setLoading(false);
+      localStorage["car_info"] = JSON.stringify(saveCarInfo);
       // Show the calculator box
       setShowCalculateBox(false);
       // Reset old values in case they were set
@@ -159,6 +165,9 @@ const Calculator = (props: ICalculator) => {
                 }
                 Select={(v) => {
                   fetchModelList(v.value);
+                  setSaveCarInfo((saveCarInfo) => {
+                    return { ...saveCarInfo, brand: v };
+                  });
                   setBrand({
                     id: v.value,
                     name: v.text,
@@ -190,6 +199,9 @@ const Calculator = (props: ICalculator) => {
                 disabled={!brand.id ? true : false}
                 InputDisable={true}
                 Select={(v) => {
+                  setSaveCarInfo((saveCarInfo) => {
+                    return { ...saveCarInfo, model: v };
+                  });
                   try {
                     if (window["heap"]) {
                       window["heap"].addUserProperties({
@@ -211,6 +223,9 @@ const Calculator = (props: ICalculator) => {
                 name="value"
                 number={true}
                 onChangeHandler={(e) => {
+                  setSaveCarInfo((saveCarInfo) => {
+                    return { ...saveCarInfo, value: e };
+                  });
                   setValue(e);
                 }}
                 clearField={() => setValue("")}

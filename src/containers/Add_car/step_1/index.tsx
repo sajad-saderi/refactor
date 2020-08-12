@@ -44,6 +44,7 @@ import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading
  *  This id will send to the API and get the car information and full fill the step 1 form
  */
 const new_car = jsCookie.get("new_car");
+let autoFillStorageData = null;
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -410,6 +411,9 @@ const Add_Car_Step_1 = () => {
     if (Router.router.query.mode === "edit") {
       getCarInfoToEdit(Router.router.query.car_id);
     }
+    if (!new_car && !Router.router.query.mode && localStorage["car_info"]) {
+      autoFillStorageData = JSON.parse(localStorage["car_info"]);
+    }
     getInitials();
   }, []);
 
@@ -605,6 +609,16 @@ const Add_Car_Step_1 = () => {
       setCylinderList(cylinder_res.data);
       setFacilitesList(facilities_res.data);
       setColorList(colorList_res.data);
+      if (autoFillStorageData) {
+        dispatch({
+          type: "value",
+          value: autoFillStorageData.value,
+        });
+        setBrand_Name(autoFillStorageData.brand.text);
+        setBrand_id(autoFillStorageData.brand.value);
+        setModelList([]);
+        getModelList(autoFillStorageData.brand.value);
+      }
     } catch (error) {
       console.log("!Error", error);
     }
@@ -832,6 +846,11 @@ const Add_Car_Step_1 = () => {
     try {
       const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
       setModelList(car_model_res.data);
+      if (autoFillStorageData) {
+        getBrandInfo(autoFillStorageData.model.value);
+        setCarModelName(autoFillStorageData.model.text);
+        dispatch({ type: "car_id", car_id: autoFillStorageData.model.value });
+      }
     } catch (error) {
       console.log("!Error", error);
     }
@@ -848,13 +867,14 @@ const Add_Car_Step_1 = () => {
 
   const clearRelativeToModel = () => {
     // RESET ALL BRAND RELATED FIELDS
-    dispatch({ type: "capacity", capacity: null });
+    setCarModelName(" ");
+    dispatch({ type: "capacity", capacity: " " });
     dispatch({ type: "transmission_type_id", transmission_type_id: null });
     // dispatch({ type: "cylinder_id", cylinder_id: null });
+    // setCylinderName(" ");
     dispatch({ type: "body_style_id", body_style_id: null });
+    setBodyStyleName(" ");
     dispatch({ type: "empty_facility_id", empty_facility_id: [] });
-    // setCylinderName("");
-    setBodyStyleName("");
   };
   /**
    *
@@ -901,7 +921,7 @@ const Add_Car_Step_1 = () => {
           cylinder_id: model_info_res.cylinder.id,
         });
         setCylinderName(model_info_res.cylinder.name.fa);
-      } 
+      }
       // else {
       //   dispatch({
       //     type: "cylinder_id",
@@ -1012,14 +1032,25 @@ const Add_Car_Step_1 = () => {
             defaultVal={Brand_Name}
             data={BrandList}
             clearField={() => {
+              autoFillStorageData = null;
+              setCarModelName(null);
+              setModelList([]);
+              dispatch({ type: "car_id", car_id: null });
               setBrand_id(null);
             }}
             Select={(i) => {
+              autoFillStorageData = null;
               if (Brand_id_error) {
                 setBrand_id_error(false);
               }
-              setBrand_id(i.value);
+              dispatch({
+                type: "value",
+                value: "",
+              });
+              dispatch({ type: "car_id", car_id: null });
               setModelList([]);
+              clearRelativeToModel();
+              setBrand_id(i.value);
               getModelList(i.value);
             }}
           />
@@ -1040,6 +1071,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
+              clearRelativeToModel();
               getBrandInfo(i.value);
               dispatch({ type: "car_id", car_id: i.value });
             }}
