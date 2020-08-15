@@ -18,6 +18,8 @@ module.exports = withPWA(
           env: {
             SITE_URL: "https://otoli.net",
             PRODUCTION_ENDPOINT: "https://core.otoli.net",
+            SENTRY:"https://5457324b508844abba775737bc14838e@sentry.io/1547488",
+            GOOGLE_CAPTCHA:"6LcJG78ZAAAAAD3u-1dQGeApdBcQeMoTe9ju17SJ"
           },
           webpack(config, options) {
             compress = true;

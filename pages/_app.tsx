@@ -2,9 +2,13 @@ import React from "react";
 import App from "next/app";
 import Router from "next/router";
 import * as Sentry from "@sentry/browser";
+import {
+  GoogleReCaptchaProvider,
+  GoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 
 Sentry.init({
-  dsn: "https://5457324b508844abba775737bc14838e@sentry.io/1547488",
+  dsn: process.env.SENTRY,
 });
 
 Router.events.on("routeChangeError", (err, url) => {
@@ -58,7 +62,12 @@ class App_Otoli extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    return (
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
+        <Component {...pageProps} />
+        <GoogleReCaptcha onVerify={(token) => console.log("token",token)} />
+      </GoogleReCaptchaProvider>
+    );
   }
 }
 

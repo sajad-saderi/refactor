@@ -37,6 +37,7 @@
     "react-dom": "16.13.0",
     "react-dropzone": "^10.2.1",
     "react-ga": "^2.7.0",
+    "react-google-recaptcha-v3": "^1.5.2",
     "react-icons": "^3.9.0",
     "react-modern-calendar-datepicker": "^2.1.0",
     "react-star-ratings": "^2.3.0",
