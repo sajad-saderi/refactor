@@ -279,6 +279,11 @@ export default class MyDocument extends Document {
             name="google-site-verification"
             content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto"
           />
+          <script
+            src={`https://www.google.com/recaptcha/api.js?render=6LcJG78ZAAAAAD3u-1dQGeApdBcQeMoTe9ju17SJ`}
+            async
+            defer
+          ></script>
         </Head>
         <body>
           {/* <!-- Google Tag Manager (noscript) --> */}

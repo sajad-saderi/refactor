@@ -37,6 +37,9 @@ Router.events.on("routeChangeComplete", (url) => {
 // });
 
 class App_Otoli extends App {
+  state = {
+    token: null,
+  };
   // static async getInitialProps({ Component, ctx }) {
   //     let pageProps = {};
 
@@ -60,12 +63,54 @@ class App_Otoli extends App {
     }
   }
 
+  Captcha = () => {
+    window["__recaptchaCallback"] = () => {
+      if (window["grecaptcha"]) {
+        window["grecaptcha"]
+          .execute("6LcJG78ZAAAAAD3u-1dQGeApdBcQeMoTe9ju17SJ", {
+            action: "homepage",
+          })
+          .then(() => {
+            var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
+            var xhr = new XMLHttpRequest();
+            xhr.open(
+              "GET",
+              url + "?g-recaptcha-response=" + this.state.token,
+              true
+            );
+            xhr.onreadystatechange = function (data) {
+              if (
+                this.readyState === XMLHttpRequest.DONE &&
+                this.status === 200
+              ) {
+                var responseJson = JSON.parse(xhr.response);
+                window["dataLayer"].push({
+                  event: "recaptcha",
+                  recaptchaAnswer: responseJson.status,
+                  recaptchaScore: responseJson.recaptcha.score,
+                });
+              }
+            };
+            xhr.send();
+          });
+      }
+    };
+
+    window["__recaptchaCallback"]();
+  };
+
   render() {
     const { Component, pageProps } = this.props;
     return (
       <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
         <Component {...pageProps} />
-        <GoogleReCaptcha onVerify={(token) => console.log(token)} />
+        <GoogleReCaptcha
+          onVerify={(token) =>
+            this.setState({ token }, () => {
+              this.Captcha();
+            })
+          }
+        />
       </GoogleReCaptchaProvider>
     );
   }
