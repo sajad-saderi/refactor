@@ -387,6 +387,11 @@ input {
   }
 }
 
+// Captcha Badge
+.grecaptcha-badge {
+  display: none !important;
+}
+
 .Error_color {
   color: $Error_text_color;
 }

@@ -65,7 +65,7 @@ class App_Otoli extends App {
     return (
       <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
         <Component {...pageProps} />
-        <GoogleReCaptcha onVerify={(token) => console.log("token",token)} />
+        <GoogleReCaptcha onVerify={(token) => console.log(token)} />
       </GoogleReCaptchaProvider>
     );
   }
