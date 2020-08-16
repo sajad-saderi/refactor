@@ -66,42 +66,49 @@ class App_Otoli extends App {
 
   Captcha = () => {
     let scoreData = null;
-    window["__recaptchaCallback"] = () => {
-      if (window["grecaptcha"]) {
-        window["grecaptcha"]
-          .execute(process.env.GOOGLE_CAPTCHA, {
-            action: "homepage",
-          })
-          .then(() => {
-            var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
-            Axios.get(url + "?g-recaptcha-response=" + this.state.token)
-              .then((res) => {
-                scoreData = res;
-                window["dataLayer"].push({
-                  event: "recaptcha",
-                  recaptchaAnswer: res.data.status,
-                  recaptchaScore: res.data.recaptcha.score,
+    try {
+      window["__recaptchaCallback"] = () => {
+        if (window["grecaptcha"]) {
+          window["grecaptcha"]
+            .execute(process.env.GOOGLE_CAPTCHA, {
+              action: "homepage",
+            })
+            .then(() => {
+              var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
+              Axios.get(url + "?g-recaptcha-response=" + this.state.token)
+                .then((res) => {
+                  scoreData = res;
+                  window["dataLayer"].push({
+                    event: "recaptcha",
+                    recaptchaAnswer: res.data.status,
+                    recaptchaScore: res.data.recaptcha.score,
+                  });
+                })
+                .then(() => {
+                  Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
+                    success: true, // whether this request was a valid reCAPTCHA token for your site
+                    score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
+                    action: "Join-us", // the action name for this request (important to verify)
+                    hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
+                  })
+                    .then((res) => {})
+                    .catch((e) => {
+                      console.log(e);
+                    });
+                })
+                .catch((e) => {
+                  console.log(e);
                 });
-              })
-              .then(() => {
-                Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
-                  success: true, // whether this request was a valid reCAPTCHA token for your site
-                  score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
-                  action: "Join-us", // the action name for this request (important to verify)
-                  hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
-                }).then((res) => {
-                  window["hj"] =
-                    window["hj"] ||
-                    function() {
-                      (window["hj"].q = window["hj"].q || []).push(arguments);
-                    };
-                  window["hj"]("tagRecording", [`score-${scoreData.data.recaptcha.score}`]);
-                });
-              });
-          });
-      }
-    };
-    window["__recaptchaCallback"]();
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        }
+      };
+      window["__recaptchaCallback"]();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {

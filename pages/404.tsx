@@ -5,15 +5,6 @@ import Link from "next/link";
 import _404 from "../public/image/404.png";
 
 const AboutUs = () => {
-  useEffect(() => {
-    window["hj"] =
-      window["hj"] ||
-      function() {
-        (window["hj"].q = window["hj"].q || []).push(arguments);
-      };
-    window["hj"]("tagRecording", ["404 PAGE"]);
-  }, []);
-
   return (
     <Layout>
       <NextSeo
