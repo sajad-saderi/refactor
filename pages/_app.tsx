@@ -6,6 +6,7 @@ import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
+import Axios from "axios";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -64,6 +65,7 @@ class App_Otoli extends App {
   }
 
   Captcha = () => {
+    let scoreData = null;
     window["__recaptchaCallback"] = () => {
       if (window["grecaptcha"]) {
         window["grecaptcha"]
@@ -72,30 +74,26 @@ class App_Otoli extends App {
           })
           .then(() => {
             var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
-            var xhr = new XMLHttpRequest();
-            xhr.open(
-              "GET",
-              url + "?g-recaptcha-response=" + this.state.token,
-              true
-            );
-            xhr.onreadystatechange = function (data) {
-              if (
-                this.readyState === XMLHttpRequest.DONE &&
-                this.status === 200
-              ) {
-                var responseJson = JSON.parse(xhr.response);
+            Axios.get(url + "?g-recaptcha-response=" + this.state.token)
+              .then((res) => {
+                scoreData = res;
                 window["dataLayer"].push({
                   event: "recaptcha",
-                  recaptchaAnswer: responseJson.status,
-                  recaptchaScore: responseJson.recaptcha.score,
+                  recaptchaAnswer: res.data.status,
+                  recaptchaScore: res.data.recaptcha.score,
                 });
-              }
-            };
-            xhr.send();
+              })
+              .then(() => {
+                Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
+                  success: true, // whether this request was a valid reCAPTCHA token for your site
+                  score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
+                  action: "Join-us", // the action name for this request (important to verify)
+                  hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
+                }).then(() => {});
+              });
           });
       }
     };
-
     window["__recaptchaCallback"]();
   };
 
