@@ -69,7 +69,7 @@ class App_Otoli extends App {
     window["__recaptchaCallback"] = () => {
       if (window["grecaptcha"]) {
         window["grecaptcha"]
-          .execute("6LcJG78ZAAAAAD3u-1dQGeApdBcQeMoTe9ju17SJ", {
+          .execute(process.env.GOOGLE_CAPTCHA, {
             action: "homepage",
           })
           .then(() => {
@@ -89,7 +89,14 @@ class App_Otoli extends App {
                   score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
                   action: "Join-us", // the action name for this request (important to verify)
                   hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
-                }).then(() => {});
+                }).then((res) => {
+                  window["hj"] =
+                    window["hj"] ||
+                    function() {
+                      (window["hj"].q = window["hj"].q || []).push(arguments);
+                    };
+                  window["hj"]("tagRecording", [`score-${scoreData.data.recaptcha.score}`]);
+                });
               });
           });
       }
