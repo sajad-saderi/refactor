@@ -20,7 +20,7 @@ module.exports = withPWA(
             PRODUCTION_ENDPOINT: "https://core.otoli.net",
             SENTRY:
               "https://5457324b508844abba775737bc14838e@sentry.io/1547488",
-            GOOGLE_CAPTCHA: "6LdFeb8ZAAAAAOpCpdBwshpryL2HDeBIPAGRP75J",
+            GOOGLE_CAPTCHA: "6Lfy7r8ZAAAAAIKCAoltBxYopYVP3qE6J0rh9Aho",
           },
           webpack(config, options) {
             compress = true;
