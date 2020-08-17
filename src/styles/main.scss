@@ -392,6 +392,14 @@ input {
   display: none !important;
 }
 
+// temporary_score
+.temporary_score {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .Error_color {
   color: $Error_text_color;
 }

@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content";
 
-const JoinUs = () => {
+const JoinUs = (props) => {
+  const [Score, SetScore] = useState(null);
+  useEffect(() => {
+    if (props.BotScore) {
+      SetScore(props.BotScore);
+    }
+  }, [props.BotScore]);
   return (
     <Layout LinkControl={true}>
       <NextSeo
@@ -32,6 +38,7 @@ const JoinUs = () => {
             {/* You can set the Button text when you call the Calculator component */}
             <Calculator AbText="شروع کسب درآمد" />
           </div>
+          <p className="temporary_score">{Score}</p>
         </section>
         <Join_us_content AbText="شروع کسب درآمد" />
       </article>

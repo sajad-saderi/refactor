@@ -40,6 +40,7 @@ Router.events.on("routeChangeComplete", (url) => {
 class App_Otoli extends App {
   state = {
     token: null,
+    BotScore: null,
   };
   // static async getInitialProps({ Component, ctx }) {
   //     let pageProps = {};
@@ -77,7 +78,7 @@ class App_Otoli extends App {
               var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
               Axios.get(url + "?g-recaptcha-response=" + this.state.token)
                 .then((res) => {
-                  scoreData = res;
+                  this.setState({ BotScore: res.data.recaptcha.score });
                   window["dataLayer"].push({
                     event: "recaptcha",
                     recaptchaAnswer: res.data.status,
@@ -115,7 +116,7 @@ class App_Otoli extends App {
     const { Component, pageProps } = this.props;
     return (
       <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
-        <Component {...pageProps} />
+        <Component {...pageProps} BotScore={this.state.BotScore} />
         <GoogleReCaptcha
           onVerify={(token) =>
             this.setState({ token }, () => {

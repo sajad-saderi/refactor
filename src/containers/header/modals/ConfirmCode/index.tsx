@@ -94,8 +94,7 @@ const ConfirmCode = (props: IConfirmCode) => {
             console.log("Em...I think heap not work correctly :/");
           }
           // set authorize to auth context
-          AUTH_CONTEXT.Auth_Manager(true);
-          console.log(response.data);
+          AUTH_CONTEXT.Auth_Manager(true); 
         } else {
           // TODO: handle errors
           console.error("error");
