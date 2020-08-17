@@ -72,13 +72,14 @@ class App_Otoli extends App {
         if (window["grecaptcha"]) {
           window["grecaptcha"]
             .execute(process.env.GOOGLE_CAPTCHA, {
-              action: "homepage",
+              action: window.location.pathname.slice(1).replace(/-/, ""),
             })
             .then(() => {
               var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
               Axios.get(url + "?g-recaptcha-response=" + this.state.token)
                 .then((res) => {
                   this.setState({ BotScore: res.data.recaptcha.score });
+                  scoreData = res;
                   window["dataLayer"].push({
                     event: "recaptcha",
                     recaptchaAnswer: res.data.status,
@@ -89,7 +90,7 @@ class App_Otoli extends App {
                   Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
                     success: true, // whether this request was a valid reCAPTCHA token for your site
                     score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
-                    action: "Join-us", // the action name for this request (important to verify)
+                    action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
                     hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
                   })
                     .then((res) => {})
