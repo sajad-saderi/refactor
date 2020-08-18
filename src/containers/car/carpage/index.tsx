@@ -59,7 +59,7 @@ const CarPage = () => {
   const [total_discount, setTotal_discount] = useState(false);
   const [calenderClick, setCalenderClick] = useState(false);
   const [showPriceLoading, setShowPriceLoading] = useState(false);
-
+  const [availableCar, setAvailableCar] = useState(true);
   const [showBorder, setShowBorder] = useState(false);
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
@@ -188,21 +188,30 @@ const CarPage = () => {
     setCar(res.car);
     setYear(res.year);
     setCapacity(res.capacity);
-    setAvg_price_per_day(res.avg_price_per_day);
-    if (res.avg_discounted_price_per_day > 0) {
-      setAvg_discounted_price_per_day(
-        res.avg_discounted_price_per_day
-        // res.avg_discounted_price_per_day >= 10000000
-        //   ? res.avg_discounted_price_per_day >= 10100000
-        //     ? res.avg_discounted_price_per_day_name.slice(0, 4)
-        //     : res.avg_discounted_price_per_day_name.slice(0, 2)
-        //   : res.avg_discounted_price_per_day >= 1000000
-        //     ? res.avg_discounted_price_per_day_name.slice(2, 3) === "۰"
-        //       ? res.avg_discounted_price_per_day_name.toString().slice(0, 1)
-        //       : res.avg_discounted_price_per_day_name.toString().slice(0, 3)
-        //     : res.avg_discounted_price_per_day.toString().slice(0, 3)
-      );
+    if (res.avg_price_per_day) {
+      setAvailableCar(true);
+      setAvg_price_per_day(res.avg_price_per_day);
+      if (
+        res.avg_discounted_price_per_day &&
+        res.avg_discounted_price_per_day > 0
+      ) {
+        setAvg_discounted_price_per_day(
+          res.avg_discounted_price_per_day
+          // res.avg_discounted_price_per_day >= 10000000
+          //   ? res.avg_discounted_price_per_day >= 10100000
+          //     ? res.avg_discounted_price_per_day_name.slice(0, 4)
+          //     : res.avg_discounted_price_per_day_name.slice(0, 2)
+          //   : res.avg_discounted_price_per_day >= 1000000
+          //     ? res.avg_discounted_price_per_day_name.slice(2, 3) === "۰"
+          //       ? res.avg_discounted_price_per_day_name.toString().slice(0, 1)
+          //       : res.avg_discounted_price_per_day_name.toString().slice(0, 3)
+          //     : res.avg_discounted_price_per_day.toString().slice(0, 3)
+        );
+      }
+    } else {
+      setAvailableCar(false);
     }
+
     setUnit(res.avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار");
     setBody_style(res.body_style);
     setTransmission_type(res.transmission_type);
@@ -220,7 +229,7 @@ const CarPage = () => {
     setFacility_set(res.facility_set);
     setCancellation_policy(res.cancellation_policy);
     if (res.has_media) setMedia_set(res.media_set);
-    else setMedia_set([{url:carImage}]);
+    else setMedia_set([{ url: carImage }]);
     setSearch_id(res.search_id);
     setTotal_discount(res.total_discount);
     setSearch_id(res.search_id);
@@ -311,16 +320,22 @@ const CarPage = () => {
                   <Spinner color="#737373" display="block" width={20} />
                 </div>
               ) : (
-                avg_discounted_price_per_day && (
+                availableCar && (
                   <div className="avg_discounted_price_per_day">
                     <p className={total_discount ? "discount_price" : null}>
-                      {avg_price_per_day.toLocaleString()}
+                      {avg_price_per_day
+                        ? avg_price_per_day.toLocaleString()
+                        : null}
                     </p>
                     {total_discount ? (
-                      <p>{avg_discounted_price_per_day.toLocaleString()}</p>
+                      <p>
+                        {avg_discounted_price_per_day
+                          ? avg_discounted_price_per_day.toLocaleString()
+                          : null}
+                      </p>
                     ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
-                    <span>تومان در روز</span>
+                    {avg_price_per_day && <span>تومان در روز</span>}
                   </div>
                 )
               )}
@@ -351,23 +366,28 @@ const CarPage = () => {
                             dayRange.to.month,
                             "jM"
                           ).format("jMMMM")}`}{" "}
-                          (
-                          {moment([
-                            dayRange.from.year,
-                            dayRange.from.month,
-                            dayRange.from.day,
-                          ])
-                            .diff(
-                              moment([
-                                dayRange.to.year,
-                                dayRange.to.month,
-                                dayRange.to.day,
-                              ]),
-                              "days"
-                            )
-                            .toString()
-                            .replace("-", "")}
-                          روز)
+                          {dayRange.from.day === 31 ||
+                          dayRange.to.day === 31 ? null : (
+                            <>
+                              (
+                              {moment([
+                                dayRange.from.year,
+                                dayRange.from.month,
+                                dayRange.from.day,
+                              ])
+                                .diff(
+                                  moment([
+                                    dayRange.to.year,
+                                    dayRange.to.month,
+                                    dayRange.to.day,
+                                  ]),
+                                  "days"
+                                )
+                                .toString()
+                                .replace("-", "")}
+                              روز)
+                            </>
+                          )}
                         </p>
                         <p
                           className="change_date_in_car_page"
@@ -540,16 +560,22 @@ const CarPage = () => {
                   <Spinner color="#737373" display="block" width={20} />
                 </div>
               ) : (
-                avg_discounted_price_per_day && (
+                availableCar && (
                   <div className="avg_discounted_price_per_day">
                     <p className={total_discount ? "discount_price" : null}>
-                      {avg_price_per_day.toLocaleString()}
+                      {avg_price_per_day
+                        ? avg_price_per_day.toLocaleString()
+                        : null}
                     </p>
                     {total_discount ? (
-                      <p>{avg_discounted_price_per_day.toLocaleString()}</p>
+                      <p>
+                        {avg_discounted_price_per_day
+                          ? avg_discounted_price_per_day.toLocaleString()
+                          : null}
+                      </p>
                     ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
-                    <span>تومان در روز</span>
+                    {avg_price_per_day && <span>تومان در روز</span>}
                   </div>
                 )
               )}
@@ -573,23 +599,28 @@ const CarPage = () => {
                       dayRange.to.month,
                       "jM"
                     ).format("jMMMM")}`}{" "}
-                    (
-                    {moment([
-                      dayRange.from.year,
-                      dayRange.from.month,
-                      dayRange.from.day,
-                    ])
-                      .diff(
-                        moment([
-                          dayRange.to.year,
-                          dayRange.to.month,
-                          dayRange.to.day,
-                        ]),
-                        "days"
-                      )
-                      .toString()
-                      .replace("-", "")}
-                    روز)
+                    {dayRange.from.day === 31 ||
+                    dayRange.to.day === 31 ? null : (
+                      <>
+                        (
+                        {moment([
+                          dayRange.from.year,
+                          dayRange.from.month,
+                          dayRange.from.day,
+                        ])
+                          .diff(
+                            moment([
+                              dayRange.to.year,
+                              dayRange.to.month,
+                              dayRange.to.day,
+                            ]),
+                            "days"
+                          )
+                          .toString()
+                          .replace("-", "")}
+                        روز)
+                      </>
+                    )}
                   </p>
                   <p
                     className="change_date_in_car_page"
@@ -677,7 +708,7 @@ const CarPage = () => {
                   </figure>
                 </a>
               </Link>
-              {avg_discounted_price_per_day && !is_mine ? (
+              {availableCar && !is_mine ? (
                 <div className="continue_to_checkout">
                   <Button
                     value="ادامه"

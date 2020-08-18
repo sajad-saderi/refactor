@@ -450,6 +450,11 @@ const Add_Car_Step_1 = () => {
   const [colorCode, setColorCode] = useState(null);
   const [Loading, setLoading] = useState(false);
 
+  const [showTransmissionRadio, setShowTransmissionRadio] = useState(false);
+  const [showBodyStyle, setShowBodyStyle] = useState(false);
+  const [showCylinder, setShowCylinder] = useState(false);
+  const [showCapacity, setShowCapacity] = useState(false);
+
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
     location_id: null,
     car_id: null,
@@ -1047,6 +1052,10 @@ const Add_Car_Step_1 = () => {
    */
   const getBrandInfo = async (id) => {
     // if the fields are filled, first clear them
+    setShowTransmissionRadio(false);
+    setShowBodyStyle(false);
+    setShowCylinder(false);
+    setShowCapacity(false);
     clearRelativeToModel();
     try {
       const model_info_res: any = await REQUEST_GET_MODEL_INFO(id);
@@ -1064,7 +1073,10 @@ const Add_Car_Step_1 = () => {
       // Set capacity
       if (model_info_res.capacity)
         dispatch({ type: "capacity", capacity: model_info_res.capacity });
-      else dispatch({ type: "capacity", capacity: null });
+      else {
+        setShowCapacity(true);
+        dispatch({ type: "capacity", capacity: null });
+      }
 
       // set transmission type
       if (model_info_res.transmission_type)
@@ -1072,11 +1084,13 @@ const Add_Car_Step_1 = () => {
           type: "transmission_type_id",
           transmission_type_id: model_info_res.transmission_type.id,
         });
-      else
+      else {
+        setShowTransmissionRadio(true);
         dispatch({
           type: "transmission_type_id",
           transmission_type_id: null,
         });
+      }
 
       // Set cylinder
       if (model_info_res.cylinder) {
@@ -1086,14 +1100,14 @@ const Add_Car_Step_1 = () => {
           cylinder_id: model_info_res.cylinder.id,
         });
         setCylinderName(model_info_res.cylinder.name.fa);
+      } else {
+        setShowCylinder(true);
+        dispatch({
+          type: "cylinder_id",
+          cylinder_id: null,
+        });
+        setCylinderName(" ");
       }
-      // else {
-      //   dispatch({
-      //     type: "cylinder_id",
-      //     cylinder_id: null,
-      //   });
-      //   setCylinderName("");
-      // }
 
       // Set body-Style
       if (model_info_res.body_style) {
@@ -1109,6 +1123,7 @@ const Add_Car_Step_1 = () => {
           body_style_id: null,
         });
         setBodyStyleName("");
+        setShowBodyStyle(true);
       }
     } catch (error) {
       console.log("!Error", error);
@@ -1281,107 +1296,115 @@ const Add_Car_Step_1 = () => {
             }}
           />
         </div>
-        <div className="radio_father">
-          <label
-            className={[
-              "transition_type_Label",
-              ErrorState.transmission_type_id ? "Error_color" : null,
-            ].join(" ")}
-          >
-            نوع دنده
-          </label>
-          <Radio
-            name="transmission_type_id"
-            error_status={ErrorState.transmission_type_id}
-            SelectHandler={(i) => {
-              if (ErrorState.transmission_type_id) {
-                ErrorDispatch({
+        {showTransmissionRadio && (
+          <div className="radio_father">
+            <label
+              className={[
+                "transition_type_Label",
+                ErrorState.transmission_type_id ? "Error_color" : null,
+              ].join(" ")}
+            >
+              نوع دنده
+            </label>
+            <Radio
+              name="transmission_type_id"
+              error_status={ErrorState.transmission_type_id}
+              SelectHandler={(i) => {
+                if (ErrorState.transmission_type_id) {
+                  ErrorDispatch({
+                    type: "transmission_type_id",
+                    transmission_type_id: null,
+                    error_message: "",
+                  });
+                }
+                dispatch({
                   type: "transmission_type_id",
-                  transmission_type_id: null,
+                  transmission_type_id: +i,
+                });
+              }}
+              defaultCheck={state.transmission_type_id}
+              data={[
+                {
+                  label: "دنده دستی",
+                  value: 2,
+                },
+                {
+                  label: "دنده اتوماتیک",
+                  value: 1,
+                },
+              ]}
+            />
+          </div>
+        )}
+        {showBodyStyle && (
+          <DropdownSearch
+            InputDisable={true}
+            error_status={ErrorState.body_style_id}
+            label="نوع شاسی"
+            data={BodyStyleList}
+            disableSearch={true}
+            defaultVal={BodyStyleName}
+            clearField={() =>
+              dispatch({ type: "body_style_id", body_style_id: null })
+            }
+            Select={(i) => {
+              if (ErrorState.body_style_id) {
+                ErrorDispatch({
+                  type: "body_style_id",
+                  body_style_id: null,
                   error_message: "",
                 });
               }
-              dispatch({
-                type: "transmission_type_id",
-                transmission_type_id: +i,
-              });
+              if (incompleteCarMode) incompleteInfo.body_style.name.fa = i.text;
+              dispatch({ type: "body_style_id", body_style_id: i.value });
             }}
-            defaultCheck={state.transmission_type_id}
-            data={[
-              {
-                label: "دنده دستی",
-                value: 2,
-              },
-              {
-                label: "دنده اتوماتیک",
-                value: 1,
-              },
-            ]}
           />
-        </div>
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.body_style_id}
-          label="نوع شاسی"
-          data={BodyStyleList}
-          disableSearch={true}
-          defaultVal={BodyStyleName}
-          clearField={() =>
-            dispatch({ type: "body_style_id", body_style_id: null })
-          }
-          Select={(i) => {
-            if (ErrorState.body_style_id) {
-              ErrorDispatch({
-                type: "body_style_id",
-                body_style_id: null,
-                error_message: "",
-              });
+        )}
+        {showCylinder && (
+          <DropdownSearch
+            InputDisable={true}
+            error_status={ErrorState.cylinder_id}
+            label="تعداد سیلندر"
+            data={cylinderList}
+            disableSearch={true}
+            defaultVal={CylinderName}
+            clearField={() =>
+              dispatch({ type: "cylinder_id", cylinder_id: null })
             }
-            if (incompleteCarMode) incompleteInfo.body_style.name.fa = i.text;
-            dispatch({ type: "body_style_id", body_style_id: i.value });
-          }}
-        />
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.cylinder_id}
-          label="تعداد سیلندر"
-          data={cylinderList}
-          disableSearch={true}
-          defaultVal={CylinderName}
-          clearField={() =>
-            dispatch({ type: "cylinder_id", cylinder_id: null })
-          }
-          Select={(i) => {
-            if (ErrorState.cylinder_id) {
-              ErrorDispatch({
-                type: "cylinder_id",
-                cylinder_id: null,
-                error_message: "",
-              });
-            }
-            if (incompleteCarMode) incompleteInfo.cylinder.name.fa = i.text;
-            dispatch({ type: "cylinder_id", cylinder_id: i.value });
-          }}
-        />
-        <DropdownSearch
-          InputDisable={true}
-          error_status={ErrorState.capacity}
-          label="ظرفیت خودرو"
-          data={capacityList}
-          disableSearch={true}
-          defaultVal={state.capacity}
-          clearField={() => dispatch({ type: "capacity", capacity: null })}
-          Select={(i) => {
-            if (ErrorState.capacity) {
-              ErrorDispatch({
-                type: "capacity",
-                capacity: null,
-                error_message: "",
-              });
-            }
-            dispatch({ type: "capacity", capacity: i.value });
-          }}
-        />
+            Select={(i) => {
+              if (ErrorState.cylinder_id) {
+                ErrorDispatch({
+                  type: "cylinder_id",
+                  cylinder_id: null,
+                  error_message: "",
+                });
+              }
+              if (incompleteCarMode) incompleteInfo.cylinder.name.fa = i.text;
+              dispatch({ type: "cylinder_id", cylinder_id: i.value });
+            }}
+          />
+        )}
+        {showCapacity && (
+          <DropdownSearch
+            InputDisable={true}
+            error_status={ErrorState.capacity}
+            label="ظرفیت خودرو"
+            data={capacityList}
+            disableSearch={true}
+            defaultVal={state.capacity}
+            clearField={() => dispatch({ type: "capacity", capacity: null })}
+            Select={(i) => {
+              if (ErrorState.capacity) {
+                ErrorDispatch({
+                  type: "capacity",
+                  capacity: null,
+                  error_message: "",
+                });
+              }
+              dispatch({ type: "capacity", capacity: i.value });
+            }}
+          />
+        )}
         <DropdownSearch
           InputDisable={true}
           error_status={ErrorState.mileage_range_id}
