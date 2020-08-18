@@ -45,10 +45,66 @@ import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading
  */
 const new_car = jsCookie.get("new_car");
 let autoFillStorageData = null;
+let incompleteCarMode = false;
+let incompleteInfo = {
+  id: null,
+  location: {
+    name: { fa: null },
+    parent_id: null,
+    id: null,
+  },
+  car: {
+    brand: {
+      id: null,
+      name: { fa: null },
+    },
+    id: null,
+    name: { fa: null },
+  },
+  year: {
+    id: null,
+    name: { fa: null },
+  },
+  transmission_type: {
+    id: null,
+  },
+  body_style: {
+    id: null,
+    name: { fa: null },
+  },
+  cylinder: {
+    id: null,
+    name: { fa: null },
+  },
+  capacity: null,
+  mileage_range: { id: null },
+  value: null,
+  registration_plate_first_part: null,
+  registration_plate_forth_part: null,
+  registration_plate_second_part: null,
+  registration_plate_third_part: null,
+  facility_set: [],
+  media_set: [],
+  color: {
+    code: null,
+    id: null,
+  },
+  description: null,
+  cancellation_policy: null,
+  price_per_day: null,
+  with_driver: false,
+  extra_km_price: null,
+  max_km_per_day: null,
+  days_to_get_reminded: 1,
+  deliver_at_renters_place: false,
+  is_out_of_service: true,
+  min_days_to_rent: 1,
+};
 
 const stateReducer = (current, action) => {
   switch (action.type) {
     case "id":
+      if (incompleteCarMode) incompleteInfo.id = action.id;
       return { ...current, id: action.id };
     /**
      * @location_id
@@ -57,39 +113,64 @@ const stateReducer = (current, action) => {
      * check the parent id of incaming data
      */
     case "location_id":
+      if (incompleteCarMode) incompleteInfo.location.id = action.location_id;
       return { ...current, location_id: action.location_id };
     case "car_id":
+      if (incompleteCarMode) incompleteInfo.car.id = action.car_id;
       return { ...current, car_id: action.car_id };
     case "year_id":
+      if (incompleteCarMode) incompleteInfo.year.id = action.year_id;
       return { ...current, year_id: action.year_id };
     case "transmission_type_id":
+      if (incompleteCarMode)
+        incompleteInfo.transmission_type.id = action.transmission_type_id;
       return { ...current, transmission_type_id: action.transmission_type_id };
     case "body_style_id":
+      if (incompleteCarMode)
+        incompleteInfo.body_style.id = action.body_style_id;
       return { ...current, body_style_id: action.body_style_id };
     case "cylinder_id":
+      if (incompleteCarMode) incompleteInfo.cylinder.id = action.cylinder_id;
       return { ...current, cylinder_id: action.cylinder_id };
     case "capacity":
+      if (incompleteCarMode) incompleteInfo.capacity = action.capacity;
       return { ...current, capacity: action.capacity };
     case "mileage_range_id":
+      if (incompleteCarMode)
+        incompleteInfo.mileage_range.id = action.mileage_range_id;
       return { ...current, mileage_range_id: action.mileage_range_id };
     case "value":
+      if (incompleteCarMode) incompleteInfo.value = action.value;
       return { ...current, value: action.value };
     case "registration_plate_first_part":
+      if (incompleteCarMode)
+        incompleteInfo.registration_plate_first_part =
+          action.registration_plate_first_part;
       return {
         ...current,
         registration_plate_first_part: action.registration_plate_first_part,
       };
     case "registration_plate_second_part":
+      if (incompleteCarMode)
+        incompleteInfo.registration_plate_second_part =
+          action.registration_plate_second_part;
       return {
         ...current,
         registration_plate_second_part: action.registration_plate_second_part,
       };
     case "registration_plate_third_part":
+      if (incompleteCarMode)
+        incompleteInfo.registration_plate_third_part =
+          action.registration_plate_third_part;
+
       return {
         ...current,
         registration_plate_third_part: action.registration_plate_third_part,
       };
     case "registration_plate_forth_part":
+      if (incompleteCarMode)
+        incompleteInfo.registration_plate_forth_part =
+          action.registration_plate_forth_part;
       return {
         ...current,
         registration_plate_forth_part: action.registration_plate_forth_part,
@@ -99,17 +180,29 @@ const stateReducer = (current, action) => {
        * @facility_id
        * receive an id from the checkbox component and push that to the facilities ids list
        */
+      if (incompleteCarMode)
+        incompleteInfo.facility_set = incompleteInfo.facility_set.concat({
+          id: action.facility_id,
+        });
       return {
         ...current,
         facility_id: current.facility_id.concat(action.facility_id),
       };
     case "empty_facility_id":
+      if (incompleteCarMode)
+        incompleteInfo.facility_set = action.empty_facility_id;
       return {
         ...current,
         facility_id: action.empty_facility_id,
       };
     case "Remove_facility_id":
       // remove an id from list
+      if (incompleteCarMode)
+        incompleteInfo.facility_set = incompleteInfo.facility_set.filter(
+          (item) => {
+            return item !== action.remove_id;
+          }
+        );
       return {
         ...current,
         facility_id: current.facility_id.filter((item) => {
@@ -131,8 +224,10 @@ const stateReducer = (current, action) => {
         }),
       };
     case "color_id":
+      if (incompleteCarMode) incompleteInfo.color.id = action.color_id;
       return { ...current, color_id: action.color_id };
     case "description":
+      if (incompleteCarMode) incompleteInfo.description = action.description;
       return { ...current, description: action.description };
     case "deliver_at_renters_place":
       // default value is false
@@ -409,18 +504,58 @@ const Add_Car_Step_1 = () => {
   useEffect(() => {
     // check if the user edit the car
     if (Router.router.query.mode === "edit") {
+      localStorage.removeItem("incompleteInfo");
       getCarInfoToEdit(Router.router.query.car_id);
-    }
-    if (!new_car && !Router.router.query.mode && localStorage["car_info"]) {
+    } else if(jsCookie.get("new_car")){
+      localStorage.removeItem("incompleteInfo");
+    }else if (
+      !new_car &&
+      !Router.router.query.mode &&
+      localStorage["incompleteInfo"]
+    ) {
+      incompleteCarMode = true;
+      incompleteInfo = JSON.parse(localStorage["incompleteInfo"]);
+      if (!incompleteInfo.car.brand.id) {
+        if (localStorage["car_info"]) {
+          let data = JSON.parse(localStorage["car_info"]);
+          incompleteInfo.car = {
+            brand: {
+              id: data.brand.value,
+              name: { fa: data.brand.text },
+            },
+            id: data.model.value,
+            name: { fa: data.model.text },
+          };
+          incompleteInfo.value = data.value;
+        }
+      }
+      localStorage.removeItem("car_info");
+      SetCar(incompleteInfo);
+    } else if (
+      !new_car &&
+      !Router.router.query.mode &&
+      localStorage["car_info"]
+    ) {
       autoFillStorageData = JSON.parse(localStorage["car_info"]);
     }
+
     getInitials();
+    return () => {
+      if (!Router.router.query.mode && !new_car) {
+        localStorage["incompleteInfo"] = JSON.stringify(incompleteInfo);
+      } else {
+        localStorage.removeItem("incompleteInfo");
+      }
+      incompleteCarMode = false;
+      autoFillStorageData = false;
+    };
   }, []);
 
   useEffect(() => {
     const new_car = jsCookie.get("new_car");
     // if a user has a incomplete car and it's not edit mode
     if (new_car && !Router.router.query.mode) {
+      localStorage.removeItem("incompleteInfo");
       getCarInfoToEdit(new_car);
     }
   }, [new_car]);
@@ -439,87 +574,109 @@ const Add_Car_Step_1 = () => {
 
   const SetCar = (car) => {
     // SET CAR ID
-    dispatch({ type: "id", id: car.id });
+    if (car.id) dispatch({ type: "id", id: car.id });
 
     // SET CAR LOCATION AND DISTRICT
-    if (car.location.parent_id === 1) {
-      setLocationName("تهران");
-      // if the location parent is the Tehran's id show the district part
-      setShowDistrict(true);
-      dispatch({ type: "location_id", location_id: car.location.id });
-      setDistrictName(car.location.name.fa);
-    } else {
-      // If user select other than Tehran the message about out of support will show up under the Drop-down
-      setLocationName(car.location.name.fa);
-      setShowDistrict(false);
-      dispatch({ type: "location_id", location_id: car.location.id });
+    if (car.location.id) {
+      if (car.location.parent_id === 1) {
+        setLocationName("تهران");
+        // if the location parent is the Tehran's id show the district part
+        setShowDistrict(true);
+        getDistricts(1);
+        dispatch({ type: "location_id", location_id: car.location.id });
+        setDistrictName(car.location.name.fa);
+      } else {
+        // If user select other than Tehran the message about out of support will show up under the Drop-down
+        setLocationName(car.location.name.fa);
+        setShowDistrict(false);
+        dispatch({ type: "location_id", location_id: car.location.id });
+      }
     }
 
     // SET CAR MODEL
-    setBrand_id(car.car.brand.id);
-    setBrand_Name(car.car.brand.name.fa);
-    getModelList(car.car.brand.id);
-    dispatch({ type: "car_id", car_id: car.car.id });
-    setCarModelName(car.car.name.fa);
+    if (car.car.brand.id) {
+      setBrand_id(car.car.brand.id);
+      setBrand_Name(car.car.brand.name.fa);
+      getModelList(car.car.brand.id);
+      if (incompleteCarMode && !incompleteInfo.transmission_type.id) {
+        getBrandInfo(car.car.id);
+      }
+      dispatch({ type: "car_id", car_id: car.car.id });
+      setCarModelName(car.car.name.fa);
+    }
 
     // SET YEAR
-    dispatch({ type: "year_id", year_id: car.year.id });
-    setYearName(car.year.name.fa);
+    if (car.year.id) {
+      dispatch({ type: "year_id", year_id: car.year.id });
+      setYearName(car.year.name.fa);
+    }
 
     // SET TRANSMISSION
-    dispatch({
-      type: "transmission_type_id",
-      transmission_type_id: car.transmission_type.id,
-    });
+    if (car.transmission_type.id)
+      dispatch({
+        type: "transmission_type_id",
+        transmission_type_id: car.transmission_type.id,
+      });
 
     // SET BODY STYLE
-    dispatch({
-      type: "body_style_id",
-      body_style_id: car.body_style.id,
-    });
-    setBodyStyleName(car.body_style.name.fa);
+    if (car.body_style.id) {
+      dispatch({
+        type: "body_style_id",
+        body_style_id: car.body_style.id,
+      });
+      setBodyStyleName(car.body_style.name.fa);
+    }
 
     // SET CYLINDER
-    dispatch({
-      type: "cylinder_id",
-      cylinder_id: car.cylinder.id,
-    });
-    setCylinderName(car.cylinder.name.fa);
+    if (car.cylinder.id) {
+      dispatch({
+        type: "cylinder_id",
+        cylinder_id: car.cylinder.id,
+      });
+      setCylinderName(car.cylinder.name.fa);
+    }
 
     // SET CAPACITY
-    dispatch({ type: "capacity", capacity: car.capacity });
+    if (car.capacity) dispatch({ type: "capacity", capacity: car.capacity });
 
     // SET MILE RANGE
-    dispatch({
-      type: "mileage_range_id",
-      mileage_range_id: car.mileage_range.id,
-    });
+    if (car.mileage_range.id)
+      dispatch({
+        type: "mileage_range_id",
+        mileage_range_id: car.mileage_range.id,
+      });
 
     // SET CAR VALUE
-    dispatch({
-      type: "value",
-      value: car.value,
-    });
+    if (car.value)
+      dispatch({
+        type: "value",
+        value: car.value,
+      });
 
     // SET PELAK VALUES
-    dispatch({
-      type: "registration_plate_first_part",
-      registration_plate_first_part: car.registration_plate_first_part,
-    });
-    dispatch({
-      type: "registration_plate_second_part",
-      registration_plate_second_part: car.registration_plate_second_part,
-    });
-    dispatch({
-      type: "registration_plate_third_part",
-      registration_plate_third_part: car.registration_plate_third_part,
-    });
-    dispatch({
-      type: "registration_plate_forth_part",
-      registration_plate_forth_part: car.registration_plate_forth_part,
-    });
+    if (car.registration_plate_first_part)
+      dispatch({
+        type: "registration_plate_first_part",
+        registration_plate_first_part: car.registration_plate_first_part,
+      });
+    if (car.registration_plate_second_part)
+      dispatch({
+        type: "registration_plate_second_part",
+        registration_plate_second_part: car.registration_plate_second_part,
+      });
+    if (car.registration_plate_third_part)
+      dispatch({
+        type: "registration_plate_third_part",
+        registration_plate_third_part: car.registration_plate_third_part,
+      });
+    if (car.registration_plate_forth_part)
+      dispatch({
+        type: "registration_plate_forth_part",
+        registration_plate_forth_part: car.registration_plate_forth_part,
+      });
 
     // SET FACILITIES
+
     if (car.facility_set.length > 0) {
       car.facility_set.forEach((item) => {
         dispatch({ type: "facility_id", facility_id: item.id });
@@ -527,25 +684,29 @@ const Add_Car_Step_1 = () => {
     } else dispatch({ type: "empty_facility_id", empty_facility_id: [] });
 
     // SET IMAGE UPLOADED
-    car.media_set.forEach((item) => {
-      dispatch({
-        type: "media_id",
-        media_id: item.id,
+    if (car.media_set.length > 0) {
+      car.media_set.forEach((item) => {
+        dispatch({
+          type: "media_id",
+          media_id: item.id,
+        });
+        setInitialImage((InitialImage) =>
+          InitialImage.concat({
+            img: item.thumbnail_url,
+            id: item.id,
+          })
+        );
       });
-      setInitialImage((InitialImage) =>
-        InitialImage.concat({
-          img: item.thumbnail_url,
-          id: item.id,
-        })
-      );
-    });
+    }
 
     // SET COLOR
-    dispatch({
-      type: "color_id",
-      color_id: car.color.id,
-    });
-    setColorCode(car.color.code);
+    if (car.color.id) {
+      dispatch({
+        type: "color_id",
+        color_id: car.color.id,
+      });
+      setColorCode(car.color.code);
+    }
 
     // SET DESCRIPTION
     dispatch({
@@ -639,6 +800,7 @@ const Add_Car_Step_1 = () => {
          * if we are in edit mode go to profile
          */
         localStorage.removeItem("car_info");
+        localStorage.removeItem("incompleteInfo");
         localStorage["red_dot"] = 1;
         if (Router.router.query.mode === "edit") {
           Router.push(`/user/${user_id}`);
@@ -917,6 +1079,7 @@ const Add_Car_Step_1 = () => {
 
       // Set cylinder
       if (model_info_res.cylinder) {
+        incompleteInfo.cylinder.name.fa = model_info_res.cylinder.name.fa;
         dispatch({
           type: "cylinder_id",
           cylinder_id: model_info_res.cylinder.id,
@@ -933,6 +1096,7 @@ const Add_Car_Step_1 = () => {
 
       // Set body-Style
       if (model_info_res.body_style) {
+        incompleteInfo.body_style.name.fa = model_info_res.body_style.name.fa;
         dispatch({
           type: "body_style_id",
           body_style_id: model_info_res.body_style.id,
@@ -982,9 +1146,14 @@ const Add_Car_Step_1 = () => {
                 error_message: "",
               });
             }
-            if (i.value === 1) setShowDistrict(true);
-            else {
+            if (i.value === 1) {
+              incompleteInfo.location.parent_id = 1;
+              incompleteInfo.location.name.fa = null;
+              setShowDistrict(true);
+            } else {
               // if user select rather then Tehran save city name to show it in message
+              incompleteInfo.location.parent_id = null;
+              incompleteInfo.location.name.fa = i.text;
               setLocationName(i.text);
               setShowDistrict(false);
             }
@@ -1020,6 +1189,8 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
+              incompleteInfo.location.parent_id = 1;
+              incompleteInfo.location.name.fa = i.text;
               dispatch({ type: "location_id", location_id: i.value });
             }}
           />
@@ -1053,6 +1224,8 @@ const Add_Car_Step_1 = () => {
               clearRelativeToModel();
               setBrand_id(i.value);
               getModelList(i.value);
+              incompleteInfo.car.brand.name.fa = i.text;
+              incompleteInfo.car.brand.id = i.value;
             }}
           />
           <DropdownSearch
@@ -1072,6 +1245,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
+              incompleteInfo.car.name.fa = i.text;
               clearRelativeToModel();
               getBrandInfo(i.value);
               dispatch({ type: "car_id", car_id: i.value });
@@ -1093,6 +1267,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
+              incompleteInfo.year.name.fa = i.text;
               dispatch({ type: "year_id", year_id: i.value });
             }}
           />
@@ -1153,6 +1328,7 @@ const Add_Car_Step_1 = () => {
                 error_message: "",
               });
             }
+            incompleteInfo.body_style.name.fa = i.text;
             dispatch({ type: "body_style_id", body_style_id: i.value });
           }}
         />
@@ -1174,6 +1350,7 @@ const Add_Car_Step_1 = () => {
                 error_message: "",
               });
             }
+            incompleteInfo.cylinder.name.fa = i.text;
             dispatch({ type: "cylinder_id", cylinder_id: i.value });
           }}
         />
@@ -1477,6 +1654,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
+              incompleteInfo.color.code = i.code;
               dispatch({
                 type: "color_id",
                 color_id: i.value,
