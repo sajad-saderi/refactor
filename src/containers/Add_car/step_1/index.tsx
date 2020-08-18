@@ -506,9 +506,9 @@ const Add_Car_Step_1 = () => {
     if (Router.router.query.mode === "edit") {
       localStorage.removeItem("incompleteInfo");
       getCarInfoToEdit(Router.router.query.car_id);
-    } else if(jsCookie.get("new_car")){
+    } else if (jsCookie.get("new_car")) {
       localStorage.removeItem("incompleteInfo");
-    }else if (
+    } else if (
       !new_car &&
       !Router.router.query.mode &&
       localStorage["incompleteInfo"]
@@ -537,8 +537,9 @@ const Add_Car_Step_1 = () => {
       localStorage["car_info"]
     ) {
       autoFillStorageData = JSON.parse(localStorage["car_info"]);
+    } else {
+      incompleteCarMode = true;
     }
-
     getInitials();
     return () => {
       if (!Router.router.query.mode && !new_car) {
@@ -1147,13 +1148,17 @@ const Add_Car_Step_1 = () => {
               });
             }
             if (i.value === 1) {
-              incompleteInfo.location.parent_id = 1;
-              incompleteInfo.location.name.fa = null;
+              if (incompleteCarMode) {
+                incompleteInfo.location.parent_id = 1;
+                incompleteInfo.location.name.fa = null;
+              }
               setShowDistrict(true);
             } else {
               // if user select rather then Tehran save city name to show it in message
-              incompleteInfo.location.parent_id = null;
-              incompleteInfo.location.name.fa = i.text;
+              if (incompleteCarMode) {
+                incompleteInfo.location.parent_id = null;
+                incompleteInfo.location.name.fa = i.text;
+              }
               setLocationName(i.text);
               setShowDistrict(false);
             }
@@ -1189,8 +1194,10 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
-              incompleteInfo.location.parent_id = 1;
-              incompleteInfo.location.name.fa = i.text;
+              if (incompleteCarMode) {
+                incompleteInfo.location.parent_id = 1;
+                incompleteInfo.location.name.fa = i.text;
+              }
               dispatch({ type: "location_id", location_id: i.value });
             }}
           />
@@ -1224,8 +1231,10 @@ const Add_Car_Step_1 = () => {
               clearRelativeToModel();
               setBrand_id(i.value);
               getModelList(i.value);
-              incompleteInfo.car.brand.name.fa = i.text;
-              incompleteInfo.car.brand.id = i.value;
+              if (incompleteCarMode) {
+                incompleteInfo.car.brand.name.fa = i.text;
+                incompleteInfo.car.brand.id = i.value;
+              }
             }}
           />
           <DropdownSearch
@@ -1245,7 +1254,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
-              incompleteInfo.car.name.fa = i.text;
+              if (incompleteCarMode) incompleteInfo.car.name.fa = i.text;
               clearRelativeToModel();
               getBrandInfo(i.value);
               dispatch({ type: "car_id", car_id: i.value });
@@ -1267,7 +1276,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
-              incompleteInfo.year.name.fa = i.text;
+              if (incompleteCarMode) incompleteInfo.year.name.fa = i.text;
               dispatch({ type: "year_id", year_id: i.value });
             }}
           />
@@ -1328,7 +1337,7 @@ const Add_Car_Step_1 = () => {
                 error_message: "",
               });
             }
-            incompleteInfo.body_style.name.fa = i.text;
+            if (incompleteCarMode) incompleteInfo.body_style.name.fa = i.text;
             dispatch({ type: "body_style_id", body_style_id: i.value });
           }}
         />
@@ -1350,7 +1359,7 @@ const Add_Car_Step_1 = () => {
                 error_message: "",
               });
             }
-            incompleteInfo.cylinder.name.fa = i.text;
+            if (incompleteCarMode) incompleteInfo.cylinder.name.fa = i.text;
             dispatch({ type: "cylinder_id", cylinder_id: i.value });
           }}
         />
@@ -1654,7 +1663,7 @@ const Add_Car_Step_1 = () => {
                   error_message: "",
                 });
               }
-              incompleteInfo.color.code = i.code;
+              if (incompleteCarMode) incompleteInfo.color.code = i.code;
               dispatch({
                 type: "color_id",
                 color_id: i.value,
