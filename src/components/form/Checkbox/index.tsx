@@ -24,7 +24,9 @@ const Checkbox = (props: ICheckbox) => {
           <Spinner display="block" width={21} color="#9E9E9E" />
         </div>
       ) : (
-        <div className="check_box_container">
+        <div
+          className={["check_box_container", props.custom_className].join(" ")}
+        >
           {Data.map((i, index) => (
             <label className="container" key={index} data-test-id="container">
               {i.text}
@@ -91,6 +93,11 @@ interface ICheckbox {
    *  default values
    */
   initialValue?: any;
+  /**
+   * @custom_className
+   * add a custom class to the main container
+   */
+  custom_className?: string;
 }
 
 export default Checkbox;

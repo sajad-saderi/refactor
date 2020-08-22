@@ -46,11 +46,59 @@
         }
       }
     }
-    .check_box_container {
-      .container {
-        margin-bottom: 2rem;
-        font-weight: 300;
-        color: $grey_color;
+    .facilities_container {
+      background-color: #fafafa;
+      margin-bottom: 2rem;
+      position: relative;
+      .check_box_container {
+        padding: 1rem;
+        .container {
+          margin-bottom: 2rem;
+          font-weight: 400;
+          color: $grey_color;
+          .checkmark{
+            background-color: #ffffff;
+          }
+        }
+      }
+      .gradient_transparent {
+        height: 15rem;
+        background: rgb(241, 241, 241);
+        background: linear-gradient(
+          0deg,
+          rgba(241, 241, 241, 1) 0%,
+          rgba(241, 241, 241, 0.7) 66%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+      .show_partial_facilities {
+        height: 20rem;
+        overflow: hidden;
+      }
+      .show_more_facilities_button {
+        width: 14rem;
+        border: 1px solid $main__color;
+        border-radius: 25px;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 3.5rem;
+        margin: auto;
+        cursor: pointer;
+        color: $main__color;
+        padding: 0.5rem 3rem 0.5rem 0;
+        svg {
+          width: 2rem;
+          position: absolute;
+          left: 1rem;
+          top: 0.6rem;
+        }
       }
     }
     .extra_text {
@@ -116,75 +164,78 @@
     .pelak_container {
       position: relative;
       margin-bottom: 2rem;
-      .pelak_input {
-        position: absolute;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        width: 300px;
-        top: 0;
-        right: 0;
-        .pelak_input_box_controller {
-          position: relative;
-          .Fourth_part_pelak {
-            position: absolute;
-            top: 15px;
-            right: 10px;
-            input {
-              height: 39px;
-              text-align: center;
-            }
-          }
-          .Third_part_pelak {
-            position: absolute;
-            top: 3px;
-            right: 83px;
-            input {
-              padding: 0;
-              text-align: center;
-              height: 51px;
-            }
-          }
-          .Second_part_pelak {
-            position: absolute;
-            top: 24px;
-            right: 144px;
-            width: 5rem;
-            input {
-              height: 51px;
-              text-align: center;
-              font-size: 1.6rem;
-              font-weight: 500;
-            }
-            .resultList{
-              .Items{
-                padding: 1rem 0;
+      .license_palte_container {
+        position: relative;
+        .pelak_input {
+          position: absolute;
+          // display: flex;
+          // justify-content: center;
+          // align-items: center;
+          width: 300px;
+          top: 0;
+          right: 0;
+          .pelak_input_box_controller {
+            position: relative;
+            .Fourth_part_pelak {
+              position: absolute;
+              top: -3px;
+              right: 10px;
+              input {
+                height: 39px;
+                text-align: center;
               }
             }
-          }
-          .First_part_pelak {
-            position: absolute;
-            width: 5rem;
-            left: 45px;
-            top: 3px;
-            input {
-              padding: 0;
-              text-align: center;
-              height: 51px;
+            .Third_part_pelak {
+              position: absolute;
+              top: -17px;
+              right: 83px;
+              input {
+                padding: 0;
+                text-align: center;
+                height: 51px;
+              }
             }
-          }
-          .text_input_container {
-            position: absolute;
-            label {
-              color: transparent;
+            .Second_part_pelak {
+              position: absolute;
+              top: 4px;
+              right: 144px;
+              width: 5rem;
+              input {
+                height: 51px;
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: 500;
+              }
+              .resultList {
+                .Items {
+                  padding: 1rem 0;
+                }
+              }
             }
-            width: 5rem;
+            .First_part_pelak {
+              position: absolute;
+              width: 5rem;
+              left: 45px;
+              top: -17px;
+              input {
+                padding: 0;
+                text-align: center;
+                height: 51px;
+              }
+            }
+            .text_input_container {
+              position: absolute;
+              label {
+                color: transparent;
+              }
+              width: 5rem;
+            }
           }
         }
       }
     }
     .colorPicker_container {
-      width: 18rem;
+      width: 24rem;
       .DropDown_container {
         .Locations_list_container {
           p {
@@ -233,7 +284,7 @@
     max-width: 68rem;
     .add_car_form_step_1 {
       box-shadow: none;
-      padding: 1.6rem 0;
+      padding: 0;
       background-color: transparent;
       .DropDown_container,
       .radio_father,
@@ -253,10 +304,12 @@
 @media screen and(max-width:575px) {
   .add_car_form_container {
     .add_car_form_step_1 {
-      .check_box_container {
-        .container {
-          width: 50%;
-          font-weight: 400;
+      .facilities_container {
+        .check_box_container {
+          .container {
+            width: 50%;
+            font-weight: 400;
+          }
         }
       }
     }
@@ -264,60 +317,81 @@
 }
 @media screen and(max-width:480px) {
   .add_car_form_container {
+    .pageTitle {
+      text-align: center;
+      .car_icon {
+        display: none;
+      }
+      h3 {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 0;
+      }
+    }
     .add_car_form_step_1 {
+      .form_title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
       .pelak_container {
-        .pelak_input {
-          position: absolute;
-          width: 240px;
-          top: 0;
-          right: 0;
-          .pelak_input_box_controller {
-            position: relative;
-            .Fourth_part_pelak {
-              top: 13px;
-              right: 8px;
-              input {
-                height: 30px;
-                font-size: 1.6rem;
+        .license_palte_container {
+          .pelak_input {
+            position: absolute;
+            width: 240px;
+            top: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            .pelak_input_box_controller {
+              position: relative;
+              .Fourth_part_pelak {
+                top: -7px;
+                right: 8px;
+                input {
+                  height: 30px;
+                  font-size: 1.6rem;
+                }
               }
-            }
-            .Third_part_pelak {
-              top: 0px;
-              right: 65px;
-              input {
-                height: 42px;
-                font-size: 1.6rem;
+              .Third_part_pelak {
+                top: -19px;
+                right: 65px;
+                input {
+                  height: 42px;
+                  font-size: 1.6rem;
+                }
               }
-            }
-            .Second_part_pelak {
-              top: 21px;
-              right: 112px;
-              width: 5rem;
-              input {
-                height: 42px;
-                font-size: 1.6rem;
-                font-weight: 500;
+              .Second_part_pelak {
+                top: 2px;
+                right: 112px;
+                width: 5rem;
+                input {
+                  height: 42px;
+                  font-size: 1.6rem;
+                  font-weight: 500;
+                }
               }
-            }
-            .First_part_pelak {
-              width: 5rem;
-              left: 21px;
-              top: 0px;
-              input {
-                height: 42px;
+              .First_part_pelak {
+                width: 5rem;
+                left: 21px;
+                top: -19px;
+                input {
+                  height: 42px;
+                }
               }
-            }
-            .text_input_container {
-              position: absolute;
-              label {
-                color: transparent;
+              .text_input_container {
+                position: absolute;
+                label {
+                  color: transparent;
+                }
+                width: 4rem;
               }
-              width: 4rem;
             }
           }
-        }
-        img {
-          height: 52px;
+          img {
+            margin: auto;
+            display: block;
+            height: 52px;
+          }
         }
       }
     }

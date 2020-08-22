@@ -16,14 +16,14 @@
   color: rgb(189, 189, 189);
   cursor: pointer;
   flex: 1 1 0%;
-  padding: 2rem 4rem;
+  padding: 2rem;
   border-width: 2px;
   border-color: rgb(238, 238, 238);
   border-style: dashed;
   outline: none;
   transition: border 0.24s ease-in-out 0s;
   border-radius: 0.4rem;
-  p {
+  .uploadText {
     line-height: 2;
     text-align: justify;
     color: #8f8f8f;
@@ -33,25 +33,52 @@
     opacity: 0.06;
     margin-top: 2rem;
   }
-}
-.Image_box {
-  margin-bottom: 2rem;
-  .Each_image {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 0.8rem;
-    img {
-      width: 10rem;
+  .gallery_button {
+    display: none;
+  }
+  .Image_box {
+    margin-top: 2rem;
+    .Each_image {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 0.8rem;
+      img {
+        width: 10rem;
+        border-radius: 4px;
+        border: 1px solid #bdbdbd;
+      }
+      svg {
+        cursor: pointer;
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        background: #fff;
+        border-radius: 4px;
+        width: 2rem;
+      }
     }
-    svg {
-      cursor: pointer;
-      position: absolute;
-      top: 0.6rem;
-      right: 0.6rem;
-      background: #fff;
+  }
+  .Loading {
+    margin: 3rem;
+  }
+}
+
+@media screen and(max-width:720px) {
+  .drop_zone {
+    .vector_car_upload {
+      margin-top: 0;
+    }
+    .uploadText {
+      display: none;
+    }
+    .gallery_button {
+      display: block;
+      border: 1px solid $main__color;
       border-radius: 4px;
-      width: 2rem;
+      padding: 0.5rem 1.8rem;
+      color: $main__color;
+      margin-top: 2rem;
     }
   }
 }

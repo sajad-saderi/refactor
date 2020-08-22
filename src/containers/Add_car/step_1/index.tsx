@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { IoIosCar } from "react-icons/io";
+import { IoIosCar, IoIosArrowDown } from "react-icons/io";
 // import "./step_1.scss";
 import DropdownSearch from "../../../components/form/Dropdown";
 import {
@@ -454,6 +454,7 @@ const Add_Car_Step_1 = () => {
   const [showBodyStyle, setShowBodyStyle] = useState(false);
   const [showCylinder, setShowCylinder] = useState(false);
   const [showCapacity, setShowCapacity] = useState(false);
+  const [showMoreFacilities, setShowMoreFacilities] = useState(false);
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
     location_id: null,
@@ -1140,13 +1141,13 @@ const Add_Car_Step_1 = () => {
         className="add_car_form_step_1"
         onSubmit={(e) => submitHandler(e, state)}
       >
-        <p className="extra_text">
-          مشخصات خودرو را با مطابق با مدارک آن پر کنید.{" "}
+        <p className="extra_text form_title">
+          مشخصات خودرو را با مطابق با مدارک آن پر کنید.
         </p>
         <DropdownSearch
           InputDisable={true}
           error_status={!showDistrict ? ErrorState.location_id : false}
-          label="ماشین شما کجاست؟"
+          label="ماشین شما کجاست؟ (شهر)"
           search_place_holder="در نام شهرها"
           data={locationList}
           defaultVal={locationName}
@@ -1257,7 +1258,7 @@ const Add_Car_Step_1 = () => {
             error_status={ErrorState.car_id}
             disabled={!Brand_id ? true : false}
             defaultVal={CarModelName}
-            label="نام مدل"
+            label="مدل"
             search_place_holder="در نام مدل‌ها"
             data={ModelList}
             clearField={() => dispatch({ type: "car_id", car_id: null })}
@@ -1476,144 +1477,146 @@ const Add_Car_Step_1 = () => {
         </div>
         <div className="pelak_container">
           <label>پلاک خودرو</label>
-          <img src={pelak} alt="تصویر پلاک" />
           <p className="extra_text">
             پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در
             نتایج جستجو نمایش داده نمی‌شود.
           </p>
-          <div className="pelak_input">
-            <div className="pelak_input_box_controller">
-              <div className="Fourth_part_pelak">
-                <TextInput
-                  label="4"
-                  name="registration_plate_forth_part"
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_forth_part",
-                      registration_plate_forth_part: "",
-                    })
-                  }
-                  HideClearIcon={true}
-                  onChangeHandler={(e) => {
-                    if (ErrorState.registration_plate_forth_part) {
-                      ErrorDispatch({
+          <div className="license_palte_container">
+            <img src={pelak} alt="تصویر پلاک" />
+            <div className="pelak_input">
+              <div className="pelak_input_box_controller">
+                <div className="Fourth_part_pelak">
+                  <TextInput
+                    label="4"
+                    name="registration_plate_forth_part"
+                    clearField={() =>
+                      dispatch({
                         type: "registration_plate_forth_part",
-                        registration_plate_forth_part: null,
-                        error_message: "",
-                      });
+                        registration_plate_forth_part: "",
+                      })
                     }
-                    dispatch({
-                      type: "registration_plate_forth_part",
-                      registration_plate_forth_part: e,
-                    });
-                  }}
-                  min={2}
-                  max={2}
-                  autoFocus={false}
-                  value={state.registration_plate_forth_part}
-                  error={{
-                    status: ErrorState.registration_plate_forth_part,
-                    message: "",
-                  }}
-                />
-              </div>
-              <div className="Third_part_pelak">
-                <TextInput
-                  label="3"
-                  name="registration_plate_third_part"
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_third_part",
-                      registration_plate_third_part: "",
-                    })
-                  }
-                  min={3}
-                  max={3}
-                  HideClearIcon={true}
-                  autoFocus={false}
-                  value={state.registration_plate_third_part}
-                  error={{
-                    status: ErrorState.registration_plate_third_part,
-                    message: "",
-                  }}
-                  onChangeHandler={(e) => {
-                    if (ErrorState.registration_plate_third_part) {
-                      ErrorDispatch({
+                    HideClearIcon={true}
+                    onChangeHandler={(e) => {
+                      if (ErrorState.registration_plate_forth_part) {
+                        ErrorDispatch({
+                          type: "registration_plate_forth_part",
+                          registration_plate_forth_part: null,
+                          error_message: "",
+                        });
+                      }
+                      dispatch({
+                        type: "registration_plate_forth_part",
+                        registration_plate_forth_part: e,
+                      });
+                    }}
+                    min={2}
+                    max={2}
+                    autoFocus={false}
+                    value={state.registration_plate_forth_part}
+                    error={{
+                      status: ErrorState.registration_plate_forth_part,
+                      message: "",
+                    }}
+                  />
+                </div>
+                <div className="Third_part_pelak">
+                  <TextInput
+                    label="3"
+                    name="registration_plate_third_part"
+                    clearField={() =>
+                      dispatch({
                         type: "registration_plate_third_part",
-                        registration_plate_third_part: null,
-                        error_message: "",
-                      });
+                        registration_plate_third_part: "",
+                      })
                     }
-                    dispatch({
-                      type: "registration_plate_third_part",
-                      registration_plate_third_part: e,
-                    });
-                  }}
-                />
-              </div>
-              <div className="Second_part_pelak">
-                <DropdownSearch
-                  InputDisable={true}
-                  error_status={ErrorState.registration_plate_second_part}
-                  data={PelakList}
-                  disableSearch={true}
-                  defaultVal={state.registration_plate_second_part}
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_second_part",
-                      registration_plate_second_part: null,
-                    })
-                  }
-                  Select={(i) => {
-                    if (ErrorState.registration_plate_second_part) {
-                      ErrorDispatch({
+                    min={3}
+                    max={3}
+                    HideClearIcon={true}
+                    autoFocus={false}
+                    value={state.registration_plate_third_part}
+                    error={{
+                      status: ErrorState.registration_plate_third_part,
+                      message: "",
+                    }}
+                    onChangeHandler={(e) => {
+                      if (ErrorState.registration_plate_third_part) {
+                        ErrorDispatch({
+                          type: "registration_plate_third_part",
+                          registration_plate_third_part: null,
+                          error_message: "",
+                        });
+                      }
+                      dispatch({
+                        type: "registration_plate_third_part",
+                        registration_plate_third_part: e,
+                      });
+                    }}
+                  />
+                </div>
+                <div className="Second_part_pelak">
+                  <DropdownSearch
+                    InputDisable={true}
+                    error_status={ErrorState.registration_plate_second_part}
+                    data={PelakList}
+                    disableSearch={true}
+                    defaultVal={state.registration_plate_second_part}
+                    clearField={() =>
+                      dispatch({
                         type: "registration_plate_second_part",
                         registration_plate_second_part: null,
-                        error_message: "",
-                      });
+                      })
                     }
-                    dispatch({
-                      type: "registration_plate_second_part",
-                      registration_plate_second_part: i.value,
-                    });
-                  }}
-                  hideArrowDown={true}
-                  hideClearField={true}
-                />
-              </div>
-              <div className="First_part_pelak">
-                <TextInput
-                  label="1"
-                  name="registration_plate_first_part"
-                  value={state.registration_plate_first_part}
-                  error={{
-                    status: ErrorState.registration_plate_first_part,
-                    message: "",
-                  }}
-                  min={2}
-                  max={2}
-                  HideClearIcon={true}
-                  clearField={() =>
-                    dispatch({
-                      type: "registration_plate_first_part",
-                      registration_plate_first_part: "",
-                    })
-                  }
-                  onChangeHandler={(e) => {
-                    if (ErrorState.registration_plate_first_part) {
-                      ErrorDispatch({
+                    Select={(i) => {
+                      if (ErrorState.registration_plate_second_part) {
+                        ErrorDispatch({
+                          type: "registration_plate_second_part",
+                          registration_plate_second_part: null,
+                          error_message: "",
+                        });
+                      }
+                      dispatch({
+                        type: "registration_plate_second_part",
+                        registration_plate_second_part: i.value,
+                      });
+                    }}
+                    hideArrowDown={true}
+                    hideClearField={true}
+                  />
+                </div>
+                <div className="First_part_pelak">
+                  <TextInput
+                    label="1"
+                    name="registration_plate_first_part"
+                    value={state.registration_plate_first_part}
+                    error={{
+                      status: ErrorState.registration_plate_first_part,
+                      message: "",
+                    }}
+                    min={2}
+                    max={2}
+                    HideClearIcon={true}
+                    clearField={() =>
+                      dispatch({
                         type: "registration_plate_first_part",
-                        registration_plate_first_part: null,
-                        error_message: "",
-                      });
+                        registration_plate_first_part: "",
+                      })
                     }
-                    dispatch({
-                      type: "registration_plate_first_part",
-                      registration_plate_first_part: e,
-                    });
-                  }}
-                  autoFocus={false}
-                />
+                    onChangeHandler={(e) => {
+                      if (ErrorState.registration_plate_first_part) {
+                        ErrorDispatch({
+                          type: "registration_plate_first_part",
+                          registration_plate_first_part: null,
+                          error_message: "",
+                        });
+                      }
+                      dispatch({
+                        type: "registration_plate_first_part",
+                        registration_plate_first_part: e,
+                      });
+                    }}
+                    autoFocus={false}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -1626,40 +1629,43 @@ const Add_Car_Step_1 = () => {
             ))}
           </div>
         ) : (
-          <Checkbox
-            initialValue={state.facility_id}
-            data={facilitesList}
-            name="facility_id"
-            clearField={(item) =>
-              dispatch({
-                type: "Remove_facility_id",
-                remove_id: item.value,
-              })
-            }
-            Select={(item) => {
-              dispatch({
-                type: "facility_id",
-                facility_id: item.value,
-              });
-            }}
-          />
+          <div className="facilities_container">
+            <Checkbox
+              custom_className={
+                showMoreFacilities ? "" : "show_partial_facilities"
+              }
+              initialValue={state.facility_id}
+              data={facilitesList}
+              name="facility_id"
+              clearField={(item) =>
+                dispatch({
+                  type: "Remove_facility_id",
+                  remove_id: item.value,
+                })
+              }
+              Select={(item) => {
+                dispatch({
+                  type: "facility_id",
+                  facility_id: item.value,
+                });
+              }}
+            />
+            {showMoreFacilities ? null : (
+              <>
+                <div className="gradient_transparent" />
+                <p
+                  onClick={() => {
+                    setShowMoreFacilities(true);
+                  }}
+                  className="show_more_facilities_button"
+                >
+                  نمایش همه
+                  <IoIosArrowDown size="2rem" color="#4ba3ce" />
+                </p>
+              </>
+            )}
+          </div>
         )}
-        <ImageUploader
-          Upload_image={(id) => {
-            dispatch({
-              type: "media_id",
-              media_id: id,
-            });
-          }}
-          error_status={ErrorState.media_id}
-          default_image={initialImage}
-          delete_image={(id) => {
-            dispatch({
-              type: "Remove_media_id",
-              Remove_media_id: id,
-            });
-          }}
-        />
         <div className="colorPicker_container">
           <DropdownSearch
             label="انتخاب رنگ"
@@ -1694,6 +1700,22 @@ const Add_Car_Step_1 = () => {
             }}
           />
         </div>
+        <ImageUploader
+          Upload_image={(id) => {
+            dispatch({
+              type: "media_id",
+              media_id: id,
+            });
+          }}
+          error_status={ErrorState.media_id}
+          default_image={initialImage}
+          delete_image={(id) => {
+            dispatch({
+              type: "Remove_media_id",
+              Remove_media_id: id,
+            });
+          }}
+        />
         <label>
           توضیحات<span> (اختیاری)</span>
         </label>

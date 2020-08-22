@@ -14,7 +14,7 @@ import carVector from "../../../public/image/car_vector.png";
  */
 import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
-import { IoMdTrash } from "react-icons/io";
+import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
 
 const ImageUploader = (props: IImageUpload) => {
@@ -95,38 +95,42 @@ const ImageUploader = (props: IImageUpload) => {
       </p>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
-        <p>
+        <p className="uploadText">
           جهت بارگذاری تصاویر خودرو اینجا کلیک کنید یا آن را داخل این کادر
           بیندازید.
         </p>
-        <img
-          className="vector_car_upload"
-          src={carVector}
-          alt="car vector image"
-        />
-      </div>
-      <div
-        // if the image is uploading the drop-zone will be unreachable
-        className={["Image_box", loading ? "loading_class" : null].join(" ")}
-      >
-        {loading ? (
+        {picturesPreview.length > 0 ? (
+          <div
+            // if the image is uploading the drop-zone will be unreachable
+            className={["Image_box", loading ? "loading_class" : null].join(
+              " "
+            )}
+            onClick={(e) => e.preventDefault()}
+          >
+            {picturesPreview.map((i, index) => {
+              return (
+                <div className="Each_image" key={index}>
+                  {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
+                  <IoIosClose
+                    size="2rem"
+                    onClick={() => RemoveAnImage(i.id)}
+                    color="#ea2d2d"
+                  />
+                  <img src={i.img} alt={i.id} />
+                </div>
+              );
+            })}
+          </div>
+        ) : loading ? (
           <Spinner display="block" width={20} color="#b5b5b5" />
         ) : (
-          picturesPreview.length > 0 &&
-          picturesPreview.map((i, index) => {
-            return (
-              <div className="Each_image" key={index}>
-                {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                <IoMdTrash
-                  size="2rem"
-                  onClick={() => RemoveAnImage(i.id)}
-                  color="#ea2d2d"
-                />
-                <img src={i.img} alt={i.id} />
-              </div>
-            );
-          })
+          <img
+            className="vector_car_upload"
+            src={carVector}
+            alt="car vector image"
+          />
         )}
+        <p className="gallery_button" >انتخاب از گالری</p>
       </div>
     </div>
   );
