@@ -91,7 +91,7 @@ const ImageUploader = (props: IImageUpload) => {
     <div ref={wrapperRef}>
       <label>تصاویر خودرو</label>
       <p className="image_upload_under_label">
-        عکس‌های باکیفیت و در زوایای مختلف جذابیت خودرو شما را بیشتر می‌کند.
+        عکس‌های باکیفیت و در زوایای مختلف احتمال اجاره را بیشتر می‌کند.
       </p>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
@@ -107,23 +107,25 @@ const ImageUploader = (props: IImageUpload) => {
             )}
             onClick={(e) => e.preventDefault()}
           >
+            {picturesPreview.map((i, index) => {
+              return (
+                <div
+                  className="Each_image"
+                  key={index}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    RemoveAnImage(i.id);
+                  }}
+                >
+                  {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
+                  <IoIosClose size="2rem" color="#ea2d2d" />
+                  <img src={i.img} alt={i.id} />
+                </div>
+              );
+            })}
             {loading ? (
-              <Spinner display="block" width={20} color="#b5b5b5" />
-            ) : (
-              picturesPreview.map((i, index) => {
-                return (
-                  <div
-                    className="Each_image"
-                    key={index}
-                    onClick={() => RemoveAnImage(i.id)}
-                  >
-                    {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                    <IoIosClose size="2rem" color="#ea2d2d" />
-                    <img src={i.img} alt={i.id} />
-                  </div>
-                );
-              })
-            )}
+              <Spinner display="inline-block" width={20} color="#b5b5b5" />
+            ) : null}
           </div>
         ) : loading ? (
           <Spinner display="block" width={20} color="#b5b5b5" />

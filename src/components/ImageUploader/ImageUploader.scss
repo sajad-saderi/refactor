@@ -38,11 +38,12 @@
   }
   .Image_box {
     margin-top: 2rem;
+    width: 100%;
     .Each_image {
       position: relative;
       display: inline-block;
       vertical-align: top;
-      margin: 0 0.8rem;
+      margin: 0 0 0 0.8rem;
       img {
         width: 10rem;
         border-radius: 4px;
@@ -71,6 +72,9 @@
     }
     .uploadText {
       display: none;
+    }
+    .Image_box {
+      margin-top: 0rem;
     }
     .gallery_button {
       display: block;
