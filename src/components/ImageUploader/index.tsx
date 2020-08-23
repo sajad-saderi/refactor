@@ -107,21 +107,25 @@ const ImageUploader = (props: IImageUpload) => {
             )}
             onClick={(e) => e.preventDefault()}
           >
-            {picturesPreview.map((i, index) => {
-              return (
-                <div className="Each_image" key={index}>
-                  {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                  <IoIosClose
-                    size="2rem"
+            {loading ? (
+              <Spinner display="block" width={20} color="#b5b5b5" />
+            ) : (
+              picturesPreview.map((i, index) => {
+                return (
+                  <div
+                    className="Each_image"
+                    key={index}
                     onClick={() => RemoveAnImage(i.id)}
-                    color="#ea2d2d"
-                  />
-                  <img src={i.img} alt={i.id} />
-                </div>
-              );
-            })}
+                  >
+                    {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
+                    <IoIosClose size="2rem" color="#ea2d2d" />
+                    <img src={i.img} alt={i.id} />
+                  </div>
+                );
+              })
+            )}
           </div>
-        ) : loading ? (
+        ) : !loading ? (
           <Spinner display="block" width={20} color="#b5b5b5" />
         ) : (
           <img
@@ -130,7 +134,7 @@ const ImageUploader = (props: IImageUpload) => {
             alt="car vector image"
           />
         )}
-        <p className="gallery_button" >انتخاب از گالری</p>
+        <p className="gallery_button">انتخاب از گالری</p>
       </div>
     </div>
   );
