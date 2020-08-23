@@ -125,7 +125,7 @@ const ImageUploader = (props: IImageUpload) => {
               })
             )}
           </div>
-        ) : !loading ? (
+        ) : loading ? (
           <Spinner display="block" width={20} color="#b5b5b5" />
         ) : (
           <img

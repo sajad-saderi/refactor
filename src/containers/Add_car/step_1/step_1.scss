@@ -30,7 +30,7 @@
     .DropDown_container,
     .radio_father,
     .text_input_container {
-      margin: 0 0 2rem;
+      margin: 0 0 3rem;
     }
     .radio_father {
       .radio_container {
@@ -48,33 +48,33 @@
     }
     .facilities_container {
       background-color: #fafafa;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       position: relative;
       .check_box_container {
         padding: 1rem;
         .container {
-          margin-bottom: 2rem;
+          margin-bottom: 2.2rem;
           font-weight: 400;
           color: $grey_color;
-          .checkmark{
+          .checkmark {
             background-color: #ffffff;
           }
         }
       }
       .gradient_transparent {
-        height: 15rem;
-        background: rgb(241, 241, 241);
-        background: linear-gradient(
-          0deg,
-          rgba(241, 241, 241, 1) 0%,
-          rgba(241, 241, 241, 0.7) 66%,
-          rgba(255, 255, 255, 0.1) 100%
-        );
+        height: 13rem;
         position: absolute;
         bottom: 0;
         right: 0;
         left: 0;
         margin: auto;
+        background: rgb(250, 250, 250);
+        background: linear-gradient(
+          0deg,
+          rgba(250, 250, 250, 1) 0%,
+          rgba(250, 250, 250, 0.95) 65%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
       }
       .show_partial_facilities {
         height: 20rem;
@@ -110,14 +110,14 @@
     label {
       font-weight: 500;
       font-size: 1.4rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       display: block;
       span {
         color: #bfbfbf;
       }
     }
     .add_car_Facilities_label {
-      margin-bottom: 1.6rem;
+      margin-bottom: 0.8rem;
     }
     .Step1_checkoout_placeholder {
       .CheckBox_Loader_placeHolder {
@@ -134,12 +134,12 @@
       justify-content: center;
       align-items: center;
       .DropDown_container {
-        margin: 0 0.8rem 2rem;
+        margin: 0 0.8rem 3rem;
         &:first-child {
-          margin: 0 0rem 2rem 0.8rem;
+          margin: 0 0rem 3rem 0.8rem;
         }
         &:last-child {
-          margin: 0 0.8rem 2rem 0rem;
+          margin: 0 0.8rem 3rem 0rem;
         }
       }
     }
@@ -163,7 +163,7 @@
     }
     .pelak_container {
       position: relative;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       .license_palte_container {
         position: relative;
         .pelak_input {
@@ -255,7 +255,7 @@
       min-height: 15rem;
       width: 100%;
       font-family: inherit;
-      margin: 0.3rem auto 2rem;
+      margin: 0.3rem auto 3rem;
       display: block;
       outline: 0;
       -webkit-appearance: none;
@@ -294,7 +294,7 @@
       .Car_info_step_1 {
         display: block;
         .DropDown_container {
-          margin: 0 0rem 2rem !important;
+          margin: 0 0rem 3rem !important;
         }
       }
     }
