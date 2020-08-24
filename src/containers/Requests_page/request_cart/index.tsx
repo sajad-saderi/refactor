@@ -318,7 +318,7 @@ const Request_cart = (props: IRequest_cart) => {
     media_set && (
       <>
         {rentStatus}
-        <div className="cart" onClick={setForRequest}>
+        <div className="cart">
           <div className="rent_info">
             <h2>
               {car.brand.name.fa} {car.name.fa}

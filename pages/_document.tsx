@@ -280,7 +280,7 @@ export default class MyDocument extends Document {
             content="gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto"
           />
           <script
-            src={`https://www.google.com/recaptcha/api.js?render=6LcJG78ZAAAAAD3u-1dQGeApdBcQeMoTe9ju17SJ`}
+            src={`https://www.google.com/recaptcha/api.js?render=${process.env.GOOGLE_CAPTCHA}`}
             async
             defer
           ></script>
