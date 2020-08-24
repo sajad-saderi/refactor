@@ -46,28 +46,36 @@ const Request_page = () => {
     }
   };
 
-  return show ? (Authorize || AUTH_CONTEXT.Auth ? (
-    <article className="responsive minHeight request_page_container">
-      <section className="request_section">
-        {result.length > 0 ? (
-          <>
-            {result.map((item, i) => {
-              return (
-                <div className="Request_car" key={i}>
-                  <Request_cart data={item} />
-                </div>
-              );
-            })}
-          </>
-        ) : (
+  return show ? (
+    Authorize || AUTH_CONTEXT.Auth ? (
+      <article className="responsive minHeight request_page_container">
+        <section className="request_section">
+          {result.length > 0 ? (
+            <>
+              {result.map((item, i) => {
+                return (
+                  <div className="Request_car" key={i}>
+                    <Request_cart
+                      data={item}
+                      getDataAgain={(id) => {
+                        fetchAPI(id);
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </>
+          ) : (
             <Requests_page_Loading />
           )}
-      </section>
-    </article>
-  ) : (
+        </section>
+      </article>
+    ) : (
       <PleaseLogin />
     )
-  ) : <article className="minHeight"></article>
+  ) : (
+    <article className="minHeight"></article>
+  );
 };
 
 export default Request_page;

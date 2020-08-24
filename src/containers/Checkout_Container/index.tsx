@@ -139,10 +139,8 @@ const Checkout_Container = () => {
       const coupon_res: any = await REQUEST_GET_RENTAL_CAR(data);
       setCoupanLoading(false);
       setUseCouponPrice(true);
-      setCouponDiscount(coupon_res.coupon.total_price);
-      setDiscounted_total_price(
-        discounted_total_price - coupon_res.coupon.total_price
-      );
+      setCouponDiscount(coupon_res.coupon.discounted_price);
+      setDiscounted_total_price(coupon_res.coupon.total_price);
     } catch (error) {
       setCoupanLoading(false);
       setCouponError({

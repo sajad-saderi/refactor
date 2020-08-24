@@ -283,7 +283,11 @@ const Request_cart = (props: IRequest_cart) => {
         setMedia_set(props.data.rent_search_dump.media_set[0]);
       else setMedia_set({ thumbnail_url: carImage });
       setDiscounted_total_price(
-        props.data.rent_search_dump.discounted_total_price
+        renter
+          ? props.data.rent_search_dump.discounted_total_price
+          : props.data.rent_search_dump.owner_price
+          ? props.data.rent_search_dump.owner_price
+          : props.data.rent_search_dump.discounted_total_price
       );
       setInsurance_total_price(
         has_insurance ? props.data.rent_search_dump.insurance_total_price : 0
@@ -291,7 +295,7 @@ const Request_cart = (props: IRequest_cart) => {
       setCoupon(
         props.data.rent_search_dump.coupon
           ? props.data.rent_search_dump.coupon.total_price
-          : 0
+          : null
       );
       setTotal_discount(props.data.rent_search_dump.total_discount);
       setRole(renter);
@@ -346,11 +350,15 @@ const Request_cart = (props: IRequest_cart) => {
               <span>هزینه اجاره</span>
               {role ? (
                 <span>
-                  {(
-                    discounted_total_price +
-                    insurance_total_price -
-                    coupon
-                  ).toLocaleString()}{" "}
+                  {insurance_total_price
+                    ? coupon
+                      ? (coupon + insurance_total_price).toLocaleString()
+                      : (
+                          discounted_total_price + insurance_total_price
+                        ).toLocaleString()
+                    : coupon
+                    ? coupon.toLocaleString()
+                    : discounted_total_price.toLocaleString()}{" "}
                   تومان
                 </span>
               ) : (
