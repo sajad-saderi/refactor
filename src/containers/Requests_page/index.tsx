@@ -110,8 +110,8 @@ const Requests_page = () => {
         <section className="requests_page_container">
           <Requests_filter
             filter_list={filterHandler}
-            total_count={totalCount}
-            result={result}
+            // total_count={totalCount}
+            // result={result}
           />
           <section
             className={[
