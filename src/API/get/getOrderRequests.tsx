@@ -12,7 +12,7 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
   return new Promise((resolve, reject) => {
     axios
       .get(
-        DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=16` + query,
+        DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=14` + query,
         {
           headers: {
             Authorization: "Bearer " + data.token,

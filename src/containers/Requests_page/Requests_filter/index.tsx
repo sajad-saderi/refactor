@@ -19,7 +19,7 @@ const Requests_filter = (props: IRequests_filter) => {
   return (
     <>
       {/* filter mobile */}
-      {props.total_count ===0 ? null : (
+      {props.total_count === 0 && !props.result ? null : (
         <span className="show_filter" onClick={() => setShow_filter(true)}>
           <IoIosOptions size="2rem" color="#656565" />
           نمایش فیلترها
@@ -36,7 +36,9 @@ const Requests_filter = (props: IRequests_filter) => {
         className={[
           "filter_section",
           show_filter ? "show_Filter_section" : null,
-          props.total_count === 0 ? "notAllowedToShowFilter" : null,
+          props.total_count === 0 && !props.result
+            ? "notAllowedToShowFilter"
+            : null,
         ].join(" ")}
       >
         <h3>وضعیت درخواست</h3>
@@ -66,6 +68,7 @@ const Requests_filter = (props: IRequests_filter) => {
 interface IRequests_filter {
   filter_list: any;
   total_count: number;
+  result: any;
 }
 
 export default Requests_filter;

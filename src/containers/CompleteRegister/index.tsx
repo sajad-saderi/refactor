@@ -148,7 +148,7 @@ const Complete_register_container = () => {
         jsCookie.set("first_name", state.first_name, cook_option);
         jsCookie.set("last_name", state.last_name, cook_option);
         jsCookie.set(
-          "user_name",
+          "name",
           state.first_name + " " + state.last_name,
           cook_option
         );

@@ -111,6 +111,7 @@ const Requests_page = () => {
           <Requests_filter
             filter_list={filterHandler}
             total_count={totalCount}
+            result={result}
           />
           <section
             className={[

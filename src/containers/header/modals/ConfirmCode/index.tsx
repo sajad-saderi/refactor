@@ -47,7 +47,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("user_name", " ", cook_option);
+          jsCookie.set("name", " ", cook_option);
           jsCookie.set("user_id", data.user_profile.id, cook_option);
 
           // NOTE: save data in cache and active heap
@@ -68,7 +68,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
           jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("user_name", data.user_profile.name, cook_option);
+          jsCookie.set("name", data.user_profile.name, cook_option);
           jsCookie.set(
             "company_name",
             data.user_profile.company_name,

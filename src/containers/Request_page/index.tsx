@@ -40,7 +40,11 @@ const Request_page = () => {
         id,
         token,
       });
-      setResult([res.data]);
+      if (res.data.status.id !== "new") {
+        Router.push("/requests");
+      } else {
+        setResult([res.data]);
+      }
     } catch (error) {
       console.log("!Error", error);
     }

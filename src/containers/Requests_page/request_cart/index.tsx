@@ -224,8 +224,7 @@ const Request_cart = (props: IRequest_cart) => {
           );
           setButton_code(
             renter
-              ? props.data.has_renter_reviewed_owner ||
-                props.data.has_renter_reviewed_rent_order
+              ? props.data.has_renter_reviewed_rent_order
                 ? [
                     {
                       value: "قبلا برای این سفارش، نظر ثبت کرده اید",
@@ -243,8 +242,7 @@ const Request_cart = (props: IRequest_cart) => {
                         MODAL_CONTEXT.modalHandler("Renter", props.data),
                     },
                   ]
-              : props.data.has_owner_reviewed_rent_order ||
-                props.data.has_owner_reviewed_renter
+              : props.data.has_owner_reviewed_rent_order
               ? [
                   {
                     value: "قبلا برای این سفارش، نظر ثبت کرده اید",

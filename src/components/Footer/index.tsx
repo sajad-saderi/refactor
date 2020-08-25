@@ -139,7 +139,7 @@ const Footer = (props: IFooter) => {
         </div>
       </div>
       <div className="signature">
-        <span className="ver">2.0.2</span>
+        <span className="ver">2.0.3</span>
         <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
       </div>
     </footer>
