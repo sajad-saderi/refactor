@@ -816,7 +816,9 @@ const Add_Car_Step_1 = () => {
         else {
           // set the car id to catch if user didn't complete the step to of the add car form
           jsCookie.set("new_car", add_new_car_res.data.id);
-          Router.push(`/set-car-timing?car_id=${add_new_car_res.data.id}`);
+          Router.push(
+            `/set-car-timing?car_id=${add_new_car_res.data.id}&newcaradded=true`
+          );
         }
       } catch (error) {
         console.log("!Error", error);

@@ -49,7 +49,9 @@ const Profile_info = (props: IProfile_info) => {
                 src={image}
                 alt={name}
                 onClick={() => {
-                  setEdit(true), setTriggerUpload(true);
+                  if(props.is_mine){
+                    setEdit(true), setTriggerUpload(true);
+                  }
                 }}
               />
               <div>

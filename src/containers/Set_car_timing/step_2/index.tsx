@@ -220,10 +220,6 @@ const Add_Car_Step_2 = () => {
   useEffect(() => {
     scrollTo(0, 0);
     getCarInfoToEdit(Router.router.query.car_id);
-    // if (Router.router.query.mode === "edit") {
-    // } else {
-    //   getInitials(Router.router.query.car_id);
-    // }
   }, []);
 
   const getCarInfoToEdit = async (id) => {
@@ -399,7 +395,11 @@ const Add_Car_Step_2 = () => {
           token: token,
         });
         localStorage.removeItem("red_dot");
-        Router.push(`/user/${state.owner_id}`);
+        if (Router.router.query?.newcaradded === "true") {
+          Router.push(`/user/${state.owner_id}?newcaradded=true`);
+        } else {
+          Router.push(`/user/${state.owner_id}`);
+        }
       } catch (error) {
         setLoading(false);
         console.log("!Error", error);
