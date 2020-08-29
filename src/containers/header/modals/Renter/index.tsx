@@ -7,7 +7,7 @@ import StarRatings from "react-star-ratings";
 import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
 import Router from "next/router";
-
+import car_image from "../../../../../public/image/car-image-thumbnail.jpg";
 
 const Renter = (props: IRenter) => {
   const [rent_search_dump, setRent_search_dump] = useState(null);
@@ -85,7 +85,11 @@ const Renter = (props: IRenter) => {
           >
             {/* a image of the order */}
             <img
-              src={rent_search_dump.media_set[0].thumbnail_url}
+              src={
+                rent_search_dump.media_set.length > 0
+                  ? rent_search_dump.media_set[0].thumbnail_url
+                  : car_image
+              }
               alt={rent_search_dump.car.name.fa}
             />
             <h3>
@@ -133,7 +137,7 @@ const Renter = (props: IRenter) => {
                 class="Blue_BTN submit_submit HEAP_ModalReviewRenterToOwner_Btn_Submit"
                 value="ثبت امتیاز"
                 loading={loading}
-                click={() => { }}
+                click={() => {}}
               />
               <Button
                 class="Blue_BTN cancel_submit"

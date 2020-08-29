@@ -16,6 +16,7 @@ import StarRatings from "react-star-ratings";
 import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
 import Router from "next/router";
+import car_image from "../../../../../public/image/car-image-thumbnail.jpg";
 
 
 const Owner = (props: IRenter) => {
@@ -80,7 +81,7 @@ const Owner = (props: IRenter) => {
               });
             }}
           >
-            <img src={renter.thumbnail_url} alt={renter.name} />
+            <img src={renter.thumbnail_url ?renter.thumbnail_url : car_image } alt={renter.name} />
             <h3>{renter.name}</h3>
             <p>امتیاز شما به مهمان</p>
             <StarRatings
