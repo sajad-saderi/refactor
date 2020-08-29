@@ -93,7 +93,13 @@ class App_Otoli extends App {
                     action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
                     hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
                   })
-                    .then((res) => {})
+                    .then((res) => {
+                      if (window["heap"]) {
+                        window["heap"].addUserProperties({
+                          RecaptchaScore: scoreData.data.recaptcha.score,
+                        });
+                      }
+                    })
                     .catch((e) => {
                       console.log(e);
                     });
