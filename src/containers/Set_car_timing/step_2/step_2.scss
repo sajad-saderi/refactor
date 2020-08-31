@@ -95,6 +95,11 @@
           top: 2.8rem;
           bottom: auto;
         }
+        input {
+          &::placeholder {
+            color: #cdcdcd;
+          }
+        }
       }
       .tail_text {
         display: inline-block;

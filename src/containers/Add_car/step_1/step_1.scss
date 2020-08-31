@@ -32,6 +32,16 @@
     .text_input_container {
       margin: 0 0 3rem;
     }
+    .DropDown_container {
+      .input_wrapper {
+        input {
+          height: 5rem;
+        }
+        .ArrowDown {
+          top: 1.6rem;
+        }
+      }
+    }
     .radio_father {
       .radio_container {
         .container {
@@ -92,12 +102,12 @@
         margin: auto;
         cursor: pointer;
         color: $main__color;
-        padding: 0.5rem 3rem 0.5rem 0;
+        padding: 0.8rem 3rem 0.8rem 0;
         svg {
           width: 2rem;
           position: absolute;
           left: 1rem;
-          top: 0.6rem;
+          top: 0.9rem;
         }
       }
     }
@@ -275,6 +285,9 @@
     .local_style {
       display: block;
       width: 100%;
+      line-height: 1.5;
+      font-size: 16px;
+      padding: 1.6rem 2.1rem;
     }
   }
 }
@@ -323,15 +336,16 @@
         display: none;
       }
       h3 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: 500;
         margin-bottom: 0;
+        margin-top: 2rem;
       }
     }
     .add_car_form_step_1 {
       .form_title {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 5rem;
       }
       .pelak_container {
         .license_palte_container {

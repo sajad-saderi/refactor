@@ -1719,7 +1719,7 @@ const Add_Car_Step_1 = () => {
           }}
         />
         <label>
-          توضیحات<span> (اختیاری)</span>
+          درباره خودرو<span> (اختیاری)</span>
         </label>
         <p className="step_one_under_label_descripe">
           برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود. برای

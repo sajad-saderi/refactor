@@ -489,7 +489,7 @@ const CarPage = () => {
               {description && (
                 <>
                   <hr />
-                  <h2>توضیحات</h2>
+                  <h2>درباره خودرو</h2>
                   <pre>{description}</pre>
                 </>
               )}

@@ -14,6 +14,8 @@ const Menu = () => {
   let profile =
     company_name && company_name !== "null"
       ? company_name
+      : jsCookie.get("user_name")
+      ? `${jsCookie.get("user_name")}`
       : `${jsCookie.get("name")}`;
   let user_id = jsCookie.get("user_id");
 

@@ -33,6 +33,7 @@ const Profile_info = (props: IProfile_info) => {
     jsCookie.remove("token");
     jsCookie.remove("user_id");
     jsCookie.remove("name");
+    jsCookie.remove("user_name");
     jsCookie.remove("new_car");
     jsCookie.remove("car_info");
     localStorage.removeItem("red_dot");
@@ -49,7 +50,7 @@ const Profile_info = (props: IProfile_info) => {
                 src={image}
                 alt={name}
                 onClick={() => {
-                  if(props.is_mine){
+                  if (props.is_mine) {
                     setEdit(true), setTriggerUpload(true);
                   }
                 }}
