@@ -21,6 +21,7 @@ const Requests_page = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
+  const [active_filters, setActive_filters] = useState([]);
 
   const AUTH_CONTEXT = useContext(Auth_context);
 
@@ -32,9 +33,18 @@ const Requests_page = () => {
       Router.push("/complete-register");
     } else if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
-      fetchAPI({
-        page,
-      });
+      if (Router.router.query.status_id) {
+        fetchAPI({
+          page,
+          status_id: Router.router.query.status_id,
+        });
+        filter_id = (Router.router.query.status_id as string).split(",");
+        setActive_filters(filter_id);
+      } else {
+        fetchAPI({
+          page,
+        });
+      }
     }
     setShow(true);
     return () => {
@@ -66,7 +76,6 @@ const Requests_page = () => {
         setResult((result) => result.concat(res.items));
       } else {
         setResult(res.items);
-        console.log(res);
       }
       if (res.total_count > 14 && res.remained_count > 0) {
         setShowMoreButton(true);
@@ -79,8 +88,22 @@ const Requests_page = () => {
   const filterHandler = (value, option) => {
     if (option === "add") {
       filter_id.push(value);
+      window.history.replaceState(
+        null,
+        "",
+        `${Router.router.pathname}?status_id=${filter_id}`
+      );
     } else {
       filter_id = filter_id.filter((i) => i !== value);
+      if (filter_id.length === 0) {
+        window.history.replaceState(null, "", `${Router.router.pathname}`);
+      } else {
+        window.history.replaceState(
+          null,
+          "",
+          `${Router.router.pathname}?status_id=${filter_id}`
+        );
+      }
     }
     page = 1;
     fetchAPI({
@@ -110,6 +133,7 @@ const Requests_page = () => {
         <section className="requests_page_container">
           <Requests_filter
             filter_list={filterHandler}
+            active_filters={active_filters}
             // total_count={totalCount}
             // result={result}
           />
