@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Checkbox from "../../../components/form/Checkbox";
 import { IoIosOptions } from "react-icons/io";
 
@@ -16,6 +16,12 @@ const Requests_filter = (props: IRequests_filter) => {
   const [show_filter, setShow_filter] = useState(false);
 
   const [status_id, setStatus_id] = useState([]);
+
+  useEffect(() => {
+    if (props.active_filters.length > 0) {
+      setStatus_id(props.active_filters);
+    }
+  }, [props.active_filters]);
   return (
     <>
       {/* filter mobile */}
@@ -67,6 +73,7 @@ const Requests_filter = (props: IRequests_filter) => {
 
 interface IRequests_filter {
   filter_list: any;
+  active_filters: any;
   // total_count: number;
   // result: any;
 }
