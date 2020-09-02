@@ -133,7 +133,11 @@ const Footer = (props: IFooter) => {
           <p>
             شماره تماس:{" "}
             <a href="tel:02188567759" className="HEAP_Footer_Link_Phone">
-              ۰۲۱۸۸۵۶۷۷۵۹ ,
+              ۰۲۱۸۸۵۶۷۷۵۹{" "}
+            </a>
+            ,
+            <a href="tel:09391414574" className="HEAP_Footer_Link_Phone">
+              {" "}
               09391414574
             </a>
           </p>
