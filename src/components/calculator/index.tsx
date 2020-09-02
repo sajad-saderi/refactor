@@ -125,7 +125,7 @@ const Calculator = (props: ICalculator) => {
       // Convert the car value to Numner
       let conToNum = Number(value);
       // Constant base for daily rent: 0.0022
-      let eachDaily = conToNum * 0.0022;
+      let eachDaily = conToNum * 0.0018;
 
       //  Round the daily value before calculating monthly and weekly income
       let Round = Math.ceil(eachDaily / 10) * 10;
