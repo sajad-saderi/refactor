@@ -14,47 +14,23 @@ const Calculator = (props: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
   const [modelList, setModelList] = useState([]);
   const [value, setValue] = useState("");
-  const [valueError, setValueError] = useState({ status: false, message: "" });
   const [loading, setLoading] = useState(false);
   const [brand, setBrand] = useState({
     name: null,
     id: null,
   });
-  const [brandError, setBrandError] = useState({ status: false, message: "" });
   const [model, setModel] = useState({
     name: null,
     id: null,
   });
-  const [modelError, setModelError] = useState({ status: false, message: "" });
   const [daily, setDaily] = useState(0);
   const [weekly, setWeekly] = useState(0);
   const [monthly, setMonthly] = useState(0);
   const [showCalculateBox, setShowCalculateBox] = useState(true);
-  const [saveCarInfo, setSaveCarInfo] = useState({
-    brand: null,
-    model: null,
-    value: null,
-  });
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (value) {
-      setValueError({ status: false, message: "" });
-    }
-  }, [value]);
-  useEffect(() => {
-    if (brand.id) {
-      setBrandError({ status: false, message: "" });
-    }
-  }, [brand.id]);
-  useEffect(() => {
-    if (model.id) {
-      setModelError({ status: false, message: "" });
-    }
-  }, [model.id]);
 
   const fetchData = async () => {
     /**
@@ -88,24 +64,11 @@ const Calculator = (props: ICalculator) => {
     /**
      * validation to ignore empty values or if the inputted value is smaller then 10 million
      */
-    if (!brand.id) {
-      setBrandError({ status: true, message: "سازنده را انتخاب کنید" });
-      setLoading(false);
-      return;
-    } else if (!model.id) {
-      setModelError({ status: true, message: "نام مدل را انتخاب کنید" });
-      setLoading(false);
-      return;
-    } else if (value === "") {
-      setValueError({ status: true, message: "ارزش خودرو را وارد کنید" });
+    if (value === "" || !brand.id || !model.id) {
       setLoading(false);
       return;
     }
-    if (+value < 20000000) {
-      setValueError({ status: true, message: "ارزش خودرو کمتر از حد مجاز" });
-      setLoading(false);
-      return;
-    }
+    if (+value < 10000000) return;
 
     try {
       // Don't care about the result
@@ -114,7 +77,6 @@ const Calculator = (props: ICalculator) => {
         price: value,
       });
       setLoading(false);
-      localStorage["car_info"] = JSON.stringify(saveCarInfo);
       // Show the calculator box
       setShowCalculateBox(false);
       // Reset old values in case they were set
@@ -125,7 +87,7 @@ const Calculator = (props: ICalculator) => {
       // Convert the car value to Numner
       let conToNum = Number(value);
       // Constant base for daily rent: 0.0022
-      let eachDaily = conToNum * 0.0022;
+      let eachDaily = conToNum * 0.0018;
 
       //  Round the daily value before calculating monthly and weekly income
       let Round = Math.ceil(eachDaily / 10) * 10;
@@ -143,7 +105,6 @@ const Calculator = (props: ICalculator) => {
       console.log("!Error", error);
     }
   };
-
   return (
     <>
       {showCalculateBox ? (
@@ -151,102 +112,75 @@ const Calculator = (props: ICalculator) => {
           <h2>چقدر می‌توانید از ماشینتان کسب درآمد کنید؟</h2>
           <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
           <form data-test-id="form" onSubmit={calculator}>
-            <div className="calculator_dropDown">
-              <DropdownSearch
-                data-test-id="brand"
-                search_place_holder="در نام در سازنده‌ها"
-                defaultVal={brand.name}
-                data={brandList}
-                clearField={() =>
-                  setBrand({
-                    id: null,
-                    name: null,
-                  })
+            <DropdownSearch
+              data-test-id="brand"
+              defaultVal={brand.name}
+              data={brandList}
+              clearField={() =>
+                setBrand({
+                  id: null,
+                  name: null,
+                })
+              }
+              Select={(v) => {
+                fetchModelList(v.value);
+                setBrand({
+                  id: v.value,
+                  name: v.text,
+                });
+                try {
+                  if (window["heap"]) {
+                    window["heap"].addUserProperties({
+                      Calc_Car_Brand: `${v.text}`,
+                    });
+                  }
+                } catch (e) {
+                  console.log("Em...I think heap not work correctly :/");
                 }
-                Select={(v) => {
-                  fetchModelList(v.value);
-                  setSaveCarInfo((saveCarInfo) => {
-                    return { ...saveCarInfo, brand: v };
-                  });
-                  setBrand({
-                    id: v.value,
-                    name: v.text,
-                  });
-                  try {
-                    if (window["heap"]) {
-                      window["heap"].addUserProperties({
-                        Calc_Car_Brand: `${v.text}`,
-                      });
-                    }
-                  } catch (e) {
-                    console.log("Em...I think heap not work correctly :/");
+              }}
+              placeholder="برند"
+              InputDisable={true}
+            />
+
+            <DropdownSearch
+              defaultVal={model.name}
+              data={modelList}
+              clearField={() => {
+                setModel({ id: null, name: null });
+              }}
+              disabled={!brand.id ? true : false}
+              InputDisable={true}
+              Select={(v) => {
+                try {
+                  if (window["heap"]) {
+                    window["heap"].addUserProperties({
+                      Calc_Car_Brand: `${v.text}`,
+                    });
                   }
-                }}
-                placeholder="سازنده"
-                InputDisable={true}
-                error_status={brandError.status}
-              />
-              <span className="error_Field">{brandError.message}</span>
-            </div>
-            <div className="calculator_dropDown">
-              <DropdownSearch
-                defaultVal={model.name}
-                data={modelList}
-                search_place_holder="در نام مدل‌ها"
-                clearField={() => {
-                  setModel({ id: null, name: null });
-                }}
-                disabled={!brand.id ? true : false}
-                InputDisable={true}
-                Select={(v) => {
-                  setSaveCarInfo((saveCarInfo) => {
-                    return { ...saveCarInfo, model: v };
-                  });
-                  try {
-                    if (window["heap"]) {
-                      window["heap"].addUserProperties({
-                        Calc_Car_Brand: `${v.text}`,
-                      });
-                    }
-                  } catch (e) {
-                    console.log("Em...I think heap not work correctly :/");
-                  }
-                  setModel({ id: v.value, name: v.name });
-                }}
-                placeholder="نام خودرو (مدل)"
-                error_status={modelError.status}
-              />
-              <span className="error_Field">{modelError.message}</span>
-            </div>
+                } catch (e) {
+                  console.log("Em...I think heap not work correctly :/");
+                }
+                setModel({ id: v.value, name: v.name });
+              }}
+              placeholder="مدل"
+            />
             <div className="value_container">
               <TextInput
                 name="value"
                 number={true}
                 onChangeHandler={(e) => {
-                  setSaveCarInfo((saveCarInfo) => {
-                    return { ...saveCarInfo, value: e };
-                  });
                   setValue(e);
                 }}
                 clearField={() => setValue("")}
                 autoFocus={false}
                 error={{
-                  status: valueError.status,
-                  message: valueError.message,
+                  status: false,
+                  message: "",
                 }}
                 min={7}
                 max={14}
                 value={value}
                 placeholder="ارزش خودرو"
-                validation={{
-                  number: true,
-                  min: 20000000,
-                  messages: {
-                    required: "لطفا ارزش خودرو را وارد کنید",
-                    min: "ارزش خودرو باید بیشتر از 20.000.000 تومان باشد",
-                  },
-                  required: true,
-                }}
               />
               <span>تومان</span>
             </div>
@@ -280,14 +214,6 @@ const Calculator = (props: ICalculator) => {
               window.scrollTo(0, 0);
               // Reset the car value
               setValue("");
-              setBrand({
-                name: null,
-                id: null,
-              });
-              setModel({
-                name: null,
-                id: null,
-              });
               setLoading(false);
               setShowCalculateBox(true);
             }}
