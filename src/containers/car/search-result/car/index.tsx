@@ -18,6 +18,7 @@ const Car = (props) => {
     avg_discounted_price_per_day,
     deliver_at_renters_place,
     with_driver,
+    is_promoted,
     has_media,
   } = props.data;
 
@@ -50,7 +51,7 @@ const Car = (props) => {
                 {total_discount_percent}% تخفیف
               </span>
             )}
-            {has_system_discount && <span className="Special">ویژه</span>}
+            {is_promoted && <span className="Special">ویژه</span>}
             {has_media ? (
               <img
                 style={{
