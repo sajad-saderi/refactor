@@ -694,7 +694,7 @@ const Add_Car_Step_2 = () => {
               }}
               autoFocus={false}
               // min={4}
-              max={8}
+              max={10}
               placeholder="مثال: 50,000"
               value={state.price_per_day}
               validation={{
