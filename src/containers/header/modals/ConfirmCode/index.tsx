@@ -23,8 +23,8 @@ const ConfirmCode = (props: IConfirmCode) => {
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
-    if(!code){
-      return
+    if (!code) {
+      return;
     }
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
@@ -94,12 +94,14 @@ const ConfirmCode = (props: IConfirmCode) => {
             console.log("Em...I think heap not work correctly :/");
           }
           // set authorize to auth context
-          AUTH_CONTEXT.Auth_Manager(true); 
+          AUTH_CONTEXT.Auth_Manager(true);
         } else {
           // TODO: handle errors
           console.error("error");
         }
-        Modal_context.modalHandler("SET");
+        if (!props.customModalControl) {
+          Modal_context.modalHandler("SET");
+        }
       })
       .catch((error) => {
         setLoading(false);
@@ -140,13 +142,13 @@ const ConfirmCode = (props: IConfirmCode) => {
           placeholder="لطفا کد را وارد کنید"
           clearField={clearField}
           validation={{
-            number:true,
-            length:4,
+            number: true,
+            length: 4,
             messages: {
               required: "لطفا کد تایید را وارد کنید",
               length: "کد تایید باید 4 رقم باشد",
             },
-            required: true
+            required: true,
           }}
         />
         {/* <span className="error_message">{error.message}</span> */}
@@ -178,5 +180,6 @@ const ConfirmCode = (props: IConfirmCode) => {
 
 interface IConfirmCode {
   panelController: any;
+  customModalControl?: boolean;
 }
 export default ConfirmCode;

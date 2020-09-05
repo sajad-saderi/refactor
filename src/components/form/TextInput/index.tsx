@@ -97,6 +97,23 @@ const TextInput = (props: ItextInput) => {
           status: true,
           message: "ورودی نامعتبر",
         });
+      } else if (data.LengthControl) {
+        if (data.LengthControl.minLen) {
+          if (value.toString().length < data.LengthControl.minLen) {
+            setLocalError({
+              status: true,
+              message: data.messages.minLen,
+            });
+          }
+        }
+        if (data.LengthControl.maxLen) {
+          if (value.toString().length > data.LengthControl.maxLen) {
+            setLocalError({
+              status: true,
+              message: data.messages.maxLen,
+            });
+          }
+        }
       } else if (data.length) {
         if (value.toString().length < data.length) {
           setLocalError({

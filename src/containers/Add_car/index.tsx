@@ -14,36 +14,36 @@ const Add_car = () => {
 
   useEffect(() => {
     if (!checkRegister()) {
-      return
+      return;
     }
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
-    } else {
-      MODAL_CONTEXT.modalHandler("Login");
     }
+    //  else {
+    //   // MODAL_CONTEXT.modalHandler("Login");
+    // }
     setShow(true);
   }, []);
 
   const checkRegister = () => {
-    const complete_register = jsCookie.get("complete_register")
+    const complete_register = jsCookie.get("complete_register");
     if (complete_register === "false") {
-      Router.push("/complete-register")
-      return false
+      Router.push("/complete-register");
+      return false;
     } else {
-      return true
+      return true;
     }
-  }
-
+  };
 
   return show ? (
     Authorize || AUTH_CONTEXT.Auth ? (
       <Add_Car_Step_1 />
     ) : (
-        <PleaseLogin />
-      )
+      <PleaseLogin />
+    )
   ) : (
-      <article className="minHeight"></article>
-    );
+    <article className="minHeight"></article>
+  );
 };
 
 export default Add_car;

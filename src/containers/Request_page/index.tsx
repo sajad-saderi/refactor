@@ -22,9 +22,10 @@ const Request_page = () => {
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
       fetchAPI(Router.router.query.id);
-    } else {
-      MODAL_CONTEXT.modalHandler("Login");
     }
+    //  else {
+    //   MODAL_CONTEXT.modalHandler("Login");
+    // }
     setShow(true);
   }, []);
 

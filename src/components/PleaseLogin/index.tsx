@@ -1,23 +1,36 @@
-import React, { useContext, useEffect } from "react";
-// import "./please_login.scss"; 
+import React, { useContext, useEffect, useState } from "react";
+// import "./please_login.scss";
 import Modal_context from "../../context/Modal_context";
 import { FiLogIn } from "react-icons/fi";
+import GetUserCellPhone from "../../containers/header/modals/GetUserCellPhone";
+import ConfirmCode from "../../containers/header/modals/ConfirmCode";
 
 const PleaseLogin = () => {
-  const MODAL_CONTEXT = useContext(Modal_context);
+  const [change, setChange] = useState(false);
+  // const MODAL_CONTEXT = useContext(Modal_context);
+  const panelController = () => {
+    setChange(!change);
+  };
 
   return (
     <div className="Please_login_container minHeight">
-      <div> 
-        <FiLogIn color="#4ba3ce" size="3rem"/>
-        <p>برای دسترسی به این بخش، لطفا ابتدا وارد شوید.</p>
+      <div className="caption">
+        <FiLogIn color="#4ba3ce" size="3rem" />
+        <p>برای دسترسی به این بخش، ابتدا وارد شوید.</p>
       </div>
-      <button
-        className="Blue_BTN costume_btn_style"
-        onClick={() => MODAL_CONTEXT.modalHandler("Login")}
-      >
-        ورود
-      </button>
+      <div className="modal_box">
+        {change ? (
+          <ConfirmCode
+            panelController={panelController}
+            customModalControl={true}
+          />
+        ) : (
+          <GetUserCellPhone
+            data-test-id="GetUserCellPhone"
+            panelController={panelController}
+          />
+        )}
+      </div>
     </div>
   );
 };
