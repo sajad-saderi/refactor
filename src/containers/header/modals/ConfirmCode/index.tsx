@@ -29,9 +29,13 @@ const ConfirmCode = (props: IConfirmCode) => {
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/login";
+    let cellNumber = Cell_Phone_context.cell_phone;
+    if (/^[9][0-9][0-9]{8,8}$/.test(cellNumber)) {
+      cellNumber = "0" + Cell_Phone_context.cell_phone;
+    }
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
-        cell: Cell_Phone_context.cell_phone,
+        cell: cellNumber,
         code: code,
       })
       .then((response) => {
