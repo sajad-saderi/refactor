@@ -159,86 +159,88 @@ const TextInput = (props: ItextInput) => {
       >
         {props.label}
       </label>
-      <input
-        data-test-id="input"
-        data-hj-whitelist="true"
-        onInvalid={(e: any) => {
-          /**
-           *
-           * this part it just works in numeric status
-           * If the length of the input is smaller then props.min input is invalid and error style will shown
-           */
-          if (props.value.length < props.min) {
-            e.target.setCustomValidity(
-              `حداقل ورودی باید ${props.min} کاراکتر باشد`
-            );
-          } else if (props.value.length > props.max) {
-            e.target.setCustomValidity(
-              `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
-            );
+      <div className="input_surround">
+        <input
+          data-test-id="input"
+          data-hj-whitelist="true"
+          onInvalid={(e: any) => {
+            /**
+             *
+             * this part it just works in numeric status
+             * If the length of the input is smaller then props.min input is invalid and error style will shown
+             */
+            if (props.value.length < props.min) {
+              e.target.setCustomValidity(
+                `حداقل ورودی باید ${props.min} کاراکتر باشد`
+              );
+            } else if (props.value.length > props.max) {
+              e.target.setCustomValidity(
+                `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+              );
+            }
+          }}
+          autoFocus={props.autoFocus}
+          className={[
+            "text_input",
+            "data-hj-whitelist",
+            props.error.status || localError.status ? "inputError" : null,
+          ].join(" ")}
+          name={props.name}
+          value={
+            /**
+             * If it's number
+             *  If is empty show "" (nothing)
+             *
+             * If it's number
+             *  And it's NOT empty so Do toLocaleString() on value
+             *
+             * If it's number
+             *   And it's NOT empty and props.localeString is ACTIVE
+             *    Print the current value without change
+             *
+             * If it's number
+             *   And it's NOT empty and props.localeString is DEACTIVATE
+             *    Do  toLocaleString() on value
+             *
+             * If it's NOT number
+             *   Print the current value without change
+             */
+            props.number
+              ? props.value === ""
+                ? props.value.toLocaleString()
+                : props.localeString
+                ? props.value
+                : Number(props.value).toLocaleString()
+              : props.value
+            // props.value
           }
-        }}
-        autoFocus={props.autoFocus}
-        className={[
-          "text_input",
-          "data-hj-whitelist",
-          props.error.status || localError.status ? "inputError" : null,
-        ].join(" ")}
-        name={props.name}
-        value={
-          /**
-           * If it's number
-           *  If is empty show "" (nothing)
-           *
-           * If it's number
-           *  And it's NOT empty so Do toLocaleString() on value
-           *
-           * If it's number
-           *   And it's NOT empty and props.localeString is ACTIVE
-           *    Print the current value without change
-           *
-           * If it's number
-           *   And it's NOT empty and props.localeString is DEACTIVATE
-           *    Do  toLocaleString() on value
-           *
-           * If it's NOT number
-           *   Print the current value without change
-           */
-          props.number
-            ? props.value === ""
-              ? props.value.toLocaleString()
-              : props.localeString
-              ? props.value
-              : Number(props.value).toLocaleString()
-            : props.value
-          // props.value
-        }
-        onChange={(e: any) => {
-          e.target.setCustomValidity("");
-          ValueHandler(e);
-        }}
-        disabled={props.disabled}
-        maxLength={props.max}
-        minLength={props.min}
-        placeholder={props.placeholder}
-        // check the validation on blur event listener
-        onBlur={() => validation(props.validation)}
-        onFocus={() => {
-          setLocalError({
-            status: false,
-            message: "",
-          });
-        }}
-      />
-      {props.value.length > 0 && !props.HideClearIcon && (
-        <IoMdClose
-          data-test-id="svg-icon"
-          color="rgb(165, 165, 165)"
-          size="2rem"
-          className="clean_icon"
-          onClick={() => props.clearField()}
+          onChange={(e: any) => {
+            e.target.setCustomValidity("");
+            ValueHandler(e);
+          }}
+          disabled={props.disabled}
+          maxLength={props.max}
+          minLength={props.min}
+          placeholder={props.placeholder}
+          // check the validation on blur event listener
+          onBlur={() => validation(props.validation)}
+          onFocus={() => {
+            setLocalError({
+              status: false,
+              message: "",
+            });
+          }}
         />
-      )}
+        {props.value.length > 0 && !props.HideClearIcon && (
+          <IoMdClose
+            data-test-id="svg-icon"
+            color="rgb(165, 165, 165)"
+            size="2rem"
+            className="clean_icon"
+            onClick={() => props.clearField()}
+          />
+        )}
+      </div>
       {/* 
         If the props.error.status === true and props.error.message has a value,
         the Error message shown under the input box 
