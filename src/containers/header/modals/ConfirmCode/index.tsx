@@ -78,6 +78,9 @@ const ConfirmCode = (props: IConfirmCode) => {
             data.user_profile.company_name,
             cook_option
           );
+          if (data.user_profile.username) {
+            jsCookie.set("username", data.user_profile.username, cook_option);
+          }
           jsCookie.set("user_id", data.user_profile.id, cook_option);
           jsCookie.set(
             "thumbnail_url",

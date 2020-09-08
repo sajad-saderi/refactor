@@ -17,7 +17,9 @@ const Menu = () => {
       : jsCookie.get("user_name")
       ? `${jsCookie.get("user_name")}`
       : `${jsCookie.get("name")}`;
-  let user_id = jsCookie.get("user_id");
+  let user_id = jsCookie.get("username")
+    ? jsCookie.get("username")
+    : jsCookie.get("user_id");
 
   return (
     <ul>

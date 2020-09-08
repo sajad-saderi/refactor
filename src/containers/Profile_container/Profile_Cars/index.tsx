@@ -34,12 +34,12 @@ const Profile_Cars = (props: IProfile_Cars) => {
     }
     if (useFilter) {
       data = {
-        id: `${Router.router.query.id}`,
+        id: props.profile_Id,
         is_out_of_service: filterNumber,
         page: page,
       };
     } else {
-      data = { id: `${Router.router.query.id}`, page: page };
+      data = { id: props.profile_Id, page: page };
     }
     try {
       const user_cars_res: any = await REQUEST_GET_USER_CARS(data);
@@ -174,6 +174,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
 
 interface IProfile_Cars {
   is_mine: boolean;
+  profile_Id: number;
 }
 
 export default Profile_Cars;
