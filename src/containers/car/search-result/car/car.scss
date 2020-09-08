@@ -103,16 +103,21 @@
         }
       }
       .tags_container {
-        margin-top: 1.5rem;
+        margin-top: 1.8rem;
         li {
           display: inline-block;
           margin-left: 0.8rem;
           .tags {
             color: #262626;
             background: #e3e3e3;
-            padding: 0.2rem 0.6rem;
+            padding: 0.7rem 0.5rem;
             border-radius: 4px;
             font-size: 1rem;
+          }
+          .location_tag {
+            background: rgba(3, 142, 210, 0.11);
+            color: $main__color;
+            font-weight: 500;
           }
         }
       }
@@ -124,7 +129,7 @@
   .search_result_section {
     .carCart {
       width: 49%;
-      height: 300px;
+      height: 307px;
       margin: 0 0 2% 0;
       figure {
         height: 200px;

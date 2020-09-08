@@ -149,9 +149,25 @@ const Search = (props: ISearch) => {
       setToDay(" ");
     }
     if (dayRange.to) {
-      setToError({ status: false, message: "" });
-      setShowBorder(false);
-      setToDay(convertDate(dayRange.to));
+      if (
+        dayRange.to.day === dayRange.from.day &&
+        dayRange.to.month === dayRange.from.month &&
+        dayRange.to.year === dayRange.from.year
+      ) {
+        setFromDay("");
+        setDayRange({
+          from: null,
+          to: null,
+        });
+        setToError({
+          status: true,
+          message: "تاریخ شروع و پایان نمی‌تواند یکسان باشد",
+        });
+      } else {
+        setToError({ status: false, message: "" });
+        setShowBorder(false);
+        setToDay(convertDate(dayRange.to));
+      }
     } else {
       setToDay(" ");
     }
