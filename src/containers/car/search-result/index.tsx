@@ -74,10 +74,10 @@ const SearchResultList = (props: ISearchResultList) => {
                     </div>
                   </div>
                 </section>
-                <Car key={i} data={item} />
+                <Car key={i} data={item} showLocation={props.showLocation} />
               </>
             ) : (
-              <Car key={i} data={item} />
+              <Car key={i} data={item} showLocation={props.showLocation} />
             );
           })
         ) : (
@@ -109,6 +109,7 @@ const SearchResultList = (props: ISearchResultList) => {
 interface ISearchResultList {
   setFilterForSearch?: any;
   noQuickAccess?: boolean;
+  showLocation?: boolean;
   result: any;
 }
 

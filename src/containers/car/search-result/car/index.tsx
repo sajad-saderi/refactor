@@ -20,6 +20,7 @@ const Car = (props) => {
     with_driver,
     is_promoted,
     has_media,
+    location,
   } = props.data;
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
@@ -97,6 +98,13 @@ const Car = (props) => {
                   <span className="tags">اجاره با راننده</span>
                 </li>
               )}
+              {props.showLocation ? (
+                <li>
+                  <span className="tags">
+                    {location.parent_id === 1 ? "تهران" : location.name.fa}
+                  </span>
+                </li>
+              ) : null}
             </ul>
           </div>
         </a>
