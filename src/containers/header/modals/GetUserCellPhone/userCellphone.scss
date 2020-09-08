@@ -26,11 +26,7 @@
         &:focus:-moz-placeholder {
           color: transparent;
         }
-      }
-      .clean_icon {
-        bottom: 0;
-        top: 4.3rem;
-      }
+      } 
     }
     .error_message {
       color: $Error_text_color;

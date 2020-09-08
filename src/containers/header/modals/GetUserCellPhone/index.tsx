@@ -33,10 +33,14 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/send-code";
+    let CellNumber = cellPhone;
+    if (/^[9][0-9][0-9]{8,8}$/.test(cellPhone)) {
+      CellNumber = "0" + cellPhone;
+    }
     // NOTE the utm data will be sent to API at this point
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
-        cell: cellPhone,
+        cell: CellNumber,
         utm_source: localStorage["utm_source"]
           ? localStorage["utm_source"]
           : "",
@@ -106,10 +110,15 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             clearField={clearField}
             validation={{
               number: true,
-              length: 11,
+              LengthControl: {
+                minLen: 10,
+                maxLen: 11,
+              },
               messages: {
                 required: "لطفا تلفن همراه را وارد کنید",
                 length: "شماره همراه باید 11 رقم باشد",
+                minLen: "شماره وارد شده صحیح نیست",
+                maxLen: "شماره وارد شده صحیح نیست",
               },
               required: true,
             }}

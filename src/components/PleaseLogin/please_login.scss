@@ -1,23 +1,54 @@
+@import "../../styles/colors";
+
 .Please_login_container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  div {
+  .caption {
     svg {
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: sub;
       width: 3rem;
+      transform: rotate(180deg);
     }
     p {
       display: inline-block;
       vertical-align: middle;
       font-size: 1.4rem;
-      margin: 1rem;
+      margin: 0 1rem 2rem;
       font-weight: 500;
     }
   }
-  .costume_btn_style {
-    width: 12rem;
+  .modal_box {
+    box-shadow: $box_shadow;
+    width: 45%;
+    min-width: 30rem;
+    height: 220px;
+    max-width: 40rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fff;
+    padding: 2rem;
+    margin: 0px auto;
+    border-radius: 4px;
+    text-align: right;
+    flex-direction: column;
+
+    .go_back {
+      display: inline-block;
+      width: 50%;
+      vertical-align: middle;
+      font-size: 1.1rem;
+      &:nth-of-type(3) {
+        text-align: left;
+      }
+    }
+    .send_again {
+      cursor: pointer;
+      color: $main__color;
+      text-align: right;
+    }
   }
 }

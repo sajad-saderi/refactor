@@ -3,42 +3,47 @@
 .text_input_container {
   width: 100%;
   display: block;
-  position: relative;
+  // position: relative;
   .text_input_label {
     color: $Main_black_Text_Color;
     text-align: right;
     font-family: inherit;
     font-size: 1.4rem;
   }
-  .text_input {
-    font-family: inherit;
-    margin: 1rem auto 0;
+  .input_surround {
     display: block;
     width: 100%;
-    outline: 0;
-    -webkit-appearance: none;
-    line-height: 1.5;
-    padding: 1rem;
-    font-size: 1.4em;
-    background: transparent;
-    border: 1px solid $input_border;
-    color: rgba(0, 0, 0, 0.87);
-    border-radius: 0.4rem;
-    box-shadow: 0 0 0 0 transparent inset;
-    // &:invalid {
-    //   border: 1px solid #d83030 !important;
-    //   background: rgba(216, 48, 48, 0.1) !important;
-    // }
-    &:focus {
-      background-color: #ffffff;
+    position: relative;
+    .text_input {
+      font-family: inherit;
+      margin: 1rem auto 0;
+      display: block;
+      width: 100%;
+      outline: 0;
+      -webkit-appearance: none;
+      line-height: 1.5;
+      padding: 1rem;
+      font-size: 1.4em;
+      background: transparent;
+      border: 1px solid $input_border;
+      color: rgba(0, 0, 0, 0.87);
+      border-radius: 0.4rem;
+      box-shadow: 0 0 0 0 transparent inset;
+      // &:invalid {
+      //   border: 1px solid #d83030 !important;
+      //   background: rgba(216, 48, 48, 0.1) !important;
+      // }
+      &:focus {
+        background-color: #ffffff;
+      }
     }
-  }
-  .clean_icon {
-    position: absolute;
-    left: 10px;
-    bottom: 15px;
-    cursor: pointer;
-    width: 2rem;
+    .clean_icon {
+      position: absolute;
+      left: 10px;
+      bottom: 11px;
+      cursor: pointer;
+      width: 2rem;
+    }
   }
   .input_error_message {
     font-size: 1.2rem;

@@ -91,9 +91,8 @@
         display: inline-block;
         vertical-align: middle;
         width: 15rem;
-        .clean_icon {
-          top: 2.8rem;
-          bottom: auto;
+        .clean_icon { 
+          bottom: 15px;
         }
         input {
           &::placeholder {
@@ -108,9 +107,8 @@
     }
     .extra_km_price_container {
       .text_input_container {
-        .clean_icon {
-          top: 4rem;
-          bottom: auto;
+        .clean_icon { 
+          bottom: 15px;
         }
       }
     }
