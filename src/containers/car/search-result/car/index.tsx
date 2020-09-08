@@ -99,8 +99,18 @@ const Car = (props) => {
                 </li>
               )}
               {props.showLocation ? (
-                <li>
-                  <span className="tags">
+                <li
+                  onClick={(e) => {
+                    e.preventDefault();
+                    props.tagClick({
+                      type: "location",
+                      value: location.parent_id === 1 ? 1 : location.id,
+                      name:
+                        location.parent_id === 1 ? "تهران" : location.name.fa,
+                    });
+                  }}
+                >
+                  <span className="tags location_tag">
                     {location.parent_id === 1 ? "تهران" : location.name.fa}
                   </span>
                 </li>

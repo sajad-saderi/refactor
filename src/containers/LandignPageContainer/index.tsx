@@ -53,6 +53,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
   const [show_filter, setShow_filter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [filterReset, setFilterReset] = useState({
+    location: false,
     price: false,
     with_driver: false,
     body_style_id: false,
@@ -60,7 +61,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
     brand_id: false,
     car_id: false,
   });
-
+  const [carLocationName, setCarLocationName] = useState(null);
   const new_search_ref = useRef(null);
 
   const handleClickOutside = (e) => {
@@ -231,6 +232,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
 
   const clearReset = (v) => {
     switch (v) {
+      case "location":
+        setFilterReset((filterReset) => {
+          return { ...filterReset, location: false };
+        });
+        break;
       case "price":
         setFilterReset((filterReset) => {
           return { ...filterReset, price: false };
@@ -266,6 +272,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
 
       default:
         setFilterReset({
+          location: false,
           price: false,
           with_driver: false,
           body_style_id: false,
@@ -274,6 +281,17 @@ const Landing_page_container = (props: ILanding_page_container) => {
           car_id: false,
         });
         break;
+    }
+  };
+
+  const searchIgniteByClickOnCardTags = (tag) => {
+    if (tag.type === "location") {
+      setCarLocationName(tag.name);
+      clearReset("");
+      loadMoreCar = false;
+      filtersChecker.Location = true;
+      Location = tag.value;
+      initSearch();
     }
   };
 
@@ -373,6 +391,22 @@ const Landing_page_container = (props: ILanding_page_container) => {
         </div>
       </section>
       <section className="responsive minimal_filters">
+        {filtersChecker.Location ? (
+          <p
+            className="minimal_filter_tags"
+            onClick={() => {
+              setFilterReset((filterReset) => {
+                return { ...filterReset, location: true };
+              });
+              loadMoreCar = false;
+              filtersChecker.Location = false;
+              initSearch();
+            }}
+          >
+            <IoMdClose size="1.3rem" color="#ababab" />
+            {`محل خودرو ${carLocationName}`}
+          </p>
+        ) : null}
         {filtersChecker.price ? (
           <p
             className="minimal_filter_tags"
@@ -495,6 +529,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           result={result}
           noQuickAccess={true}
           showLocation={true}
+          tagClick={searchIgniteByClickOnCardTags}
         />
       </section>
       {/* load more */}
