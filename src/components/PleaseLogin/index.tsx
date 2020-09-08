@@ -14,10 +14,12 @@ const PleaseLogin = () => {
 
   return (
     <div className="Please_login_container minHeight">
-      <div className="caption">
-        <FiLogIn color="#4ba3ce" size="3rem" />
-        <p>برای دسترسی به این بخش، ابتدا وارد شوید.</p>
-      </div>
+      {!change ? (
+        <div className="caption">
+          <FiLogIn color="#4ba3ce" size="3rem" />
+          <p>برای دسترسی به این بخش، ابتدا وارد شوید.</p>
+        </div>
+      ) : null}
       <div className="modal_box">
         {change ? (
           <ConfirmCode
