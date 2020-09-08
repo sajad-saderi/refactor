@@ -179,10 +179,12 @@ const Edit_profile = (props: IEdit_profile) => {
 
     try {
       if (state.username !== "") {
-        // jsCookie.set("name", state.username, {
-        //   expires: 100,
-        // });
-        await REQUEST_SET_USERNAME({ token, username: state.username });
+        const res: any = await REQUEST_SET_USERNAME({
+          token,
+          username: state.username,
+        });
+        jsCookie.set("username", state.username, { expires: 100 });
+        window.history.replaceState(null, "", `/user/${state.username}`);
       }
     } catch (error) {
       console.log("!Error", error);

@@ -9,12 +9,13 @@ import { NextSeo } from "next-seo";
 
 const Profile_container = () => {
   const [is_mine, setIs_mine] = useState(false);
+  const [profile_Id, setProfile_Id] = useState(null);
 
   const [data, setData] = useState(null);
 
   useEffect(() => {
     if (!checkRegister()) {
-      return
+      return;
     }
     fetchApi();
   }, []);
@@ -25,19 +26,20 @@ const Profile_container = () => {
       id: `${Router.router.query.id}`,
     });
     setIs_mine(user_id == user_cars_info.id ? true : false);
+    setProfile_Id(user_cars_info.id);
     setData(user_cars_info);
   };
 
   const checkRegister = () => {
-    const user_id = jsCookie.get("user_id")
-    const complete_register = jsCookie.get("complete_register")
+    const user_id = jsCookie.get("user_id");
+    const complete_register = jsCookie.get("complete_register");
     if (user_id && complete_register !== "true") {
-      Router.push("/complete-register")
-      return false
+      Router.push("/complete-register");
+      return false;
     } else {
-      return true
+      return true;
     }
-  }
+  };
 
   return (
     <article className="responsive minHeight profile_container">
@@ -46,7 +48,7 @@ const Profile_container = () => {
           <NextSeo
             title={`اجاره خودرو از ${
               data.company_name ? data.company_name : data.name
-              } | اتولی`}
+            } | اتولی`}
             description=" حساب کاربری"
             openGraph={{
               title: `اجاره خودرو از ${data.name} | اتولی`,
@@ -59,11 +61,11 @@ const Profile_container = () => {
             }}
           />
           <Profile_info data={data} is_mine={is_mine} />
-          <Profile_Cars is_mine={is_mine} />
+          <Profile_Cars is_mine={is_mine} profile_Id={profile_Id} />
         </>
       ) : (
-          <NextSeo title="اجاره خودرو | اتولی" description=" حساب کاربری" />
-        )}
+        <NextSeo title="اجاره خودرو | اتولی" description=" حساب کاربری" />
+      )}
     </article>
   );
 };

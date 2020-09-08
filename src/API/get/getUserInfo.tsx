@@ -5,9 +5,12 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_USER_INFO = "/core/user/info";
 
 export const REQUEST_GET_USER_INFO = (data: IGetUser) => {
+  let query = isNaN(`${data.id}` as any)
+    ? "?username=" + data.id
+    : "?id=" + data.id;
   return new Promise((resolve, reject) => {
     axios
-      .post(DOMAIN + GET_USER_INFO + "?id=" + data.id)
+      .post(DOMAIN + GET_USER_INFO + query)
       .then((response) => {
         resolve(response.data.data);
       })
@@ -19,5 +22,5 @@ export const REQUEST_GET_USER_INFO = (data: IGetUser) => {
 };
 
 interface IGetUser {
-  id?: string;
+  id?: any;
 }

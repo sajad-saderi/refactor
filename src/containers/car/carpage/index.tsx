@@ -700,7 +700,10 @@ const CarPage = () => {
                   </div>
                 ) : null
               ) : null}
-              <Link href={`/user/[id]`} as={`/user/${owner.id}`}>
+              <Link
+                href={`/user/[id]`}
+                as={`/user/${owner.username ? owner.username : owner.id}`}
+              >
                 <a className="HEAP_Car_Link_Profile">
                   <figure className="owner_part">
                     <img src={owner.thumbnail_url} alt={owner.name} />
