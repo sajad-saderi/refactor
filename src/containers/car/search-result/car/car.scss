@@ -103,14 +103,14 @@
         }
       }
       .tags_container {
-        margin-top: 1.8rem;
+        margin-top: 2.3rem;
         li {
           display: inline-block;
           margin-left: 0.8rem;
           .tags {
             color: #262626;
             background: #e3e3e3;
-            padding: 0.7rem 0.5rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 4px;
             font-size: 1rem;
           }
@@ -133,6 +133,16 @@
       margin: 0 0 2% 0;
       figure {
         height: 200px;
+      }
+      .info_box {
+        .tags_container {
+        margin-top: 2rem;
+          li {
+            .tags {
+              padding: 0.5rem 0.7rem;
+            }
+          }
+        }
       }
     }
   }
