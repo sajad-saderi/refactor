@@ -16,7 +16,7 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
         {
           headers: {
             Authorization: "Bearer " + data.token,
-            "cache-control": "no-cache",
+            "Cache-Control": "no-store",
           },
         }
       )
