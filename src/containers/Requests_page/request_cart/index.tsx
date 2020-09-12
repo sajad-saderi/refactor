@@ -72,7 +72,23 @@ const Request_cart = (props: IRequest_cart) => {
           time: 10,
           autoClose: true,
         });
-        props.getDataAgain();
+        // props.getDataAgain();
+        switch (data.action) {
+          case "approve":
+            CreateTheStatusForThisCard("approved");
+            break;
+          case "reject":
+            CreateTheStatusForThisCard("rejected");
+            break;
+          case "deliver":
+            CreateTheStatusForThisCard("delivered");
+            break;
+          case "return":
+            CreateTheStatusForThisCard("returned");
+            break;
+          default:
+            break;
+        }
       }
     } catch (error) {
       console.log("!Error", error);
@@ -83,166 +99,154 @@ const Request_cart = (props: IRequest_cart) => {
 
   useEffect(() => {
     if (props.data) {
-      /**
-       * @renter
-       * اجاره گیرنده
-       *
-       * @owner
-       * اجاره دهنده
-       */
-      let renter = props.data.role === "renter" ? true : false;
-      let has_insurance = props.data.has_insurance ? true : false;
+      CreateTheStatusForThisCard();
+    }
+  }, [props.data]);
 
-      // small portion at the top right on the request cart
-      let RentStatus = null;
-      setStatus_id(props.data.status.id);
-      switch (props.data.status.id) {
-        case "new":
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosDownload size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          // set the button attribute base on the role and action
-          setButton_code(
-            !renter
-              ? [
-                  {
-                    value: "قبول",
-                    class:
-                      "Blue_BTN request_car_accept HEAP_Request_Btn_Accept ACCEPTED_INCOMING_REQUEST",
-                    click: () =>
-                      setForRequest({ action: "approve", id: props.data.id }),
+  const CreateTheStatusForThisCard = (status = null) => {
+    /**
+     * @renter
+     * اجاره گیرنده
+     *
+     * @owner
+     * اجاره دهنده
+     */
+    let renter = props.data.role === "renter" ? true : false;
+    let has_insurance = props.data.has_insurance ? true : false;
+
+    // small portion at the top right on the request cart
+    let RentStatus = null;
+    setStatus_id(status ? status : props.data.status.id);
+    switch (status ? status : props.data.status.id) {
+      case "new":
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosDownload size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        // set the button attribute base on the role and action
+        setButton_code(
+          !renter
+            ? [
+                {
+                  value: "قبول",
+                  class:
+                    "Blue_BTN request_car_accept HEAP_Request_Btn_Accept ACCEPTED_INCOMING_REQUEST",
+                  click: () =>
+                    setForRequest({ action: "approve", id: props.data.id }),
+                },
+                {
+                  value: "رد",
+                  class:
+                    "Blue_BTN request_car_reject HEAP_Request_Btn_Reject REJECT_INCOMING_REQUEST",
+                  loading: ButtonLoader,
+                  click: () =>
+                    setForRequest({ action: "reject", id: props.data.id }),
+                },
+              ]
+            : []
+        );
+        break;
+      case "approved":
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosCard size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        setButton_code(
+          renter
+            ? [
+                {
+                  value: "پرداخت",
+                  class:
+                    "Blue_BTN request_car_pay GO_TO_BANK HEAP_Request_Btn_GotoBank",
+                  click: () =>
+                    setForRequest({ action: "pay", id: props.data.id }),
+                },
+              ]
+            : []
+        );
+        break;
+      case "rejected":
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosRemoveCircle size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        setButton_code([]);
+        break;
+      case "cancelled":
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosEyeOff size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        break;
+      case "paid":
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosCheckboxOutline size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        setButton_code(
+          renter
+            ? [
+                {
+                  value: "خودرو را تحویل گرفتم",
+                  class:
+                    "Blue_BTN request_car_pay CAR_DELIVERED HEAP_Request_Btn_CarDelivered",
+                  click: () =>
+                    setForRequest({ action: "deliver", id: props.data.id }),
+                },
+              ]
+            : []
+        );
+        break;
+      case "not_delivered":
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosHand size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        break;
+      case "delivered":
+        RentStatus = (
+          <div className="rent_status">
+            <IoLogoModelS size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        setButton_code(
+          !renter
+            ? [
+                {
+                  value: "خودرو را بازتحویل گرفتم",
+                  class:
+                    "Blue_BTN request_car_pay HEAP_Request_Btn_CarReturned",
+                  click: () => {
+                    setForRequest({ action: "return", id: props.data.id });
                   },
-                  {
-                    value: "رد",
-                    class:
-                      "Blue_BTN request_car_reject HEAP_Request_Btn_Reject REJECT_INCOMING_REQUEST",
-                    loading: ButtonLoader,
-                    click: () =>
-                      setForRequest({ action: "reject", id: props.data.id }),
-                  },
-                ]
-              : []
-          );
-          break;
-        case "approved":
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosCard size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          setButton_code(
-            renter
-              ? [
-                  {
-                    value: "پرداخت",
-                    class:
-                      "Blue_BTN request_car_pay GO_TO_BANK HEAP_Request_Btn_GotoBank",
-                    click: () =>
-                      setForRequest({ action: "pay", id: props.data.id }),
-                  },
-                ]
-              : []
-          );
-          break;
-        case "rejected":
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosRemoveCircle size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          break;
-        case "cancelled":
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosEyeOff size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          break;
-        case "paid":
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosCheckboxOutline size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          setButton_code(
-            renter
-              ? [
-                  {
-                    value: "خودرو را تحویل گرفتم",
-                    class:
-                      "Blue_BTN request_car_pay CAR_DELIVERED HEAP_Request_Btn_CarDelivered",
-                    click: () =>
-                      setForRequest({ action: "deliver", id: props.data.id }),
-                  },
-                ]
-              : []
-          );
-          break;
-        case "not_delivered":
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosHand size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          break;
-        case "delivered":
-          RentStatus = (
-            <div className="rent_status">
-              <IoLogoModelS size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          setButton_code(
-            !renter
-              ? [
-                  {
-                    value: "خودرو را بازتحویل گرفتم",
-                    class:
-                      "Blue_BTN request_car_pay HEAP_Request_Btn_CarReturned",
-                    click: () => {
-                      setForRequest({ action: "return", id: props.data.id });
-                    },
-                  },
-                ]
-              : []
-          );
-          break;
-        case "returned":
-          RentStatus = (
-            <div className="rent_status">
-              <IoMdFlag size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          setButton_code(
-            renter
-              ? props.data.has_renter_reviewed_rent_order
-                ? [
-                    {
-                      value: "قبلا برای این سفارش، نظر ثبت کرده اید",
-                      disable: true,
-                      class: "Blue_BTN request_car_pay disable_rate_btn",
-                      click: () => {},
-                    },
-                  ]
-                : [
-                    {
-                      value: "ثبت نظر",
-                      class: "Blue_BTN request_car_pay",
-                      click: () =>
-                        // send this data to modal
-                        MODAL_CONTEXT.modalHandler("Renter", props.data),
-                    },
-                  ]
-              : props.data.has_owner_reviewed_rent_order
+                },
+              ]
+            : []
+        );
+        break;
+      case "returned":
+        RentStatus = (
+          <div className="rent_status">
+            <IoMdFlag size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        setButton_code(
+          renter
+            ? props.data.has_renter_reviewed_rent_order
               ? [
                   {
                     value: "قبلا برای این سفارش، نظر ثبت کرده اید",
@@ -257,61 +261,77 @@ const Request_cart = (props: IRequest_cart) => {
                     class: "Blue_BTN request_car_pay",
                     click: () =>
                       // send this data to modal
-                      MODAL_CONTEXT.modalHandler("Owner", props.data),
+                      MODAL_CONTEXT.modalHandler("Renter", props.data),
                   },
                 ]
-          );
-          break;
-        default:
-          RentStatus = (
-            <div className="rent_status">
-              <IoIosDownload size="1.4rem" color="#656565" />
-              <span>{props.data.status.name}</span>
-            </div>
-          );
-          break;
-      }
-      // set initials value
-      setRentStatus(RentStatus);
-      setCar(props.data.rent_search_dump.car);
-      setStart_date(props.data.rent_search_dump.start_date);
-      setEnd_date(props.data.rent_search_dump.end_date);
-      setNo_of_days(props.data.rent_search_dump.no_of_days);
-      if (props.data.rent_search_dump.media_set.length > 0)
-        setMedia_set(props.data.rent_search_dump.media_set[0]);
-      else setMedia_set({ thumbnail_url: carImage });
-      setDiscounted_total_price(
-        renter
-          ? props.data.rent_search_dump.discounted_total_price
-          : props.data.rent_search_dump.owner_price
-          ? props.data.rent_search_dump.owner_price
-          : props.data.rent_search_dump.discounted_total_price
-      );
-      setInsurance_total_price(
-        has_insurance ? props.data.rent_search_dump.insurance_total_price : 0
-      );
-      setCoupon(
-        props.data.rent_search_dump.coupon
-          ? props.data.rent_search_dump.coupon.total_price
-          : null
-      );
-      setTotal_discount(props.data.rent_search_dump.total_discount);
-      setRole(renter);
-      setOwner_Info(props.data.rent_search_dump.owner);
-      setRenter_info(props.data.renter);
-      setPelak({
-        registration_plate_first_part:
-          props.data.rent_search_dump.registration_plate_first_part,
-        registration_plate_second_part:
-          props.data.rent_search_dump.registration_plate_second_part,
-        registration_plate_third_part:
-          props.data.rent_search_dump.registration_plate_third_part,
-        registration_plate_forth_part:
-          props.data.rent_search_dump.registration_plate_forth_part,
-      });
+            : props.data.has_owner_reviewed_rent_order
+            ? [
+                {
+                  value: "قبلا برای این سفارش، نظر ثبت کرده اید",
+                  disable: true,
+                  class: "Blue_BTN request_car_pay disable_rate_btn",
+                  click: () => {},
+                },
+              ]
+            : [
+                {
+                  value: "ثبت نظر",
+                  class: "Blue_BTN request_car_pay",
+                  click: () =>
+                    // send this data to modal
+                    MODAL_CONTEXT.modalHandler("Owner", props.data),
+                },
+              ]
+        );
+        break;
+      default:
+        RentStatus = (
+          <div className="rent_status">
+            <IoIosDownload size="1.4rem" color="#656565" />
+            <span>{props.data.status.name}</span>
+          </div>
+        );
+        break;
     }
-  }, [props.data]);
-
+    // set initials value
+    setRentStatus(RentStatus);
+    setCar(props.data.rent_search_dump.car);
+    setStart_date(props.data.rent_search_dump.start_date);
+    setEnd_date(props.data.rent_search_dump.end_date);
+    setNo_of_days(props.data.rent_search_dump.no_of_days);
+    if (props.data.rent_search_dump.media_set.length > 0)
+      setMedia_set(props.data.rent_search_dump.media_set[0]);
+    else setMedia_set({ thumbnail_url: carImage });
+    setDiscounted_total_price(
+      renter
+        ? props.data.rent_search_dump.discounted_total_price
+        : props.data.rent_search_dump.owner_price
+        ? props.data.rent_search_dump.owner_price
+        : props.data.rent_search_dump.discounted_total_price
+    );
+    setInsurance_total_price(
+      has_insurance ? props.data.rent_search_dump.insurance_total_price : 0
+    );
+    setCoupon(
+      props.data.rent_search_dump.coupon
+        ? props.data.rent_search_dump.coupon.total_price
+        : null
+    );
+    setTotal_discount(props.data.rent_search_dump.total_discount);
+    setRole(renter);
+    setOwner_Info(props.data.rent_search_dump.owner);
+    setRenter_info(props.data.renter);
+    setPelak({
+      registration_plate_first_part:
+        props.data.rent_search_dump.registration_plate_first_part,
+      registration_plate_second_part:
+        props.data.rent_search_dump.registration_plate_second_part,
+      registration_plate_third_part:
+        props.data.rent_search_dump.registration_plate_third_part,
+      registration_plate_forth_part:
+        props.data.rent_search_dump.registration_plate_forth_part,
+    });
+  };
   return (
     media_set && (
       <>
