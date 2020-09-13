@@ -506,10 +506,12 @@ const CarPage = () => {
                     {transmission_type.name.fa}
                   </span>
                 </p>
-                <p className="alignThem">
-                  <span className="info_name">سیلندر</span>{" "}
-                  <span className="info_value">{cylinder.name.fa}</span>
-                </p>
+                {cylinder ? (
+                  <p className="alignThem">
+                    <span className="info_name">سیلندر</span>{" "}
+                    <span className="info_value">{cylinder.name.fa}</span>
+                  </p>
+                ) : null}
                 <p className="alignThem">
                   <span className="info_name">کارکرد</span>{" "}
                   <span className="info_value">{mileage_range.name.fa}</span>
