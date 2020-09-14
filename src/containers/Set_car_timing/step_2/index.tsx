@@ -717,7 +717,7 @@ const Add_Car_Step_2 = () => {
             />
             <span className="tail_text">تومان در روز</span>
             {recommendationPrice && (
-              <p>
+              <p className="our_recommendation">
                 {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
                 تومان در روز
               </p>
