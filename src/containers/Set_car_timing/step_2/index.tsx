@@ -180,6 +180,7 @@ const Add_Car_Step_2 = () => {
   const [Loading, setLoading] = useState(false);
   const [Brand_Name, setBrand_Name] = useState(null);
   const [CarModelName, setCarModelName] = useState(null);
+  const [recommendationPrice, setRecommendationPrice] = useState(null);
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
     id: false,
@@ -336,6 +337,13 @@ const Add_Car_Step_2 = () => {
 
     if (car.has_media) setInitialImage(car.media_set[0].thumbnail_url);
     else setInitialImage(carThumbnail);
+
+    // estimate the daily price for rent base on car value
+    let eachDaily = car.value * 0.0018;
+    //  Round the daily value before calculating monthly and weekly income
+    let Round = Math.ceil(eachDaily / 10) * 10;
+    setRecommendationPrice(Round);
+
     // SET CAR CANCELLATION POLICY
     dispatch({
       type: "cancellation_policy",
@@ -659,7 +667,7 @@ const Add_Car_Step_2 = () => {
           </div>
           {/* {DateAndPrice === 1 ? ( */}
           {/* <> */}
-          <div className="custom_input_container_step_2">
+          <div className="custom_input_container_step_2 daily_price_container">
             <TextInput
               name="price_per_day"
               number={true}
@@ -708,6 +716,12 @@ const Add_Car_Step_2 = () => {
               }}
             />
             <span className="tail_text">تومان در روز</span>
+            {recommendationPrice && (
+              <p>
+                {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
+                تومان در روز
+              </p>
+            )}
           </div>
           {/* {state.price_per_day.length > 3 && (
                 <p>

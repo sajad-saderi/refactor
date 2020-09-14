@@ -91,7 +91,7 @@
         display: inline-block;
         vertical-align: middle;
         width: 15rem;
-        .clean_icon { 
+        .clean_icon {
           bottom: 15px;
         }
         input {
@@ -107,7 +107,7 @@
     }
     .extra_km_price_container {
       .text_input_container {
-        .clean_icon { 
+        .clean_icon {
           bottom: 15px;
         }
       }
@@ -176,6 +176,11 @@
       &:focus {
         background: #fff;
       }
+    }
+  }
+  .daily_price_container {
+    .text_input_container {
+      margin: 0 0 1rem;
     }
   }
   .local_style {
