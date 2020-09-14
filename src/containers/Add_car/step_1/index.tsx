@@ -44,6 +44,7 @@ import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading
  *  This id will send to the API and get the car information and full fill the step 1 form
  */
 const new_car = jsCookie.get("new_car");
+let formSuccessfullySubmit = false;
 let autoFillStorageData = null;
 let incompleteCarMode = false;
 let incompleteInfo = {
@@ -510,17 +511,20 @@ const Add_Car_Step_1 = () => {
   useEffect(() => {
     // check if the user edit the car
     if (Router.router.query.mode === "edit") {
-      localStorage.removeItem("incompleteInfo");
+      localStorage.removeItem("incompleteInfo");      
+      localStorage.removeItem("halfcompletecar");
       getCarInfoToEdit(Router.router.query.car_id);
     } else if (jsCookie.get("new_car")) {
       localStorage.removeItem("incompleteInfo");
+      localStorage.removeItem("halfcompletecar");
     } else if (
       !new_car &&
       !Router.router.query.mode &&
-      localStorage["incompleteInfo"]
+      localStorage["halfcompletecar"]
     ) {
       incompleteCarMode = true;
-      incompleteInfo = JSON.parse(localStorage["incompleteInfo"]);
+      // incompleteInfo = JSON.parse(localStorage["incompleteInfo"]);
+      incompleteInfo = JSON.parse(localStorage["halfcompletecar"]);
       if (!incompleteInfo.car.brand.id) {
         if (localStorage["car_info"]) {
           let data = JSON.parse(localStorage["car_info"]);
@@ -548,11 +552,14 @@ const Add_Car_Step_1 = () => {
     }
     getInitials();
     return () => {
-      if (!Router.router.query.mode && !new_car) {
-        localStorage["incompleteInfo"] = JSON.stringify(incompleteInfo);
+      if (!Router.router.query.mode && !new_car && !formSuccessfullySubmit) {
+        // localStorage["incompleteInfo"] = JSON.stringify(incompleteInfo);
+        localStorage["halfcompletecar"] = JSON.stringify(incompleteInfo);
       } else {
         localStorage.removeItem("incompleteInfo");
+        localStorage.removeItem("halfcompletecar");
       }
+      formSuccessfullySubmit = false;
       incompleteCarMode = false;
       autoFillStorageData = false;
     };
@@ -563,6 +570,7 @@ const Add_Car_Step_1 = () => {
     // if a user has a incomplete car and it's not edit mode
     if (new_car && !Router.router.query.mode) {
       localStorage.removeItem("incompleteInfo");
+      localStorage.removeItem("halfcompletecar");
       getCarInfoToEdit(new_car);
     }
   }, [new_car]);
@@ -806,8 +814,10 @@ const Add_Car_Step_1 = () => {
          * after sent the information to the API,
          * if we are in edit mode go to profile
          */
+        formSuccessfullySubmit = true;
         localStorage.removeItem("car_info");
         localStorage.removeItem("incompleteInfo");
+        localStorage.removeItem("halfcompletecar");
         localStorage["red_dot"] = 1;
         if (Router.router.query.mode === "edit") {
           Router.push(`/user/${user_id}`);

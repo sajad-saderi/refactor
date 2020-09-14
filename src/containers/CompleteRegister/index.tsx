@@ -190,7 +190,7 @@ const Complete_register_container = () => {
   };
 
   const validation = (state) => {
-    if (state.first_name === "") {
+    if (state.first_name.trim() === "") {
       errorDispatch({
         type: "first_name",
         first_name: true,
@@ -200,7 +200,7 @@ const Complete_register_container = () => {
     } else {
       resetTheErrorStatus("first_name");
     }
-    if (state.last_name === "") {
+    if (state.last_name.trim() === "") {
       errorDispatch({
         type: "last_name",
         last_name: true,
@@ -220,7 +220,7 @@ const Complete_register_container = () => {
     // } else {
     //   resetTheErrorStatus("company_name");
     // }
-    if (state.day === "") {
+    if (state.day.trim() === "") {
       errorDispatch({
         type: "day",
         day: true,
@@ -247,7 +247,7 @@ const Complete_register_container = () => {
     } else {
       resetTheErrorStatus("month");
     }
-    if (state.year === "") {
+    if (state.year.trim() === "") {
       errorDispatch({
         type: "year",
         year: true,

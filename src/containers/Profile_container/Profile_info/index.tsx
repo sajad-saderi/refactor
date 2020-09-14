@@ -38,6 +38,8 @@ const Profile_info = (props: IProfile_info) => {
     jsCookie.remove("new_car");
     jsCookie.remove("car_info");
     localStorage.removeItem("red_dot");
+    localStorage.removeItem("incompleteInfo");
+    localStorage.removeItem("halfcompletecar");
     Router.push("/");
   };
 
