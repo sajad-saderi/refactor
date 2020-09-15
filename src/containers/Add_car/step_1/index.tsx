@@ -511,7 +511,7 @@ const Add_Car_Step_1 = () => {
   useEffect(() => {
     // check if the user edit the car
     if (Router.router.query.mode === "edit") {
-      localStorage.removeItem("incompleteInfo");      
+      localStorage.removeItem("incompleteInfo");
       localStorage.removeItem("halfcompletecar");
       getCarInfoToEdit(Router.router.query.car_id);
     } else if (jsCookie.get("new_car")) {
@@ -1049,7 +1049,7 @@ const Add_Car_Step_1 = () => {
 
   const clearRelativeToModel = () => {
     // RESET ALL BRAND RELATED FIELDS
-    setCarModelName(" ");
+    // setCarModelName(" ");
     dispatch({ type: "capacity", capacity: " " });
     dispatch({ type: "transmission_type_id", transmission_type_id: null });
     // dispatch({ type: "cylinder_id", cylinder_id: null });
@@ -1064,6 +1064,7 @@ const Add_Car_Step_1 = () => {
    *  for the car id get all information about transmission, body style, etc...
    */
   const getBrandInfo = async (id) => {
+    if (!id) return;
     // if the fields are filled, first clear them
     setShowTransmissionRadio(false);
     setShowBodyStyle(false);
