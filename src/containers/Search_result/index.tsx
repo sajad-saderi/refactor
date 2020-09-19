@@ -15,6 +15,10 @@ import {
   IoIosArrowDown,
 } from "react-icons/io";
 import Search from "../Search";
+import economic from "../../../public/image/affordable.svg";
+import offRoad from "../../../public/image/SUV.svg";
+
+let quickAccessClick = false;
 
 let JumpTo = null;
 // default location is Tehran
@@ -93,6 +97,7 @@ const Search_result = () => {
     Router.events.on("routeChangeStart", handleRouteChange);
     return () => {
       Router.events.off("routeChangeStart", handleRouteChange);
+      quickAccessClick = false;
       Location = 1;
       Start_date = null;
       End_date = null;
@@ -523,15 +528,39 @@ const Search_result = () => {
             }}
           />
         </filterContext.Provider>
-        <SearchResultList
-          result={result}
-          setFilterForSearch={(v) => {
-            if (v.o) {
-              o = "price";
-            }
-            filterResults(v);
-          }}
-        />
+        <SearchResultList result={result} />
+      </section>
+      <section className=" responsive quick_access_middle_searchResult">
+        <h2>دسترسی سریع</h2>
+        <div className="quick_access_child_container">
+          <div
+            className="HEAP_Search_Result_Quick_Access_SUV"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              quickAccessClick = true;
+              filterResults({
+                body_style_id: { value: [2], status: true },
+              });
+            }}
+          >
+            <img src={offRoad} alt="خودروهای شاسی‌بلند" />
+            <p>خودروهای شاسی‌بلند</p>
+          </div>
+          <div
+            className="HEAP_Search_Result_Quick_Access_Economy"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              quickAccessClick = true;
+              filterResults({
+                o: "-price",
+                price: { value: ["0", "1000000"], status: true },
+              });
+            }}
+          >
+            <img src={economic} alt="خودروهای اقتصادی" />
+            <p>خودروهای اقتصادی</p>
+          </div>
+        </div>
       </section>
       {/* load more */}
       {remained_count > 0 && (
