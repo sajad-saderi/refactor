@@ -13,6 +13,10 @@ import {
   IoIosOptions,
   IoIosArrowDown,
 } from "react-icons/io";
+import economic from "../../../public/image/affordable.svg";
+import offRoad from "../../../public/image/SUV.svg";
+
+let quickAccessClick = false;
 // default location is Tehran
 let Location = 1;
 let Start_date = null;
@@ -76,6 +80,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
     document.addEventListener("mousedown", handleClickOutside);
     // reset the data
     return () => {
+      quickAccessClick = false;
       Location = 1;
       Start_date = null;
       End_date = null;
@@ -527,10 +532,41 @@ const Landing_page_container = (props: ILanding_page_container) => {
         </filterContext.Provider>
         <SearchResultList
           result={result}
-          noQuickAccess={true}
           showLocation={true}
           tagClick={searchIgniteByClickOnCardTags}
         />
+      </section>
+      <section className=" responsive quick_access_middle_searchResult">
+        <h2>دسترسی سریع</h2>
+        <div className="quick_access_child_container">
+          <div
+            className="HEAP_Search_Result_Quick_Access_SUV"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              quickAccessClick = true;
+              filterResults({
+                body_style_id: { value: [2], status: true },
+              });
+            }}
+          >
+            <img src={offRoad} alt="خودروهای شاسی‌بلند" />
+            <p>خودروهای شاسی‌بلند</p>
+          </div>
+          <div
+            className="HEAP_Search_Result_Quick_Access_Economy"
+            onClick={() => {
+              window.scrollTo(0, 0);
+              quickAccessClick = true;
+              filterResults({
+                o: "-price",
+                price: { value: ["0", "1000000"], status: true },
+              });
+            }}
+          >
+            <img src={economic} alt="خودروهای اقتصادی" />
+            <p>خودروهای اقتصادی</p>
+          </div>
+        </div>
       </section>
       {/* load more */}
       {remained_count > 0 && (
