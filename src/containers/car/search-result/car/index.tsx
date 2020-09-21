@@ -44,7 +44,7 @@ const Car = (props) => {
   let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
   return (
     <div className="carCart HEAP_SearchResult_Card_Car">
-      <Link href={`/car/[id]?id=${id}&search_id=${search_id}`} as={link}>
+      <Link href={link}>
         <a className={`CAR_CART_${title}`}>
           <figure>
             {total_discount_percent > 0 && (

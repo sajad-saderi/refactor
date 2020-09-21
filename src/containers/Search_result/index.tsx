@@ -296,7 +296,7 @@ const Search_result = () => {
       staticRoute = {
         ...staticRoute,
         body_style_id:
-          v.body_style_id.value.length === 0 ? "all" : v.body_style_id.value,
+          v.body_style_id.value.length === 0 ? "all" : v.body_style_id.value.join(","),
       };
     }
     if (v.brand_id) {
