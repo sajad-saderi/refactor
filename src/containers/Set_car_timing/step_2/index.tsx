@@ -217,6 +217,8 @@ const Add_Car_Step_2 = () => {
   });
   const MODAL_CONTEXT = useContext(Modal_context);
   const token = jsCookie.get("token");
+  const [insurance_bill, setInsurance_bill] = useState(0);
+  const [insurance_amount, setInsurance_amount] = useState("");
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -902,7 +904,51 @@ const Add_Car_Step_2 = () => {
             error={ErrorState.discount_error}
           />
           <label>
-            شرایط اجاره و کنسلی
+            <h4>شرایط اجاره و کنسلی</h4>
+            <div className="radio_father">
+              <label
+                className={[
+                  "transition_type_Label",
+                  ErrorState.transmission_type_id ? "Error_color" : null,
+                ].join(" ")}
+              ></label>
+              <Radio
+                name="insurance_bill"
+                SelectHandler={(i) => {
+                  setInsurance_bill(+i);
+                }}
+                defaultCheck={insurance_bill}
+                data={[
+                  {
+                    label: "چک",
+                    value: 1,
+                  },
+                  {
+                    label: "سفته",
+                    value: 2,
+                  },
+                ]}
+              />
+              به مبلغ
+              <TextInput
+                name="insurance_amount"
+                number={true}
+                autoFocus={false}
+                onChangeHandler={(e) => {
+                  setInsurance_amount(e);
+                }}
+                clearField={() => setInsurance_amount("")}
+                error={{
+                  status: false,
+                  message: null,
+                }}
+                // min={4}
+                max={15}
+                placeholder="مثال: 1,000,000"
+                value={insurance_amount}
+              />
+              تومان
+            </div>
             <span
               onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
               className="anchorTagInStep2"
