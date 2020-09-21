@@ -17,12 +17,16 @@ import {
 import Search from "../Search";
 import economic from "../../../public/image/affordable.svg";
 import offRoad from "../../../public/image/SUV.svg";
+import UrlCreator from "../../../utils/UrlCreator";
 
 let quickAccessClick = false;
 
 let JumpTo = null;
+
+let staticRoute = null;
 // default location is Tehran
 let Location: any = 1;
+let location_n = null;
 let Start_date = null;
 let End_date = null;
 // start page is 1
@@ -78,10 +82,59 @@ const Search_result = () => {
 
   useEffect(() => {
     // get the data from url
-    const { location_id, start_date, end_date } = Router.router.query;
-    Location = location_id;
-    Start_date = start_date;
-    End_date = end_date;
+    const {
+      location_id,
+      start_date,
+      end_date,
+      price_order,
+      location_name,
+      min_price,
+      max_price,
+    } = Router.router.query;
+    staticRoute = { ...Router.router.query };
+    Location = +location_id;
+    location_n = location_name;
+    Start_date = (start_date as string).replace(/-/g, "/");
+    End_date = (end_date as string).replace(/-/g, "/");
+    o = price_order as string;
+    if (+Router.router.query.page > 1) {
+      page = +Router.router.query.page;
+      jsCookie.set("JumpTo", 1);
+      jsCookie.set("page", Router.router.query.page);
+    }
+    if (+min_price > 0 || +max_price < 10000000) {
+      price.min = min_price ? +min_price : null;
+      price.max = max_price ? +max_price : null;
+      filtersChecker.price = true;
+      price = {
+        min: +min_price,
+        max: +max_price,
+      };
+    }
+
+    if (Router.router.query.deliver_at_renters_place === "1") {
+      filtersChecker.deliver_at_renters_place = true;
+      deliver_at_renters_place = +Router.router.query.deliver_at_renters_place;
+    }
+    if (Router.router.query.with_driver === "1") {
+      filtersChecker.with_driver = true;
+      with_driver = +Router.router.query.with_driver;
+    }
+    if (Router.router.query.body_style_id !== "all") {
+      filtersChecker.body_style_id = true;
+      body_style_id = Router.router.query.body_style_id
+        ? [Router.router.query.body_style_id]
+        : [];
+    }
+    if (Router.router.query.brand_id !== "all") {
+      brand_id = +Router.router.query.brand_id;
+      filtersChecker.brand_id = true;
+    }
+    if (Router.router.query.car_id !== "all") {
+      car_id = +Router.router.query.car_id;
+      filtersChecker.car_id = true;
+    }
+
     initSearch();
 
     const handleRouteChange = (url) => {
@@ -98,6 +151,8 @@ const Search_result = () => {
     return () => {
       Router.events.off("routeChangeStart", handleRouteChange);
       quickAccessClick = false;
+      staticRoute = null;
+      location_n = null;
       Location = 1;
       Start_date = null;
       End_date = null;
@@ -167,7 +222,7 @@ const Search_result = () => {
     try {
       let limit = 15;
       if (JumpTo === "1") {
-        limit = 15 * jsCookie.get("page");
+        limit = 15 * +jsCookie.get("page");
       }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         queryString,
@@ -208,32 +263,71 @@ const Search_result = () => {
         min: +v.price.value[0],
         max: +v.price.value[1],
       };
+      staticRoute = {
+        ...staticRoute,
+        min_price: v.price.value[0].slice(0, -3),
+        max_price: v.price.value[1].slice(0, -3),
+      };
     }
     if (v.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place =
         v.deliver_at_renters_place.status;
       deliver_at_renters_place = v.deliver_at_renters_place.value;
+      staticRoute = {
+        ...staticRoute,
+        deliver_at_renters_place: v.deliver_at_renters_place.value,
+      };
     }
     if (v.with_driver) {
       filtersChecker.with_driver = v.with_driver.status;
       with_driver = v.with_driver.value;
+      staticRoute = {
+        ...staticRoute,
+        with_driver: v.with_driver.value,
+      };
     }
     if (v.body_style_id) {
-      filtersChecker.body_style_id = v.body_style_id.status;
+      if (v.body_style_id.value.length === 0) {
+        filtersChecker.body_style_id = false;
+      } else {
+        filtersChecker.body_style_id = v.body_style_id.status;
+      }
       body_style_id = v.body_style_id.value;
+      staticRoute = {
+        ...staticRoute,
+        body_style_id:
+          v.body_style_id.value.length === 0 ? "all" : v.body_style_id.value,
+      };
     }
     if (v.brand_id) {
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
+      staticRoute = {
+        ...staticRoute,
+        brand_name: v.brand_id.value
+          ? v.brand_id.name.replace(/ +/g, "-")
+          : "all",
+        brand_id: v.brand_id.value ? v.brand_id.value : "all",
+      };
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_id = v.car_id.value;
+      staticRoute = {
+        ...staticRoute,
+        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "all",
+        car_id: v.car_id.value ? v.car_id.value : "all",
+      };
     }
     if (v.category_id) {
       filtersChecker.category_id = v.category_id.status;
       category_id = v.category_id.value;
     }
+    UrlCreator({
+      query: staticRoute,
+      route: Router.router.route,
+      cb: UrlUpdater,
+    });
     page = 1;
     initSearch();
   }
@@ -242,6 +336,15 @@ const Search_result = () => {
     page = 1 + page;
     loadMoreCar = true;
     setShow_spinner_loadMore(true);
+    staticRoute = {
+      ...staticRoute,
+      page: page,
+    };
+    UrlCreator({
+      query: staticRoute,
+      route: Router.router.route,
+      cb: UrlUpdater,
+    });
     initSearch();
   };
 
@@ -275,7 +378,7 @@ const Search_result = () => {
         break;
       case "brand_id":
         setFilterReset((filterReset) => {
-          return { ...filterReset, brand_id: false };
+          return { ...filterReset, brand_id: false, car_id: false };
         });
         break;
       case "car_id":
@@ -296,6 +399,10 @@ const Search_result = () => {
         });
         break;
     }
+  };
+
+  const UrlUpdater = (url) => {
+    window.history.replaceState(null, "", url);
   };
 
   return (
@@ -387,6 +494,11 @@ const Search_result = () => {
             onClick={() => {
               o = "-price";
               loadMoreCar = false;
+              UrlCreator({
+                query: { ...staticRoute, price_order: "-price" },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -397,6 +509,11 @@ const Search_result = () => {
             onClick={() => {
               o = "price";
               loadMoreCar = false;
+              UrlCreator({
+                query: { ...staticRoute, price_order: "price" },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -419,6 +536,15 @@ const Search_result = () => {
               });
               loadMoreCar = false;
               filtersChecker.price = false;
+              UrlCreator({
+                query: {
+                  ...staticRoute,
+                  min_price: 0,
+                  max_price: 10000000,
+                },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -435,6 +561,11 @@ const Search_result = () => {
               });
               loadMoreCar = false;
               filtersChecker.deliver_at_renters_place = false;
+              UrlCreator({
+                query: { ...staticRoute, deliver_at_renters_place: 0 },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -451,6 +582,11 @@ const Search_result = () => {
               });
               loadMoreCar = false;
               filtersChecker.with_driver = false;
+              UrlCreator({
+                query: { ...staticRoute, with_driver: 0 },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -467,6 +603,11 @@ const Search_result = () => {
               });
               loadMoreCar = false;
               filtersChecker.body_style_id = false;
+              UrlCreator({
+                query: { ...staticRoute, body_style_id: "all" },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -484,6 +625,11 @@ const Search_result = () => {
               loadMoreCar = false;
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
+              UrlCreator({
+                query: { ...staticRoute, brand_id: "all" },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -500,6 +646,11 @@ const Search_result = () => {
               });
               loadMoreCar = false;
               filtersChecker.car_id = false;
+              UrlCreator({
+                query: { ...staticRoute, car_id: "all" },
+                route: Router.router.route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -526,42 +677,45 @@ const Search_result = () => {
             show_filter_prop_reset={() => {
               setShow_filter(false);
             }}
+            initialFilterValues={Router}
           />
         </filterContext.Provider>
         <SearchResultList result={result} />
       </section>
-      <section className=" responsive quick_access_middle_searchResult">
-        <h2>دسترسی سریع</h2>
-        <div className="quick_access_child_container">
-          <div
-            className="HEAP_Search_Result_Quick_Access_SUV"
-            onClick={() => {
-              window.scrollTo(0, 0);
-              quickAccessClick = true;
-              filterResults({
-                body_style_id: { value: [2], status: true },
-              });
-            }}
-          >
-            <img src={offRoad} alt="خودروهای شاسی‌بلند" />
-            <p>خودروهای شاسی‌بلند</p>
+      {!quickAccessClick ? (
+        <section className=" responsive quick_access_middle_searchResult">
+          <h2>دسترسی سریع</h2>
+          <div className="quick_access_child_container">
+            <div
+              className="HEAP_Search_Result_Quick_Access_SUV"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                quickAccessClick = true;
+                filterResults({
+                  body_style_id: { value: [2], status: true },
+                });
+              }}
+            >
+              <img src={offRoad} alt="خودروهای شاسی‌بلند" />
+              <p>خودروهای شاسی‌بلند</p>
+            </div>
+            <div
+              className="HEAP_Search_Result_Quick_Access_Economy"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                quickAccessClick = true;
+                filterResults({
+                  o: "-price",
+                  price: { value: ["0", "1000000"], status: true },
+                });
+              }}
+            >
+              <img src={economic} alt="خودروهای اقتصادی" />
+              <p>خودروهای اقتصادی</p>
+            </div>
           </div>
-          <div
-            className="HEAP_Search_Result_Quick_Access_Economy"
-            onClick={() => {
-              window.scrollTo(0, 0);
-              quickAccessClick = true;
-              filterResults({
-                o: "-price",
-                price: { value: ["0", "1000000"], status: true },
-              });
-            }}
-          >
-            <img src={economic} alt="خودروهای اقتصادی" />
-            <p>خودروهای اقتصادی</p>
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
       {/* load more */}
       {remained_count > 0 && (
         <span

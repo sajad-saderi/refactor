@@ -52,6 +52,7 @@ const Checkbox = (props: ICheckbox) => {
                     props.Select(i);
                   } else {
                     // deactivate the box
+                    setInitialValueList([]);
                     props.clearField(i);
                   }
                 }}

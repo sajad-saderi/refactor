@@ -28,6 +28,7 @@ const PleaseLogin = () => {
           />
         ) : (
           <GetUserCellPhone
+            showCaption={true}
             data-test-id="GetUserCellPhone"
             panelController={panelController}
           />

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 /**
  *
  * nouislider-react
@@ -17,7 +17,7 @@ import "nouislider/distribute/nouislider.css";
 
 import filterContext from "../../../context/filter-context";
 
-const PriceSlider = () => {
+const PriceSlider = (props) => {
   const [value, setValue] = useState([0, 10000000]);
   const FilterContext = useContext(filterContext);
 
@@ -38,6 +38,12 @@ const PriceSlider = () => {
     }
     setValue(value);
   };
+
+  useEffect(() => {
+    if (props.initialValue) {
+      setValue([props.initialValue[0], props.initialValue[1]]);
+    }
+  }, [props.initialValue]);
 
   return (
     <div className="price_filter">
@@ -67,11 +73,14 @@ const PriceSlider = () => {
          * set the default range value between 0 to 10.000.000
          */
         range={{ min: 0, max: 10000000 }}
-        start={[0, 10000000]}
+        start={value}
         margin={100000}
         // Show the blue color between to handles
         connect
         direction={"rtl"}
+        onSlide={(i) => {
+          setValue([+i[0], +i[1]]);
+        }}
         // after click, the function will be running
         onEnd={(v) => onSlide(v)}
         step={100000}

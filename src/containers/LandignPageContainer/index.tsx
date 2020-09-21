@@ -3,6 +3,7 @@ import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
+import Router from "next/router";
 import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
@@ -15,10 +16,14 @@ import {
 } from "react-icons/io";
 import economic from "../../../public/image/affordable.svg";
 import offRoad from "../../../public/image/SUV.svg";
+import UrlCreator from "../../../utils/UrlCreator";
 
 let quickAccessClick = false;
+let Glob_route = null;
 // default location is Tehran
+let staticRoute = null;
 let Location = 1;
+let location_n = null;
 let Start_date = null;
 let End_date = null;
 // start page is 1
@@ -81,6 +86,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
     // reset the data
     return () => {
       quickAccessClick = false;
+      Glob_route = null;
       Location = 1;
       Start_date = null;
       End_date = null;
@@ -110,6 +116,67 @@ const Landing_page_container = (props: ILanding_page_container) => {
   }, []);
 
   useEffect(() => {
+    const {
+      location_id,
+      price_order,
+      min_price,
+      max_price,
+    } = Router.router.query; 
+    Glob_route = `/rent/${Router.router.query.id}`;
+
+    staticRoute = { ...Router.router.query };
+    if (location_id) {
+      filtersChecker.Location = true;
+      setCarLocationName(Router.router.query.location_name);
+      Location = +location_id;
+      location_n = Router.router.query.location_name;
+    }
+    if (price_order) o = price_order as string;
+    if (Router.router.query.page) page = +Router.router.query.page;
+    if (+min_price > 0 || +max_price < 10000000) {
+      price.min = min_price ? +min_price : null;
+      price.max = max_price ? +max_price : null;
+      filtersChecker.price = true;
+      price = {
+        min: +min_price,
+        max: +max_price,
+      };
+    }
+
+    if (
+      Router.router.query.deliver_at_renters_place &&
+      Router.router.query.deliver_at_renters_place === "1"
+    ) {
+      filtersChecker.deliver_at_renters_place = true;
+      deliver_at_renters_place = +Router.router.query.deliver_at_renters_place;
+    }
+    if (
+      Router.router.query.with_driver &&
+      Router.router.query.with_driver === "1"
+    ) {
+      filtersChecker.with_driver = true;
+      with_driver = +Router.router.query.with_driver;
+    }
+    if (
+      Router.router.query.body_style_id &&
+      Router.router.query.body_style_id !== "all"
+    ) {
+      filtersChecker.body_style_id = true;
+      body_style_id = Router.router.query.body_style_id
+        ? [Router.router.query.body_style_id]
+        : [];
+    }
+    if (
+      Router.router.query.brand_id &&
+      Router.router.query.brand_id !== "all"
+    ) {
+      brand_id = +Router.router.query.brand_id;
+      filtersChecker.brand_id = true;
+    }
+    if (Router.router.query.car_id && Router.router.query.car_id !== "all") {
+      car_id = +Router.router.query.car_id;
+      filtersChecker.car_id = true;
+    }
     if (localStorage["start"] && localStorage["start"] !== "null") {
       let start = JSON.parse(localStorage["start"]);
       let end = JSON.parse(localStorage["end"]);
@@ -202,28 +269,67 @@ const Landing_page_container = (props: ILanding_page_container) => {
         min: +v.price.value[0],
         max: +v.price.value[1],
       };
+      staticRoute = {
+        ...staticRoute,
+        min_price: v.price.value[0].slice(0, -3),
+        max_price: v.price.value[1].slice(0, -3),
+      };
     }
     if (v.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place =
         v.deliver_at_renters_place.status;
       deliver_at_renters_place = v.deliver_at_renters_place.value;
+      staticRoute = {
+        ...staticRoute,
+        deliver_at_renters_place: v.deliver_at_renters_place.value,
+      };
     }
     if (v.with_driver) {
       filtersChecker.with_driver = v.with_driver.status;
       with_driver = v.with_driver.value;
+      staticRoute = {
+        ...staticRoute,
+        with_driver: v.with_driver.value,
+      };
     }
     if (v.body_style_id) {
-      filtersChecker.body_style_id = v.body_style_id.status;
+      if (v.body_style_id.value.length === 0) {
+        filtersChecker.body_style_id = false;
+      } else {
+        filtersChecker.body_style_id = v.body_style_id.status;
+      }
       body_style_id = v.body_style_id.value;
+      staticRoute = {
+        ...staticRoute,
+        body_style_id:
+          v.body_style_id.value.length === 0 ? "all" : v.body_style_id.value,
+      };
     }
     if (v.brand_id) {
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
+      staticRoute = {
+        ...staticRoute,
+        brand_name: v.brand_id.value
+          ? v.brand_id.name.replace(/ +/g, "-")
+          : "all",
+        brand_id: v.brand_id.value ? v.brand_id.value : "all",
+      };
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_id = v.car_id.value;
+      staticRoute = {
+        ...staticRoute,
+        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "all",
+        car_id: v.car_id.value ? v.car_id.value : "all",
+      };
     }
+    UrlCreator({
+      query: staticRoute,
+      route: Glob_route,
+      cb: UrlUpdater,
+    });
     page = 1;
     initSearch();
   }
@@ -232,6 +338,15 @@ const Landing_page_container = (props: ILanding_page_container) => {
     page = 1 + page;
     setShow_spinner_loadMore(true);
     loadMoreCar = true;
+    staticRoute = {
+      ...staticRoute,
+      page: page,
+    };
+    UrlCreator({
+      query: staticRoute,
+      route: Glob_route,
+      cb: UrlUpdater,
+    });
     initSearch();
   };
 
@@ -266,7 +381,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
         break;
       case "brand_id":
         setFilterReset((filterReset) => {
-          return { ...filterReset, brand_id: false };
+          return { ...filterReset, brand_id: false, car_id: false };
         });
         break;
       case "car_id":
@@ -296,8 +411,22 @@ const Landing_page_container = (props: ILanding_page_container) => {
       loadMoreCar = false;
       filtersChecker.Location = true;
       Location = tag.value;
+      staticRoute = {
+        ...staticRoute,
+        location_id: tag.value,
+        location_name: tag.name,
+      };
+      UrlCreator({
+        query: staticRoute,
+        route: Glob_route,
+        cb: UrlUpdater,
+      });
       initSearch();
     }
+  };
+
+  const UrlUpdater = (url) => {
+    window.history.replaceState(null, "", url);
   };
 
   return (
@@ -373,6 +502,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
             onClick={() => {
               o = "-price";
               loadMoreCar = false;
+              UrlCreator({
+                query: { ...staticRoute, price_order: "-price" },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -383,6 +517,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
             onClick={() => {
               o = "price";
               loadMoreCar = false;
+              UrlCreator({
+                query: { ...staticRoute, price_order: "price" },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -405,6 +544,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               });
               loadMoreCar = false;
               filtersChecker.Location = false;
+              UrlCreator({
+                query: { ...staticRoute, location_id: "", location_name: "" },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -421,6 +565,15 @@ const Landing_page_container = (props: ILanding_page_container) => {
               });
               loadMoreCar = false;
               filtersChecker.price = false;
+              UrlCreator({
+                query: {
+                  ...staticRoute,
+                  min_price: 0,
+                  max_price: 10000000,
+                },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -437,6 +590,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               });
               loadMoreCar = false;
               filtersChecker.deliver_at_renters_place = false;
+              UrlCreator({
+                query: { ...staticRoute, deliver_at_renters_place: 0 },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -453,6 +611,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               });
               loadMoreCar = false;
               filtersChecker.with_driver = false;
+              UrlCreator({
+                query: { ...staticRoute, with_driver: 0 },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -469,6 +632,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               });
               loadMoreCar = false;
               filtersChecker.body_style_id = false;
+              UrlCreator({
+                query: { ...staticRoute, body_style_id: "all" },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -486,6 +654,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               loadMoreCar = false;
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
+              UrlCreator({
+                query: { ...staticRoute, brand_id: "all" },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -502,6 +675,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               });
               loadMoreCar = false;
               filtersChecker.car_id = false;
+              UrlCreator({
+                query: { ...staticRoute, car_id: "all" },
+                route: Glob_route,
+                cb: UrlUpdater,
+              });
               initSearch();
             }}
           >
@@ -528,6 +706,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             show_filter_prop_reset={() => {
               setShow_filter(false);
             }}
+            initialFilterValues={Router}
           />
         </filterContext.Provider>
         <SearchResultList
@@ -536,38 +715,40 @@ const Landing_page_container = (props: ILanding_page_container) => {
           tagClick={searchIgniteByClickOnCardTags}
         />
       </section>
-      <section className=" responsive quick_access_middle_searchResult">
-        <h2>دسترسی سریع</h2>
-        <div className="quick_access_child_container">
-          <div
-            className="HEAP_Search_Result_Quick_Access_SUV"
-            onClick={() => {
-              window.scrollTo(0, 0);
-              quickAccessClick = true;
-              filterResults({
-                body_style_id: { value: [2], status: true },
-              });
-            }}
-          >
-            <img src={offRoad} alt="خودروهای شاسی‌بلند" />
-            <p>خودروهای شاسی‌بلند</p>
+      {!quickAccessClick ? (
+        <section className=" responsive quick_access_middle_searchResult">
+          <h2>دسترسی سریع</h2>
+          <div className="quick_access_child_container">
+            <div
+              className="HEAP_Search_Result_Quick_Access_SUV"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                quickAccessClick = true;
+                filterResults({
+                  body_style_id: { value: [2], status: true },
+                });
+              }}
+            >
+              <img src={offRoad} alt="خودروهای شاسی‌بلند" />
+              <p>خودروهای شاسی‌بلند</p>
+            </div>
+            <div
+              className="HEAP_Search_Result_Quick_Access_Economy"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                quickAccessClick = true;
+                filterResults({
+                  o: "-price",
+                  price: { value: ["0", "1000000"], status: true },
+                });
+              }}
+            >
+              <img src={economic} alt="خودروهای اقتصادی" />
+              <p>خودروهای اقتصادی</p>
+            </div>
           </div>
-          <div
-            className="HEAP_Search_Result_Quick_Access_Economy"
-            onClick={() => {
-              window.scrollTo(0, 0);
-              quickAccessClick = true;
-              filterResults({
-                o: "-price",
-                price: { value: ["0", "1000000"], status: true },
-              });
-            }}
-          >
-            <img src={economic} alt="خودروهای اقتصادی" />
-            <p>خودروهای اقتصادی</p>
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
       {/* load more */}
       {remained_count > 0 && (
         <span

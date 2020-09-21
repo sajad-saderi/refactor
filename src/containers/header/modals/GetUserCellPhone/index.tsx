@@ -87,6 +87,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   return (
     <>
       <div className="modal_box_div">
+        {props.showCaption ? <h2 className="optional_caption">ورود/ثبت نام</h2> : null}
         <form onSubmit={sendConfirmCode}>
           <TextInput
             error={error}
@@ -139,6 +140,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
 
 interface IGetUserCellPhone {
   panelController: any;
+  showCaption?: boolean;
 }
 
 export default GetUserCellPhone;

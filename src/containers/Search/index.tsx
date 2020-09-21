@@ -129,8 +129,20 @@ const Search = (props: ISearch) => {
         pathname: "/search-result",
         query: {
           location_id: LocationId,
-          start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-          end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+          location_name: "tehran",
+          start_date: `${dayRange.from.year}-${dayRange.from.month}-${dayRange.from.day}`,
+          end_date: `${dayRange.to.year}-${dayRange.to.month}-${dayRange.to.day}`,
+          price_order: "-price",
+          page: 1,
+          min_price: 0,
+          max_price: 10000000,
+          deliver_at_renters_place: 0,
+          with_driver: 0,
+          body_style_id: "all",
+          brand_id: "all",
+          brand_name: "all",
+          car_id: "all",
+          car_name: "all",
         },
       });
     } else if (!dayRange.from) {
