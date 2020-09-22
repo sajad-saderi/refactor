@@ -947,11 +947,11 @@ const Add_Car_Step_2 = () => {
               initialValue={checkbox_list}
               data={[
                 {
-                  text: "گواهی‌نامه معتبر",
+                  text: "گواهینامه معتبر",
                   value: 1,
                 },
                 {
-                  text: "بیمه‌نامه اجاره‌خودر اتولی",
+                  text: "بیمه‌نامه اجاره خودر اتولی",
                   value: 2,
                 },
                 {
