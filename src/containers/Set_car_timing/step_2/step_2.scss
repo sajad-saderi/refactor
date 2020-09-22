@@ -100,7 +100,7 @@
           }
           input {
             &::placeholder {
-              color: #cdcdcd;
+              color: #c5c5c5;
             }
             &:focus {
               &::placeholder {
@@ -209,7 +209,7 @@
                 margin: 0;
                 padding: 0.7rem;
                 &::placeholder {
-                  color: #cdcdcd;
+                  color: #c5c5c5;
                 }
                 &:focus {
                   &::placeholder {
@@ -239,7 +239,7 @@
         box-shadow: 0 0 0 0 transparent inset;
         box-sizing: border-box;
         &::placeholder {
-          color: #cdcdcd;
+          color: #c5c5c5;
         }
         &:focus {
           background: #fff;
