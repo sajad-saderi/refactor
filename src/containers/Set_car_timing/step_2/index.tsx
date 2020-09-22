@@ -965,8 +965,18 @@ const Add_Car_Step_2 = () => {
               ]}
               name="deliver_at_renters_place"
               clearField={(item) => {
+                let checkListInstance = null;
                 setCheckbox_list((checkbox_list) => {
-                  return checkbox_list.filter((i) => i.value !== item.value);
+                  checkListInstance = checkbox_list.concat(item);
+                  return checkListInstance;
+                });
+                dispatch({
+                  type: "cancellation_policy",
+                  cancellation_policy: state.cancellation_policy
+                    ? `${state.cancellation_policy}\n${
+                        checkListInstance[checkListInstance.length - 1].text
+                      }`
+                    : `${checkListInstance[checkListInstance.length - 1].text}`,
                 });
               }}
               Select={(item) => {
