@@ -892,7 +892,7 @@ const Add_Car_Step_2 = () => {
           />
         </div>
         <div className="add_car_form_step_2">
-          <h4 className="extra_text">تخفیف ها</h4>
+          <h4 className="extra_text">تخفیف‌ها</h4>
           {/* DiscountBox component  */}
           <DiscountBox
             initialDiscountList={initialDiscountList}
