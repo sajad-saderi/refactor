@@ -96,7 +96,7 @@
         }
         input {
           &::placeholder {
-            color: #cdcdcd;
+            color: #dadada;
           }
         }
       }
@@ -104,7 +104,7 @@
         display: inline-block;
         margin-right: 1rem;
       }
-      .our_recommendation{
+      .our_recommendation {
         color: $orange;
       }
     }
@@ -155,9 +155,51 @@
       float: left;
       color: $main__color;
       font-size: 1.2rem;
+      line-height: 2.2;
+    }
+    .cancelation_items_container {
+      .section_title {
+        margin: 0rem 0 1.6rem 0;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 2;
+      }
+      .check_box_container {
+        margin: 0;
+        .container {
+          display: block;
+          width: 100%;
+          margin-bottom: 1.6rem;
+          font-weight: 400;
+          color: $grey_color;
+          &:last-of-type {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+      .deposit_container {
+        p {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .text_input_container {
+          display: inline-block;
+          width: 17rem;
+          margin: 0 1rem 2rem;
+          .input_surround {
+            .text_input {
+              margin: 0;
+              padding: 0.7rem;
+              &::placeholder {
+                color: #dadada;
+              }
+            }
+          }
+        }
+      }
     }
     .text_area_step_2 {
-      min-height: 15rem;
+      min-height: 19rem;
       width: 100%;
       font-family: inherit;
       margin: 0.3rem auto 2rem;

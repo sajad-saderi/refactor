@@ -217,7 +217,7 @@ const Add_Car_Step_2 = () => {
   });
   const MODAL_CONTEXT = useContext(Modal_context);
   const token = jsCookie.get("token");
-  const [insurance_bill, setInsurance_bill] = useState(0);
+  const [checkbox_list, setCheckbox_list] = useState([]);
   const [insurance_amount, setInsurance_amount] = useState("");
 
   useEffect(() => {
@@ -903,33 +903,50 @@ const Add_Car_Step_2 = () => {
             discountCheck={setShowDiscount}
             error={ErrorState.discount_error}
           />
-          <label>
-            <h4>شرایط اجاره و کنسلی</h4>
-            <div className="radio_father">
-              <label
-                className={[
-                  "transition_type_Label",
-                  ErrorState.transmission_type_id ? "Error_color" : null,
-                ].join(" ")}
-              ></label>
-              <Radio
-                name="insurance_bill"
-                SelectHandler={(i) => {
-                  setInsurance_bill(+i);
-                }}
-                defaultCheck={insurance_bill}
-                data={[
-                  {
-                    label: "چک",
-                    value: 1,
-                  },
-                  {
-                    label: "سفته",
-                    value: 2,
-                  },
-                ]}
-              />
-              به مبلغ
+          <div className="cancelation_items_container">
+            <label className={["section_title"].join(" ")}>
+              شرایط اجاره و کنسلی
+            </label>
+            <Checkbox
+              initialValue={checkbox_list}
+              data={[
+                {
+                  text: "گواهی‌نامه معتبر",
+                  value: 1,
+                },
+                {
+                  text: "بیمه‌نامه اجاره‌خودر اتولی",
+                  value: 2,
+                },
+                {
+                  text: "چک یا سفته به مبلغ ماشین",
+                  value: 3,
+                },
+              ]}
+              name="deliver_at_renters_place"
+              clearField={(item) => {
+                setCheckbox_list((checkbox_list) => {
+                  return checkbox_list.filter((i) => i.value !== item.value);
+                });
+              }}
+              Select={(item) => {
+                let checkListInstance = null;
+                setCheckbox_list((checkbox_list) => {
+                  checkListInstance = checkbox_list.concat(item);
+                  return checkListInstance;
+                });
+                dispatch({
+                  type: "cancellation_policy",
+                  cancellation_policy: state.cancellation_policy
+                    ? `${state.cancellation_policy}\n${
+                        checkListInstance[checkListInstance.length - 1].text
+                      }`
+                    : `${checkListInstance[checkListInstance.length - 1].text}`,
+                });
+              }}
+            />
+            <div className="deposit_container">
+              <p>ودیعه نقدی به مبلغ</p>
               <TextInput
                 name="insurance_amount"
                 number={true}
@@ -946,9 +963,26 @@ const Add_Car_Step_2 = () => {
                 max={15}
                 placeholder="مثال: 1,000,000"
                 value={insurance_amount}
+                Input_onBlur={() => {
+                  if (insurance_amount)
+                    dispatch({
+                      type: "cancellation_policy",
+                      cancellation_policy: state.cancellation_policy
+                        ? `${
+                            state.cancellation_policy
+                          }\nودیعه نقدی به مبلغ ${Number(
+                            insurance_amount
+                          ).toLocaleString()} تومان`
+                        : `ودیعه به مبلغ ${Number(
+                            insurance_amount
+                          ).toLocaleString()} تومان`,
+                    });
+                }}
               />
-              تومان
+              <p>تومان</p>
             </div>
+          </div>
+          <label>
             <span
               onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
               className="anchorTagInStep2"

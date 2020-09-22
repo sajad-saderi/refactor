@@ -223,7 +223,12 @@ const TextInput = (props: ItextInput) => {
           minLength={props.min}
           placeholder={props.placeholder}
           // check the validation on blur event listener
-          onBlur={() => validation(props.validation)}
+          onBlur={() => {
+            validation(props.validation);
+            if (props.Input_onBlur) {
+              props.Input_onBlur();
+            }
+          }}
           onFocus={() => {
             setLocalError({
               status: false,
@@ -290,6 +295,7 @@ interface ItextInput {
 
   // validation rules and requirements
   validation?: any;
+  Input_onBlur?: any;
 }
 
 export default TextInput;
