@@ -607,42 +607,49 @@ const Add_Car_Step_2 = () => {
   return (
     <article className="responsive step_2_form_container">
       <div className="pageTitle">
-        <IoIosCalendar className="car_icon" size="2.6rem" color="#4ba3ce" />
+        <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" />
         <h3>تعیین شرایط اجاره</h3>
       </div>
-      <article className="step_2_image_pelak add_car_form_step_2">
-        <div className="Image_container">
-          {initialImage ? (
-            <img src={initialImage} alt="تصویر کوچک خودرو" />
-          ) : (
-            <div className="Gradient car_card_placeHolder_step2" />
-          )}
-        </div>
-        <div className="pelak_container">
-          {Brand_Name && <p>{`${Brand_Name} - ${CarModelName}`}</p>}
-          <img />
-          <PelakView
-            registration_plate_first_part={state.registration_plate_first_part}
-            registration_plate_second_part={
-              state.registration_plate_second_part
-            }
-            registration_plate_third_part={state.registration_plate_third_part}
-            registration_plate_forth_part={state.registration_plate_forth_part}
-          />
-        </div>
-      </article>
-      <form onSubmit={(e) => submitHandler(e, state)}>
-        <div className="add_car_form_step_2">
-          <h4 className="extra_text">نرخ اجاره</h4>
-          <div
-            className="Set_Price_date_options"
-            //   className={[
-            //     "transition_type_Label",
-            //     ErrorState.transmission_type_id ? "Error_color" : null
-            //   ].join(" ")}
-          >
-            {/* toggle between same price for all time and custom range of price  */}
-            {/* <Radio
+      <div className="step_2_main_container">
+        <article className="step_2_image_pelak add_car_form_step_2">
+          <div className="Image_container">
+            {initialImage ? (
+              <img src={initialImage} alt="تصویر کوچک خودرو" />
+            ) : (
+              <div className="Gradient car_card_placeHolder_step2" />
+            )}
+          </div>
+          <div className="pelak_container">
+            {Brand_Name && <p>{`${Brand_Name} - ${CarModelName}`}</p>}
+            <img />
+            <PelakView
+              registration_plate_first_part={
+                state.registration_plate_first_part
+              }
+              registration_plate_second_part={
+                state.registration_plate_second_part
+              }
+              registration_plate_third_part={
+                state.registration_plate_third_part
+              }
+              registration_plate_forth_part={
+                state.registration_plate_forth_part
+              }
+            />
+          </div>
+        </article>
+        <form onSubmit={(e) => submitHandler(e, state)}>
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">نرخ اجاره</h4>
+            <div
+              className="Set_Price_date_options"
+              //   className={[
+              //     "transition_type_Label",
+              //     ErrorState.transmission_type_id ? "Error_color" : null
+              //   ].join(" ")}
+            >
+              {/* toggle between same price for all time and custom range of price  */}
+              {/* <Radio
               name="DateAndPrice"
               error_status={ErrorState.price_per_day}
               SelectHandler={(i) => {
@@ -666,73 +673,73 @@ const Add_Car_Step_2 = () => {
                 },
               ]}
             /> */}
-          </div>
-          {/* {DateAndPrice === 1 ? ( */}
-          {/* <> */}
-          <div className="custom_input_container_step_2 daily_price_container">
-            <TextInput
-              name="price_per_day"
-              number={true}
-              onChangeHandler={(e) => {
-                if (ErrorState.price_per_day) {
-                  ErrorDispatch({
-                    type: "price_per_day",
-                    price_per_day: false,
-                    error_message: "",
-                  });
-                }
-                dispatch({
-                  type: "price_per_day",
-                  price_per_day: e,
-                });
-                if (state.max_km_per_day) {
+            </div>
+            {/* {DateAndPrice === 1 ? ( */}
+            {/* <> */}
+            <div className="custom_input_container_step_2 daily_price_container">
+              <TextInput
+                name="price_per_day"
+                number={true}
+                onChangeHandler={(e) => {
+                  if (ErrorState.price_per_day) {
+                    ErrorDispatch({
+                      type: "price_per_day",
+                      price_per_day: false,
+                      error_message: "",
+                    });
+                  }
                   dispatch({
-                    type: "extra_km_price",
-                    extra_km_price: Math.floor(+e / state.max_km_per_day),
+                    type: "price_per_day",
+                    price_per_day: e,
                   });
+                  if (state.max_km_per_day) {
+                    dispatch({
+                      type: "extra_km_price",
+                      extra_km_price: Math.floor(+e / state.max_km_per_day),
+                    });
+                  }
+                }}
+                clearField={() =>
+                  dispatch({
+                    type: "price_per_day",
+                    price_per_day: "",
+                  })
                 }
-              }}
-              clearField={() =>
-                dispatch({
-                  type: "price_per_day",
-                  price_per_day: "",
-                })
-              }
-              error={{
-                status: ErrorState.price_per_day,
-                message: "",
-              }}
-              autoFocus={false}
-              // min={4}
-              max={10}
-              placeholder="مثال: 50,000"
-              value={state.price_per_day}
-              validation={{
-                number: true,
-                min: 50000,
-                required: true,
-                messages: {
-                  required: "لطفا  قیمت روزانه را وارد کنید",
-                  min: "شروع قیمت روزانه از 50.000 تومان است",
-                },
-              }}
-            />
-            <span className="tail_text">تومان در روز</span>
-            {recommendationPrice && (
-              <p className="our_recommendation">
-                {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
-                تومان در روز
-              </p>
-            )}
-          </div>
-          {/* {state.price_per_day.length > 3 && (
+                error={{
+                  status: ErrorState.price_per_day,
+                  message: "",
+                }}
+                autoFocus={false}
+                // min={4}
+                max={10}
+                placeholder="مثال: 50,000"
+                value={state.price_per_day}
+                validation={{
+                  number: true,
+                  min: 50000,
+                  required: true,
+                  messages: {
+                    required: "لطفا  قیمت روزانه را وارد کنید",
+                    min: "شروع قیمت روزانه از 50.000 تومان است",
+                  },
+                }}
+              />
+              <span className="tail_text">تومان در روز</span>
+              {recommendationPrice && (
+                <p className="our_recommendation">
+                  {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
+                  تومان در روز
+                </p>
+              )}
+            </div>
+            {/* {state.price_per_day.length > 3 && (
                 <p>
                   اجاره خودرو شما در تمام روز ها با قیمت{" "}
                   {Number(state.price_per_day).toLocaleString()} تومان است
                 </p>
               )} */}
-          {/* </> */}
-          {/* ) : (
+            {/* </> */}
+            {/* ) : (
             //PriceBox component
             <PriceBox
               initialAvailabilityList={initialAvailabilityList}
@@ -741,173 +748,175 @@ const Add_Car_Step_2 = () => {
               error={ErrorState.price_range}
             />
           )} */}
-        </div>
-        <div className="add_car_form_step_2">
-          <h4 className="extra_text">شرایط اجاره</h4>
-          <Counter
-            max={31}
-            min={1}
-            AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
-            reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
-            label="زمان اطلاع از اجاره"
-            text="روز قبل"
-            value={state.days_to_get_reminded}
-          />
-          <Counter
-            max={31}
-            min={1}
-            AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
-            reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
-            label="حداقل مدت اجاره"
-            text="روز"
-            value={state.min_days_to_rent}
-          />
-          <div className="custom_input_container_step_2 DropDown_extra_km">
-            <DropdownSearch
-              label="محدودیت مسافت"
-              InputDisable={true}
-              error_status={ErrorState.max_km_per_day}
-              data={[
-                { value: 100, text: 100 },
-                { value: 150, text: 150 },
-                { value: 200, text: 200 },
-                { value: 250, text: 250 },
-                { value: 300, text: 300 },
-              ]}
-              disableSearch={true}
-              defaultVal={state.max_km_per_day}
-              clearField={() => {
-                dispatch({
-                  type: "max_km_per_day",
-                  max_km_per_day: "",
-                });
-                dispatch({
-                  type: "extra_km_price",
-                  extra_km_price: "",
-                });
-              }}
-              Select={(i) => {
-                dispatch({
-                  type: "max_km_per_day",
-                  max_km_per_day: i.value,
-                });
-                if (DateAndPrice === 1 && state.price_per_day) {
+          </div>
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">شرایط اجاره</h4>
+            <Counter
+              max={31}
+              min={1}
+              AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
+              reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
+              label="زمان اطلاع از اجاره"
+              text="روز قبل"
+              value={state.days_to_get_reminded}
+            />
+            <Counter
+              max={31}
+              min={1}
+              AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
+              reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
+              label="حداقل مدت اجاره"
+              text="روز"
+              value={state.min_days_to_rent}
+            />
+            <div className="custom_input_container_step_2 DropDown_extra_km">
+              <DropdownSearch
+                label="محدودیت مسافت"
+                InputDisable={true}
+                error_status={ErrorState.max_km_per_day}
+                data={[
+                  { value: 100, text: 100 },
+                  { value: 150, text: 150 },
+                  { value: 200, text: 200 },
+                  { value: 250, text: 250 },
+                  { value: 300, text: 300 },
+                ]}
+                disableSearch={true}
+                defaultVal={state.max_km_per_day}
+                clearField={() => {
+                  dispatch({
+                    type: "max_km_per_day",
+                    max_km_per_day: "",
+                  });
                   dispatch({
                     type: "extra_km_price",
-                    extra_km_price: Math.floor(+state.price_per_day / i.value),
+                    extra_km_price: "",
                   });
-                }
-              }}
-            />
-            <span className="tail_text">کیلومتر در روز</span>
-          </div>
-          <div className="custom_input_container_step_2 extra_km_price_container">
-            <TextInput
-              name="extra_km_price"
-              number={true}
-              autoFocus={false}
-              onChangeHandler={(e) => {
-                if (ErrorState.extra_km_price) {
-                  ErrorDispatch({
+                }}
+                Select={(i) => {
+                  dispatch({
+                    type: "max_km_per_day",
+                    max_km_per_day: i.value,
+                  });
+                  if (DateAndPrice === 1 && state.price_per_day) {
+                    dispatch({
+                      type: "extra_km_price",
+                      extra_km_price: Math.floor(
+                        +state.price_per_day / i.value
+                      ),
+                    });
+                  }
+                }}
+              />
+              <span className="tail_text">کیلومتر در روز</span>
+            </div>
+            <div className="custom_input_container_step_2 extra_km_price_container">
+              <TextInput
+                name="extra_km_price"
+                number={true}
+                autoFocus={false}
+                onChangeHandler={(e) => {
+                  if (ErrorState.extra_km_price) {
+                    ErrorDispatch({
+                      type: "extra_km_price",
+                      extra_km_price: false,
+                      error_message: "",
+                    });
+                  }
+                  dispatch({
                     type: "extra_km_price",
-                    extra_km_price: false,
-                    error_message: "",
+                    extra_km_price: e,
                   });
+                }}
+                clearField={() =>
+                  dispatch({
+                    type: "extra_km_price",
+                    extra_km_price: "",
+                  })
                 }
-                dispatch({
-                  type: "extra_km_price",
-                  extra_km_price: e,
-                });
-              }}
+                error={{
+                  status: ErrorState.extra_km_price,
+                  message: null,
+                }}
+                // min={4}
+                max={8}
+                placeholder="مثال: 100"
+                value={state.extra_km_price}
+                label="هزینه هر کیلومتر اضافه"
+                validation={{
+                  number: true,
+                  required: true,
+                  min: 100,
+                  messages: {
+                    required: "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
+                    min: "شروع قیمت روزانه از 100 تومان است",
+                  },
+                }}
+              />
+              <span className="tail_text">تومان</span>
+            </div>
+            <Checkbox
+              initialValue={[state.deliver_at_renters_place]}
+              data={[
+                {
+                  text: "در محل مهمان تحویل می‌دهم",
+                  value: state.deliver_at_renters_place,
+                },
+              ]}
+              name="deliver_at_renters_place"
               clearField={() =>
                 dispatch({
-                  type: "extra_km_price",
-                  extra_km_price: "",
+                  type: "deliver_at_renters_place",
+                  deliver_at_renters_place: 0,
                 })
               }
-              error={{
-                status: ErrorState.extra_km_price,
-                message: null,
-              }}
-              // min={4}
-              max={8}
-              placeholder="مثال: 100"
-              value={state.extra_km_price}
-              label="هزینه هر کیلومتر اضافه"
-              validation={{
-                number: true,
-                required: true,
-                min: 100,
-                messages: {
-                  required: "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
-                  min: "شروع قیمت روزانه از 100 تومان است",
-                },
+              Select={() => {
+                dispatch({
+                  type: "deliver_at_renters_place",
+                  deliver_at_renters_place: 1,
+                });
               }}
             />
-            <span className="tail_text">تومان</span>
+            <Checkbox
+              initialValue={[state.with_driver]}
+              data={[
+                {
+                  text: "فقط با راننده اجاره می‌دهم",
+                  value: state.with_driver,
+                },
+              ]}
+              name="with_driver"
+              clearField={() => {
+                dispatch({
+                  type: "with_driver",
+                  with_driver: 0,
+                });
+              }}
+              Select={() => {
+                dispatch({
+                  type: "with_driver",
+                  with_driver: 1,
+                });
+              }}
+            />
           </div>
-          <Checkbox
-            initialValue={[state.deliver_at_renters_place]}
-            data={[
-              {
-                text: "در محل مهمان تحویل می‌دهم",
-                value: state.deliver_at_renters_place,
-              },
-            ]}
-            name="deliver_at_renters_place"
-            clearField={() =>
-              dispatch({
-                type: "deliver_at_renters_place",
-                deliver_at_renters_place: 0,
-              })
-            }
-            Select={() => {
-              dispatch({
-                type: "deliver_at_renters_place",
-                deliver_at_renters_place: 1,
-              });
-            }}
-          />
-          <Checkbox
-            initialValue={[state.with_driver]}
-            data={[
-              {
-                text: "فقط با راننده اجاره می‌دهم",
-                value: state.with_driver,
-              },
-            ]}
-            name="with_driver"
-            clearField={() => {
-              dispatch({
-                type: "with_driver",
-                with_driver: 0,
-              });
-            }}
-            Select={() => {
-              dispatch({
-                type: "with_driver",
-                with_driver: 1,
-              });
-            }}
-          />
-        </div>
-        <div className="add_car_form_step_2">
-          <h4 className="extra_text">تخفیف‌ها</h4>
-          {/* DiscountBox component  */}
-          <DiscountBox
-            initialDiscountList={initialDiscountList}
-            addDiscount={addToDiscountList}
-            removeDiscountList={removeFromDiscountList}
-            showDiscount={showDiscount}
-            setShowBox={(v) => setShowDiscount(v)}
-            discountCheck={setShowDiscount}
-            error={ErrorState.discount_error}
-          />
-        </div>
-        <div className="add_car_form_step_2">
-          <h4 className="extra_text">شرایط و ضمانت‌های اجاره</h4>
-          <div className="cancelation_items_container">
-            {/* <div className="deposit_container">
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">تخفیف‌ها</h4>
+            {/* DiscountBox component  */}
+            <DiscountBox
+              initialDiscountList={initialDiscountList}
+              addDiscount={addToDiscountList}
+              removeDiscountList={removeFromDiscountList}
+              showDiscount={showDiscount}
+              setShowBox={(v) => setShowDiscount(v)}
+              discountCheck={setShowDiscount}
+              error={ErrorState.discount_error}
+            />
+          </div>
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">شرایط و ضمانت‌های اجاره</h4>
+            <div className="cancelation_items_container">
+              {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
               <TextInput
                 name="insurance_amount"
@@ -943,105 +952,110 @@ const Add_Car_Step_2 = () => {
               />
               <p>تومان</p>
             </div> */}
-            <Checkbox
-              initialValue={checkbox_list}
-              data={[
-                {
-                  text: "گواهینامه معتبر",
-                  value: 1,
-                },
-                {
-                  text: "بیمه‌نامه اجاره خودر اتولی",
-                  value: 2,
-                },
-                {
-                  text: "چک یا سفته به مبلغ ماشین",
-                  value: 3,
-                },
-                {
-                  text: "ودیعه نقدی به مبلغ ....",
-                  value: 4,
-                },
-              ]}
-              name="deliver_at_renters_place"
-              clearField={(item) => {
-                let checkListInstance = null;
-                setCheckbox_list((checkbox_list) => {
-                  checkListInstance = checkbox_list.concat(item);
-                  return checkListInstance;
-                });
-                dispatch({
-                  type: "cancellation_policy",
-                  cancellation_policy: state.cancellation_policy
-                    ? `${state.cancellation_policy}\n${
-                        checkListInstance[checkListInstance.length - 1].text
-                      }`
-                    : `${checkListInstance[checkListInstance.length - 1].text}`,
-                });
-              }}
-              Select={(item) => {
-                let checkListInstance = null;
-                setCheckbox_list((checkbox_list) => {
-                  checkListInstance = checkbox_list.concat(item);
-                  return checkListInstance;
-                });
-                dispatch({
-                  type: "cancellation_policy",
-                  cancellation_policy: state.cancellation_policy
-                    ? `${state.cancellation_policy}\n${
-                        checkListInstance[checkListInstance.length - 1].text
-                      }`
-                    : `${checkListInstance[checkListInstance.length - 1].text}`,
-                });
-              }}
-            />
-          </div>
-          <textarea
-            className={[
-              "text_area_step_2",
-              ErrorState.cancellation_policy ? "inputError" : null,
-            ].join(" ")}
-            value={state.cancellation_policy}
-            onChange={(e) => {
-              if (ErrorState.cancellation_policy) {
+              <Checkbox
+                initialValue={checkbox_list}
+                data={[
+                  {
+                    text: "گواهینامه معتبر",
+                    value: 1,
+                  },
+                  {
+                    text: "بیمه‌نامه اجاره خودر اتولی",
+                    value: 2,
+                  },
+                  {
+                    text: "چک یا سفته به مبلغ ماشین",
+                    value: 3,
+                  },
+                  {
+                    text: "ودیعه نقدی به مبلغ ....",
+                    value: 4,
+                  },
+                ]}
+                name="deliver_at_renters_place"
+                clearField={(item) => {
+                  let checkListInstance = null;
+                  setCheckbox_list((checkbox_list) => {
+                    checkListInstance = checkbox_list.concat(item);
+                    return checkListInstance;
+                  });
+                  dispatch({
+                    type: "cancellation_policy",
+                    cancellation_policy: state.cancellation_policy
+                      ? `${state.cancellation_policy}\n${
+                          checkListInstance[checkListInstance.length - 1].text
+                        }`
+                      : `${
+                          checkListInstance[checkListInstance.length - 1].text
+                        }`,
+                  });
+                }}
+                Select={(item) => {
+                  let checkListInstance = null;
+                  setCheckbox_list((checkbox_list) => {
+                    checkListInstance = checkbox_list.concat(item);
+                    return checkListInstance;
+                  });
+                  dispatch({
+                    type: "cancellation_policy",
+                    cancellation_policy: state.cancellation_policy
+                      ? `${state.cancellation_policy}\n${
+                          checkListInstance[checkListInstance.length - 1].text
+                        }`
+                      : `${
+                          checkListInstance[checkListInstance.length - 1].text
+                        }`,
+                  });
+                }}
+              />
+            </div>
+            <textarea
+              className={[
+                "text_area_step_2",
+                ErrorState.cancellation_policy ? "inputError" : null,
+              ].join(" ")}
+              value={state.cancellation_policy}
+              onChange={(e) => {
+                if (ErrorState.cancellation_policy) {
+                  ErrorDispatch({
+                    type: "cancellation_policy",
+                    cancellation_policy: false,
+                    error_message: "",
+                  });
+                }
                 ErrorDispatch({
                   type: "cancellation_policy",
                   cancellation_policy: false,
                   error_message: "",
                 });
-              }
-              ErrorDispatch({
-                type: "cancellation_policy",
-                cancellation_policy: false,
-                error_message: "",
-              });
-              dispatch({
-                type: "cancellation_policy",
-                cancellation_policy: e.target.value,
-              });
-            }}
-            placeholder="شرایط و مدارک مورد نیاز برای اجاره خودروتان را بنویسید یا از موارد بالا انتخاب کنید."
-          />
-          <label>
-            <span
-              onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
-              className="anchorTagInStep2"
-            >
-              چه مدارک و ضمانت‌هایی بگیریم؟
-            </span>
-          </label>
-          <Button
-            value="ثبت"
-            loading={Loading}
-            disable={Loading}
-            class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
-            click={() => {}}
-          />
-          {ErrorState.error_message ? (
-            <p className="Error_message_text">{ErrorState.error_message}</p>
-          ) : null}
-        </div>
-      </form>
+                dispatch({
+                  type: "cancellation_policy",
+                  cancellation_policy: e.target.value,
+                });
+              }}
+              placeholder="شرایط و مدارک مورد نیاز برای اجاره خودروتان را بنویسید یا از موارد بالا انتخاب کنید."
+            />
+            <label>
+              <span
+                onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
+                className="anchorTagInStep2"
+              >
+                چه مدارک و ضمانت‌هایی بگیریم؟
+              </span>
+            </label>
+            <Button
+              value="ثبت"
+              loading={Loading}
+              disable={Loading}
+              class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
+              click={() => {}}
+            />
+            {ErrorState.error_message ? (
+              <p className="Error_message_text">{ErrorState.error_message}</p>
+            ) : null}
+          </div>
+        </form>
+      </div>
     </article>
   );
 };
