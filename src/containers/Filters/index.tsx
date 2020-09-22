@@ -95,6 +95,7 @@ const Filters = (props: IFilter) => {
       }
       if (props.reset.body_style_id) {
         setbody_style_set([]);
+        body_style_list = [];
         props.clearReset("body_style_id");
       }
       if (props.reset.brand_id) {
@@ -296,10 +297,10 @@ const Filters = (props: IFilter) => {
           data={BrandList}
           defaultVal={Brand_id_name}
           clearField={() => {
-            setBrand_id(null);
-            FilterContext.setDataForSearch({
-              brand_id: { status: false, value: null },
-            });
+            // setBrand_id(null);
+            // FilterContext.setDataForSearch({
+            //   brand_id: { status: false, value: null },
+            // });
           }}
           callClearFieldReset={() => {
             setBrand_Name_ComponentReset(false);
@@ -310,11 +311,9 @@ const Filters = (props: IFilter) => {
             setModelList([]);
             getModelList(i.value);
             setCar_id_name(" ");
-            FilterContext.setDataForSearch({
-              car_id: { status: false, value: null },
-            });
             // add brand_id filter to the filter context
             FilterContext.setDataForSearch({
+              car_id: { status: false, value: null },
               brand_id: { status: true, value: i.value, name: i.text },
             });
           }}
@@ -332,10 +331,10 @@ const Filters = (props: IFilter) => {
           }}
           callClearField={car_Name_ComponentReset}
           clearField={() => {
-            setcar_id(null);
-            FilterContext.setDataForSearch({
-              car_id: { status: false, value: null },
-            });
+            // setcar_id(null);
+            // FilterContext.setDataForSearch({
+            //   car_id: { status: false, value: null },
+            // });
           }}
           Select={(i) => {
             setcar_id(i.value);

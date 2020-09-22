@@ -134,7 +134,6 @@ const Search_result = () => {
       car_id = +Router.router.query.car_id;
       filtersChecker.car_id = true;
     }
-
     initSearch();
 
     const handleRouteChange = (url) => {
@@ -296,7 +295,9 @@ const Search_result = () => {
       staticRoute = {
         ...staticRoute,
         body_style_id:
-          v.body_style_id.value.length === 0 ? "all" : v.body_style_id.value.join(","),
+          v.body_style_id.value.length === 0
+            ? "all"
+            : v.body_style_id.value.join(","),
       };
     }
     if (v.brand_id) {
