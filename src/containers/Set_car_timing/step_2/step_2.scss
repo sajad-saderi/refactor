@@ -245,6 +245,8 @@
 @media screen and(max-width:720px) {
   .step_2_form_container {
     .add_car_form_step_2 {
+      box-shadow: none;
+      background: transparent;
       .cancelation_items_container {
         .check_box_container {
           display: flex;
