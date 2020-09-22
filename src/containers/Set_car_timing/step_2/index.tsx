@@ -905,7 +905,7 @@ const Add_Car_Step_2 = () => {
           />
         </div>
         <div className="add_car_form_step_2">
-          <h4 className="extra_text">شرایط اجاره و کنسلی</h4>
+          <h4 className="extra_text">شرایط و ضمانت‌های اجاره</h4>
           <div className="cancelation_items_container">
             {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
@@ -1020,6 +1020,7 @@ const Add_Car_Step_2 = () => {
                 cancellation_policy: e.target.value,
               });
             }}
+            placeholder="شرایط و مدارک مورد نیاز برای اجاره خودروتان را بنویسید یا از موارد بالا انتخاب کنید."
           />
           <label>
             <span

@@ -229,6 +229,9 @@
       &:focus {
         background: #fff;
       }
+      &::placeholder {
+        color: #dadada;
+      }
     }
   }
   .daily_price_container {
