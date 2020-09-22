@@ -67,7 +67,7 @@
     border-radius: 4px;
     padding: 1.6rem;
     border: none;
-    box-shadow: $box_shadow;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     .DropDown_container,
     .radio_father,
@@ -75,8 +75,9 @@
       margin: 0 0 2rem;
     }
     .extra_text {
-      margin: 0rem 0 1.6rem 0;
+      margin: 0rem 0 1.2rem 0;
       font-size: 1.6rem;
+      line-height: 1;
     }
     .DropDown_container label,
     label {
@@ -96,7 +97,7 @@
         }
         input {
           &::placeholder {
-            color: #dadada;
+            color: #cdcdcd;
           }
         }
       }
@@ -136,7 +137,7 @@
       }
     }
     .check_box_container {
-      margin-bottom: 1.2rem;
+      margin-bottom: 2.2rem;
     }
     .Set_Price_date_options {
       .radio_container {
@@ -154,24 +155,22 @@
       cursor: pointer;
       display: block;
       color: $main__color;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       line-height: 2.2;
       margin-bottom: 2rem;
     }
     .cancelation_items_container {
       .check_box_container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        margin-bottom: 1rem;
         .container {
           color: $main__color;
           font-weight: 400;
-          padding: 0.7rem 1rem;
+          padding: 0.8rem 1rem;
           min-width: auto;
           width: auto;
           border-radius: 2rem;
           margin: 0 0 0 1rem;
-          display: block;
+          display: inline-block;
           background: #fff;
           border: 1px solid $main__color;
           margin-bottom: 1rem;
@@ -199,7 +198,7 @@
               margin: 0;
               padding: 0.7rem;
               &::placeholder {
-                color: #dadada;
+                color: #cdcdcd;
               }
             }
           }
@@ -224,13 +223,10 @@
       box-shadow: 0 0 0 0 transparent inset;
       box-sizing: border-box;
       &::placeholder {
-        color: #dadada;
+        color: #cdcdcd;
       }
       &:focus {
         background: #fff;
-      }
-      &::placeholder {
-        color: #dadada;
       }
     }
   }
@@ -250,11 +246,12 @@
     .add_car_form_step_2 {
       .cancelation_items_container {
         .check_box_container {
+          display: flex;
           flex-wrap: nowrap;
           overflow-x: auto;
-          flex-direction: row;
           .container {
             display: inline-block;
+            margin-bottom: 0;
             flex: 0 0 auto;
           }
         }
