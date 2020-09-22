@@ -152,29 +152,37 @@
     }
     .anchorTagInStep2 {
       cursor: pointer;
-      float: left;
+      display: block;
       color: $main__color;
       font-size: 1.2rem;
       line-height: 2.2;
+      margin-bottom: 2rem;
     }
     .cancelation_items_container {
-      .section_title {
-        margin: 0rem 0 1.6rem 0;
-        font-size: 1.6rem;
-        font-weight: 600;
-        line-height: 2;
-      }
       .check_box_container {
-        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         .container {
-          display: block;
-          width: 100%;
-          margin-bottom: 1.6rem;
+          color: $main__color;
           font-weight: 400;
-          color: $grey_color;
-          &:last-of-type {
-            margin-bottom: 1rem;
-          }
+          padding: 0.7rem 1rem;
+          min-width: auto;
+          width: auto;
+          border-radius: 2rem;
+          margin: 0 0 0 1rem;
+          display: block;
+          background: #fff;
+          border: 1px solid $main__color;
+          margin-bottom: 1rem;
+        }
+        .checkmark {
+          display: none;
+        }
+        &::-webkit-scrollbar {
+          display: none;
+          height: 0.8rem;
+          width: 100%;
         }
       }
       .deposit_container {
@@ -202,7 +210,7 @@
       min-height: 19rem;
       width: 100%;
       font-family: inherit;
-      margin: 0.3rem auto 2rem;
+      margin: 0.3rem auto 0rem;
       display: block;
       outline: 0;
       -webkit-appearance: none;
@@ -231,6 +239,24 @@
   .local_style {
     display: block;
     width: 100%;
+  }
+}
+
+@media screen and(max-width:720px) {
+  .step_2_form_container {
+    .add_car_form_step_2 {
+      .cancelation_items_container {
+        .check_box_container {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          flex-direction: row;
+          .container {
+            display: inline-block;
+            flex: 0 0 auto;
+          }
+        }
+      }
+    }
   }
 }
 

@@ -903,49 +903,11 @@ const Add_Car_Step_2 = () => {
             discountCheck={setShowDiscount}
             error={ErrorState.discount_error}
           />
+        </div>
+        <div className="add_car_form_step_2">
+          <h4 className="extra_text">شرایط اجاره و کنسلی</h4>
           <div className="cancelation_items_container">
-            <label className={["section_title"].join(" ")}>
-              شرایط اجاره و کنسلی
-            </label>
-            <Checkbox
-              initialValue={checkbox_list}
-              data={[
-                {
-                  text: "گواهی‌نامه معتبر",
-                  value: 1,
-                },
-                {
-                  text: "بیمه‌نامه اجاره‌خودر اتولی",
-                  value: 2,
-                },
-                {
-                  text: "چک یا سفته به مبلغ ماشین",
-                  value: 3,
-                },
-              ]}
-              name="deliver_at_renters_place"
-              clearField={(item) => {
-                setCheckbox_list((checkbox_list) => {
-                  return checkbox_list.filter((i) => i.value !== item.value);
-                });
-              }}
-              Select={(item) => {
-                let checkListInstance = null;
-                setCheckbox_list((checkbox_list) => {
-                  checkListInstance = checkbox_list.concat(item);
-                  return checkListInstance;
-                });
-                dispatch({
-                  type: "cancellation_policy",
-                  cancellation_policy: state.cancellation_policy
-                    ? `${state.cancellation_policy}\n${
-                        checkListInstance[checkListInstance.length - 1].text
-                      }`
-                    : `${checkListInstance[checkListInstance.length - 1].text}`,
-                });
-              }}
-            />
-            <div className="deposit_container">
+            {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
               <TextInput
                 name="insurance_amount"
@@ -980,16 +942,50 @@ const Add_Car_Step_2 = () => {
                 }}
               />
               <p>تومان</p>
-            </div>
+            </div> */}
+            <Checkbox
+              initialValue={checkbox_list}
+              data={[
+                {
+                  text: "گواهی‌نامه معتبر",
+                  value: 1,
+                },
+                {
+                  text: "بیمه‌نامه اجاره‌خودر اتولی",
+                  value: 2,
+                },
+                {
+                  text: "چک یا سفته به مبلغ ماشین",
+                  value: 3,
+                },
+                {
+                  text: "ودیعه به مبلغ .... تومان",
+                  value: 4,
+                },
+              ]}
+              name="deliver_at_renters_place"
+              clearField={(item) => {
+                setCheckbox_list((checkbox_list) => {
+                  return checkbox_list.filter((i) => i.value !== item.value);
+                });
+              }}
+              Select={(item) => {
+                let checkListInstance = null;
+                setCheckbox_list((checkbox_list) => {
+                  checkListInstance = checkbox_list.concat(item);
+                  return checkListInstance;
+                });
+                dispatch({
+                  type: "cancellation_policy",
+                  cancellation_policy: state.cancellation_policy
+                    ? `${state.cancellation_policy}\n${
+                        checkListInstance[checkListInstance.length - 1].text
+                      }`
+                    : `${checkListInstance[checkListInstance.length - 1].text}`,
+                });
+              }}
+            />
           </div>
-          <label>
-            <span
-              onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
-              className="anchorTagInStep2"
-            >
-              چه مدارک و ضمانت‌هایی بگیریم؟
-            </span>
-          </label>
           <textarea
             className={[
               "text_area_step_2",
@@ -1015,6 +1011,14 @@ const Add_Car_Step_2 = () => {
               });
             }}
           />
+          <label>
+            <span
+              onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
+              className="anchorTagInStep2"
+            >
+              چه مدارک و ضمانت‌هایی بگیریم؟
+            </span>
+          </label>
           <Button
             value="ثبت"
             loading={Loading}
