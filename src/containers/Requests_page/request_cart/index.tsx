@@ -432,12 +432,14 @@ const Request_cart = (props: IRequest_cart) => {
                 </a>
               </Link>
               {/* show the renter's cellphone to the owner if the status is "approved" */}
-              {status_id === "approved" && (
+              {status_id === "approved" ||
+              status_id === "delivered" ||
+              status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
                   0{renter_info.cell}
                   <span className="extra_Text"> :تماس با مهمان</span>
                 </a>
-              )}
+              ) : null}
             </>
           )}
         </div>
