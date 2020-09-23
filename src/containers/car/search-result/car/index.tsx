@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
+import Router from "next/router";
 // import "./car.scss";
 
 const Car = (props) => {
@@ -44,81 +45,86 @@ const Car = (props) => {
   let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
   return (
     <div className="carCart HEAP_SearchResult_Card_Car">
-      <Link href={link}>
-        <a className={`CAR_CART_${title}`}>
-          <figure>
-            {total_discount_percent > 0 && (
-              <span className="discount_badge">
-                {total_discount_percent}% تخفیف
-              </span>
-            )}
-            {is_promoted && <span className="Special">ویژه</span>}
-            {has_media ? (
-              <img
-                style={{
-                  position: "absolute",
-                  // control the top position of the image by "setheightController()"
-                  top: -heightController + "px",
-                }}
-                src={img}
-                className="img-fluid"
-                alt={title}
-                onLoadCapture={(e) => {
-                  e.persist();
-                  // adjust the image at the center of division container
-                  if (imageHeight > 200) {
-                    setheightController(imageHeight - 200);
-                  }
-                }}
-              />
-            ) : (
-              <img src={img} alt={"تصویر پیش فرض خودرو"} />
-            )}
-            <div className="read_more">
-              <span>مشاهده مشخصات</span>
-            </div>
-          </figure>
-          <div className="info_box">
-            <div className="car_brand">
-              <h3>{title}</h3>
-              <p>{year.name.fa}</p>
-            </div>
-            <div className="price">
-              <p className="Price_number">{price}</p>
-              <p>{`${unit} تومان در روز`}</p>
-            </div>
-            <ul className="tags_container">
-              {deliver_at_renters_place && (
-                <li>
-                  <span className="tags">تحویل در محل</span>
-                </li>
-              )}
-              {with_driver && (
-                <li>
-                  <span className="tags">اجاره با راننده</span>
-                </li>
-              )}
-              {props.showLocation ? (
-                <li
-                  onClick={(e) => {
-                    e.preventDefault();
-                    props.tagClick({
-                      type: "location",
-                      value: location.parent_id === 1 ? 1 : location.id,
-                      name:
-                        location.parent_id === 1 ? "تهران" : location.name.fa,
-                    });
-                  }}
-                >
-                  <span className="tags location_tag">
-                    {location.parent_id === 1 ? "تهران" : location.name.fa}
-                  </span>
-                </li>
-              ) : null}
-            </ul>
+      {/* <Link href={link}> */}
+      {/* <a className={`CAR_CART_${title}`}> */}
+      <div className="card_wrapper"
+        onClick={() => {
+          Router.push(link);
+        }}
+      >
+        <figure>
+          {total_discount_percent > 0 && (
+            <span className="discount_badge">
+              {total_discount_percent}% تخفیف
+            </span>
+          )}
+          {is_promoted && <span className="Special">ویژه</span>}
+          {has_media ? (
+            <img
+              style={{
+                position: "absolute",
+                // control the top position of the image by "setheightController()"
+                top: -heightController + "px",
+              }}
+              src={img}
+              className="img-fluid"
+              alt={title}
+              onLoadCapture={(e) => {
+                e.persist();
+                // adjust the image at the center of division container
+                if (imageHeight > 200) {
+                  setheightController(imageHeight - 200);
+                }
+              }}
+            />
+          ) : (
+            <img src={img} alt={"تصویر پیش فرض خودرو"} />
+          )}
+          <div className="read_more">
+            <span>مشاهده مشخصات</span>
           </div>
-        </a>
-      </Link>
+        </figure>
+        <div className="info_box">
+          <div className="car_brand">
+            <h3>{title}</h3>
+            <p>{year.name.fa}</p>
+          </div>
+          <div className="price">
+            <p className="Price_number">{price}</p>
+            <p>{`${unit} تومان در روز`}</p>
+          </div>
+          <ul className="tags_container">
+            {deliver_at_renters_place && (
+              <li>
+                <span className="tags">تحویل در محل</span>
+              </li>
+            )}
+            {with_driver && (
+              <li>
+                <span className="tags">اجاره با راننده</span>
+              </li>
+            )}
+            {props.showLocation ? (
+              <li
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.tagClick({
+                    type: "location",
+                    value: location.parent_id === 1 ? 1 : location.id,
+                    name: location.parent_id === 1 ? "تهران" : location.name.fa,
+                  });
+                }}
+              >
+                <span className="tags location_tag">
+                  {location.parent_id === 1 ? "تهران" : location.name.fa}
+                </span>
+              </li>
+            ) : null}
+          </ul>
+        </div>
+        {/* </a>
+      </Link> */}
+      </div>
     </div>
   );
 };

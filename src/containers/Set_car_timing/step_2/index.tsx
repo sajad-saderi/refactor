@@ -302,10 +302,17 @@ const Add_Car_Step_2 = () => {
     }
 
     // SET CAR OUT OF SERVICE
-    dispatch({
-      type: "is_out_of_service",
-      is_out_of_service: car.is_out_of_service,
-    });
+    if (Router.router.query?.newcaradded === "true") {
+      dispatch({
+        type: "is_out_of_service",
+        is_out_of_service: false,
+      });
+    } else {
+      dispatch({
+        type: "is_out_of_service",
+        is_out_of_service: car.is_out_of_service,
+      });
+    }
 
     // SET CAR WITH DRIVER
     dispatch({
