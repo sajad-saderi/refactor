@@ -404,7 +404,7 @@ const Complete_register_container = () => {
             />
             <DropdownSearch
               data={monthsFarsi}
-              clearField={() => dispatch({ type: "month", month: null })}
+              // clearField={() => dispatch({ type: "month", month: null })}
               Select={(i) => dispatch({ type: "month", month: i.value })}
               disableSearch={true}
               error_status={stateError.month}

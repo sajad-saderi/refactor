@@ -1164,10 +1164,10 @@ const Add_Car_Step_1 = () => {
           search_place_holder="در نام شهرها"
           data={locationList}
           defaultVal={locationName}
-          clearField={() => {
-            dispatch({ type: "location_id", location_id: null });
-            setShowDistrict(false);
-          }}
+          // clearField={() => {
+          //   dispatch({ type: "location_id", location_id: null });
+          //   setShowDistrict(false);
+          // }}
           Select={(i) => {
             if (!showDistrict && ErrorState.location_id) {
               ErrorDispatch({
@@ -1212,9 +1212,9 @@ const Add_Car_Step_1 = () => {
             data={districtList}
             // before location id select this box will have shown but its disabled
             disabled={!showDistrict}
-            clearField={() =>
-              dispatch({ type: "location_id", location_id: null })
-            }
+            // clearField={() =>
+            //   dispatch({ type: "location_id", location_id: null })
+            // }
             Select={(i) => {
               if (showDistrict && ErrorState.location_id) {
                 ErrorDispatch({
@@ -1239,13 +1239,13 @@ const Add_Car_Step_1 = () => {
             search_place_holder="در سازنده‌ها"
             defaultVal={Brand_Name}
             data={BrandList}
-            clearField={() => {
-              autoFillStorageData = null;
-              setCarModelName(null);
-              setModelList([]);
-              dispatch({ type: "car_id", car_id: null });
-              setBrand_id(null);
-            }}
+            // clearField={() => {
+            //   autoFillStorageData = null;
+            //   setCarModelName(null);
+            //   setModelList([]);
+            //   dispatch({ type: "car_id", car_id: null });
+            //   setBrand_id(null);
+            // }}
             Select={(i) => {
               autoFillStorageData = null;
               if (Brand_id_error) {
@@ -1274,7 +1274,7 @@ const Add_Car_Step_1 = () => {
             label="مدل"
             search_place_holder="در نام مدل‌ها"
             data={ModelList}
-            clearField={() => dispatch({ type: "car_id", car_id: null })}
+            // clearField={() => dispatch({ type: "car_id", car_id: null })}
             Select={(i) => {
               if (ErrorState.car_id) {
                 ErrorDispatch({
@@ -1296,7 +1296,7 @@ const Add_Car_Step_1 = () => {
             defaultVal={YearName}
             disableSearch={true}
             data={YearList}
-            clearField={() => dispatch({ type: "year_id", year_id: null })}
+            // clearField={() => dispatch({ type: "year_id", year_id: null })}
             Select={(i) => {
               if (ErrorState.year_id) {
                 ErrorDispatch({
@@ -1358,9 +1358,9 @@ const Add_Car_Step_1 = () => {
             data={BodyStyleList}
             disableSearch={true}
             defaultVal={BodyStyleName}
-            clearField={() =>
-              dispatch({ type: "body_style_id", body_style_id: null })
-            }
+            // clearField={() =>
+            //   dispatch({ type: "body_style_id", body_style_id: null })
+            // }
             Select={(i) => {
               if (ErrorState.body_style_id) {
                 ErrorDispatch({
@@ -1382,9 +1382,9 @@ const Add_Car_Step_1 = () => {
             data={cylinderList}
             disableSearch={true}
             defaultVal={CylinderName}
-            clearField={() =>
-              dispatch({ type: "cylinder_id", cylinder_id: null })
-            }
+            // clearField={() =>
+            //   dispatch({ type: "cylinder_id", cylinder_id: null })
+            // }
             Select={(i) => {
               if (ErrorState.cylinder_id) {
                 ErrorDispatch({
@@ -1406,7 +1406,7 @@ const Add_Car_Step_1 = () => {
             data={capacityList}
             disableSearch={true}
             defaultVal={state.capacity}
-            clearField={() => dispatch({ type: "capacity", capacity: null })}
+            // clearField={() => dispatch({ type: "capacity", capacity: null })}
             Select={(i) => {
               if (ErrorState.capacity) {
                 ErrorDispatch({
@@ -1430,9 +1430,9 @@ const Add_Car_Step_1 = () => {
           }
           data={mileRange}
           disableSearch={true}
-          clearField={() =>
-            dispatch({ type: "mileage_range_id", mileage_range_id: null })
-          }
+          // clearField={() =>
+          //   dispatch({ type: "mileage_range_id", mileage_range_id: null })
+          // }
           Select={(i) => {
             if (ErrorState.mileage_range_id) {
               ErrorDispatch({
@@ -1573,12 +1573,12 @@ const Add_Car_Step_1 = () => {
                     data={PelakList}
                     disableSearch={true}
                     defaultVal={state.registration_plate_second_part}
-                    clearField={() =>
-                      dispatch({
-                        type: "registration_plate_second_part",
-                        registration_plate_second_part: null,
-                      })
-                    }
+                    // clearField={() =>
+                    //   dispatch({
+                    //     type: "registration_plate_second_part",
+                    //     registration_plate_second_part: null,
+                    //   })
+                    // }
                     Select={(i) => {
                       if (ErrorState.registration_plate_second_part) {
                         ErrorDispatch({
@@ -1691,12 +1691,12 @@ const Add_Car_Step_1 = () => {
             hardValue="رنگ خودرو"
             disableSearch={true}
             hideClearField={true}
-            clearField={() =>
-              dispatch({
-                type: "color_id",
-                color_id: null,
-              })
-            }
+            // clearField={() =>
+            //   dispatch({
+            //     type: "color_id",
+            //     color_id: null,
+            //   })
+            // }
             Select={(i) => {
               if (ErrorState.color_id) {
                 ErrorDispatch({

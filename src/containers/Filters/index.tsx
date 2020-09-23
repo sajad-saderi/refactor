@@ -297,10 +297,10 @@ const Filters = (props: IFilter) => {
           data={BrandList}
           defaultVal={Brand_id_name}
           clearField={() => {
-            // setBrand_id(null);
-            // FilterContext.setDataForSearch({
-            //   brand_id: { status: false, value: null },
-            // });
+            setBrand_id(null);
+            FilterContext.setDataForSearch({
+              brand_id: { status: false, value: null },
+            });
           }}
           callClearFieldReset={() => {
             setBrand_Name_ComponentReset(false);
@@ -310,7 +310,7 @@ const Filters = (props: IFilter) => {
             setBrand_id(i.value);
             setModelList([]);
             getModelList(i.value);
-            setCar_id_name(" ");
+            setCar_id_name("");
             // add brand_id filter to the filter context
             FilterContext.setDataForSearch({
               car_id: { status: false, value: null },
@@ -331,10 +331,10 @@ const Filters = (props: IFilter) => {
           }}
           callClearField={car_Name_ComponentReset}
           clearField={() => {
-            // setcar_id(null);
-            // FilterContext.setDataForSearch({
-            //   car_id: { status: false, value: null },
-            // });
+            setcar_id(null);
+            FilterContext.setDataForSearch({
+              car_id: { status: false, value: null },
+            });
           }}
           Select={(i) => {
             setcar_id(i.value);
@@ -352,10 +352,7 @@ const Filters = (props: IFilter) => {
               setShow_filter(false);
               props.show_filter_prop_reset();
             }}
-          >{`نمایش ${props.ResultCount.total_count -
-            props.ResultCount.remained_count} از ${
-            props.ResultCount.total_count
-          } خودرو`}</h2>
+          >{`نمایش ${props.ResultCount.total_count} خودرو`}</h2>
         ) : null}
       </section>
     </>

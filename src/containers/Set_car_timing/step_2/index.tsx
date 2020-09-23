@@ -783,16 +783,16 @@ const Add_Car_Step_2 = () => {
                 ]}
                 disableSearch={true}
                 defaultVal={state.max_km_per_day}
-                clearField={() => {
-                  dispatch({
-                    type: "max_km_per_day",
-                    max_km_per_day: "",
-                  });
-                  dispatch({
-                    type: "extra_km_price",
-                    extra_km_price: "",
-                  });
-                }}
+                // clearField={() => {
+                //   dispatch({
+                //     type: "max_km_per_day",
+                //     max_km_per_day: "",
+                //   });
+                //   dispatch({
+                //     type: "extra_km_price",
+                //     extra_km_price: "",
+                //   });
+                // }}
                 Select={(i) => {
                   dispatch({
                     type: "max_km_per_day",

@@ -157,12 +157,12 @@ const Calculator = (props: ICalculator) => {
                 search_place_holder="در نام در سازنده‌ها"
                 defaultVal={brand.name}
                 data={brandList}
-                clearField={() =>
-                  setBrand({
-                    id: null,
-                    name: null,
-                  })
-                }
+                // clearField={() =>
+                //   setBrand({
+                //     id: null,
+                //     name: null,
+                //   })
+                // }
                 Select={(v) => {
                   fetchModelList(v.value);
                   setSaveCarInfo((saveCarInfo) => {
@@ -193,9 +193,9 @@ const Calculator = (props: ICalculator) => {
                 defaultVal={model.name}
                 data={modelList}
                 search_place_holder="در نام مدل‌ها"
-                clearField={() => {
-                  setModel({ id: null, name: null });
-                }}
+                // clearField={() => {
+                //   setModel({ id: null, name: null });
+                // }}
                 disabled={!brand.id ? true : false}
                 InputDisable={true}
                 Select={(v) => {

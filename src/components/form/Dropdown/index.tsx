@@ -161,15 +161,17 @@ const DropdownSearch = (props: IDropDown) => {
           onClick={DropDownController}
         />
         {/* close icon in input */}
-        {/* {(InputValue.length > 0 || props.defaultVal) &&
-        !props.hideClearField ? (
-          <IoMdClose
-            color="rgb(165, 165, 165)"
-            size="2rem"
-            className="clean_icon"
-            onClick={clearField}
-          />
-        ) : null} */}
+        {props.clearField ? (
+          (InputValue.length > 0 || props.defaultVal) &&
+          !props.hideClearField ? (
+            <IoMdClose
+              color="rgb(165, 165, 165)"
+              size="2rem"
+              className="clean_icon"
+              onClick={clearField}
+            />
+          ) : null
+        ) : null}
         {/* Show the selected color in color picker drop-down */}
         {props.colorPicker && InputValue && (
           <div
@@ -291,7 +293,7 @@ interface IDropDown {
 
   // you can add custom class to the main input
   styleClass?: string;
-  clearField: any;
+  clearField?: any;
   Select: any;
 
   // deactivate default value and component's value

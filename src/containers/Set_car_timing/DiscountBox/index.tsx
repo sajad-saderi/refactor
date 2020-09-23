@@ -144,10 +144,10 @@ const DiscountBox = (props: IDiscountBox) => {
           <div className="containers">
             <DropdownSearch
               data={daysFarsi}
-              clearField={() => {
-                setDays_limit_name(null);
-                setDays_limit(null);
-              }}
+              // clearField={() => {
+              //   setDays_limit_name(null);
+              //   setDays_limit(null);
+              // }}
               label="بیشتر از"
               disableSearch={true}
               error_status={Error_days_limit.status || props.error}

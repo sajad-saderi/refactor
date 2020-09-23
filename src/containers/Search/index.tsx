@@ -212,7 +212,7 @@ const Search = (props: ISearch) => {
                 MODAL_CONTEXT.modalHandler("TellMe");
               }
             }}
-            clearField={() => setLocationId(1)}
+            // clearField={() => setLocationId(1)}
           />
         </div>
         <div className="Date_picker_container">

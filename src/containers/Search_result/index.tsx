@@ -631,7 +631,7 @@ const Search_result = () => {
                 route: Router.router.route,
                 cb: UrlUpdater,
               });
-              initSearch();
+              // initSearch();
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
@@ -652,7 +652,7 @@ const Search_result = () => {
                 route: Router.router.route,
                 cb: UrlUpdater,
               });
-              initSearch();
+              // initSearch();
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
