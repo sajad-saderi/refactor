@@ -20,7 +20,7 @@ const UrlChecker = (props) => {
     car_id,
   } = props;
   data = {
-    location_id: location_id ? +location_id : 1,
+    location_id: location_id ? +location_id : null,
     location_n: location_name ? location_name : "tehran",
     start_date: start_date
       ? (start_date as string).replace(/-/g, "/")

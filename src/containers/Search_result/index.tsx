@@ -85,7 +85,9 @@ const Search_result = () => {
     staticRoute = { ...Router.router.query };
     const url_checked = UrlChecker(Router.router.query);
 
-    Location = url_checked.location_id;
+    if (url_checked.location_id) {
+      Location = url_checked.location_id;
+    }
     location_n = url_checked.location_name;
     Start_date = url_checked.start_date;
     End_date = url_checked.end_date;
