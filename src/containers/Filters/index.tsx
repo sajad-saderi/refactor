@@ -228,8 +228,8 @@ const Filters = (props: IFilter) => {
               document.body.style.overflow = "unset";
             }}
           >
-            <p>بستن</p>
-            <IoMdClose size="2rem" color="#909090" />
+            {/* <p>بستن</p> */}
+            <IoMdClose size="3rem" color="#909090" />
           </div>
         </div>
         {hidePrice ? (
