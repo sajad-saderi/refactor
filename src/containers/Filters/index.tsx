@@ -365,8 +365,10 @@ const Filters = (props: IFilter) => {
             >
               {props.extra_info.length === 0 ? (
                 <Spinner display="block" color="#fff" width={28} />
-              ) : (
+              ) : props.ResultCount.total_count > 0 ? (
                 `نمایش ${props.ResultCount.total_count} خودرو`
+              ) : (
+                "با فیلترهای انتخاب شده نتیجه‌ای پیدا نشد."
               )}
             </h2>
           </div>
