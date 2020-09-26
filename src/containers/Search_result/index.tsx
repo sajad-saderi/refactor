@@ -18,6 +18,7 @@ import Search from "../Search";
 import economic from "../../../public/image/affordable.svg";
 import offRoad from "../../../public/image/SUV.svg";
 import UrlCreator from "../../../utils/UrlCreator";
+import UrlChecker from "../../../utils/UrlChecker";
 
 let quickAccessClick = false;
 
@@ -81,57 +82,51 @@ const Search_result = () => {
   const new_search_ref = useRef(null);
 
   useEffect(() => {
-    // get the data from url
-    const {
-      location_id,
-      start_date,
-      end_date,
-      price_order,
-      location_name,
-      min_price,
-      max_price,
-    } = Router.router.query;
     staticRoute = { ...Router.router.query };
-    Location = +location_id;
-    location_n = location_name;
-    Start_date = (start_date as string).replace(/-/g, "/");
-    End_date = (end_date as string).replace(/-/g, "/");
-    o = price_order as string;
-    if (+Router.router.query.page > 1) {
-      page = +Router.router.query.page;
-      jsCookie.set("JumpTo", 1);
-      jsCookie.set("page", Router.router.query.page);
+    const url_checked = UrlChecker(Router.router.query);
+
+    if (url_checked.location_id) {
+      Location = url_checked.location_id;
     }
-    if (+min_price > 0 || +max_price < 10000000) {
-      price.min = min_price ? +min_price : null;
-      price.max = max_price ? +max_price : null;
+    location_n = url_checked.location_name;
+    Start_date = url_checked.start_date;
+    End_date = url_checked.end_date;
+    o = url_checked.price_order;
+    if (url_checked.page > 1) {
+      page = url_checked.page;
+      jsCookie.set("JumpTo", 1);
+      jsCookie.set("page", url_checked.page);
+    }
+    if (url_checked.min_price > 0 || url_checked.max_price < 10000000) {
+      price.min = url_checked.min_price;
+      price.max = url_checked.max_price;
       filtersChecker.price = true;
       price = {
-        min: +min_price,
-        max: +max_price,
+        min: url_checked.min_price,
+        max: url_checked.max_price,
       };
     }
-
     if (Router.router.query.deliver_at_renters_place === "1") {
       filtersChecker.deliver_at_renters_place = true;
-      deliver_at_renters_place = +Router.router.query.deliver_at_renters_place;
     }
+    deliver_at_renters_place = +url_checked.deliver_at_renters_place;
     if (Router.router.query.with_driver === "1") {
       filtersChecker.with_driver = true;
-      with_driver = +Router.router.query.with_driver;
     }
-    if (Router.router.query.body_style_id !== "all") {
+    with_driver = +url_checked.with_driver;
+
+    if (url_checked.body_style_id !== "all") {
       filtersChecker.body_style_id = true;
-      body_style_id = Router.router.query.body_style_id
-        ? [Router.router.query.body_style_id]
+      body_style_id = url_checked.body_style_id
+        ? [url_checked.body_style_id]
         : [];
     }
-    if (Router.router.query.brand_id !== "all") {
-      brand_id = +Router.router.query.brand_id;
+    if (url_checked.brand_id !== "all") {
+      brand_id = +url_checked.brand_id;
       filtersChecker.brand_id = true;
     }
-    if (Router.router.query.car_id !== "all") {
-      car_id = +Router.router.query.car_id;
+    if (url_checked.car_id !== "all") {
+      car_id = +url_checked.car_id;
       filtersChecker.car_id = true;
     }
     initSearch();

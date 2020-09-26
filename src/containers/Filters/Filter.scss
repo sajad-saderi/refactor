@@ -17,8 +17,10 @@
       h3 {
         font-size: 1.4rem;
       }
-      .Close_filter {
-        display: none;
+      .closeBtnWrapper {
+        .Close_filter {
+          display: none;
+        }
       }
       .check_box_container {
         display: block;
@@ -33,17 +35,30 @@
         }
         margin-bottom: 1.2rem;
       }
-      .ResultCount {
-        font-size: 1.4rem;
-        font-weight: 500;
-        background-color: $background_color;
-        padding: 0.5rem 0;
-        margin-top: 2rem;
-        text-align: center;
-        width: 100%;
-        border-radius: 4px;
-        color: #fff;
-        cursor: pointer;
+      .result_count_wrapper {
+        background: rgb(250, 250, 250);
+        background: linear-gradient(
+          0deg,
+          rgba(250, 250, 250, 1) 0%,
+          rgba(250, 250, 250, 1) 66%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        bottom: 0;
+        position: sticky;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        .ResultCount {
+          font-size: 1.4rem;
+          font-weight: 500;
+          background-color: $background_color;
+          padding: 0.9rem 0;
+          margin-top: 2rem;
+          text-align: center;
+          width: 100%;
+          border-radius: 4px;
+          color: #fff;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -67,41 +82,56 @@
         &.show_Filter_section {
           z-index: 9999999999;
           opacity: 1;
-          transform: translateX(0px);
+          transform: translateY(0px);
         }
-        .Close_filter {
-          display: inline-block;
-          border-radius: 2rem;
-          border: 1px solid #909090;
-          padding: 0.2rem 0.5rem;
-          margin-right: 82%;
-          margin-left: -10px;
-          cursor: pointer;
-          p {
+
+        .closeBtnWrapper {
+          display: block;
+          height: 5.6rem;
+          position: sticky;
+          top: 0;
+          background: #fcfcfc;
+          z-index: 2;
+          padding-top: 2rem;
+          padding-bottom: 1rem;
+          .Close_filter {
             display: inline-block;
-            vertical-align: middle;
-            font-size: 1rem;
-            color: #909090;
-          }
-          svg {
-            display: inline-block;
-            vertical-align: middle;
-            width: 2rem;
+            float: left;
+            cursor: pointer;
+            svg {
+              display: inline-block;
+              vertical-align: middle;
+              width: 3rem;
+            }
           }
         }
-        transition: 0.25s all;
-        transform: translateX(1000px);
+        .body_style_type_wrapper {
+          .check_box_container {
+            .container {
+              display: inline-block;
+              width: 50%;
+            }
+          }
+        }
+
+        transition: 0.5s all;
+        transform: translateY(1000px);
+        z-index: 1;
         opacity: 0;
-        width: 30rem;
+        width: 100%;
+        max-width: 100%;
         position: fixed;
         overflow-y: scroll;
         right: 0;
-        top: 0;
-        height: 100%;
+        top: auto;
+        height: 72%;
+        bottom: 0;
         margin-top: 0;
-        border-radius: 0;
+        padding: 0rem 2rem 0rem 2rem;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
         &::-webkit-scrollbar {
-          width: 0.3rem;
+          width: 0rem;
         }
         /* Track */
         &::-webkit-scrollbar-track {

@@ -47,7 +47,8 @@ const Car = (props) => {
     <div className="carCart HEAP_SearchResult_Card_Car">
       {/* <Link href={link}> */}
       {/* <a className={`CAR_CART_${title}`}> */}
-      <div className="card_wrapper"
+      <div
+        className="card_wrapper"
         onClick={() => {
           Router.push(link);
         }}
@@ -107,7 +108,7 @@ const Car = (props) => {
             {props.showLocation ? (
               <li
                 onClick={(e) => {
-                  e.preventDefault();
+                  e.stopPropagation();
                   props.tagClick({
                     type: "location",
                     value: location.parent_id === 1 ? 1 : location.id,

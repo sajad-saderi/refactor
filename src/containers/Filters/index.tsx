@@ -66,6 +66,7 @@ const Filters = (props: IFilter) => {
   useEffect(() => {
     if (props.show_filter_prop) {
       setShow_filter(true);
+      document.body.style.overflow = "hidden";
     }
   }, [props.show_filter_prop]);
 
@@ -205,6 +206,7 @@ const Filters = (props: IFilter) => {
         <div
           onClick={() => {
             setShow_filter(false);
+            document.body.style.overflow = "unset";
             props.show_filter_prop_reset();
           }}
           className="with_drawer"
@@ -216,15 +218,19 @@ const Filters = (props: IFilter) => {
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
       >
-        <div
-          className="Close_filter"
-          onClick={() => {
-            setShow_filter(false);
-            props.show_filter_prop_reset();
-          }}
-        >
-          <p>بستن</p>
-          <IoMdClose size="2rem" color="#909090" />
+        <div className="closeBtnWrapper">
+          <span className="bar"></span>
+          <div
+            className="Close_filter"
+            onClick={() => {
+              setShow_filter(false);
+              props.show_filter_prop_reset();
+              document.body.style.overflow = "unset";
+            }}
+          >
+            {/* <p>بستن</p> */}
+            <IoMdClose size="3rem" color="#909090" />
+          </div>
         </div>
         {hidePrice ? (
           <Spinner display="block" width={20} color="#737373" />
@@ -278,18 +284,20 @@ const Filters = (props: IFilter) => {
             setwith_driver(1);
           }}
         />
-        <h3>نوع بدنه</h3>
-        <Checkbox
-          initialValue={body_style_list}
-          data={body_style_set}
-          name="body_style_set"
-          clearField={(item) => {
-            body_style_remove(item);
-          }}
-          Select={(item) => {
-            body_style_add(item);
-          }}
-        />
+        <div className="body_style_type_wrapper">
+          <h3>نوع بدنه</h3>
+          <Checkbox
+            initialValue={body_style_list}
+            data={body_style_set}
+            name="body_style_set"
+            clearField={(item) => {
+              body_style_remove(item);
+            }}
+            Select={(item) => {
+              body_style_add(item);
+            }}
+          />
+        </div>
         <DropdownSearch
           InputDisable={true}
           label="سازنده"
@@ -346,13 +354,24 @@ const Filters = (props: IFilter) => {
           browserDropdown={true}
         />
         {show_filter ? (
-          <h2
-            className="ResultCount"
-            onClick={() => {
-              setShow_filter(false);
-              props.show_filter_prop_reset();
-            }}
-          >{`نمایش ${props.ResultCount.total_count} خودرو`}</h2>
+          <div className="result_count_wrapper">
+            <h2
+              className="ResultCount"
+              onClick={() => {
+                document.body.style.overflow = "unset";
+                setShow_filter(false);
+                props.show_filter_prop_reset();
+              }}
+            >
+              {props.extra_info.length === 0 ? (
+                <Spinner display="block" color="#fff" width={28} />
+              ) : props.ResultCount.total_count > 0 ? (
+                `نمایش ${props.ResultCount.total_count} خودرو`
+              ) : (
+                "با فیلترهای انتخاب شده نتیجه‌ای پیدا نشد."
+              )}
+            </h2>
+          </div>
         ) : null}
       </section>
     </>

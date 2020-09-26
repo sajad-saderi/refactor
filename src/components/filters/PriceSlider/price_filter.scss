@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
     .TA {
       font-weight: 500;
     }
@@ -46,6 +47,19 @@
     .noUi-base,
     .noUi-connects {
       height: 5px;
+    }
+  }
+}
+
+@media screen and(max-width:960px) {
+  .price_filter {
+    .noUi-target {
+      margin: 1rem 1.6rem;
+      .noUi-origin {
+        .noUi-handle {
+          right: auto;
+        }
+      }
     }
   }
 }

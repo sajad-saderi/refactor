@@ -31,12 +31,12 @@ const Checkbox = (props: ICheckbox) => {
             <label className="container" key={index} data-test-id="container">
               {i.text}
               {/* if you need to show some number from checkbox you can active it ny 'count' property */}
-              {i.count ? (
+              {/* {i.count ? (
                 <span className="count">{i.count}</span>
               ) : i.count === 0 ? (
                 // if the count is Zero we show -
                 <span className="count">-</span>
-              ) : null}
+              ) : null} */}
               <input
                 data-test-id="checkbox"
                 checked={initialValueList.find((item) => {
