@@ -35,19 +35,30 @@
         }
         margin-bottom: 1.2rem;
       }
-      .ResultCount {
-        font-size: 1.4rem;
-        font-weight: 500;
-        background-color: $background_color;
-        padding: 0.5rem 0;
-        margin-top: 2rem;
-        text-align: center;
-        width: 100%;
-        border-radius: 4px;
-        color: #fff;
-        cursor: pointer;
-        position: sticky;
+      .result_count_wrapper {
+        background: rgb(250, 250, 250);
+        background: linear-gradient(
+          0deg,
+          rgba(250, 250, 250, 1) 0%,
+          rgba(250, 250, 250, 1) 66%,
+          rgba(255, 255, 255, 0) 100%
+        );
         bottom: 0;
+        position: sticky;
+        padding-bottom: 1rem;
+        padding-top: 2rem;
+        .ResultCount {
+          font-size: 1.4rem;
+          font-weight: 500;
+          background-color: $background_color;
+          padding: 0.5rem 0;
+          margin-top: 2rem;
+          text-align: center;
+          width: 100%;
+          border-radius: 4px;
+          color: #fff;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -73,9 +84,28 @@
           opacity: 1;
           transform: translateY(0px);
         }
+
         .closeBtnWrapper {
           display: block;
-          height: 2.6rem;
+          height: 4.6rem;
+          position: sticky;
+          top: 0;
+          background: #fcfcfc;
+          z-index: 2;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          .bar {
+            position: absolute;
+            width: 8rem;
+            height: 0.6rem;
+            border-radius: 10px;
+            display: block;
+            left: 0;
+            right: 0;
+            top: 0.6rem;
+            margin: auto;
+            background-color: #e8e8e8;
+          }
           .Close_filter {
             display: inline-block;
             border-radius: 2rem;
@@ -106,10 +136,11 @@
         position: fixed;
         overflow-y: scroll;
         right: 0;
-        top: 0;
-        height: 100%;
+        top: auto;
+        height: 72%;
+        bottom: 0;
         margin-top: 0;
-        padding: 2rem 2rem 1rem 2rem;
+        padding: 0rem 2rem 0rem 2rem;
         border-radius: 0;
         &::-webkit-scrollbar {
           width: 0.3rem;

@@ -9,6 +9,7 @@ import { IoIosOptions, IoMdClose } from "react-icons/io";
 import Spinner from "../../components/Spinner";
 
 let body_style_list = [];
+let Y_startPoint = null;
 
 const Filters = (props: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
@@ -29,6 +30,7 @@ const Filters = (props: IFilter) => {
   const [hidePrice, setHidePrice] = useState(false);
 
   const [initialValue, setInitialValue] = useState([0, 10000000]);
+  const [bottomPosition, setBottomPosition] = useState(0);
 
   const FilterContext = useContext(filterContext);
 
@@ -199,6 +201,18 @@ const Filters = (props: IFilter) => {
     }
   }, [props.initialFilterValues]);
 
+  const CloseOnTouch = (e) => {
+    e.persist();
+    if (Y_startPoint < e.touches[0].clientY) {
+      setBottomPosition(Y_startPoint - e.touches[0].clientY);
+      if (Y_startPoint + 100 < e.touches[0].clientY) {
+        setShow_filter(false);
+        Y_startPoint = null;
+        props.show_filter_prop_reset();
+      }
+    }
+  };
+
   return (
     <>
       {show_filter && (
@@ -211,12 +225,23 @@ const Filters = (props: IFilter) => {
         ></div>
       )}
       <section
+        style={{
+          bottom: Y_startPoint ? `${bottomPosition}px` : 0,
+        }}
         className={[
           "filter_section",
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
       >
-        <div className="closeBtnWrapper">
+        <div
+          className="closeBtnWrapper"
+          onTouchStart={(e) => {
+            e.persist();
+            Y_startPoint = e.touches[0].clientY;
+          }}
+          onTouchMove={CloseOnTouch}
+        >
+          <span className="bar"></span>
           <div
             className="Close_filter"
             onClick={() => {
@@ -348,13 +373,15 @@ const Filters = (props: IFilter) => {
           browserDropdown={true}
         />
         {show_filter ? (
-          <h2
-            className="ResultCount"
-            onClick={() => {
-              setShow_filter(false);
-              props.show_filter_prop_reset();
-            }}
-          >{`نمایش ${props.ResultCount.total_count} خودرو`}</h2>
+          <div className="result_count_wrapper">
+            <h2
+              className="ResultCount"
+              onClick={() => {
+                setShow_filter(false);
+                props.show_filter_prop_reset();
+              }}
+            >{`نمایش ${props.ResultCount.total_count} خودرو`}</h2>
+          </div>
         ) : null}
       </section>
     </>
