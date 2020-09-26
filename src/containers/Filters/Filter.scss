@@ -51,7 +51,7 @@
           font-size: 1.4rem;
           font-weight: 500;
           background-color: $background_color;
-          padding: 0.5rem 0;
+          padding: 0.9rem 0;
           margin-top: 2rem;
           text-align: center;
           width: 100%;
@@ -94,6 +94,18 @@
           z-index: 2;
           padding-top: 1rem;
           padding-bottom: 1rem;
+          .bar {
+            position: absolute;
+            width: 8rem;
+            height: 0.6rem;
+            border-radius: 10px;
+            display: block;
+            left: 0;
+            right: 0;
+            top: 0.6rem;
+            margin: auto;
+            background-color: #e8e8e8;
+          }
           .Close_filter {
             display: inline-block;
             border-radius: 2rem;
@@ -125,13 +137,15 @@
         overflow-y: scroll;
         right: 0;
         top: auto;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
         height: 72%;
         bottom: 0;
         margin-top: 0;
         padding: 0rem 2rem 0rem 2rem;
         border-radius: 0;
         &::-webkit-scrollbar {
-          width: 0.3rem;
+          width: 0rem;
         }
         /* Track */
         &::-webkit-scrollbar-track {

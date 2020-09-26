@@ -9,6 +9,7 @@ import { IoIosOptions, IoMdClose } from "react-icons/io";
 import Spinner from "../../components/Spinner";
 
 let body_style_list = [];
+let Y_startPoint = null;
 
 const Filters = (props: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
@@ -201,6 +202,18 @@ const Filters = (props: IFilter) => {
     }
   }, [props.initialFilterValues]);
 
+  const CloseOnTouch = (e) => {
+    e.persist();
+    if (Y_startPoint + 30 < e.touches[0].clientY) {
+      setBottomPosition(Y_startPoint - e.touches[0].clientY);
+      if (Y_startPoint + 200 < e.touches[0].clientY) {
+        setShow_filter(false);
+        Y_startPoint = null;
+        props.show_filter_prop_reset();
+      }
+    }
+  };
+
   return (
     <>
       {show_filter && (
@@ -213,13 +226,31 @@ const Filters = (props: IFilter) => {
           className="with_drawer"
         ></div>
       )}
+      {console.log(bottomPosition)}
       <section
+        style={{
+          bottom: Y_startPoint ? `${bottomPosition + 30}px` : "0",
+        }}
         className={[
           "filter_section",
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
       >
-        <div className="closeBtnWrapper">
+        <div
+          className="closeBtnWrapper"
+          onTouchStart={(e) => {
+            e.persist();
+            Y_startPoint = e.touches[0].clientY;
+          }}
+          onTouchMove={CloseOnTouch}
+          onTouchEnd={() => {
+            if (show_filter) {
+              Y_startPoint = null;
+              setBottomPosition(0);
+            }
+          }}
+        >
+          <span className="bar"></span>
           <div
             className="Close_filter"
             onClick={() => {
