@@ -9,7 +9,6 @@ import { IoIosOptions, IoMdClose } from "react-icons/io";
 import Spinner from "../../components/Spinner";
 
 let body_style_list = [];
-let Y_startPoint = null;
 
 const Filters = (props: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
@@ -68,6 +67,7 @@ const Filters = (props: IFilter) => {
   useEffect(() => {
     if (props.show_filter_prop) {
       setShow_filter(true);
+      document.body.style.overflow = "hidden";
     }
   }, [props.show_filter_prop]);
 
@@ -201,52 +201,31 @@ const Filters = (props: IFilter) => {
     }
   }, [props.initialFilterValues]);
 
-  const CloseOnTouch = (e) => {
-    e.persist();
-    if (Y_startPoint < e.touches[0].clientY) {
-      setBottomPosition(Y_startPoint - e.touches[0].clientY);
-      if (Y_startPoint + 100 < e.touches[0].clientY) {
-        setShow_filter(false);
-        Y_startPoint = null;
-        props.show_filter_prop_reset();
-      }
-    }
-  };
-
   return (
     <>
       {show_filter && (
         <div
           onClick={() => {
             setShow_filter(false);
+            document.body.style.overflow = "unset";
             props.show_filter_prop_reset();
           }}
           className="with_drawer"
         ></div>
       )}
       <section
-        style={{
-          bottom: Y_startPoint ? `${bottomPosition}px` : 0,
-        }}
         className={[
           "filter_section",
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
       >
-        <div
-          className="closeBtnWrapper"
-          onTouchStart={(e) => {
-            e.persist();
-            Y_startPoint = e.touches[0].clientY;
-          }}
-          onTouchMove={CloseOnTouch}
-        >
-          <span className="bar"></span>
+        <div className="closeBtnWrapper">
           <div
             className="Close_filter"
             onClick={() => {
               setShow_filter(false);
               props.show_filter_prop_reset();
+              document.body.style.overflow = "unset";
             }}
           >
             <p>بستن</p>
@@ -377,6 +356,7 @@ const Filters = (props: IFilter) => {
             <h2
               className="ResultCount"
               onClick={() => {
+                document.body.style.overflow = "unset";
                 setShow_filter(false);
                 props.show_filter_prop_reset();
               }}
