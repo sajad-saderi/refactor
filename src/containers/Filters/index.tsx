@@ -204,7 +204,7 @@ const Filters = (props: IFilter) => {
 
   const CloseOnTouch = (e) => {
     e.persist();
-    if (Y_startPoint + 30 < e.touches[0].clientY) {
+    if (Y_startPoint + 5 < e.touches[0].clientY) {
       setBottomPosition(Y_startPoint - e.touches[0].clientY);
       if (Y_startPoint + 200 < e.touches[0].clientY) {
         setShow_filter(false);
@@ -229,7 +229,7 @@ const Filters = (props: IFilter) => {
       {console.log(bottomPosition)}
       <section
         style={{
-          bottom: Y_startPoint ? `${bottomPosition + 30}px` : "0",
+          bottom: Y_startPoint ? `${bottomPosition + 5}px` : "0",
         }}
         className={[
           "filter_section",
