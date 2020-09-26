@@ -216,15 +216,17 @@ const Filters = (props: IFilter) => {
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
       >
-        <div
-          className="Close_filter"
-          onClick={() => {
-            setShow_filter(false);
-            props.show_filter_prop_reset();
-          }}
-        >
-          <p>بستن</p>
-          <IoMdClose size="2rem" color="#909090" />
+        <div className="closeBtnWrapper">
+          <div
+            className="Close_filter"
+            onClick={() => {
+              setShow_filter(false);
+              props.show_filter_prop_reset();
+            }}
+          >
+            <p>بستن</p>
+            <IoMdClose size="2rem" color="#909090" />
+          </div>
         </div>
         {hidePrice ? (
           <Spinner display="block" width={20} color="#737373" />
