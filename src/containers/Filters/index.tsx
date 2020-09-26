@@ -362,7 +362,13 @@ const Filters = (props: IFilter) => {
                 setShow_filter(false);
                 props.show_filter_prop_reset();
               }}
-            >{`نمایش ${props.ResultCount.total_count} خودرو`}</h2>
+            >
+              {props.extra_info.length === 0 ? (
+                <Spinner display="block" color="#fff" width={28} />
+              ) : (
+                `نمایش ${props.ResultCount.total_count} خودرو`
+              )}
+            </h2>
           </div>
         ) : null}
       </section>
