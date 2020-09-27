@@ -35,6 +35,7 @@ const Filters = (props: IFilter) => {
   useEffect(() => {
     getBrandCarList();
     return () => {
+      document.body.style.overflow = "unset";
       body_style_list = [];
     };
   }, []);
