@@ -12,7 +12,8 @@ const Spinner = (props: ISpinner) => {
         /**
          * @color is here
          */
-        borderRightColor: props.color,
+        borderTopColor: props.color,
+        borderBottomColor: props.color,
 
         /**
          * @width
