@@ -44,6 +44,24 @@
       cursor: pointer;
       width: 2rem;
     }
+    .input_tail_content {
+      border: 1px solid $input_border;
+      border-right: 0px;
+      position: absolute;
+      right: 97%;
+      top: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      background-color: #fafafa;
+      padding: 0 1rem;
+      border-radius: 4px 0 0px 4px;
+      white-space: nowrap;
+    }
+    .inputError_forTail {
+      border-color: #d83030;
+      color: #d83030;
+    }
   }
   .input_error_message {
     font-size: 1.2rem;

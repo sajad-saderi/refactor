@@ -155,20 +155,16 @@
     }
     .value_container {
       position: relative;
-      .clean_icon {
-        left: 63px;
-        bottom: 15px;
-      }
-      input {
-        text-align: left;
-        text-indent: 7.5rem;
-        direction: ltr;
-      }
-      span {
-        position: absolute;
-        top: 4.2rem;
-        left: 2rem;
-        font-weight: 500;
+      .input_surround {
+        width: 50%;
+        .clean_icon {
+          display: none;
+        }
+        input {
+          text-align: left;
+          text-indent: 1rem;
+          direction: ltr;
+        }
       }
     }
     .pelak_container {
@@ -317,6 +313,11 @@
 @media screen and(max-width:575px) {
   .add_car_form_container {
     .add_car_form_step_1 {
+      .value_container {
+        .input_surround {
+          width: 17rem;
+        }
+      }
       .facilities_container {
         .check_box_container {
           .container {
@@ -340,12 +341,19 @@
         font-weight: 500;
         margin-bottom: 0;
         margin-top: 2rem;
+        background-color: rgba($color: #a3678b, $alpha: 0.1);
+        color: $second__color;
+        display: block;
       }
     }
     .add_car_form_step_1 {
       .form_title {
+        background-color: rgba($color: #a3678b, $alpha: 0.1);
+        color: $second__color;
         text-align: center;
-        margin-bottom: 5rem;
+        padding-bottom: 1rem;
+        margin-top: 0rem;
+        margin-bottom: 4em;
       }
       .pelak_container {
         .license_palte_container {

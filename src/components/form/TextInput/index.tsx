@@ -90,7 +90,8 @@ const TextInput = (props: ItextInput) => {
     }
     if (data.number) {
       if (props.number) {
-        value = Number(props.value.replace(/,/gi, ""));
+        if (typeof props.value !== "number")
+          value = Number(props.value.replace(/,/gi, ""));
       }
       if (/[^0-9]/g.test(value.toString())) {
         setLocalError({
@@ -245,6 +246,18 @@ const TextInput = (props: ItextInput) => {
             onClick={() => props.clearField()}
           />
         )}
+        {props.showTail ? (
+          <span
+            className={[
+              "input_tail_content",
+              props.error.status || localError.status
+                ? "inputError_forTail"
+                : null,
+            ].join(" ")}
+          >
+            {props.tail_value}
+          </span>
+        ) : null}
       </div>
       {/* 
         If the props.error.status === true and props.error.message has a value,
@@ -296,6 +309,8 @@ interface ItextInput {
   // validation rules and requirements
   validation?: any;
   Input_onBlur?: any;
+  showTail?: boolean;
+  tail_value?: string;
 }
 
 export default TextInput;

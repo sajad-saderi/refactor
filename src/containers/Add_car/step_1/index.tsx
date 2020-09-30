@@ -35,6 +35,7 @@ import jsCookie from "js-cookie";
  */
 import validator from "validator";
 import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading";
+import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
 
 /**
  * @new_car
@@ -1485,8 +1486,11 @@ const Add_Car_Step_1 = () => {
               },
               required: true,
             }}
+            showTail={true}
+            tail_value={`${NumbersAndCurrencyUnit({
+              value: state.value,
+            })} تومان`}
           />
-          <span>تومان</span>
         </div>
         <div className="pelak_container">
           <label>پلاک خودرو</label>

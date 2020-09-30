@@ -24,6 +24,7 @@ import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
 import DropdownSearch from "../../../components/form/Dropdown";
 import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
+import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -181,6 +182,8 @@ const Add_Car_Step_2 = () => {
   const [Brand_Name, setBrand_Name] = useState(null);
   const [CarModelName, setCarModelName] = useState(null);
   const [recommendationPrice, setRecommendationPrice] = useState(null);
+  const [year, setYear] = useState(null);
+  const [insurance_amount, setInsurance_amount] = useState("");
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
     id: false,
@@ -218,7 +221,6 @@ const Add_Car_Step_2 = () => {
   const MODAL_CONTEXT = useContext(Modal_context);
   const token = jsCookie.get("token");
   const [checkbox_list, setCheckbox_list] = useState([]);
-  const [insurance_amount, setInsurance_amount] = useState("");
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -313,6 +315,9 @@ const Add_Car_Step_2 = () => {
         is_out_of_service: car.is_out_of_service,
       });
     }
+
+    // SET CAR YEAR
+    setYear(car.year.name.fa);
 
     // SET CAR WITH DRIVER
     dispatch({
@@ -627,7 +632,10 @@ const Add_Car_Step_2 = () => {
             )}
           </div>
           <div className="pelak_container">
-            {Brand_Name && <p>{`${Brand_Name} - ${CarModelName}`}</p>}
+            {Brand_Name && (
+              <p className="car_name_brand">{`${Brand_Name} - ${CarModelName}`}</p>
+            )}
+            {year && <p>{year}</p>}
             <img />
             <PelakView
               registration_plate_first_part={
@@ -719,6 +727,10 @@ const Add_Car_Step_2 = () => {
                 autoFocus={false}
                 // min={4}
                 max={10}
+                showTail={true}
+                tail_value={`${NumbersAndCurrencyUnit({
+                  value: state.price_per_day,
+                })} تومان`}
                 placeholder="مثال: 50,000"
                 value={state.price_per_day}
                 validation={{
@@ -727,11 +739,10 @@ const Add_Car_Step_2 = () => {
                   required: true,
                   messages: {
                     required: "لطفا  قیمت روزانه را وارد کنید",
-                    min: "شروع قیمت روزانه از 50.000 تومان است",
+                    min: "حداقل قیمت 50 هزار تومان",
                   },
                 }}
               />
-              <span className="tail_text">تومان در روز</span>
               {recommendationPrice && (
                 <p className="our_recommendation">
                   {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
