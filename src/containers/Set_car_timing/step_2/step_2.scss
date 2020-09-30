@@ -33,11 +33,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        img {
-          display: block;
+        figure {
+          position: relative;
+          height: 110px;
           width: 100%;
-          border-radius: 4px;
+          overflow: hidden;
           border: 1px solid $input_border;
+          border-radius: 4px;
+          img {
+            border-radius: 4px;
+            display: block;
+            width: 100%;
+            margin: auto;
+          }
         }
         .car_card_placeHolder_step2 {
           height: 10.8rem;
@@ -49,23 +57,36 @@
       .pelak_container {
         font-size: 1.4rem;
         margin-right: 2rem;
-        margin-top: 1rem;
         .car_name_brand {
           font-weight: 500;
           font-size: 1.6rem;
         }
         .pelak_view_container {
+          margin-top: 2.9rem;
           width: 240px;
           .first {
             position: absolute;
             width: 5rem;
-            left: 50px;
-            top: 9px;
-            font-size: 2rem;
+            left: 74px;
+            top: 6px;
+          }
+          .second {
+            right: 87px;
+            top: 0;
+          }
+          .third {
+            position: absolute;
+            top: 6px;
+            right: 46px;
+          }
+          .forth {
+            top: 12px;
+            right: 10px;
+            font-size: 1.6rem;
           }
         }
         img {
-          width: 20rem;
+          width: 16rem;
           background: #fafafa;
         }
       }
@@ -331,8 +352,15 @@
       .step_2_image_pelak {
         background-color: rgba($color: #a3678b, $alpha: 0.1);
         .Image_container {
+          display: none;
           .car_card_placeHolder_step2 {
             width: 100%;
+          }
+        }
+        .pelak_container {
+          margin: 0rem;
+          .pelak_view_container {
+            margin-top: 0.9rem;
           }
         }
       }

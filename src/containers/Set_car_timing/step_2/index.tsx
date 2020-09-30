@@ -178,6 +178,9 @@ const Add_Car_Step_2 = () => {
   const [showDiscount, setShowDiscount] = useState(0);
 
   const [initialImage, setInitialImage] = useState(null);
+  const [imageHeight, setImageHeight] = useState(null);
+  const [heightController, setheightController] = useState(0);
+
   const [Loading, setLoading] = useState(false);
   const [Brand_Name, setBrand_Name] = useState(null);
   const [CarModelName, setCarModelName] = useState(null);
@@ -349,8 +352,10 @@ const Add_Car_Step_2 = () => {
       registration_plate_forth_part: car.registration_plate_forth_part,
     });
 
-    if (car.has_media) setInitialImage(car.media_set[0].thumbnail_url);
-    else setInitialImage(carThumbnail);
+    if (car.has_media) {
+      setInitialImage(car.media_set[0].thumbnail_url);
+      setImageHeight(car.media_set[0].thumbnail_height);
+    } else setInitialImage(carThumbnail);
 
     // estimate the daily price for rent base on car value
     let eachDaily = car.value * 0.0018;
@@ -626,7 +631,27 @@ const Add_Car_Step_2 = () => {
         <article className="step_2_image_pelak add_car_form_step_2">
           <div className="Image_container">
             {initialImage ? (
-              <img src={initialImage} alt="تصویر کوچک خودرو" />
+              <figure>
+                <img
+                  style={{
+                    position: "absolute",
+                    // control the top position of the image by "setheightController()"
+                    top: -heightController + "px",
+                  }}
+                  src={initialImage}
+                  className="img-fluid"
+                  alt={`${Brand_Name} - ${CarModelName}`}
+                  onLoadCapture={(e) => {
+                    e.persist();
+                    // adjust the image at the center of division container
+                    if (imageHeight / 110 > 2.5) {
+                      setheightController(
+                        imageHeight - (imageHeight / 110) * 75
+                      );
+                    }
+                  }}
+                />
+              </figure>
             ) : (
               <div className="Gradient car_card_placeHolder_step2" />
             )}
@@ -636,7 +661,6 @@ const Add_Car_Step_2 = () => {
               <p className="car_name_brand">{`${Brand_Name} - ${CarModelName}`}</p>
             )}
             {year && <p>{year}</p>}
-            <img />
             <PelakView
               registration_plate_first_part={
                 state.registration_plate_first_part
@@ -986,7 +1010,7 @@ const Add_Car_Step_2 = () => {
                     value: 3,
                   },
                   {
-                    text: "ودیعه نقدی به مبلغ ....",
+                    text: "ودیعه نقدی به مبلغ: ....",
                     value: 4,
                   },
                 ]}
