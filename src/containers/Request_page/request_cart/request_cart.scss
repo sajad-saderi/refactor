@@ -127,7 +127,7 @@
   justify-content: space-between;
   align-items: center;
   a {
-    color: $main__color;
+    color: $blue;
     font-weight: 500;
     font-size: 1.4rem;
     .extra_Text {
@@ -139,7 +139,7 @@
       vertical-align: middle;
       margin-left: 0.5rem;
       border-radius: 4px;
-      border: 1px solid $main__color;
+      border: 1px solid $blue;
       width: 2rem;
     }
   }
@@ -155,10 +155,10 @@
   .request_car_reject {
     width: 49%;
     background-color: transparent;
-    border: 1px solid $main__color;
-    color: $main__color;
+    border: 1px solid $blue;
+    color: $blue;
     .Loading {
-      border-right-color: $main__color;
+      border-right-color: $blue;
     }
   }
   .request_car_pay {

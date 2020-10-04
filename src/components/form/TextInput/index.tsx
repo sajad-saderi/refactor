@@ -247,16 +247,7 @@ const TextInput = (props: ItextInput) => {
           />
         )}
         {props.showTail ? (
-          <span
-            className={[
-              "input_tail_content",
-              props.error.status || localError.status
-                ? "inputError_forTail"
-                : null,
-            ].join(" ")}
-          >
-            {props.tail_value}
-          </span>
+          <span className="input_tail_content">{props.tail_value}</span>
         ) : null}
       </div>
       {/* 

@@ -12,7 +12,7 @@
   line-height: 2;
 }
 .OTILI h2 {
-  color: $second__color;
+  color: $purple;
   font-weight: bold;
   text-align: center;
   font-size: 28px;
@@ -21,7 +21,7 @@
   font-weight: 500;
 }
 h2.diff_color {
-  color: $main__color;
+  color: $blue;
 }
 .OTILI p {
   line-height: 2;
@@ -57,7 +57,7 @@ h2.diff_color {
   position: relative;
   padding: 15px;
   border-radius: 4px;
-  border: 1px solid $main__color;
+  border: 1px solid $blue;
   margin-bottom: 60px;
 }
 .D1_Left div:nth-of-type(1) {
@@ -73,7 +73,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $main__color;
+  border-color: $blue;
 }
 .D1_Left div:nth-of-type(1):after {
   content: " ";
@@ -83,7 +83,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $main__color;
+  border-color: transparent transparent transparent $blue;
 }
 // ************div:nth-of-type(2)
 .D1_Left div:nth-of-type(2):before {
@@ -95,7 +95,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $main__color;
+  border-color: $blue;
 }
 .D1_Left div:nth-of-type(2):after {
   content: " ";
@@ -105,7 +105,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $main__color;
+  border-color: transparent transparent transparent $blue;
 }
 
 // ************div:nth-of-type(3)
@@ -118,7 +118,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $main__color;
+  border-color: $blue;
 }
 .D1_Left div:nth-of-type(3):after {
   content: " ";
@@ -128,7 +128,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $main__color;
+  border-color: transparent transparent transparent $blue;
 }
 
 // ************div:nth-of-type(4)
@@ -141,7 +141,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $main__color;
+  border-color: $blue;
 }
 .D1_Left div:nth-of-type(4):after {
   content: " ";
@@ -151,7 +151,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $main__color;
+  border-color: transparent transparent transparent $blue;
 }
 
 // ************div:nth-of-type(5)
@@ -164,7 +164,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $main__color;
+  border-color: $blue;
 }
 .D1_Left div:nth-of-type(5):after {
   content: " ";
@@ -174,7 +174,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $main__color;
+  border-color: transparent transparent transparent $blue;
 }
 
 // ************div:nth-of-type(6)
@@ -187,7 +187,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $main__color;
+  border-color: $blue;
 }
 .D1_Left div:nth-of-type(6):after {
   content: " ";
@@ -197,7 +197,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $main__color;
+  border-color: transparent transparent transparent $blue;
 }
 
 // **********RIGHT
@@ -206,7 +206,7 @@ h2.diff_color {
   position: relative;
   padding: 15px;
   border-radius: 4px;
-  border: 1px solid $second__color;
+  border: 1px solid $purple;
   margin-bottom: 59px;
   margin-top: 15px;
 }
@@ -239,7 +239,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $second__color;
+  border-color: $purple;
 }
 .D1_Right div:nth-of-type(1):after {
   content: " ";
@@ -249,7 +249,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $second__color transparent transparent;
+  border-color: transparent $purple transparent transparent;
 }
 
 // ************div:nth-of-type(2)
@@ -263,7 +263,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $second__color;
+  border-color: $purple;
 }
 .D1_Right div:nth-of-type(2):after {
   content: " ";
@@ -273,7 +273,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $second__color transparent transparent;
+  border-color: transparent $purple transparent transparent;
 }
 
 // ************div:nth-of-type(3)
@@ -287,7 +287,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $second__color;
+  border-color: $purple;
 }
 .D1_Right div:nth-of-type(3):after {
   content: " ";
@@ -297,7 +297,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $second__color transparent transparent;
+  border-color: transparent $purple transparent transparent;
 }
 
 // ************div:nth-of-type(4)
@@ -311,7 +311,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $second__color;
+  border-color: $purple;
 }
 .D1_Right div:nth-of-type(4):after {
   content: " ";
@@ -321,7 +321,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $second__color transparent transparent;
+  border-color: transparent $purple transparent transparent;
 }
 
 // ************div:nth-of-type(5)
@@ -335,7 +335,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $second__color;
+  border-color: $purple;
 }
 .D1_Right div:nth-of-type(5):after {
   content: " ";
@@ -345,7 +345,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $second__color transparent transparent;
+  border-color: transparent $purple transparent transparent;
 }
 
 .OTOLI_MIDDLE_Dif {
@@ -393,7 +393,7 @@ h2.diff_color {
     right: 50%;
     margin: auto;
     margin-top: -5px;
-    border-color: $main__color transparent transparent transparent !important;
+    border-color: $blue transparent transparent transparent !important;
   }
   .D1_Left div:last-child:after,
   .D1_Right div:last-child:after {
@@ -417,6 +417,6 @@ h2.diff_color {
     right: 50% !important;
     margin: auto;
     margin-top: -5px;
-    border-color: $second__color transparent transparent transparent !important;
+    border-color: $purple transparent transparent transparent !important;
   }
 }

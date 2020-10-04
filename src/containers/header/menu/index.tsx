@@ -49,7 +49,7 @@ const Menu = () => {
             MODAL_CONTEXT.modalHandler("Login");
           }}
         >
-          ورود/ثبت نام
+          <span>ورود/ثبت نام</span>
         </li>
       )}
       {/* if the user had registered completely, can access to orders history */}

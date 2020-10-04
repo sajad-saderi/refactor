@@ -1,7 +1,7 @@
 @import "../../styles/colors";
 @import "./modals/modal.scss";
 .header {
-  background-color: $header_background_color;
+  background-color: $black;
   padding-top: 1.2rem;
   // height: 64px;
   .Logo {
@@ -48,7 +48,7 @@
     ul {
       li {
         display: inline-block;
-        color: $White_Color;
+        color: $white;
         font-size: 1.4rem;
         position: relative;
         line-height: 2;
@@ -94,7 +94,7 @@
             }
             a {
               font-size: 1.1rem;
-              color: $Main_black_Text_Color;
+              color: $dark_gray;
               display: block;
               line-height: 1;
               border-bottom: 1px solid rgb(254, 254, 254);
@@ -109,7 +109,7 @@
         span {
           font-weight: 500;
           font-size: 1.4rem;
-          color: $White_Color;
+          color: $white;
           padding-bottom: 1.2rem;
           padding-left: 2.4rem;
           display: block;

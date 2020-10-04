@@ -10,7 +10,7 @@
       padding: 1.6rem;
       h3 {
         font-weight: 500;
-        color: $second__color;
+        color: $purple;
         font-size: 1.5rem;
         margin-top: 0;
         display: inline-block;
@@ -21,7 +21,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid $second__color;
+        border-bottom: 1px solid $purple;
         padding-bottom: 0.5rem;
         // margin-right: 2rem;
         .car_name_brand {
@@ -31,6 +31,12 @@
           border-radius: 5px;
           background-color: rgba(163, 103, 139, 0.07);
           display: inline-block;
+          .carName_placeHoler {
+            width: 12rem;
+            height: 1rem;
+            display: inline-block;
+            vertical-align: middle;
+          }
           svg {
             width: 2.3rem;
             margin: 0.2rem 0 0.2rem 0.8rem;
@@ -45,7 +51,7 @@
             display: inline-block;
             margin: 0.3rem;
             vertical-align: middle;
-            color: $grey_color;
+            color: $more_gray;
             &:nth-last-of-type(4) {
               color: rgba(163, 103, 139, 0.3);
               font-size: 2rem;
@@ -102,7 +108,7 @@
         line-height: 1;
         font-weight: 500;
         .extra_text {
-          color: $grey_color;
+          color: $more_gray;
         }
       }
       .DropDown_container label,
@@ -127,7 +133,7 @@
             .text_input {
               margin: 0rem auto;
               &::placeholder {
-                color: #c5c5c5;
+                color: $gray;
               }
               &:focus {
                 &::placeholder {
@@ -157,6 +163,14 @@
           border-radius: 4px;
           font-weight: 500;
           font-size: 1.3rem;
+          margin-top: 0.8rem;
+        }
+        .our_recommendation_placeHoler {
+          width: 60%;
+          height: 1.5rem;
+          display: block;
+          padding: 0.5rem 0.8rem;
+          border-radius: 4px;
           margin-top: 0.8rem;
         }
       }
@@ -189,12 +203,23 @@
       }
       .check_box_container {
         margin-bottom: 2.4rem;
+        .container {
+          .checkmark {
+            top: -3px;
+            height: 2rem;
+            width: 2rem;
+            &:after {
+              left: 6px;
+              top: 2px;
+            }
+          }
+        }
         &:last-of-type {
           margin-bottom: 1rem;
         }
         label {
           margin-bottom: 0;
-          color: $grey_color;
+          color: $more_gray;
           font-size: 1.3rem;
           font-weight: 400;
         }
@@ -214,16 +239,16 @@
       .anchorTagInStep2 {
         cursor: pointer;
         display: block;
-        color: $main__color;
+        color: $blue;
         font-size: 1.3rem;
         line-height: 2.2;
         margin-bottom: 2rem;
       }
       .cancelation_items_container {
         .check_box_container {
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
           .container {
-            color: $main__color;
+            color: $blue;
             font-weight: 400;
             padding: 0.8rem 1rem;
             min-width: auto;
@@ -232,7 +257,7 @@
             margin: 0 0 0 1rem;
             display: inline-block;
             background: #fff;
-            border: 1px solid $main__color;
+            border: 1px solid $blue;
             margin-bottom: 1rem;
           }
           .checkmark {
@@ -258,7 +283,7 @@
                 margin: 0;
                 padding: 0.7rem;
                 &::placeholder {
-                  color: #c5c5c5;
+                  color: $gray;
                 }
                 &:focus {
                   &::placeholder {
@@ -282,13 +307,13 @@
         padding: 0.5rem;
         font-size: 1.4rem;
         background: transparent;
-        border: 1px solid $input_border;
+        border: 1px solid $light_grey;
         color: rgba(0, 0, 0, 0.87);
         border-radius: 0.4rem;
         box-shadow: 0 0 0 0 transparent inset;
         box-sizing: border-box;
         &::placeholder {
-          color: #c5c5c5;
+          color:$gray;
         }
         &:focus {
           background: #fff;
@@ -309,7 +334,7 @@
         size: 1.1rem;
         margin-bottom: 1rem;
         font-weight: 300;
-        color: $grey_color;
+        color: $more_gray;
       }
     }
     .local_style {

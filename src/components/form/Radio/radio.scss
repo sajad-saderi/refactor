@@ -12,7 +12,7 @@
     display: block;
     position: relative;
     padding-right: 2.8rem;
-    color: $grey_color;
+    color: $more_gray;
     cursor: pointer;
     font-size: 1.4rem;
     line-height: 1.5;
@@ -45,7 +45,7 @@
   }
 
   .container:hover {
-    color: $Main_black_Text_Color;
+    color: $dark_gray;
   }
   /* On mouse-over, add a grey background color */
   .container:hover input ~ .checkmark {
@@ -55,7 +55,7 @@
   /* When the radio button is checked, add a blue background */
   .container input:checked ~ .checkmark {
     background-color: transparent;
-    border-color: $main__color;
+    border-color: $blue;
   }
 
   /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -77,13 +77,13 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: $main__color;
+    background: $blue;
   }
 }
 
 .active_radio_item {
   label {
-    color: $Main_black_Text_Color !important;
+    color: $dark_gray !important;
     font-weight: 500 !important;
     p {
       color: #2a2a2a !important;

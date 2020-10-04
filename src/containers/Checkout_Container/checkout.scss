@@ -78,7 +78,7 @@
         margin-top: 2.2rem;
         margin-bottom: 1.2rem;
         border-bottom-width: 0;
-        border-color: $input_border;
+        border-color: $light_grey;
       }
       .owner_part {
         margin-top: 2rem;
@@ -146,9 +146,9 @@
         font-weight: 500;
       }
       .Discount_color {
-        color: $discount_color;
+        color: $orange;
         span {
-          color: $discount_color;
+          color: $orange;
         }
       }
       p {
@@ -192,14 +192,14 @@
         }
         .coupan_BTN {
           background: #fff;
-          border: 1px solid $main__color;
-          color: $main__color;
+          border: 1px solid $blue;
+          color: $blue;
           padding: 1rem 2.1rem;
         }
       }
       .total_price {
         margin-top: 1.4rem;
-        border-top: 1px solid $input_border;
+        border-top: 1px solid $light_grey;
         .total_price_text {
           font-size: 2rem;
         }

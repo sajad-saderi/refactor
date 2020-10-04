@@ -19,7 +19,7 @@
   }
   .complete_register_form {
     background: #fdfdfd;
-    border: 1px solid $input_border;
+    border: 1px solid $light_grey;
     font-size: 1.4rem;
     border-radius: 4px;
     padding: 1.6rem;
@@ -44,7 +44,7 @@
     }
     .company_part {
       p {
-        color: $main__color;
+        color: $blue;
         font-weight: 500;
         font-size: 1.4rem;
         margin-bottom: 2rem;
@@ -67,7 +67,7 @@
           display: inline-block;
           font-weight: 500;
           font-size: 1.6rem;
-          color: $main__color;
+          color: $blue;
           padding: 0 1.4rem;
           cursor: pointer;
         }

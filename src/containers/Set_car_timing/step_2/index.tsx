@@ -629,26 +629,22 @@ const Add_Car_Step_2 = () => {
           <h3>شرایط شما برای اجاره</h3>
 
           <div className="pelak_container">
-            {Brand_Name && (
-              <>
-                <p className="car_name_brand">
-                  <IoIosCar
-                    className="car_icon"
-                    size="2.3rem"
-                    color="#313131"
-                  />
-                  {`${Brand_Name} - ${CarModelName}`}
-                </p>
-                {/* {year && <p>{year}</p>} */}
-                <div className="licence_number">
-                  <p>{state.registration_plate_first_part}</p>
-                  <p>|</p>
-                  <p>{state.registration_plate_third_part}</p>
-                  <p>{state.registration_plate_second_part}</p>
-                  <p>{state.registration_plate_forth_part}</p>
-                </div>
-              </>
-            )}
+            <p className="car_name_brand">
+              <IoIosCar className="car_icon" size="2.3rem" color="#313131" />
+              {Brand_Name ? (
+                `${Brand_Name} - ${CarModelName}`
+              ) : (
+                <span className="carName_placeHoler Gradient"></span>
+              )}
+            </p>
+            {/* {year && <p>{year}</p>} */}
+            <div className="licence_number">
+              <p>{state.registration_plate_first_part}</p>
+              <p>|</p>
+              <p>{state.registration_plate_third_part}</p>
+              <p>{state.registration_plate_second_part}</p>
+              <p>{state.registration_plate_forth_part}</p>
+            </div>
           </div>
         </div>
         <form onSubmit={(e) => submitHandler(e, state)}>
@@ -743,11 +739,13 @@ const Add_Car_Step_2 = () => {
                   },
                 }}
               />
-              {recommendationPrice && (
+              {recommendationPrice ? (
                 <p className="our_recommendation">
                   {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
                   تومان در روز
                 </p>
+              ) : (
+                <p className="our_recommendation_placeHoler Gradient"></p>
               )}
             </div>
             {/* {state.price_per_day.length > 3 && (
@@ -855,7 +853,7 @@ const Add_Car_Step_2 = () => {
                     min: "شروع قیمت روزانه از 100 تومان است",
                   },
                 }}
-              /> 
+              />
             </div>
             <Counter
               max={31}
