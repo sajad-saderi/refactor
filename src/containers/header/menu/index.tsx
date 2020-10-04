@@ -36,7 +36,7 @@ const Menu = () => {
                 }
                 alt={profile}
               />
-              <span>{profile}</span>
+              {profile}
               {localStorage["red_dot"] === "1" && <span className="red_dot" />}
             </a>
           </Link>
@@ -61,7 +61,7 @@ const Menu = () => {
         </li>
       )}
       <li className="Drop_Down">
-        راهنما
+        <span>راهنما</span>
         <ul className="Sub_Nav_Level_2">
           <li>
             <Link href="/otoli">

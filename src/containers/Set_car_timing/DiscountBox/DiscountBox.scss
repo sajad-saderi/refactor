@@ -15,14 +15,15 @@
       display: inline-block;
       border: 1px solid $main__color;
       border-radius: 4px;
-      padding-left: 2rem;
+      padding-right: 1rem;
       svg {
         padding: 0.5rem;
         display: inline-block;
         vertical-align: middle;
-        background-color: rgba(0, 0, 0, 0.05);
-        margin-left: 1rem;
+        background-color: rgba($main__color, 0.07);
+        margin-right: 0.8rem;
         width: 2rem;
+        border-radius: 4px 0 0 4px;
       }
     }
   }

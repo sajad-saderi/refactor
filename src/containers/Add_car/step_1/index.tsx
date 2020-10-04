@@ -1147,14 +1147,14 @@ const Add_Car_Step_1 = () => {
 
   return (
     <article className="responsive add_car_form_container">
-      <div className="pageTitle">
-        <IoIosCar className="car_icon" size="3.3rem" color="#4ba3ce" />
-        <h3>افزودن خودرو</h3>
-      </div>
       <form
         className="add_car_form_step_1"
         onSubmit={(e) => submitHandler(e, state)}
       >
+        <div className="pageTitle">
+          {/* <IoIosCar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
+          <h3>افزودن خودرو</h3>
+        </div>
         <p className="extra_text form_title">
           مشخصات خودرو را با مطابق با مدارک آن پر کنید.
         </p>

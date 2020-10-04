@@ -45,15 +45,14 @@
       width: 2rem;
     }
     .input_tail_content {
-      border: 1px solid $input_border;
-      border-right: 0px;
       position: absolute;
-      right: 97%;
+      right: 104%;
       top: 0;
       height: 100%;
       display: flex;
       align-items: center;
-      background-color: #fafafa;
+      color: $grey_color;
+      background-color: $tag_color;
       padding: 0 1rem;
       border-radius: 4px 0 0px 4px;
       white-space: nowrap;

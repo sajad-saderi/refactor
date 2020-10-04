@@ -3,23 +3,8 @@
 
 .add_car_form_container {
   max-width: 68rem;
-  .pageTitle {
-    position: relative;
-    .car_icon {
-      margin: 1rem;
-      margin-right: 0;
-      display: inline-block;
-      vertical-align: middle;
-      width: 3.3rem;
-    }
-    h3 {
-      font-size: 1.8rem;
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-
   .add_car_form_step_1 {
+    margin-top: $padding_top;
     background: #fdfdfd;
     border: 1px solid $input_border;
     font-size: 1.4rem;
@@ -27,6 +12,25 @@
     padding: 1.6rem;
     border: none;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+    .pageTitle {
+      position: relative;
+      .car_icon {
+        margin: 1rem;
+        margin-right: 0;
+        display: inline-block;
+        vertical-align: middle;
+        width: 3.3rem;
+      }
+      h3 {
+        font-weight: 500;
+        color: $second__color;
+        font-size: 1.8rem;
+        margin-top: 0;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
     .DropDown_container,
     .radio_father,
     .text_input_container {
@@ -115,6 +119,15 @@
       margin: 0.4rem 0 1.6rem 0;
       font-size: 1.2rem;
       color: $grey_color;
+    }
+    .form_title {
+      border-bottom: 1px solid;
+      border-bottom: 1px solid $second__color;
+      padding-bottom: 1rem;
+      margin-top: 0rem;
+      display: inline-block;
+      padding-left: 1.6rem;
+      margin-bottom: 4em;
     }
     .DropDown_container label,
     label {
@@ -331,30 +344,7 @@
 }
 @media screen and(max-width:480px) {
   .add_car_form_container {
-    .pageTitle {
-      text-align: center;
-      .car_icon {
-        display: none;
-      }
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 500;
-        margin-bottom: 0;
-        margin-top: 2rem;
-        background-color: rgba($color: #a3678b, $alpha: 0.1);
-        color: $second__color;
-        display: block;
-      }
-    }
     .add_car_form_step_1 {
-      .form_title {
-        background-color: rgba($color: #a3678b, $alpha: 0.1);
-        color: $second__color;
-        text-align: center;
-        padding-bottom: 1rem;
-        margin-top: 0rem;
-        margin-bottom: 4em;
-      }
       .pelak_container {
         .license_palte_container {
           .pelak_input {

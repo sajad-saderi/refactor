@@ -255,7 +255,8 @@ const DiscountBox = (props: IDiscountBox) => {
           }}
         >
           <p>
-            <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن تخفیف
+            افزودن تخفیف
+            <IoMdAdd size="2rem" color="#4ba3ce" />
           </p>
         </div>
       )}

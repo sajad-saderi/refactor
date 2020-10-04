@@ -53,8 +53,6 @@
         position: relative;
         line-height: 2;
         font-weight: 500;
-        padding-bottom: 1.2rem;
-        padding-left: 2.4rem;
         cursor: pointer;
         .profile_icon {
           width: 2.8rem;
@@ -112,6 +110,9 @@
           font-weight: 500;
           font-size: 1.4rem;
           color: $White_Color;
+          padding-bottom: 1.2rem;
+          padding-left: 2.4rem;
+          display: block;
         }
       }
       .Drop_Down {

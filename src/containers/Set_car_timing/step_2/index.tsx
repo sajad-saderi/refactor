@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useState, useContext } from "react";
-import { IoIosCalendar } from "react-icons/io";
+import { IoIosCar, IoIosCalendar } from "react-icons/io";
+
 // import "./step_2.scss";
 import {
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
@@ -16,7 +17,6 @@ import Button from "../../../components/form/Button";
 import Router from "next/router";
 import jsCookie from "js-cookie";
 import validator from "validator";
-import PelakView from "../../../components/pelak";
 import Spinner from "../../../components/Spinner";
 import Modal_context from "../../../context/Modal_context";
 import Counter from "../../../components/Counter";
@@ -623,63 +623,39 @@ const Add_Car_Step_2 = () => {
 
   return (
     <article className="responsive step_2_form_container">
-      <div className="pageTitle">
-        <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" />
-        <h3>تعیین شرایط اجاره</h3>
-      </div>
       <div className="step_2_main_container">
-        <article className="step_2_image_pelak add_car_form_step_2">
-          <div className="Image_container">
-            {initialImage ? (
-              <figure>
-                <img
-                  style={{
-                    position: "absolute",
-                    // control the top position of the image by "setheightController()"
-                    top: -heightController + "px",
-                  }}
-                  src={initialImage}
-                  className="img-fluid"
-                  alt={`${Brand_Name} - ${CarModelName}`}
-                  onLoadCapture={(e) => {
-                    e.persist();
-                    // adjust the image at the center of division container
-                    if (imageHeight / 110 > 2.5) {
-                      setheightController(
-                        imageHeight - (imageHeight / 110) * 75
-                      );
-                    }
-                  }}
-                />
-              </figure>
-            ) : (
-              <div className="Gradient car_card_placeHolder_step2" />
-            )}
-          </div>
+        <div className="pageTitle">
+          {/* <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
+          <h3>شرایط شما برای اجاره</h3>
+
           <div className="pelak_container">
             {Brand_Name && (
-              <p className="car_name_brand">{`${Brand_Name} - ${CarModelName}`}</p>
+              <>
+                <p className="car_name_brand">
+                  <IoIosCar
+                    className="car_icon"
+                    size="2.3rem"
+                    color="#313131"
+                  />
+                  {`${Brand_Name} - ${CarModelName}`}
+                </p>
+                {/* {year && <p>{year}</p>} */}
+                <div className="licence_number">
+                  <p>{state.registration_plate_first_part}</p>
+                  <p>|</p>
+                  <p>{state.registration_plate_third_part}</p>
+                  <p>{state.registration_plate_second_part}</p>
+                  <p>{state.registration_plate_forth_part}</p>
+                </div>
+              </>
             )}
-            {year && <p>{year}</p>}
-            <PelakView
-              registration_plate_first_part={
-                state.registration_plate_first_part
-              }
-              registration_plate_second_part={
-                state.registration_plate_second_part
-              }
-              registration_plate_third_part={
-                state.registration_plate_third_part
-              }
-              registration_plate_forth_part={
-                state.registration_plate_forth_part
-              }
-            />
           </div>
-        </article>
+        </div>
         <form onSubmit={(e) => submitHandler(e, state)}>
           <div className="add_car_form_step_2">
-            <h4 className="extra_text">نرخ اجاره</h4>
+            <h4 className="extra_text">
+              نرخ اجاره<span> (روزانه)</span>
+            </h4>
             <div
               className="Set_Price_date_options"
               //   className={[
@@ -790,27 +766,8 @@ const Add_Car_Step_2 = () => {
               error={ErrorState.price_range}
             />
           )} */}
-          </div>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">شرایط اجاره</h4>
-            <Counter
-              max={31}
-              min={1}
-              AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
-              reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
-              label="زمان اطلاع از اجاره"
-              text="روز قبل"
-              value={state.days_to_get_reminded}
-            />
-            <Counter
-              max={31}
-              min={1}
-              AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
-              reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
-              label="حداقل مدت اجاره"
-              text="روز"
-              value={state.min_days_to_rent}
-            />
+            {/* <h4 className="extra_text">شرایط اجاره</h4> */}
+
             <div className="custom_input_container_step_2 DropDown_extra_km">
               <DropdownSearch
                 label="محدودیت مسافت"
@@ -881,8 +838,12 @@ const Add_Car_Step_2 = () => {
                   message: null,
                 }}
                 // min={4}
-                max={8}
+                max={7}
                 placeholder="مثال: 100"
+                showTail={true}
+                tail_value={`${NumbersAndCurrencyUnit({
+                  value: state.extra_km_price,
+                })} تومان`}
                 value={state.extra_km_price}
                 label="هزینه هر کیلومتر اضافه"
                 validation={{
@@ -894,9 +855,26 @@ const Add_Car_Step_2 = () => {
                     min: "شروع قیمت روزانه از 100 تومان است",
                   },
                 }}
-              />
-              <span className="tail_text">تومان</span>
+              /> 
             </div>
+            <Counter
+              max={31}
+              min={1}
+              AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
+              reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
+              label="زمان اطلاع از اجاره"
+              text="روز قبل"
+              value={state.days_to_get_reminded}
+            />
+            <Counter
+              max={31}
+              min={1}
+              AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
+              reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
+              label="حداقل مدت اجاره"
+              text="روز"
+              value={state.min_days_to_rent}
+            />
             <Checkbox
               initialValue={[state.deliver_at_renters_place]}
               data={[
@@ -1010,7 +988,7 @@ const Add_Car_Step_2 = () => {
                     value: 3,
                   },
                   {
-                    text: "ودیعه نقدی به مبلغ: ....",
+                    text: "ودیعه نقدی به مبلغ:",
                     value: 4,
                   },
                 ]}

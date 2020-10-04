@@ -2,96 +2,89 @@
 @import "../../../styles/colors";
 
 .step_2_form_container {
+  margin-top: $padding_top;
   max-width: 68rem;
-  .pageTitle {
-    position: relative;
-    .car_icon {
-      margin: 1rem;
-      width: 3.3rem;
-      margin-right: 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    h3 {
-      font-size: 1.8rem;
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
   .step_2_main_container {
-    background: #fdfdfd;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
-    padding-bottom: 1.6rem;
-    .step_2_image_pelak {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      margin-bottom: 1.3rem;
-      .Image_container {
-        width: 17rem;
-        min-height: 10rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        figure {
-          position: relative;
-          height: 110px;
-          width: 100%;
-          overflow: hidden;
-          border: 1px solid $input_border;
-          border-radius: 4px;
-          img {
-            border-radius: 4px;
-            display: block;
-            width: 100%;
-            margin: auto;
-          }
-        }
-        .car_card_placeHolder_step2 {
-          height: 10.8rem;
-          width: 15rem;
-          border-radius: 4px;
-          display: inline-block;
-        }
+    .pageTitle {
+      position: relative;
+      padding: 1.6rem;
+      h3 {
+        font-weight: 500;
+        color: $second__color;
+        font-size: 1.5rem;
+        margin-top: 0;
+        display: inline-block;
+        vertical-align: middle;
       }
       .pelak_container {
         font-size: 1.4rem;
-        margin-right: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $second__color;
+        padding-bottom: 0.5rem;
+        // margin-right: 2rem;
         .car_name_brand {
-          font-weight: 500;
-          font-size: 1.6rem;
-        }
-        .pelak_view_container {
-          margin-top: 2.9rem;
-          width: 240px;
-          .first {
-            position: absolute;
-            width: 5rem;
-            left: 74px;
-            top: 6px;
-          }
-          .second {
-            right: 87px;
-            top: 0;
-          }
-          .third {
-            position: absolute;
-            top: 6px;
-            right: 46px;
-          }
-          .forth {
-            top: 12px;
-            right: 10px;
-            font-size: 1.6rem;
+          font-weight: 400;
+          font-size: 1.4rem;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          background-color: rgba(163, 103, 139, 0.07);
+          display: inline-block;
+          svg {
+            width: 2.3rem;
+            margin: 0.2rem 0 0.2rem 0.8rem;
+            display: inline-block;
+            vertical-align: middle;
           }
         }
-        img {
-          width: 16rem;
-          background: #fafafa;
+        .licence_number {
+          width: 12rem;
+          text-align: left;
+          p {
+            display: inline-block;
+            margin: 0.3rem;
+            vertical-align: middle;
+            color: $grey_color;
+            &:nth-last-of-type(4) {
+              color: rgba(163, 103, 139, 0.3);
+              font-size: 2rem;
+            }
+          }
         }
+        // .pelak_view_container {
+        //   width: auto;
+        //   display: inline-block;
+        //   .first {
+        //     position: absolute;
+        //     width: 5rem;
+        //     left: 74px;
+        //     top: 6px;
+        //   }
+        //   .second {
+        //     right: 87px;
+        //     top: 0;
+        //   }
+        //   .third {
+        //     position: absolute;
+        //     top: 6px;
+        //     right: 46px;
+        //   }
+        //   .forth {
+        //     top: 12px;
+        //     right: 10px;
+        //     font-size: 1.6rem;
+        //   }
+        // }
+        // img {
+        //   width: 16rem;
+        //   background: #fafafa;
+        // }
       }
     }
-
+    background: #fdfdfd;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+    padding-bottom: 1.6rem;
     .add_car_form_step_2 {
       position: relative;
       font-size: 1.4rem;
@@ -101,19 +94,24 @@
       .DropDown_container,
       .radio_father,
       .text_input_container {
-        margin: 0 0 2rem;
+        margin: 0rem;
       }
       .extra_text {
         margin: 0rem 0 1.2rem 0;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         line-height: 1;
+        font-weight: 500;
+        .extra_text {
+          color: $grey_color;
+        }
       }
       .DropDown_container label,
       label {
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
         display: block;
-        line-height: 1.5;
+        margin: 0rem 0 1.2rem 0;
+        font-size: 1.4rem;
+        line-height: 1;
+        font-weight: 500;
       }
       .custom_input_container_step_2 {
         max-width: 38rem;
@@ -125,20 +123,30 @@
           .clean_icon {
             bottom: 15px;
           }
-          input {
-            &::placeholder {
-              color: #c5c5c5;
-            }
-            &:focus {
+          .input_surround {
+            .text_input {
+              margin: 0rem auto;
               &::placeholder {
-                color: transparent;
+                color: #c5c5c5;
+              }
+              &:focus {
+                &::placeholder {
+                  color: transparent;
+                }
               }
             }
           }
         }
         .tail_text {
+          height: 100%;
           display: inline-block;
-          margin-right: 1rem;
+          align-items: center;
+          color: #707070;
+          background-color: #fafafa;
+          padding: 1.8rem 1rem;
+          border-radius: 4px;
+          white-space: nowrap;
+          margin-right: 0.8rem;
         }
         .our_recommendation {
           color: $orange;
@@ -148,8 +156,8 @@
           padding: 0.5rem 0.8rem;
           border-radius: 4px;
           font-weight: 500;
-          font-size: 1.2rem;
-          margin-top: 1rem;
+          font-size: 1.3rem;
+          margin-top: 0.8rem;
         }
       }
       .extra_km_price_container {
@@ -180,9 +188,15 @@
         }
       }
       .check_box_container {
-        margin-bottom: 2.2rem;
+        margin-bottom: 2.4rem;
         &:last-of-type {
           margin-bottom: 1rem;
+        }
+        label {
+          margin-bottom: 0;
+          color: $grey_color;
+          font-size: 1.3rem;
+          font-weight: 400;
         }
       }
       .Set_Price_date_options {
@@ -287,6 +301,9 @@
     .daily_price_container {
       .text_input_container {
         margin: 0rem;
+        label {
+          margin: 0;
+        }
       }
       .persianCurrency {
         size: 1.1rem;
@@ -307,9 +324,13 @@
     .step_2_main_container {
       box-shadow: none;
       background: transparent;
+      .pageTitle {
+        padding: 0 0 1.6rem;
+      }
       .add_car_form_step_2 {
         border-bottom: 1px solid rgba(34, 36, 38, 0.1);
         border-radius: 0;
+        padding: 1.6rem 0;
         &:last-of-type {
           border-bottom: none;
         }
@@ -338,30 +359,15 @@
         display: none;
       }
       h3 {
-        font-size: 1.8rem;
-        font-weight: 500;
         margin-bottom: 0rem;
         margin-top: 2rem;
-        color: $second__color;
-        display: block;
-        text-align: center;
-        background-color: rgba(163, 103, 139, 0.1);
       }
-    }
-    .step_2_main_container {
-      .step_2_image_pelak {
-        background-color: rgba($color: #a3678b, $alpha: 0.1);
-        .Image_container {
-          display: none;
-          .car_card_placeHolder_step2 {
-            width: 100%;
-          }
-        }
-        .pelak_container {
-          margin: 0rem;
-          .pelak_view_container {
-            margin-top: 0.9rem;
-          }
+      .pelak_container {
+        .car_name_brand {
+          width: 16rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
       }
     }

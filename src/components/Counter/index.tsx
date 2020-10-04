@@ -9,6 +9,7 @@ const Counter = (props: ICounter) => {
       <div className="counter_box">
         <div className="counter">
           <IoMdAdd
+            size="2.2rem"
             data-test-id="add"
             onClick={() => {
               if (props.value < props.max) props.AddTo();
@@ -16,6 +17,7 @@ const Counter = (props: ICounter) => {
           />
           <p data-test-id="value">{props.value}</p>
           <IoMdRemove
+            size="2.2rem"
             data-test-id="remove"
             onClick={() => {
               if (props.value > props.min) props.reduceTo();
