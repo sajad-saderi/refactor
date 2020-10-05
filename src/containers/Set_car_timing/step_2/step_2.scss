@@ -250,7 +250,7 @@
           .container {
             color: $blue;
             font-weight: 400;
-            padding: 0.8rem 1rem;
+            padding: 0.85rem 1rem;
             min-width: auto;
             width: auto;
             border-radius: 2rem;
@@ -389,7 +389,7 @@
       }
       .pelak_container {
         .car_name_brand {
-          width: 16rem;
+          max-width: 73%;
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
