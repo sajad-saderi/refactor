@@ -352,7 +352,8 @@ const CarPage = () => {
                       <div className="Rent_date">
                         <p>
                           <span className="day_name">{`${moment(
-                            `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
+                            `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+                            "jYYYY/jM/jD"
                           ).format("dddd")}،`}</span>
                           {` ${dayRange.from.day} ${moment(
                             dayRange.from.month,
@@ -360,7 +361,8 @@ const CarPage = () => {
                           ).format("jMMMM")}`}
                           <IoIosArrowRoundBack size="2rem" color="#202020" />
                           <span className="day_name">{`${moment(
-                            `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
+                            `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+                            "jYYYY/jM/jD"
                           ).format("dddd")}،`}</span>
                           {` ${dayRange.to.day} ${moment(
                             dayRange.to.month,
@@ -586,7 +588,8 @@ const CarPage = () => {
                   <p>
                     <span className="day_name">
                       {`${moment(
-                        `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`
+                        `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
+                        "jYYYY/jM/jD"
                       ).format("dddd")}،`}
                     </span>
                     {` ${dayRange.from.day} ${moment(
@@ -595,7 +598,8 @@ const CarPage = () => {
                     ).format("jMMMM")}`}
                     <IoIosArrowRoundBack size="2rem" color="#202020" />
                     <span className="day_name">{`${moment(
-                      `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
+                      `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
+                      "jYYYY/jM/jD"
                     ).format("dddd")}،`}</span>
                     {` ${dayRange.to.day} ${moment(
                       dayRange.to.month,
