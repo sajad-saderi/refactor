@@ -109,8 +109,6 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             // min={11}
             // max={11}
             label="شماره تلفن همراه"
-            show_separated_place={true}
-            separateChar={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
             placeholder="09121234567"
             clearField={clearField}
             validation={{

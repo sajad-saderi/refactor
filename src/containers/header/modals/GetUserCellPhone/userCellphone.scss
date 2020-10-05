@@ -32,32 +32,6 @@
           color: transparent;
         }
       }
-      .separated_places {
-        .text_input {
-          width: 100%;
-          font-size: 2em;
-          letter-spacing: 1.6rem;
-          position: relative;
-          z-index: 4;
-          &:focus {
-            background-color: transparent;
-          }
-        }
-        ._characters {
-          position: absolute;
-          left: 0;
-          width: 85%;
-          height: 5px;
-          display: block;
-          bottom: 0;
-          text-align: left;
-          div {
-            display: inline;
-            line-height: 0;
-            font-size: 3rem;
-          }
-        }
-      }
     }
     .error_message {
       color: $Error_text_color;
