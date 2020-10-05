@@ -7,7 +7,7 @@ import Button from "../../../../components/form/Button";
 import Router from "next/router";
 
 const GetUserCellPhone = (props: IGetUserCellPhone) => {
-  const [cellPhone, setCellPhone] = useState("");
+  const [cellPhone, setCellPhone] = useState("09");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
@@ -86,7 +86,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
 
   return (
     <>
-      <div className="modal_box_div separate_container">
+      <div className="modal_box_div">
         {props.showCaption ? (
           <h2 className="optional_caption">ورود/ثبت نام</h2>
         ) : null}
@@ -109,7 +109,9 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             // min={11}
             // max={11}
             label="شماره تلفن همراه"
-            placeholder="مثال: 09121234567"
+            show_separated_place={true}
+            separateChar={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            placeholder="09121234567"
             clearField={clearField}
             validation={{
               number: true,
@@ -142,7 +144,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
 
 interface IGetUserCellPhone {
   panelController: any;
-  showCaption?: boolean; 
+  showCaption?: boolean;
 }
 
 export default GetUserCellPhone;

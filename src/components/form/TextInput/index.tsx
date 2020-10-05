@@ -160,7 +160,12 @@ const TextInput = (props: ItextInput) => {
       >
         {props.label}
       </label>
-      <div className="input_surround">
+      <div
+        className={[
+          "input_surround",
+          props.show_separated_place ? "separated_places" : null,
+        ].join(" ")}
+      >
         <input
           data-test-id="input"
           data-hj-whitelist="true"
@@ -237,6 +242,13 @@ const TextInput = (props: ItextInput) => {
             });
           }}
         />
+        {props.show_separated_place && props.separateChar.length > 0 ? (
+          <div className="_characters">
+            {props.separateChar.map(() => {
+              return <div>_</div>;
+            })}
+          </div>
+        ) : null}
         {props.value.length > 0 && !props.HideClearIcon && (
           <IoMdClose
             data-test-id="svg-icon"
@@ -302,6 +314,9 @@ interface ItextInput {
   Input_onBlur?: any;
   showTail?: boolean;
   tail_value?: string;
+
+  show_separated_place?: boolean;
+  separateChar?: any;
 }
 
 export default TextInput;
