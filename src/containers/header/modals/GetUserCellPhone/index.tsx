@@ -7,7 +7,7 @@ import Button from "../../../../components/form/Button";
 import Router from "next/router";
 
 const GetUserCellPhone = (props: IGetUserCellPhone) => {
-  const [cellPhone, setCellPhone] = useState("09");
+  const [cellPhone, setCellPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
@@ -108,8 +108,8 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             value={cellPhone}
             // min={11}
             // max={11}
-            label="شماره تلفن همراه"
-            placeholder="09121234567"
+            label="شماره تلفن همراه" 
+            placeholder="مثال: 09121234567"
             clearField={clearField}
             validation={{
               number: true,
