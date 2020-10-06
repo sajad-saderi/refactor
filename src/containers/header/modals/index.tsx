@@ -52,7 +52,7 @@ const Modals = (props) => {
         {/* model section */}
         {props.modal_type === "Login" ? (
           // switch between get cell phone and enter confirm code
-          change ? (
+          !change ? (
             <ConfirmCode panelController={panelController} />
           ) : (
             <GetUserCellPhone

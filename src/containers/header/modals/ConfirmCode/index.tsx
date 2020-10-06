@@ -8,6 +8,7 @@ import Router from "next/router";
 import jsCookie from "js-cookie";
 import Button from "../../../../components/form/Button";
 import CountDown from "../../../../components/countDown";
+import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
 
 const ConfirmCode = (props: IConfirmCode) => {
   const [code, setCode] = useState("");
@@ -135,7 +136,28 @@ const ConfirmCode = (props: IConfirmCode) => {
   return (
     <div className="modal_box_div confirm_code">
       <form onSubmit={sendConfirmCode}>
-        <TextInput
+        <NumberSeparatedTextInput
+          error={error}
+          name="code"
+          onChangeHandler={(e) => {
+            setCode(e);
+          }}
+          autoFocus={true}
+          value={code}
+          input_count={[0,0,0,0]}
+          label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
+          validation={{
+            number: true,
+            length: 4,
+            messages: {
+              required: "لطفا کد تایید را وارد کنید",
+              length: "کد تایید باید 4 رقم باشد",
+            },
+            required: true,
+          }}
+        />
+
+        {/* <TextInput
           error={error}
           name="code"
           onChangeHandler={(e) => {
@@ -157,7 +179,7 @@ const ConfirmCode = (props: IConfirmCode) => {
             },
             required: true,
           }}
-        />
+        /> */}
         {/* <span className="error_message">{error.message}</span> */}
         <div className="go_back">
           {ActiveAgain ? (
