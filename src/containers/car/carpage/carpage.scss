@@ -33,12 +33,12 @@
     .avg_discounted_price_per_day {
       display: none;
       .discount_price {
-        color: $discount_color;
+        color: $orange;
         text-decoration: line-through;
         font-size: 1.8rem;
       }
       span {
-        color: $grey_color;
+        color: $more_gray;
         line-height: 0.7;
       }
     }
@@ -73,7 +73,7 @@
         }
         .change_date_in_car_page {
           cursor: pointer;
-          color: $main__color;
+          color: $blue;
         }
       }
       .search_box_div {
@@ -119,8 +119,8 @@
               outline: 0;
               -webkit-appearance: none;
               line-height: 1.5;
-              border: 1px solid $input_border;
-              border-left: 0px solid $input_border;
+              border: 1px solid $light_grey;
+              border-left: 0px solid $light_grey;
               border-radius: 0.4rem;
               border-top-left-radius: 0px;
               border-bottom-left-radius: 0px;
@@ -130,17 +130,17 @@
               color: rgba(0, 0, 0, 0.87);
               box-shadow: 0 0 0 0 transparent inset;
               &.activeBorder {
-                border-color: $main__color;
-                border-left: 1px solid $main__color;
+                border-color: $blue;
+                border-left: 1px solid $blue;
                 border-bottom-right-radius: 0px;
                 border-bottom-left-radius: 0px;
                 box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
               }
             }
             .exception_input {
-              border: 1px solid $input_border;
-              border-left: 1px solid $input_border;
-              border-right: 1px solid $input_border;
+              border: 1px solid $light_grey;
+              border-left: 1px solid $light_grey;
+              border-right: 1px solid $light_grey;
               border-radius: 0.4rem;
               border-top-left-radius: 4px;
               border-top-right-radius: 0px;
@@ -174,7 +174,7 @@
               line-height: 1;
               font-size: 1.4rem;
               background: #fff;
-              border: 1px solid $input_border;
+              border: 1px solid $light_grey;
               color: rgba(0, 0, 0, 0.87);
               border-radius: 0.4rem;
               box-shadow: 0 0 0 0 transparent inset;
@@ -263,7 +263,7 @@
     .car_Tags {
       cursor: pointer;
       display: inline-block;
-      color: $main__color;
+      color: $blue;
       border: none;
       padding: 0.2rem 2.5rem;
       text-indent: -14px;
@@ -290,7 +290,7 @@
     }
     .avg_discounted_price_per_day {
       .discount_price {
-        color: $discount_color;
+        color: $orange;
         text-decoration: line-through;
         font-size: 1.8rem;
       }
@@ -305,7 +305,7 @@
       span {
         font-size: 1.2rem;
         display: block;
-        color: $grey_color;
+        color: $more_gray;
         text-align: center;
         line-height: 0.7;
       }
@@ -337,8 +337,8 @@
             outline: 0;
             -webkit-appearance: none;
             line-height: 1.5;
-            border: 1px solid $input_border;
-            border-left: 0px solid $input_border;
+            border: 1px solid $light_grey;
+            border-left: 0px solid $light_grey;
             border-radius: 0.4rem;
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
@@ -348,17 +348,17 @@
             color: rgba(0, 0, 0, 0.87);
             box-shadow: 0 0 0 0 transparent inset;
             &.activeBorder {
-              border-color: $main__color;
-              border-left: 1px solid $main__color;
+              border-color: $blue;
+              border-left: 1px solid $blue;
               border-bottom-right-radius: 0px;
               border-bottom-left-radius: 0px;
               box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
             }
           }
           .exception_input {
-            border: 1px solid $input_border;
-            border-left: 1px solid $input_border;
-            border-right: 1px solid $input_border;
+            border: 1px solid $light_grey;
+            border-left: 1px solid $light_grey;
+            border-right: 1px solid $light_grey;
             border-radius: 0.4rem;
             border-top-left-radius: 4px;
             border-top-right-radius: 0px;
@@ -392,7 +392,7 @@
             line-height: 1;
             font-size: 1.4rem;
             background: #fff;
-            border: 1px solid $input_border;
+            border: 1px solid $light_grey;
             color: rgba(0, 0, 0, 0.87);
             border-radius: 0.4rem;
             box-shadow: 0 0 0 0 transparent inset;
@@ -434,7 +434,7 @@
       }
       .change_date_in_car_page {
         cursor: pointer;
-        color: $main__color;
+        color: $blue;
       }
     }
     .owner_part {
@@ -560,7 +560,7 @@
       .car_Tags {
         cursor: pointer;
         display: inline-block;
-        color: $main__color;
+        color: $blue;
         border: none;
         padding: 0.2rem 2.5rem;
         text-indent: -14px;

@@ -87,7 +87,9 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   return (
     <>
       <div className="modal_box_div">
-        {props.showCaption ? <h2 className="optional_caption">ورود/ثبت نام</h2> : null}
+        {props.showCaption ? (
+          <h2 className="optional_caption">ورود/ثبت نام</h2>
+        ) : null}
         <form onSubmit={sendConfirmCode}>
           <TextInput
             error={error}
@@ -106,7 +108,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             value={cellPhone}
             // min={11}
             // max={11}
-            label="شماره تلفن همراه"
+            label="شماره تلفن همراه" 
             placeholder="مثال: 09121234567"
             clearField={clearField}
             validation={{

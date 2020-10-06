@@ -18,14 +18,14 @@
       justify-content: center;
       align-items: center;
       .Blue_BTN {
-        border: 2px solid $main__color;
+        border: 2px solid $blue;
         padding: 0.5rem 3rem;
         width: 10.3rem;
         margin: 0 1rem;
       }
       .cancel_btn {
         background-color: #fff;
-        color: $main__color;
+        color: $blue;
       }
     }
   }

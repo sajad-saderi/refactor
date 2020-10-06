@@ -3,7 +3,7 @@
 .image_upload_under_label {
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
-  color: $grey_color;
+  color: $more_gray;
   margin-top: 0.8rem;
 }
 .drop_zone {
@@ -79,9 +79,9 @@
     .gallery_button {
       padding: 0.8rem 2rem;
       display: block;
-      border: 1px solid $main__color;
+      border: 1px solid $blue;
       border-radius: 4px;
-      color: $main__color;
+      color: $blue;
       margin-top: 2rem;
     }
   }

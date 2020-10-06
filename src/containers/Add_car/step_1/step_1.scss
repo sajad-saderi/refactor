@@ -6,7 +6,7 @@
   .add_car_form_step_1 {
     margin-top: $padding_top;
     background: #fdfdfd;
-    border: 1px solid $input_border;
+    border: 1px solid $light_grey;
     font-size: 1.4rem;
     border-radius: 4px;
     padding: 1.6rem;
@@ -23,7 +23,7 @@
       }
       h3 {
         font-weight: 500;
-        color: $second__color;
+        color: $purple;
         font-size: 1.8rem;
         margin-top: 0;
         display: inline-block;
@@ -69,10 +69,7 @@
         .container {
           margin-bottom: 2.2rem;
           font-weight: 400;
-          color: $grey_color;
-          .checkmark {
-            background-color: #ffffff;
-          }
+          color: $more_gray;
         }
       }
       .gradient_transparent {
@@ -96,7 +93,7 @@
       }
       .show_more_facilities_button {
         width: 14rem;
-        border: 1px solid $main__color;
+        border: 1px solid $blue;
         border-radius: 25px;
         margin: auto;
         position: absolute;
@@ -105,7 +102,7 @@
         bottom: 3.5rem;
         margin: auto;
         cursor: pointer;
-        color: $main__color;
+        color: $blue;
         padding: 0.8rem 3rem 0.8rem 0;
         svg {
           width: 2rem;
@@ -118,11 +115,11 @@
     .extra_text {
       margin: 0.4rem 0 1.6rem 0;
       font-size: 1.2rem;
-      color: $grey_color;
+      color: $more_gray;
     }
     .form_title {
       border-bottom: 1px solid;
-      border-bottom: 1px solid $second__color;
+      border-bottom: 1px solid $purple;
       padding-bottom: 1rem;
       margin-top: 0rem;
       display: inline-block;
@@ -268,7 +265,7 @@
       font-size: 1.3rem;
       margin-top: 0.8rem;
       line-height: 1.7;
-      color: $grey_color;
+      color: $more_gray;
     }
     .text_area_step_1 {
       min-height: 15rem;
@@ -282,7 +279,7 @@
       padding: 0.5rem;
       font-size: 1.4rem;
       background: transparent;
-      border: 1px solid $input_border;
+      border: 1px solid $light_grey;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
       box-shadow: 0 0 0 0 transparent inset;

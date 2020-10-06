@@ -8,7 +8,7 @@
       font-size: 1.4rem;
       text-align: center;
       margin: 1rem 0;
-      color: $main__color;
+      color: $blue;
       font-weight: 500;
     }
     input {
@@ -30,7 +30,7 @@
     margin: auto;
   }
   .link_text {
-    color: $main__color;
+    color: $blue;
     font-size: 1.4rem;
     margin-bottom: 2rem;
     cursor: pointer;
@@ -50,8 +50,8 @@
     align-items: center;
     .cancel_class {
       background: transparent;
-      border: 1px solid $main__color;
-      color: $main__color;
+      border: 1px solid $blue;
+      color: $blue;
     }
     .cancel_class,
     .local_class {
