@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 // import "./inputStyle.scss";
 import { IoMdClose } from "react-icons/io";
 
-const TextInput = (props: ItextInput) => {
+const NumberSeparatedTextInput = (props: ItextInput) => {
   const [localError, setLocalError] = useState({
     status: false,
     message: "",
   });
-  const TextInput = useRef(null);
 
   const ValueHandler = (e) => {
     let value = e.target.value;
@@ -147,7 +146,7 @@ const TextInput = (props: ItextInput) => {
   };
 
   return (
-    <div className="text_input_container" ref={TextInput}>
+    <div className="text_input_container">
       <label
         /**
          * @LabelColor
@@ -160,7 +159,12 @@ const TextInput = (props: ItextInput) => {
       >
         {props.label}
       </label>
-      <div className="input_surround">
+      <div
+        className={[
+          "input_surround",
+          props.show_separated_place ? "separated_places" : null,
+        ].join(" ")}
+      >
         <input
           data-test-id="input"
           data-hj-whitelist="true"
@@ -237,18 +241,9 @@ const TextInput = (props: ItextInput) => {
             });
           }}
         />
-        {props.value.length > 0 && !props.HideClearIcon && (
-          <IoMdClose
-            data-test-id="svg-icon"
-            color="rgb(165, 165, 165)"
-            size="2rem"
-            className="clean_icon"
-            onClick={() => props.clearField()}
-          />
-        )}
-        {props.showTail ? (
-          <span className="input_tail_content">{props.tail_value}</span>
-        ) : null}
+         
+        
+         
       </div>
       {/* 
         If the props.error.status === true and props.error.message has a value,
@@ -302,6 +297,9 @@ interface ItextInput {
   Input_onBlur?: any;
   showTail?: boolean;
   tail_value?: string;
+
+  show_separated_place?: boolean;
+  separateChar?: any;
 }
 
-export default TextInput;
+export default NumberSeparatedTextInput;
