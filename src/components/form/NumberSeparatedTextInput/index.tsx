@@ -43,24 +43,9 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
       /٨/g,
       /٩/g,
     ];
-    const persianNumbersSTD = [
-      /۰/g,
-      /۱/g,
-      /۲/g,
-      /۳/g,
-      /۴/g,
-      /۵/g,
-      /۶/g,
-      /۷/g,
-      /۸/g,
-      /۹/g,
-    ];
     // replace all the arabic or persian character with english number
     for (var i = 0; i < 10; i++) {
-      value = value
-        .replace(persianNumbers[i], i)
-        .replace(persianNumbersSTD[i], i)
-        .replace(arabicNumbers[i], i);
+      value = value.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
     }
     // remove all the non-numeric char from string
     value = value.replace(/[^0-9]/g, "");
@@ -153,7 +138,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
   };
 
   const passValueToparent = () => {
-    let value = `${ref1.current.value}${ref2.current.value}${ref3.current.value}${ref4.current.value}`;
+    let value = `${v1}${v2}${v3}${v4}`;
     if (value.length === 4) if (validation(value)) props.onChangeHandler(value);
   };
 
