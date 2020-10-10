@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const NumberSeparatedTextInput = (props: ItextInput) => {
   const [localError, setLocalError] = useState({
@@ -6,71 +6,24 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
     message: "",
   });
 
-  const ValueHandler = (e) => {
-    let value = e.target.value;
-    // check the given character and convert it to english
-    const persianNumbers = [
-      /۰/g,
-      /۱/g,
-      /۲/g,
-      /۳/g,
-      /۴/g,
-      /۵/g,
-      /۶/g,
-      /۷/g,
-      /۸/g,
-      /۹/g,
-    ];
-    const arabicNumbers = [
-      /٠/g,
-      /١/g,
-      /٢/g,
-      /٣/g,
-      /٤/g,
-      /٥/g,
-      /٦/g,
-      /٧/g,
-      /٨/g,
-      /٩/g,
-    ];
-    const persianNumbersSTD = [
-      /۰/g,
-      /۱/g,
-      /۲/g,
-      /۳/g,
-      /۴/g,
-      /۵/g,
-      /۶/g,
-      /۷/g,
-      /۸/g,
-      /۹/g,
-    ];
-    // replace all the arabic or persian character with english number
-    for (var i = 0; i < 10; i++) {
-      value = value
-        .replace(persianNumbers[i], i)
-        .replace(persianNumbersSTD[i], i)
-        .replace(arabicNumbers[i], i);
-    }
-    // remove all the non-numeric char from string
-    value = value.replace(/[^0-9]/g, "");
-    // if the input is not number return the input without any changes
-    props.onChangeHandler(value);
-  };
+  const [v1, setV1] = useState("");
+  const [v2, setV2] = useState("");
+  const [v3, setV3] = useState("");
+  const [v4, setV4] = useState("");
 
-  // useEffect(() => {
-  //   if (props.error.status) {
-  //     scrollTo(0, TextInput.current.offsetTop);
-  //   }
-  // }, [props.error]);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
 
-  const validation = (data) => {
+  const validation = (finalValue) => {
     if (!props.validation) {
-      return;
+      return false;
     }
-    let value: string | number = props.value;
+    let data = props.validation;
+    let value: string | number = finalValue;
     if (data.required) {
-      if (props.value === "") {
+      if (finalValue === "") {
         setLocalError({
           status: true,
           message: data.messages.required,
@@ -128,12 +81,28 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         message: "",
       });
     }
+    return true;
+  };
 
-    // if(data.string){
-    //   if(data.length){}
-    //   if(data.minLength){}
-    //   if(data.maxLength){}
-    // }
+  const autoTab = (e, PreviousRef, NextRef) => {
+    e.persist();
+    const BACKSPACE_KEY = 8;
+    const DELETE_KEY = 46;
+    let current_index = e.target.tabIndex || 1;
+    console.log(current_index);
+    if (e.keyCode === BACKSPACE_KEY) {
+      if (current_index < 2) return;
+      PreviousRef.current.focus();
+    } else if (e.keyCode !== DELETE_KEY && current_index < 4) {
+      NextRef.current.focus();
+    } else {
+      passValueToparent();
+    }
+  };
+
+  const passValueToparent = () => {
+    let value = `${ref1.current.value}${ref2.current.value}${ref3.current.value}${ref4.current.value}`;
+    if (value.length === 4) if (validation(value)) props.onChangeHandler(value);
   };
 
   return (
@@ -151,42 +120,98 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         {props.label}
       </label>
       <div className="separated_places">
-        {props.input_count.map((i, index) => {
-          console.log(props.value[index]);
-          return (
-            <input
-              data-hj-whitelist="true"
-              tabIndex={index + 1}
-              autoFocus={props.autoFocus}
-              className={[
-                "text_input",
-                "data-hj-whitelist",
-                props.error.status || localError.status ? "inputError" : null,
-              ].join(" ")}
-              name={props.name}
-              value={props.value[index]}
-              onChange={(e: any) => {
-                e.target.setCustomValidity("");
-                ValueHandler(e);
-              }}
-              disabled={props.disabled}
-              maxLength={1}
-              // check the validation on blur event listener
-              onBlur={() => {
-                validation(props.validation);
-                if (props.Input_onBlur) {
-                  props.Input_onBlur();
-                }
-              }}
-              onFocus={() => {
-                setLocalError({
-                  status: false,
-                  message: "",
-                });
-              }}
-            />
-          );
-        })}
+        <input
+          ref={ref1}
+          onKeyUp={(e) => autoTab(e, null, ref2)}
+          type="text"
+          data-hj-whitelist="true"
+          tabIndex={1}
+          key={1}
+          className={[
+            "text_input",
+            props.error.status || localError.status ? "inputError" : null,
+          ].join(" ")}
+          name={props.name}
+          value={v1}
+          onChange={(e: any) => {
+            setLocalError({
+              status: false,
+              message: "",
+            });
+            setV1(e.target.value);
+          }}
+          autoFocus={true}
+          maxLength={1}
+          onBlur={passValueToparent}
+        />
+        <input
+          ref={ref2}
+          onKeyUp={(e) => autoTab(e, ref1, ref3)}
+          type="text"
+          data-hj-whitelist="true"
+          tabIndex={2}
+          key={2}
+          className={[
+            "text_input",
+            props.error.status || localError.status ? "inputError" : null,
+          ].join(" ")}
+          name={props.name}
+          value={v2}
+          onChange={(e: any) => {
+            setLocalError({
+              status: false,
+              message: "",
+            });
+            setV2(e.target.value);
+          }}
+          maxLength={1}
+          onBlur={passValueToparent}
+        />
+        <input
+          ref={ref3}
+          onKeyUp={(e) => autoTab(e, ref2, ref4)}
+          type="text"
+          data-hj-whitelist="true"
+          tabIndex={3}
+          key={3}
+          className={[
+            "text_input",
+            props.error.status || localError.status ? "inputError" : null,
+          ].join(" ")}
+          name={props.name}
+          value={v3}
+          onChange={(e: any) => {
+            setLocalError({
+              status: false,
+              message: "",
+            });
+            setV3(e.target.value);
+          }}
+          maxLength={1}
+          onBlur={passValueToparent}
+        />
+        <input
+          ref={ref4}
+          onKeyUp={(e) => autoTab(e, ref3, null)}
+          type="text"
+          data-hj-whitelist="true"
+          tabIndex={4}
+          key={4}
+          className={[
+            "text_input",
+            props.error.status || localError.status ? "inputError" : null,
+          ].join(" ")}
+          name={props.name}
+          value={v4}
+          onChange={(e: any) => {
+            setLocalError({
+              status: false,
+              message: "",
+            });
+            setV4(e.target.value);
+          }}
+          maxLength={1}
+        />
       </div>
       {/* 
         If the props.error.status === true and props.error.message has a value,
@@ -204,25 +229,14 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
 interface ItextInput {
   // name of the input
   name: string;
-
   // keystroke listener
   onChangeHandler: any;
-  value: string;
   error: any;
-  // Ready to type ofter load
-  autoFocus: boolean;
-  input_count: any;
-  // deactivate the input
-  disabled?: boolean;
-
   label?: string;
-
   // you can set the custom color to the label of the input
   LabelColor?: string;
-
   // validation rules and requirements
   validation?: any;
-  Input_onBlur?: any;
 }
 
 export default NumberSeparatedTextInput;

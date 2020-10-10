@@ -58,8 +58,10 @@
       border-radius: 4px 0 0px 4px;
       white-space: nowrap;
     }
-    .inputError_forTail {
-      border-color: #d83030;
+    .inputError {
+      border: none !important;
+      border-bottom: 1px solid #d83030 !important;
+      background-color: none !important;
       color: #d83030;
     }
   }

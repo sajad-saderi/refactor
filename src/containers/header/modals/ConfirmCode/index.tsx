@@ -142,9 +142,6 @@ const ConfirmCode = (props: IConfirmCode) => {
           onChangeHandler={(e) => {
             setCode(e);
           }}
-          autoFocus={true}
-          value={code}
-          input_count={[0,0,0,0]}
           label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
           validation={{
             number: true,
