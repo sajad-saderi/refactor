@@ -16,6 +16,58 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
   const ref3 = useRef(null);
   const ref4 = useRef(null);
 
+  const ValueHandler = (e) => {
+    let value = e;
+    // check the given character and convert it to english
+    const persianNumbers = [
+      /۰/g,
+      /۱/g,
+      /۲/g,
+      /۳/g,
+      /۴/g,
+      /۵/g,
+      /۶/g,
+      /۷/g,
+      /۸/g,
+      /۹/g,
+    ];
+    const arabicNumbers = [
+      /٠/g,
+      /١/g,
+      /٢/g,
+      /٣/g,
+      /٤/g,
+      /٥/g,
+      /٦/g,
+      /٧/g,
+      /٨/g,
+      /٩/g,
+    ];
+    const persianNumbersSTD = [
+      /۰/g,
+      /۱/g,
+      /۲/g,
+      /۳/g,
+      /۴/g,
+      /۵/g,
+      /۶/g,
+      /۷/g,
+      /۸/g,
+      /۹/g,
+    ];
+    // replace all the arabic or persian character with english number
+    for (var i = 0; i < 10; i++) {
+      value = value
+        .replace(persianNumbers[i], i)
+        .replace(persianNumbersSTD[i], i)
+        .replace(arabicNumbers[i], i);
+    }
+    // remove all the non-numeric char from string
+    value = value.replace(/[^0-9]/g, "");
+    // if the input is not number return the input without any changes
+    return value;
+  };
+
   const validation = (finalValue) => {
     if (!props.validation) {
       return false;
@@ -138,7 +190,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
               status: false,
               message: "",
             });
-            setV1(e.target.value);
+            setV1(ValueHandler(e.target.value));
           }}
           autoFocus={true}
           maxLength={1}
@@ -162,7 +214,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
               status: false,
               message: "",
             });
-            setV2(e.target.value);
+            setV2(ValueHandler(e.target.value));
           }}
           maxLength={1}
           onBlur={passValueToparent}
@@ -185,7 +237,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
               status: false,
               message: "",
             });
-            setV3(e.target.value);
+            setV3(ValueHandler(e.target.value));
           }}
           maxLength={1}
           onBlur={passValueToparent}
@@ -208,7 +260,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
               status: false,
               message: "",
             });
-            setV4(e.target.value);
+            setV4(ValueHandler(e.target.value));
           }}
           maxLength={1}
         />
