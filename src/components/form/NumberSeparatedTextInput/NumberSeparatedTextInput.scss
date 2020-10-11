@@ -19,50 +19,48 @@
     direction: ltr;
     .text_input {
       font-family: inherit;
-      margin: 1rem 0.5rem;
+      margin: 0 -30px 0 0;
       display: inline-block;
-      width: 3rem;
+      width: 150px;
       outline: 0;
       -webkit-appearance: none;
       line-height: 1.5;
       padding: 1rem 0;
-      text-align: center;
-      font-size: 1.6em;
+      text-align: left;
+      letter-spacing: 20px;
+      font-size: 3em;
       background: #ffffff;
       border: none;
-      border-bottom: 1px solid $light_grey;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0;
       box-shadow: 0 0 0 0 transparent inset;
       &:focus {
         background-color: #ffffff;
       }
+      &::-webkit-inner-spin-button {
+        display: none;
+      }
     }
-    .clean_icon {
+    .border_on_each_Item {
       position: absolute;
-      left: 10px;
-      bottom: 11px;
-      cursor: pointer;
-      width: 2rem;
+      left: 21px;
+      right: 0;
+      bottom: 14px;
+      width: 152px;
+      margin: auto;
+      height: 3px;
+      text-align: left;
+      span {
+        display: inline-block;
+        border-bottom: 1px solid $light_grey;
+        width: 25px;
+        margin: 0 12px 0 0;
+      }
     }
-    .input_tail_content {
-      position: absolute;
-      right: 104%;
-      top: 0;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      color: $more_gray;
-      background-color: $almost_white;
-      padding: 0 1rem;
-      border-radius: 4px 0 0px 4px;
-      white-space: nowrap;
-    }
-    .inputError {
-      border: none !important;
-      border-bottom: 1px solid #d83030 !important;
-      background-color: none !important;
-      color: #d83030;
+    .span_error {
+      span {
+        border-bottom: 1px solid #d83030 !important;
+      }
     }
   }
   .input_error_message {
