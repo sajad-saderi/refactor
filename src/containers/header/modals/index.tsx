@@ -26,7 +26,9 @@ const Modals = (props) => {
           "modal_box",
           // custom classes for different modals
           props.modal_type === "Login"
-            ? "login_modal"
+            ? change
+              ? "confirm_modal"
+              : "login_modal"
             : props.modal_type === "TellMe"
             ? "Tell_me"
             : props.modal_type === "Renter"

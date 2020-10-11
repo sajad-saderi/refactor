@@ -143,7 +143,7 @@ const ConfirmCode = (props: IConfirmCode) => {
             setCode(e);
           }}
           value={code}
-          label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
+          label="کد چهار رقمی که به شما پیامک شده را وارد کنید."
           validation={{
             number: true,
             length: 4,
