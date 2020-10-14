@@ -3,6 +3,7 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content/AbTestContent";
+import language from "../public/languages/fa/joinus.json";
 
 const JoinUs1 = (props) => {
   const [Score, SetScore] = useState(null);
@@ -14,33 +15,35 @@ const JoinUs1 = (props) => {
   return (
     <Layout>
       <NextSeo
-        title="کسب درآمد از خودرو | اتولی"
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "کسب درآمد از خودرو | اتولی",
-          description:
-            "اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.",
-          site_name: "اتولی",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="join_us">
         <section className="banner">
-          <h1>اتولی، برای اوقات فراغت ماشین شما</h1>
-          <h2>
-            به راحتی خودروتان را در اتولی کوتاه مدت اجاره بدهید و درآمد کسب کنید
-          </h2>
+          <h1>{language.h1}</h1>
+          <h2>{language.h2} </h2>
           <div className="responsive calculator_container">
             {/* You can set the Button text when you call the Calculator component */}
-            <Calculator AbText="شروع کسب درآمد" />
+            <Calculator
+              language={language.calculator}
+              AbText={language.calculator_text}
+            />
           </div>
           <p className="temporary_score">{Score}</p>
         </section>
-        <Join_us_content AbText="شروع کسب درآمد" />
+        <Join_us_content
+          language={language.join_us_content}
+          AbText={language.join_us_content_text}
+        />
       </article>
     </Layout>
   );

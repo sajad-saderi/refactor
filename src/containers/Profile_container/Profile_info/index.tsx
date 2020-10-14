@@ -6,7 +6,7 @@ import Button from "../../../components/form/Button";
 import Router from "next/router";
 import jsCookie from "js-cookie";
 
-const Profile_info = (props: IProfile_info) => {
+const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   const [name, setName] = useState(null);
   const [image, setImage] = useState(null);
   const [company_name, setCompany_name] = useState(null);
@@ -15,13 +15,13 @@ const Profile_info = (props: IProfile_info) => {
   const [triggerUpload, setTriggerUpload] = useState(false);
 
   useEffect(() => {
-    if (props.data) {
-      setName(props.data.name);
-      setCompany_name(props.data.company_name);
-      setImage(props.data.thumbnail_url);
-      setUser_info(props.data);
+    if (data) {
+      setName(data.name);
+      setCompany_name(data.company_name);
+      setImage(data.thumbnail_url);
+      setUser_info(data);
     }
-  }, [props.data]);
+  }, [data]);
 
   const Exit = () => {
     jsCookie.remove("first_name");
@@ -53,26 +53,28 @@ const Profile_info = (props: IProfile_info) => {
                 src={image}
                 alt={name}
                 onClick={() => {
-                  if (props.is_mine) {
+                  if (is_mine) {
                     setEdit(true), setTriggerUpload(true);
                   }
                 }}
               />
               <div>
                 <h3>{company_name ? company_name : name}</h3>
-                {props.is_mine && (
-                  <p onClick={() => setEdit(true)}>ویرایش مشخصات کاربری</p>
+                {is_mine && (
+                  <p onClick={() => setEdit(true)}>
+                    {language.edit_the_profile_info}
+                  </p>
                 )}
               </div>
             </div>
-            {props.is_mine && (
+            {is_mine && (
               <div className="profile_controls">
                 <div className="Exit" onClick={Exit}>
                   <FiLogOut size="2rem" color="#4ba3ce" />
-                  <p>خروج</p>
+                  <p>{language.exit}</p>
                 </div>
                 <Button
-                  value="+ افزودن خودرو"
+                  value={language.add}
                   class="Blue_BTN HEAP_Profile_Btn_AddCar"
                   click={() => {
                     Router.push("/add-car");
@@ -84,6 +86,7 @@ const Profile_info = (props: IProfile_info) => {
           </>
         ) : (
           <Edit_profile
+            language={language.edit_profile}
             data={user_info}
             triggerUpload={triggerUpload}
             setEdit={(reload) => {
@@ -103,6 +106,7 @@ const Profile_info = (props: IProfile_info) => {
 interface IProfile_info {
   is_mine: boolean;
   data: any;
+  language: any;
 }
 
 export default Profile_info;

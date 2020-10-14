@@ -2,24 +2,25 @@ import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import Requests_page from "../src/containers/Requests_page";
+import language from "../public/languages/fa/requestspage.json";
 
 const Request = () => {
   return (
     <Layout>
       <NextSeo
-        title="رزرو‌های من | اتولی"
-        description="رزرو‌های من | اتولی"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: `رزرو‌های من | اتولی`,
-          description: `رزرو‌های من | اتولی`,
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
-      <Requests_page />
+      <Requests_page language={language.requests_page} />
     </Layout>
   );
 };

@@ -9,7 +9,11 @@ import jsCookie from "js-cookie";
 import Button from "../../../../components/form/Button";
 import CountDown from "../../../../components/countDown";
 
-const ConfirmCode = (props: IConfirmCode) => {
+const ConfirmCode = ({
+  panelController,
+  language,
+  customModalControl,
+}: IConfirmCode) => {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [ActiveAgain, setActiveAgain] = useState(false);
@@ -106,7 +110,7 @@ const ConfirmCode = (props: IConfirmCode) => {
           // TODO: handle errors
           console.error("error");
         }
-        if (!props.customModalControl) {
+        if (!customModalControl) {
           Modal_context.modalHandler("SET");
         }
       })
@@ -145,15 +149,15 @@ const ConfirmCode = (props: IConfirmCode) => {
           value={code}
           // min={4}
           // max={4}
-          label="کد چهار رقمی که به موبایل شما اس‌ام‌اس شده را وارد کنید"
-          placeholder="لطفا کد را وارد کنید"
+          label={language.text_input_label}
+          placeholder={language.place_holder}
           clearField={clearField}
           validation={{
             number: true,
             length: 4,
             messages: {
-              required: "لطفا کد تایید را وارد کنید",
-              length: "کد تایید باید 4 رقم باشد",
+              required: language.require,
+              length: language.length,
             },
             required: true,
           }}
@@ -161,22 +165,23 @@ const ConfirmCode = (props: IConfirmCode) => {
         {/* <span className="error_message">{error.message}</span> */}
         <div className="go_back">
           {ActiveAgain ? (
-            <p onClick={() => props.panelController()} className="send_again">
-              ارسال مجدد
+            <p onClick={() => panelController()} className="send_again">
+              {language.send_again}
             </p>
           ) : (
             <div className="Count_Down_text">
-              <span>ارسال مجدد</span> <CountDown time={20} Done={Done} />{" "}
-              <span>ثانیه</span>
+              <span>{language.send_again}</span>{" "}
+              <CountDown time={20} Done={Done} />{" "}
+              <span>{language.seconds}</span>
             </div>
           )}
         </div>
-        <div className="go_back" onClick={() => props.panelController()}>
-          <p className="Edit_number">ویرایش شماره</p>
+        <div className="go_back" onClick={() => panelController()}>
+          <p className="Edit_number">{language.edit_the_number}</p>
         </div>
         <Button
           class="Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login"
-          value="ورود"
+          value={language.enter}
           loading={loading}
           click={() => {}}
         />
@@ -187,6 +192,7 @@ const ConfirmCode = (props: IConfirmCode) => {
 
 interface IConfirmCode {
   panelController: any;
+  language: any;
   customModalControl?: boolean;
 }
 export default ConfirmCode;

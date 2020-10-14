@@ -61,7 +61,7 @@ let filtersChecker = {
 // Set position
 let position = 0;
 
-const Search_result = () => {
+const Search_result = ({ language }: ISearch_result) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
@@ -408,18 +408,17 @@ const Search_result = () => {
     >
       {result && (
         <NextSeo
-          title={`جستجو برای تهران، از ${Start_date} تا ${End_date} | اتولی`}
-          description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+          title={`${language.next_seo.title.start}${Start_date}${language.next_seo.title.ta}${End_date}${language.next_seo.title.otoli}`}
+          description={language.next_seo.description}
           openGraph={{
-            title: `درباره اتولی`,
-            description:
-              "اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.",
-            site_name: "اتولی",
+            title: `${language.next_seo.title.start}${Start_date}${language.next_seo.title.ta}${End_date}${language.next_seo.title.otoli}`,
+            description: language.next_seo.description,
+            site_name: language.next_seo.site_name,
           }}
           twitter={{
-            handle: "@otoli_net",
-            site: "@otoli_net",
-            cardType: "summary_large_image",
+            handle: language.next_seo.handle,
+            site: language.next_seo.site,
+            cardType: language.next_seo.cardType,
           }}
         />
       )}
@@ -434,18 +433,20 @@ const Search_result = () => {
               }}
             >
               {!showSearch ? (
-                <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
-                  5
-                )} تا ${result[0].end_date.slice(5)}`}</p>
+                <p className="count_bar_count">{`${total_count}${
+                  language.count_bar_khodro
+                }${result[0].start_date.slice(5)}${
+                  language.count_bar_ta
+                }${result[0].end_date.slice(5)}`}</p>
               ) : null}
               <p className="change_search_btn">
                 {showSearch ? (
                   <span className="close_text_btn">
-                    بستن
+                    {language.count_bar_change_search_btn_close}
                     <IoMdClose size="2rem" color="#dcdcdc" />
                   </span>
                 ) : (
-                  "تغییر جستجو"
+                  language.count_bar_change_search_btn_p
                 )}
               </p>
             </div>
@@ -462,6 +463,7 @@ const Search_result = () => {
         >
           <div className="responsive">
             <Search
+              language={language}
               dynamic={true}
               searchSubmit={(v) => {
                 Start_date = v.date.Start_date;
@@ -498,7 +500,7 @@ const Search_result = () => {
               initSearch();
             }}
           >
-            قیمت زیاد به کم
+            {language.price_sort_container_high_to_low}
           </span>
           <span
             className={o === "price" ? "active" : null}
@@ -513,11 +515,11 @@ const Search_result = () => {
               initSearch();
             }}
           >
-            قیمت کم به زیاد
+            {language.price_sort_container_low_to_high}
           </span>
           {/* Trigger icon in mobile view */}
           <p className="show_filter" onClick={() => setShow_filter(true)}>
-            جستجوی پیشرفته
+            {language.price_sort_container_advance_search_btn}
             <IoIosOptions size="1.4rem" color="#656565" />
           </p>
         </div>
@@ -545,7 +547,10 @@ const Search_result = () => {
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
-            قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
+            {language.minimal_filters_price_from}
+            {price.min.toLocaleString()}
+            {language.minimal_filters_ta}
+            {price.max.toLocaleString()}
           </p>
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (
@@ -566,7 +571,7 @@ const Search_result = () => {
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
-            تحویل در محل
+            {language.minimal_filters_deliver_to_your_location}
           </p>
         ) : null}
         {filtersChecker.with_driver ? (
@@ -587,7 +592,7 @@ const Search_result = () => {
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
-            اجاره همراه راننده
+            {language.minimal_filters_with_deriver}
           </p>
         ) : null}
         {filtersChecker.body_style_id ? (
@@ -608,7 +613,7 @@ const Search_result = () => {
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
-            فیلتر نوع بدنه
+            {language.minimal_filters_body_style}
           </p>
         ) : null}
         {filtersChecker.brand_id ? (
@@ -630,7 +635,7 @@ const Search_result = () => {
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
-            فیلتر براساس سازنده
+            {language.minimal_filters_brand}
           </p>
         ) : null}
         {filtersChecker.car_id ? (
@@ -651,7 +656,7 @@ const Search_result = () => {
             }}
           >
             <IoMdClose size="1.3rem" color="#8c8c8c" />
-            فیلتر براساس نام مدل
+            {language.minimal_filters_model}
           </p>
         ) : null}
       </section>
@@ -674,13 +679,14 @@ const Search_result = () => {
               setShow_filter(false);
             }}
             initialFilterValues={Router}
+            language={language}
           />
         </filterContext.Provider>
-        <SearchResultList result={result} />
+        <SearchResultList result={result} language={language} />
       </section>
       {!quickAccessClick ? (
         <section className=" responsive quick_access_middle_searchResult">
-          <h2>دسترسی سریع</h2>
+          <h2>{language.quick_access_middle_searchResult_h2}</h2>
           <div className="quick_access_child_container">
             <div
               className="HEAP_Search_Result_Quick_Access_SUV"
@@ -692,8 +698,11 @@ const Search_result = () => {
                 });
               }}
             >
-              <img src={offRoad} alt="خودروهای شاسی‌بلند" />
-              <p>خودروهای شاسی‌بلند</p>
+              <img
+                src={offRoad}
+                alt={language.quick_access_middle_searchResult_p_1}
+              />
+              <p>{language.quick_access_middle_searchResult_p_1}</p>
             </div>
             <div
               className="HEAP_Search_Result_Quick_Access_Economy"
@@ -706,8 +715,11 @@ const Search_result = () => {
                 });
               }}
             >
-              <img src={economic} alt="خودروهای اقتصادی" />
-              <p>خودروهای اقتصادی</p>
+              <img
+                src={economic}
+                alt={language.quick_access_middle_searchResult_p_2}
+              />
+              <p>{language.quick_access_middle_searchResult_p_2}</p>
             </div>
           </div>
         </section>
@@ -726,7 +738,7 @@ const Search_result = () => {
           ) : (
             <>
               <IoIosArrowDown color="#202020" size="1.8rem" />
-              نمایش ماشین‌های بیشتر
+              {language.Load_more_car}
             </>
           )}
         </span>
@@ -734,5 +746,9 @@ const Search_result = () => {
     </article>
   );
 };
+
+interface ISearch_result {
+  language: any;
+}
 
 export default Search_result;

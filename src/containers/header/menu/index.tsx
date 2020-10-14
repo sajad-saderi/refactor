@@ -3,6 +3,7 @@ import Link from "next/link";
 import modal_context from "../../../context/Modal_context";
 import jsCookie from "js-cookie";
 import Router from "next/router";
+import language from "../../../../public/languages/fa/header.json";
 
 const Menu = () => {
   const MODAL_CONTEXT = useContext(modal_context);
@@ -49,63 +50,63 @@ const Menu = () => {
             MODAL_CONTEXT.modalHandler("Login");
           }}
         >
-          <span>ورود/ثبت نام</span>
+          <span>{language.li}</span>
         </li>
       )}
       {/* if the user had registered completely, can access to orders history */}
       {complete_register === "true" && (
         <li>
           <Link href="/requests">
-            <a className="HEAP_Header_Link_MyOrders">رزروهای من</a>
+            <a className="HEAP_Header_Link_MyOrders">{language.a_1}</a>
           </Link>
         </li>
       )}
       <li className="Drop_Down">
-        <span>راهنما</span>
+        <span>{language.a_2}</span>
         <ul className="Sub_Nav_Level_2">
           <li>
             <Link href="/otoli">
-              <a>اتولی چگونه کار می‌کند؟</a>
+              <a>{language.a_3}</a>
             </Link>
           </li>
           <li>
             <Link href="/faq">
-              <a>سوالات پرتکرار</a>
+              <a>{language.a_4}</a>
             </Link>
           </li>
           <li>
             <Link href="/guide-for-rent">
-              <a>راهنمای مهمان</a>
+              <a>{language.a_5}</a>
             </Link>
           </li>
           <li>
             <Link href="/guide-renter">
-              <a>راهنمای میزبان</a>
+              <a>{language.a_6}</a>
             </Link>
           </li>
           <li>
             <Link href="/car-insurance">
-              <a>بیمه اجاره خودرو</a>
+              <a>{language.a_7}</a>
             </Link>
           </li>
           <li>
             <Link href="/assurance">
-              <a>مدارک و ضمانت های لازم</a>
+              <a>{language.a_8}</a>
             </Link>
           </li>
           <li>
             <Link href="/evaluation">
-              <a>اعتبار سنجی مشتریان</a>
+              <a>{language.a_9}</a>
             </Link>
           </li>
           <li>
             <Link href="/guide-picture">
-              <a>راهنمای عکس گرفتن</a>
+              <a>{language.a_10}</a>
             </Link>
           </li>
           <li>
             <Link href="/gps">
-              <a>راهنمای انتخاب ردیاب</a>
+              <a>{language.a_11}</a>
             </Link>
           </li>
         </ul>

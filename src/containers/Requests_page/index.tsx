@@ -14,7 +14,7 @@ import { IoIosArrowDown } from "react-icons/io";
 let filter_id = [];
 let page = 1;
 
-const Requests_page = () => {
+const Requests_page = ({ language }: IRequests_page) => {
   const [result, setResult] = useState(null);
   const [Authorize, setAuthorize] = useState(false);
   const [show, setShow] = useState(false);
@@ -132,6 +132,7 @@ const Requests_page = () => {
       <article className="responsive ">
         <section className="requests_page_container">
           <Requests_filter
+            language={language.filters}
             filter_list={filterHandler}
             active_filters={active_filters}
             // total_count={totalCount}
@@ -150,6 +151,7 @@ const Requests_page = () => {
                     return (
                       <div className="Request_car" key={i}>
                         <Request_cart
+                          language={language.request_cart}
                           data={item}
                           getDataAgain={() => {
                             page = 1;
@@ -164,7 +166,7 @@ const Requests_page = () => {
                   })}
                 </>
               ) : (
-                <p className="NoResult">تا به حال سفارشی نداشته‌اید.</p>
+                <p className="NoResult">{language.no_order}</p>
               )
             ) : (
               <>
@@ -189,18 +191,22 @@ const Requests_page = () => {
             ) : (
               <>
                 <IoIosArrowDown color="#202020" size="1.8rem" />
-                نمایش ماشین‌های بیشتر
+                {language.show_more}
               </>
             )}
           </span>
         ) : null}
       </article>
     ) : (
-      <PleaseLogin />
+      <PleaseLogin language={language.please_login} />
     )
   ) : (
     <article className="minHeight"></article>
   );
 };
+
+interface IRequests_page {
+  language: any;
+}
 
 export default Requests_page;

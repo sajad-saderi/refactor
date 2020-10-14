@@ -18,7 +18,7 @@ import carImage from "../../../public/image/car-image-thumbnail.jpg";
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
 
-const Checkout_Container = () => {
+const Checkout_Container = ({ language }: ICheckout_Container) => {
   const [car, setCar] = useState(null);
   const [year, setYear] = useState(null);
   const [media_set, setMedia_set] = useState([]);
@@ -200,17 +200,17 @@ const Checkout_Container = () => {
   return media_set.length > 0 ? (
     <>
       <NextSeo
-        title={`ثبت درخواست اجاره ${car.brand.name.fa} ${car.name.fa} | اتولی`}
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        title={`${language.next_seo.title.start}${car.brand.name.fa} ${car.name.fa}${language.next_seo.title.otoli}`}
+        description={language.next_seo.description}
         openGraph={{
-          title: `ثبت درخواست اجاره ${car.brand.name.fa} ${car.name.fa} | اتولی`,
-          description: `اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.    `,
-          site_name: "اتولی",
+          title: `${language.next_seo.title.start}${car.brand.name.fa} ${car.name.fa}${language.next_seo.title.otoli}`,
+          description: language.next_seo.description,
+          site_name: language.next_seo.site_name,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="responsive Checkout_container">
@@ -249,30 +249,32 @@ const Checkout_Container = () => {
               </figure>
             </div>
             <hr />
-            <h2>شرایط اجاره و کنسلی</h2>
+            <h2>{language.condition_and_cancellation}</h2>
             <p>{cancellation_policy}</p>
             <hr />
-            <h2>محل تحویل</h2>
+            <h2>{language.location}</h2>
             <p>{location.name.breadcrumb_fa}</p>
-            {location.parent_id === 1 && (
-              <p>در محدوده تهران، خودرو در محل شما تحویل می‌شود.</p>
-            )}
+            {location.parent_id === 1 && <p>{language.location_text}</p>}
             {with_driver && (
               <>
                 <hr />
-                <h2>اجاره با راننده</h2>
-                <span>
-                  اجاره این خودرو فقط، همراه با راننده امکان‌پذیر است.
-                </span>
+                <h2>{language.with_driver}</h2>
+                <span>{language.with_driver_text}</span>
               </>
             )}
             <hr />
-            <h2>محدودیت مسافت روزانه</h2>
-            <p>{max_km_per_day} کیلومتر در روز</p>
-            <p>هزینه هر کیلومتر اضافه {extra_km_price_name} تومان</p>
+            <h2>{language.destination_limit}</h2>
+            <p>
+              {max_km_per_day}
+              {language.km_per_day}
+            </p>
+            <p>
+              {language.extra_price_per_km}
+              {extra_km_price_name}
+            </p>
           </div>
           <div className="insurance">
-            <h2>بیمه اجاره</h2>
+            <h2>{language.insurance_for_rent}</h2>
             <Insurance
               insurance_price={insurance_total_price}
               hasInsurance={hasInsurance}
@@ -295,7 +297,7 @@ const Checkout_Container = () => {
               {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
             </p>
           </div>
-          <p className="number_of_days">{`مدت اجاره: ${no_of_days} روز`}</p>
+          <p className="number_of_days">{`${language.time_for_rent}${no_of_days}${language.day}`}</p>
           <div className="payment_information">
             {/* <p>
               <span>قیمت روزانه</span>
@@ -306,35 +308,35 @@ const Checkout_Container = () => {
             </p> */}
             <br />
             <p>
-              <span>{`اجاره ${no_of_days} روز`}</span>
+              <span>{`${language.rent}${no_of_days} ${language.day}`}</span>
               <span>
                 {total_price.toLocaleString()}{" "}
-                <span className="Toman">تومان</span>{" "}
+                <span className="Toman">{language.toman}</span>{" "}
               </span>
             </p>
             {total_discount > 0 && (
               <p className="Discount_color">
                 <span>
                   {!has_system_discount
-                    ? `تخفیف برای ${no_of_days} روز`
-                    : "تخفیف"}
+                    ? `${language.discount_for}${no_of_days}${language.day}`
+                    : language.discount}
                 </span>
                 <span>
                   {total_discount.toLocaleString()}-{" "}
-                  <span className="Toman">تومان</span>
+                  <span className="Toman">{language.toman}</span>
                 </span>
               </p>
             )}
             <p>
-              <span>بیمه</span>
+              <span>{language.insurance}</span>
               <span>
                 {showInsurance ? (
                   <>
                     {`${insurance_total_price.toLocaleString()} `}
-                    <span className="Toman">تومان</span>
+                    <span className="Toman">{language.toman}</span>
                   </>
                 ) : (
-                  "ندارد"
+                  language.nothing
                 )}
               </span>
             </p>
@@ -344,7 +346,7 @@ const Checkout_Container = () => {
                   className="coupon_Text_show HEAP_Checkout_Btn_Coupon"
                   onClick={() => setShowcoupon(true)}
                 >
-                  کد تخفیف دارید؟
+                  {language.have_discount}
                 </p>
               ) : (
                 <form className="coupon_form" onSubmit={couponHandler}>
@@ -358,7 +360,7 @@ const Checkout_Container = () => {
                         message: couponError.message,
                       }}
                       value={coupon}
-                      placeholder="کد تخفیف خود را وارد کنید"
+                      placeholder={language.discount_place_holder}
                       onChangeHandler={(i) => setCoupon(i)}
                       HideClearIcon={true}
                     />
@@ -372,7 +374,7 @@ const Checkout_Container = () => {
                     )}
                   </div>
                   <Button
-                    value="اعمال"
+                    value={language.submit}
                     class="Blue_BTN coupan_BTN HEAP_Checkout_Btn_CouponSubmit"
                     loading={coupanLoading}
                     click={() => {}}
@@ -382,15 +384,15 @@ const Checkout_Container = () => {
               )
             ) : (
               <p>
-                <span>کد تخفیف</span>
+                <span>{language.coupon_code}</span>
                 <span className="total_price_number">
                   {couponDiscount.toLocaleString()}-
-                  <span className="Toman"> تومان</span>
+                  <span className="Toman">{language.toman_1}</span>
                 </span>
               </p>
             )}
             <p className="total_price">
-              <span className="total_price_text">جمع کل</span>
+              <span className="total_price_text">{language.sum}</span>
               <span className="total_price_number">
                 {showInsurance
                   ? (
@@ -403,15 +405,13 @@ const Checkout_Container = () => {
           </div>
           <div className="continue_to_pay">
             <Button
-              value="ثبت درخواست"
+              value={language.book}
               class="Blue_BTN localClass HEAP_Checkout_Btn_Book"
               disable={loading}
               loading={loading}
               click={GoToRequests}
             />
-            <span className="extra_info">
-              هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد
-            </span>
+            <span className="extra_info">{language.extra_text}</span>
           </div>
         </section>
       </article>
@@ -420,12 +420,15 @@ const Checkout_Container = () => {
     // initial page title
     <>
       <NextSeo
-        title={`ثبت درخواست اجاره | اتولی`}
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        title={language.next_seo.initial_title}
+        description={language.next_seo.description}
       />
       <Checkout_Container_Loader />
     </>
   );
 };
+interface ICheckout_Container {
+  language: any;
+}
 
 export default Checkout_Container;

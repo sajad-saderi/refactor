@@ -6,7 +6,7 @@ import PleaseLogin from "../../../src/components/PleaseLogin";
 import Add_Car_Step_2 from "./step_2";
 import Router from "next/router";
 
-const Set_car_timing = () => {
+const Set_car_timing = ({ language }: ISet_car_timing) => {
   const [Authorize, setAuthorize] = useState(false);
   const [show, setShow] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
@@ -14,7 +14,7 @@ const Set_car_timing = () => {
 
   useEffect(() => {
     if (!checkRegister()) {
-      return
+      return;
     }
     if (jsCookie.get("complete_register") === "true") {
       setAuthorize(true);
@@ -25,24 +25,28 @@ const Set_car_timing = () => {
   }, []);
 
   const checkRegister = () => {
-    const complete_register = jsCookie.get("complete_register")
+    const complete_register = jsCookie.get("complete_register");
     if (complete_register === "false") {
-      Router.push("/complete-register")
-      return false
+      Router.push("/complete-register");
+      return false;
     } else {
-      return true
+      return true;
     }
-  }
+  };
 
   return show ? (
     Authorize || AUTH_CONTEXT.Auth ? (
-      <Add_Car_Step_2 />
+      <Add_Car_Step_2 language={language.add_car_step_2} />
     ) : (
-        <PleaseLogin />
-      )
+      <PleaseLogin language={language.please_login} />
+    )
   ) : (
-      <article className="minHeight"></article>
-    );
+    <article className="minHeight"></article>
+  );
 };
+
+interface ISet_car_timing {
+  language: any;
+}
 
 export default Set_car_timing;

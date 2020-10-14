@@ -7,7 +7,7 @@ import Router from "next/router";
 import { REQUEST_GET_USER_INFO } from "../../API";
 import { NextSeo } from "next-seo";
 
-const Profile_container = () => {
+const Profile_container = ({ language }: IProfile_container) => {
   const [is_mine, setIs_mine] = useState(false);
   const [profile_Id, setProfile_Id] = useState(null);
 
@@ -46,28 +46,45 @@ const Profile_container = () => {
       {data ? (
         <>
           <NextSeo
-            title={`اجاره خودرو از ${
+            title={`${language.next_seo.title.start}${
               data.company_name ? data.company_name : data.name
-            } | اتولی`}
-            description=" حساب کاربری"
+            }${language.next_seo.title.otoli}`}
+            description={language.next_seo.description}
             openGraph={{
-              title: `اجاره خودرو از ${data.name} | اتولی`,
-              description: " حساب کاربری",
+              title: `${language.next_seo.title.start}${
+                data.company_name ? data.company_name : data.name
+              }${language.next_seo.title.otoli}`,
+              description: language.next_seo.description,
             }}
             twitter={{
-              handle: "@otoli_net",
-              site: "@otoli_net",
-              cardType: "summary_large_image",
+              handle: language.next_seo.handle,
+              site: language.next_seo.site,
+              cardType: language.next_seo.cardType,
             }}
           />
-          <Profile_info data={data} is_mine={is_mine} />
-          <Profile_Cars is_mine={is_mine} profile_Id={profile_Id} />
+          <Profile_info
+            data={data}
+            is_mine={is_mine}
+            language={language.profile_info}
+          />
+          <Profile_Cars
+            is_mine={is_mine}
+            profile_Id={profile_Id}
+            language={language.profile_cars}
+          />
         </>
       ) : (
-        <NextSeo title="اجاره خودرو | اتولی" description=" حساب کاربری" />
+        <NextSeo
+          title={`${language.next_seo.title.start}${language.next_seo.title.otoli}`}
+          description={language.next_seo.description}
+        />
       )}
     </article>
   );
 };
+
+interface IProfile_container {
+  language: any;
+}
 
 export default Profile_container;

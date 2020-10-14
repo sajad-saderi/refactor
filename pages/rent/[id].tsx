@@ -5,6 +5,7 @@ import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
+import language from "../../public/languages/fa/dynamic_pages.json";
 
 const Rent_dynamic = (props) => {
   useEffect(() => {
@@ -22,16 +23,16 @@ const Rent_dynamic = (props) => {
         openGraph={{
           title: `${props.Landing_page.meta_title}`,
           description: props.Landing_page.meta_description,
-          site_name: "اتولی",
+          site_name: language.site_name,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.handle,
+          site: language.site,
+          cardType: language.cardType,
         }}
       />
-      <Landing_page_container landing_data={props.Landing_page} />
-      <Landing_Page_Content data={props.Landing_page} />
+      <Landing_page_container landing_data={props.Landing_page} language={language}/>
+      <Landing_Page_Content data={props.Landing_page} language={language} />
     </Layout>
   ) : null;
 };

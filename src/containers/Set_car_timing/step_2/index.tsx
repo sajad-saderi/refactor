@@ -167,7 +167,7 @@ const error_reducer = (current, action) => {
   }
 };
 
-const Add_Car_Step_2 = () => {
+const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const [DateAndPrice, setDateAndPrice] = useState(1);
   const [initialAvailabilityList, setInitialAvailabilityList] = useState([]);
   const [availabilityList, setAvailabilityList] = useState([]);
@@ -455,7 +455,7 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "id",
         id: true,
-        error_message: "شما مجاز به انجام این فعالیت نیستید",
+        error_message: language.error_1,
       });
       return false;
     } else {
@@ -465,14 +465,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "price_per_day",
         price_per_day: true,
-        error_message: "لطفا نرخ اجاره را وارد کنید",
+        error_message: language.error_2,
       });
       return false;
     } else if (DateAndPrice === 1 && +state.price_per_day < 50000) {
       ErrorDispatch({
         type: "price_per_day",
         price_per_day: true,
-        error_message: "شروع قیمت روزانه از 50.000 تومان است",
+        error_message: language.error_3,
       });
       return false;
     } else {
@@ -493,7 +493,7 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "days_to_get_reminded",
         days_to_get_reminded: true,
-        error_message: "لطفا حداقل زمان اطلاع از اجاره را انتخاب کنید",
+        error_message: language.error_4,
       });
       return false;
     } else {
@@ -503,7 +503,7 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "min_days_to_rent",
         min_days_to_rent: true,
-        error_message: "لطفا  حداقل مدت اجاره را انتخاب کنید",
+        error_message: language.error_5,
       });
       return false;
     } else {
@@ -513,7 +513,7 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "max_km_per_day",
         max_km_per_day: true,
-        error_message: "لطفا محدودیت مسافت در روز را وارد کنید",
+        error_message: language.error_6,
       });
       return false;
     } else {
@@ -523,14 +523,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "extra_km_price",
         extra_km_price: true,
-        error_message: " لطفا هزینه هر کیلومتر اضافه را وارد کنید",
+        error_message: language.error_7,
       });
       return false;
     } else if (+state.extra_km_price < 100) {
       ErrorDispatch({
         type: "extra_km_price",
         extra_km_price: true,
-        error_message: "حداقل هزینه هر کیلومتر اضافه از 100 تومان است",
+        error_message: language.error_8,
       });
       return false;
     } else {
@@ -540,7 +540,7 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "discount_error",
         discount_error: true,
-        error_message: "لطفا شرایط تخفیف را وارد کنید",
+        error_message: language.error_9,
       });
       return false;
     } else {
@@ -551,14 +551,14 @@ const Add_Car_Step_2 = () => {
       ErrorDispatch({
         type: "cancellation_policy",
         cancellation_policy: true,
-        error_message: "لطفا شرایط اجاره و کنسلی را وارد کنید",
+        error_message: language.error_10,
       });
       return false;
     } else if (state.cancellation_policy.trim() === "") {
       ErrorDispatch({
         type: "cancellation_policy",
         cancellation_policy: true,
-        error_message: "لطفا شرایط اجاره و کنسلی را وارد کنید",
+        error_message: language.error_11,
       });
       return false;
     } else {
@@ -626,7 +626,7 @@ const Add_Car_Step_2 = () => {
       <div className="step_2_main_container">
         <div className="pageTitle">
           {/* <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
-          <h3>شرایط شما برای اجاره</h3>
+          <h3>{language.pageTitle_h3}</h3>
 
           <div className="pelak_container">
             <p className="car_name_brand">
@@ -650,7 +650,8 @@ const Add_Car_Step_2 = () => {
         <form onSubmit={(e) => submitHandler(e, state)}>
           <div className="add_car_form_step_2">
             <h4 className="extra_text">
-              نرخ اجاره<span> (روزانه)</span>
+              {language.extra_text_1_h4}
+              <span> {language.extra_text_1_span}</span>
             </h4>
             <div
               className="Set_Price_date_options"
@@ -726,23 +727,25 @@ const Add_Car_Step_2 = () => {
                 showTail={true}
                 tail_value={`${NumbersAndCurrencyUnit({
                   value: state.price_per_day,
-                })} تومان`}
-                placeholder="مثال: 50,000"
+                })} ${language.toman}`}
+                placeholder={language.value_er_1}
                 value={state.price_per_day}
                 validation={{
                   number: true,
                   min: 50000,
                   required: true,
                   messages: {
-                    required: "لطفا  قیمت روزانه را وارد کنید",
-                    min: "حداقل قیمت 50 هزار تومان",
+                    required: language.value_er_2,
+                    min: language.value_er_3,
                   },
                 }}
               />
               {recommendationPrice ? (
                 <p className="our_recommendation">
-                  {`قیمت متوسط پیشنهادی: ${recommendationPrice.toLocaleString()}`}{" "}
-                  تومان در روز
+                  {`${
+                    language.our_recommendation
+                  } ${recommendationPrice.toLocaleString()}`}{" "}
+                  {language.toman_per_day}
                 </p>
               ) : (
                 <p className="our_recommendation_placeHoler Gradient"></p>
@@ -768,7 +771,7 @@ const Add_Car_Step_2 = () => {
 
             <div className="custom_input_container_step_2 DropDown_extra_km">
               <DropdownSearch
-                label="محدودیت مسافت"
+                label={language.distance_limit}
                 InputDisable={true}
                 error_status={ErrorState.max_km_per_day}
                 data={[
@@ -805,7 +808,7 @@ const Add_Car_Step_2 = () => {
                   }
                 }}
               />
-              <span className="tail_text">کیلومتر در روز</span>
+              <span className="tail_text">{language.km_per_day}</span>
             </div>
             <div className="custom_input_container_step_2 extra_km_price_container">
               <TextInput
@@ -837,20 +840,20 @@ const Add_Car_Step_2 = () => {
                 }}
                 // min={4}
                 max={7}
-                placeholder="مثال: 100"
+                placeholder={language.price_for_extra_limit_place_holder}
                 showTail={true}
                 tail_value={`${NumbersAndCurrencyUnit({
                   value: state.extra_km_price,
-                })} تومان`}
+                })} ${language.toman}`}
                 value={state.extra_km_price}
-                label="هزینه هر کیلومتر اضافه"
+                label={language.price_per_km_label}
                 validation={{
                   number: true,
                   required: true,
                   min: 100,
                   messages: {
-                    required: "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
-                    min: "شروع قیمت روزانه از 100 تومان است",
+                    required: language.enter_the_value_for_fee,
+                    min: language.start_from_,
                   },
                 }}
               />
@@ -860,8 +863,8 @@ const Add_Car_Step_2 = () => {
               min={1}
               AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
               reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
-              label="زمان اطلاع از اجاره"
-              text="روز قبل"
+              label={language.reminded_me}
+              text={language.severl_days}
               value={state.days_to_get_reminded}
             />
             <Counter
@@ -869,15 +872,15 @@ const Add_Car_Step_2 = () => {
               min={1}
               AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
               reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
-              label="حداقل مدت اجاره"
-              text="روز"
+              label={language.minimum_rent}
+              text={language.day}
               value={state.min_days_to_rent}
             />
             <Checkbox
               initialValue={[state.deliver_at_renters_place]}
               data={[
                 {
-                  text: "در محل مهمان تحویل می‌دهم",
+                  text: language.deliver_at_your_place,
                   value: state.deliver_at_renters_place,
                 },
               ]}
@@ -899,7 +902,7 @@ const Add_Car_Step_2 = () => {
               initialValue={[state.with_driver]}
               data={[
                 {
-                  text: "فقط با راننده اجاره می‌دهم",
+                  text: language.with_driver,
                   value: state.with_driver,
                 },
               ]}
@@ -919,9 +922,10 @@ const Add_Car_Step_2 = () => {
             />
           </div>
           <div className="add_car_form_step_2">
-            <h4 className="extra_text">تخفیف‌ها</h4>
+            <h4 className="extra_text">{language.extra_text_2_h4}</h4>
             {/* DiscountBox component  */}
             <DiscountBox
+              language={language.discount_box}
               initialDiscountList={initialDiscountList}
               addDiscount={addToDiscountList}
               removeDiscountList={removeFromDiscountList}
@@ -932,7 +936,7 @@ const Add_Car_Step_2 = () => {
             />
           </div>
           <div className="add_car_form_step_2">
-            <h4 className="extra_text">شرایط و ضمانت‌های اجاره</h4>
+            <h4 className="extra_text">{language.extra_text_3_h4}</h4>
             <div className="cancelation_items_container">
               {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
@@ -1051,18 +1055,18 @@ const Add_Car_Step_2 = () => {
                   cancellation_policy: e.target.value,
                 });
               }}
-              placeholder="شرایط و مدارک مورد نیاز برای اجاره خودروتان را بنویسید یا از موارد بالا انتخاب کنید."
+              placeholder={language.cancellation_policies}
             />
             <label>
               <span
                 onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
                 className="anchorTagInStep2"
               >
-                چه مدارک و ضمانت‌هایی بگیریم؟
+                {language.what_we_should_get}
               </span>
             </label>
             <Button
-              value="ثبت"
+              value={language.submit_step_2}
               loading={Loading}
               disable={Loading}
               class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
@@ -1077,5 +1081,8 @@ const Add_Car_Step_2 = () => {
     </article>
   );
 };
+interface IAdd_Car_Step_2 {
+  language: any;
+}
 
 export default Add_Car_Step_2;

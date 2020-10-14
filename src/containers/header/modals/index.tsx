@@ -9,7 +9,7 @@ import Owner from "./Owner";
 import Law from "./Law";
 import Assurance from "./Assurance";
 import ConfirmDelete from "./ConfirmDelete";
-
+import language from "../../../../public/languages/fa/modals.json";
 const Modals = (props) => {
   const [change, setChange] = useState(false);
   const Modal_context = useContext(modal_context);
@@ -53,9 +53,13 @@ const Modals = (props) => {
         {props.modal_type === "Login" ? (
           // switch between get cell phone and enter confirm code
           change ? (
-            <ConfirmCode panelController={panelController} />
+            <ConfirmCode
+              language={language.ConfirmCode}
+              panelController={panelController}
+            />
           ) : (
             <GetUserCellPhone
+              language={language.GetUserCellPhone}
               data-test-id="GetUserCellPhone"
               panelController={panelController}
             />

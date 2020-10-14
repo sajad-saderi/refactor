@@ -1,76 +1,48 @@
 import React from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
+import language from "../public/languages/fa/guidepicture.json";
 
 const guidePicture = () => {
   return (
     <Layout showToTop={true}>
       <NextSeo
-        title="راهنمای عکس گرفتن | اتولی"
-        description="راهنمای عکاسی برای ثبت خودرو در اتولی"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "راهنمای عکس گرفتن | اتولی",
-          description: "راهنمای عکاسی برای ثبت خودرو در اتولی",
-          site_name: "اتولی",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
       <section className="responsive static_pages minHeight">
-        <h1>راهنمای عکاسی برای ثبت خودرو در اتولی</h1>
-        <p>
-          از آنجایی که عکس‌ها به اجاره سریع‌تر خودروی شما کمک می‎کنند، بهتر است
-          برای تهیه عکس‌ها زمان بگذارید. همچنین در صورت تمایل و تماس با پشتیبانی
-          اتولی، می‌توانید از عکاسان اتولی برای تهیه عکس از خودروتان استفاده
-          کنید.
-        </p>
-        <h2>چطور از خودرو عکاسی کنیم؟</h2>
+        <h1>{language.h1}</h1>
+        <p>{language.p}</p>
+        <h2>{language.h2_1}</h2>
         <ul>
-          <li>
-            پیش از عکاسی از کافی بودن نور مطمئن شوید. سعی کنید عکس را در محیط
-            خارجی و در روز تهیه کنید.
-          </li>
-          <li>عکس‌ها با فاصله مناسب از خودرو و کادربندی خوب گرفته شوند. </li>
-          <li>از زاویه‌های مختلف خودرو عکس تهیه کنید.</li>
-          <li>به‌جز زوایای بیرونی ماشین، از درون خودرو هم عکاسی کنید.</li>
-          <li>در زمان عکاسی مطمئن باشید که خودرو تمیز است.</li>
-          <li>
-            برای امنیت بیشتر، پلاک خودرو را در زمان عکاسی با یک کاغذ یا مقوا
-            بپوشانید.
-          </li>
-          <li>عکس ها باید افقی و با نسبت 3 به 4 بارگذاری شود.</li>
-          <li>
-            از دوربین با کیفیت برای عکاسی استفاده کنید؛ برای مثال گوشی‌های
-            هوشمند با دوربین قوی یا یک دوربین دیجیتال خوب.
-          </li>
+          <li>{language.li_1}</li>
+          <li>{language.li_2}</li>
+          <li>{language.li_3}</li>
+          <li>{language.li_4}</li>
+          <li>{language.li_5}</li>
+          <li>{language.li_6}</li>
+          <li>{language.li_7}</li>
+          <li>{language.li_8}</li>
         </ul>
-        <h2>چطور از خودرو عکاسی نکنیم؟</h2>
+        <h2>{language.h2_2}</h2>
         <ul>
-          <li>برروی عکس‌ها نوشته یا خط خوردگی نچسبانید.</li>
-          <li>
-            عکس‌ها را از نظر رنگی فوتوشاپ نکنید و بررویشان فیلتر رنگی نگذارید.
-          </li>
-          <li>بهتر است فرد یا افراد دیگری در تصویر حضور نداشته باشند.</li>
-          <li>
-            برای حفظ مسائل امنیتی بهتر است خانه یا محل کار شما در پشت خودرو وجود
-            نداشته باشد.
-          </li>
-          <li>
-            عکس‌های متنوع تهیه کنید و اگر چند ماشین با یک مدل و رنگ دارید، از
-            عکس‌های مشابه برای ثبت خودرو استفاده نکنید.
-          </li>
-          <li>
-            لوگو و نشانی از شرکت‌ها و کسب‌وکارهای دیگر را روی تصویر نچسبانید.
-          </li>
-          <li>
-            اگر خودرو حاوی نشان یا نوشته‌ای خلاف عرف و قوانین است، پیش از عکاسی
-            آن را پاک کنید. در صورت بارگذاری تصویر با این نشانه‌ها، اتولی حق
-            پیگیری و مسدودکردن حساب شما را دارد.
-          </li>
+          <li>{language.li_9}</li>
+          <li>{language.li_10}</li>
+          <li>{language.li_11}</li>
+          <li>{language.li_12}</li>
+          <li>{language.li_13}</li>
+          <li>{language.li_14}</li>
+          <li>{language.li_15}</li>
         </ul>
       </section>
     </Layout>

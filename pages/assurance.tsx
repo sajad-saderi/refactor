@@ -1,56 +1,35 @@
 import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
+import language from "../public/languages/fa/assurance.json";
 
 const assurance = () => {
   return (
     <Layout showToTop={true}>
       <NextSeo
-        title="مدارک و ضمانت های لازم | اتولی"
-        description="در سایت اتولی هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش بگذارد که بسته به نوع ماشین می‌تواند متفاوت باشد"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "مدارک و ضمانت های لازم | اتولی",
-          description:
-            "در سایت اتولی هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش بگذارد که بسته به نوع ماشین می‌تواند متفاوت باشد",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
       <article className="responsive static_pages minHeight">
-        <h1>چه مدارک و ضمانت‌هایی بگیریم</h1>
-        <p>
-          در سایت اتولی هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش
-          بگذارد که بسته به نوع ماشین می‌تواند متفاوت باشد، به صورت کلی
-          می‌توانید مدارک و ضمانت‌های زیر را برای اجاره خودروتان از مشتری
-          بگیرید، اما این نکته را در نظر داشته باشید که مدارک و ضمانت‌های زیاد
-          می‌تواند میزان درخواست‌های اجاره خودرو شما را کاهش بدهد.
-        </p>
+        <h1>{language.h3}</h1>
+        <p>{language.p} </p>
         <ul>
-          <li>
-            مدارک شناسایی معتبر مانند کارت ملی یا شناسنامه و در صورتی که اتباع
-            خارجی یا گردشگر هستند پاسپورت.
-          </li>
-          <li>گواهینامه معتبر که حداقل ۶ ماه دارای اعتبار باشد.</li>
-          <li>
-            بیمه‌نامه اجاره خودرو (در زمان درخواست اجاره خودرو می‌تواند تهیه
-            کند. توصیه می‌شود مشتریانی که این بیمه‌نامه را خریداری می‌کنند در
-            اولویت قبول درخواست قرار دهید.)
-          </li>
-          <li>
-            در نظر گرفتن شرایط سنی (پیشنهاد می‌شود که حداقل سن ۲۵ سال را در نظر
-            بگیرید.)
-          </li>
-          <li>
-            چک یا سفته به میزان مورد نیاز(معمولا به مبلغ ماشین گرفته می‌شود)
-          </li>
-          <li>
-            ودیعه نقدی: با توجه به نوع ماشین می‌توانید مقداری پول نقد از مشتری
-            بابت خسارت‌های احتمالی بگیرید.
-          </li>
+          <li>{language.li_1}</li>
+          <li>{language.li_2}</li>
+          <li>{language.li_3}</li>
+          <li>{language.li_4}</li>
+          <li>{language.li_5}</li>
+          <li>{language.li_6}</li>
         </ul>
       </article>
     </Layout>

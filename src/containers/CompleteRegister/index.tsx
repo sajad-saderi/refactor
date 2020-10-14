@@ -69,7 +69,9 @@ const stateErrorReducer = (current, action) => {
   }
 };
 
-const Complete_register_container = () => {
+const Complete_register_container = ({
+  language,
+}: IComplete_register_container) => {
   const [rolesCheck, setRolesCheck] = useState(false);
   const [showCompanyName, setShowCompanyName] = useState(false);
   const [show, setShow] = useState(false);
@@ -194,7 +196,7 @@ const Complete_register_container = () => {
       errorDispatch({
         type: "first_name",
         first_name: true,
-        message: "لطفاً نام خود را وارد کنید",
+        message: language.fill_name,
       });
       return;
     } else {
@@ -204,7 +206,7 @@ const Complete_register_container = () => {
       errorDispatch({
         type: "last_name",
         last_name: true,
-        message: "لطفاً نام خانوادگی را وارد کنید",
+        message: language.fill_name_name,
       });
       return;
     } else {
@@ -224,14 +226,14 @@ const Complete_register_container = () => {
       errorDispatch({
         type: "day",
         day: true,
-        message: "لطفاً روز را وارد کنید",
+        message: language.fill_day,
       });
       return;
     } else if (+state.day > 31) {
       errorDispatch({
         type: "day",
         day: true,
-        message: "مقدار وارد شده نامعتبر است",
+        message: language.fill_correctly,
       });
       return;
     } else {
@@ -241,7 +243,7 @@ const Complete_register_container = () => {
       errorDispatch({
         type: "month",
         month: true,
-        message: "لطفاً ماه را وارد کنید",
+        message: language.fill_month,
       });
       return;
     } else {
@@ -251,7 +253,7 @@ const Complete_register_container = () => {
       errorDispatch({
         type: "year",
         year: true,
-        message: "لطفاً سال را وارد کنید",
+        message: language.fill_year,
       });
       return;
     } else {
@@ -261,7 +263,7 @@ const Complete_register_container = () => {
       errorDispatch({
         type: "condition",
         condition: true,
-        message: "لطفا قوانین و مقررات را بپذیرید",
+        message: language.fill_policies,
       });
       return;
     } else {
@@ -285,7 +287,7 @@ const Complete_register_container = () => {
       <article className="responsive  complete_register_container">
         <div className="pageTitle">
           <IoMdPersonAdd className="Person_icon" size="6rem" color="#4ba3ce" />
-          <h3>تکمیل اطلاعات</h3>
+          <h3>{language.complete_register}</h3>
         </div>
         <form
           className="complete_register_form"
@@ -294,7 +296,7 @@ const Complete_register_container = () => {
           <div className="name_container">
             <TextInput
               name="first_name"
-              label="نام"
+              label={language.name}
               // min={2}
               max={50}
               clearField={() =>
@@ -312,14 +314,14 @@ const Complete_register_container = () => {
               validation={{
                 required: true,
                 messages: {
-                  required: "نام خود را بنویسید",
+                  required: language.name_placeHolder,
                 },
               }}
             />
             <TextInput
               name="last_name"
               // min={2}
-              label="نام خانوادگی"
+              label={language.last_name}
               max={50}
               clearField={() => dispatch({ type: "last_name", last_name: "" })}
               onChangeHandler={(e) =>
@@ -334,14 +336,16 @@ const Complete_register_container = () => {
               validation={{
                 required: true,
                 messages: {
-                  required: "نام خانوادگی خود را بنویسید",
+                  required: language.last_name_place_holder,
                 },
               }}
             />
           </div>
           <div className="company_part">
             {!showCompanyName ? (
-              <p onClick={() => setShowCompanyName(true)}>افزودن نام شرکت</p>
+              <p onClick={() => setShowCompanyName(true)}>
+                {language.add_company_name}
+              </p>
             ) : (
               <div className="add_company_input_container">
                 <TextInput
@@ -349,7 +353,7 @@ const Complete_register_container = () => {
                   number={false}
                   // min={1}
                   max={100}
-                  label="نام شرکت"
+                  label={language.company_name}
                   clearField={() =>
                     dispatch({ type: "company_name", company_name: "" })
                   }
@@ -369,19 +373,19 @@ const Complete_register_container = () => {
                     setShowCompanyName(false);
                   }}
                 >
-                  لغو
+                  {language.cancel}
                 </span>
               </div>
             )}
           </div>
-          <label>تاریخ تولد</label>
+          <label>{language.dob}</label>
           <div className="date_birth">
             <TextInput
               name="day"
               number={true}
               min={1}
               max={2}
-              placeholder="روز"
+              placeholder={language.day}
               clearField={() => dispatch({ type: "day", day: "" })}
               onChangeHandler={(e) => dispatch({ type: "day", day: e })}
               value={state.day}
@@ -396,9 +400,9 @@ const Complete_register_container = () => {
                 max: 31,
                 required: true,
                 messages: {
-                  required: "لطفا تاریخ تولد را وارد کنید",
-                  min: "روز نمی‌تواند کمتر از 1 باشد",
-                  max: "روز نمی‌تواند بیشتر از 31 باشد",
+                  required: language.error_1,
+                  min: language.error_2,
+                  max: language.error_3,
                 },
               }}
             />
@@ -417,7 +421,7 @@ const Complete_register_container = () => {
               clearField={() => dispatch({ type: "year", year: "" })}
               onChangeHandler={(e) => dispatch({ type: "year", year: e })}
               value={state.year}
-              placeholder="مثال: 1369"
+              placeholder={language.year_example}
               autoFocus={false}
               localeString={true}
               error={{
@@ -428,7 +432,7 @@ const Complete_register_container = () => {
                 number: true,
                 length: 4,
                 messages: {
-                  required: "سال نمی‌تواند 5 رقمی باشد",
+                  required: language.error_4,
                 },
                 required: true,
               }}
@@ -447,11 +451,11 @@ const Complete_register_container = () => {
                 }}
               >
                 {" "}
-                شرایط و مقررات
+                {language.policies}
               </span>
               <span onClick={() => setRolesCheck(true)}>
                 {" "}
-                استفاده از اتولی را مطالعه کردم و می‌پذیرم.
+                {language.i_agree}
               </span>
               <input
                 type="checkbox"
@@ -478,7 +482,7 @@ const Complete_register_container = () => {
               "Blue_BTN local_BTN HEAP_CompleteRegister_Btn_Submit",
               // , rolesCheck ? null : "disable_BTN"
             ].join(" ")}
-            value="تایید"
+            value={language.ok}
             click={() => {}}
             loading={loading}
           />
@@ -488,11 +492,15 @@ const Complete_register_container = () => {
         </form>
       </article>
     ) : (
-      <PleaseLogin />
+      <PleaseLogin language={language} />
     )
   ) : (
     <article className="minHeight"></article>
   );
 };
+
+interface IComplete_register_container {
+  language: any;
+}
 
 export default Complete_register_container;

@@ -1,20 +1,23 @@
 import React from "react";
 
-const ShowResult = (props: IShowResult) => {
+const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
   return (
     <div className="CalculatorResult" id="CalculatorResult">
       <div className="eachSvgBox">
-        {props.weekly > 0 && (
+        {weekly > 0 && (
           <h3 className="CalcH3" data-test-id="weekly">
-            {props.weekly < 1000000
+            {weekly < 1000000
               ? /**
                  * @weekly
                  *  If it's smaller then 1.000.000 for instance 999.000 then the result should be 999
                  *  If it's equal or larger then 1.000.000 like 9.999.000 output is 9.9
                  */
-                props.weekly.toString().slice(0, 3)
-              : props.weekly.toLocaleString().slice(0, 5)}
-            <p>{props.weekly >= 1000000 ? "میلیون" : "هزار"} تومان</p>
+                weekly.toString().slice(0, 3)
+              : weekly.toLocaleString().slice(0, 5)}
+            <p>
+              {weekly >= 1000000 ? language.million : language.thousand}{" "}
+              {language.toman}
+            </p>
           </h3>
         )}
         <div className="SvgDisc">
@@ -76,18 +79,18 @@ const ShowResult = (props: IShowResult) => {
             </g>
           </svg>
         </div>
-        <p className="UnderText">درآمد هفتگی</p>
+        <p className="UnderText">{language.weekly}</p>
       </div>
       <div className="eachSvgBox">
-        {props.monthly && (
+        {monthly && (
           <h3 className="CalcH3" data-test-id="monthly">
             {/**
              * @monthly
              *  The monthly value always is larger than one million
              *  Instance: 9.999.000 output is 9.9
              */
-            props.monthly.toLocaleString().slice(0, 5)}
-            <p>میلیون تومان</p>
+            monthly.toLocaleString().slice(0, 5)}
+            <p>{language.million_toman}</p>
           </h3>
         )}
         <div className="SvgDisc">
@@ -149,10 +152,10 @@ const ShowResult = (props: IShowResult) => {
             </g>
           </svg>
         </div>
-        <p className="UnderText">درآمد ماهانه</p>
+        <p className="UnderText">{language.monthly}</p>
       </div>
       <div className="eachSvgBox">
-        {props.daily > 0 && (
+        {daily > 0 && (
           <h3 className="CalcH3" data-test-id="daily">
             {/**
              * @daily
@@ -160,12 +163,15 @@ const ShowResult = (props: IShowResult) => {
              *  If it's equal or bigger then 100.000 for instance 101.000 then the result should be 101
              *  If it's equal or larger then 1.000.000 like 9.999.000 output is 9.9
              */
-            props.daily < 1000000
-              ? props.daily < 100000
-                ? props.daily.toString().slice(0, 2)
-                : props.daily.toString().slice(0, 3)
-              : props.daily.toLocaleString().slice(0, 5)}
-            <p>{props.daily >= 1000000 ? "میلیون" : "هزار"} تومان</p>
+            daily < 1000000
+              ? daily < 100000
+                ? daily.toString().slice(0, 2)
+                : daily.toString().slice(0, 3)
+              : daily.toLocaleString().slice(0, 5)}
+            <p>
+              {daily >= 1000000 ? language.million : language.thousand}{" "}
+              {language.toman}
+            </p>
           </h3>
         )}
         <div className="SvgDisc">
@@ -227,7 +233,7 @@ const ShowResult = (props: IShowResult) => {
             </g>
           </svg>
         </div>
-        <p className="UnderText">درآمد روزانه</p>
+        <p className="UnderText">{language.daily}</p>
       </div>
     </div>
   );
@@ -237,6 +243,7 @@ interface IShowResult {
   weekly: number;
   monthly: number;
   daily: number;
+  language: any;
 }
 
 export default ShowResult;

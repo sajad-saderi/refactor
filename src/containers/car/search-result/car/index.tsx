@@ -4,7 +4,7 @@ import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
 import Router from "next/router";
 // import "./car.scss";
 
-const Car = (props) => {
+const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   const [heightController, setheightController] = useState(0);
 
   const {
@@ -22,7 +22,7 @@ const Car = (props) => {
     is_promoted,
     has_media,
     location,
-  } = props.data;
+  } = data;
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
   let imageWidth = has_media ? media_set[0].thumbnail_width : null;
@@ -42,7 +42,10 @@ const Car = (props) => {
       ? avg_discounted_price_per_day.toString().slice(0, 2)
       : avg_discounted_price_per_day.toString().slice(0, 3);
 
-  let unit = avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار";
+  let unit =
+    avg_discounted_price_per_day >= 1000000
+      ? language.search_result_section.car.thousand
+      : language.search_result_section.car.million;
   return (
     <div className="carCart HEAP_SearchResult_Card_Car">
       {/* <Link href={link}> */}
@@ -56,10 +59,15 @@ const Car = (props) => {
         <figure>
           {total_discount_percent > 0 && (
             <span className="discount_badge">
-              {total_discount_percent}% تخفیف
+              {total_discount_percent}
+              {language.search_result_section.car.discount}
             </span>
           )}
-          {is_promoted && <span className="Special">ویژه</span>}
+          {is_promoted && (
+            <span className="Special">
+              {language.search_result_section.car.special}
+            </span>
+          )}
           {has_media ? (
             <img
               style={{
@@ -79,10 +87,13 @@ const Car = (props) => {
               }}
             />
           ) : (
-            <img src={img} alt={"تصویر پیش فرض خودرو"} />
+            <img
+              src={img}
+              alt={language.search_result_section.car.default_image}
+            />
           )}
           <div className="read_more">
-            <span>مشاهده مشخصات</span>
+            <span>{language.search_result_section.car.show_details}</span>
           </div>
         </figure>
         <div className="info_box">
@@ -92,24 +103,28 @@ const Car = (props) => {
           </div>
           <div className="price">
             <p className="Price_number">{price}</p>
-            <p>{`${unit} تومان در روز`}</p>
+            <p>{`${unit}${language.search_result_section.car.toman_per_day}`}</p>
           </div>
           <ul className="tags_container">
             {deliver_at_renters_place && (
               <li>
-                <span className="tags">تحویل در محل</span>
+                <span className="tags">
+                  {language.search_result_section.car.delivar_at_your_palce}
+                </span>
               </li>
             )}
             {with_driver && (
               <li>
-                <span className="tags">اجاره با راننده</span>
+                <span className="tags">
+                  {language.search_result_section.car.with_driver}
+                </span>
               </li>
             )}
-            {props.showLocation ? (
+            {showLocation ? (
               <li
                 onClick={(e) => {
                   e.stopPropagation();
-                  props.tagClick({
+                  tagClick({
                     type: "location",
                     value: location.parent_id === 1 ? 1 : location.id,
                     name: location.parent_id === 1 ? "تهران" : location.name.fa,
@@ -129,5 +144,12 @@ const Car = (props) => {
     </div>
   );
 };
+
+interface ICar {
+  data: any;
+  showLocation: boolean;
+  tagClick: any;
+  language: any;
+}
 
 export default Car;

@@ -381,7 +381,7 @@ const error_reducer = (current, action) => {
 
 const checkListLoaderLength = Array(30).fill(0);
 
-const Add_Car_Step_1 = () => {
+const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
   const [locationList, setLocationList] = useState([]);
   // need to set the name of the location, to show it to the user if it selects other then Tehran
   const [locationName, setLocationName] = useState(null);
@@ -866,7 +866,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.location_id}`) && !showDistrict) {
       Dispatcher({
         type: "location_id",
-        error_message: "لطفا شهر خودرو را انتخاب کنید",
+        error_message: language.enter_location,
       });
       return false;
     }
@@ -878,7 +878,7 @@ const Add_Car_Step_1 = () => {
       if (state.location_id === 1 || !state.location_id) {
         Dispatcher({
           type: "location_id",
-          error_message: "لطفا محله را انتخاب کنید",
+          error_message: language.choice_district,
         });
         return false;
       } else {
@@ -889,7 +889,7 @@ const Add_Car_Step_1 = () => {
       setBrand_id_error(true);
       Dispatcher({
         type: "error_message",
-        error_message: "لطفا سازنده را انتخاب کنید",
+        error_message: language.choice_brand,
       });
       return false;
     } else {
@@ -899,7 +899,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.car_id}`)) {
       Dispatcher({
         type: "car_id",
-        error_message: "لطفا مدل را انتخاب کنید",
+        error_message: language.choice_model,
       });
       return false;
     } else {
@@ -908,7 +908,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.year_id}`)) {
       Dispatcher({
         type: "year_id",
-        error_message: " لطفا سال را انتخاب کنید",
+        error_message: language.choice_year,
       });
       return false;
     } else {
@@ -917,7 +917,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.transmission_type_id}`)) {
       Dispatcher({
         type: "transmission_type_id",
-        error_message: "لطفا نوع دنده را انتخاب کنید",
+        error_message: language.choice_transmission,
       });
       return false;
     } else {
@@ -926,7 +926,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.body_style_id}`)) {
       Dispatcher({
         type: "body_style_id",
-        error_message: "لطفا نوع شاسی را انتخاب کنید",
+        error_message: language.choice_body_style,
       });
       return false;
     } else {
@@ -935,7 +935,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.cylinder_id}`)) {
       Dispatcher({
         type: "cylinder_id",
-        error_message: "لطفا تعداد سیلندر را انتخاب کنید",
+        error_message: language.choice_cylinder,
       });
       return false;
     } else {
@@ -944,7 +944,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.capacity}`)) {
       Dispatcher({
         type: "capacity",
-        error_message: "لطفا ظرفیت خودرو را انتخاب کنبد",
+        error_message: language.choice_capacity,
       });
       return false;
     } else {
@@ -953,7 +953,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.mileage_range_id}`)) {
       Dispatcher({
         type: "mileage_range_id",
-        error_message: "لطفا کارکرد خودرو را انتخاب کنید",
+        error_message: language.choice_mile_age,
       });
       return false;
     } else {
@@ -962,7 +962,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.value}`)) {
       Dispatcher({
         type: "value",
-        error_message: "لطفا ارزش خودرو را وارد کنید",
+        error_message: language.choice_value,
       });
       return false;
     } else {
@@ -971,7 +971,7 @@ const Add_Car_Step_1 = () => {
     if (`${state.registration_plate_first_part}`.length !== 2) {
       Dispatcher({
         type: "registration_plate_first_part",
-        error_message: "بخش نخست شماره پلاک باید ۲ رقم باشد",
+        error_message: language.choice_license_should_be_2,
       });
       return false;
     } else {
@@ -980,7 +980,7 @@ const Add_Car_Step_1 = () => {
     if (!state.registration_plate_second_part) {
       Dispatcher({
         type: "registration_plate_second_part",
-        error_message: "لطفا بخش دوم پلاک را کامل کنید",
+        error_message: language.choice_license_2,
       });
       return false;
     } else {
@@ -989,7 +989,7 @@ const Add_Car_Step_1 = () => {
     if (`${state.registration_plate_third_part}`.length !== 3) {
       Dispatcher({
         type: "registration_plate_third_part",
-        error_message: "بخش سوم شماره پلاک باید ۳ رقم باشد",
+        error_message: language.choice_license_be_3,
       });
       return false;
     } else {
@@ -998,7 +998,7 @@ const Add_Car_Step_1 = () => {
     if (`${state.registration_plate_forth_part}`.length !== 2) {
       Dispatcher({
         type: "registration_plate_forth_part",
-        error_message: "کد استانی شماره پلاک باید ۲ رقم باشد",
+        error_message: language.choice_district_code,
       });
       return false;
     } else {
@@ -1016,7 +1016,7 @@ const Add_Car_Step_1 = () => {
     if (!validator.isNumeric(`${state.color_id}`)) {
       Dispatcher({
         type: "color_id",
-        error_message: "لطفا رنگ خود را انتخاب کنید",
+        error_message: language.choice_color,
       });
       return false;
     } else {
@@ -1153,16 +1153,14 @@ const Add_Car_Step_1 = () => {
       >
         <div className="pageTitle">
           {/* <IoIosCar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
-          <h3>افزودن خودرو</h3>
+          <h3>{language.add_car}</h3>
         </div>
-        <p className="extra_text form_title">
-          مشخصات خودرو را با مطابق با مدارک آن پر کنید.
-        </p>
+        <p className="extra_text form_title">{language.fill_the_form}</p>
         <DropdownSearch
           InputDisable={true}
           error_status={!showDistrict ? ErrorState.location_id : false}
-          label="ماشین شما کجاست؟ (شهر)"
-          search_place_holder="در نام شهرها"
+          label={language.where_is_the_car}
+          search_place_holder={language.what_is_the_car_location_name}
           data={locationList}
           defaultVal={locationName}
           // clearField={() => {
@@ -1199,7 +1197,7 @@ const Add_Car_Step_1 = () => {
         {state.location_id !== 1 &&
           state.location_id !== null &&
           !showDistrict && (
-            <p className="extra_text">{`اتولی فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در ${locationName} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.`}</p>
+            <p className="extra_text">{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
           )}
 
         {showDistrict && (
@@ -1207,8 +1205,8 @@ const Add_Car_Step_1 = () => {
             // if the user choose Tehran location_id error belong to district drop-down
             error_status={showDistrict ? ErrorState.location_id : false}
             InputDisable={true}
-            label="محله"
-            search_place_holder="در محله‌ها"
+            label={language.district_input_label}
+            search_place_holder={language.district_input_place_holder}
             defaultVal={DistrictName}
             data={districtList}
             // before location id select this box will have shown but its disabled
@@ -1236,8 +1234,8 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             error_status={Brand_id_error}
-            label="سازنده"
-            search_place_holder="در سازنده‌ها"
+            label={language.brand_input_label}
+            search_place_holder={language.brand_input_place_holder}
             defaultVal={Brand_Name}
             data={BrandList}
             // clearField={() => {
@@ -1272,8 +1270,8 @@ const Add_Car_Step_1 = () => {
             error_status={ErrorState.car_id}
             disabled={!Brand_id ? true : false}
             defaultVal={CarModelName}
-            label="مدل"
-            search_place_holder="در نام مدل‌ها"
+            label={language.model_input_label}
+            search_place_holder={language.model_input_place_holder}
             data={ModelList}
             // clearField={() => dispatch({ type: "car_id", car_id: null })}
             Select={(i) => {
@@ -1292,7 +1290,7 @@ const Add_Car_Step_1 = () => {
           />
           <DropdownSearch
             InputDisable={true}
-            label="سال"
+            label={language.year_input_label}
             error_status={ErrorState.year_id}
             defaultVal={YearName}
             disableSearch={true}
@@ -1319,7 +1317,7 @@ const Add_Car_Step_1 = () => {
                 ErrorState.transmission_type_id ? "Error_color" : null,
               ].join(" ")}
             >
-              نوع دنده
+              {language.transmission_type_label}
             </label>
             <Radio
               name="transmission_type_id"
@@ -1340,11 +1338,11 @@ const Add_Car_Step_1 = () => {
               defaultCheck={state.transmission_type_id}
               data={[
                 {
-                  label: "دنده دستی",
+                  label: language.manual_transmission,
                   value: 2,
                 },
                 {
-                  label: "دنده اتوماتیک",
+                  label: language.automatic_transmission,
                   value: 1,
                 },
               ]}
@@ -1355,7 +1353,7 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             error_status={ErrorState.body_style_id}
-            label="نوع شاسی"
+            label={language.body_style_lable}
             data={BodyStyleList}
             disableSearch={true}
             defaultVal={BodyStyleName}
@@ -1379,7 +1377,7 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             error_status={ErrorState.cylinder_id}
-            label="تعداد سیلندر"
+            label={language.cylinder_input_lable}
             data={cylinderList}
             disableSearch={true}
             defaultVal={CylinderName}
@@ -1403,7 +1401,7 @@ const Add_Car_Step_1 = () => {
           <DropdownSearch
             InputDisable={true}
             error_status={ErrorState.capacity}
-            label="ظرفیت خودرو"
+            label={language.capacity_input_lable}
             data={capacityList}
             disableSearch={true}
             defaultVal={state.capacity}
@@ -1423,7 +1421,7 @@ const Add_Car_Step_1 = () => {
         <DropdownSearch
           InputDisable={true}
           error_status={ErrorState.mileage_range_id}
-          label="کارکرد خودرو"
+          label={language.mile_age_input_lable}
           defaultVal={
             state.mileage_range_id
               ? mileRange[state.mileage_range_id - 1].text
@@ -1476,30 +1474,27 @@ const Add_Car_Step_1 = () => {
             min={7}
             max={14}
             value={state.value}
-            label="ارزش خودرو"
+            label={language.value_of_car_label}
             validation={{
               number: true,
               min: 20000000,
               messages: {
-                required: "لطفا ارزش خودرو را وارد کنید",
-                min: "ارزش خودرو باید بیشتر از 20.000.000 تومان باشد",
+                required: language.value_input_error_require,
+                min: language.value_input_error_min,
               },
               required: true,
             }}
             showTail={true}
             tail_value={`${NumbersAndCurrencyUnit({
               value: state.value,
-            })} تومان`}
+            })} ${language.toman}`}
           />
         </div>
         <div className="pelak_container">
-          <label>پلاک خودرو</label>
-          <p className="extra_text">
-            پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در
-            نتایج جستجو نمایش داده نمی‌شود.
-          </p>
+          <label>{language.car_license_label}</label>
+          <p className="extra_text">{language.car_license_text}</p>
           <div className="license_palte_container">
-            <img src={pelak} alt="تصویر پلاک" />
+            <img src={pelak} alt={language.car_license_image_alt} />
             <div className="pelak_input">
               <div className="pelak_input_box_controller">
                 <div className="Fourth_part_pelak">
@@ -1638,7 +1633,9 @@ const Add_Car_Step_1 = () => {
             </div>
           </div>
         </div>
-        <label className="add_car_Facilities_label">امکانات خودرو</label>
+        <label className="add_car_Facilities_label">
+          {language.car_facilities_lable}
+        </label>
         {facilitesList.length === 0 ? (
           <div className="Step1_checkoout_placeholder">
             {checkListLoaderLength.map((_, i) => (
@@ -1676,7 +1673,7 @@ const Add_Car_Step_1 = () => {
                   }}
                   className="show_more_facilities_button"
                 >
-                  نمایش همه
+                  {language.car_facilities_show_more_facilities_button}
                   <IoIosArrowDown size="2rem" color="#4ba3ce" />
                 </p>
               </>
@@ -1685,14 +1682,14 @@ const Add_Car_Step_1 = () => {
         )}
         <div className="colorPicker_container">
           <DropdownSearch
-            label="انتخاب رنگ"
+            label={language.car_color_picker_lable}
             error_status={ErrorState.color_id}
             InputDisable={true}
             data={colorList}
             // active color picker drop downw
             colorPicker={true}
             defaultVal={colorCode}
-            hardValue="رنگ خودرو"
+            hardValue={language.car_color_picker_hard_value}
             disableSearch={true}
             hideClearField={true}
             // clearField={() =>
@@ -1732,13 +1729,14 @@ const Add_Car_Step_1 = () => {
               Remove_media_id: id,
             });
           }}
+          language={language.imageuploader}
         />
         <label>
-          درباره خودرو<span> (اختیاری)</span>
+          {language.car_description_lable}
+          <span> {language.car_description_option}</span>
         </label>
         <p className="step_one_under_label_descripe">
-          برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود. برای
-          ماشین‌تان اسمی انتخاب کرده‌اید؟ با ماشین‌تان به کجاها سفر کرده‌اید؟
+          {language.car_description_text}
         </p>
         <textarea
           className="text_area_step_1"
@@ -1751,7 +1749,7 @@ const Add_Car_Step_1 = () => {
           }}
         />
         <Button
-          value="ثبت"
+          value={language.form_submit_button}
           loading={Loading}
           disable={Loading}
           class="Blue_BTN local_style HEAP_AddCar_Btn_Submit"
@@ -1764,5 +1762,7 @@ const Add_Car_Step_1 = () => {
     </article>
   );
 };
-
+interface IAdd_Car_Step_1 {
+  language: any;
+}
 export default Add_Car_Step_1;
