@@ -155,14 +155,12 @@ const CarPage = () => {
       });
     } else {
       // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-      const Today = moment().format("jYYYY/jMM/jDD");
-
-      let Start_date = moment(Today)
+      let Start_date = moment()
         .add(3, "day")
-        .format("YYYY/MM/DD");
-      let End_date = moment(Today)
+        .format("jYYYY/jMM/jDD");
+      let End_date = moment()
         .add(6, "day")
-        .format("YYYY/MM/DD");
+        .format("jYYYY/jMM/jDD");
       let SplitStartDate = Start_date.split("/");
       let SplitEndDate = End_date.split("/");
       // just get the main info about the car

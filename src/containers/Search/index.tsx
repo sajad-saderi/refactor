@@ -89,16 +89,15 @@ const Search = (props: ISearch) => {
   };
 
   const set_default_date_for_search = () => {
-    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-    const Today = moment().format("jYYYY/jMM/jDD");
-    let from_date = moment(Today)
+    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead      
+    let from_date = moment()
       .add(3, "day")
-      .format("YYYY/MM/DD")
+      .format("jYYYY/jMM/jDD")
       .split("/");
-    let to_date = moment(Today)
+    let to_date = moment()
       .add(6, "day")
-      .format("YYYY/MM/DD")
-      .split("/");
+      .format("jYYYY/jMM/jDD")
+      .split("/");       
 
     setDayRange({
       from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },

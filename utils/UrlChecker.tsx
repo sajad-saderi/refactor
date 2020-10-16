@@ -1,6 +1,5 @@
 import moment from "moment-jalaali";
-moment.loadPersian({ dialect: "persian-modern" });
-const Today = moment().format("jYYYY/jMM/jDD");
+moment.loadPersian({ dialect: "persian-modern" }); 
 
 const UrlChecker = (props) => {
   let data = null;
@@ -43,17 +42,17 @@ const UrlChecker = (props) => {
 
 const setStartSate = () => {
   // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-  let from_date = moment(Today)
+  let from_date = moment()
     .add(3, "day")
-    .format("YYYY/MM/DD")
+    .format("jYYYY/jMM/jDD")
     .split("/");
   return `${+from_date[0]}/${from_date[1]}/${from_date[2]}`;
 };
 
 const setEndSate = () => {
-  let to_date = moment(Today)
+  let to_date = moment()
     .add(6, "day")
-    .format("YYYY/MM/DD")
+    .format("jYYYY/jMM/jDD")
     .split("/");
   return `${+to_date[0]}/${to_date[1]}/${to_date[2]}`;
 };
