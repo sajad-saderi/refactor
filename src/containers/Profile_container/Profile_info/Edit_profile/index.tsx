@@ -10,6 +10,7 @@ import TextInput from "../../../../components/form/TextInput";
 // import "./edit_profile.scss";
 import Button from "../../../../components/form/Button";
 import jsCookie from "js-cookie";
+import Cropper from "react-easy-crop";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -70,6 +71,12 @@ const Edit_profile = (props: IEdit_profile) => {
   const [privateLink, setPrivateLink] = useState(false);
   const [loading, setLoading] = useState(false);
   const [newImage, setNewImage] = useState(null);
+  const [imageforCrop, setImageforCrop] = useState({
+    image: "your-image-url or as base64",
+    crop: { x: 0, y: 0 },
+    zoom: 1,
+    aspect: 1 / 1,
+  });
   const [state, dispatch] = useReducer(stateReducer, {
     first_name: "",
     last_name: "",
@@ -237,6 +244,26 @@ const Edit_profile = (props: IEdit_profile) => {
     props.setEdit(true);
   };
 
+  const onCropChange = (crop) => {
+    setImageforCrop({ ...imageforCrop, crop: crop });
+  };
+
+  const onCropComplete = (croppedArea, croppedAreaPixels) => {
+    console.log("onCropComplete", croppedArea, croppedAreaPixels);
+    const inputImage = new Image();
+    const outputImage = document.createElement('canvas');
+    const ctx = outputImage.getContext('2d'); 
+    ctx.drawImage(inputImage, 0, 0, 19 ,50);
+    // show both the image and the canvas
+    setNewImage(inputImage); 
+  };
+
+  const onZoomChange = (zoom) => {
+    console.log(zoom);
+
+    setImageforCrop({ ...imageforCrop, zoom: zoom });
+  };
+
   return (
     <form className="edit_profile_form" onSubmit={EditFormSubmit}>
       <img
@@ -262,12 +289,33 @@ const Edit_profile = (props: IEdit_profile) => {
               alert("لطفاً تصویر را با فرمت jpeg بارگذاری کنید.");
               return false;
             }
+
             setNewImage(file);
+            const objectURL = URL.createObjectURL(file);
+            console.log("objectURL", objectURL);
+            console.log(file);
+
             const reader = new FileReader();
             reader.readAsDataURL(file);
             dispatch({ type: "image", image: URL.createObjectURL(file) });
           }}
         />
+        {newImage && (
+          <Cropper
+            image={state.image}
+            crop={imageforCrop.crop}
+            zoom={imageforCrop.zoom}
+            minZoom={1}
+            maxZoom={10}
+            aspect={imageforCrop.aspect}
+            onCropChange={onCropChange}
+            onCropComplete={onCropComplete}
+            onZoomChange={onZoomChange}
+            cropShape="round"
+            zoomWithScroll
+            cropSize={{ width: 200, height: 200 }}
+          />
+        )}
       </div>
       <TextInput
         name="first_name"
