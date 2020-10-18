@@ -12,6 +12,7 @@ module.exports = withPWA(
       withSass(
         withImages({
           pwa: {
+            disable: process.env.NODE_ENV === "production" ? false : true,
             dest: "public",
           },
           /* config options here */

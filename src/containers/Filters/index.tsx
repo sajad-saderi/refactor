@@ -10,7 +10,16 @@ import Spinner from "../../components/Spinner";
 
 let body_style_list = [];
 
-const Filters = (props: IFilter) => {
+const Filters = ({
+  extra_info,
+  ResultCount,
+  reset,
+  clearReset,
+  show_filter_prop,
+  show_filter_prop_reset,
+  initialFilterValues,
+  language,
+}: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
   const [with_driver, setwith_driver] = useState(0);
   const [body_style_set, setbody_style_set] = useState([]);
@@ -59,17 +68,17 @@ const Filters = (props: IFilter) => {
   };
 
   useEffect(() => {
-    if (props.extra_info.body_style_id) {
-      setbody_style_set(props.extra_info.body_style_id);
+    if (extra_info.body_style_id) {
+      setbody_style_set(extra_info.body_style_id);
     }
-  }, [props.extra_info]);
+  }, [extra_info]);
 
   useEffect(() => {
-    if (props.show_filter_prop) {
+    if (show_filter_prop) {
       setShow_filter(true);
       document.body.style.overflow = "hidden";
     }
-  }, [props.show_filter_prop]);
+  }, [show_filter_prop]);
 
   // add this filter to the filter context
   const body_style_add = (item) => {
@@ -81,59 +90,59 @@ const Filters = (props: IFilter) => {
   };
 
   useEffect(() => {
-    if (props.reset) {
-      if (props.reset.price) {
+    if (reset) {
+      if (reset.price) {
         setHidePrice(true);
         mounter("price");
         setInitialValue([0, 10000000]);
       }
-      if (props.reset.deliver_at_renters_place) {
+      if (reset.deliver_at_renters_place) {
         setDeliver_at_renters_place(0);
-        props.clearReset("deliver_at_renters_place");
+        clearReset("deliver_at_renters_place");
       }
-      if (props.reset.with_driver) {
+      if (reset.with_driver) {
         setwith_driver(0);
-        props.clearReset("with_driver");
+        clearReset("with_driver");
       }
-      if (props.reset.body_style_id) {
+      if (reset.body_style_id) {
         setbody_style_set([]);
         body_style_list = [];
-        props.clearReset("body_style_id");
+        clearReset("body_style_id");
       }
-      if (props.reset.brand_id) {
+      if (reset.brand_id) {
         setBrand_Name_ComponentReset(true);
         setBrand_id(null);
         setModelList([]);
-        props.clearReset("brand_id");
+        clearReset("brand_id");
       }
-      if (props.reset.car_id) {
+      if (reset.car_id) {
         setCar_Name_ComponentReset(true);
         setcar_id(null);
-        props.clearReset("car_id");
+        clearReset("car_id");
       }
       //     break;
-      //   case props.reset.with_driver:
+      //   case reset.with_driver:
       //     break;
-      //   case props.reset.body_style_id:
+      //   case reset.body_style_id:
       //     break;
-      //   case props.reset.deliver_at_renters_place:
+      //   case reset.deliver_at_renters_place:
       //     break;
-      //   case props.reset.brand_id:
+      //   case reset.brand_id:
       //     break;
-      //   case props.reset.car_id:
+      //   case reset.car_id:
       //     break;
       //   default:
       //     break;
       // }
     }
-  }, [props.reset]);
+  }, [reset]);
 
   const mounter = (v) => {
     if (v === "price") {
       const hideTimer = setTimeout(() => {
         setHidePrice(false);
         clearTimeout(hideTimer);
-        props.clearReset(v);
+        clearReset(v);
       }, 500);
     }
   };
@@ -149,32 +158,32 @@ const Filters = (props: IFilter) => {
   };
 
   useEffect(() => {
-    if (props.initialFilterValues) {
-      if (props.initialFilterValues.router.query.min_price) {
+    if (initialFilterValues) {
+      if (initialFilterValues.router.query.min_price) {
         setInitialValue([
-          +props.initialFilterValues.router.query.min_price,
-          +props.initialFilterValues.router.query.max_price,
+          +initialFilterValues.router.query.min_price,
+          +initialFilterValues.router.query.max_price,
         ]);
       }
       if (
-        props.initialFilterValues.router.query.deliver_at_renters_place &&
-        props.initialFilterValues.router.query.deliver_at_renters_place === "1"
+        initialFilterValues.router.query.deliver_at_renters_place &&
+        initialFilterValues.router.query.deliver_at_renters_place === "1"
       ) {
         setDeliver_at_renters_place(
-          +props.initialFilterValues.router.query.deliver_at_renters_place
+          +initialFilterValues.router.query.deliver_at_renters_place
         );
       }
       if (
-        props.initialFilterValues.router.query.with_driver &&
-        props.initialFilterValues.router.query.with_driver === "1"
+        initialFilterValues.router.query.with_driver &&
+        initialFilterValues.router.query.with_driver === "1"
       ) {
-        setwith_driver(+props.initialFilterValues.router.query.with_driver);
+        setwith_driver(+initialFilterValues.router.query.with_driver);
       }
       if (
-        props.initialFilterValues.router.query.body_style_id &&
-        props.initialFilterValues.router.query.body_style_id !== "all"
+        initialFilterValues.router.query.body_style_id &&
+        initialFilterValues.router.query.body_style_id !== "all"
       ) {
-        let convertStringToArray = props.initialFilterValues.router.query.body_style_id.split(
+        let convertStringToArray = initialFilterValues.router.query.body_style_id.split(
           ","
         );
         let convertIndexToNumber = convertStringToArray.reduce((s, c) => {
@@ -183,23 +192,23 @@ const Filters = (props: IFilter) => {
         body_style_list = convertIndexToNumber;
       }
       if (
-        props.initialFilterValues.router.query.brand_id &&
-        props.initialFilterValues.router.query.brand_id !== "all"
+        initialFilterValues.router.query.brand_id &&
+        initialFilterValues.router.query.brand_id !== "all"
       ) {
         setBrand_id_name(
-          props.initialFilterValues.router.query.brand_name.replace(/-/g, " ")
+          initialFilterValues.router.query.brand_name.replace(/-/g, " ")
         );
-        let brand_id = +props.initialFilterValues.router.query.brand_id;
+        let brand_id = +initialFilterValues.router.query.brand_id;
         setBrand_id(brand_id);
         getModelList(brand_id);
-        if (props.initialFilterValues.router.query.car_id !== "all") {
+        if (initialFilterValues.router.query.car_id !== "all") {
           setCar_id_name(
-            props.initialFilterValues.router.query.car_name.replace(/-/g, " ")
+            initialFilterValues.router.query.car_name.replace(/-/g, " ")
           );
         }
       }
     }
-  }, [props.initialFilterValues]);
+  }, [initialFilterValues]);
 
   return (
     <>
@@ -208,7 +217,7 @@ const Filters = (props: IFilter) => {
           onClick={() => {
             setShow_filter(false);
             document.body.style.overflow = "unset";
-            props.show_filter_prop_reset();
+            show_filter_prop_reset();
           }}
           className="with_drawer"
         ></div>
@@ -225,7 +234,7 @@ const Filters = (props: IFilter) => {
             className="Close_filter"
             onClick={() => {
               setShow_filter(false);
-              props.show_filter_prop_reset();
+              show_filter_prop_reset();
               document.body.style.overflow = "unset";
             }}
           >
@@ -238,12 +247,14 @@ const Filters = (props: IFilter) => {
         ) : (
           <PriceSlider initialValue={initialValue} />
         )}
-        <h3>خدمات اجاره</h3>
+        <h3>{language.filter.filter_section_h3_1}</h3>
         <Checkbox
           initialValue={[deliver_at_renters_place]}
           data={[
             {
-              text: "تحویل در محل به شما",
+              text:
+                language.filter
+                  .filter_section_check_box_deliver_at_renters_place,
               value: deliver_at_renters_place,
             },
           ]}
@@ -266,7 +277,7 @@ const Filters = (props: IFilter) => {
           initialValue={[with_driver]}
           data={[
             {
-              text: "اجاره همراه با راننده",
+              text: language.filter.filter_section_check_box_with_driver,
               value: with_driver,
             },
           ]}
@@ -286,7 +297,7 @@ const Filters = (props: IFilter) => {
           }}
         />
         <div className="body_style_type_wrapper">
-          <h3>نوع بدنه</h3>
+          <h3>{language.filter.filter_section_h3_2}</h3>
           <Checkbox
             initialValue={body_style_list}
             data={body_style_set}
@@ -301,8 +312,10 @@ const Filters = (props: IFilter) => {
         </div>
         <DropdownSearch
           InputDisable={true}
-          label="سازنده"
-          search_place_holder="در سازنده‌ها"
+          label={language.filter.filter_section_drop_down_1_label}
+          search_place_holder={
+            language.filter.filter_section_drop_down_1_place_holder
+          }
           data={BrandList}
           defaultVal={Brand_id_name}
           clearField={() => {
@@ -331,8 +344,10 @@ const Filters = (props: IFilter) => {
         <DropdownSearch
           InputDisable={true}
           disabled={!Brand_id ? true : false}
-          label="نام مدل"
-          search_place_holder="در نام مدل‌ها"
+          label={language.filter.filter_section_drop_down_2_label}
+          search_place_holder={
+            language.filter.filter_section_drop_down_2_place_holder
+          }
           defaultVal={car_id_name}
           data={ModelList}
           callClearFieldReset={() => {
@@ -361,15 +376,15 @@ const Filters = (props: IFilter) => {
               onClick={() => {
                 document.body.style.overflow = "unset";
                 setShow_filter(false);
-                props.show_filter_prop_reset();
+                show_filter_prop_reset();
               }}
             >
-              {props.extra_info.length === 0 ? (
+              {extra_info.length === 0 ? (
                 <Spinner display="block" color="#fff" width={28} />
-              ) : props.ResultCount.total_count > 0 ? (
-                `نمایش ${props.ResultCount.total_count} خودرو`
+              ) : ResultCount.total_count > 0 ? (
+                `${language.filter.filter_section_result_count_wrapper_namayesh}${ResultCount.total_count}${language.filter.filter_section_result_count_wrapper_khodro}`
               ) : (
-                "با فیلترهای انتخاب شده نتیجه‌ای پیدا نشد."
+                language.filter.filter_section_result_count_wrapper_no_result
               )}
             </h2>
           </div>
@@ -388,6 +403,7 @@ interface IFilter {
   show_filter_prop: boolean;
   show_filter_prop_reset: any;
   initialFilterValues: any;
+  language: any;
 }
 
 export default Filters;

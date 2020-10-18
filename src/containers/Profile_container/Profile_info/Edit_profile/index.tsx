@@ -65,7 +65,12 @@ const stateErrorReducer = (current, action) => {
   }
 };
 
-const Edit_profile = (props: IEdit_profile) => {
+const Edit_profile = ({
+  data,
+  setEdit,
+  language,
+  triggerUpload,
+}: IEdit_profile) => {
   const [showCompany, setShowCompany] = useState(false);
   const [privateLink, setPrivateLink] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -100,33 +105,33 @@ const Edit_profile = (props: IEdit_profile) => {
   };
 
   useEffect(() => {
-    console.log(props.data);
+    console.log(data);
 
-    dispatch({ type: "first_name", first_name: props.data.first_name });
-    dispatch({ type: "last_name", last_name: props.data.last_name });
-    if (props.data.company_name) {
+    dispatch({ type: "first_name", first_name: data.first_name });
+    dispatch({ type: "last_name", last_name: data.last_name });
+    if (data.company_name) {
       setShowCompany(true);
-      dispatch({ type: "company_name", company_name: props.data.company_name });
+      dispatch({ type: "company_name", company_name: data.company_name });
     }
-    if (props.data.thumbnail_url) {
-      dispatch({ type: "image", image: props.data.thumbnail_url });
+    if (data.thumbnail_url) {
+      dispatch({ type: "image", image: data.thumbnail_url });
     }
-    if (props.data.username) {
+    if (data.username) {
       setPrivateLink(true);
-      dispatch({ type: "username", username: props.data.username });
+      dispatch({ type: "username", username: data.username });
     }
-  }, [props.data]);
+  }, [data]);
 
   useEffect(() => {
-    if (props.triggerUpload) {
+    if (triggerUpload) {
       if (
-        props.data.thumbnail_url ===
+        data.thumbnail_url ===
         "https://core.otoli.net/static/core/default_profile_pic.png"
       ) {
         file_input.current.click();
       }
     }
-  }, [props.data]);
+  }, [data]);
 
   const EditFormSubmit = async (e) => {
     e.preventDefault();
@@ -145,7 +150,7 @@ const Edit_profile = (props: IEdit_profile) => {
       });
       dispatchError({
         type: "message",
-        message: "نام یا نام خانوادگی نامعتبر",
+        message: language.name_error,
       });
       setLoading(false);
       return;
@@ -154,7 +159,7 @@ const Edit_profile = (props: IEdit_profile) => {
       dispatchError({
         type: "username",
         username: true,
-        message: "نام کاربری نامعتبر",
+        message: language.user_name_error,
       });
       setLoading(false);
       return;
@@ -163,7 +168,7 @@ const Edit_profile = (props: IEdit_profile) => {
       dispatchError({
         type: "company_name",
         company_name: true,
-        message: "نام شرکت نامعتبر",
+        message: language.company_name_error,
       });
       setLoading(false);
       return;
@@ -234,7 +239,7 @@ const Edit_profile = (props: IEdit_profile) => {
       return;
     }
     setLoading(false);
-    props.setEdit(true);
+    setEdit(true);
   };
 
   return (
@@ -248,7 +253,7 @@ const Edit_profile = (props: IEdit_profile) => {
         alt={state.first_name}
       />
       <div className="change_image_container">
-        <p>تغییر تصویر کاربری</p>
+        <p>{language.change_the_profile_image}</p>
 
         <input
           type="file"
@@ -259,7 +264,7 @@ const Edit_profile = (props: IEdit_profile) => {
             let file = e.target.files[0];
             const types = ["image/png", "image/jpeg", "image/png"];
             if (types.every((type) => file.type !== type)) {
-              alert("لطفاً تصویر را با فرمت jpeg بارگذاری کنید.");
+              alert(language.incorrect_picture_extension);
               return false;
             }
             setNewImage(file);
@@ -284,7 +289,7 @@ const Edit_profile = (props: IEdit_profile) => {
         min={2}
         max={50}
         value={state.first_name}
-        label="نام"
+        label={language.name}
       />
       <TextInput
         name="last_name"
@@ -301,11 +306,11 @@ const Edit_profile = (props: IEdit_profile) => {
         min={2}
         max={50}
         value={state.last_name}
-        label="نام خانوادگی"
+        label={language.last_name}
       />
       {!showCompany ? (
         <p className="link_text" onClick={() => setShowCompany(true)}>
-          نام شرکت
+          {language.company_name}
         </p>
       ) : (
         <TextInput
@@ -325,12 +330,12 @@ const Edit_profile = (props: IEdit_profile) => {
           min={2}
           max={50}
           value={state.company_name}
-          label="نام شرکت"
+          label={language.company_name}
         />
       )}
       {!privateLink ? (
         <p className="link_text" onClick={() => setPrivateLink(true)}>
-          ایجاد آدرس اختصاصی
+          {language.create_personal_link}
         </p>
       ) : (
         <TextInput
@@ -348,20 +353,20 @@ const Edit_profile = (props: IEdit_profile) => {
           min={2}
           max={50}
           value={state.username}
-          label="آدرس اختصاصی"
+          label={language.personal_link}
         />
       )}
       <div className="BTN_container">
         <Button
           class="Blue_BTN local_class"
-          value="تایید"
+          value={language.ok}
           click={() => {}}
           loading={loading}
         />
         <Button
           class="Blue_BTN cancel_class"
-          value="لغو"
-          click={() => props.setEdit(false)}
+          value={language.cancel}
+          click={() => setEdit(false)}
           loading={false}
         />
       </div>
@@ -374,6 +379,7 @@ const Edit_profile = (props: IEdit_profile) => {
 interface IEdit_profile {
   data: any;
   setEdit: any;
+  language: any;
   // Open the file input by click on the avatar image
   triggerUpload?: boolean;
 }

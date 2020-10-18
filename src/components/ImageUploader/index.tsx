@@ -17,7 +17,13 @@ import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
 
-const ImageUploader = (props: IImageUpload) => {
+const ImageUploader = ({
+  Upload_image,
+  delete_image,
+  default_image,
+  error_status,
+  language,
+}: IImageUpload) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
   const [loading, setloading] = useState(false);
   const wrapperRef = useRef(null);
@@ -36,10 +42,10 @@ const ImageUploader = (props: IImageUpload) => {
 
   useEffect(() => {
     // give the default images
-    if (props.default_image) {
-      setPicturesPreview(props.default_image);
+    if (default_image) {
+      setPicturesPreview(default_image);
     }
-  }, [props.default_image]);
+  }, [default_image]);
 
   const RemoveAnImage = (i) => {
     REQUEST_REMOVE_CAR_MEDIA({
@@ -51,7 +57,7 @@ const ImageUploader = (props: IImageUpload) => {
         return item.id !== i;
       })
     );
-    props.delete_image(i);
+    delete_image(i);
   };
 
   const sendTheImage = async (file, result) => {
@@ -70,7 +76,7 @@ const ImageUploader = (props: IImageUpload) => {
       })
     );
     // sent the image id to parent component
-    props.Upload_image(image_upload_res.id);
+    Upload_image(image_upload_res.id);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -82,23 +88,18 @@ const ImageUploader = (props: IImageUpload) => {
   });
 
   // useEffect(() => {
-  //   if (props.error_status) {
+  //   if (error_status) {
   //     scrollTo(0, wrapperRef.current.offsetTop);
   //   }
-  // }, [props.error_status]);
+  // }, [error_status]);
 
   return (
     <div ref={wrapperRef}>
-      <label>تصاویر خودرو</label>
-      <p className="image_upload_under_label">
-        عکس‌های باکیفیت و در زوایای مختلف احتمال اجاره را بیشتر می‌کند.
-      </p>
+      <label>{language.car_picture}</label>
+      <p className="image_upload_under_label">{language.text_1}</p>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
-        <p className="uploadText">
-          جهت بارگذاری تصاویر خودرو اینجا کلیک کنید یا آن را داخل این کادر
-          بیندازید.
-        </p>
+        <p className="uploadText">{language.text_2}</p>
         {picturesPreview.length > 0 ? (
           <div
             // if the image is uploading the drop-zone will be unreachable
@@ -136,7 +137,7 @@ const ImageUploader = (props: IImageUpload) => {
             alt="car vector image"
           />
         )}
-        <p className="gallery_button">انتخاب از گالری</p>
+        <p className="gallery_button">{language.choose_from_gallery}</p>
       </div>
     </div>
   );
@@ -152,6 +153,7 @@ interface IImageUpload {
   // receive an array of image ids
   default_image?: any;
   error_status?: boolean;
+  language: any;
 }
 
 export default ImageUploader;

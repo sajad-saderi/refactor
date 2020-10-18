@@ -3,6 +3,7 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "../src/API";
+import language from "../public/languages/fa/sitemap.json";
 
 const Site_map = () => {
   const [UrlList, UrlSetter] = useState([]);
@@ -26,17 +27,16 @@ const Site_map = () => {
   return (
     <Layout>
       <NextSeo
-        title="Otoli | نقشه سایت"
-        description="Otoli | نقشه سایت"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "Otoli | نقشه سایت",
-          description: "Otoli | نقشه سایت",
-          site_name: "Otoli",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}

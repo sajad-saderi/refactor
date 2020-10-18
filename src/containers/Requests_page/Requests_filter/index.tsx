@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Checkbox from "../../../components/form/Checkbox";
 import { IoIosOptions } from "react-icons/io";
 
-const Requests_filter = (props: IRequests_filter) => {
+const Requests_filter = ({
+  filter_list,
+  active_filters,
+  language,
+}: IRequests_filter) => {
   const [status, setStatus] = useState([
     { value: "new", text: "در انتظار تایید" },
     { value: "approved", text: "در انتظار پرداخت" },
@@ -18,17 +22,17 @@ const Requests_filter = (props: IRequests_filter) => {
   const [status_id, setStatus_id] = useState([]);
 
   useEffect(() => {
-    if (props.active_filters.length > 0) {
-      setStatus_id(props.active_filters);
+    if (active_filters.length > 0) {
+      setStatus_id(active_filters);
     }
-  }, [props.active_filters]);
+  }, [active_filters]);
   return (
     <>
       {/* filter mobile */}
-      {/* {props.total_count === 0 && !props.result ? null : ( */}
+      {/* {total_count === 0 && !result ? null : ( */}
       <span className="show_filter" onClick={() => setShow_filter(true)}>
         <IoIosOptions size="2rem" color="#656565" />
-        نمایش فیلترها
+        {language.show_filters}
       </span>
       {/* )} */}
       {/* filter toggle Icon */}
@@ -42,12 +46,12 @@ const Requests_filter = (props: IRequests_filter) => {
         className={[
           "filter_section",
           show_filter ? "show_Filter_section" : null,
-          // props.total_count === 0 && !props.result
+          // total_count === 0 && !result
           //   ? "notAllowedToShowFilter"
           //   : null,
         ].join(" ")}
       >
-        <h3>وضعیت درخواست</h3>
+        <h3>{language.status_of_request}</h3>
         {/* render a list of status's base on status value */}
         <Checkbox
           initialValue={status_id}
@@ -58,11 +62,11 @@ const Requests_filter = (props: IRequests_filter) => {
                 return item !== i.value;
               })
             );
-            props.filter_list(i.value, "remove");
+            filter_list(i.value, "remove");
           }}
           Select={(i) => {
             setStatus_id((setStatus_id) => setStatus_id.concat(i.value));
-            props.filter_list(i.value, "add");
+            filter_list(i.value, "add");
           }}
           data={status}
         />
@@ -74,7 +78,7 @@ const Requests_filter = (props: IRequests_filter) => {
 interface IRequests_filter {
   filter_list: any;
   active_filters: any;
-  // total_count: number;
+  language: any;
   // result: any;
 }
 

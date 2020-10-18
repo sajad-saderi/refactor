@@ -4,12 +4,17 @@ import Car from "./car";
 // import "./search_result.scss";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 
-const SearchResultList = (props: ISearchResultList) => {
+const SearchResultList = ({
+  showLocation,
+  result,
+  tagClick,
+  language,
+}: ISearchResultList) => {
   useEffect(() => {
-    if (props.result) {
-      if (props.result.length > 0) {
-        let startString = props.result[0].start_date.split("/");
-        let endString = props.result[0].end_date.split("/");
+    if (result) {
+      if (result.length > 0) {
+        let startString = result[0].start_date.split("/");
+        let endString = result[0].end_date.split("/");
         let start = {
           year: +startString[0],
           month: +startString[1],
@@ -24,32 +29,33 @@ const SearchResultList = (props: ISearchResultList) => {
         localStorage["end"] = JSON.stringify(end);
       }
     }
-  }, [props.result]);
+  }, [result]);
 
   return (
     <section className="search_result_section minHeight">
-      {props.result ? (
-        props.result.length > 0 ? (
-          props.result.map((item, i) => {
+      {result ? (
+        result.length > 0 ? (
+          result.map((item, i) => {
             return (
               <Car
                 key={i}
                 data={item}
-                showLocation={props.showLocation}
-                tagClick={props.tagClick}
+                showLocation={showLocation}
+                tagClick={tagClick}
+                language={language}
               />
             );
           })
         ) : (
           <p className="Not_Result">
-            متاسفانه نتیجه‌ای برای جستجوی شما پیدا نشد.
+            {language.search_result_section.Not_Result_part_1}
             <br />
             <br />
-            اگر از فیلترها استفاده کرده‌اید می‌توانید آنها را غیرفعال کنید یا
-            تاریخ‌های دیگر را امتحان کنید.
+            {language.search_result_section.Not_Result_part_2}
             <br />
-            همیشه می‌توانید با پشتیبانی اتولی (
-            <a href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a>) تماس بگیرید.
+            {language.search_result_section.Not_Result_part_3}
+            <a href="tel:02188567759">{language.search_result_section.Not_Result_part_4}</a>
+            {language.search_result_section.Not_Result_part_5}
           </p>
         )
       ) : (
@@ -70,6 +76,7 @@ interface ISearchResultList {
   showLocation?: boolean;
   result: any;
   tagClick?: any;
+  language: any;
 }
 
 export default SearchResultList;

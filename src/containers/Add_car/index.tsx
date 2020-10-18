@@ -6,7 +6,7 @@ import PleaseLogin from "../../../src/components/PleaseLogin";
 import Add_Car_Step_1 from "./step_1";
 import Router from "next/router";
 
-const Add_car = () => {
+const Add_car = ({ language }: IAdd_car) => {
   const [Authorize, setAuthorize] = useState(false);
   const [show, setShow] = useState(false);
   const MODAL_CONTEXT = useContext(Modal_context);
@@ -37,13 +37,17 @@ const Add_car = () => {
 
   return show ? (
     Authorize || AUTH_CONTEXT.Auth ? (
-      <Add_Car_Step_1 />
+      <Add_Car_Step_1 language={language.add_car_step_1} />
     ) : (
-      <PleaseLogin />
+      <PleaseLogin language={language.please_login} />
     )
   ) : (
     <article className="minHeight"></article>
   );
 };
+
+interface IAdd_car {
+  language: any;
+}
 
 export default Add_car;

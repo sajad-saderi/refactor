@@ -12,7 +12,7 @@ let useFilter = false;
 let filterNumber = 0;
 let page = 1;
 
-const Profile_Cars = (props: IProfile_Cars) => {
+const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
   const [result, setResult] = useState(null);
   const [active, setActive] = useState(1);
   const [showMoreButton, setShowMoreButton] = useState(false);
@@ -34,12 +34,12 @@ const Profile_Cars = (props: IProfile_Cars) => {
     }
     if (useFilter) {
       data = {
-        id: props.profile_Id,
+        id: profile_Id,
         is_out_of_service: filterNumber,
         page: page,
       };
     } else {
-      data = { id: props.profile_Id, page: page };
+      data = { id: profile_Id, page: page };
     }
     try {
       const user_cars_res: any = await REQUEST_GET_USER_CARS(data);
@@ -83,7 +83,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
 
   return (
     <article className="Profile_car_container">
-      {props.is_mine && result
+      {is_mine && result
         ? result.length > 3 && (
             <div className="service_filer">
               <Radio
@@ -96,15 +96,15 @@ const Profile_Cars = (props: IProfile_Cars) => {
                 defaultCheck={active}
                 data={[
                   {
-                    label: "همه",
+                    label: language.all,
                     value: 1,
                   },
                   {
-                    label: "غیر فعال",
+                    label: language.inactive,
                     value: 2,
                   },
                   {
-                    label: "فعال",
+                    label: language.active,
                     value: 3,
                   },
                 ]}
@@ -116,8 +116,9 @@ const Profile_Cars = (props: IProfile_Cars) => {
         result.length > 0 ? (
           result.map((item, i) => {
             // car section
-            return props.is_mine ? (
+            return is_mine ? (
               <Car
+                language={language.car}
                 key={i}
                 data={item}
                 is_mine={true}
@@ -125,6 +126,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
               />
             ) : !item.is_out_of_service ? (
               <Car
+                language={language.car}
                 key={i}
                 data={item}
                 is_mine={false}
@@ -164,7 +166,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
             }}
           >
             <IoIosArrowDown color="#202020" size="1.8rem" />
-            نمایش ماشین‌های بیشتر
+            {language.show_more_cars}
           </span>
         </div>
       ) : null}
@@ -175,6 +177,7 @@ const Profile_Cars = (props: IProfile_Cars) => {
 interface IProfile_Cars {
   is_mine: boolean;
   profile_Id: number;
+  language: any;
 }
 
 export default Profile_Cars;

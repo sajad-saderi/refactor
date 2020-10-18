@@ -9,161 +9,10 @@ import Link from "next/link";
 import TabCreator from "../../src/components/TabCreator";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 
+import language from "../../public/languages/fa/rent.json";
+
 const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
-  // const [data, setData] = useState([
-  //   {
-  //     title: "شهرها",
-  //     links: [
-  //       {
-  //         title: "اجاره ماشین در اهواز",
-  //         link: "/rent/ahvaz",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در بندر انزلی",
-  //         link: "/rent/bandar-anzali",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در اصفهان",
-  //         link: "/rent/isfahan",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در چالوس",
-  //         link: "/rent/chalus",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در تهران",
-  //         link: "/rent/tehran",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در کرمان",
-  //         link: "/rent/kerman",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در کرمانشاه",
-  //         link: "/rent/kermanshah",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در مشهد",
-  //         link: "/rent/mashhad",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در کیش",
-  //         link: "/rent/kish",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در قشم",
-  //         link: "/rent/qeshm",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در رامسر",
-  //         link: "/rent/ramsar",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در رشت",
-  //         link: "/rent/rasht",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در شیراز",
-  //         link: "/rent/shiraz",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در تبریز",
-  //         link: "/rent/tabriz",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در یزد",
-  //         link: "/rent/yazd",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در فرودگاه مهرآباد تهران",
-  //         link: "/rent/mehrabad-airport-car-rental",
-  //       },
-  //       {
-  //         title: "اجاره ماشین در فرودگاه امام خمینی",
-  //         link: "/rent/car-rental-at-tehran-imam-khomeini-airport",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "برندها",
-  //     links: [
-  //       { title: "اجاره 206", link: "/rent/206" },
-  //       {
-  //         title: "اجاره ماشین سراتو",
-  //         link: "/rent/cerato",
-  //       },
-  //       { title: "اجاره بنز", link: "/rent/benz" },
-  //       {
-  //         title: "اجاره بی ام وی",
-  //         link: "/rent/bmw",
-  //       },
-  //       {
-  //         title: "اجاره ماشین هیوندای",
-  //         link: "/rent/hyundai",
-  //       },
-  //       { title: "اجاره کیا", link: "/rent/kia" },
-  //       {
-  //         title: "اجاره مازراتی",
-  //         link: "/rent/maserati",
-  //       },
-  //       {
-  //         title: "لیست اجاره ماشین مزدا",
-  //         link: "/rent/mazda",
-  //       },
-  //       {
-  //         title: "اجاره پورشه ",
-  //         link: "/rent/porsche",
-  //       },
-  //       {
-  //         title: "اجاره رنو",
-  //         link: "/rent/renault",
-  //       },
-  //       {
-  //         title: "اجاره تویوتا ",
-  //         link: "/rent/toyota",
-  //       },
-  //       {
-  //         title: "اجاره وانت ",
-  //         link: "/rent/pickup",
-  //       },
-  //       { title: "اجاره ون", link: "/rent/van" },
-  //     ],
-  //   },
-  //   {
-  //     title: "پربازدید",
-  //     links: [
-  //       {
-  //         title: "همه ماشین های لوکس تهران اینجاست",
-  //         link: "/rent/luxury-tehran",
-  //       },
-  //       {
-  //         title: "اجاره ماشین عروس",
-  //         link: "/rent/bride-car-rental",
-  //       },
-  //       {
-  //         title: "اجاره ماشین برای مسافرت",
-  //         link: "/rent/car-rental-for-travel",
-  //       },
-  //       {
-  //         title: "اجاره ماشین با راننده",
-  //         link: "/rent/car-rental-with-driver",
-  //       },
-  //       {
-  //         title: "اجاره ماشین کلاسیک",
-  //         link: "/rent/classic",
-  //       },
-  //       {
-  //         title: "اجاره ماشین برای کویر",
-  //         link: "/rent/desert",
-  //       },
-  //       {
-  //         title: "اجاره ماشین بدون راننده",
-  //         link: "/rent/rent-a-car-without-a-driver",
-  //       },
-  //     ],
-  //   },
-  // ]);
 
   useEffect(() => {
     fetchData();
@@ -180,170 +29,90 @@ const Rent = () => {
     <Layout>
       <NextSeo
         canonical="https://otoli.net/rent"
-        title="اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | اتولی"
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | اتولی",
-          description:
-            "اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.",
-          site_name: "اتولی",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
+          site_name: language.next_seo.site_name,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="Homepage">
         <div className="banner">
-          <h1>لیست قیمت اجاره ماشین در اتولی</h1>
-          <h2>ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید.</h2>
+          <h1>{language.banner_h1}</h1>
+          <h2>{language.banner_h2}</h2>
           <div className="search_container responsive">
-            <Search />
+            <Search language={language} />
           </div>
         </div>
         <div className="insuranceBox">
-          <p>با همکاری </p>
+          <p>{language.insuranceBox_p}</p>
           <img src={insurance} alt="تصویر بیمه سامان" />
         </div>
         <div className=" responsive second_container">
           <div className="full_width">
-            <h2>اتولی چه کار می‌کند؟</h2>
-            <p>
-              اتولی، سیستم اجاره خودرو به صورت آنلاین، پل ارتباطی است میان
-              میزبان و مهمان خودرو. از طریق اتولی می‌توانید در هر تاریخی و از
-              بین لیست خودروهای موجود، ماشین مورد نظرتان را اجاره کنید. همچنین
-              سیستم ثبت خودرو جهت اجاره به شما این امکان را می‌دهد که از
-              اجاره‌دادن ماشین خود کسب درآمد کنید.
-            </p>
+            <h2>{language.second_container_full_width_h2}</h2>
+            <p>{language.second_container_full_width_p}</p>
           </div>
-          <h2>چرا از اتولی ماشین اجاره کنیم؟</h2>
+          <h2>{language.second_container_h2_2}</h2>
           <div className="three_columns">
             <section>
-              <h3>تضمین بیمه</h3>
-              <p>
-                با بیمه اجاره خودرو با خیال راحت رانندگی کنید. با اینکه مراقبت
-                از خودروی اجاره‌ای اولین وظیفه شماست، اما در صورت خرابی، تصادف و
-                مشکلات اینچنینی بیمه جبران خسارت خواهد کرد.
-              </p>
+              <h3>{language.second_container_three_columns_2_h3_1}</h3>
+              <p>{language.second_container_three_columns_2_p_1}</p>
             </section>
             <section>
-              <h3>تنوع در انتخاب</h3>
-              <p>
-                شما فقط تاریخ و شهر مورد نظرتان را انتخاب کنید و به لیست مدل‌های
-                متنوع ماشین دست پیدا کنید. انتخاب از بین گزینه‌های مختلف، قیمت،
-                مدل و شرایط متنوعی را هم به‌دنبال خواهد داشت.
-              </p>
+              <h3>{language.second_container_three_columns_2_h3_2}</h3>
+              <p>{language.second_container_three_columns_2_p_2}</p>
             </section>
             <section>
-              <h3>پشتیبانی 24 ساعته</h3>
-              <p>
-                در هر ساعتی از شبانه‌روز، اتولی برای حل مشکلات احتمالی آماده
-                پاسخ‌گویی است و در شرایط اضطراری کنار شما خواهد بود.
-              </p>
+              <h3>{language.second_container_three_columns_2_h3_3}</h3>
+              <p>{language.second_container_three_columns_2_p_3}</p>
             </section>
           </div>
-          <h2>چرا در اتولی ماشین اجاره دهیم؟</h2>
+          <h2>{language.second_container_h2_1}</h2>
           <div className="three_columns">
             <section>
-              <h3>کسب درآمد</h3>
-              <p>
-                اطلاعات ماشین‌تان را در اتولی ثبت کنید و منتظر بمانید! با اتولی
-                می‌توانید از اجاره ماشین‌تان درآمد روزانه داشته باشید. فقط
-                کافی‌ست اطلاعات خودرو را درست و دقیق وارد کنید و تصاویر خوب و
-                باکیفیت برای ماشین‌تان انتخاب کنید.
-              </p>
+              <h3>{language.second_container_three_columns_h3_1}</h3>
+              <p>{language.second_container_three_columns_p_1}</p>
             </section>
             <section>
-              <h3>با شرایط شما</h3>
-              <p>
-                رایگان و با شرایط مورد نظر خود، ماشین‌تان را در اتولی ثبت کنید.
-                اجاره خودرو به تعداد روزهای تعیین شده از سمت شما، در تاریخ‌های
-                مدنظر شما، قیمت انتخابی شما و با بررسی کامل شخص مهمان از طرف شما
-                انجام خواهد شد.
-              </p>
+              <h3>{language.second_container_three_columns_h3_2}</h3>
+              <p>{language.second_container_three_columns_p_2}</p>
             </section>
             <section>
-              <h3>تضمین بیمه</h3>
-              <p>
-                با خیال راحت کسب درآمد کنید. بیمه اجاره خودرو بابت خسارت‌های
-                احتمالی به شما اطمینان خاطر خواهد داد.
-              </p>
+              <h3>{language.second_container_three_columns_h3_3}</h3>
+              <p>{language.second_container_three_columns_p_3} </p>
             </section>
           </div>
           <div className="add_car_section">
             <Link href="/add-car">
-              <a className="Blue_BTN add_car_custom">ماشین‌تان را اضافه کنید</a>
+              <a className="Blue_BTN add_car_custom">
+                {language.second_container_add_car_section_a_1}
+              </a>
             </Link>
             <Link href="/join-us">
-              <a>تخمین درآمد ماهیانه</a>
+              <a>{language.second_container_add_car_section_a_2}</a>
             </Link>
           </div>
           <div className="rent_contnet">
-            <h2>اجاره ماشین</h2>
+            <h2>{language.rent_content_h2}</h2>
+            <p>{language.rent_content_p_1}</p>
+            <p>{language.rent_content_p_2}</p>
+            <p>{language.rent_content_p_3}</p>
             <p>
-              تردد داخل شهری و بین‌شهری هم می‌تواند به کمک وسایل حمل و نقل عمومی
-              و هم با ماشین شخصی صورت گیرد. اما اجاره ماشین پدیده‌ای تازه است که
-              در بسیاری از شهرهای بزرگ و کوچک ایران رایج شده‌ است.
+              <strong>{language.rent_content_p_4}</strong>
             </p>
-            <p>
-              اجاره ماشین مزایای دوجانبه‌ای برای میزبان و مهمان به وجود آورده‌
-              است. از آنجایی که تردد در شهرهای بزرگ به کمک وسایل حمل و نقل عمومی
-              نیازمند صرف زمان زیادی برای رسیدن به مقصد است و همچنین ترافیک خود
-              عامل مهمی در اتلاف وقت است، ماشین شخصی در بسیاری موارد می‌تواند
-              راهگشای مناسبی باشد. از طرفی اجاره خودرو باعث می‌شود تا نگرانی
-              بابت هزینه‌های تعمیر و نگهداری، پرداخت بیمه و دیگر هزینه‌های جانبی
-              وجود نداشته باشد.
-            </p>
-            <p>
-              شما به عنوان مهمان می‌توانید بدون پرداخت هزینه‌ای بابت خریداری
-              خودرو، از چند ساعت تا چند روز، برای انجام کارهای روزمره، برگزاری
-              مراسم‌های خاص، گشت درون شهری یا سفر بدون دغدغه از زمان خود لذت
-              ببرید. اجاره ماشین این امتیاز را به شما می‌دهد تا با توجه به بودجه
-              معین‌شده، ماشین مورد نظر خود را برای مدت معین در اختیار داشته
-              باشید.
-            </p>
-            <p>
-              <strong>
-                علاوه بر موارد اشاره شده، اجاره ماشین مزایای زیر را در بردارد:
-              </strong>
-            </p>
-            <p>
-              کرایه ماشین سفری بدون دغدغه را به شما هدیه می‌دهد، زیرا با
-              دراختیار داشتن ماشین اجاره‌ای دیگر لازم نیست نگران برنامه زمانی
-              وسایل نقلیه عمومی، تغییر برنامه، اتلاف وقت تا رسیدن اتوبوس یا قطار
-              به ایستگاه مورد نظر یا همراه شدن با افراد ناشناس باشید.
-            </p>
-            <p>
-              اجاره ماشین همچنین باعث می‌شود تا در هزینه‌های سفر خود صرفه‌جویی
-              کنید، زمان کمتری را برای رسیدن به مقصد بعدی در نظر بگیرید، به این
-              ترتیب می‌توانید در طول سفر خود از جاذبه‌های بیشتری بازدید کنید.
-            </p>
-            <p>
-              حتی اگر دارای ماشین شخصی هستید، می‌توانید با یک انتخاب هوشمندانه
-              ماشین مناسبی برای سفر خود اجاره کنید. به این ترتیب، علاوه بر آنکه
-              از استهلاک خودروی خود جلوگیری می‌کنید، می‌توانید ماشینی را انتخاب
-              کنید که به نسبت ماشین خود دارای مصرف سوخت بهینه‌تر یا به عبارتی
-              کمتر است و یا فضای بیشتری برای سرنشینان و چمدانها دارد.
-            </p>
-            <p>
-              اجاره ماشین درون شهر به شما این امکان را می‌دهد که بدون نگرانی از
-              نبود تاکسی و یا دیر رسیدن به ایستگاه مورد نظر، یک روز عالی کاری را
-              فارغ از صف‌های طولانی اتوبوس و تاکسی و یا انتظار برای قبول درخواست
-              شما از سوی سامانه‌های آنلاین رزرو تاکسی را داشته باشید.
-            </p>
-            <p>
-              فارغ از بودجه‌ای که برای مراسم عروسی خود در نظر گرفته‌اید، شما
-              می‌توانید ماشین ایده‌آل خود را برای یک شب رویارویی اجاره کنید.
-              فراموش نکنید که تنها قرار است هزینه رنت ماشین را پرداخت کنید و نه
-              هزینه خرید آن را.
-            </p>
-            <p>
-              هر یک از موارد فوق می‌تواند دلیل خوبی برای اجاره ماشین باشد، که
-              اجاره ماشین از سامانه اتولی به شما این اطمینان را می‌دهد که ماشین
-              به دلخواه خود را برای مدت معین با رعایت قوانین و مقررات مشخص شده،
-              در اختیار داشته باشید و از آن لذت ببرید.
-            </p>
+            <p>{language.rent_content_p_5}</p>
+            <p>{language.rent_content_p_6}</p>
+            <p>{language.rent_content_p_7}</p>
+            <p>{language.rent_content_p_8}</p>
+            <p>{language.rent_content_p_9}</p>
+            <p>{language.rent_content_p_10}</p>
           </div>
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}

@@ -54,7 +54,10 @@ let filtersChecker = {
   car_id: false,
 };
 
-const Landing_page_container = (props: ILanding_page_container) => {
+const Landing_page_container = ({
+  landing_data,
+  language,
+}: ILanding_page_container) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
@@ -177,18 +180,18 @@ const Landing_page_container = (props: ILanding_page_container) => {
       End_date = url_checked.end_date;
     }
     initSearch();
-  }, [props.landing_data]);
+  }, [landing_data]);
 
   async function initSearch() {
     // set the filter name
-    const searchParamKey: any = Object.keys(props.landing_data.search_params);
+    const searchParamKey: any = Object.keys(landing_data.search_params);
     if (!loadMoreCar) {
       page = 1;
       setResult(null);
     }
     setExtra_info([]);
     // filter by landing page unique parameter
-    let queryString = `${searchParamKey}=${props.landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
+    let queryString = `${searchParamKey}=${landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
     // check the location filer
     if (filtersChecker.Location) {
       queryString += `&location_id=${Location}`;
@@ -426,18 +429,20 @@ const Landing_page_container = (props: ILanding_page_container) => {
               }}
             >
               {!showSearch ? (
-                <p className="count_bar_count">{`${total_count} خودرو ${result[0].start_date.slice(
-                  5
-                )} تا ${result[0].end_date.slice(5)}`}</p>
+                <p className="count_bar_count">{`${total_count}${
+                  language.count_bar_khodro
+                }${result[0].start_date.slice(5)}${
+                  language.count_bar_ta
+                }${result[0].end_date.slice(5)}`}</p>
               ) : null}
               <p className="change_search_btn HEAP_LandingPages_Btn_ChangeSearch">
                 {showSearch ? (
                   <span className="close_text_btn">
-                    بستن
+                    {language.count_bar_change_search_btn_close}
                     <IoMdClose size="2rem" color="#dcdcdc" />
                   </span>
                 ) : (
-                  "تغییر جستجو"
+                  language.count_bar_change_search_btn_p
                 )}
               </p>
             </div>
@@ -454,6 +459,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
         >
           <div className="responsive">
             <Search
+              language={language}
               dynamic={true}
               searchSubmit={(v) => {
                 // if we are not in dynamic page don't need to check loaction filter
@@ -477,7 +483,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           />
         ) : null}
       </div>
-      <h1 className="responsive">{props.landing_data.short_description}</h1>
+      <h1 className="responsive">{landing_data.short_description}</h1>
       {/* price sort part */}
       <section className="responsive">
         <div className="price_sort_container">
@@ -494,7 +500,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               initSearch();
             }}
           >
-            قیمت زیاد به کم
+            {language.price_sort_container_high_to_low}
           </span>
           <span
             className={o === "price" ? "active" : null}
@@ -509,11 +515,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               initSearch();
             }}
           >
-            قیمت کم به زیاد
+            {language.price_sort_container_low_to_high}
           </span>
           {/* Trigger icon in mobile view */}
           <p className="show_filter" onClick={() => setShow_filter(true)}>
-            جستجوی پیشرفته
+            {language.price_sort_container_advance_search_btn}
             <IoIosOptions size="1.4rem" color="#656565" />
           </p>
         </div>
@@ -537,7 +543,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            {`محل خودرو ${carLocationName}`}
+            {`${language.minimal_filters_car_location}${carLocationName}`}
           </p>
         ) : null}
         {filtersChecker.price ? (
@@ -562,7 +568,10 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            قیمت از {price.min.toLocaleString()} تا {price.max.toLocaleString()}
+            {language.minimal_filters_price_from}
+            {price.min.toLocaleString()}
+            {language.minimal_filters_ta}
+            {price.max.toLocaleString()}
           </p>
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (
@@ -583,7 +592,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            تحویل در محل
+            {language.minimal_filters_deliver_to_your_location}
           </p>
         ) : null}
         {filtersChecker.with_driver ? (
@@ -604,7 +613,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            اجاره همراه راننده
+            {language.minimal_filters_with_deriver}
           </p>
         ) : null}
         {filtersChecker.body_style_id ? (
@@ -625,7 +634,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            فیلتر نوع بدنه
+            {language.minimal_filters_body_style}
           </p>
         ) : null}
         {filtersChecker.brand_id ? (
@@ -647,7 +656,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            فیلتر براساس سازنده
+            {language.minimal_filters_brand}
           </p>
         ) : null}
         {filtersChecker.car_id ? (
@@ -668,7 +677,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
             }}
           >
             <IoMdClose size="1.3rem" color="#ababab" />
-            فیلتر براساس نام مدل
+            {language.minimal_filters_model}
           </p>
         ) : null}
       </section>
@@ -691,9 +700,11 @@ const Landing_page_container = (props: ILanding_page_container) => {
               setShow_filter(false);
             }}
             initialFilterValues={Router}
+            language={language}
           />
         </filterContext.Provider>
         <SearchResultList
+          language={language}
           result={result}
           showLocation={true}
           tagClick={searchIgniteByClickOnCardTags}
@@ -701,7 +712,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
       </section>
       {!quickAccessClick ? (
         <section className=" responsive quick_access_middle_searchResult">
-          <h2>دسترسی سریع</h2>
+          <h2>{language.quick_access_middle_searchResult_h2}</h2>
           <div className="quick_access_child_container">
             <div
               className="HEAP_Search_Result_Quick_Access_SUV"
@@ -714,7 +725,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               }}
             >
               <img src={offRoad} alt="خودروهای شاسی‌بلند" />
-              <p>خودروهای شاسی‌بلند</p>
+              <p>{language.quick_access_middle_searchResult_p_1}</p>
             </div>
             <div
               className="HEAP_Search_Result_Quick_Access_Economy"
@@ -728,7 +739,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
               }}
             >
               <img src={economic} alt="خودروهای اقتصادی" />
-              <p>خودروهای اقتصادی</p>
+              <p>{language.quick_access_middle_searchResult_p_2}</p>
             </div>
           </div>
         </section>
@@ -747,7 +758,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
           ) : (
             <>
               <IoIosArrowDown color="#202020" size="1.8rem" />
-              نمایش ماشین‌های بیشتر
+              {language.Load_more_car}
             </>
           )}
         </span>
@@ -759,6 +770,7 @@ const Landing_page_container = (props: ILanding_page_container) => {
 interface ILanding_page_container {
   // dynamic page data
   landing_data: any;
+  language: any;
 }
 
 export default Landing_page_container;

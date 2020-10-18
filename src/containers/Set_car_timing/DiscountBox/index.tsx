@@ -5,7 +5,16 @@ import Checkbox from "../../../components/form/Checkbox";
 // import "./DiscountBox.scss";
 import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
 
-const DiscountBox = (props: IDiscountBox) => {
+const DiscountBox = ({
+  initialDiscountList,
+  addDiscount,
+  removeDiscountList,
+  discountCheck,
+  showDiscount,
+  setShowBox,
+  error,
+  language,
+}: IDiscountBox) => {
   const [discount_percent, setDiscount_percent] = useState("");
   const [Error_discount_percent, setError_discount_percent] = useState({
     status: false,
@@ -70,7 +79,7 @@ const DiscountBox = (props: IDiscountBox) => {
       if (!days_limit) {
         setError_days_limit({
           status: true,
-          message: "لطفا تعداد روز را مشخص کنید",
+          message: language.error_1,
         });
         return;
       }
@@ -81,7 +90,7 @@ const DiscountBox = (props: IDiscountBox) => {
       if (discount_percent === "") {
         setError_discount_percent({
           status: true,
-          message: "لطفا درصد تخفیف را مشخص کنید",
+          message: language.error_2,
         });
         return;
       }
@@ -96,7 +105,7 @@ const DiscountBox = (props: IDiscountBox) => {
       //     discount_percent: discount_percent,
       //   };
       //   setDiscountList(temp);
-      //   props.addDiscount(temp, true);
+      //   addDiscount(temp, true);
       //   setMode({
       //     status: false,
       //     index: null,
@@ -108,7 +117,7 @@ const DiscountBox = (props: IDiscountBox) => {
           discount_percent: discount_percent,
         })
       );
-      props.addDiscount({
+      addDiscount({
         days_limit: days_limit,
         discount_percent: discount_percent,
       });
@@ -121,24 +130,24 @@ const DiscountBox = (props: IDiscountBox) => {
   };
 
   useEffect(() => {
-    if (props.initialDiscountList) {
-      setDiscountcheck(props.showDiscount);
-      props.initialDiscountList.forEach((item) => {
+    if (initialDiscountList) {
+      setDiscountcheck(showDiscount);
+      initialDiscountList.forEach((item) => {
         onConfirm(item, true);
       });
       setDiscountcheck(0);
     }
-  }, [props.initialDiscountList]);
+  }, [initialDiscountList]);
 
   // useEffect(() => {
-  //   if (props.error) {
+  //   if (error) {
   //     scrollTo(0, DiscountWrapper.current.offsetTop);
   //   }
-  // }, [props.error]);
+  // }, [error]);
 
   return (
     <div className="Discount_form_container">
-      <p>می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید</p>
+      <p>{language.Discount_form_container_p}</p>
       {Discountcheck === 1 ? (
         <div className="Discount_Controller">
           <div className="containers">
@@ -148,9 +157,9 @@ const DiscountBox = (props: IDiscountBox) => {
               //   setDays_limit_name(null);
               //   setDays_limit(null);
               // }}
-              label="بیشتر از"
+              label={language.more_than}
               disableSearch={true}
-              error_status={Error_days_limit.status || props.error}
+              error_status={Error_days_limit.status || error}
               InputDisable={true}
               defaultVal={days_limit_name}
               Select={(e) => {
@@ -171,9 +180,9 @@ const DiscountBox = (props: IDiscountBox) => {
           <div className="tail containers">
             <TextInput
               name="price"
-              label="درصد تخفیف"
+              label={language.discount_percent}
               error={{
-                status: Error_discount_percent.status || props.error,
+                status: Error_discount_percent.status || error,
                 message: Error_discount_percent.message,
               }}
               value={discount_percent}
@@ -196,7 +205,7 @@ const DiscountBox = (props: IDiscountBox) => {
               validation={{
                 required: true,
                 messages: {
-                  required: "لطفا درصد تخفیف را وارد کنید",
+                  required: language.please_enter_discount_percentage,
                 },
               }}
             />
@@ -204,7 +213,7 @@ const DiscountBox = (props: IDiscountBox) => {
           </div>
           <div className="divs button_box">
             <p className="confirm" onClick={onConfirm}>
-              ثبت
+              {language.submit}
             </p>
             <p
               // className="cancel"
@@ -221,10 +230,10 @@ const DiscountBox = (props: IDiscountBox) => {
                   setDays_limit(null);
                   setDiscountcheck(0);
                 }
-                props.setShowBox(0);
+                setShowBox(0);
               }}
             >
-              لغو
+              {language.cancel}
             </p>
             {mode.status && (
               <IoMdTrash
@@ -238,7 +247,7 @@ const DiscountBox = (props: IDiscountBox) => {
                   setDays_limit_name(null);
                   setDays_limit(null);
                   setDiscountcheck(0);
-                  props.setShowBox(0);
+                  setShowBox(0);
                 }}
                 color="#737373"
                 size="2rem"
@@ -250,12 +259,12 @@ const DiscountBox = (props: IDiscountBox) => {
         <div
           className="add_new_one HEAP_SetCarAndTiming_Btn_AddDiscount"
           onClick={() => {
-            props.setShowBox(1);
+            setShowBox(1);
             setDiscountcheck(1);
           }}
         >
           <p>
-            افزودن تخفیف
+            {language.add_discount}
             <IoMdAdd size="2rem" color="#4ba3ce" />
           </p>
         </div>
@@ -266,8 +275,9 @@ const DiscountBox = (props: IDiscountBox) => {
             <div key={i} className="discount_item_container">
               <div className="discount_item">
                 <p>
-                  برای اجاره‌ بیشتر از {item.days_limit} روز <br />
-                  {item.discount_percent} درصد تخفیف
+                  {language.for_more_than} {item.days_limit} {language.day}{" "}
+                  <br />
+                  {item.discount_percent} {language.discount_percent}
                 </p>
                 <span
                   // className="confirm"
@@ -286,7 +296,7 @@ const DiscountBox = (props: IDiscountBox) => {
                         return index !== i;
                       })
                     );
-                    props.removeDiscountList(i);
+                    removeDiscountList(i);
                   }}
                 >
                   <IoMdCreate size="2rem" />
@@ -300,8 +310,8 @@ const DiscountBox = (props: IDiscountBox) => {
                       })
                     );
                     setDiscountcheck(0);
-                    props.removeDiscountList(i);
-                    props.setShowBox(0);
+                    removeDiscountList(i);
+                    setShowBox(0);
                   }}
                 >
                   <IoMdTrash size="2rem" />
@@ -323,6 +333,7 @@ interface IDiscountBox {
   showDiscount: number;
   setShowBox: any;
   error?: boolean;
+  language: any;
 }
 
 export default DiscountBox;

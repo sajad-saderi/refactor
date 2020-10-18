@@ -10,7 +10,7 @@ import Button from "../form/Button";
 import ShowResult from "./ShowResult/ShowResult";
 import Link from "next/link";
 
-const Calculator = (props: ICalculator) => {
+const Calculator = ({ AbText, language }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
   const [modelList, setModelList] = useState([]);
   const [value, setValue] = useState("");
@@ -89,20 +89,20 @@ const Calculator = (props: ICalculator) => {
      * validation to ignore empty values or if the inputted value is smaller then 10 million
      */
     if (!brand.id) {
-      setBrandError({ status: true, message: "سازنده را انتخاب کنید" });
+      setBrandError({ status: true, message: language.form_error_1 });
       setLoading(false);
       return;
     } else if (!model.id) {
-      setModelError({ status: true, message: "نام مدل را انتخاب کنید" });
+      setModelError({ status: true, message: language.form_error_2 });
       setLoading(false);
       return;
     } else if (value === "") {
-      setValueError({ status: true, message: "ارزش خودرو را وارد کنید" });
+      setValueError({ status: true, message: language.form_error_3 });
       setLoading(false);
       return;
     }
     if (+value < 20000000) {
-      setValueError({ status: true, message: "ارزش خودرو کمتر از حد مجاز" });
+      setValueError({ status: true, message: language.form_error_4 });
       setLoading(false);
       return;
     }
@@ -148,13 +148,13 @@ const Calculator = (props: ICalculator) => {
     <>
       {showCalculateBox ? (
         <>
-          <h2>چقدر می‌توانید از ماشینتان کسب درآمد کنید؟</h2>
-          <p className="title">مشخصات ماشین‌تان را وارد کنید:</p>
+          <h2>{language.h2}</h2>
+          <p className="title">{language.p_title}</p>
           <form data-test-id="form" onSubmit={calculator}>
             <div className="calculator_dropDown">
               <DropdownSearch
                 data-test-id="brand"
-                search_place_holder="در نام در سازنده‌ها"
+                search_place_holder={language.brand_place_holder}
                 defaultVal={brand.name}
                 data={brandList}
                 // clearField={() =>
@@ -182,7 +182,7 @@ const Calculator = (props: ICalculator) => {
                     console.log("Em...I think heap not work correctly :/");
                   }
                 }}
-                placeholder="سازنده"
+                placeholder={language.brand}
                 InputDisable={true}
                 error_status={brandError.status}
               />
@@ -192,7 +192,7 @@ const Calculator = (props: ICalculator) => {
               <DropdownSearch
                 defaultVal={model.name}
                 data={modelList}
-                search_place_holder="در نام مدل‌ها"
+                search_place_holder={language.model_place_holder}
                 // clearField={() => {
                 //   setModel({ id: null, name: null });
                 // }}
@@ -213,7 +213,7 @@ const Calculator = (props: ICalculator) => {
                   }
                   setModel({ id: v.value, name: v.name });
                 }}
-                placeholder="نام خودرو (مدل)"
+                placeholder={language.model}
                 error_status={modelError.status}
               />
               <span className="error_Field">{modelError.message}</span>
@@ -237,23 +237,23 @@ const Calculator = (props: ICalculator) => {
                 min={7}
                 max={14}
                 value={value}
-                placeholder="ارزش خودرو"
+                placeholder={language.value}
                 validation={{
                   number: true,
                   min: 20000000,
                   messages: {
-                    required: "لطفا ارزش خودرو را وارد کنید",
-                    min: "ارزش خودرو باید بیشتر از 20.000.000 تومان باشد",
+                    required: language.error_value_1,
+                    min: language.error_value_2,
                   },
                   required: true,
                 }}
               />
-              <span>تومان</span>
+              <span>{language.toman}</span>
             </div>
             <Button
               data-test-id="local_Button_joinUs"
               // onClick on this button nothing happened, the event listening to submitting the form
-              value="تخمین درآمد"
+              value={language.estimate}
               click={() => {}}
               class="Blue_BTN local_Button_joinUs"
               loading={loading}
@@ -262,14 +262,19 @@ const Calculator = (props: ICalculator) => {
         </>
       ) : (
         <>
-          <ShowResult daily={daily} weekly={weekly} monthly={monthly} />
+          <ShowResult
+            language={language.show_result}
+            daily={daily}
+            weekly={weekly}
+            monthly={monthly}
+          />
           <div className="addCarnowInlanding">
             <Link href="/add-car">
               <a
                 className="Blue_BTN addCar_top_joinus_a"
                 data-test-id="addCar_top_joinus_a"
               >
-                {props.AbText ? props.AbText : "ماشین‌تان را اضافه کنید"}
+                {AbText ? AbText : language.add_your_car}
               </a>
             </Link>
           </div>
@@ -292,7 +297,7 @@ const Calculator = (props: ICalculator) => {
               setShowCalculateBox(true);
             }}
           >
-            محاسبه مجدد
+            {language.calculate_again}
           </p>
         </>
       )}
@@ -302,6 +307,7 @@ const Calculator = (props: ICalculator) => {
 
 interface ICalculator {
   AbText?: string;
+  language: any;
 }
 
 export default Calculator;

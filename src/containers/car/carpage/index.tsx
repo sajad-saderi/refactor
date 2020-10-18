@@ -19,7 +19,7 @@ import carImage from "../../../../public/image/car-image.jpg";
 moment.loadPersian({ dialect: "persian-modern" });
 // import "./carpage.scss";
 
-const CarPage = () => {
+const CarPage = ({ language }: ICarPage) => {
   // set date picker date to get new price and availability
   const [dayRange, setDayRange] = React.useState<DayRange>({
     from: null,
@@ -34,7 +34,7 @@ const CarPage = () => {
     setAvg_discounted_price_per_day,
   ] = useState(null);
   const [avg_price_per_day, setAvg_price_per_day] = useState(null);
-  const [unit, setUnit] = useState("هراز");
+  const [unit, setUnit] = useState(`${language.thousand}`);
   const [body_style, setBody_style] = useState(null);
   const [transmission_type, setTransmission_type] = useState(null);
   const [with_driver, setWith_driver] = useState(null);
@@ -210,7 +210,11 @@ const CarPage = () => {
       setAvailableCar(false);
     }
 
-    setUnit(res.avg_discounted_price_per_day >= 1000000 ? "میلیون" : "هزار");
+    setUnit(
+      res.avg_discounted_price_per_day >= 1000000
+        ? language.million
+        : language.thousand
+    );
     setBody_style(res.body_style);
     setTransmission_type(res.transmission_type);
     setWith_driver(res.with_driver);
@@ -280,18 +284,22 @@ const CarPage = () => {
               owner.company_name
                 ? owner.company_name
                 : owner.first_name + " " + owner.last_name
-            } - ${car.name.fa} | اتولی`}
-            description="همین حالا اجاره کنید"
+            } - ${car.name.fa}${language.next_seo.title.otoli}`}
+            description={language.next_seo.description}
             noindex={true}
             openGraph={{
-              title: `اجاره ${car.brand.name.fa} ${car.name.fa} در اتولی`,
-              description: "همین حالا اجاره کنید",
-              site_name: "اتولی",
+              title: `${
+                owner.company_name
+                  ? owner.company_name
+                  : owner.first_name + " " + owner.last_name
+              } - ${car.name.fa}${language.next_seo.title.otoli}`,
+              description: language.next_seo.description,
+              site_name: language.next_seo.site_name,
             }}
             twitter={{
-              handle: "@otoli_net",
-              site: "@otoli_net",
-              cardType: "summary_large_image",
+              handle: language.next_seo.handle,
+              site: language.next_seo.site,
+              cardType: language.next_seo.cardType,
             }}
           />
           {/* {dayRange.from?.day && dayRange.to?.day && !is_mine ? (
@@ -333,7 +341,7 @@ const CarPage = () => {
                       </p>
                     ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
-                    {avg_price_per_day && <span>تومان در روز</span>}
+                    {avg_price_per_day && <span>{language.toman_per_day}</span>}
                   </div>
                 )
               )}
@@ -345,7 +353,7 @@ const CarPage = () => {
                 showCalender ? (
                   <div className="calender_section_mobile_view">
                     <hr />
-                    <h2>تاریخ اجاره</h2>
+                    <h2>{language.calender_section_mobile_view_h2}</h2>
                     {showDateText && dayRange.from ? (
                       <div className="Rent_date">
                         <p>
@@ -385,7 +393,7 @@ const CarPage = () => {
                                 )
                                 .toString()
                                 .replace("-", "")}
-                              روز)
+                              {language.Rent_date_day})
                             </>
                           )}
                         </p>
@@ -396,7 +404,7 @@ const CarPage = () => {
                             setShowCalender(true);
                           }}
                         >
-                          تغییر تاریخ
+                          {language.change_date_in_car_page_change_date}
                         </p>
                       </div>
                     ) : (
@@ -425,7 +433,9 @@ const CarPage = () => {
                             disabledDays={[utils("fa").getToday()]}
                           />
                           <div className="input_container">
-                            <p className="label">از تاریخ</p>
+                            <p className="label">
+                              {language.input_container_label_start_date}
+                            </p>
                             <input
                               data-hj-whitelist
                               className={
@@ -442,7 +452,9 @@ const CarPage = () => {
                             />
                           </div>
                           <div className="input_container">
-                            <p className="label">تا تاریخ</p>
+                            <p className="label">
+                              {language.input_container_label_end_date}
+                            </p>
                             <input
                               data-hj-whitelist
                               className={[
@@ -468,64 +480,70 @@ const CarPage = () => {
                 ) : null
               ) : null}
               <hr />
-              <h2>محل خودرو و تحویل</h2>
+              <h2>{language.location_for_deliver}</h2>
               <p>{location.name.breadcrumb_fa}</p>
               {location.parent_id === 1 && deliver_at_renters_place ? (
-                <p>در محدوده تهران، خودرو در محل شما تحویل می‌شود.</p>
+                <p>{language.deliver_at_tehran}</p>
               ) : null}
               {with_driver && (
                 <>
                   <hr />
-                  <h2>اجاره با راننده</h2>
-                  <span>
-                    اجاره این خودرو فقط، همراه با راننده امکان‌پذیر است.
-                  </span>
+                  <h2>{language.with_driver}</h2>
+                  <span>{language.just_with_drive}</span>
                 </>
               )}
               <hr />
-              <h2>محدودیت مسافت</h2>
-              <p>{max_km_per_day} کیلومتر در روز</p>
-              <p>هزینه هر کیلومتر اضافه {extra_km_price_name}</p>
+              <h2>{language.distance_in_day}</h2>
+              <p>
+                {max_km_per_day}
+                {language.KM_in_day}
+              </p>
+              <p>
+                {language.extra_price}
+                {extra_km_price_name}
+              </p>
               {description && (
                 <>
                   <hr />
-                  <h2>درباره خودرو</h2>
+                  <h2>{language.about_car}</h2>
                   <pre>{description}</pre>
                 </>
               )}
               <hr />
-              <h2>مشخصات فنی</h2>
+              <h2>{language.features}</h2>
               <div className="info_container">
                 <p className="alignThem">
-                  <span className="info_name">نوع بدنه</span>{" "}
+                  <span className="info_name">{language.body_style}</span>{" "}
                   <span className="info_value">{body_style.name.fa}</span>
                 </p>
                 <p className="alignThem">
-                  <span className="info_name">گیربکس</span>{" "}
+                  <span className="info_name">{language.gear_box}</span>{" "}
                   <span className="info_value">
                     {transmission_type.name.fa}
                   </span>
                 </p>
                 {cylinder ? (
                   <p className="alignThem">
-                    <span className="info_name">سیلندر</span>{" "}
+                    <span className="info_name">{language.cylinder}</span>{" "}
                     <span className="info_value">{cylinder.name.fa}</span>
                   </p>
                 ) : null}
                 <p className="alignThem">
-                  <span className="info_name">کارکرد</span>{" "}
+                  <span className="info_name">{language.mile_age}</span>{" "}
                   <span className="info_value">{mileage_range.name.fa}</span>
                 </p>
                 <p className="alignThem">
-                  <span className="info_name">ظرفیت</span>{" "}
-                  <span className="info_value">{capacity} نفر</span>
+                  <span className="info_name">{language.capacity}</span>{" "}
+                  <span className="info_value">
+                    {capacity} {language.person}
+                  </span>
                 </p>
               </div>
 
               {facility_set.length > 0 && (
                 <>
                   <hr />
-                  <h2>امکانات</h2>
+                  <h2>{language.facilities}</h2>
                   <div className="facilities_container">
                     {facility_set.map((item) => (
                       <p key={item.id}>{item.name.fa}</p>
@@ -534,12 +552,12 @@ const CarPage = () => {
                 </>
               )}
               <hr />
-              <h2>شرایط اجاره و کنسلی</h2>
+              <h2>{language.condition_and_cancellation}</h2>
               <pre>{cancellation_policy}</pre>
               {car.category_set.length > 0 && (
                 <>
                   <hr />
-                  <h2>برچسب</h2>
+                  <h2>{language.tag}</h2>
                   {car.category_set.map((item) => (
                     <Link
                       key={item.id}
@@ -577,7 +595,7 @@ const CarPage = () => {
                       </p>
                     ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
-                    {avg_price_per_day && <span>تومان در روز</span>}
+                    {avg_price_per_day && <span>{language.toman_per_day}</span>}
                   </div>
                 )
               )}
@@ -622,7 +640,7 @@ const CarPage = () => {
                           )
                           .toString()
                           .replace("-", "")}
-                        روز)
+                        {language.Rent_date_day})
                       </>
                     )}
                   </p>
@@ -633,7 +651,7 @@ const CarPage = () => {
                       setShowCalender(true);
                     }}
                   >
-                    تغییر تاریخ
+                    {language.change_date_in_car_page_change_date}
                   </p>
                 </div>
               ) : null}
@@ -664,7 +682,9 @@ const CarPage = () => {
                         disabledDays={[utils("fa").getToday()]}
                       />
                       <div className="input_container">
-                        <p className="label">از تاریخ</p>
+                        <p className="label">
+                          {language.input_container_label_start_date}
+                        </p>
                         <input
                           data-hj-whitelist
                           className={
@@ -681,7 +701,9 @@ const CarPage = () => {
                         />
                       </div>
                       <div className="input_container">
-                        <p className="label">تا تاریخ</p>
+                        <p className="label">
+                          {language.input_container_label_end_date}
+                        </p>
                         <input
                           data-hj-whitelist
                           className={[
@@ -723,10 +745,7 @@ const CarPage = () => {
                     loading={loading}
                     click={GoToCheckout}
                   />
-                  <span className="extra_info">
-                    هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید
-                    کرد.
-                  </span>
+                  <span className="extra_info">{language.extra_info}</span>
                 </div>
               ) : null}
             </section>
@@ -734,11 +753,15 @@ const CarPage = () => {
         </>
       ) : (
         <>
-          <NextSeo title="خودرو | اتولی" noindex={true} />
+          <NextSeo title={language.next_seo.load_title} noindex={true} />
           <CarPageLoading />
         </>
       )}
     </>
   );
 };
+
+interface ICarPage {
+  language: any;
+}
 export default CarPage;

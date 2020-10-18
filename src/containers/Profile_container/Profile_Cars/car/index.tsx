@@ -13,7 +13,7 @@ import Toast_context from "../../../../context/Toast_context";
 import Modal_context from "../../../../context/Modal_context";
 import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
 
-const Car = (props: ICar) => {
+const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [id, setId] = useState(null);
   const [media_set, setMedia_set] = useState(null);
   const [hasMedia, setHasMedia] = useState(true);
@@ -31,31 +31,31 @@ const Car = (props: ICar) => {
   const token = jsCookie.get("token");
 
   useEffect(() => {
-    if (props.data) {
+    if (data) {
       /**
        * @cancellation_policy
        * if this value is correct car will be active otherwise tha car
        * is out of service
        */
-      setId(props.data.id);
-      if (props.data.cancellation_policy) {
+      setId(data.id);
+      if (data.cancellation_policy) {
         // set the data
-        setIs_out_of_service(props.data.is_out_of_service);
-      } else if (!props.data.is_out_of_service) {
+        setIs_out_of_service(data.is_out_of_service);
+      } else if (!data.is_out_of_service) {
         setUncompletedCar(true);
         setIs_out_of_service(false);
-        setServiceStatus(props.data.id);
+        setServiceStatus(data.id);
       } else {
         setUncompletedCar(true);
         setIs_out_of_service(false);
       }
-      setYear(props.data.year);
-      if (props.data.has_media) {
-        setMedia_set(props.data.media_set);
+      setYear(data.year);
+      if (data.has_media) {
+        setMedia_set(data.media_set);
       } else setHasMedia(false);
-      setCar(props.data.car);
+      setCar(data.car);
     }
-  }, [props.data]);
+  }, [data]);
 
   const setServiceStatus = async (localId?) => {
     // start showing the spinner
@@ -71,12 +71,8 @@ const Car = (props: ICar) => {
       // show toast
       TOAST_CONTEXT.toast_option({
         message: service_res
-          ? `
-    خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده نخواهد شد.
-    `
-          : `
-    خودروی ${car.name.fa} شما در نتایج جستجو نمایش داده خواهد شد.
-    `,
+          ? `${language.khodro} ${car.name.fa} ${language.nemishe}`
+          : `${language.khodro} ${car.name.fa} ${language.mishe}`,
         time: 10,
         autoClose: true,
       });
@@ -91,14 +87,14 @@ const Car = (props: ICar) => {
     try {
       const delete_res = await REQUEST_DELETE_CAR({ token, id });
       jsCookie.remove("new_car");
-      props.getListAgain();
+      getListAgain();
     } catch (error) {
       console.log("!Error", error);
     }
   };
 
-  let link = props.is_mine ? `/car/${id}?owner=true` : `/car/${id}`;
-  let hrefProp = props.is_mine ? `/car/[id]?owner=true` : `/car/[id]`;
+  let link = is_mine ? `/car/${id}?owner=true` : `/car/${id}`;
+  let hrefProp = is_mine ? `/car/[id]?owner=true` : `/car/[id]`;
   return (
     car && (
       <div className="carcard">
@@ -129,12 +125,12 @@ const Car = (props: ICar) => {
                   }}
                 />
               ) : (
-                <img src={carThumbnail} alt={`تصویر پیش فرض خودرو`} />
+                <img src={carThumbnail} alt={language.default_image} />
               )}
               <div className="read_more">
-                <span>مشاهده مشخصات</span>
+                <span>{language.details}</span>
               </div>
-              {uncompletedCar && props.is_mine ? (
+              {uncompletedCar && is_mine ? (
                 <div className="alert_for_car">
                   <p
                     onClick={(e) => {
@@ -142,8 +138,9 @@ const Car = (props: ICar) => {
                       Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
                     }}
                   >
-                    برای نمایش خودرو لازم است <span>شرایط اجاره </span>
-                    خودروتان را تعیین کنید.
+                    {language.to_show_this_car}
+                    <span>{language.rent_condition}</span>
+                    {language.setting}
                   </p>
                 </div>
               ) : null}
@@ -156,7 +153,7 @@ const Car = (props: ICar) => {
             </div>
           </a>
         </Link>
-        {props.is_mine && (
+        {is_mine && (
           <div className="edit_part">
             <p
               onClick={() => {
@@ -167,7 +164,9 @@ const Car = (props: ICar) => {
                 uncompletedCar ? "set_car_timing_btn" : null,
               ].join(" ")}
             >
-              {uncompletedCar ? "شرایط اجاره" : "تغییر تاریخ و قیمت"}
+              {uncompletedCar
+                ? language.rent_condition
+                : language.edit_time_date}
             </p>
             {uncompletedCar ? null : is_out_of_service_loading ? (
               <Spinner display="inline-block" width={20} color="#4ba3ce" />
@@ -177,7 +176,9 @@ const Car = (props: ICar) => {
                 className="HEAP_Profile_Btn_OutOfService"
                 onClick={setServiceStatus}
               >
-                {is_out_of_service ? "فعال کردن خودرو" : "غیر فعال کردن خودرو"}
+                {is_out_of_service
+                  ? language.active_the_car
+                  : language.inactive_the_car}
               </p>
             )}
             <div className="icon_container">
@@ -216,6 +217,7 @@ interface ICar {
   data: any;
   // update the car list
   getListAgain: any;
+  language: any;
 }
 
 export default Car;

@@ -16,7 +16,7 @@ import modal_context from "../../context/Modal_context";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
-const Search = (props: ISearch) => {
+const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
@@ -109,8 +109,8 @@ const Search = (props: ISearch) => {
     e.preventDefault();
     if (dayRange.from && dayRange.to) {
       // if we are on dynamic page don't change the route
-      if (props.dynamic) {
-        props.searchSubmit({
+      if (dynamic) {
+        searchSubmit({
           location_id: 1,
           date: {
             // convert dates to standard structure
@@ -145,9 +145,9 @@ const Search = (props: ISearch) => {
         },
       });
     } else if (!dayRange.from) {
-      setFromError({ status: true, message: "تاریخ شروع را انتخاب کنید" });
+      setFromError({ status: true, message: language.search.error_start_date });
     } else if (!dayRange.to) {
-      setToError({ status: true, message: "تاریخ پایان را انتخاب کنید" });
+      setToError({ status: true, message: language.search.error_end_date });
     }
   };
 
@@ -172,7 +172,7 @@ const Search = (props: ISearch) => {
         });
         setToError({
           status: true,
-          message: "تاریخ شروع و پایان نمی‌تواند یکسان باشد",
+          message: language.search.error_empty_dates,
         });
       } else {
         setToError({ status: false, message: "" });
@@ -198,12 +198,14 @@ const Search = (props: ISearch) => {
         onSubmit={(e) => GotoSearchResult(e)}
       >
         <div className="search_box_div">
-          <p className="label">خودرو را کجا تحویل میگیرید؟</p>
+          <p className="label">{language.search.label_location}</p>
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
             hardValue="تهران"
-            search_place_holder="در نام شهرها"
+            search_place_holder={
+              language.search.label_location_search_place_holder
+            }
             Select={(i) => {
               if (i.value !== 1) {
                 // setLocationId(i.key);
@@ -236,7 +238,7 @@ const Search = (props: ISearch) => {
               disabledDays={[utils("fa").getToday()]}
             />
             <div className="input_container">
-              <p className="label">از تاریخ</p>
+              <p className="label">{language.search.label_start_date}</p>
               <input
                 data-hj-whitelist
                 className={
@@ -257,7 +259,7 @@ const Search = (props: ISearch) => {
               <span>{fromError.message}</span>
             </div>
             <div className="input_container">
-              <p className="label">تا تاریخ</p>
+              <p className="label">{language.search.label_end_date}</p>
               <input
                 data-hj-whitelist
                 className={[
@@ -285,7 +287,7 @@ const Search = (props: ISearch) => {
         <div className="search_box_div">
           <p className="Search_Text_transparent">search</p>
           <Button
-            value="جستجو"
+            value={language.search.btn}
             class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
             loading={loading}
             click={() => {}}
@@ -300,6 +302,7 @@ interface ISearch {
   // if the search box is at the top of the dynamic page
   dynamic?: boolean;
   searchSubmit?: any;
+  language: any;
 }
 
 export default Search;

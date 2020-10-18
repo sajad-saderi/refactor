@@ -5,7 +5,7 @@ import pelak from "../../../public/image/pelak.png";
 const PelakView = (props: IPelakView) => {
   return (
     <div className="pelak_view_container">
-      <img src={pelak} alt="تصویر پلاک" />
+      <img src={pelak} alt="license_number_image" />
       <p className="first">{props.registration_plate_first_part}</p>
       <p className="second">{props.registration_plate_second_part}</p>
       <p className="third">{props.registration_plate_third_part}</p>

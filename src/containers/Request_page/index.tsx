@@ -9,7 +9,7 @@ import Auth_context from "../../../src/context/Auth_context";
 import PleaseLogin from "../../components/PleaseLogin";
 import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
 
-const Request_page = () => {
+const Request_page = ({ language }: IRequest_page) => {
   const [result, setResult] = useState([]);
   const [Authorize, setAuthorize] = useState(false);
   const [show, setShow] = useState(false);
@@ -61,6 +61,7 @@ const Request_page = () => {
                 return (
                   <div className="Request_car" key={i}>
                     <Request_cart
+                      language={language.request_cart}
                       data={item}
                       getDataAgain={(id) => {
                         fetchAPI(id);
@@ -76,11 +77,15 @@ const Request_page = () => {
         </section>
       </article>
     ) : (
-      <PleaseLogin />
+      <PleaseLogin language={language.please_login} />
     )
   ) : (
     <article className="minHeight"></article>
   );
 };
+
+interface IRequest_page {
+  language?: any;
+}
 
 export default Request_page;

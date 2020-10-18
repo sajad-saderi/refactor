@@ -25,7 +25,7 @@ import carImage from "../../../../public/image/car-image-thumbnail.jpg";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
-const Request_cart = (props: IRequest_cart) => {
+const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [rentStatus, setRentStatus] = useState(null);
   const [status_id, setStatus_id] = useState(null);
   const [car, setCar] = useState(null);
@@ -72,7 +72,7 @@ const Request_cart = (props: IRequest_cart) => {
           time: 10,
           autoClose: true,
         });
-        // props.getDataAgain();
+        // getDataAgain();
         switch (data.action) {
           case "approve":
             CreateTheStatusForThisCard("approved");
@@ -98,10 +98,10 @@ const Request_cart = (props: IRequest_cart) => {
   };
 
   useEffect(() => {
-    if (props.data) {
+    if (data) {
       CreateTheStatusForThisCard();
     }
-  }, [props.data]);
+  }, [data]);
 
   const CreateTheStatusForThisCard = (status = null) => {
     /**
@@ -111,18 +111,18 @@ const Request_cart = (props: IRequest_cart) => {
      * @owner
      * اجاره دهنده
      */
-    let renter = props.data.role === "renter" ? true : false;
-    let has_insurance = props.data.has_insurance ? true : false;
+    let renter = data.role === "renter" ? true : false;
+    let has_insurance = data.has_insurance ? true : false;
 
     // small portion at the top right on the request cart
     let RentStatus = null;
-    setStatus_id(status ? status : props.data.status.id);
-    switch (status ? status : props.data.status.id) {
+    setStatus_id(status ? status : data.status.id);
+    switch (status ? status : data.status.id) {
       case "new":
         RentStatus = (
           <div className="rent_status">
             <IoIosDownload size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         // set the button attribute base on the role and action
@@ -130,19 +130,18 @@ const Request_cart = (props: IRequest_cart) => {
           !renter
             ? [
                 {
-                  value: "قبول",
+                  value: language.accept,
                   class:
                     "Blue_BTN request_car_accept HEAP_Request_Btn_Accept ACCEPTED_INCOMING_REQUEST",
                   click: () =>
-                    setForRequest({ action: "approve", id: props.data.id }),
+                    setForRequest({ action: "approve", id: data.id }),
                 },
                 {
-                  value: "رد",
+                  value: language.reject,
                   class:
                     "Blue_BTN request_car_reject HEAP_Request_Btn_Reject REJECT_INCOMING_REQUEST",
                   loading: ButtonLoader,
-                  click: () =>
-                    setForRequest({ action: "reject", id: props.data.id }),
+                  click: () => setForRequest({ action: "reject", id: data.id }),
                 },
               ]
             : []
@@ -152,18 +151,17 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoIosCard size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         setButton_code(
           renter
             ? [
                 {
-                  value: "پرداخت",
+                  value: language.pay,
                   class:
                     "Blue_BTN request_car_pay GO_TO_BANK HEAP_Request_Btn_GotoBank",
-                  click: () =>
-                    setForRequest({ action: "pay", id: props.data.id }),
+                  click: () => setForRequest({ action: "pay", id: data.id }),
                 },
               ]
             : []
@@ -173,7 +171,7 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoIosRemoveCircle size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         setButton_code([]);
@@ -182,7 +180,7 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoIosEyeOff size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         break;
@@ -190,18 +188,18 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoIosCheckboxOutline size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         setButton_code(
           renter
             ? [
                 {
-                  value: "خودرو را تحویل گرفتم",
+                  value: language.deliver,
                   class:
                     "Blue_BTN request_car_pay CAR_DELIVERED HEAP_Request_Btn_CarDelivered",
                   click: () =>
-                    setForRequest({ action: "deliver", id: props.data.id }),
+                    setForRequest({ action: "deliver", id: data.id }),
                 },
               ]
             : []
@@ -211,7 +209,7 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoIosHand size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         break;
@@ -219,18 +217,18 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoLogoModelS size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         setButton_code(
           !renter
             ? [
                 {
-                  value: "خودرو را بازتحویل گرفتم",
+                  value: language.returned,
                   class:
                     "Blue_BTN request_car_pay HEAP_Request_Btn_CarReturned",
                   click: () => {
-                    setForRequest({ action: "return", id: props.data.id });
+                    setForRequest({ action: "return", id: data.id });
                   },
                 },
               ]
@@ -241,15 +239,15 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoMdFlag size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         setButton_code(
           renter
-            ? props.data.has_renter_reviewed_rent_order
+            ? data.has_renter_reviewed_rent_order
               ? [
                   {
-                    value: "قبلا برای این سفارش، نظر ثبت کرده اید",
+                    value: language.repetitive_review,
                     disable: true,
                     class: "Blue_BTN request_car_pay disable_rate_btn",
                     click: () => {},
@@ -257,17 +255,17 @@ const Request_cart = (props: IRequest_cart) => {
                 ]
               : [
                   {
-                    value: "ثبت نظر",
+                    value: language.review,
                     class: "Blue_BTN request_car_pay",
                     click: () =>
                       // send this data to modal
-                      MODAL_CONTEXT.modalHandler("Renter", props.data),
+                      MODAL_CONTEXT.modalHandler("Renter", data),
                   },
                 ]
-            : props.data.has_owner_reviewed_rent_order
+            : data.has_owner_reviewed_rent_order
             ? [
                 {
-                  value: "قبلا برای این سفارش، نظر ثبت کرده اید",
+                  value: language.repetitive_review,
                   disable: true,
                   class: "Blue_BTN request_car_pay disable_rate_btn",
                   click: () => {},
@@ -275,11 +273,11 @@ const Request_cart = (props: IRequest_cart) => {
               ]
             : [
                 {
-                  value: "ثبت نظر",
+                  value: language.review,
                   class: "Blue_BTN request_car_pay",
                   click: () =>
                     // send this data to modal
-                    MODAL_CONTEXT.modalHandler("Owner", props.data),
+                    MODAL_CONTEXT.modalHandler("Owner", data),
                 },
               ]
         );
@@ -288,48 +286,48 @@ const Request_cart = (props: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <IoIosDownload size="1.4rem" color="#656565" />
-            <span>{props.data.status.name}</span>
+            <span>{data.status.name}</span>
           </div>
         );
         break;
     }
     // set initials value
     setRentStatus(RentStatus);
-    setCar(props.data.rent_search_dump.car);
-    setStart_date(props.data.rent_search_dump.start_date);
-    setEnd_date(props.data.rent_search_dump.end_date);
-    setNo_of_days(props.data.rent_search_dump.no_of_days);
-    if (props.data.rent_search_dump.media_set.length > 0)
-      setMedia_set(props.data.rent_search_dump.media_set[0]);
+    setCar(data.rent_search_dump.car);
+    setStart_date(data.rent_search_dump.start_date);
+    setEnd_date(data.rent_search_dump.end_date);
+    setNo_of_days(data.rent_search_dump.no_of_days);
+    if (data.rent_search_dump.media_set.length > 0)
+      setMedia_set(data.rent_search_dump.media_set[0]);
     else setMedia_set({ thumbnail_url: carImage });
     setDiscounted_total_price(
       renter
-        ? props.data.rent_search_dump.discounted_total_price
-        : props.data.rent_search_dump.owner_price
-        ? props.data.rent_search_dump.owner_price
-        : props.data.rent_search_dump.discounted_total_price
+        ? data.rent_search_dump.discounted_total_price
+        : data.rent_search_dump.owner_price
+        ? data.rent_search_dump.owner_price
+        : data.rent_search_dump.discounted_total_price
     );
     setInsurance_total_price(
-      has_insurance ? props.data.rent_search_dump.insurance_total_price : 0
+      has_insurance ? data.rent_search_dump.insurance_total_price : 0
     );
     setCoupon(
-      props.data.rent_search_dump.coupon
-        ? props.data.rent_search_dump.coupon.total_price
+      data.rent_search_dump.coupon
+        ? data.rent_search_dump.coupon.total_price
         : null
     );
-    setTotal_discount(props.data.rent_search_dump.total_discount);
+    setTotal_discount(data.rent_search_dump.total_discount);
     setRole(renter);
-    setOwner_Info(props.data.rent_search_dump.owner);
-    setRenter_info(props.data.renter);
+    setOwner_Info(data.rent_search_dump.owner);
+    setRenter_info(data.renter);
     setPelak({
       registration_plate_first_part:
-        props.data.rent_search_dump.registration_plate_first_part,
+        data.rent_search_dump.registration_plate_first_part,
       registration_plate_second_part:
-        props.data.rent_search_dump.registration_plate_second_part,
+        data.rent_search_dump.registration_plate_second_part,
       registration_plate_third_part:
-        props.data.rent_search_dump.registration_plate_third_part,
+        data.rent_search_dump.registration_plate_third_part,
       registration_plate_forth_part:
-        props.data.rent_search_dump.registration_plate_forth_part,
+        data.rent_search_dump.registration_plate_forth_part,
     });
   };
   return (
@@ -361,11 +359,13 @@ const Request_cart = (props: IRequest_cart) => {
             </p>
             {/* </div> */}
             <p>
-              <span>مدت اجاره</span>
-              <span>{no_of_days} روز</span>
+              <span>{language.rent_duration}</span>
+              <span>
+                {no_of_days} {language.day}
+              </span>
             </p>
             <p>
-              <span>هزینه اجاره</span>
+              <span>{language.cost}</span>
               {role ? (
                 <span>
                   {insurance_total_price
@@ -377,10 +377,12 @@ const Request_cart = (props: IRequest_cart) => {
                     : coupon
                     ? coupon.toLocaleString()
                     : discounted_total_price.toLocaleString()}{" "}
-                  تومان
+                  {language.toman}
                 </span>
               ) : (
-                <span>{discounted_total_price.toLocaleString()} تومان</span>
+                <span>
+                  {discounted_total_price.toLocaleString()} {language.toman}
+                </span>
               )}
             </p>
           </div>
@@ -437,7 +439,10 @@ const Request_cart = (props: IRequest_cart) => {
               status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
                   0{renter_info.cell}
-                  <span className="extra_Text"> :تماس با مهمان</span>
+                  <span className="extra_Text">
+                    {" "}
+                    {language.contact_with_renter}
+                  </span>
                 </a>
               ) : null}
             </>
@@ -449,7 +454,7 @@ const Request_cart = (props: IRequest_cart) => {
             button_code.map((item, i) => (
               <Button
                 key={i}
-                // the button props adjust in useEffect on data
+                // the button adjust in useEffect on data
                 value={item.value}
                 class={item.class}
                 loading={i === 1 ? rejectButtonLoader : ButtonLoader}
@@ -465,6 +470,7 @@ const Request_cart = (props: IRequest_cart) => {
 interface IRequest_cart {
   data: any;
   getDataAgain?: any;
+  language: any;
 }
 
 export default Request_cart;

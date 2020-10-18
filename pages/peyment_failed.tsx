@@ -5,33 +5,33 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import Button from "../src/components/form/Button";
 import "../src/styles/pages/Failed_payment.scss";
 import { NextSeo } from "next-seo";
+import language from "../public/languages/fa/paymentfaild.json";
 
 const Failed_payment = () => {
   return (
     <Layout>
       <NextSeo
-        title="پرداخت ناموفق"
-        description="پرداخت موفق"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "پرداخت ناموفق",
-          description:
-            "پرداخت موفق",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="responsive minHeight failed_payment">
         <section className="alarm_container">
           <IoIosCloseCircleOutline size="10rem" color="a3678b" />
-          <p>انصراف از پرداخت</p>
+          <p>{language.cancel}</p>
         </section>
         <Button
           class="Blue_BTN local_style"
           click={() => Router.push("/")}
-          value="صفحه اصلی"
+          value={language.main_page}
           loading={false}
         />
       </article>

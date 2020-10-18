@@ -3,38 +3,33 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import _500 from "../public/image/500.png";
+import language from "../public/languages/fa/_500.json";
 
 const AboutUs = () => {
   return (
     <Layout>
       <NextSeo
-        title="خطایی رخ داده است | اتولی"
-        description="خطایی رخ داده است | اتولی"
+        title={language.title}
+        description={language.description}
         openGraph={{
-          title: "خطایی رخ داده است | اتولی",
-          description: "خطایی رخ داده است | اتولی",
+          title: language.title,
+          description: language.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.handle,
+          site: language.site,
+          cardType: language.cardType,
         }}
       />
       <article className="minHeight _500container">
         <img src={_500} alt="500" className="_404PageImage" />
-        <span>
-          به زودی این مشکل را برطرف خواهیم کرد. لطفا کمی بعد دوباره به ما سر
-          بزنید.
-        </span>
+        <span>{language.span}</span>
+        <p>{language.p_1}</p>
         <p>
-          همیشه خوشحال می‌شویم صدای شما را از طریق تلفن بشنویم یا به وسیله چت با
-          شما در تماس باشیم.
-        </p>
-        <p>
-          شماره تماس: <a href="tel:02188567759">۰۲۱۸۸۵۶۷۷۵۹</a>
+          {language.dial} <a href={`tel:${language.call}`}>{language.call}</a>
         </p>
         <Link href="/">
-          <a className="_404PageAnchor Blue_BTN">بازگشت به صفحه اصلی</a>
+          <a className="_404PageAnchor Blue_BTN">{language.return}</a>
         </Link>
       </article>
     </Layout>

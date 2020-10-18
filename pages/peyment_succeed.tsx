@@ -7,8 +7,8 @@ import Router from "next/router";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import "../src/styles/pages/Success_payment.scss";
 import carImage from "../public/image/car-image-thumbnail.jpg";
-
 import { NextSeo } from "next-seo";
+import language from "../public/languages/fa/paymentsucceed.json";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -40,16 +40,16 @@ const Success_payment = () => {
   return (
     <Layout>
       <NextSeo
-        title="پرداخت موفق"
-        description="پرداخت موفق"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "پرداخت موفق",
-          description: "پرداخت موفق",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="responsive minHeight local_payment">
@@ -57,10 +57,10 @@ const Success_payment = () => {
           <section className="payment_cart">
             <IoMdCheckmarkCircleOutline size="10rem" color="#73af55" />
             <div>
-              <h4>پرداخت با موفقیت انجام شد</h4>
+              <h4>{language.h4}</h4>
               {rent_search_dump.media_set.length > 0 && (
                 <img
-                  alt="تصویر خودرو"
+                  alt={language.car_image}
                   src={
                     rent_search_dump.media_set.length > 0
                       ? rent_search_dump.media_set[0].thumbnail_url
@@ -77,19 +77,19 @@ const Success_payment = () => {
               <br />
             </div>
             <p>
-              <span>هزینه پرداختی</span>
+              <span>{language.span_1}</span>
               <span>{rent_search_dump.total_price.toLocaleString()} تومان</span>
             </p>
             <p>
-              <span>محل تحویل</span>
+              <span>{language.span_2}</span>
               <span>
                 {rent_search_dump.deliver_at_renters_place
-                  ? "در محدوده تهران، خودرو در محل شما تحویل می‌شود."
+                  ? language.span_3
                   : rent_search_dump.location.name.fa}
               </span>
             </p>
             <p>
-              <span>از</span>
+              <span>{language.az}</span>
               <span>
                 {moment(rent_search_dump.start_date, "jYYYY/jMM/jDD").format(
                   "jD jMMMM jYYYY"
@@ -97,7 +97,7 @@ const Success_payment = () => {
               </span>
             </p>
             <p>
-              <span>تا</span>
+              <span>{language.ta}</span>
               <span>
                 {moment(rent_search_dump.end_date, "jYYYY/jMM/jDD").format(
                   "jD jMMMM jYYYY"
@@ -105,19 +105,21 @@ const Success_payment = () => {
               </span>
             </p>
             <p>
-              <span>مدت زمان</span>
-              <span>{rent_search_dump.no_of_days} روز</span>
+              <span>{language.time}</span>
+              <span>
+                {rent_search_dump.no_of_days} {language.day}
+              </span>
             </p>
             <p>
-              <span>محدودیت مسافت در روز</span>
+              <span>{language.limit}</span>
               <span className="float-left">
-                {rent_search_dump.max_km_per_day} کیلومتر
+                {rent_search_dump.max_km_per_day} {language.kilometer}
               </span>
             </p>
           </section>
         ) : (
-          <p className="loading_text">در حال دریافت اطلاعات پرداخت...</p>
-        )}{" "}
+          <p className="loading_text">{language.loading}</p>
+        )}
       </article>
     </Layout>
   );

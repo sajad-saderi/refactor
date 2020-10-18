@@ -5,6 +5,7 @@ import { REQUEST_GET_FAQ } from "../src/API";
 import Accordion from "../src/components/Accordion";
 import "../src/styles/pages/faq.scss";
 import Spinner from "../src/components/Spinner";
+import language from "../public/languages/fa/faq.json";
 
 const FAQ = () => {
   const [items, setItems] = useState([]);
@@ -18,20 +19,20 @@ const FAQ = () => {
   return (
     <Layout showToTop={true}>
       <NextSeo
-        title="سوال‌های پرتکرار | اتولی"
-        description="پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم"
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "سوال‌های پرتکرار | اتولی",
-          description: "پاسخگوی تمام سوالات شما در بخش پرسش و پاسخ اتولی هستیم",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="responsive minHeight FAQ_Page">
-        <h1>{"سوالات پرتکرار"}</h1>
+        <h1>{language.h1}</h1>
         {items.length > 0 ? (
           items.map((item, i) => {
             return (
@@ -45,7 +46,7 @@ const FAQ = () => {
         ) : (
           <div className="load_content">
             <Spinner display="inline-block" width={20} color="#737373" />
-            <span>در حال بارگذاری</span>
+            <span>{language.loading}</span>
           </div>
         )}
       </article>

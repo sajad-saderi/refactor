@@ -6,7 +6,11 @@ import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import Button from "../../../../components/form/Button";
 import Router from "next/router";
 
-const GetUserCellPhone = (props: IGetUserCellPhone) => {
+const GetUserCellPhone = ({
+  panelController,
+  showCaption,
+  language,
+}: IGetUserCellPhone) => {
   const [cellPhone, setCellPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
@@ -64,7 +68,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
           Cell_Phone_context.cell_phone = cellPhone;
           console.log(response.data);
           setLoading(false);
-          props.panelController();
+          panelController();
         }
       })
       .catch((error) => {
@@ -87,8 +91,8 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
   return (
     <>
       <div className="modal_box_div">
-        {props.showCaption ? (
-          <h2 className="optional_caption">ورود/ثبت نام</h2>
+        {showCaption ? (
+          <h2 className="optional_caption">{language.log_sigh}</h2>
         ) : null}
         <form onSubmit={sendConfirmCode}>
           <TextInput
@@ -108,8 +112,8 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
             value={cellPhone}
             // min={11}
             // max={11}
-            label="شماره تلفن همراه" 
-            placeholder="مثال: 09121234567"
+            label={language.cell_phone}
+            placeholder={language.example}
             clearField={clearField}
             validation={{
               number: true,
@@ -118,10 +122,10 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
                 maxLen: 11,
               },
               messages: {
-                required: "لطفا تلفن همراه را وارد کنید",
-                length: "شماره همراه باید 11 رقم باشد",
-                minLen: "شماره وارد شده صحیح نیست",
-                maxLen: "شماره وارد شده صحیح نیست",
+                required: language.error_1,
+                length: language.error_2,
+                minLen: language.error_3,
+                maxLen: language.error_4,
               },
               required: true,
             }}
@@ -130,7 +134,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
           {/* <span className="error_message">{error.message}</span> */}
           <Button
             class="Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode"
-            value="ارسال کد ورود"
+            value={language.send}
             loading={loading}
             click={() => {}}
           />
@@ -143,6 +147,7 @@ const GetUserCellPhone = (props: IGetUserCellPhone) => {
 interface IGetUserCellPhone {
   panelController: any;
   showCaption?: boolean;
+  language: any;
 }
 
 export default GetUserCellPhone;

@@ -2,6 +2,8 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
+import language from "../../../public/languages/fa/footer.json";
+
 // import "./footer.scss";
 import {
   IoIosArrowDropup,
@@ -64,61 +66,61 @@ const Footer = (props: IFooter) => {
         <ul className="links">
           <li>
             <Link href="/about-us">
-              <a>درباره ما</a>
+              <a>{language.about_us}</a>
             </Link>
           </li>
           <li>
             <Link href="/otoli">
-              <a>اتولی چگونه کار می‌کند؟</a>
+              <a>{language.otoli}</a>
             </Link>
           </li>
           {props.LinkControl ? (
             <li>
               <Link href="/guide-renter">
-                <a>راهنمای میزبان</a>
+                <a>{language.guide_renter}</a>
               </Link>
             </li>
           ) : null}
           {props.LinkControl ? (
             <li>
               <Link href="/evaluation">
-                <a>اعتبار سنجی مشتریان</a>
+                <a>{language.evaluation}</a>
               </Link>
             </li>
           ) : null}
           <li>
             <Link href="/faq">
-              <a>سوالات متداول</a>
+              <a>{language.faq}</a>
             </Link>
           </li>
           <li>
             <Link href="/our-policies">
-              <a>شرایط و قوانین استفاده</a>
+              <a>{language.our_policies}</a>
             </Link>
           </li>
           <li>
             <Link href="/insurance-policies">
-              <a>شرایط و پوشش‌های بیمه</a>
+              <a>{language.insurance_policies}</a>
             </Link>
           </li>
           {props.LinkControl ? null : (
             <li>
               <Link href="/rent">
-                <a>اجاره ماشین</a>
+                <a>{language.rent}</a>
               </Link>
             </li>
           )}
           {props.LinkControl ? null : (
             <li>
               <Link href="/site-map">
-                <a>نقشه سایت</a>
+                <a>{language.site_map}</a>
               </Link>
             </li>
           )}
         </ul>
 
         <div className="social_container_footer">
-          <h3>ما را در شبکه‌های اجتماعی دنبال کنید:</h3>
+          <h3>{language.social_container_footer_h3}</h3>
           <div>
             <a target="_black" href="https://www.instagram.com/otoli_net/">
               <IoLogoInstagram size="3rem" color="#4ba3ce" />
@@ -131,21 +133,21 @@ const Footer = (props: IFooter) => {
             </a>
           </div>
           <p>
-            شماره تماس:{" "}
+            {" "}
+            {language.social_container_footer_p}
             <a href="tel:02188567759" className="HEAP_Footer_Link_Phone">
-              ۰۲۱۸۸۵۶۷۷۵۹{" "}
+              {language.social_container_footer_a_1}
             </a>
             ,
             <a href="tel:09391414574" className="HEAP_Footer_Link_Phone">
-              {" "}
-              09391414574
+              {language.social_container_footer_a_2}
             </a>
           </p>
         </div>
       </div>
       <div className="signature">
         <span className="ver">2.0.0</span>
-        <p>تمامی حقوق برای وب‌سایت اتولی محفوظ است.</p>
+        <p>{language.signature}</p>
       </div>
     </footer>
   );

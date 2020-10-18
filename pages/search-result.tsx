@@ -3,15 +3,16 @@ import Layout from "../src/Layout";
 import "../src/styles/pages/search_result.scss";
 import Search_result from "../src/containers/Search_result";
 import { NextSeo } from "next-seo";
+import language from "../public/languages/fa/searchresult.json";
 
 const SearchResult = () => {
   return (
     <Layout>
       <NextSeo
-        title="جستجو | اتولی"
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        title={language.nextSeo_title}
+        description={language.nextSeo_description}
       />
-      <Search_result />
+      <Search_result language={language} />
     </Layout>
   );
 };

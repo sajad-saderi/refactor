@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import GetUserCellPhone from "../../containers/header/modals/GetUserCellPhone";
 import ConfirmCode from "../../containers/header/modals/ConfirmCode";
 
-const PleaseLogin = () => {
+const PleaseLogin = ({ language }: IPleaseLogin) => {
   const [change, setChange] = useState(false);
   // const MODAL_CONTEXT = useContext(Modal_context);
   const panelController = () => {
@@ -23,11 +23,13 @@ const PleaseLogin = () => {
       <div className="modal_box">
         {change ? (
           <ConfirmCode
+            language={language.ConfirmCode}
             panelController={panelController}
             customModalControl={true}
           />
         ) : (
           <GetUserCellPhone
+            language={language.GetUserCellPhone}
             showCaption={true}
             data-test-id="GetUserCellPhone"
             panelController={panelController}
@@ -37,4 +39,8 @@ const PleaseLogin = () => {
     </div>
   );
 };
+
+interface IPleaseLogin {
+  language: any;
+}
 export default PleaseLogin;
