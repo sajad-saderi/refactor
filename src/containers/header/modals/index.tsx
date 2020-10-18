@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import GetUserCellPhone from "./GetUserCellPhone";
 import ConfirmCode from "./ConfirmCode";
 import modal_context from "../../../context/Modal_context";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdPerson } from "react-icons/io";
 import TellMe from "./Tell_me";
 import Renter from "./Renter";
 import Owner from "./Owner";
@@ -26,7 +26,9 @@ const Modals = (props) => {
           "modal_box",
           // custom classes for different modals
           props.modal_type === "Login"
-            ? "login_modal"
+            ? change
+              ? "confirm_modal"
+              : "login_modal"
             : props.modal_type === "TellMe"
             ? "Tell_me"
             : props.modal_type === "Renter"
@@ -42,12 +44,23 @@ const Modals = (props) => {
       >
         {/* close Icon */}
         <div className="modal_box_div">
-          <IoMdClose
-            className="close_btn"
-            color="rgb(165, 165, 165)"
-            size="2rem"
-            onClick={() => Modal_context.modalHandler()}
-          />
+          {props.modal_type === "Login" ? (
+            <div className="login_modal_title">
+              <IoMdPerson
+                size="2rem"
+                color="#fff"
+                className="login_person_icon"
+              />
+              <h2>{language.title}</h2>
+            </div>
+          ) : (
+            <IoMdClose
+              className="close_btn"
+              color="rgb(165, 165, 165)"
+              size="2rem"
+              onClick={() => Modal_context.modalHandler()}
+            />
+          )}
         </div>
         {/* model section */}
         {props.modal_type === "Login" ? (

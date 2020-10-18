@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-// import "./inputStyle.scss";
-import { IoMdClose } from "react-icons/io";
+import React, { useState, useRef, useEffect } from "react";
 
 const NumberSeparatedTextInput = (props: ItextInput) => {
   const [localError, setLocalError] = useState({
@@ -8,73 +6,16 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
     message: "",
   });
 
-  const ValueHandler = (e) => {
-    let value = e.target.value;
-    // check the given character and convert it to english
-    const persianNumbers = [
-      /۰/g,
-      /۱/g,
-      /۲/g,
-      /۳/g,
-      /۴/g,
-      /۵/g,
-      /۶/g,
-      /۷/g,
-      /۸/g,
-      /۹/g,
-    ];
-    const arabicNumbers = [
-      /٠/g,
-      /١/g,
-      /٢/g,
-      /٣/g,
-      /٤/g,
-      /٥/g,
-      /٦/g,
-      /٧/g,
-      /٨/g,
-      /٩/g,
-    ];
-    const persianNumbersSTD = [
-      /۰/g,
-      /۱/g,
-      /۲/g,
-      /۳/g,
-      /۴/g,
-      /۵/g,
-      /۶/g,
-      /۷/g,
-      /۸/g,
-      /۹/g,
-    ];
-    // replace all the arabic or persian character with english number
-    for (var i = 0; i < 10; i++) {
-      value = value
-        .replace(persianNumbers[i], i)
-        .replace(persianNumbersSTD[i], i)
-        .replace(arabicNumbers[i], i);
-    }
-    if (props.number) {
-      // remove all the non-numeric char from string
-      value = value.replace(/[^0-9]/g, "");
-    }
-    // if the input is not number return the input without any changes
-    props.onChangeHandler(value);
-  };
+  const input_ref_separated = useRef(null);
 
-  // useEffect(() => {
-  //   if (props.error.status) {
-  //     scrollTo(0, TextInput.current.offsetTop);
-  //   }
-  // }, [props.error]);
-
-  const validation = (data) => {
+  const validation = (finalValue) => {
     if (!props.validation) {
-      return;
+      return false;
     }
-    let value: string | number = props.value;
+    let data = props.validation;
+    let value: string | number = finalValue;
     if (data.required) {
-      if (props.value === "") {
+      if (finalValue === "") {
         setLocalError({
           status: true,
           message: data.messages.required,
@@ -87,62 +28,52 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         });
       }
     }
-    if (data.number) {
-      if (props.number) {
-        if (typeof props.value !== "number")
-          value = Number(props.value.replace(/,/gi, ""));
-      }
-      if (/[^0-9]/g.test(value.toString())) {
-        setLocalError({
-          status: true,
-          message: "ورودی نامعتبر",
-        });
-      } else if (data.LengthControl) {
-        if (data.LengthControl.minLen) {
-          if (value.toString().length < data.LengthControl.minLen) {
-            setLocalError({
-              status: true,
-              message: data.messages.minLen,
-            });
-          }
-        }
-        if (data.LengthControl.maxLen) {
-          if (value.toString().length > data.LengthControl.maxLen) {
-            setLocalError({
-              status: true,
-              message: data.messages.maxLen,
-            });
-          }
-        }
-      } else if (data.length) {
-        if (value.toString().length < data.length) {
+    if (/[^0-9]/g.test(value.toString())) {
+      setLocalError({
+        status: true,
+        message: "ورودی نامعتبر",
+      });
+    } else if (data.LengthControl) {
+      if (data.LengthControl.minLen) {
+        if (value.toString().length < data.LengthControl.minLen) {
           setLocalError({
             status: true,
-            message: data.messages.length,
+            message: data.messages.minLen,
           });
         }
-      } else if (data.min && value < data.min) {
+      }
+      if (data.LengthControl.maxLen) {
+        if (value.toString().length > data.LengthControl.maxLen) {
+          setLocalError({
+            status: true,
+            message: data.messages.maxLen,
+          });
+        }
+      }
+    } else if (data.length) {
+      if (value.toString().length < data.length) {
         setLocalError({
           status: true,
-          message: data.messages.min,
-        });
-      } else if (data.max && value > data.max) {
-        setLocalError({
-          status: true,
-          message: data.messages.max,
-        });
-      } else {
-        setLocalError({
-          status: false,
-          message: "",
+          message: data.messages.length,
         });
       }
+    } else if (data.min && value < data.min) {
+      setLocalError({
+        status: true,
+        message: data.messages.min,
+      });
+    } else if (data.max && value > data.max) {
+      setLocalError({
+        status: true,
+        message: data.messages.max,
+      });
+    } else {
+      setLocalError({
+        status: false,
+        message: "",
+      });
     }
-    // if(data.string){
-    //   if(data.length){}
-    //   if(data.minLength){}
-    //   if(data.maxLength){}
-    // }
+    return true;
   };
 
   return (
@@ -159,91 +90,47 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
       >
         {props.label}
       </label>
-      <div
-        className={[
-          "input_surround",
-          props.show_separated_place ? "separated_places" : null,
-        ].join(" ")}
-      >
+      <div className="separated_places">
         <input
-          data-test-id="input"
+          ref={input_ref_separated}
+          type="number"
           data-hj-whitelist="true"
-          onInvalid={(e: any) => {
-            /**
-             *
-             * this part it just works in numeric status
-             * If the length of the input is smaller then props.min input is invalid and error style will shown
-             */
-            if (props.value.length < props.min) {
-              e.target.setCustomValidity(
-                `حداقل ورودی باید ${props.min} کاراکتر باشد`
-              );
-            } else if (props.value.length > props.max) {
-              e.target.setCustomValidity(
-                `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
-              );
-            }
-          }}
-          autoFocus={props.autoFocus}
-          className={[
-            "text_input",
-            "data-hj-whitelist",
-            props.error.status || localError.status ? "inputError" : null,
-          ].join(" ")}
+          tabIndex={1}
+          autoFocus={true}
+          key={1}
+          autoComplete="off"
+          className={["text_input"].join(" ")}
           name={props.name}
-          value={
-            /**
-             * If it's number
-             *  If is empty show "" (nothing)
-             *
-             * If it's number
-             *  And it's NOT empty so Do toLocaleString() on value
-             *
-             * If it's number
-             *   And it's NOT empty and props.localeString is ACTIVE
-             *    Print the current value without change
-             *
-             * If it's number
-             *   And it's NOT empty and props.localeString is DEACTIVATE
-             *    Do  toLocaleString() on value
-             *
-             * If it's NOT number
-             *   Print the current value without change
-             */
-            props.number
-              ? props.value === ""
-                ? props.value.toLocaleString()
-                : props.localeString
-                ? props.value
-                : Number(props.value).toLocaleString()
-              : props.value
-            // props.value
-          }
+          value={props.value}
           onChange={(e: any) => {
-            e.target.setCustomValidity("");
-            ValueHandler(e);
-          }}
-          disabled={props.disabled}
-          maxLength={props.max}
-          minLength={props.min}
-          placeholder={props.placeholder}
-          // check the validation on blur event listener
-          onBlur={() => {
-            validation(props.validation);
-            if (props.Input_onBlur) {
-              props.Input_onBlur();
-            }
-          }}
-          onFocus={() => {
+            e.persist();
             setLocalError({
               status: false,
               message: "",
             });
+            props.onChangeHandler(e.target.value);
           }}
+          onKeyUp={(e) => {
+            e.persist();
+            if (props.value.length === 4)
+              if (e.keyCode !== 8)
+                if (e.keyCode !== 46) return input_ref_separated.current.blur();
+          }}
+          max={9999}
+          min={0}
+          onBlur={() => validation(props.value)}
         />
-         
-        
-         
+        <div
+          className={[
+            "border_on_each_Item",
+            props.error.status || localError.status ? "span_error" : null,
+          ].join(" ")}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
       {/* 
         If the props.error.status === true and props.error.message has a value,
@@ -261,45 +148,15 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
 interface ItextInput {
   // name of the input
   name: string;
-
-  // responsible to clear the input
-  clearField: any;
-
   // keystroke listener
   onChangeHandler: any;
-  value: string;
   error: any;
-  // Ready to type ofter load
-  autoFocus: boolean;
-
-  // deactivate the input
-  disabled?: boolean;
-
-  max?: number;
-  min?: number;
   label?: string;
-  placeholder?: string;
-
   // you can set the custom color to the label of the input
   LabelColor?: string;
-
-  // convert the input type from 'text' to 'number'
-  number?: boolean;
-
-  // don't shoe clear icon
-  HideClearIcon?: boolean;
-
-  // control on converting the value inside the input to local string
-  localeString?: boolean;
-
   // validation rules and requirements
   validation?: any;
-  Input_onBlur?: any;
-  showTail?: boolean;
-  tail_value?: string;
-
-  show_separated_place?: boolean;
-  separateChar?: any;
+  value: any;
 }
 
 export default NumberSeparatedTextInput;

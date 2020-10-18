@@ -8,6 +8,7 @@ import Router from "next/router";
 import jsCookie from "js-cookie";
 import Button from "../../../../components/form/Button";
 import CountDown from "../../../../components/countDown";
+import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
 
 const ConfirmCode = ({
   panelController,
@@ -139,7 +140,26 @@ const ConfirmCode = ({
   return (
     <div className="modal_box_div confirm_code">
       <form onSubmit={sendConfirmCode}>
-        <TextInput
+        <NumberSeparatedTextInput
+          error={error}
+          name="code"
+          onChangeHandler={(e) => {
+            setCode(e);
+          }}
+          value={code}
+          label={language.text_input_label}
+          validation={{
+            number: true,
+            length: 4,
+            messages: {
+              required: language.require,
+              length: language.length,
+            },
+            required: true,
+          }}
+        />
+
+        {/* <TextInput
           error={error}
           name="code"
           onChangeHandler={(e) => {
@@ -161,7 +181,7 @@ const ConfirmCode = ({
             },
             required: true,
           }}
-        />
+        /> */}
         {/* <span className="error_message">{error.message}</span> */}
         <div className="go_back">
           {ActiveAgain ? (
