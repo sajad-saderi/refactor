@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import { FaLanguage } from "react-icons/fa";
 // import "./inputStyle.scss";
 import { IoMdClose } from "react-icons/io";
-
+import language from "../../../../public/languages/fa/textinputcomponent.json";
 const TextInput = (props: ItextInput) => {
   const [localError, setLocalError] = useState({
     status: false,
@@ -96,7 +97,7 @@ const TextInput = (props: ItextInput) => {
       if (/[^0-9]/g.test(value.toString())) {
         setLocalError({
           status: true,
-          message: "ورودی نامعتبر",
+          message: language.not_valid,
         });
       } else if (data.LengthControl) {
         if (data.LengthControl.minLen) {
@@ -172,11 +173,11 @@ const TextInput = (props: ItextInput) => {
              */
             if (props.value.length < props.min) {
               e.target.setCustomValidity(
-                `حداقل ورودی باید ${props.min} کاراکتر باشد`
+                `${language.min_length} ${props.min} ${language.characters}`
               );
             } else if (props.value.length > props.max) {
               e.target.setCustomValidity(
-                `طول ورودی نباید بیشتر از ${props.max} کاراکتر باشد`
+                `${language.min_length} ${props.max} ${language.characters}`
               );
             }
           }}

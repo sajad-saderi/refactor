@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import language from "../../../../public/languages/fa/textinputcomponent.json";
 
 const NumberSeparatedTextInput = (props: ItextInput) => {
   const [localError, setLocalError] = useState({
@@ -31,7 +32,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
     if (/[^0-9]/g.test(value.toString())) {
       setLocalError({
         status: true,
-        message: "ورودی نامعتبر",
+        message:  language.not_valid,
       });
     } else if (data.LengthControl) {
       if (data.LengthControl.minLen) {

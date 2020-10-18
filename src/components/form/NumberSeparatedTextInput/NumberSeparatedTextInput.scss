@@ -37,8 +37,13 @@
       &:focus {
         background-color: #ffffff;
       }
+      &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
-        display: none;
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
       }
     }
     .border_on_each_Item {
