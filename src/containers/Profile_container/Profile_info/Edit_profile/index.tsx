@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useReducer, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useReducer,
+  useRef,
+  useCallback,
+} from "react";
 import {
   REQUEST_SET_USER_IMAGE,
   REQUEST_SET_FIRST_LAST_NAME,
@@ -10,6 +16,8 @@ import TextInput from "../../../../components/form/TextInput";
 // import "./edit_profile.scss";
 import Button from "../../../../components/form/Button";
 import jsCookie from "js-cookie";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "../../../../../utils/cropImage";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -68,13 +76,18 @@ const stateErrorReducer = (current, action) => {
 const Edit_profile = ({
   data,
   setEdit,
-  language,
   triggerUpload,
+  language,
 }: IEdit_profile) => {
   const [showCompany, setShowCompany] = useState(false);
   const [privateLink, setPrivateLink] = useState(false);
   const [loading, setLoading] = useState(false);
   const [newImage, setNewImage] = useState(null);
+  const [croptStart, setCroptStart] = useState(false);
+
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [state, dispatch] = useReducer(stateReducer, {
     first_name: "",
     last_name: "",
@@ -93,6 +106,7 @@ const Edit_profile = ({
   });
 
   const file_input = useRef(null);
+  const canvas_ref = useRef(null);
 
   const token = jsCookie.get("token");
 
@@ -105,8 +119,6 @@ const Edit_profile = ({
   };
 
   useEffect(() => {
-    console.log(data);
-
     dispatch({ type: "first_name", first_name: data.first_name });
     dispatch({ type: "last_name", last_name: data.last_name });
     if (data.company_name) {
@@ -120,9 +132,6 @@ const Edit_profile = ({
       setPrivateLink(true);
       dispatch({ type: "username", username: data.username });
     }
-  }, [data]);
-
-  useEffect(() => {
     if (triggerUpload) {
       if (
         data.thumbnail_url ===
@@ -242,8 +251,25 @@ const Edit_profile = ({
     setEdit(true);
   };
 
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const showCroppedImage = useCallback(async () => {
+    try {
+      const croppedImage = await getCroppedImg(state.image, croppedAreaPixels);
+      console.log("donee", { croppedImage });
+      setNewImage(croppedImage);
+      dispatch({ type: "image", image: croppedImage });
+      setCroptStart(false);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels]);
+
   return (
     <form className="edit_profile_form" onSubmit={EditFormSubmit}>
+      new
       <img
         src={
           state.image
@@ -267,12 +293,49 @@ const Edit_profile = ({
               alert(language.incorrect_picture_extension);
               return false;
             }
+
             setNewImage(file);
+            setCroptStart(true);
+            const objectURL = URL.createObjectURL(file);
+            console.log("objectURL", objectURL);
+            console.log(file);
+
             const reader = new FileReader();
             reader.readAsDataURL(file);
             dispatch({ type: "image", image: URL.createObjectURL(file) });
           }}
         />
+        {croptStart && (
+          <div className="crop_container">
+            <Cropper
+              image={state.image}
+              crop={crop}
+              zoom={zoom}
+              minZoom={-1}
+              maxZoom={10}
+              aspect={1 / 1}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setZoom}
+              cropShape="round"
+              cropSize={{ width: 200, height: 200 }}
+            />
+            <div className="Crop_BTN_container">
+              <span className="Blue_BTN local_class" onClick={showCroppedImage}>
+                تایید
+              </span>
+              <span
+                className="Blue_BTN cancel_class"
+                onClick={() => {
+                  setNewImage(null);
+                  setCroptStart(false);
+                }}
+              >
+                لغو
+              </span>
+            </div>
+          </div>
+        )}
       </div>
       <TextInput
         name="first_name"
@@ -379,8 +442,8 @@ const Edit_profile = ({
 interface IEdit_profile {
   data: any;
   setEdit: any;
-  language: any;
   // Open the file input by click on the avatar image
   triggerUpload?: boolean;
+  language?: any;
 }
 export default Edit_profile;

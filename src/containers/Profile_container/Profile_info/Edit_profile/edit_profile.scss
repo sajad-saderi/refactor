@@ -22,6 +22,20 @@
       opacity: 0;
       margin: 0;
     }
+    .crop_container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      .reactEasyCrop_Container {
+        z-index: 11;
+        img {
+          width: auto;
+        }
+      }
+    }
   }
   img {
     width: 10rem;
@@ -42,8 +56,9 @@
     }
     input {
       margin: 0.5rem 0;
-    } 
+    }
   }
+  .Crop_BTN_container,
   .BTN_container {
     display: flex;
     justify-content: space-between;
@@ -56,6 +71,16 @@
     .cancel_class,
     .local_class {
       width: 49%;
+      text-align: center; 
     }
+  }
+  .Crop_BTN_container {
+    position: absolute;
+    bottom: 2rem;
+    width: 30rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 20;
   }
 }
