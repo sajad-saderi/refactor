@@ -44,8 +44,8 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
 
   let unit =
     avg_discounted_price_per_day >= 1000000
-      ? language.search_result_section.car.thousand
-      : language.search_result_section.car.million;
+      ? language.search_result_section.car.million
+      : language.search_result_section.car.thousand;
   return (
     <div className="carCart HEAP_SearchResult_Card_Car">
       {/* <Link href={link}> */}
