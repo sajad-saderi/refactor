@@ -96,6 +96,7 @@ const GetUserCellPhone = ({
         ) : null}
         <form onSubmit={sendConfirmCode}>
           <TextInput
+            type="number"
             error={error}
             name="cell Phone"
             onChangeHandler={(e) => {
@@ -109,6 +110,7 @@ const GetUserCellPhone = ({
             }}
             autoFocus={false}
             localeString={false}
+            HideClearIcon={true}
             value={cellPhone}
             // min={11}
             // max={11}

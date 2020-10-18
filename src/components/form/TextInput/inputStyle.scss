@@ -37,6 +37,16 @@
         background-color: #ffffff;
       }
     }
+    .change_direction_onfocus {
+      -moz-appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      direction: ltr;
+      text-align: left;
+    }
     .clean_icon {
       position: absolute;
       left: 10px;

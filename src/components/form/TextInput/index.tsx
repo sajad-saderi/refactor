@@ -163,6 +163,7 @@ const TextInput = (props: ItextInput) => {
       </label>
       <div className="input_surround">
         <input
+          type={props?.type ? props.type : "text"}
           data-test-id="input"
           data-hj-whitelist="true"
           onInvalid={(e: any) => {
@@ -186,6 +187,11 @@ const TextInput = (props: ItextInput) => {
             "text_input",
             "data-hj-whitelist",
             props.error.status || localError.status ? "inputError" : null,
+            props?.type
+              ? props.type === "number"
+                ? "change_direction_onfocus"
+                : null
+              : null,
           ].join(" ")}
           name={props.name}
           value={
@@ -303,6 +309,7 @@ interface ItextInput {
   Input_onBlur?: any;
   showTail?: boolean;
   tail_value?: string;
+  type?: string;
 }
 
 export default TextInput;

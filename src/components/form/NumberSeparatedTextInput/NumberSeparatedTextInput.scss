@@ -34,6 +34,8 @@
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0;
       box-shadow: 0 0 0 0 transparent inset;
+      -moz-appearance: textfield;
+
       &:focus {
         background-color: #ffffff;
       }
@@ -41,9 +43,6 @@
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
-      }
-      input[type="number"] {
-        -moz-appearance: textfield;
       }
     }
     .border_on_each_Item {
