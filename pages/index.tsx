@@ -13,18 +13,17 @@ const HomePage = () => {
     <Layout>
       <NextSeo
         canonical="https://otoli.net/"
-        title="اتولی | اجاره آسان خودرو"
-        description="اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+        title={language.next_seo.title}
+        description={language.next_seo.description}
         openGraph={{
-          title: "اتولی | اجاره آسان خودرو",
-          description:
-            "اتولی سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با اتولی هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید.",
-          site_name: "اتولی",
+          title: language.next_seo.title,
+          description: language.next_seo.description,
+          site_name: language.next_seo.site_name,
         }}
         twitter={{
-          handle: "@otoli_net",
-          site: "@otoli_net",
-          cardType: "summary_large_image",
+          handle: language.next_seo.handle,
+          site: language.next_seo.site,
+          cardType: language.next_seo.cardType,
         }}
       />
       <article className="Homepage">
