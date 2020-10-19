@@ -96,7 +96,11 @@ const ImageUploader = ({
   return (
     <div ref={wrapperRef}>
       <label>{language.car_picture}</label>
-      <p className="image_upload_under_label">{language.text_1}</p>
+      <p className="image_upload_under_label">
+        {language.text_1}
+        <br />
+        {language.text_2}
+      </p>
       <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} />
         <p className="uploadText">{language.text_2}</p>

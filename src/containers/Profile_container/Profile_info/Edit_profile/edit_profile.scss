@@ -33,13 +33,16 @@
         z-index: 11;
         img {
           width: auto;
+          height: auto;
+          border-radius: 0;
         }
       }
     }
   }
   img {
-    width: 10rem;
-    border-radius: 4px;
+    height: 15rem;
+    width: 15rem;
+    border-radius: 50%;
     display: block;
     margin: auto;
   }
@@ -71,7 +74,7 @@
     .cancel_class,
     .local_class {
       width: 49%;
-      text-align: center; 
+      text-align: center;
     }
   }
   .Crop_BTN_container {

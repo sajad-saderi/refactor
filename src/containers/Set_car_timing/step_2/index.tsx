@@ -310,7 +310,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     if (Router.router.query?.newcaradded === "true") {
       dispatch({
         type: "is_out_of_service",
-        is_out_of_service: false,
+        is_out_of_service: true,
       });
     } else {
       dispatch({

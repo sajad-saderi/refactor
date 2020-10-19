@@ -257,10 +257,10 @@ const Edit_profile = ({
 
   const showCroppedImage = useCallback(async () => {
     try {
-      const croppedImage = await getCroppedImg(state.image, croppedAreaPixels);
-      console.log("donee", { croppedImage });
-      setNewImage(croppedImage);
-      dispatch({ type: "image", image: croppedImage });
+      const image = await getCroppedImg(state.image, croppedAreaPixels);
+      console.log("done", image);
+      setNewImage(image);
+      dispatch({ type: "image", image });
       setCroptStart(false);
     } catch (e) {
       console.error(e);
@@ -269,7 +269,6 @@ const Edit_profile = ({
 
   return (
     <form className="edit_profile_form" onSubmit={EditFormSubmit}>
-      new
       <img
         src={
           state.image
@@ -293,15 +292,14 @@ const Edit_profile = ({
               alert(language.incorrect_picture_extension);
               return false;
             }
-
             setNewImage(file);
             setCroptStart(true);
-            const objectURL = URL.createObjectURL(file);
-            console.log("objectURL", objectURL);
-            console.log(file);
+            // const objectURL = URL.createObjectURL(file);
+            // console.log("objectURL", objectURL);
+            // console.log(file);
 
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
+            // const reader = new FileReader();
+            // reader.readAsDataURL(file);
             dispatch({ type: "image", image: URL.createObjectURL(file) });
           }}
         />
@@ -311,7 +309,7 @@ const Edit_profile = ({
               image={state.image}
               crop={crop}
               zoom={zoom}
-              minZoom={-1}
+              minZoom={0.4}
               maxZoom={10}
               aspect={1 / 1}
               onCropChange={setCrop}

@@ -223,7 +223,7 @@ const Checkout_Container = ({ language }: ICheckout_Container) => {
               {/* show the day date and month name */}
               {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
             </p>
-            <IoMdArrowRoundBack size="3rem" color="#202020" />
+            <IoMdArrowRoundBack size="3rem" color="#707070" />
             <p>
               {/* convert date to days name */}
               {moment(end_date, "jYYYY/jMM/jDD").format("dddd")}
@@ -290,7 +290,7 @@ const Checkout_Container = ({ language }: ICheckout_Container) => {
               {/* show the day date and month name */}
               {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
             </p>
-            <IoMdArrowRoundBack size="3rem" color="#202020" />
+            <IoMdArrowRoundBack size="3rem" color="#707070" />
             <p>
               {moment(end_date, "jYYYY/jMM/jDD").format("dddd")}
               <br />
