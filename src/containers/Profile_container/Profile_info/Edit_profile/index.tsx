@@ -248,7 +248,7 @@ const Edit_profile = ({
       return;
     }
     setLoading(false);
-    setEdit(true);
+    setEdit(true); 
   };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
