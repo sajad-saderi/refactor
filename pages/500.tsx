@@ -5,7 +5,7 @@ import Link from "next/link";
 import _500 from "../public/image/500.png";
 import language from "../public/languages/fa/_500.json";
 
-const AboutUs = () => {
+const page_500 = () => {
   return (
     <Layout>
       <NextSeo
@@ -36,4 +36,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default page_500;

@@ -248,7 +248,7 @@ const Edit_profile = ({
       return;
     }
     setLoading(false);
-    setEdit(true); 
+    setEdit(true);
   };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
@@ -258,8 +258,8 @@ const Edit_profile = ({
   const showCroppedImage = useCallback(async () => {
     try {
       const image = await getCroppedImg(state.image, croppedAreaPixels);
+      dispatch({ type: "image", image: URL.createObjectURL(image) });
       setNewImage(image);
-      dispatch({ type: "image", image });
       setCroptStart(false);
     } catch (e) {
       console.error(e);
@@ -284,6 +284,9 @@ const Edit_profile = ({
           id="file"
           accept=".jpg,.jpeg,.png"
           ref={file_input}
+          onClick={() => {
+            file_input.current.value = null;
+          }}
           onChange={(e) => {
             let file = e.target.files[0];
             const types = ["image/png", "image/jpeg", "image/png"];
@@ -326,6 +329,10 @@ const Edit_profile = ({
                 onClick={() => {
                   setNewImage(null);
                   setCroptStart(false);
+                  if (data.thumbnail_url) {
+                    dispatch({ type: "image", image: data.thumbnail_url });
+                  }
+                  file_input.current.value = null;
                 }}
               >
                 لغو

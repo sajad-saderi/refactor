@@ -5,7 +5,7 @@ import Link from "next/link";
 import _404 from "../public/image/404.png";
 import language from "../public/languages/fa/_404.json";
 
-const AboutUs = () => {
+const page_404 = () => {
   return (
     <Layout>
       <NextSeo
@@ -31,4 +31,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default page_404;
