@@ -492,7 +492,7 @@ const Complete_register_container = ({
         </form>
       </article>
     ) : (
-      <PleaseLogin language={language} />
+      <PleaseLogin language={language.please_login} />
     )
   ) : (
     <article className="minHeight"></article>
