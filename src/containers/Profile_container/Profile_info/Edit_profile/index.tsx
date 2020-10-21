@@ -312,13 +312,12 @@ const Edit_profile = ({
               crop={crop}
               zoom={zoom}
               minZoom={1}
-              maxZoom={10}
-              aspect={1 / 1} 
+              maxZoom={5}
+              aspect={1 / 1}
               onCropChange={setCrop}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
-              cropShape="round"
-              cropSize={{ width: 200, height: 200 }}
+              cropShape="round" 
             />
             <div className="Crop_BTN_container">
               <span className="Blue_BTN local_class" onClick={showCroppedImage}>
