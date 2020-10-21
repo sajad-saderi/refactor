@@ -33,6 +33,7 @@
       text-align: center;
       .addCar_bottom_joinus_b {
         background-color: $purple;
+        border: 1px solid $purple;
         margin: auto;
         width: 28rem;
         display: inline-block;
@@ -136,6 +137,7 @@
         margin-bottom: -2rem;
         .addCar_top_joinus_a {
           background-color: $purple;
+          border: 1px solid $purple;
         }
       }
       .tryAgainCalc {

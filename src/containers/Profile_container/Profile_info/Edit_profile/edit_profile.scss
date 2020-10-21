@@ -83,12 +83,16 @@
   }
   .Crop_BTN_container {
     position: absolute;
-    bottom: 15vh;
-    width: 30rem;
+    bottom: 0;
+    width: 100%;
     left: 0;
     right: 0;
     margin: auto;
+    padding: 1.5rem;
     z-index: 20;
+    @media screen and(min-width:557px) {
+      width: 32rem;
+    }
     .cancel_class {
       color: $light_grey;
       border-color: $light_grey;
