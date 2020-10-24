@@ -9,6 +9,7 @@
 .pnp.js
 
 #documentation
+/.docz
 /.docz/.cache
 /.docz/dist
 /.docz/node_modules
