@@ -63,6 +63,7 @@ const CarPage = ({ language }: ICarPage) => {
   const [showBorder, setShowBorder] = useState(false);
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
+  const [no_of_days, setNo_of_days] = useState("...");
   const [showDateText, setShowDateText] = useState(true);
 
   useEffect(() => {
@@ -111,6 +112,7 @@ const CarPage = ({ language }: ICarPage) => {
   }, []);
 
   const fetchData = async (data) => {
+    setNo_of_days("...")
     let localData = null;
     setShowPriceLoading(true);
     try {
@@ -224,6 +226,7 @@ const CarPage = ({ language }: ICarPage) => {
     // setIs_out_of_service(res.is_out_of_service);
     // setId(res.id);
     setDeliver_at_renters_place(res.deliver_at_renters_place);
+    setNo_of_days(res.no_of_days);
     setLocation(res.location);
     setMileage_range(res.mileage_range);
     setOwner(res.owner);
@@ -319,15 +322,15 @@ const CarPage = ({ language }: ICarPage) => {
             alt={`${car.brand.name.fa} ${car.name.fa}`}
           />
           {/* car info section */}
-          <article className="responsive Car_page_container">
-            <section className="carInfo_container">
+          <article className='responsive Car_page_container'>
+            <section className='carInfo_container'>
               {showPriceLoading ? (
-                <div className="price_place_holder">
-                  <Spinner color="#737373" display="block" width={20} />
+                <div className='price_place_holder'>
+                  <Spinner color='#737373' display='block' width={20} />
                 </div>
               ) : (
                 availableCar && (
-                  <div className="avg_discounted_price_per_day">
+                  <div className='avg_discounted_price_per_day'>
                     <p className={total_discount ? "discount_price" : null}>
                       {avg_price_per_day
                         ? avg_price_per_day.toLocaleString()
@@ -351,13 +354,13 @@ const CarPage = ({ language }: ICarPage) => {
               <h4>{year.name.fa}</h4>
               {!is_mine ? (
                 showCalender ? (
-                  <div className="calender_section_mobile_view">
+                  <div className='calender_section_mobile_view'>
                     <hr />
                     <h2>{language.calender_section_mobile_view_h2}</h2>
                     {showDateText && dayRange.from ? (
-                      <div className="Rent_date">
+                      <div className='Rent_date'>
                         <p>
-                          <span className="day_name">{`${moment(
+                          <span className='day_name'>{`${moment(
                             `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
                             "jYYYY/jM/jD"
                           ).format("dddd")}،`}</span>
@@ -365,8 +368,8 @@ const CarPage = ({ language }: ICarPage) => {
                             dayRange.from.month,
                             "jM"
                           ).format("jMMMM")}`}
-                          <IoIosArrowRoundBack size="2rem" color="#202020" />
-                          <span className="day_name">{`${moment(
+                          <IoIosArrowRoundBack size='2rem' color='#202020' />
+                          <span className='day_name'>{`${moment(
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                             "jYYYY/jM/jD"
                           ).format("dddd")}،`}</span>
@@ -374,31 +377,11 @@ const CarPage = ({ language }: ICarPage) => {
                             dayRange.to.month,
                             "jM"
                           ).format("jMMMM")}`}{" "}
-                          {dayRange.from.day === 31 ||
-                          dayRange.to.day === 31 ? null : (
-                            <>
-                              (
-                              {moment([
-                                dayRange.from.year,
-                                dayRange.from.month,
-                                dayRange.from.day,
-                              ])
-                                .diff(
-                                  moment([
-                                    dayRange.to.year,
-                                    dayRange.to.month,
-                                    dayRange.to.day,
-                                  ]),
-                                  "days"
-                                )
-                                .toString()
-                                .replace("-", "")}
-                              {language.Rent_date_day})
-                            </>
-                          )}
+                          ({no_of_days}
+                          {language.Rent_date_day})
                         </p>
                         <p
-                          className="change_date_in_car_page"
+                          className='change_date_in_car_page'
                           onClick={() => {
                             setShowDateText(false);
                             setShowCalender(true);
@@ -409,7 +392,7 @@ const CarPage = ({ language }: ICarPage) => {
                       </div>
                     ) : (
                       <div
-                        className="search_box_div"
+                        className='search_box_div'
                         onClick={() => setCalenderClick(true)}
                       >
                         <div
@@ -428,12 +411,12 @@ const CarPage = ({ language }: ICarPage) => {
                             onChange={setDayRange}
                             shouldHighlightWeekends
                             minimumDate={utils("fa").getToday()}
-                            locale="fa"
-                            colorPrimary="#4ba3ce"
+                            locale='fa'
+                            colorPrimary='#4ba3ce'
                             disabledDays={[utils("fa").getToday()]}
                           />
-                          <div className="input_container">
-                            <p className="label">
+                          <div className='input_container'>
+                            <p className='label'>
                               {language.input_container_label_start_date}
                             </p>
                             <input
@@ -451,8 +434,8 @@ const CarPage = ({ language }: ICarPage) => {
                               value={fromDay ? fromDay : ""}
                             />
                           </div>
-                          <div className="input_container">
-                            <p className="label">
+                          <div className='input_container'>
+                            <p className='label'>
                               {language.input_container_label_end_date}
                             </p>
                             <input
@@ -511,30 +494,30 @@ const CarPage = ({ language }: ICarPage) => {
               )}
               <hr />
               <h2>{language.features}</h2>
-              <div className="info_container">
-                <p className="alignThem">
-                  <span className="info_name">{language.body_style}</span>{" "}
-                  <span className="info_value">{body_style.name.fa}</span>
+              <div className='info_container'>
+                <p className='alignThem'>
+                  <span className='info_name'>{language.body_style}</span>{" "}
+                  <span className='info_value'>{body_style.name.fa}</span>
                 </p>
-                <p className="alignThem">
-                  <span className="info_name">{language.gear_box}</span>{" "}
-                  <span className="info_value">
+                <p className='alignThem'>
+                  <span className='info_name'>{language.gear_box}</span>{" "}
+                  <span className='info_value'>
                     {transmission_type.name.fa}
                   </span>
                 </p>
                 {cylinder ? (
-                  <p className="alignThem">
-                    <span className="info_name">{language.cylinder}</span>{" "}
-                    <span className="info_value">{cylinder.name.fa}</span>
+                  <p className='alignThem'>
+                    <span className='info_name'>{language.cylinder}</span>{" "}
+                    <span className='info_value'>{cylinder.name.fa}</span>
                   </p>
                 ) : null}
-                <p className="alignThem">
-                  <span className="info_name">{language.mile_age}</span>{" "}
-                  <span className="info_value">{mileage_range.name.fa}</span>
+                <p className='alignThem'>
+                  <span className='info_name'>{language.mile_age}</span>{" "}
+                  <span className='info_value'>{mileage_range.name.fa}</span>
                 </p>
-                <p className="alignThem">
-                  <span className="info_name">{language.capacity}</span>{" "}
-                  <span className="info_value">
+                <p className='alignThem'>
+                  <span className='info_name'>{language.capacity}</span>{" "}
+                  <span className='info_value'>
                     {capacity} {language.person}
                   </span>
                 </p>
@@ -544,7 +527,7 @@ const CarPage = ({ language }: ICarPage) => {
                 <>
                   <hr />
                   <h2>{language.facilities}</h2>
-                  <div className="facilities_container">
+                  <div className='facilities_container'>
                     {facility_set.map((item) => (
                       <p key={item.id}>{item.name.fa}</p>
                     ))}
@@ -564,8 +547,8 @@ const CarPage = ({ language }: ICarPage) => {
                       href={"/rent/[id]"}
                       as={`/rent/${item.name.en}`}
                     >
-                      <a className="car_Tags">
-                        <IoIosLink color="#4ba3ce" size="1.6rem" />
+                      <a className='car_Tags'>
+                        <IoIosLink color='#4ba3ce' size='1.6rem' />
                         {item.name.fa}
                       </a>
                     </Link>
@@ -574,14 +557,14 @@ const CarPage = ({ language }: ICarPage) => {
               )}
             </section>
             {/* user info section */}
-            <section className="onwnerInfo_container">
+            <section className='onwnerInfo_container'>
               {showPriceLoading ? (
-                <div className="price_place_holder">
-                  <Spinner color="#737373" display="block" width={20} />
+                <div className='price_place_holder'>
+                  <Spinner color='#737373' display='block' width={20} />
                 </div>
               ) : (
                 availableCar && (
-                  <div className="avg_discounted_price_per_day">
+                  <div className='avg_discounted_price_per_day'>
                     <p className={total_discount ? "discount_price" : null}>
                       {avg_price_per_day
                         ? avg_price_per_day.toLocaleString()
@@ -600,9 +583,9 @@ const CarPage = ({ language }: ICarPage) => {
                 )
               )}
               {showDateText && !is_mine && dayRange.from ? (
-                <div className="Rent_date">
+                <div className='Rent_date'>
                   <p>
-                    <span className="day_name">
+                    <span className='day_name'>
                       {`${moment(
                         `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
                         "jYYYY/jM/jD"
@@ -612,8 +595,8 @@ const CarPage = ({ language }: ICarPage) => {
                       dayRange.from.month,
                       "jM"
                     ).format("jMMMM")}`}
-                    <IoIosArrowRoundBack size="2rem" color="#202020" />
-                    <span className="day_name">{`${moment(
+                    <IoIosArrowRoundBack size='2rem' color='#202020' />
+                    <span className='day_name'>{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                       "jYYYY/jM/jD"
                     ).format("dddd")}،`}</span>
@@ -621,31 +604,11 @@ const CarPage = ({ language }: ICarPage) => {
                       dayRange.to.month,
                       "jM"
                     ).format("jMMMM")}`}{" "}
-                    {dayRange.from.day === 31 ||
-                    dayRange.to.day === 31 ? null : (
-                      <>
-                        (
-                        {moment([
-                          dayRange.from.year,
-                          dayRange.from.month,
-                          dayRange.from.day,
-                        ])
-                          .diff(
-                            moment([
-                              dayRange.to.year,
-                              dayRange.to.month,
-                              dayRange.to.day,
-                            ]),
-                            "days"
-                          )
-                          .toString()
-                          .replace("-", "")}
-                        {language.Rent_date_day})
-                      </>
-                    )}
+                    ({no_of_days}
+                    {language.Rent_date_day})
                   </p>
                   <p
-                    className="change_date_in_car_page"
+                    className='change_date_in_car_page'
                     onClick={() => {
                       setShowDateText(false);
                       setShowCalender(true);
@@ -658,7 +621,7 @@ const CarPage = ({ language }: ICarPage) => {
               {!is_mine ? (
                 showCalender && !showDateText ? (
                   <div
-                    className="search_box_div HEAP_Car_Input_Calender"
+                    className='search_box_div HEAP_Car_Input_Calender'
                     onClick={() => setCalenderClick(true)}
                   >
                     <div
@@ -677,12 +640,12 @@ const CarPage = ({ language }: ICarPage) => {
                         onChange={setDayRange}
                         shouldHighlightWeekends
                         minimumDate={utils("fa").getToday()}
-                        locale="fa"
-                        colorPrimary="#4ba3ce"
+                        locale='fa'
+                        colorPrimary='#4ba3ce'
                         disabledDays={[utils("fa").getToday()]}
                       />
-                      <div className="input_container">
-                        <p className="label">
+                      <div className='input_container'>
+                        <p className='label'>
                           {language.input_container_label_start_date}
                         </p>
                         <input
@@ -700,8 +663,8 @@ const CarPage = ({ language }: ICarPage) => {
                           value={fromDay ? fromDay : ""}
                         />
                       </div>
-                      <div className="input_container">
-                        <p className="label">
+                      <div className='input_container'>
+                        <p className='label'>
                           {language.input_container_label_end_date}
                         </p>
                         <input
@@ -730,22 +693,22 @@ const CarPage = ({ language }: ICarPage) => {
                 href={`/user/[id]`}
                 as={`/user/${owner.username ? owner.username : owner.id}`}
               >
-                <a className="HEAP_Car_Link_Profile">
-                  <figure className="owner_part">
+                <a className='HEAP_Car_Link_Profile'>
+                  <figure className='owner_part'>
                     <img src={owner.thumbnail_url} alt={owner.name} />
                     <p>{owner.name}</p>
                   </figure>
                 </a>
               </Link>
               {availableCar && !is_mine ? (
-                <div className="continue_to_checkout">
+                <div className='continue_to_checkout'>
                   <Button
-                    value="ادامه"
-                    class="Blue_BTN localClass HEAP_Car_Btn_Continue"
+                    value='ادامه'
+                    class='Blue_BTN localClass HEAP_Car_Btn_Continue'
                     loading={loading}
                     click={GoToCheckout}
                   />
-                  <span className="extra_info">{language.extra_info}</span>
+                  <span className='extra_info'>{language.extra_info}</span>
                 </div>
               ) : null}
             </section>

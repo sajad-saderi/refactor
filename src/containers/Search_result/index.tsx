@@ -15,12 +15,8 @@ import {
   IoIosArrowDown,
 } from "react-icons/io";
 import Search from "../Search";
-import economic from "../../../public/image/affordable.svg";
-import offRoad from "../../../public/image/SUV.svg";
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
-
-let quickAccessClick = false;
 
 let JumpTo = null;
 
@@ -144,7 +140,6 @@ const Search_result = ({ language }: ISearch_result) => {
     Router.events.on("routeChangeStart", handleRouteChange);
     return () => {
       Router.events.off("routeChangeStart", handleRouteChange);
-      quickAccessClick = false;
       staticRoute = null;
       location_n = null;
       Location = 1;
@@ -331,7 +326,6 @@ const Search_result = ({ language }: ISearch_result) => {
   const loadMore = () => {
     page = 1 + page;
     loadMoreCar = true;
-    quickAccessClick = true;
     setShow_spinner_loadMore(true);
     staticRoute = {
       ...staticRoute,
@@ -683,48 +677,17 @@ const Search_result = ({ language }: ISearch_result) => {
             language={language}
           />
         </filterContext.Provider>
-        <SearchResultList result={result} language={language} />
+        <SearchResultList
+          result={result}
+          language={language}
+          setFilterForSearch={(v) => {
+            if (v.o) {
+              o = "price";
+            }
+            filterResults(v);
+          }}
+        />
       </section>
-      {!quickAccessClick ? (
-        <section className=' responsive quick_access_middle_searchResult'>
-          <h2>{language.quick_access_middle_searchResult_h2}</h2>
-          <div className='quick_access_child_container'>
-            <div
-              className='HEAP_Search_Result_Quick_Access_SUV'
-              onClick={() => {
-                window.scrollTo(0, 0);
-                quickAccessClick = true;
-                filterResults({
-                  body_style_id: { value: [2], status: true },
-                });
-              }}
-            >
-              <img
-                src={offRoad}
-                alt={language.quick_access_middle_searchResult_p_1}
-              />
-              <p>{language.quick_access_middle_searchResult_p_1}</p>
-            </div>
-            <div
-              className='HEAP_Search_Result_Quick_Access_Economy'
-              onClick={() => {
-                window.scrollTo(0, 0);
-                quickAccessClick = true;
-                filterResults({
-                  o: "-price",
-                  price: { value: ["0.00", "1000000.00"], status: true },
-                });
-              }}
-            >
-              <img
-                src={economic}
-                alt={language.quick_access_middle_searchResult_p_2}
-              />
-              <p>{language.quick_access_middle_searchResult_p_2}</p>
-            </div>
-          </div>
-        </section>
-      ) : null}
       {/* load more */}
       {remained_count > 0 && (
         <span
