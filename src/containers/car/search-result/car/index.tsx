@@ -23,10 +23,6 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     has_media,
     location,
   } = data;
-console.log(
-has_media ? media_set[0].thumbnail_url : carImage
-,
-);
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
   let imageWidth = has_media ? media_set[0].thumbnail_width : null;

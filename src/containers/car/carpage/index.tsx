@@ -377,7 +377,7 @@ const CarPage = ({ language }: ICarPage) => {
                             dayRange.to.month,
                             "jM"
                           ).format("jMMMM")}`}{" "}
-                          ({no_of_days}
+                          ({no_of_days}{" "}
                           {language.Rent_date_day})
                         </p>
                         <p
@@ -604,7 +604,7 @@ const CarPage = ({ language }: ICarPage) => {
                       dayRange.to.month,
                       "jM"
                     ).format("jMMMM")}`}{" "}
-                    ({no_of_days}
+                    ({no_of_days}{" "}
                     {language.Rent_date_day})
                   </p>
                   <p
