@@ -240,7 +240,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             <div className="input_container">
               <p className="label">{language.search.label_start_date}</p>
               <input
-                data-hj-whitelist
+                data-hj-allow
                 className={
                   fromError.status
                     ? "input_Error"
@@ -261,7 +261,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             <div className="input_container">
               <p className="label">{language.search.label_end_date}</p>
               <input
-                data-hj-whitelist
+                data-hj-allow
                 className={[
                   "exception_input",
                   toError.status

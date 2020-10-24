@@ -32,7 +32,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
     if (/[^0-9]/g.test(value.toString())) {
       setLocalError({
         status: true,
-        message:  language.not_valid,
+        message: language.not_valid,
       });
     } else if (data.LengthControl) {
       if (data.LengthControl.minLen) {
@@ -78,7 +78,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
   };
 
   return (
-    <div className="text_input_container">
+    <div className='text_input_container'>
       <label
         /**
          * @LabelColor
@@ -87,20 +87,20 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         style={{
           color: props.LabelColor,
         }}
-        className="text_input_label"
+        className='text_input_label'
       >
         {props.label}
       </label>
-      <div className="separated_places">
+      <div className='separated_places'>
         <input
           ref={input_ref_separated}
-          type="number"
-          data-hj-whitelist="true"
+          type='number'
+          data-hj-allow
           tabIndex={1}
           autoFocus={true}
           key={1}
-          autoComplete="off"
-          className={["text_input"].join(" ")}
+          autoComplete='off'
+          className='text_input data-hj-allow'
           name={props.name}
           value={props.value}
           onChange={(e: any) => {
@@ -138,7 +138,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         the Error message shown under the input box 
       */}
       {(props.error.status || localError.status) && (
-        <p data-test-id="input_error_message" className="input_error_message">
+        <p data-test-id='input_error_message' className='input_error_message'>
           {props.error.message || localError.message}
         </p>
       )}

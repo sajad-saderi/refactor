@@ -148,7 +148,7 @@ const TextInput = (props: ItextInput) => {
   };
 
   return (
-    <div className="text_input_container" ref={TextInput}>
+    <div className='text_input_container' ref={TextInput}>
       <label
         /**
          * @LabelColor
@@ -157,15 +157,15 @@ const TextInput = (props: ItextInput) => {
         style={{
           color: props.LabelColor,
         }}
-        className="text_input_label"
+        className='text_input_label'
       >
         {props.label}
       </label>
-      <div className="input_surround">
+      <div className='input_surround'>
         <input
           type={props?.type ? props.type : "text"}
-          data-test-id="input"
-          data-hj-whitelist="true"
+          data-test-id='input'
+          data-hj-allow
           onInvalid={(e: any) => {
             /**
              *
@@ -185,7 +185,7 @@ const TextInput = (props: ItextInput) => {
           autoFocus={props.autoFocus}
           className={[
             "text_input",
-            "data-hj-whitelist",
+            "data-hj-allow",
             props.error.status || localError.status ? "inputError" : null,
             props?.type
               ? props.type === "number"
@@ -246,15 +246,15 @@ const TextInput = (props: ItextInput) => {
         />
         {props.value.length > 0 && !props.HideClearIcon && (
           <IoMdClose
-            data-test-id="svg-icon"
-            color="rgb(165, 165, 165)"
-            size="2rem"
-            className="clean_icon"
+            data-test-id='svg-icon'
+            color='rgb(165, 165, 165)'
+            size='2rem'
+            className='clean_icon'
             onClick={() => props.clearField()}
           />
         )}
         {props.showTail ? (
-          <span className="input_tail_content">{props.tail_value}</span>
+          <span className='input_tail_content'>{props.tail_value}</span>
         ) : null}
       </div>
       {/* 
@@ -262,7 +262,7 @@ const TextInput = (props: ItextInput) => {
         the Error message shown under the input box 
       */}
       {(props.error.status || localError.status) && (
-        <p data-test-id="input_error_message" className="input_error_message">
+        <p data-test-id='input_error_message' className='input_error_message'>
           {props.error.message || localError.message}
         </p>
       )}

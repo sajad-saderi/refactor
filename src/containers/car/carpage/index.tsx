@@ -437,7 +437,7 @@ const CarPage = ({ language }: ICarPage) => {
                               {language.input_container_label_start_date}
                             </p>
                             <input
-                              data-hj-whitelist
+                              data-hj-allow
                               className={
                                 showBorder
                                   ? dayRange.from
@@ -456,7 +456,7 @@ const CarPage = ({ language }: ICarPage) => {
                               {language.input_container_label_end_date}
                             </p>
                             <input
-                              data-hj-whitelist
+                              data-hj-allow
                               className={[
                                 "exception_input",
                                 showBorder
@@ -686,7 +686,7 @@ const CarPage = ({ language }: ICarPage) => {
                           {language.input_container_label_start_date}
                         </p>
                         <input
-                          data-hj-whitelist
+                          data-hj-allow
                           className={
                             showBorder
                               ? dayRange.from
@@ -705,7 +705,7 @@ const CarPage = ({ language }: ICarPage) => {
                           {language.input_container_label_end_date}
                         </p>
                         <input
-                          data-hj-whitelist
+                          data-hj-allow
                           className={[
                             "exception_input",
                             showBorder

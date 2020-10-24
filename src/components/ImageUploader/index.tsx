@@ -96,14 +96,15 @@ const ImageUploader = ({
   return (
     <div ref={wrapperRef}>
       <label>{language.car_picture}</label>
-      <p className="image_upload_under_label">
+      <p className='image_upload_under_label'>
         {language.text_1}
         <br />
         {language.text_2}
+        <u>{language.text_2_italic}</u>
       </p>
-      <div className="drop_zone" {...getRootProps()}>
+      <div className='drop_zone' {...getRootProps()}>
         <input {...getInputProps()} />
-        <p className="uploadText">{language.text_2}</p>
+        <p className='uploadText'>{language.text_3}</p>
         {picturesPreview.length > 0 ? (
           <div
             // if the image is uploading the drop-zone will be unreachable
@@ -115,7 +116,7 @@ const ImageUploader = ({
             {picturesPreview.map((i, index) => {
               return (
                 <div
-                  className="Each_image"
+                  className='Each_image'
                   key={index}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -123,25 +124,25 @@ const ImageUploader = ({
                   }}
                 >
                   {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                  <IoIosClose size="2rem" color="#ea2d2d" />
+                  <IoIosClose size='2rem' color='#ea2d2d' />
                   <img src={i.img} alt={i.id} />
                 </div>
               );
             })}
             {loading ? (
-              <Spinner display="inline-block" width={20} color="#b5b5b5" />
+              <Spinner display='inline-block' width={20} color='#b5b5b5' />
             ) : null}
           </div>
         ) : loading ? (
-          <Spinner display="block" width={20} color="#b5b5b5" />
+          <Spinner display='block' width={20} color='#b5b5b5' />
         ) : (
           <img
-            className="vector_car_upload"
+            className='vector_car_upload'
             src={carVector}
-            alt="car vector image"
+            alt='car vector image'
           />
         )}
-        <p className="gallery_button">{language.choose_from_gallery}</p>
+        <p className='gallery_button'>{language.choose_from_gallery}</p>
       </div>
     </div>
   );

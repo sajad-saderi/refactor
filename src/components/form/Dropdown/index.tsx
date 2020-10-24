@@ -144,13 +144,13 @@ const DropdownSearch = (props: IDropDown) => {
         <input
           data-test-id="drop_down_input"
           className={[
-            "data-hj-whitelist",
+            "data-hj-allow",
             props.disabled ? "Disable_color" : null,
             props.styleClass ? props.styleClass : null,
             props.error_status ? "inputError" : null,
             ShowController ? "dropdownIsActive" : null,
           ].join(" ")}
-          data-hj-whitelist
+          data-hj-allow
           onChange={() => {}}
           // active readOnly for input
           readOnly={props.InputDisable}
@@ -214,7 +214,7 @@ const DropdownSearch = (props: IDropDown) => {
                 <div className="search_input_container">
                   <input
                     data-test-id="search_input"
-                    data-hj-whitelist
+                    data-hj-allow
                     // When the drop-down is shown, the search input is ready to type
                     // autoFocus
                     placeholder={`جستجو ${props.search_place_holder} ..`}

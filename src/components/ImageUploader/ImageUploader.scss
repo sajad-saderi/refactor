@@ -6,6 +6,10 @@
   color: $more_gray;
   line-height: 2.7rem;
   margin-top: 0.8rem;
+  u {
+    color: $more_gray;
+    text-underline-position: under;
+  }
 }
 .drop_zone {
   display: flex;
