@@ -235,7 +235,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               minimumDate={utils("fa").getToday()}
               locale="fa"
               colorPrimary="#4ba3ce"
-              disabledDays={[utils("fa").getToday()]}
+              // disabledDays={[utils("fa").getToday()]}
             />
             <div className="input_container">
               <p className="label">{language.search.label_start_date}</p>

@@ -413,7 +413,7 @@ const CarPage = ({ language }: ICarPage) => {
                             minimumDate={utils("fa").getToday()}
                             locale='fa'
                             colorPrimary='#4ba3ce'
-                            disabledDays={[utils("fa").getToday()]}
+                            // disabledDays={[utils("fa").getToday()]}
                           />
                           <div className='input_container'>
                             <p className='label'>
@@ -642,7 +642,7 @@ const CarPage = ({ language }: ICarPage) => {
                         minimumDate={utils("fa").getToday()}
                         locale='fa'
                         colorPrimary='#4ba3ce'
-                        disabledDays={[utils("fa").getToday()]}
+                        // disabledDays={[utils("fa").getToday()]}
                       />
                       <div className='input_container'>
                         <p className='label'>

@@ -489,7 +489,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     // } else {
     //   resetTheErrorStatus("price_range");
     // }
-    if (state.days_to_get_reminded === 0) {
+    if (state.days_to_get_reminded < 0) {
       ErrorDispatch({
         type: "days_to_get_reminded",
         days_to_get_reminded: true,
@@ -860,7 +860,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             </div>
             <Counter
               max={31}
-              min={1}
+              min={0}
               AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
               reduceTo={() => dispatch({ type: "REDUCE_days_to_get_reminded" })}
               label={language.reminded_me}

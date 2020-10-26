@@ -14,12 +14,9 @@ import {
   IoIosOptions,
   IoIosArrowDown,
 } from "react-icons/io";
-import economic from "../../../public/image/affordable.svg";
-import offRoad from "../../../public/image/SUV.svg";
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
 
-let quickAccessClick = false;
 let Glob_route = null;
 // default location is Tehran
 let staticRoute = null;
@@ -89,7 +86,6 @@ const Landing_page_container = ({
     document.addEventListener("mousedown", handleClickOutside);
     // reset the data
     return () => {
-      quickAccessClick = false;
       Glob_route = null;
       Location = 1;
       Start_date = null;
@@ -325,7 +321,6 @@ const Landing_page_container = ({
     page = 1 + page;
     setShow_spinner_loadMore(true);
     loadMoreCar = true;
-    quickAccessClick = true;
     staticRoute = {
       ...staticRoute,
       page: page,
@@ -709,42 +704,14 @@ const Landing_page_container = ({
           result={result}
           showLocation={true}
           tagClick={searchIgniteByClickOnCardTags}
+          setFilterForSearch={(v) => {
+            if (v.o) {
+              o = "price";
+            }
+            filterResults(v);
+          }}
         />
       </section>
-      {!quickAccessClick ? (
-        <section className=' responsive quick_access_middle_searchResult'>
-          <h2>{language.quick_access_middle_searchResult_h2}</h2>
-          <div className='quick_access_child_container'>
-            <div
-              className='HEAP_Search_Result_Quick_Access_SUV'
-              onClick={() => {
-                window.scrollTo(0, 0);
-                quickAccessClick = true;
-                filterResults({
-                  body_style_id: { value: [2], status: true },
-                });
-              }}
-            >
-              <img src={offRoad} alt='خودروهای شاسی‌بلند' />
-              <p>{language.quick_access_middle_searchResult_p_1}</p>
-            </div>
-            <div
-              className='HEAP_Search_Result_Quick_Access_Economy'
-              onClick={() => {
-                window.scrollTo(0, 0);
-                quickAccessClick = true;
-                filterResults({
-                  o: "-price",
-                  price: { value: ["0.00", "1000000.00"], status: true },
-                });
-              }}
-            >
-              <img src={economic} alt='خودروهای اقتصادی' />
-              <p>{language.quick_access_middle_searchResult_p_2}</p>
-            </div>
-          </div>
-        </section>
-      ) : null}
       {/* load more */}
       {remained_count > 0 && (
         <span

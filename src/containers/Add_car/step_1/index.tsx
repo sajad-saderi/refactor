@@ -436,6 +436,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
     { value: "س", text: "س" },
     { value: "ص", text: "ص" },
     { value: "ط", text: "ط" },
+    { value: "ع", text: "ع" },
     { value: "ق", text: "ق" },
     { value: "گ", text: "گ" },
     { value: "ل", text: "ل" },
