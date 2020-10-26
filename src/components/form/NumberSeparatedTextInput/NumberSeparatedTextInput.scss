@@ -21,17 +21,17 @@
       font-family: inherit;
       margin: 0 -30px 0 0;
       display: inline-block;
-      width: 150px;
+      width: 130px;
       outline: 0;
       -webkit-appearance: none;
       line-height: 1.5;
       padding: 1rem 0;
       text-align: left;
       letter-spacing: 20px;
-      font-size: 3em;
+      font-size: 2em;
       background: #ffffff;
       border: none;
-      color: rgba(0, 0, 0, 0.87);
+      color: #737373;
       border-radius: 0;
       box-shadow: 0 0 0 0 transparent inset;
       -moz-appearance: textfield;
@@ -47,7 +47,7 @@
     }
     .border_on_each_Item {
       position: absolute;
-      left: 21px;
+      left: 42px;
       right: 0;
       bottom: 14px;
       width: 152px;
@@ -57,7 +57,7 @@
       span {
         display: inline-block;
         border-bottom: 1px solid $blue;
-        width: 25px;
+        width: 20px;
         margin: 0 12px 0 0;
       }
     }

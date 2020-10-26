@@ -6,11 +6,7 @@ import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import Button from "../../../../components/form/Button";
 import Router from "next/router";
 
-const GetUserCellPhone = ({
-  panelController,
-  showCaption,
-  language,
-}: IGetUserCellPhone) => {
+const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
   const [cellPhone, setCellPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
@@ -90,15 +86,12 @@ const GetUserCellPhone = ({
 
   return (
     <>
-      <div className="modal_box_div">
-        {showCaption ? (
-          <h2 className="optional_caption">{language.log_sigh}</h2>
-        ) : null}
+      <div className='modal_box_div'>
         <form onSubmit={sendConfirmCode}>
           <TextInput
-            type="number"
+            type='number'
             error={error}
-            name="cell Phone"
+            name='cell Phone'
             onChangeHandler={(e) => {
               if (error.status) {
                 setError({
@@ -135,7 +128,7 @@ const GetUserCellPhone = ({
           {/* show an error message */}
           {/* <span className="error_message">{error.message}</span> */}
           <Button
-            class="Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode"
+            class='Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode'
             value={language.send}
             loading={loading}
             click={() => {}}
@@ -148,7 +141,6 @@ const GetUserCellPhone = ({
 
 interface IGetUserCellPhone {
   panelController: any;
-  showCaption?: boolean;
   language: any;
 }
 

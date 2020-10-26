@@ -17,6 +17,7 @@ const ConfirmCode = ({
 }: IConfirmCode) => {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const [show_count_down, set_show_count_down] = useState(false);
   const [ActiveAgain, setActiveAgain] = useState(false);
   const [error, setError] = useState({
     status: false,
@@ -117,6 +118,7 @@ const ConfirmCode = ({
       })
       .catch((error) => {
         setLoading(false);
+        set_show_count_down(true);
         console.error(
           "!Error",
           error.response ? error.response.data.message : error.message
@@ -138,16 +140,16 @@ const ConfirmCode = ({
   };
 
   return (
-    <div className="modal_box_div confirm_code">
+    <div className='modal_box_div confirm_code'>
       <form onSubmit={sendConfirmCode}>
         <NumberSeparatedTextInput
           error={error}
-          name="code"
+          name='code'
           onChangeHandler={(e) => {
             setCode(e);
           }}
           value={code}
-          label={language.text_input_label}
+          label={`${language.text_input_label_1} ${Cell_Phone_context.cell_phone} ${language.text_input_label_2}`}
           validation={{
             number: true,
             length: 4,
@@ -183,24 +185,41 @@ const ConfirmCode = ({
           }}
         /> */}
         {/* <span className="error_message">{error.message}</span> */}
-        <div className="go_back">
+        {/* <div className='go_back'>
           {ActiveAgain ? (
-            <p onClick={() => panelController()} className="send_again">
+            <p onClick={() => panelController()} className='send_again'>
               {language.send_again}
             </p>
           ) : (
-            <div className="Count_Down_text">
+            <div className='Count_Down_text'>
+              <span>{language.send_again}</span>{" "}
+              <CountDown time={20} Done={Done} />{" "}
+              <span>{language.seconds}</span>
+            </div>
+          )}
+        </div> */}
+        <div
+          className={[
+            "go_back",
+            show_count_down ? "show_the_go_back_button" : null,
+          ].join(" ")}
+          onClick={() => panelController()}
+        >
+          {/* <p className="Edit_number">{language.edit_the_number}</p> */}
+          {ActiveAgain ? (
+            <p onClick={() => panelController()} className='send_again'>
+              {language.send_again}
+            </p>
+          ) : (
+            <div className='Count_Down_text'>
               <span>{language.send_again}</span>{" "}
               <CountDown time={20} Done={Done} />{" "}
               <span>{language.seconds}</span>
             </div>
           )}
         </div>
-        <div className="go_back" onClick={() => panelController()}>
-          <p className="Edit_number">{language.edit_the_number}</p>
-        </div>
         <Button
-          class="Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login"
+          class='Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login'
           value={language.enter}
           loading={loading}
           click={() => {}}

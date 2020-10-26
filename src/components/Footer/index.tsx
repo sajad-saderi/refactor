@@ -10,7 +10,7 @@ import {
   IoLogoTwitter,
   IoLogoInstagram,
 } from "react-icons/io";
-import { FaTelegram } from "react-icons/fa";
+import { FaTelegram, FaWhatsapp } from "react-icons/fa";
 
 const Footer = (props: IFooter) => {
   const [hide, setHide] = useState(false);
@@ -128,8 +128,8 @@ const Footer = (props: IFooter) => {
             <a target="_black" href="https://twitter.com/otoli_net">
               <IoLogoTwitter size="3rem" color="#4ba3ce" />
             </a>
-            <a target="_black" href="https://t.me/otoli_net">
-              <FaTelegram size="3rem" color="#4ba3ce" />
+            <a target="_black" href="https://wa.me/message/C3U7RO7ADABWF1">
+              <FaWhatsapp size="3rem" color="#4ba3ce" />
             </a>
           </div>
           <p>
