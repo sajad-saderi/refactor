@@ -29,7 +29,7 @@
     },
     "please_login": {
       "GetUserCellPhone": {
-        "log_sigh": "ورود/ثبت نام",
+        "log_sigh": "ورود / ثبت نام",
         "cell_phone": "شماره تلفن همراه",
         "example": "مثال: 09121234567",
         "error_1": "لطفا تلفن همراه را وارد کنید",

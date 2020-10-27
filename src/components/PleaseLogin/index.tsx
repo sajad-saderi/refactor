@@ -22,7 +22,11 @@ const PleaseLogin = ({ language }: IPleaseLogin) => {
           <p>برای دسترسی به این بخش، ابتدا وارد شوید.</p>
         </div>
       ) : null} */}
-      <div className='modal_box'>
+      <div
+        className={["modal_box", change ? "confirm_code" : "login_modal"].join(
+          " "
+        )}
+      >
         {change ? (
           <div className='login_modal_title_confirm_code'>
             <FaArrowRight

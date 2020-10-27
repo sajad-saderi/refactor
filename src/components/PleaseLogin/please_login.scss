@@ -58,29 +58,18 @@
         font-size: 1.4rem;
         font-weight: 500;
         margin: 0;
-        text-align: center;
-        border-bottom: 2px solid $blue;
+        text-align: center; 
       }
     }
+    
     .login_modal_title_confirm_code {
       .login_person_icon {
         color: $blue;
         background: transparent;
         border: none;
-      }
-      h2 {
-        border-bottom: none;
-      }
+      } 
     }
-    .confirm_code {
-      .text_input_container {
-        position: relative;
-        .input_error_message {
-          position: absolute;
-          bottom: -16px;
-        }
-      }
-    }
+   
     .go_back {
       display: none;
       width: auto;
@@ -101,5 +90,28 @@
       color: $blue;
       text-align: right;
     }
+  }
+  .login_modal { 
+    .text_input_container {
+      padding-bottom: 4rem;
+      position: relative;
+      .input_error_message {
+        position: absolute;
+        bottom: 5px;
+      }
+    }
+    .login_submit{
+      margin: 0;
+    }
+  }
+  .confirm_code {
+    .text_input_container {
+      position: relative;
+      padding-bottom: 3rem;
+      .input_error_message {
+        position: absolute;
+        bottom: -16px;
+      }
+    } 
   }
 }
