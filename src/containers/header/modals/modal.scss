@@ -18,8 +18,19 @@
   .login_modal {
     width: 45%;
     min-width: 30rem;
-    height: 260px;
+    height: auto;
     max-width: 40rem;
+    .text_input_container {
+      padding-bottom: 4rem;
+      position: relative;
+      .input_error_message {
+        position: absolute;
+        bottom: 5px;
+      }
+    }
+    .login_submit{
+      margin: 0;
+    }
   }
   .confirm_modal {
     width: 45%;
@@ -73,7 +84,7 @@
       .login_modal_title_confirm_code {
         position: relative;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 2.4rem;
         .login_person_icon {
           position: absolute;
           right: 0;
@@ -91,8 +102,7 @@
           font-size: 1.4rem;
           font-weight: 500;
           margin: 0;
-          text-align: center;
-          border-bottom: 2px solid $blue;
+          text-align: center; 
         }
       }
       .login_modal_title_confirm_code {
@@ -100,10 +110,7 @@
           color: $blue;
           background: transparent;
           border: none;
-        }
-        h2 {
-          border-bottom: none;
-        }
+        } 
       }
     }
     .go_back {
