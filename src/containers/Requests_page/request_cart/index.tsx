@@ -120,8 +120,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     switch (status ? status : data.status.id) {
       case "new":
         RentStatus = (
-          <div className="rent_status">
-            <IoIosDownload size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosDownload size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -149,8 +149,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "approved":
         RentStatus = (
-          <div className="rent_status">
-            <IoIosCard size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosCard size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -169,8 +169,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "rejected":
         RentStatus = (
-          <div className="rent_status">
-            <IoIosRemoveCircle size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosRemoveCircle size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -178,16 +178,16 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "cancelled":
         RentStatus = (
-          <div className="rent_status">
-            <IoIosEyeOff size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosEyeOff size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
         break;
       case "paid":
         RentStatus = (
-          <div className="rent_status">
-            <IoIosCheckboxOutline size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosCheckboxOutline size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -207,16 +207,16 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "not_delivered":
         RentStatus = (
-          <div className="rent_status">
-            <IoIosHand size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosHand size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
         break;
       case "delivered":
         RentStatus = (
-          <div className="rent_status">
-            <IoLogoModelS size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoLogoModelS size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -237,8 +237,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "returned":
         RentStatus = (
-          <div className="rent_status">
-            <IoMdFlag size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoMdFlag size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -284,8 +284,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       default:
         RentStatus = (
-          <div className="rent_status">
-            <IoIosDownload size="1.4rem" color="#656565" />
+          <div className='rent_status'>
+            <IoIosDownload size='1.4rem' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -334,8 +334,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     media_set && (
       <>
         {rentStatus}
-        <div className="cart">
-          <div className="rent_info">
+        <div className='cart'>
+          <div className='rent_info'>
             <h2>
               {car.brand.name.fa} {car.name.fa}
             </h2>
@@ -386,7 +386,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               )}
             </p>
           </div>
-          <div className="image_pelak">
+          <div className='image_pelak'>
             <figure>
               <img
                 src={media_set.thumbnail_url}
@@ -415,31 +415,39 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             ) : null}
           </div>
         </div>
-        <div className="Role_container">
+        <div className='Role_container'>
           {role ? (
             <>
-              <Link href="/user/[id]" as={`/user/${owner_Info.id}`}>
+              <Link href='/user/[id]' as={`/user/${owner_Info.id}`}>
                 <a>
-                  <IoMdPerson size="2rem" />
+                  <IoMdPerson size='2rem' />
                   {owner_Info.name}
                 </a>
               </Link>
+              {/* show the renter's cellphone to the owner if the status is "approved" */}
+              {status_id === "delivered" || status_id === "paid" ? (
+                <a className='renter_Cell' href={`tel:0${owner_Info.cell}`}>
+                  0{owner_Info.cell}
+                  <span className='extra_Text'>
+                    {" "}
+                    {language.contact_with_renter}
+                  </span>
+                </a>
+              ) : null}
             </>
           ) : (
             <>
-              <Link href="/user/[id]" as={`/user/${renter_info.id}`}>
+              <Link href='/user/[id]' as={`/user/${renter_info.id}`}>
                 <a>
-                  <IoMdPerson size="2rem" />
+                  <IoMdPerson size='2rem' />
                   {renter_info.name}
                 </a>
               </Link>
               {/* show the renter's cellphone to the owner if the status is "approved" */}
-              {status_id === "approved" ||
-              status_id === "delivered" ||
-              status_id === "paid" ? (
-                <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
+              {status_id === "delivered" || status_id === "paid" ? (
+                <a className='renter_Cell' href={`tel:0${renter_info.cell}`}>
                   0{renter_info.cell}
-                  <span className="extra_Text">
+                  <span className='extra_Text'>
                     {" "}
                     {language.contact_with_renter}
                   </span>
@@ -448,7 +456,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </>
           )}
         </div>
-        <div className="Button_container">
+        <div className='Button_container'>
           {/* {button_code} */}
           {button_code.length > 0 &&
             button_code.map((item, i) => (
