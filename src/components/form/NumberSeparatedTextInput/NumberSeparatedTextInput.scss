@@ -21,13 +21,13 @@
       font-family: inherit;
       margin: 0 -30px 0 0;
       display: inline-block;
-      width: 130px;
+      width: 145px;
       outline: 0;
       -webkit-appearance: none;
       line-height: 1.5;
       padding: 1rem 0;
       text-align: left;
-      letter-spacing: 20px;
+      letter-spacing: 24px;
       font-size: 2em;
       background: #ffffff;
       border: none;
@@ -47,9 +47,9 @@
     }
     .border_on_each_Item {
       position: absolute;
-      left: 42px;
+      left: 27px;
       right: 0;
-      bottom: 14px;
+      bottom: 10px;
       width: 152px;
       margin: auto;
       height: 3px;
@@ -57,8 +57,11 @@
       span {
         display: inline-block;
         border-bottom: 1px solid $blue;
+        margin-right: 1.5rem;
         width: 20px;
-        margin: 0 12px 0 0;
+        &:nth-of-type(4) {
+          margin-right: 0rem;
+        }
       }
     }
     .span_error {

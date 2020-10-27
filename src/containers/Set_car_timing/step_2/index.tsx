@@ -213,7 +213,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     registration_plate_forth_part: "",
     max_km_per_day: 250,
     extra_km_price: "",
-    days_to_get_reminded: 1,
+    days_to_get_reminded: 0,
     deliver_at_renters_place: 0,
     with_driver: 0,
     is_out_of_service: false,
@@ -858,7 +858,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 }}
               />
             </div>
-            <Counter
+            {/* <Counter
               max={31}
               min={0}
               AddTo={() => dispatch({ type: "ADD_days_to_get_reminded" })}
@@ -866,7 +866,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               label={language.reminded_me}
               text={language.severl_days}
               value={state.days_to_get_reminded}
-            />
+            /> */}
             <Counter
               max={31}
               min={1}

@@ -27,6 +27,7 @@
     height: auto;
     max-width: 40rem;
     .text_input_container {
+      padding-bottom: 3.2rem;
       position: relative;
       .input_error_message {
         position: absolute;
@@ -112,7 +113,7 @@
       vertical-align: middle;
       font-size: 1.1rem;
       float: left;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       // &:nth-of-type(2) {
       //   text-align: left;
       // }
