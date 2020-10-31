@@ -6,10 +6,22 @@ import Search from "../../src/containers/Search";
 import insurance from "../../public/image/SamanInsurance.png";
 // import "../../src/styles/pages/index.scss";
 import Link from "next/link";
-import TabCreator from "../../src/components/TabCreator";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
-
+import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
+
+const question_set = [
+  {
+    title: "<p itemprop='name'>تفاوت اتولی با سایر مراکز اجاره خودرو چیست؟</p>",
+    content:
+      "<p  itemprop='text'>اتولی؛ سیستم آنلاین اجاره خودرو است و این امکان را فراهم آورده است که خودرو  را مستقیم از مالک اجاره کنید و با پرداخت مبلغ کمی برای آن «بیمه اجاره خودرو» (با همکاری و پشتیبانی بیمه سامان) برای جبران خسارت‌های احتمالی تهیه کنید.</p>",
+  },
+  {
+    title: "<p itemprop='name'>شرایط اجاره خودرو از اتولی چیست؟</p>",
+    content:
+      "<p itemprop='text'>اتولی یک سرویس جدید اجاره ماشین است که در آن امکان مقایسه شرایط و قیمت ماشین‌های مختلف را دارید  که در بین آن‌ها می‌توانید ماشین‌هایی با بهترین قیمت و آسان‌ترین شرایط انتخاب کنید که نیازی به ارائه مدارک و ودیعه‌های نامعقول ندارند.</p>",
+  },
+];
 
 const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
@@ -28,7 +40,7 @@ const Rent = () => {
   return (
     <Layout>
       <NextSeo
-        canonical="https://otoli.net/rent"
+        canonical='https://otoli.net/rent'
         title={language.next_seo.title}
         description={language.next_seo.description}
         openGraph={{
@@ -42,25 +54,25 @@ const Rent = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className="Homepage">
-        <div className="banner">
+      <article className='Homepage'>
+        <div className='banner'>
           <h1>{language.banner_h1}</h1>
           <h2>{language.banner_h2}</h2>
-          <div className="search_container responsive">
+          <div className='search_container responsive'>
             <Search language={language} />
           </div>
         </div>
-        <div className="insuranceBox">
+        <div className='insuranceBox'>
           <p>{language.insuranceBox_p}</p>
-          <img src={insurance} alt="تصویر بیمه سامان" />
+          <img src={insurance} alt='تصویر بیمه سامان' />
         </div>
-        <div className=" responsive second_container">
-          <div className="full_width">
+        <div className=' responsive second_container'>
+          <div className='full_width'>
             <h2>{language.second_container_full_width_h2}</h2>
             <p>{language.second_container_full_width_p}</p>
           </div>
           <h2>{language.second_container_h2_2}</h2>
-          <div className="three_columns">
+          <div className='three_columns'>
             <section>
               <h3>{language.second_container_three_columns_2_h3_1}</h3>
               <p>{language.second_container_three_columns_2_p_1}</p>
@@ -75,7 +87,7 @@ const Rent = () => {
             </section>
           </div>
           <h2>{language.second_container_h2_1}</h2>
-          <div className="three_columns">
+          <div className='three_columns'>
             <section>
               <h3>{language.second_container_three_columns_h3_1}</h3>
               <p>{language.second_container_three_columns_p_1}</p>
@@ -89,17 +101,17 @@ const Rent = () => {
               <p>{language.second_container_three_columns_p_3} </p>
             </section>
           </div>
-          <div className="add_car_section">
-            <Link href="/add-car">
-              <a className="Blue_BTN add_car_custom">
+          <div className='add_car_section'>
+            <Link href='/add-car'>
+              <a className='Blue_BTN add_car_custom'>
                 {language.second_container_add_car_section_a_1}
               </a>
             </Link>
-            <Link href="/join-us">
+            <Link href='/join-us'>
               <a>{language.second_container_add_car_section_a_2}</a>
             </Link>
           </div>
-          <div className="rent_contnet">
+          <div className='rent_contnet'>
             <h2>{language.rent_content_h2}</h2>
             <p>{language.rent_content_p_1}</p>
             <p>{language.rent_content_p_2}</p>
@@ -117,9 +129,12 @@ const Rent = () => {
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}
         </div>
-        <section className="responsive third_container">
+        <div className='responsive'>
+          <Accordion question_set={question_set} />
+        </div>
+        <section className='responsive third_container'>
           {dynamicLinks ? (
-            <div className="RentPage_Dynamic_links">
+            <div className='RentPage_Dynamic_links'>
               <ul>
                 {dynamicLinks.map((item) => {
                   return (
