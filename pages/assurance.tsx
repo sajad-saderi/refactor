@@ -2,8 +2,12 @@ import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import language from "../public/languages/fa/assurance.json";
+import { logPageView } from "../utils/analytics";
 
 const assurance = () => {
+  React.useEffect(() => {
+    logPageView();
+  }, []);
   return (
     <Layout showToTop={true}>
       <NextSeo

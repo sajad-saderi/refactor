@@ -4,11 +4,13 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "../src/API";
 import language from "../public/languages/fa/sitemap.json";
+import { logPageView } from "../utils/analytics";
 
 const Site_map = () => {
   const [UrlList, UrlSetter] = useState([]);
 
   useEffect(() => {
+    logPageView();
     fetchAPIs();
   }, []);
 
@@ -40,13 +42,13 @@ const Site_map = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <article className="responsive static_pages minHeight site_map_page">
+      <article className='responsive static_pages minHeight site_map_page'>
         {UrlList.length > 0 && (
           <ul>
             {UrlList.map((i) => {
               return (
                 <li style={{ margin: "5px 0" }} key={i.unique_id}>
-                  <Link href="/rent/[id]" as={`/rent/${i.unique_id}`}>
+                  <Link href='/rent/[id]' as={`/rent/${i.unique_id}`}>
                     <a>{i.title}</a>
                   </Link>
                 </li>

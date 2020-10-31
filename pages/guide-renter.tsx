@@ -3,8 +3,12 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import language from "../public/languages/fa/guiderenter.json";
+import { logPageView } from "../utils/analytics";
 
 const guideRenter = () => {
+  React.useEffect(() => {
+    logPageView();
+  }, []);
   return (
     <Layout showToTop={true}>
       <NextSeo
@@ -21,7 +25,7 @@ const guideRenter = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{language.h1}</h1>
         <h2>{language.h2_1}</h2>
         <ul>
@@ -59,14 +63,14 @@ const guideRenter = () => {
           <li>{language.h2_2_li_12}</li>
         </ul>
         <h2>{language.h2_3}</h2>
-        <p className="TextIndenter">{language.h2_3_p_1}</p>
-        <p className="TextIndenter">{language.h2_3_p_2}</p>
-        <p className="TextIndenter">{language.h2_3_p_3}</p>
-        <p className="TextIndenter">{language.h2_3_p_4}</p>
-        <p className="TextIndenter">
+        <p className='TextIndenter'>{language.h2_3_p_1}</p>
+        <p className='TextIndenter'>{language.h2_3_p_2}</p>
+        <p className='TextIndenter'>{language.h2_3_p_3}</p>
+        <p className='TextIndenter'>{language.h2_3_p_4}</p>
+        <p className='TextIndenter'>
           {language.h2_3_p_have_link_1}
           <u>
-            <Link href="/gps">
+            <Link href='/gps'>
               <a>{language.h2_3_p_have_link_a}</a>
             </Link>
           </u>

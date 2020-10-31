@@ -7,12 +7,16 @@ import insurance from "../public/image/SamanInsurance.png";
 import "../src/styles/pages/index.scss";
 import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
+import { logPageView } from "../utils/analytics";
 
 const HomePage = () => {
+  React.useEffect(() => {
+    logPageView();
+  }, []);
   return (
     <Layout>
       <NextSeo
-        canonical="https://otoli.net/"
+        canonical='https://otoli.net/'
         title={language.next_seo.title}
         description={language.next_seo.description}
         openGraph={{
@@ -26,26 +30,26 @@ const HomePage = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className="Homepage">
-        <div className="banner">
+      <article className='Homepage'>
+        <div className='banner'>
           <h1>{language.banner_h1}</h1>
           <h2>{language.banner_h2}</h2>
-          <div className="search_container responsive">
+          <div className='search_container responsive'>
             {/* Render search box in the Home page */}
             <Search language={language} />
           </div>
         </div>
-        <div className="insuranceBox">
+        <div className='insuranceBox'>
           <p>با همکاری</p>
-          <img src={insurance} alt="تصویر بیمه سامان" />
+          <img src={insurance} alt='تصویر بیمه سامان' />
         </div>
-        <div className=" responsive second_container">
-          <div className="full_width">
+        <div className=' responsive second_container'>
+          <div className='full_width'>
             <h2>{language.second_container_full_width_h2}</h2>
             <p>{language.second_container_full_width_p}</p>
           </div>
           <h2>{language.second_container_h2_1}</h2>
-          <div className="three_columns">
+          <div className='three_columns'>
             <section>
               <h3>{language.second_container_three_columns_h3_1}</h3>
               <p>{language.second_container_three_columns_p_1}</p>
@@ -59,18 +63,18 @@ const HomePage = () => {
               <p>{language.second_container_three_columns_p_3}</p>
             </section>
           </div>
-          <div className="add_car_section">
-            <Link href="/add-car">
-              <a className="Blue_BTN add_car_custom">
+          <div className='add_car_section'>
+            <Link href='/add-car'>
+              <a className='Blue_BTN add_car_custom'>
                 {language.second_container_add_car_section_a_1}
               </a>
             </Link>
-            <Link href="/join-us">
+            <Link href='/join-us'>
               <a>{language.second_container_add_car_section_a_2}</a>
             </Link>
           </div>
           <h2>{language.second_container_h2_2}</h2>
-          <div className="three_columns">
+          <div className='three_columns'>
             <section>
               <h3>{language.second_container_three_columns_2_h3_1}</h3>
               <p>{language.second_container_three_columns_2_p_1}</p>

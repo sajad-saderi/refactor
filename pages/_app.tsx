@@ -7,6 +7,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 import Axios from "axios";
+import { initGA } from "../utils/analytics";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -116,6 +117,14 @@ class App_Otoli extends App {
       window["__recaptchaCallback"]();
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  componentDidMount = () => {
+    // Initial React GA library after the mount
+    if (!window["GA_INITIALIZED"]) {
+      initGA();
+      window["GA_INITIALIZED"] = true;
     }
   };
 

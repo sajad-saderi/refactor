@@ -6,10 +6,12 @@ import Accordion from "../src/components/Accordion";
 import "../src/styles/pages/faq.scss";
 import Spinner from "../src/components/Spinner";
 import language from "../public/languages/fa/faq.json";
+import { logPageView } from "../utils/analytics";
 
 const FAQ = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
+    logPageView();
     fetchAPI();
   }, []);
   const fetchAPI = async () => {
@@ -31,12 +33,12 @@ const FAQ = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className="responsive minHeight FAQ_Page">
+      <article className='responsive minHeight FAQ_Page'>
         <h1>{language.h1}</h1>
         {items.length > 0 ? (
           items.map((item, i) => {
             return (
-              <div className="FQ_WRAPPER" key={item.id}>
+              <div className='FQ_WRAPPER' key={item.id}>
                 {/* The first box shouldn't have title */}
                 {i === 0 ? null : <h2>{item.name.fa}</h2>}
                 <Accordion question_set={item.question_set} />
@@ -44,8 +46,8 @@ const FAQ = () => {
             );
           })
         ) : (
-          <div className="load_content">
-            <Spinner display="inline-block" width={20} color="#737373" />
+          <div className='load_content'>
+            <Spinner display='inline-block' width={20} color='#737373' />
             <span>{language.loading}</span>
           </div>
         )}

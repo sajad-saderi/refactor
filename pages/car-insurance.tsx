@@ -2,7 +2,11 @@ import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import language from "../public/languages/fa/carinsurance.json";
+import { logPageView } from "../utils/analytics";
 const car_insurance_page = () => {
+  React.useEffect(() => {
+    logPageView();
+  }, []);
   return (
     <Layout showToTop={true}>
       <NextSeo
@@ -19,7 +23,7 @@ const car_insurance_page = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <article className="responsive static_pages minHeight">
+      <article className='responsive static_pages minHeight'>
         <h1>{language.h1}</h1>
         <h2>{language.h2}</h2>
         <p>{language.p_1}</p>

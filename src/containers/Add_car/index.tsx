@@ -5,6 +5,7 @@ import Auth_context from "../../../src/context/Auth_context";
 import PleaseLogin from "../../../src/components/PleaseLogin";
 import Add_Car_Step_1 from "./step_1";
 import Router from "next/router";
+import { logPageView } from "../../../utils/analytics";
 
 const Add_car = ({ language }: IAdd_car) => {
   const [Authorize, setAuthorize] = useState(false);
@@ -17,6 +18,7 @@ const Add_car = ({ language }: IAdd_car) => {
       return;
     }
     if (jsCookie.get("complete_register") === "true") {
+      logPageView();
       setAuthorize(true);
     }
     //  else {
@@ -42,7 +44,7 @@ const Add_car = ({ language }: IAdd_car) => {
       <PleaseLogin language={language.please_login} />
     )
   ) : (
-    <article className="minHeight"></article>
+    <article className='minHeight'></article>
   );
 };
 

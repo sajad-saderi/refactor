@@ -6,11 +6,14 @@ import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
+import { logPageView } from "../../utils/analytics";
 
 const Rent_dynamic = (props) => {
   useEffect(() => {
     if (!props.Landing_page) {
       Router.push("/404");
+    } else {
+      logPageView();
     }
   }, []);
 
@@ -31,7 +34,10 @@ const Rent_dynamic = (props) => {
           cardType: language.cardType,
         }}
       />
-      <Landing_page_container landing_data={props.Landing_page} language={language}/>
+      <Landing_page_container
+        landing_data={props.Landing_page}
+        language={language}
+      />
       <Landing_Page_Content data={props.Landing_page} language={language} />
     </Layout>
   ) : null;

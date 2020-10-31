@@ -3,8 +3,12 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import language from "../public/languages/fa/guideforrent.json";
+import { logPageView } from "../utils/analytics";
 
 const guideForRent = () => {
+  React.useEffect(() => {
+    logPageView();
+  }, []);
   return (
     <Layout showToTop={true}>
       <NextSeo
@@ -21,7 +25,7 @@ const guideForRent = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{language.h1}</h1>
         <h2>{language.h2_1}</h2>
         <h3>{language.h3_1}</h3>
@@ -40,8 +44,8 @@ const guideForRent = () => {
         <ul>
           <li>
             {language.h3_3_li_1_a_1}
-            <Link href="/insurance-policies">
-              <a href="">{language.h3_3_li_1_insurance}</a>
+            <Link href='/insurance-policies'>
+              <a href=''>{language.h3_3_li_1_insurance}</a>
             </Link>
             {language.h3_3_li_1_a_2}
           </li>

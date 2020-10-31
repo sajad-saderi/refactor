@@ -9,6 +9,7 @@ import "../src/styles/pages/Success_payment.scss";
 import carImage from "../public/image/car-image-thumbnail.jpg";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentsucceed.json";
+import { logPageView } from "../utils/analytics";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -19,6 +20,7 @@ const Success_payment = () => {
   const token = jsCookie.get("token");
 
   useEffect(() => {
+    logPageView();
     fetchAPI(Router.router.query.id);
   }, []);
 
@@ -52,10 +54,10 @@ const Success_payment = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className="responsive minHeight local_payment">
+      <article className='responsive minHeight local_payment'>
         {renter ? (
-          <section className="payment_cart">
-            <IoMdCheckmarkCircleOutline size="10rem" color="#73af55" />
+          <section className='payment_cart'>
+            <IoMdCheckmarkCircleOutline size='10rem' color='#73af55' />
             <div>
               <h4>{language.h4}</h4>
               {rent_search_dump.media_set.length > 0 && (
@@ -68,8 +70,8 @@ const Success_payment = () => {
                   }
                 />
               )}
-              <h2 className="center">{rent_search_dump.car.name.fa}</h2>
-              <h3 className="center">
+              <h2 className='center'>{rent_search_dump.car.name.fa}</h2>
+              <h3 className='center'>
                 {rent_search_dump.owner.company_name
                   ? rent_search_dump.owner.company_name
                   : rent_search_dump.owner.name}
@@ -112,13 +114,13 @@ const Success_payment = () => {
             </p>
             <p>
               <span>{language.limit}</span>
-              <span className="float-left">
+              <span className='float-left'>
                 {rent_search_dump.max_km_per_day} {language.kilometer}
               </span>
             </p>
           </section>
         ) : (
-          <p className="loading_text">{language.loading}</p>
+          <p className='loading_text'>{language.loading}</p>
         )}
       </article>
     </Layout>

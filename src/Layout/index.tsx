@@ -21,7 +21,6 @@ import toast_context from "../context/Toast_context";
 import Toast from "../components/Toast";
 
 // Google Analytics
-import { initGA, logPageView } from "../../utils/analytics";
 import { IoIosClose } from "react-icons/io";
 
 const ShowModalReducer = (current, action) => {
@@ -100,13 +99,6 @@ const Layout = (props: ILayout) => {
         localStorage["utm_landing_url"] = Router.router.asPath;
       }
     }
-
-    // Initial React GA library after the mount
-    if (!window["GA_INITIALIZED"]) {
-      initGA();
-      window["GA_INITIALIZED"] = true;
-    }
-    logPageView();
     checkToast();
   }, []);
 

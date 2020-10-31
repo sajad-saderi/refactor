@@ -6,8 +6,12 @@ import Button from "../src/components/form/Button";
 import "../src/styles/pages/Failed_payment.scss";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentfaild.json";
+import { logPageView } from "../utils/analytics";
 
 const Failed_payment = () => {
+  React.useEffect(() => {
+    logPageView();
+  }, []);
   return (
     <Layout>
       <NextSeo
