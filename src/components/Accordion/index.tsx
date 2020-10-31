@@ -22,10 +22,10 @@ const Accordion = (props: IAccordion) => {
         }}
         itemProp='mainEntity'
         itemScope
+        itemType='https://schema.org/Question'
       >
         <h3
           className={i === index ? "activeQA" : ""}
-          itemType='https://schema.org/Question'
           dangerouslySetInnerHTML={{ __html: item.title }}
         ></h3>
         <IoIosArrowDown
