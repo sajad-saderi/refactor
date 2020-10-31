@@ -6,11 +6,23 @@ import Search from "../../src/containers/Search";
 import insurance from "../../public/image/SamanInsurance.png";
 // import "../../src/styles/pages/index.scss";
 import Link from "next/link";
-import TabCreator from "../../src/components/TabCreator";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
-
+import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
 import { logPageView } from "../../utils/analytics";
+
+const question_set = [
+  {
+    title: "<p itemprop='name'>تفاوت اتولی با سایر مراکز اجاره خودرو چیست؟</p>",
+    content:
+      "<p  itemprop='text'>اتولی؛ سیستم آنلاین اجاره خودرو است و این امکان را فراهم آورده است که خودرو  را مستقیم از مالک اجاره کنید و با پرداخت مبلغ کمی برای آن «بیمه اجاره خودرو» (با همکاری و پشتیبانی بیمه سامان) برای جبران خسارت‌های احتمالی تهیه کنید.</p>",
+  },
+  {
+    title: "<p itemprop='name'>شرایط اجاره خودرو از اتولی چیست؟</p>",
+    content:
+      "<p itemprop='text'>اتولی یک سرویس جدید اجاره ماشین است که در آن امکان مقایسه شرایط و قیمت ماشین‌های مختلف را دارید  که در بین آن‌ها می‌توانید ماشین‌هایی با بهترین قیمت و آسان‌ترین شرایط انتخاب کنید که نیازی به ارائه مدارک و ودیعه‌های نامعقول ندارند.</p>",
+  },
+];
 
 const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
@@ -118,6 +130,9 @@ const Rent = () => {
           </div>
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}
+        </div>
+        <div itemScope itemType="https://schema.org/FAQPage" className='responsive'>
+          <Accordion question_set={question_set} />
         </div>
         <section className='responsive third_container'>
           {dynamicLinks ? (
