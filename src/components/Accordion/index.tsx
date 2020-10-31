@@ -20,12 +20,11 @@ const Accordion = (props: IAccordion) => {
         onClick={() => {
           ClickHandler(i);
         }}
-        itemProp='acceptedAnswer'
+        itemProp='mainEntity'
+        itemScope
       >
         <h3
           className={i === index ? "activeQA" : ""}
-          itemProp='mainEntity'
-          itemScope
           itemType='https://schema.org/Question'
           dangerouslySetInnerHTML={{ __html: item.title }}
         ></h3>
