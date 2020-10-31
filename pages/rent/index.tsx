@@ -129,7 +129,7 @@ const Rent = () => {
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}
         </div>
-        <div className='responsive'>
+        <div itemScope itemType="https://schema.org/FAQPage" className='responsive'>
           <Accordion question_set={question_set} />
         </div>
         <section className='responsive third_container'>
