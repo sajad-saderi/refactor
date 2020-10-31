@@ -36,6 +36,7 @@ import jsCookie from "js-cookie";
 import validator from "validator";
 import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
+import { logPageView } from "../../../../utils/analytics";
 
 /**
  * @new_car
@@ -511,6 +512,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
   const user_id = jsCookie.get("user_id");
 
   useEffect(() => {
+    logPageView();
     // check if the user edit the car
     if (Router.router.query.mode === "edit") {
       localStorage.removeItem("incompleteInfo");
