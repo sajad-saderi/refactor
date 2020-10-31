@@ -20,13 +20,14 @@ const Accordion = (props: IAccordion) => {
         onClick={() => {
           ClickHandler(i);
         }}
+        itemProp='acceptedAnswer'
       >
         <h3
           className={i === index ? "activeQA" : ""}
-          dangerouslySetInnerHTML={{ __html: item.title }}
-          itemScope
           itemProp='mainEntity'
+          itemScope
           itemType='https://schema.org/Question'
+          dangerouslySetInnerHTML={{ __html: item.title }}
         ></h3>
         <IoIosArrowDown
           color='#202020'
