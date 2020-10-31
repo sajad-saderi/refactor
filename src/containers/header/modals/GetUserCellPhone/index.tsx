@@ -20,6 +20,7 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
       window["ga"]("send", {
         hitType: "pageview",
         page: "/log-in-modal",
+        title: "ورود / ثبت نام",
       });
     }
   }, []);
