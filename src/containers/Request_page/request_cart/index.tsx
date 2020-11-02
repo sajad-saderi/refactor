@@ -357,7 +357,6 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </p>
             {/* </div> */}
             <p>
-              <span>{language.cost}</span>
               {role ? (
                 <>
                   <span>
