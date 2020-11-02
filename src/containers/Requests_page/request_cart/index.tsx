@@ -371,15 +371,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 {moment(start_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
                 <span>
                   {/* day's name of week  */}
-                  {moment(start_date, "jYYYY/jMM/jDD").format("dddd")} <br />
+                  {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
                 </span>
               </span>
               <MdKeyboardBackspace size='2rem' color='#dcdcdc' />
               <span>
                 {moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
-                <span>
-                  {moment(end_date, "jYYYY/jMM/jDD").format("dddd")} <br />
-                </span>
+                <span>{moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>
               </span>
             </p>
             {/* </div> */}
@@ -401,7 +399,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 </>
               ) : (
                 <>
-                  <span>{discounted_total_price.toLocaleString()}{" "}</span>
+                  <span>{discounted_total_price.toLocaleString()} </span>
                   {language.toman} ({language.for} {no_of_days} {language.day})
                 </>
               )}

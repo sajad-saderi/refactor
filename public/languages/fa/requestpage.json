@@ -16,8 +16,11 @@
       "review": "ثبت نظر",
       "rent_duration": "مدت اجاره",
       "day": "روز",
+      "with_insurance": "بیمه دارد",
+      "without_insurance": "بیمه ندارد",
       "cost": "هزینه اجاره",
       "toman": "تومان",
+      "for": "برای",
       "contact_with_renter": ":تماس با اجاره گیرنده"
     },
     "please_login": {

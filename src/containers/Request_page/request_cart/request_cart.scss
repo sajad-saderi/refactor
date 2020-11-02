@@ -4,41 +4,11 @@
   margin: 0 2rem 2rem 0;
 }
 .cart {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   margin-top: 1.6rem;
-  padding: 1rem;
   .rent_info {
-    width: 70%;
-    h2 {
-      margin-top: 0;
-    }
     h3 {
       font-size: 1.4rem;
       margin-top: 0;
-    }
-    hr {
-      border-width: 0.1rem;
-      margin: 0.5rem 0;
-      border-bottom-width: 0;
-      border-color: transparent;
-      width: 12rem;
-    }
-    p {
-      font-size: 1.4rem;
-    }
-    .rent_duration {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      svg {
-        margin: 0 2rem;
-      }
-    }
-    .no_of_days {
-      font-weight: 500;
-      font-size: 1.4rem;
     }
   }
 }
