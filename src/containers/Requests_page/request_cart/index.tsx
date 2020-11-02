@@ -12,6 +12,20 @@ import {
   IoMdArrowRoundBack,
   IoMdPerson,
 } from "react-icons/io";
+import {
+  MdAccountCircle,
+  MdAlarm,
+  MdAlarmOff,
+  MdCall,
+  MdCallMissedOutgoing,
+  MdClear,
+  MdCreditCard,
+  MdDone,
+  MdDriveEta,
+  MdKeyboardBackspace,
+  MdKeyboardReturn,
+  MdVpnKey,
+} from "react-icons/md";
 import PelakView from "../../../components/pelak";
 
 // import "./request_cart.scss";
@@ -43,6 +57,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [ButtonLoader, setButtonLoader] = useState(false);
   const [rejectButtonLoader, setRejectButtonLoader] = useState(false);
   const [insurance_total_price, setInsurance_total_price] = useState(null);
+  const [has_Insurance, set_has_insurance] = useState(false);
   const [coupon, setCoupon] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
   const MODAL_CONTEXT = useContext(Modal_context);
@@ -120,8 +135,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     switch (status ? status : data.status.id) {
       case "new":
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosDownload size='1.4rem' color='#656565' />
+          <div className='rent_status status_new'>
+            <MdAlarm size='2rem' color='#f7941d' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -149,8 +164,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "approved":
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosCard size='1.4rem' color='#656565' />
+          <div className='rent_status status_approved'>
+            <MdCreditCard size='2rem' color='#a3678b' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -169,8 +184,17 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "rejected":
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosRemoveCircle size='1.4rem' color='#656565' />
+          <div className='rent_status status_expired'>
+            <MdCallMissedOutgoing size='2rem' color='#707070' />
+            <span>{data.status.name}</span>
+          </div>
+        );
+        setButton_code([]);
+        break;
+      case "expired":
+        RentStatus = (
+          <div className='rent_status status_expired'>
+            <MdAlarmOff size='2rem' color='#707070' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -186,8 +210,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "paid":
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosCheckboxOutline size='1.4rem' color='#656565' />
+          <div className='rent_status status_paid'>
+            <MdVpnKey size='2rem' color='#2cbbc2' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -215,8 +239,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "delivered":
         RentStatus = (
-          <div className='rent_status'>
-            <IoLogoModelS size='1.4rem' color='#656565' />
+          <div className='rent_status status_on_trip'>
+            <MdDriveEta size='2rem' color='#2cbbc2' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -237,8 +261,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "returned":
         RentStatus = (
-          <div className='rent_status'>
-            <IoMdFlag size='1.4rem' color='#656565' />
+          <div className='rent_status status_returned'>
+            <MdKeyboardReturn size='2rem' color='#2cbbc2' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -310,6 +334,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     setInsurance_total_price(
       has_insurance ? data.rent_search_dump.insurance_total_price : 0
     );
+    set_has_insurance(has_insurance);
     setCoupon(
       data.rent_search_dump.coupon
         ? data.rent_search_dump.coupon.total_price
@@ -340,49 +365,45 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {car.brand.name.fa} {car.name.fa}
             </h2>
             {/* <div className="rent_duration"> */}
-            <p>
+            <p className='date_duration'>
               <span>
-                {/* day's name of week  */}
-                {moment(start_date, "jYYYY/jMM/jDD").format("dddd")} <br />
+                {/* e.g, 99 01 23 */}
+                {moment(start_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
                 <span>
-                  {/* e.g, 99 01 23 */}
-                  {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
+                  {/* day's name of week  */}
+                  {moment(start_date, "jYYYY/jMM/jDD").format("dddd")} <br />
                 </span>
               </span>
-              {/* <IoMdArrowRoundBack size="2rem" color="#202020" /> */}
+              <MdKeyboardBackspace size='2rem' color='#dcdcdc' />
               <span>
-                {moment(end_date, "jYYYY/jMM/jDD").format("dddd")} <br />
+                {moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
                 <span>
-                  {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM jYY")}
+                  {moment(end_date, "jYYYY/jMM/jDD").format("dddd")} <br />
                 </span>
               </span>
             </p>
             {/* </div> */}
             <p>
-              <span>{language.rent_duration}</span>
-              <span>
-                {no_of_days} {language.day}
-              </span>
-            </p>
-            <p>
-              <span>{language.cost}</span>
               {role ? (
-                <span>
-                  {insurance_total_price
-                    ? coupon
-                      ? (coupon + insurance_total_price).toLocaleString()
-                      : (
-                          discounted_total_price + insurance_total_price
-                        ).toLocaleString()
-                    : coupon
-                    ? coupon.toLocaleString()
-                    : discounted_total_price.toLocaleString()}{" "}
-                  {language.toman}
-                </span>
+                <>
+                  <span>
+                    {insurance_total_price
+                      ? coupon
+                        ? (coupon + insurance_total_price).toLocaleString()
+                        : (
+                            discounted_total_price + insurance_total_price
+                          ).toLocaleString()
+                      : coupon
+                      ? coupon.toLocaleString()
+                      : discounted_total_price.toLocaleString()}{" "}
+                  </span>
+                  {language.toman} ({language.for} {no_of_days} {language.day})
+                </>
               ) : (
-                <span>
-                  {discounted_total_price.toLocaleString()} {language.toman}
-                </span>
+                <>
+                  <span>{discounted_total_price.toLocaleString()}{" "}</span>
+                  {language.toman} ({language.for} {no_of_days} {language.day})
+                </>
               )}
             </p>
           </div>
@@ -392,27 +413,20 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 src={media_set.thumbnail_url}
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
               />
+              <p className='insurance_badge'>
+                {has_Insurance ? (
+                  <>
+                    <MdDone size='1.4rem' color='#2cbbc2' />
+                    {language.with_insurance}
+                  </>
+                ) : (
+                  <>
+                    <MdClear size='1.4rem' color='#707070' />
+                    {language.without_insurance}
+                  </>
+                )}
+              </p>
             </figure>
-            {/* if the status is not one of these status, show the PELAK */}
-            {!role ||
-            status_id === "paid" ||
-            status_id === "delivered" ||
-            status_id === "returned" ? (
-              <PelakView
-                registration_plate_first_part={
-                  pelak.registration_plate_first_part
-                }
-                registration_plate_second_part={
-                  pelak.registration_plate_second_part
-                }
-                registration_plate_third_part={
-                  pelak.registration_plate_third_part
-                }
-                registration_plate_forth_part={
-                  pelak.registration_plate_forth_part
-                }
-              />
-            ) : null}
           </div>
         </div>
         <div className='Role_container'>
@@ -420,7 +434,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <>
               <Link href='/user/[id]' as={`/user/${owner_Info.id}`}>
                 <a>
-                  <IoMdPerson size='2rem' />
+                  <MdAccountCircle size='3rem' />
                   {owner_Info.name}
                 </a>
               </Link>
@@ -429,8 +443,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 <a className='renter_Cell' href={`tel:0${owner_Info.cell}`}>
                   0{owner_Info.cell}
                   <span className='extra_Text'>
-                    {" "}
-                    {language.contact_with_renter}
+                    <MdCall size='2rem' color='#4ba3ce' />
                   </span>
                 </a>
               ) : null}
@@ -439,7 +452,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <>
               <Link href='/user/[id]' as={`/user/${renter_info.id}`}>
                 <a>
-                  <IoMdPerson size='2rem' />
+                  <MdAccountCircle size='3rem' />
                   {renter_info.name}
                 </a>
               </Link>
@@ -448,8 +461,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 <a className='renter_Cell' href={`tel:0${renter_info.cell}`}>
                   0{renter_info.cell}
                   <span className='extra_Text'>
-                    {" "}
-                    {language.contact_with_renter}
+                    <MdCall size='2rem' color='#4ba3ce' />
                   </span>
                 </a>
               ) : null}
@@ -469,6 +481,26 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 click={item.click}
               />
             ))}
+          {/* if the status is not one of these status, show the PELAK */}
+          {role && status_id === "paid" ? (
+            // ||
+            // status_id === "delivered" ||
+            // status_id === "returned"
+            <PelakView
+              registration_plate_first_part={
+                pelak.registration_plate_first_part
+              }
+              registration_plate_second_part={
+                pelak.registration_plate_second_part
+              }
+              registration_plate_third_part={
+                pelak.registration_plate_third_part
+              }
+              registration_plate_forth_part={
+                pelak.registration_plate_forth_part
+              }
+            />
+          ) : null}
         </div>
       </>
     )

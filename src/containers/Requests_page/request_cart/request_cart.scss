@@ -5,30 +5,52 @@
   max-width: 55rem;
   border-radius: 4px;
   margin: 0 1rem 2rem 0;
-  padding: 0rem;
+  padding: 1.6rem;
   background: #fff;
   box-shadow: $box_shadow;
   .rent_status {
     border: none;
-    background: #e6e6e6;
     width: auto;
     border-radius: 4px;
     text-align: center;
-    padding: 0.5rem 0.5rem 0.5rem 3rem;
+    padding: 0.5rem;
     font-size: 1.2rem;
     display: inline-block;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
     svg {
       display: inline-block;
-      margin-left: 1.2rem;
+      margin-left: 0.2rem;
       vertical-align: middle;
-      width: 1.4rem;
+      width: 2rem;
     }
     span {
       font-weight: 500;
       display: inline-block;
-      color: #656565;
+    }
+  }
+  .status_expired {
+    background-color: $almost_gray;
+    span {
+      color: $more_gray;
+    }
+  }
+  .status_returned,
+  .status_paid,
+  .status_on_trip {
+    background-color: $almost_blue;
+    span {
+      color: $teal;
+    }
+  }
+  .status_approved {
+    background-color: $almost_purple;
+    span {
+      color: $purple;
+    }
+  }
+  .status_new {
+    background-color: $almost_orange;
+    span {
+      color: $orange;
     }
   }
   .cart {
@@ -58,15 +80,24 @@
         font-size: 1.4rem;
         margin-bottom: 1.6rem;
         span {
-          width: 50%;
-          display: inline-block;
-          font-weight: 500;
+          font-weight: bold;
           span {
             font-weight: normal;
-            font-size: 1.2rem;
             width: 100%;
             display: block;
           }
+        }
+      }
+      .date_duration {
+        text-align: right;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        span {
+          font-weight: normal;
+        }
+        svg {
+          margin: 0 2rem;
         }
       }
       .rent_duration {
@@ -95,40 +126,15 @@
           display: block;
           margin: auto;
         }
-      }
-      .pelak_view_container {
-        width: 16rem;
-        margin-top: 1rem;
-        img {
-          display: block;
-          margin: auto;
-          width: 100%;
-        }
-        .first {
-          position: absolute;
-          width: auto;
-          left: 26px;
-          top: 6px;
-          font-size: 1.6rem;
-        }
-        .second {
-          position: absolute;
-          top: 8px;
-          right: 88px;
-          line-height: 1.2;
-          font-size: 1.6rem;
-        }
-        .third {
-          position: absolute;
-          top: 6px;
-          right: 49px;
-          font-size: 1.6rem;
-        }
-        .forth {
-          position: absolute;
-          top: 12px;
-          right: 11px;
-          font-size: 1.4rem;
+        .insurance_badge {
+          text-align: left;
+          font-size: 1.3rem;
+          margin-top: 1.5rem;
+          svg {
+            margin-left: 0.5rem;
+            display: inline-block;
+            vertical-align: middle;
+          }
         }
       }
     }
@@ -151,37 +157,97 @@
         display: inline-block;
         vertical-align: middle;
         margin-left: 0.5rem;
-        border-radius: 4px;
-        border: 1px solid $blue;
-        width:2rem
+        width: 3rem;
       }
     }
   }
   .Button_container {
-    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .disable_rate_btn {
       color: #656565;
+      margin-top: 2rem;
       font-family: inherit;
       background-color: #e6e6e6;
     }
     .request_car_accept {
-      width: 49%;
+      margin-top: 2rem;
+      width: 47%;
     }
     .request_car_reject {
-      width: 49%;
+      margin-top: 2rem;
+      width: 47%;
       background-color: transparent;
-      border: 1px solid $blue;
-      color: $blue;
+      border: 1px solid $light_grey;
+      color: $gray;
       .Loading {
-        border-right-color: $blue;
+        border-right-color: $light_grey;
       }
     }
     .request_car_pay {
+      margin-top: 2rem;
       width: 100%;
       display: block;
+    }
+    .pelak_view_container {
+      border: 1px solid $light_grey;
+      background: $almost_white;
+      margin-right: 2.4rem;
+      img {
+        display: none;
+      }
+      .first {
+        position: absolute;
+        width: auto;
+        left: 21px;
+        top: 7px;
+        font-size: 1.8rem;
+      }
+      .second {
+        position: absolute;
+        top: 8px;
+        right: 98px;
+        line-height: 1.2;
+        font-size: 1.8rem;
+      }
+      .third {
+        position: absolute;
+        top: 8px;
+        right: 58px;
+        font-size: 1.8rem;
+      }
+      .forth {
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        font-size: 1.8rem;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 97.5%;
+        width: 0.8rem;
+        height: 0.8rem;
+        margin-top: -5px;
+        border-width: 1px;
+        border-style: solid;
+        background: $almost_white;
+        border-color: $light_grey $light_grey transparent transparent;
+        transform: rotate(45deg);
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        left: 72%;
+        width: 0;
+        height: 100%;
+        border-width: 0;
+        border-style: solid;
+        border-color: $light_grey;
+        border-left-width: 1px;
+      }
     }
   }
 }
