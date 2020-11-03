@@ -5,7 +5,7 @@
   max-width: 55rem;
   border-radius: 4px;
   margin: 0 1rem 2rem 0;
-  padding: 1.6rem;
+  padding: 1.6rem 1.6rem 2.4rem;
   background: #fff;
   box-shadow: $box_shadow;
   .rent_status {
@@ -13,7 +13,7 @@
     width: auto;
     border-radius: 4px;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.3rem 0.8rem;
     font-size: 1.2rem;
     display: inline-block;
     svg {
@@ -36,7 +36,7 @@
   .status_returned,
   .status_paid,
   .status_on_trip {
-    background-color: $almost_blue;
+    background-color: $almost_teal;
     span {
       color: $teal;
     }
@@ -58,17 +58,13 @@
     justify-content: space-between;
     align-items: flex-start;
     // margin-top: 1.6rem;
-    padding: 1rem;
+    padding: 1.6rem 0;
     padding-bottom: 0;
     .rent_info {
       width: 70%;
       h2 {
-        margin-top: 0;
+        margin: 0 0 0.8rem 0;
       }
-      // h3 {
-      //   font-size: 1.4rem;
-      //   margin-top: 0;
-      // }
       hr {
         border-width: 0.1rem;
         margin: 0.5rem 0;
@@ -129,7 +125,7 @@
         .insurance_badge {
           text-align: left;
           font-size: 1.3rem;
-          margin-top: 1.5rem;
+          margin-top: 1rem;
           svg {
             margin-left: 0.5rem;
             display: inline-block;
@@ -141,7 +137,7 @@
   }
 
   .Role_container {
-    padding: 0rem 1rem 0rem;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -158,6 +154,18 @@
         vertical-align: middle;
         margin-left: 0.5rem;
         width: 3rem;
+      }
+    }
+    .renter_Cell {
+      background-color: $almost_blue;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-weight: normal;
+      border: 1px solid $blue;
+      svg {
+        width: 2rem;
+        height: 2rem;
+        margin: 0;
       }
     }
   }
