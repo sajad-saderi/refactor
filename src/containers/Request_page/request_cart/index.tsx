@@ -462,10 +462,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className='renter_Cell' href={`tel:0${owner_Info.cell}`}>
-                  0{owner_Info.cell}
-                  <span className='extra_Text'>
-                    <MdCall size='2rem' color='#4ba3ce' />
-                  </span>
+                  <span className='extra_Text'>0{owner_Info.cell}</span>
+                  <MdCall size='2rem' color='#4ba3ce' />
                 </a>
               ) : null}
             </>
@@ -480,10 +478,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className='renter_Cell' href={`tel:0${renter_info.cell}`}>
-                  0{renter_info.cell}
-                  <span className='extra_Text'>
-                    <MdCall size='2rem' color='#4ba3ce' />
-                  </span>
+                  <span className='extra_Text'>0{renter_info.cell}</span>
+                  <MdCall size='2rem' color='#4ba3ce' />
                 </a>
               ) : null}
             </>

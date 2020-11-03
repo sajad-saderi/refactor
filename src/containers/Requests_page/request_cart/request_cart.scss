@@ -134,11 +134,12 @@
     }
   }
   .invoice_and_insurance {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 1.2rem;
     span {
       font-size: 1.6rem;
-      font-weight: bold;
+      font-weight: 500;
+      letter-spacing: 0.7px;
       span {
         font-weight: normal;
         width: 100%;
@@ -151,7 +152,7 @@
       display: inline-block;
       float: left;
       svg {
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
         display: inline-block;
         vertical-align: middle;
       }
@@ -167,8 +168,9 @@
       font-weight: 500;
       font-size: 1.4rem;
       .extra_Text {
-        font-size: 1.2rem;
-        color: #a2a2a2;
+        display: inline-block;
+        vertical-align: middle;
+        color: $blue;
       }
       svg {
         display: inline-block;
@@ -236,6 +238,7 @@
         left: 13px;
         top: 4px;
         font-size: 1.4rem;
+        color: $more_gray;
       }
       .second {
         position: absolute;
@@ -243,18 +246,21 @@
         right: 88px;
         line-height: 1.2;
         font-size: 1.4rem;
+        color: $more_gray;
       }
       .third {
         position: absolute;
         top: 4px;
         right: 53px;
         font-size: 1.4rem;
+        color: $more_gray;
       }
       .forth {
         position: absolute;
         top: 4px;
         right: 11px;
         font-size: 1.4rem;
+        color: $more_gray;
       }
       &::after {
         content: "";
