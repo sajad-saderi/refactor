@@ -94,7 +94,7 @@
         span {
           font-size: 1.3rem;
           font-weight: normal;
-          line-height: 27px;
+          line-height: 23px;
         }
         svg {
           margin: 0 2rem;
@@ -124,6 +124,7 @@
         overflow: hidden;
         border-radius: 4px;
         background-size: cover;
+        background-repeat: no-repeat;
         img {
           display: none;
           max-width: 100%;
