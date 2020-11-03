@@ -221,7 +221,7 @@
       border: 1px solid $light_grey;
       background: $almost_white;
       margin-right: 2.4rem;
-      height: 4rem;
+      height: 2.8rem;
       margin-top: 2rem;
       max-width: 14.5rem;
       border-radius: 0.4rem;
@@ -232,27 +232,27 @@
         position: absolute;
         width: auto;
         left: 13px;
-        top: 7px;
-        font-size: 1.8rem;
+        top: 4px;
+        font-size: 1.4rem;
       }
       .second {
         position: absolute;
-        top: 8px;
+        top: 4px;
         right: 88px;
         line-height: 1.2;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
       }
       .third {
         position: absolute;
-        top: 8px;
+        top: 4px;
         right: 53px;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
       }
       .forth {
         position: absolute;
-        top: 8px;
+        top: 4px;
         right: 11px;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
       }
       &::after {
         content: "";
