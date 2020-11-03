@@ -122,8 +122,8 @@
         height: 8.4rem;
         position: relative;
         overflow: hidden;
+        border-radius: 4px;
         img {
-          max-height: 10rem;
           max-width: 100%;
           display: block;
           left: 0;
@@ -197,17 +197,17 @@
     }
     .disable_rate_btn {
       color: #656565;
-      margin-top: 2rem; 
+      margin-top: 2rem;
       font-family: inherit;
       background-color: #e6e6e6;
     }
     .request_car_accept {
-      margin-top: 2rem; 
+      margin-top: 2rem;
     }
     .request_car_reject {
       margin-top: 2rem;
       background-color: transparent;
-      border: 1px solid $light_grey; 
+      border: 1px solid $light_grey;
       color: $gray;
       .Loading {
         border-right-color: $light_grey;
@@ -215,7 +215,7 @@
     }
     .request_car_pay {
       margin-top: 2rem;
-      display: block; 
+      display: block;
     }
     .pelak_view_container {
       border: 1px solid $light_grey;
