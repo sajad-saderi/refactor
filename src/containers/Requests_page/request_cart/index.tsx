@@ -62,6 +62,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [total_discount, setTotal_discount] = useState(null);
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
+  const [imageHeight, setImageHeight] = useState(0);
+  const [heightController, setheightController] = useState(0);
 
   const token = jsCookie.get("token");
 
@@ -137,7 +139,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_new'>
             <MdAlarm size='2rem' color='#f7941d' />
-            <span>{data.status.name}</span>
+            <span>{language.new}</span>
           </div>
         );
         // set the button attribute base on the role and action
@@ -166,7 +168,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_approved'>
             <MdCreditCard size='2rem' color='#a3678b' />
-            <span>{data.status.name}</span>
+            <span>{language.approved}</span>
           </div>
         );
         setButton_code(
@@ -186,7 +188,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_expired'>
             <MdCallMissedOutgoing size='2rem' color='#707070' />
-            <span>{data.status.name}</span>
+            <span>{language.rejected}</span>
           </div>
         );
         setButton_code([]);
@@ -195,7 +197,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_expired'>
             <MdAlarmOff size='2rem' color='#707070' />
-            <span>{data.status.name}</span>
+            <span>{language.expired}</span>
           </div>
         );
         setButton_code([]);
@@ -204,7 +206,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status'>
             <IoIosEyeOff size='1.4rem' color='#656565' />
-            <span>{data.status.name}</span>
+            <span>{language.cancelled}</span>
           </div>
         );
         break;
@@ -212,7 +214,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_paid'>
             <MdVpnKey size='2rem' color='#2cbbc2' />
-            <span>{data.status.name}</span>
+            <span>{language.paid}</span>
           </div>
         );
         setButton_code(
@@ -241,7 +243,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_on_trip'>
             <MdDriveEta size='2rem' color='#2cbbc2' />
-            <span>{data.status.name}</span>
+            <span>{language.delivered}</span>
           </div>
         );
         setButton_code(
@@ -263,19 +265,19 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className='rent_status status_returned'>
             <MdKeyboardReturn size='2rem' color='#2cbbc2' />
-            <span>{data.status.name}</span>
+            <span>{language.returned_label}</span>
           </div>
         );
         setButton_code(
           renter
             ? data.has_renter_reviewed_rent_order
               ? [
-                  {
-                    value: language.repetitive_review,
-                    disable: true,
-                    class: "Blue_BTN request_car_pay disable_rate_btn",
-                    click: () => {},
-                  },
+                  // {
+                  //   value: language.repetitive_review,
+                  //   disable: true,
+                  //   class: "Blue_BTN request_car_pay disable_rate_btn",
+                  //   click: () => {},
+                  // },
                 ]
               : [
                   {
@@ -288,12 +290,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 ]
             : data.has_owner_reviewed_rent_order
             ? [
-                {
-                  value: language.repetitive_review,
-                  disable: true,
-                  class: "Blue_BTN request_car_pay disable_rate_btn",
-                  click: () => {},
-                },
+                // {
+                //   value: language.repetitive_review,
+                //   disable: true,
+                //   class: "Blue_BTN request_car_pay disable_rate_btn",
+                //   click: () => {},
+                // },
               ]
             : [
                 {
@@ -321,9 +323,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     setStart_date(data.rent_search_dump.start_date);
     setEnd_date(data.rent_search_dump.end_date);
     setNo_of_days(data.rent_search_dump.no_of_days);
-    if (data.rent_search_dump.media_set.length > 0)
+    if (data.rent_search_dump.media_set.length > 0) {
       setMedia_set(data.rent_search_dump.media_set[0]);
-    else setMedia_set({ thumbnail_url: carImage });
+      if (data.rent_search_dump.media_set[0].thumbnail_height) {
+        setImageHeight(data.rent_search_dump.media_set[0].thumbnail_height);
+      }
+    } else setMedia_set({ thumbnail_url: carImage });
     setDiscounted_total_price(
       renter
         ? data.rent_search_dump.discounted_total_price
@@ -380,59 +385,72 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 <span>{moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>
               </span>
             </p>
-            {/* </div> */}
-            <p>
-              {role ? (
-                <>
-                  <span>
-                    {insurance_total_price
-                      ? coupon
-                        ? (coupon + insurance_total_price).toLocaleString()
-                        : (
-                            discounted_total_price + insurance_total_price
-                          ).toLocaleString()
-                      : coupon
-                      ? coupon.toLocaleString()
-                      : discounted_total_price.toLocaleString()}{" "}
-                  </span>
-                  {language.toman} ({language.for} {no_of_days} {language.day})
-                </>
-              ) : (
-                <>
-                  <span>{discounted_total_price.toLocaleString()} </span>
-                  {language.toman} ({language.for} {no_of_days} {language.day})
-                </>
-              )}
-            </p>
           </div>
           <div className='image_pelak'>
             <figure>
               <img
+                style={{
+                  position: "absolute",
+                  // control the top position of the image by "setheightController()"
+                  top: -heightController + "px",
+                }}
                 src={media_set.thumbnail_url}
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
+                onLoadCapture={(e) => {
+                  e.persist();
+                  // adjust the image at the center of division container
+                  console.log(imageHeight / 84, 84 / 2.2);
+                  if (imageHeight / 84 > 2.2) {
+                    setheightController(84 / 4);
+                  }
+                }}
               />
-              <p className='insurance_badge'>
-                {has_Insurance ? (
-                  <>
-                    <MdDone size='1.4rem' color='#2cbbc2' />
-                    {language.with_insurance}
-                  </>
-                ) : (
-                  <>
-                    <MdClear size='1.4rem' color='#707070' />
-                    {language.without_insurance}
-                  </>
-                )}
-              </p>
             </figure>
           </div>
         </div>
+        {/* </div> */}
+        <p className='invoice_and_insurance'>
+          {role ? (
+            <>
+              <span>
+                {insurance_total_price
+                  ? coupon
+                    ? (coupon + insurance_total_price).toLocaleString()
+                    : (
+                        discounted_total_price + insurance_total_price
+                      ).toLocaleString()
+                  : coupon
+                  ? coupon.toLocaleString()
+                  : discounted_total_price.toLocaleString()}{" "}
+              </span>
+              {language.toman} ({language.for} {no_of_days} {language.day})
+            </>
+          ) : (
+            <>
+              <span>{discounted_total_price.toLocaleString()} </span>
+              {language.toman} ({language.for} {no_of_days} {language.day})
+            </>
+          )}
+          <p className='insurance_badge'>
+            {has_Insurance ? (
+              <>
+                <MdDone size='1.4rem' color='#2cbbc2' />
+                {language.with_insurance}
+              </>
+            ) : (
+              <>
+                <MdClear size='1.4rem' color='#707070' />
+                {language.without_insurance}
+              </>
+            )}
+          </p>
+        </p>
         <div className='Role_container'>
           {role ? (
             <>
               <Link href='/user/[id]' as={`/user/${owner_Info.id}`}>
                 <a>
-                  <MdAccountCircle size='3rem' />
+                  <MdAccountCircle size='2rem' />
                   {owner_Info.name}
                 </a>
               </Link>
@@ -450,7 +468,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <>
               <Link href='/user/[id]' as={`/user/${renter_info.id}`}>
                 <a>
-                  <MdAccountCircle size='3rem' />
+                  <MdAccountCircle size='2rem' />
                   {renter_info.name}
                 </a>
               </Link>
