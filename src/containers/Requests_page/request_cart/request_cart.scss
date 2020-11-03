@@ -123,9 +123,10 @@
         position: relative;
         overflow: hidden;
         border-radius: 4px;
+        background-size: cover;
         img {
+          display: none;
           max-width: 100%;
-          display: block;
           left: 0;
         }
       }

@@ -387,7 +387,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </p>
           </div>
           <div className='image_pelak'>
-            <figure>
+            <figure
+              style={{
+                backgroundImage: `url(${media_set.thumbnail_url})`,
+                backgroundPositionY: `-${heightController}px`,
+              }} 
+            >
               <img
                 style={{
                   position: "absolute",
