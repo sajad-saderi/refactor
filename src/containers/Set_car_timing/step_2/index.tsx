@@ -307,17 +307,17 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     }
 
     // SET CAR OUT OF SERVICE
-    if (Router.router.query?.newcaradded === "true") {
-      dispatch({
-        type: "is_out_of_service",
-        is_out_of_service: true,
-      });
-    } else {
-      dispatch({
-        type: "is_out_of_service",
-        is_out_of_service: car.is_out_of_service,
-      });
-    }
+    // if (Router.router.query?.newcaradded === "true") {
+    //   dispatch({
+    //     type: "is_out_of_service",
+    //     is_out_of_service: true,
+    //   });
+    // } else {
+    dispatch({
+      type: "is_out_of_service",
+      is_out_of_service: car.is_out_of_service,
+    });
+    // }
 
     // SET CAR YEAR
     setYear(car.year.name.fa);
@@ -622,23 +622,23 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   };
 
   return (
-    <article className="responsive step_2_form_container">
-      <div className="step_2_main_container">
-        <div className="pageTitle">
+    <article className='responsive step_2_form_container'>
+      <div className='step_2_main_container'>
+        <div className='pageTitle'>
           {/* <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
           <h3>{language.pageTitle_h3}</h3>
 
-          <div className="pelak_container">
-            <p className="car_name_brand">
-              <IoIosCar className="car_icon" size="2.3rem" color="#313131" />
+          <div className='pelak_container'>
+            <p className='car_name_brand'>
+              <IoIosCar className='car_icon' size='2.3rem' color='#313131' />
               {Brand_Name ? (
                 `${Brand_Name} - ${CarModelName}`
               ) : (
-                <span className="carName_placeHoler Gradient"></span>
+                <span className='carName_placeHoler Gradient'></span>
               )}
             </p>
             {/* {year && <p>{year}</p>} */}
-            <div className="licence_number">
+            <div className='licence_number'>
               <p>{state.registration_plate_first_part}</p>
               <p>|</p>
               <p>{state.registration_plate_third_part}</p>
@@ -648,13 +648,13 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           </div>
         </div>
         <form onSubmit={(e) => submitHandler(e, state)}>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">
+          <div className='add_car_form_step_2'>
+            <h4 className='extra_text'>
               {language.extra_text_1_h4}
               <span> {language.extra_text_1_span}</span>
             </h4>
             <div
-              className="Set_Price_date_options"
+              className='Set_Price_date_options'
               //   className={[
               //     "transition_type_Label",
               //     ErrorState.transmission_type_id ? "Error_color" : null
@@ -688,9 +688,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             </div>
             {/* {DateAndPrice === 1 ? ( */}
             {/* <> */}
-            <div className="custom_input_container_step_2 daily_price_container">
+            <div className='custom_input_container_step_2 daily_price_container'>
               <TextInput
-                name="price_per_day"
+                name='price_per_day'
                 number={true}
                 onChangeHandler={(e) => {
                   if (ErrorState.price_per_day) {
@@ -741,14 +741,14 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 }}
               />
               {recommendationPrice ? (
-                <p className="our_recommendation">
+                <p className='our_recommendation'>
                   {`${
                     language.our_recommendation
                   } ${recommendationPrice.toLocaleString()}`}{" "}
                   {language.toman_per_day}
                 </p>
               ) : (
-                <p className="our_recommendation_placeHoler Gradient"></p>
+                <p className='our_recommendation_placeHoler Gradient'></p>
               )}
             </div>
             {/* {state.price_per_day.length > 3 && (
@@ -769,7 +769,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           )} */}
             {/* <h4 className="extra_text">شرایط اجاره</h4> */}
 
-            <div className="custom_input_container_step_2 DropDown_extra_km">
+            <div className='custom_input_container_step_2 DropDown_extra_km'>
               <DropdownSearch
                 label={language.distance_limit}
                 InputDisable={true}
@@ -808,11 +808,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   }
                 }}
               />
-              <span className="tail_text">{language.km_per_day}</span>
+              <span className='tail_text'>{language.km_per_day}</span>
             </div>
-            <div className="custom_input_container_step_2 extra_km_price_container">
+            <div className='custom_input_container_step_2 extra_km_price_container'>
               <TextInput
-                name="extra_km_price"
+                name='extra_km_price'
                 number={true}
                 autoFocus={false}
                 onChangeHandler={(e) => {
@@ -884,7 +884,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   value: state.deliver_at_renters_place,
                 },
               ]}
-              name="deliver_at_renters_place"
+              name='deliver_at_renters_place'
               clearField={() =>
                 dispatch({
                   type: "deliver_at_renters_place",
@@ -906,7 +906,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   value: state.with_driver,
                 },
               ]}
-              name="with_driver"
+              name='with_driver'
               clearField={() => {
                 dispatch({
                   type: "with_driver",
@@ -921,8 +921,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               }}
             />
           </div>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">{language.extra_text_2_h4}</h4>
+          <div className='add_car_form_step_2'>
+            <h4 className='extra_text'>{language.extra_text_2_h4}</h4>
             {/* DiscountBox component  */}
             <DiscountBox
               language={language.discount_box}
@@ -935,9 +935,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               error={ErrorState.discount_error}
             />
           </div>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">{language.extra_text_3_h4}</h4>
-            <div className="cancelation_items_container">
+          <div className='add_car_form_step_2'>
+            <h4 className='extra_text'>{language.extra_text_3_h4}</h4>
+            <div className='cancelation_items_container'>
               {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
               <TextInput
@@ -994,7 +994,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     value: 4,
                   },
                 ]}
-                name="deliver_at_renters_place"
+                name='deliver_at_renters_place'
                 clearField={(item) => {
                   let checkListInstance = null;
                   setCheckbox_list((checkbox_list) => {
@@ -1060,7 +1060,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             <label>
               <span
                 onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
-                className="anchorTagInStep2"
+                className='anchorTagInStep2'
               >
                 {language.what_we_should_get}
               </span>
@@ -1069,11 +1069,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               value={language.submit_step_2}
               loading={Loading}
               disable={Loading}
-              class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
+              class='Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit'
               click={() => {}}
             />
             {ErrorState.error_message ? (
-              <p className="Error_message_text">{ErrorState.error_message}</p>
+              <p className='Error_message_text'>{ErrorState.error_message}</p>
             ) : null}
           </div>
         </form>
