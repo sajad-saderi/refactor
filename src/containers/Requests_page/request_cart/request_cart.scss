@@ -18,7 +18,7 @@
     display: inline-block;
     svg {
       display: inline-block;
-      margin-left: 1.2rem;
+      margin-left: 0.4rem;
       vertical-align: middle;
       width: 2rem;
     }
@@ -101,7 +101,7 @@
           }
         }
         svg {
-          margin: 0 2rem;
+          margin: 0 1rem;
           width: 2.4rem;
         }
       }
@@ -153,14 +153,16 @@
       }
     }
     .insurance_badge {
-      text-align: left;
       font-size: 1.6rem;
       display: inline-block;
       float: left;
+      padding: 0.2rem 0;
       svg {
+        width: 2rem;
+        height: 2rem;
         margin-left: 0.4rem;
         display: inline-block;
-        vertical-align: sub;
+        vertical-align: middle;
       }
     }
   }
@@ -182,8 +184,9 @@
       svg {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 0.5rem;
-        width: 2.4rem;
+        margin-left: 0.4rem;
+        width: 3rem;
+        height: 3rem;
       }
     }
     .renter_Cell {
@@ -303,6 +306,22 @@
 @media screen and(max-width:720px) {
   .Request_car {
     margin: 0 auto 2rem;
+    .Role_container {
+      a {
+        svg {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+      }
+    }
+    .invoice_and_insurance {
+      .insurance_badge {
+        svg {
+          width: 1.4rem;
+          height: 1.4rem;
+        }
+      }
+    }
   }
 }
 
@@ -316,9 +335,6 @@
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-        p {
-          font-size: 1.2rem;
-        }
         .rent_duration {
           svg {
             margin: 0 0.5rem;
@@ -326,7 +342,7 @@
         }
       }
       .image_pelak {
-        max-width: 14rem;
+        // max-width: 14rem;
         .pelak_view_container {
           width: 14rem;
           .first {
