@@ -22,6 +22,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [uncompletedCar, setUncompletedCar] = useState(false);
   const [heightController, setHeightController] = useState(0);
   const [is_out_of_service, setIs_out_of_service] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
     false
   );
@@ -38,6 +39,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
        * is out of service
        */
       setId(data.id);
+      setIsVerified(data.is_verified);
       if (data.cancellation_policy) {
         // set the data
         setIs_out_of_service(data.is_out_of_service);
@@ -97,9 +99,9 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   let hrefProp = is_mine ? `/car/[id]?owner=true` : `/car/[id]`;
   return (
     car && (
-      <div className="carcard">
+      <div className='carcard'>
         <Link href={hrefProp} as={link}>
-          <a data-test-id="Link" className="HEAP_Profile_Card_Car">
+          <a data-test-id='Link' className='HEAP_Profile_Card_Car'>
             <figure>
               {hasMedia ? (
                 <img
@@ -111,7 +113,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                   src={media_set[0].thumbnail_url}
                   className={[
                     "img-fluid",
-                    uncompletedCar ? "grey_car" : null,
+                    uncompletedCar || !isVerified ? "grey_car" : null,
                   ].join(" ")}
                   alt={`${car.brand.name.fa} ${car.name.fa}`}
                   onLoadCapture={(e) => {
@@ -127,11 +129,11 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
               ) : (
                 <img src={carThumbnail} alt={language.default_image} />
               )}
-              <div className="read_more">
+              <div className='read_more'>
                 <span>{language.details}</span>
               </div>
               {uncompletedCar && is_mine ? (
-                <div className="alert_for_car">
+                <div className='alert_for_car'>
                   <p
                     onClick={(e) => {
                       e.preventDefault();
@@ -139,22 +141,27 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                     }}
                   >
                     {language.to_show_this_car}
-                    <span>{language.rent_condition}</span>
+                    <span>{language.rent_condition} </span>
                     {language.setting}
                   </p>
                 </div>
               ) : null}
+              {!isVerified && is_mine ? (
+                <div className='alert_for_car'>
+                  <p>{language.awaiting_for_verified}</p>
+                </div>
+              ) : null}
             </figure>
-            <div className="info_box">
-              <div className="car_brand">
-                <h3 data-test-id="car_brand_h3">{`${car.brand.name.fa} ${car.name.fa}`}</h3>
+            <div className='info_box'>
+              <div className='car_brand'>
+                <h3 data-test-id='car_brand_h3'>{`${car.brand.name.fa} ${car.name.fa}`}</h3>
                 <p>{year.name.fa}</p>
               </div>
             </div>
           </a>
         </Link>
         {is_mine && (
-          <div className="edit_part">
+          <div className='edit_part'>
             <p
               onClick={() => {
                 Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
@@ -168,30 +175,32 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                 ? language.rent_condition
                 : language.edit_time_date}
             </p>
-            {uncompletedCar ? null : is_out_of_service_loading ? (
-              <Spinner display="inline-block" width={20} color="#4ba3ce" />
-            ) : (
-              <p
-                data-test-id="OUT_OF_SERVICE"
-                className="HEAP_Profile_Btn_OutOfService"
-                onClick={setServiceStatus}
-              >
-                {is_out_of_service
-                  ? language.active_the_car
-                  : language.inactive_the_car}
-              </p>
-            )}
-            <div className="icon_container">
-              <span className="HEAP_Profile_Btn_EditCarDetails">
+            {uncompletedCar ? null : isVerified ? (
+              is_out_of_service_loading ? (
+                <Spinner display='inline-block' width={20} color='#4ba3ce' />
+              ) : (
+                <p
+                  data-test-id='OUT_OF_SERVICE'
+                  className='HEAP_Profile_Btn_OutOfService'
+                  onClick={setServiceStatus}
+                >
+                  {is_out_of_service
+                    ? language.active_the_car
+                    : language.inactive_the_car}
+                </p>
+              )
+            ) : null}
+            <div className='icon_container'>
+              <span className='HEAP_Profile_Btn_EditCarDetails'>
                 <IoMdCreate
-                  color="#4ba3ce"
-                  size="2rem"
+                  color='#4ba3ce'
+                  size='2rem'
                   onClick={() => {
                     Router.push(`/add-car?mode=edit&car_id=${id}`);
                   }}
                 />
               </span>
-              <span className="HEAP_Profile_Btn_Delete">
+              <span className='HEAP_Profile_Btn_Delete'>
                 <IoMdTrash
                   onClick={() =>
                     MODAL_CONTEXT.modalHandler("ConfirmDelete", {
@@ -200,8 +209,8 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                       id: id,
                     })
                   }
-                  color="#4ba3ce"
-                  size="2rem"
+                  color='#4ba3ce'
+                  size='2rem'
                 />
               </span>
             </div>
