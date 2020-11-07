@@ -379,7 +379,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
                 </span>
               </span>
-              <MdKeyboardBackspace size='2rem' color='#dcdcdc' />
+              <MdKeyboardBackspace size='2.4rem' color='#dcdcdc' />
               <span>
                 {moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
                 <span>{moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>
@@ -455,7 +455,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <>
               <Link href='/user/[id]' as={`/user/${owner_Info.id}`}>
                 <a>
-                  <MdAccountCircle size='2rem' />
+                  <MdAccountCircle size='2.4rem' />
                   {owner_Info.name}
                 </a>
               </Link>
@@ -463,7 +463,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className='renter_Cell' href={`tel:0${owner_Info.cell}`}>
                   <span className='extra_Text'>0{owner_Info.cell}</span>
-                  <MdCall size='2rem' color='#4ba3ce' />
+                  <MdCall size='1.6rem' color='#4ba3ce' />
                 </a>
               ) : null}
             </>
@@ -471,7 +471,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <>
               <Link href='/user/[id]' as={`/user/${renter_info.id}`}>
                 <a>
-                  <MdAccountCircle size='2rem' />
+                  <MdAccountCircle size='2.4rem' />
                   {renter_info.name}
                 </a>
               </Link>
@@ -479,7 +479,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className='renter_Cell' href={`tel:0${renter_info.cell}`}>
                   <span className='extra_Text'>0{renter_info.cell}</span>
-                  <MdCall size='2rem' color='#4ba3ce' />
+                  <MdCall size='1.6rem' color='#4ba3ce' />
                 </a>
               ) : null}
             </>
