@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Context } from "react";
 import App from "next/app";
 import Router from "next/router";
 import * as Sentry from "@sentry/browser";
@@ -8,6 +8,9 @@ import {
 } from "react-google-recaptcha-v3";
 import Axios from "axios";
 import { initGA } from "../utils/analytics";
+import user_context from "../src/context/User_info";
+import { REQUEST_GET_USER_INFO } from "../src/API";
+import jsCookie from "js-cookie";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -42,6 +45,7 @@ class App_Otoli extends App {
   state = {
     token: null,
     BotScore: null,
+    user_data: null,
   };
   // static async getInitialProps({ Component, ctx }) {
   //     let pageProps = {};
@@ -126,13 +130,34 @@ class App_Otoli extends App {
       initGA();
       window["GA_INITIALIZED"] = true;
     }
+    const userId = jsCookie.get("user_id");
+    if (userId) {
+      this.get_user_data(userId);
+    }
+  };
+
+  get_user_data = async (id) => {
+    const token = jsCookie.get("token");
+    const response: any = await REQUEST_GET_USER_INFO({ id });
+    this.setState({ user_data: { ...response, token } });
   };
 
   render() {
     const { Component, pageProps } = this.props;
     return (
       <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
-        <Component {...pageProps} BotScore={this.state.BotScore} />
+        <user_context.Provider
+          value={{
+            update_user_data: (v) => {
+              this.setState({
+                user_data: v,
+              });
+            },
+            user_data: this.state.user_data,
+          }}
+        >
+          <Component {...pageProps} BotScore={this.state.BotScore} />
+        </user_context.Provider>
         <GoogleReCaptcha
           onVerify={(token) =>
             this.setState({ token }, () => {
