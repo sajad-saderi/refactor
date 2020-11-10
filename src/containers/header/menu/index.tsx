@@ -1,21 +1,32 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import Link from "next/link";
 import modal_context from "../../../context/Modal_context";
-import user_context from "../../../context/User_info";
+import jsCookie from "js-cookie";
 import Router from "next/router";
 import language from "../../../../public/languages/fa/header.json";
+import user_context from "../../../context/User_info";
 
 const Menu = () => {
-  const MODAL_CONTEXT = useContext(modal_context);
   const USER_CONTEXT = useContext(user_context);
-  const [complete_register, set_complete_register] = useState(null);
-  const [token, set_token] = useState(null);
-  const [img_profile, set_img_profile] = useState(null);
-  const [profile, set_profile] = useState(null);
-  const [user_id, set_user_id] = useState(null);
+  const MODAL_CONTEXT = useContext(modal_context);
+
+  let complete_register = jsCookie.get("complete_register");
+  let token = jsCookie.get("token");
+  let img_profile = jsCookie.get("thumbnail_url");
+  let company_name = jsCookie.get("company_name");
+  let profile = company_name
+    ? company_name !== "null"
+      ? company_name
+      : jsCookie.get("user_name")
+      ? `${jsCookie.get("user_name")}`
+      : `${jsCookie.get("name")}`
+    : null;
+  let user_id = jsCookie.get("username")
+    ? jsCookie.get("username")
+    : jsCookie.get("user_id");
 
   useEffect(() => {
-    if (USER_CONTEXT.user_data) {
+    if (USER_CONTEXT.user_data && sessionStorage["flag"] !== "true") {
       const {
         first_name,
         last_name,
@@ -28,15 +39,13 @@ const Menu = () => {
       } = USER_CONTEXT.user_data;
 
       if (first_name) {
-        set_complete_register(true);
+        complete_register = true;
       }
-      set_img_profile(thumbnail_url);
-      set_profile(company_name ? company_name : username ? username : name);
-      set_token(token);
+      img_profile = thumbnail_url;
+      profile = company_name ? company_name : username ? username : name;
       if (username) {
-        set_user_id(username);
+        user_id = username;
       }
-      set_user_id(id);
     }
   }, [USER_CONTEXT.user_data]);
 
@@ -55,7 +64,7 @@ const Menu = () => {
                 }
                 alt={profile}
               />
-              {profile}
+              {profile && profile}
               {localStorage["red_dot"] === "1" && <span className='red_dot' />}
             </a>
           </Link>

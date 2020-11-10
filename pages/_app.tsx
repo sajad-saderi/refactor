@@ -8,9 +8,9 @@ import {
 } from "react-google-recaptcha-v3";
 import Axios from "axios";
 import { initGA } from "../utils/analytics";
-import user_context from "../src/context/User_info";
 import { REQUEST_GET_USER_INFO } from "../src/API";
 import jsCookie from "js-cookie";
+import user_context from "../src/context/User_info";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -131,15 +131,31 @@ class App_Otoli extends App {
       window["GA_INITIALIZED"] = true;
     }
     const userId = jsCookie.get("user_id");
-    if (userId) {
+    if (userId && sessionStorage["flag"] !== "true") {
+      sessionStorage["flag"] = true;
       this.get_user_data(userId);
     }
   };
 
   get_user_data = async (id) => {
-    const token = jsCookie.get("token");
-    const response: any = await REQUEST_GET_USER_INFO({ id });
-    this.setState({ user_data: { ...response, token } });
+    try {
+      const response: any = await REQUEST_GET_USER_INFO({ id });
+      jsCookie.set("complete_register", response.first_name ? true : null);
+      jsCookie.set("name", response.name);
+      jsCookie.set("company_name", response.company_name);
+      if (response.username) {
+        jsCookie.set("username", response.username);
+      }
+      jsCookie.set(
+        "thumbnail_url",
+        response.thumbnail_url
+          ? response.thumbnail_url
+          : "https://core.otoli.net/static/core/default_profile_pic.png"
+      );
+      this.setState({ user_data: { ...response } });
+    } catch (error) {
+      sessionStorage["flag"] = false;
+    }
   };
 
   render() {
@@ -158,6 +174,7 @@ class App_Otoli extends App {
         >
           <Component {...pageProps} BotScore={this.state.BotScore} />
         </user_context.Provider>
+
         <GoogleReCaptcha
           onVerify={(token) =>
             this.setState({ token }, () => {

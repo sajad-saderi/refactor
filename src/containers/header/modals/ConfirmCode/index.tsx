@@ -3,7 +3,6 @@ import TextInput from "../../../../components/form/TextInput";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import modal_context from "../../../../context/Modal_context";
 import Auth_context from "../../../../context/Auth_context";
-import User_context from "../../../../context/User_info";
 import axios from "axios";
 import Router from "next/router";
 import jsCookie from "js-cookie";
@@ -27,7 +26,6 @@ const ConfirmCode = ({
   const Cell_Phone_context = useContext(cell_Phone_context);
   const Modal_context = useContext(modal_context);
   const AUTH_CONTEXT = useContext(Auth_context);
-  const USER_CONTEXT = useContext(User_context);
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
@@ -58,9 +56,9 @@ const ConfirmCode = ({
           // save data in cache
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
-          jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("name", " ", cook_option);
           jsCookie.set("user_id", data.user_profile.id, cook_option);
+          jsCookie.set("complete_register", data.has_name);
+          jsCookie.set("name", " ");
 
           // NOTE: save data in cache and active heap
           try {
@@ -79,23 +77,18 @@ const ConfirmCode = ({
           const data = response.data;
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
-          jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("name", data.user_profile.name, cook_option);
-          jsCookie.set(
-            "company_name",
-            data.user_profile.company_name,
-            cook_option
-          );
-          if (data.user_profile.username) {
-            jsCookie.set("username", data.user_profile.username, cook_option);
-          }
           jsCookie.set("user_id", data.user_profile.id, cook_option);
+          jsCookie.set("complete_register", data.has_name);
+          jsCookie.set("name", data.user_profile.name);
+          jsCookie.set("company_name", data.user_profile.company_name);
+          if (data.user_profile.username) {
+            jsCookie.set("username", data.user_profile.username);
+          }
           jsCookie.set(
             "thumbnail_url",
             data.user_profile.thumbnail_url
               ? data.user_profile.thumbnail_url
-              : "https://core.otoli.net/static/core/default_profile_pic.png",
-            cook_option
+              : "https://core.otoli.net/static/core/default_profile_pic.png"
           );
           // NOTE: activate heap
           try {
@@ -109,12 +102,7 @@ const ConfirmCode = ({
             console.log("Em...I think heap not work correctly :/");
           }
           // set authorize to auth context
-          AUTH_CONTEXT.Auth_Manager(true); 
-
-          USER_CONTEXT.update_user_data({
-            ...response.data.user_profile,
-            token: data.token,
-          });
+          AUTH_CONTEXT.Auth_Manager(true);
         } else {
           // TODO: handle errors
           console.error("error");
