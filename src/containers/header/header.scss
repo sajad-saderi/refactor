@@ -115,6 +115,10 @@
           padding-left: 2.4rem;
           display: block;
         }
+        .user-name {
+          padding: 0;
+          display: inline-block;
+        }
       }
       .Drop_Down {
         &:hover .Sub_Nav_Level_2 {
@@ -197,6 +201,11 @@
       ul {
         .first_element_li {
           span {
+            display: none;
+          }
+        }
+        li {
+          .user-name {
             display: none;
           }
         }

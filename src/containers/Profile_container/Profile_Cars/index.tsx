@@ -11,6 +11,7 @@ import { IoIosArrowDown } from "react-icons/io";
 let useFilter = false;
 let filterNumber = 0;
 let page = 1;
+let heap = false;
 
 const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
   const [result, setResult] = useState(null);
@@ -18,11 +19,13 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
   const [showMoreButton, setShowMoreButton] = useState(false);
 
   useEffect(() => {
+    heap = true;
     fetchApi();
     return () => {
       useFilter = false;
       page = 1;
       filterNumber = 0;
+      heap = false;
     };
   }, []);
 
@@ -43,6 +46,7 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
     }
     try {
       const user_cars_res: any = await REQUEST_GET_USER_CARS(data);
+      if (heap) set_car_count_in_heap(user_cars_res.items.length);
       if (page > 1) {
         setResult((result) => result.concat(user_cars_res.items));
       } else {
@@ -64,6 +68,17 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
     }
   };
 
+  const set_car_count_in_heap = (len) => {
+    if (is_mine) {
+      if (window["heap"]) {
+        window["heap"].addUserProperties({
+          Cars_Num: len,
+        });
+      }
+    }
+    heap = false;
+  };
+
   // check the filter to sort by avtive or out of service status
   const activeFilter = (i) => {
     page = 1;
@@ -82,12 +97,12 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
   };
 
   return (
-    <article className="Profile_car_container">
+    <article className='Profile_car_container'>
       {is_mine && result
         ? result.length > 3 && (
-            <div className="service_filer">
+            <div className='service_filer'>
               <Radio
-                name="show_car_Radio"
+                name='show_car_Radio'
                 error_status={false}
                 SelectHandler={(i) => {
                   setActive(+i);
@@ -157,15 +172,15 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
         </>
       )}
       {showMoreButton ? (
-        <div className="Load_more_car_container">
+        <div className='Load_more_car_container'>
           <span
-            className="Load_more_car HEAP_Profile_Btn_ShowMore"
+            className='Load_more_car HEAP_Profile_Btn_ShowMore'
             onClick={() => {
               page = 1 + page;
               fetchApi(page);
             }}
           >
-            <IoIosArrowDown color="#202020" size="1.8rem" />
+            <IoIosArrowDown color='#202020' size='1.8rem' />
             {language.show_more_cars}
           </span>
         </div>

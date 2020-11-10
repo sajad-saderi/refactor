@@ -146,7 +146,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                   </p>
                 </div>
               ) : null}
-              {!isVerified && is_mine ? (
+              {!isVerified && !uncompletedCar && is_mine ? (
                 <div className='alert_for_car'>
                   <p>{language.awaiting_for_verified}</p>
                 </div>

@@ -25,6 +25,7 @@ import DiscountBox from "../DiscountBox";
 import DropdownSearch from "../../../components/form/Dropdown";
 import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
+import Toast_context from "../../../context/Toast_context";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -222,6 +223,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     cancellation_policy: "",
   });
   const MODAL_CONTEXT = useContext(Modal_context);
+  const TOAST_CONTEXT = useContext(Toast_context);
+
   const token = jsCookie.get("token");
   const [checkbox_list, setCheckbox_list] = useState([]);
 
@@ -423,6 +426,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         });
         localStorage.removeItem("red_dot");
         if (Router.router.query?.newcaradded === "true") {
+          TOAST_CONTEXT.toast_option({
+            message: `${language.toast_1} ${CarModelName} ${language.toast_2}`,
+            time: 10,
+            autoClose: true,
+          });
           Router.push(`/user/${state.owner_id}?newcaradded=true`);
         } else {
           Router.push(`/user/${state.owner_id}`);
