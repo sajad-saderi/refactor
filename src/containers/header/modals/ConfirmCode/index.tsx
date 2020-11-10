@@ -63,7 +63,7 @@ const ConfirmCode = ({
           // NOTE: save data in cache and active heap
           try {
             if (window["heap"]) {
-              window["heap"].identify(`${data.user_profile.cell}`);
+              window["heap"].identify(`${cellNumber}`);
             }
           } catch (e) {
             console.log("Em...I think heap not work correctly :/");
@@ -93,7 +93,7 @@ const ConfirmCode = ({
           // NOTE: activate heap
           try {
             if (window["heap"]) {
-              window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
+              window["heap"].identify(`${cellNumber}`);
               window["heap"].addUserProperties({
                 Name: `${data.user_profile.first_name}-${data.user_profile.last_name}`,
               });

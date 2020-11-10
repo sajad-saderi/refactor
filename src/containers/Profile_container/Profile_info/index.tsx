@@ -24,6 +24,9 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   }, [data]);
 
   const Exit = () => {
+    if (window["heap"]) {
+      window["heap"].resetIdentity();
+    }
     jsCookie.remove("first_name");
     jsCookie.remove("last_name");
     jsCookie.remove("company_name");
@@ -44,11 +47,11 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   };
 
   return (
-    <article className="Profile_info_container">
+    <article className='Profile_info_container'>
       {name ? (
         !edit ? (
           <>
-            <div className="user_information">
+            <div className='user_information'>
               <img
                 src={image}
                 alt={name}
@@ -68,14 +71,14 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
               </div>
             </div>
             {is_mine && (
-              <div className="profile_controls">
-                <div className="Exit" onClick={Exit}>
-                  <FiLogOut size="2rem" color="#4ba3ce" />
+              <div className='profile_controls'>
+                <div className='Exit' onClick={Exit}>
+                  <FiLogOut size='2rem' color='#4ba3ce' />
                   <p>{language.exit}</p>
                 </div>
                 <Button
                   value={language.add}
-                  class="Blue_BTN HEAP_Profile_Btn_AddCar"
+                  class='Blue_BTN HEAP_Profile_Btn_AddCar'
                   click={() => {
                     Router.push("/add-car");
                   }}
