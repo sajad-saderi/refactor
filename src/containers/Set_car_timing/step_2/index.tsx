@@ -739,10 +739,15 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     type: "price_per_day",
                     price_per_day: e,
                   });
-                  if (e > 10) {
-                    let each_hour = Math.floor(+e / 24);
-                    let hour_price = `${`${each_hour}`.slice(0, 1)}${"0".repeat(
-                      `${each_hour}`.length - 1
+                  let each_hour = Math.floor(+e / 24);
+                  if (each_hour > 100) {
+                    let firstTwo: string | number = `${each_hour}`.slice(0, 2);
+                    let restOfIt = `${each_hour}`.slice(2, 3);
+                    if (+restOfIt > 5) {
+                      firstTwo = +firstTwo + 1;
+                    }
+                    let hour_price = `${firstTwo}${"0".repeat(
+                      `${each_hour}`.length - 2
                     )}`;
                     dispatch({
                       type: "extra_hour_price",
