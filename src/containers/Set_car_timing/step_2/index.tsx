@@ -54,6 +54,8 @@ const stateReducer = (current, action) => {
       return { ...current, max_km_per_day: action.max_km_per_day };
     case "extra_km_price":
       return { ...current, extra_km_price: action.extra_km_price };
+    case "extra_hour_price":
+      return { ...current, extra_hour_price: action.extra_hour_price };
     case "deliver_at_renters_place":
       return {
         ...current,
@@ -119,6 +121,12 @@ const error_reducer = (current, action) => {
       return {
         ...current,
         extra_km_price: action.extra_km_price,
+        error_message: action.error_message,
+      };
+    case "extra_hour_price":
+      return {
+        ...current,
+        extra_hour_price: action.extra_hour_price,
         error_message: action.error_message,
       };
     case "days_to_get_reminded":
@@ -192,6 +200,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     id: false,
     max_km_per_day: false,
     extra_km_price: false,
+    extra_hour_price: false,
     days_to_get_reminded: false,
     deliver_at_renters_place: false,
     with_driver: false,
@@ -213,6 +222,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     registration_plate_forth_part: "",
     max_km_per_day: 250,
     extra_km_price: "",
+    extra_hour_price: "",
     days_to_get_reminded: 0,
     deliver_at_renters_place: 0,
     with_driver: 0,
@@ -303,6 +313,13 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
       dispatch({
         type: "extra_km_price",
         extra_km_price: car.extra_km_price,
+      });
+    }
+    // SET CAR MAX km PER DAY
+    if (car.extra_hour_price) {
+      dispatch({
+        type: "extra_hour_price",
+        extra_hour_price: car.extra_hour_price,
       });
     }
 
@@ -415,6 +432,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           with_driver: state.with_driver,
           max_km_per_day: state.max_km_per_day,
           extra_km_price: state.extra_km_price,
+          extra_hour_price: state.extra_hour_price,
           cancellation_policy: state.cancellation_policy.trim(),
           days_to_get_reminded: state.days_to_get_reminded,
           min_days_to_rent: state.min_days_to_rent,
@@ -535,6 +553,23 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
       return false;
     } else {
       resetTheErrorStatus("extra_km_price");
+    }
+    if (state.extra_hour_price === "") {
+      ErrorDispatch({
+        type: "extra_hour_price",
+        extra_hour_price: true,
+        error_message: language.error_12,
+      });
+      return false;
+    } else if (+state.extra_hour_price < 100) {
+      ErrorDispatch({
+        type: "extra_hour_price",
+        extra_hour_price: true,
+        error_message: language.error_13,
+      });
+      return false;
+    } else {
+      resetTheErrorStatus("extra_hour_price");
     }
     if (showDiscount !== 0 && discountList.length === 0) {
       ErrorDispatch({
@@ -704,6 +739,10 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     type: "price_per_day",
                     price_per_day: e,
                   });
+                  dispatch({
+                    type: "extra_hour_price",
+                    extra_hour_price: Math.floor(+e / 24),
+                  });
                   if (state.max_km_per_day) {
                     dispatch({
                       type: "extra_km_price",
@@ -854,6 +893,54 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   messages: {
                     required: language.enter_the_value_for_fee,
                     min: language.start_from_,
+                  },
+                }}
+              />
+            </div>
+            <div className='custom_input_container_step_2 extra_km_price_container'>
+              <TextInput
+                name='extra_hour_price'
+                number={true}
+                autoFocus={false}
+                onChangeHandler={(e) => {
+                  if (ErrorState.extra_hour_price) {
+                    ErrorDispatch({
+                      type: "extra_hour_price",
+                      extra_hour_price: false,
+                      error_message: "",
+                    });
+                  }
+                  dispatch({
+                    type: "extra_hour_price",
+                    extra_hour_price: e,
+                  });
+                }}
+                clearField={() =>
+                  dispatch({
+                    type: "extra_hour_price",
+                    extra_hour_price: "",
+                  })
+                }
+                error={{
+                  status: ErrorState.extra_hour_price,
+                  message: null,
+                }}
+                // min={4}
+                max={7}
+                placeholder={language.price_for_extra_hour_place_holder}
+                showTail={true}
+                tail_value={`${NumbersAndCurrencyUnit({
+                  value: state.extra_hour_price,
+                })} ${language.toman}`}
+                value={state.extra_hour_price}
+                label={language.price_per_hour_label}
+                validation={{
+                  number: true,
+                  required: true,
+                  min: 100,
+                  messages: {
+                    required: language.enter_the_value_for_hour,
+                    min: language.start_hour_from_,
                   },
                 }}
               />

@@ -16,6 +16,7 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
       cancellation_policy,
       days_to_get_reminded,
       min_days_to_rent,
+      extra_hour_price,
       is_out_of_service,
     } = data;
     axios
@@ -28,6 +29,7 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
           with_driver,
           is_out_of_service,
           extra_km_price,
+          extra_hour_price,
           id,
           max_km_per_day,
           min_days_to_rent,
@@ -61,4 +63,5 @@ interface ISetCarPartial {
   days_to_get_reminded: number;
   min_days_to_rent: number;
   is_out_of_service: boolean;
+  extra_hour_price: number;
 }
