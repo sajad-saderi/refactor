@@ -20,6 +20,8 @@
       overflow: hidden;
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
+      background-repeat: no-repeat;
+      background-size: cover;
       .discount_badge {
         position: absolute;
         left: 0px;
@@ -66,6 +68,7 @@
       }
       img {
         width: 100%;
+        display: none;
       }
     }
     .info_box {
@@ -75,7 +78,7 @@
         h3 {
           font-size: 1.8em;
           margin-bottom: 0;
-          width: 155px;
+          // width: 158px;
           display: inline-block;
           overflow: hidden;
           white-space: nowrap;
