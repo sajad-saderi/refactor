@@ -739,10 +739,16 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     type: "price_per_day",
                     price_per_day: e,
                   });
-                  dispatch({
-                    type: "extra_hour_price",
-                    extra_hour_price: Math.floor(+e / 24),
-                  });
+                  if (e > 10) {
+                    let each_hour = Math.floor(+e / 24);
+                    let hour_price = `${`${each_hour}`.slice(0, 1)}${"0".repeat(
+                      `${each_hour}`.length - 1
+                    )}`;
+                    dispatch({
+                      type: "extra_hour_price",
+                      extra_hour_price: hour_price,
+                    });
+                  }
                   if (state.max_km_per_day) {
                     dispatch({
                       type: "extra_km_price",
