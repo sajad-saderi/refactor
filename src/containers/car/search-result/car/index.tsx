@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
 import Router from "next/router";
@@ -6,6 +6,10 @@ import Router from "next/router";
 
 const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   const [heightController, setheightController] = useState(0);
+  const [h3Width, setH3Width] = useState(null);
+
+  const cardRef = useRef(null);
+  const h3Ref = useRef(null);
 
   const {
     id,
@@ -25,8 +29,8 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   } = data;
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
-  let imageWidth = has_media ? media_set[0].thumbnail_width : null;
-  let imageHeight = has_media ? media_set[0].thumbnail_height : null;
+  // let imageWidth = has_media ? media_set[0].thumbnail_width : null;
+  // let imageHeight = has_media ? media_set[0].thumbnail_height : null;
   let title = car.brand.name.fa + " " + car.name.fa;
   let link = `/car/${id}?search_id=${search_id}`;
   let price =
@@ -46,29 +50,44 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     avg_discounted_price_per_day >= 1000000
       ? language.search_result_section.car.million
       : language.search_result_section.car.thousand;
+
+  useEffect(() => {
+    let containerWidth = cardRef.current.clientWidth;
+    let aThirdOfTheContainerWidth = Math.ceil(containerWidth / 3);
+    let twoThirdsOfTheContainerWidth =
+      containerWidth - aThirdOfTheContainerWidth;
+    let carNameWidth = h3Ref.current.clientWidth;
+
+    if (carNameWidth > twoThirdsOfTheContainerWidth)
+      setH3Width(twoThirdsOfTheContainerWidth);
+  }, []);
   return (
-    <div className="carCart HEAP_SearchResult_Card_Car">
+    <div className='carCart HEAP_SearchResult_Card_Car' ref={cardRef}>
       {/* <Link href={link}> */}
       {/* <a className={`CAR_CART_${title}`}> */}
       <div
-        className="card_wrapper"
+        className='card_wrapper'
         onClick={() => {
           Router.push(link);
         }}
       >
-        <figure>
+        <figure
+          style={{
+            backgroundImage: `url(${img})`,
+          }}
+        >
           {total_discount_percent > 0 && (
-            <span className="discount_badge">
+            <span className='discount_badge'>
               {total_discount_percent}
               {language.search_result_section.car.discount}
             </span>
           )}
           {is_promoted && (
-            <span className="Special">
+            <span className='Special'>
               {language.search_result_section.car.special}
             </span>
           )}
-          {has_media ? (
+          {/* {has_media ? (
             <img
               style={{
                 position: "absolute",
@@ -91,31 +110,38 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
               src={img}
               alt={language.search_result_section.car.default_image}
             />
-          )}
-          <div className="read_more">
+          )} */}
+          <div className='read_more'>
             <span>{language.search_result_section.car.show_details}</span>
           </div>
         </figure>
-        <div className="info_box">
-          <div className="car_brand">
-            <h3>{title}</h3>
+        <div className='info_box'>
+          <div className='car_brand'>
+            <h3
+              ref={h3Ref}
+              style={{
+                width: h3Width ? h3Width : "auto",
+              }}
+            >
+              {title}
+            </h3>
             <p>{year.name.fa}</p>
           </div>
-          <div className="price">
-            <p className="Price_number">{price}</p>
+          <div className='price'>
+            <p className='Price_number'>{price}</p>
             <p>{`${unit}${language.search_result_section.car.toman_per_day}`}</p>
           </div>
-          <ul className="tags_container">
+          <ul className='tags_container'>
             {deliver_at_renters_place && (
               <li>
-                <span className="tags">
+                <span className='tags'>
                   {language.search_result_section.car.delivar_at_your_palce}
                 </span>
               </li>
             )}
             {with_driver && (
               <li>
-                <span className="tags">
+                <span className='tags'>
                   {language.search_result_section.car.with_driver}
                 </span>
               </li>
@@ -131,7 +157,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                   });
                 }}
               >
-                <span className="tags location_tag">
+                <span className='tags location_tag'>
                   {location.parent_id === 1 ? "تهران" : location.name.fa}
                 </span>
               </li>
