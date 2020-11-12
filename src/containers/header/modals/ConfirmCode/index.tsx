@@ -56,14 +56,14 @@ const ConfirmCode = ({
           // save data in cache
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
-          jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("name", " ", cook_option);
           jsCookie.set("user_id", data.user_profile.id, cook_option);
+          jsCookie.set("complete_register", data.has_name);
+          jsCookie.set("name", " ");
 
           // NOTE: save data in cache and active heap
           try {
             if (window["heap"]) {
-              window["heap"].identify(`${data.user_profile.cell}`);
+              window["heap"].identify(`${cellNumber}`);
             }
           } catch (e) {
             console.log("Em...I think heap not work correctly :/");
@@ -77,28 +77,23 @@ const ConfirmCode = ({
           const data = response.data;
           jsCookie.set("token", data.token, cook_option);
           jsCookie.set("phone", data.user_profile.cell, cook_option);
-          jsCookie.set("complete_register", data.has_name, cook_option);
-          jsCookie.set("name", data.user_profile.name, cook_option);
-          jsCookie.set(
-            "company_name",
-            data.user_profile.company_name,
-            cook_option
-          );
-          if (data.user_profile.username) {
-            jsCookie.set("username", data.user_profile.username, cook_option);
-          }
           jsCookie.set("user_id", data.user_profile.id, cook_option);
+          jsCookie.set("complete_register", data.has_name);
+          jsCookie.set("name", data.user_profile.name);
+          jsCookie.set("company_name", data.user_profile.company_name);
+          if (data.user_profile.username) {
+            jsCookie.set("username", data.user_profile.username);
+          }
           jsCookie.set(
             "thumbnail_url",
             data.user_profile.thumbnail_url
               ? data.user_profile.thumbnail_url
-              : "https://core.otoli.net/static/core/default_profile_pic.png",
-            cook_option
+              : "https://core.otoli.net/static/core/default_profile_pic.png"
           );
           // NOTE: activate heap
           try {
             if (window["heap"]) {
-              window["heap"].identify(`${Cell_Phone_context.cell_phone}`);
+              window["heap"].identify(`${cellNumber}`);
               window["heap"].addUserProperties({
                 Name: `${data.user_profile.first_name}-${data.user_profile.last_name}`,
               });
