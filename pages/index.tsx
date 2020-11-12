@@ -48,31 +48,6 @@ const HomePage = () => {
             <h2>{language.second_container_full_width_h2}</h2>
             <p>{language.second_container_full_width_p}</p>
           </div>
-          <h2>{language.second_container_h2_1}</h2>
-          <div className='three_columns'>
-            <section>
-              <h3>{language.second_container_three_columns_h3_1}</h3>
-              <p>{language.second_container_three_columns_p_1}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_h3_2}</h3>
-              <p>{language.second_container_three_columns_p_2}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_h3_3}</h3>
-              <p>{language.second_container_three_columns_p_3}</p>
-            </section>
-          </div>
-          <div className='add_car_section'>
-            <Link href='/add-car'>
-              <a className='Blue_BTN add_car_custom'>
-                {language.second_container_add_car_section_a_1}
-              </a>
-            </Link>
-            <Link href='/join-us'>
-              <a>{language.second_container_add_car_section_a_2}</a>
-            </Link>
-          </div>
           <h2>{language.second_container_h2_2}</h2>
           <div className='three_columns'>
             <section>
@@ -86,6 +61,31 @@ const HomePage = () => {
             <section>
               <h3>{language.second_container_three_columns_2_h3_3}</h3>
               <p>{language.second_container_three_columns_2_p_3}</p>
+            </section>
+          </div>
+          <div className='add_car_section'>
+            <Link href='/add-car'>
+              <a className='Blue_BTN add_car_custom'>
+                {language.second_container_add_car_section_a_1}
+              </a>
+            </Link>
+            <Link href='/join-us'>
+              <a>{language.second_container_add_car_section_a_2}</a>
+            </Link>
+          </div>
+          <h2>{language.second_container_h2_1}</h2>
+          <div className='three_columns'>
+            <section>
+              <h3>{language.second_container_three_columns_h3_1}</h3>
+              <p>{language.second_container_three_columns_p_1}</p>
+            </section>
+            <section>
+              <h3>{language.second_container_three_columns_h3_2}</h3>
+              <p>{language.second_container_three_columns_p_2}</p>
+            </section>
+            <section>
+              <h3>{language.second_container_three_columns_h3_3}</h3>
+              <p>{language.second_container_three_columns_p_3}</p>
             </section>
           </div>
         </div>
