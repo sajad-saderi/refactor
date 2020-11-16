@@ -48,6 +48,7 @@ const CarPage = ({ language }: ICarPage) => {
   );
   const [location, setLocation] = useState(null);
   const [mileage_range, setMileage_range] = useState(null);
+  const [extra_hour_price_name, setExtra_hour_price_name] = useState(null);
   const [owner, setOwner] = useState(null);
   const [cylinder, setCylinder] = useState(null);
   const [facility_set, setFacility_set] = useState(null);
@@ -112,7 +113,7 @@ const CarPage = ({ language }: ICarPage) => {
   }, []);
 
   const fetchData = async (data) => {
-    setNo_of_days("...")
+    setNo_of_days("...");
     let localData = null;
     setShowPriceLoading(true);
     try {
@@ -229,6 +230,8 @@ const CarPage = ({ language }: ICarPage) => {
     setNo_of_days(res.no_of_days);
     setLocation(res.location);
     setMileage_range(res.mileage_range);
+    if (res.extra_hour_price > 0)
+      setExtra_hour_price_name(res.extra_hour_price_name);
     setOwner(res.owner);
     setCylinder(res.cylinder);
     setFacility_set(res.facility_set);
@@ -377,8 +380,7 @@ const CarPage = ({ language }: ICarPage) => {
                             dayRange.to.month,
                             "jM"
                           ).format("jMMMM")}`}{" "}
-                          ({no_of_days}{" "}
-                          {language.Rent_date_day})
+                          ({no_of_days} {language.Rent_date_day})
                         </p>
                         <p
                           className='change_date_in_car_page'
@@ -485,6 +487,12 @@ const CarPage = ({ language }: ICarPage) => {
                 {language.extra_price}
                 {extra_km_price_name}
               </p>
+              {extra_km_price_name && (
+                <p>
+                  {language.extra_hour}
+                  {extra_hour_price_name}
+                </p>
+              )}
               {description && (
                 <>
                   <hr />
@@ -604,8 +612,7 @@ const CarPage = ({ language }: ICarPage) => {
                       dayRange.to.month,
                       "jM"
                     ).format("jMMMM")}`}{" "}
-                    ({no_of_days}{" "}
-                    {language.Rent_date_day})
+                    ({no_of_days} {language.Rent_date_day})
                   </p>
                   <p
                     className='change_date_in_car_page'
