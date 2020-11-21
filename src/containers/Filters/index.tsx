@@ -37,7 +37,8 @@ const Filters = ({
   const [show_filter, setShow_filter] = useState(false);
   const [hidePrice, setHidePrice] = useState(false);
 
-  const [initialValue, setInitialValue] = useState([0, 10000000]);
+  const [initialValueMin, setInitialValueMin] = useState(0);
+  const [initialValueMax, setInitialValueMax] = useState(10000000);
 
   const FilterContext = useContext(filterContext);
 
@@ -94,7 +95,8 @@ const Filters = ({
       if (reset.price) {
         setHidePrice(true);
         mounter("price");
-        setInitialValue([0, 10000000]);
+        setInitialValueMin(0);
+        setInitialValueMax(10000000);
       }
       if (reset.deliver_at_renters_place) {
         setDeliver_at_renters_place(0);
@@ -160,10 +162,10 @@ const Filters = ({
   useEffect(() => {
     if (initialFilterValues) {
       if (initialFilterValues.query.min_price) {
-        setInitialValue([
-          +initialFilterValues.query.min_price,
-          +initialFilterValues.query.max_price,
-        ]);
+        setInitialValueMin(+initialFilterValues.query.min_price);
+      }
+      if (initialFilterValues.query.max_price) {
+        setInitialValueMax(+initialFilterValues.query.max_price);
       }
       if (
         initialFilterValues.query.deliver_at_renters_place &&
@@ -240,7 +242,7 @@ const Filters = ({
         {hidePrice ? (
           <Spinner display='block' width={20} color='#737373' />
         ) : (
-          <PriceSlider initialValue={initialValue} />
+          <PriceSlider initialValueMin={initialValueMin} initialValueMax={initialValueMax}  />
         )}
         <h3>{language.filter.filter_section_h3_1}</h3>
         <Checkbox

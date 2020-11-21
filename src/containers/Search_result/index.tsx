@@ -248,28 +248,19 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
         min: +v.price.value[0],
         max: +v.price.value[1],
       };
-      staticRoute = {
-        ...staticRoute,
-        min_price: v.price.value[0].slice(0, -3),
-        max_price: v.price.value[1].slice(0, -3),
-      };
+      staticRoute.min_price = v.price.value[0].slice(0, -3);
+      staticRoute.max_price = v.price.value[1].slice(0, -3);
     }
     if (v.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place =
         v.deliver_at_renters_place.status;
       deliver_at_renters_place = v.deliver_at_renters_place.value;
-      staticRoute = {
-        ...staticRoute,
-        deliver_at_renters_place: v.deliver_at_renters_place.value,
-      };
+      staticRoute.deliver_at_renters_place = v.deliver_at_renters_place.value;
     }
     if (v.with_driver) {
       filtersChecker.with_driver = v.with_driver.status;
       with_driver = v.with_driver.value;
-      staticRoute = {
-        ...staticRoute,
-        with_driver: v.with_driver.value,
-      };
+      staticRoute.with_driver = v.with_driver.value;
     }
     if (v.body_style_id) {
       if (v.body_style_id.value.length === 0) {
@@ -278,31 +269,26 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
         filtersChecker.body_style_id = v.body_style_id.status;
       }
       body_style_id = v.body_style_id.value;
-      staticRoute = {
-        ...staticRoute,
-        body_style_id:
-          v.body_style_id.value.length === 0
-            ? ""
-            : v.body_style_id.value.join(","),
-      };
+      staticRoute.body_style_id =
+        v.body_style_id.value.length === 0
+          ? ""
+          : v.body_style_id.value.join(",");
     }
     if (v.brand_id) {
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
-      staticRoute = {
-        ...staticRoute,
-        brand_name: v.brand_id.value ? v.brand_id.name.replace(/ +/g, "-") : "",
-        brand_id: v.brand_id.value ? v.brand_id.value : "",
-      };
+      staticRoute.brand_name = v.brand_id.value
+        ? v.brand_id.name.replace(/ +/g, "-")
+        : "";
+      staticRoute.brand_id = v.brand_id.value ? v.brand_id.value : "";
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_id = v.car_id.value;
-      staticRoute = {
-        ...staticRoute,
-        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "",
-        car_id: v.car_id.value ? v.car_id.value : "",
-      };
+      staticRoute.car_name = v.car_id.value
+        ? v.car_id.name.replace(/ +/g, "-")
+        : "";
+      staticRoute.car_id = v.car_id.value ? v.car_id.value : "";
     }
     if (v.category_id) {
       filtersChecker.category_id = v.category_id.status;
@@ -321,10 +307,7 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
     page = 1 + page;
     loadMoreCar = true;
     setShow_spinner_loadMore(true);
-    staticRoute = {
-      ...staticRoute,
-      page: page,
-    };
+    staticRoute.page = page;
     UrlCreator({
       query: staticRoute,
       route: router.route,
@@ -465,8 +448,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
             onClick={() => {
               o = "-price";
               loadMoreCar = false;
+              staticRoute.price_order = "-price";
               UrlCreator({
-                query: { ...staticRoute, price_order: "-price" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -480,8 +464,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
             onClick={() => {
               o = "price";
               loadMoreCar = false;
+              staticRoute.price_order = "price";
               UrlCreator({
-                query: { ...staticRoute, price_order: "price" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -507,12 +492,10 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
               });
               loadMoreCar = false;
               filtersChecker.price = false;
+              staticRoute.min_price = 0;
+              staticRoute.max_price = 0;
               UrlCreator({
-                query: {
-                  ...staticRoute,
-                  min_price: 0,
-                  max_price: 10000000,
-                },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -535,8 +518,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
               });
               loadMoreCar = false;
               filtersChecker.deliver_at_renters_place = false;
+              staticRoute.deliver_at_renters_place = 0;
               UrlCreator({
-                query: { ...staticRoute, deliver_at_renters_place: 0 },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -556,8 +540,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
               });
               loadMoreCar = false;
               filtersChecker.with_driver = false;
+              staticRoute.with_driver = 0;
               UrlCreator({
-                query: { ...staticRoute, with_driver: 0 },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -577,8 +562,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
               });
               loadMoreCar = false;
               filtersChecker.body_style_id = false;
+              staticRoute.body_style_id = "";
               UrlCreator({
-                query: { ...staticRoute, body_style_id: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -599,8 +585,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
               loadMoreCar = false;
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
+              staticRoute.brand_id = "";
               UrlCreator({
-                query: { ...staticRoute, brand_id: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -620,8 +607,9 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
               });
               loadMoreCar = false;
               filtersChecker.car_id = false;
+              staticRoute.car_id = "";
               UrlCreator({
-                query: { ...staticRoute, car_id: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });

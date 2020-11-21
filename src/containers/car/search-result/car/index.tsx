@@ -148,7 +148,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                 {showLocation ? (
                   <li
                     onClick={(e) => {
-                      e.stopPropagation();
+                      e.preventDefault();
                       tagClick({
                         type: "location",
                         value: location.parent_id === 1 ? 1 : location.id,

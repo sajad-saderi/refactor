@@ -121,10 +121,9 @@ const Landing_page_container = ({
     // Glob_route = `/rent/${router.query.id}`;
     staticRoute = { ...router.query };
     const url_checked = UrlChecker(router.query);
-
     if (url_checked.location_id) {
       filtersChecker.Location = true;
-      setCarLocationName(url_checked.location_name);
+      setCarLocationName(url_checked.location_n);
       Location = url_checked.location_id;
       location_n = url_checked.location_name;
     }
@@ -274,28 +273,19 @@ const Landing_page_container = ({
         min: +v.price.value[0],
         max: +v.price.value[1],
       };
-      staticRoute = {
-        ...staticRoute,
-        min_price: v.price.value[0].slice(0, -3),
-        max_price: v.price.value[1].slice(0, -3),
-      };
+      staticRoute.min_price = v.price.value[0].slice(0, -3);
+      staticRoute.max_price = v.price.value[1].slice(0, -3);
     }
     if (v.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place =
         v.deliver_at_renters_place.status;
       deliver_at_renters_place = v.deliver_at_renters_place.value;
-      staticRoute = {
-        ...staticRoute,
-        deliver_at_renters_place: v.deliver_at_renters_place.value,
-      };
+      staticRoute.deliver_at_renters_place = v.deliver_at_renters_place.value;
     }
     if (v.with_driver) {
       filtersChecker.with_driver = v.with_driver.status;
       with_driver = v.with_driver.value;
-      staticRoute = {
-        ...staticRoute,
-        with_driver: v.with_driver.value,
-      };
+      staticRoute.with_driver = v.with_driver.value;
     }
     if (v.body_style_id) {
       if (v.body_style_id.value.length === 0) {
@@ -304,29 +294,26 @@ const Landing_page_container = ({
         filtersChecker.body_style_id = v.body_style_id.status;
       }
       body_style_id = v.body_style_id.value;
-      staticRoute = {
-        ...staticRoute,
-        body_style_id:
-          v.body_style_id.value.length === 0 ? "" : v.body_style_id.value,
-      };
+      staticRoute.body_style_id =
+        v.body_style_id.value.length === 0
+          ? ""
+          : v.body_style_id.value.join(",");
     }
     if (v.brand_id) {
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
-      staticRoute = {
-        ...staticRoute,
-        brand_name: v.brand_id.value ? v.brand_id.name.replace(/ +/g, "-") : "",
-        brand_id: v.brand_id.value ? v.brand_id.value : "",
-      };
+      staticRoute.brand_name = v.brand_id.value
+        ? v.brand_id.name.replace(/ +/g, "-")
+        : "";
+      staticRoute.brand_id = v.brand_id.value ? v.brand_id.value : "";
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_id = v.car_id.value;
-      staticRoute = {
-        ...staticRoute,
-        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "",
-        car_id: v.car_id.value ? v.car_id.value : "",
-      };
+      staticRoute.car_name = v.car_id.value
+        ? v.car_id.name.replace(/ +/g, "-")
+        : "";
+      staticRoute.car_id = v.car_id.value ? v.car_id.value : "";
     }
     UrlCreator({
       query: staticRoute,
@@ -508,8 +495,9 @@ const Landing_page_container = ({
             onClick={() => {
               o = "-price";
               loadMoreCar = false;
+              staticRoute.price_order = "-price";
               UrlCreator({
-                query: { ...staticRoute, price_order: "-price" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -523,8 +511,9 @@ const Landing_page_container = ({
             onClick={() => {
               o = "price";
               loadMoreCar = false;
+              staticRoute.price_order = "price";
               UrlCreator({
-                query: { ...staticRoute, price_order: "price" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -550,8 +539,10 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.Location = false;
+              staticRoute.location_id = "";
+              staticRoute.location_name = "";
               UrlCreator({
-                query: { ...staticRoute, location_id: "", location_name: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -571,12 +562,10 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.price = false;
+              staticRoute.min_price = 0;
+              staticRoute.max_price = 0;
               UrlCreator({
-                query: {
-                  ...staticRoute,
-                  min_price: 0,
-                  max_price: 10000000,
-                },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -599,8 +588,9 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.deliver_at_renters_place = false;
+              staticRoute.deliver_at_renters_place = 0;
               UrlCreator({
-                query: { ...staticRoute, deliver_at_renters_place: 0 },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -620,8 +610,9 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.with_driver = false;
+              staticRoute.with_driver = 0;
               UrlCreator({
-                query: { ...staticRoute, with_driver: 0 },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -641,8 +632,9 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.body_style_id = false;
+              staticRoute.body_style_id = "";
               UrlCreator({
-                query: { ...staticRoute, body_style_id: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -663,8 +655,9 @@ const Landing_page_container = ({
               loadMoreCar = false;
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
+              staticRoute.brand_id = "";
               UrlCreator({
-                query: { ...staticRoute, brand_id: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });
@@ -684,8 +677,9 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.car_id = false;
+              staticRoute.car_id = "";
               UrlCreator({
-                query: { ...staticRoute, car_id: "" },
+                query: staticRoute,
                 route: router.route,
                 cb: UrlUpdater,
               });

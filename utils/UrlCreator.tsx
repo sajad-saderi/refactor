@@ -1,8 +1,6 @@
 const UrlCreator = (data: Idata) => {
-  let query = "?";
+  let query = "?";  
   for (const [key, value] of Object.entries(data.query)) {
-    console.log("utl creator", key, value);
-
     if (value == 0) {
       continue;
     }
