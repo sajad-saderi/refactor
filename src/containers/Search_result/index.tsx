@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 // import "./Search_result.scss";
-import { NextSeo } from "next-seo";
 import Spinner from "../../components/Spinner";
 import jsCookie from "js-cookie";
 import {
@@ -17,6 +16,7 @@ import {
 import Search from "../Search";
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
+import search_query_builder from "../../../utils/search-query-builder";
 
 let JumpTo = null;
 
@@ -57,7 +57,7 @@ let filtersChecker = {
 // Set position
 let position = 0;
 
-const Search_result = ({ language }: ISearch_result) => {
+const Search_result = ({ language, initialResults }: ISearch_result) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
@@ -74,12 +74,12 @@ const Search_result = ({ language }: ISearch_result) => {
     car_id: false,
     category_id: false,
   });
-
+  const router = useRouter();
   const new_search_ref = useRef(null);
 
   useEffect(() => {
-    staticRoute = { ...Router.router.query };
-    const url_checked = UrlChecker(Router.router.query);
+    staticRoute = { ...router.query };
+    const url_checked = UrlChecker(router.query);
 
     if (url_checked.location_id) {
       Location = url_checked.location_id;
@@ -102,30 +102,36 @@ const Search_result = ({ language }: ISearch_result) => {
         max: url_checked.max_price,
       };
     }
-    if (Router.router.query.deliver_at_renters_place === "1") {
+    if (router.query.deliver_at_renters_place === "1") {
       filtersChecker.deliver_at_renters_place = true;
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
-    if (Router.router.query.with_driver === "1") {
+    if (router.query.with_driver === "1") {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
 
-    if (url_checked.body_style_id !== "all") {
+    if (url_checked.body_style_id !== "") {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
         ? [url_checked.body_style_id]
         : [];
     }
-    if (url_checked.brand_id !== "all") {
+    if (url_checked.brand_id !== "") {
       brand_id = +url_checked.brand_id;
       filtersChecker.brand_id = true;
     }
-    if (url_checked.car_id !== "all") {
+    if (url_checked.car_id !== "") {
       car_id = +url_checked.car_id;
       filtersChecker.car_id = true;
     }
-    initSearch();
+
+    setTotal_count(initialResults.total_count);
+    setRemained_count(initialResults.remained_count);
+    setExtra_info(initialResults.extra_info);
+    setResult(initialResults.results);
+
+    // initSearch();
 
     const handleRouteChange = (url) => {
       if (url.includes("/car/")) {
@@ -137,9 +143,9 @@ const Search_result = ({ language }: ISearch_result) => {
     };
 
     // reset the data
-    Router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
     return () => {
-      Router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeStart", handleRouteChange);
       staticRoute = null;
       location_n = null;
       Location = 1;
@@ -180,43 +186,33 @@ const Search_result = ({ language }: ISearch_result) => {
     }
     // reset the filter
     setExtra_info([]);
-    let queryString = `location_id=${Location}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
-    // check the price sort
-    if (filtersChecker.price) {
-      queryString += `&min_price=${price.min}&max_price=${price.max}`;
-    }
-    // check the delivery option
-    if (filtersChecker.deliver_at_renters_place) {
-      queryString += `&deliver_at_renters_place=1`;
-    }
-    // with driver
-    if (filtersChecker.with_driver) {
-      queryString += `&with_driver=1`;
-    }
-    // body style
-    if (filtersChecker.body_style_id) {
-      queryString += `&body_style_id=${body_style_id.join(",")}`;
-    }
-    // check the brand id
-    if (filtersChecker.brand_id) {
-      queryString += `&brand_id=${brand_id}`;
-    }
-    // check the car id
-    if (filtersChecker.car_id) {
-      queryString += `&car_id=${car_id}`;
-    }
-    if (filtersChecker.category_id) {
-      queryString += `&category_id=${category_id}`;
-    }
     try {
       let limit = 15;
       if (JumpTo === "1") {
         limit = 15 * +jsCookie.get("page");
       }
-      const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
-        queryString,
-        limit: limit,
+      let searchQuery = search_query_builder({
+        location_id: Location,
+        start_date: Start_date,
+        end_date: End_date,
+        price_order: o,
+        min_price: price.min ? price.min : null,
+        max_price: price.max ? price.max : null,
+        deliver_at_renters_place: filtersChecker.deliver_at_renters_place
+          ? 1
+          : 0,
+        with_driver: filtersChecker.with_driver ? 1 : 0,
+        body_style_id: filtersChecker.body_style_id
+          ? body_style_id.join(",")
+          : null,
+        brand_id: filtersChecker.brand_id ? brand_id : null,
+        car_id: filtersChecker.car_id ? car_id : null,
+        category_id: filtersChecker.category_id ? category_id : null,
         page,
+        limit,
+      });
+      const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
+        searchQuery,
       });
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
@@ -286,7 +282,7 @@ const Search_result = ({ language }: ISearch_result) => {
         ...staticRoute,
         body_style_id:
           v.body_style_id.value.length === 0
-            ? "all"
+            ? ""
             : v.body_style_id.value.join(","),
       };
     }
@@ -295,10 +291,8 @@ const Search_result = ({ language }: ISearch_result) => {
       brand_id = v.brand_id.value;
       staticRoute = {
         ...staticRoute,
-        brand_name: v.brand_id.value
-          ? v.brand_id.name.replace(/ +/g, "-")
-          : "all",
-        brand_id: v.brand_id.value ? v.brand_id.value : "all",
+        brand_name: v.brand_id.value ? v.brand_id.name.replace(/ +/g, "-") : "",
+        brand_id: v.brand_id.value ? v.brand_id.value : "",
       };
     }
     if (v.car_id) {
@@ -306,8 +300,8 @@ const Search_result = ({ language }: ISearch_result) => {
       car_id = v.car_id.value;
       staticRoute = {
         ...staticRoute,
-        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "all",
-        car_id: v.car_id.value ? v.car_id.value : "all",
+        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "",
+        car_id: v.car_id.value ? v.car_id.value : "",
       };
     }
     if (v.category_id) {
@@ -316,7 +310,7 @@ const Search_result = ({ language }: ISearch_result) => {
     }
     UrlCreator({
       query: staticRoute,
-      route: Router.router.route,
+      route: router.route,
       cb: UrlUpdater,
     });
     page = 1;
@@ -333,7 +327,7 @@ const Search_result = ({ language }: ISearch_result) => {
     };
     UrlCreator({
       query: staticRoute,
-      route: Router.router.route,
+      route: router.route,
       cb: UrlUpdater,
     });
     initSearch();
@@ -393,7 +387,7 @@ const Search_result = ({ language }: ISearch_result) => {
   };
 
   const UrlUpdater = (url) => {
-    window.history.replaceState(null, "", url);
+    router.push(url, undefined, { shallow: true });
   };
 
   return (
@@ -401,22 +395,6 @@ const Search_result = ({ language }: ISearch_result) => {
       className='search_result_page_container'
       onClick={getClickPosition}
     >
-      {result && (
-        <NextSeo
-          title={`${language.next_seo.title.start}${Start_date}${language.next_seo.title.ta}${End_date}${language.next_seo.title.otoli}`}
-          description={language.next_seo.description}
-          openGraph={{
-            title: `${language.next_seo.title.start}${Start_date}${language.next_seo.title.ta}${End_date}${language.next_seo.title.otoli}`,
-            description: language.next_seo.description,
-            site_name: language.next_seo.site_name,
-          }}
-          twitter={{
-            handle: language.next_seo.handle,
-            site: language.next_seo.site,
-            cardType: language.next_seo.cardType,
-          }}
-        />
-      )}
       {/* result count section */}
       <div className='count_bar_container' ref={new_search_ref}>
         {result ? (
@@ -489,7 +467,7 @@ const Search_result = ({ language }: ISearch_result) => {
               loadMoreCar = false;
               UrlCreator({
                 query: { ...staticRoute, price_order: "-price" },
-                route: Router.router.route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -504,7 +482,7 @@ const Search_result = ({ language }: ISearch_result) => {
               loadMoreCar = false;
               UrlCreator({
                 query: { ...staticRoute, price_order: "price" },
-                route: Router.router.route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -535,7 +513,7 @@ const Search_result = ({ language }: ISearch_result) => {
                   min_price: 0,
                   max_price: 10000000,
                 },
-                route: Router.router.route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -559,7 +537,7 @@ const Search_result = ({ language }: ISearch_result) => {
               filtersChecker.deliver_at_renters_place = false;
               UrlCreator({
                 query: { ...staticRoute, deliver_at_renters_place: 0 },
-                route: Router.router.route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -580,7 +558,7 @@ const Search_result = ({ language }: ISearch_result) => {
               filtersChecker.with_driver = false;
               UrlCreator({
                 query: { ...staticRoute, with_driver: 0 },
-                route: Router.router.route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -600,8 +578,8 @@ const Search_result = ({ language }: ISearch_result) => {
               loadMoreCar = false;
               filtersChecker.body_style_id = false;
               UrlCreator({
-                query: { ...staticRoute, body_style_id: "all" },
-                route: Router.router.route,
+                query: { ...staticRoute, body_style_id: "" },
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -622,8 +600,8 @@ const Search_result = ({ language }: ISearch_result) => {
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
               UrlCreator({
-                query: { ...staticRoute, brand_id: "all" },
-                route: Router.router.route,
+                query: { ...staticRoute, brand_id: "" },
+                route: router.route,
                 cb: UrlUpdater,
               });
               // initSearch();
@@ -643,8 +621,8 @@ const Search_result = ({ language }: ISearch_result) => {
               loadMoreCar = false;
               filtersChecker.car_id = false;
               UrlCreator({
-                query: { ...staticRoute, car_id: "all" },
-                route: Router.router.route,
+                query: { ...staticRoute, car_id: "" },
+                route: router.route,
                 cb: UrlUpdater,
               });
               // initSearch();
@@ -673,7 +651,7 @@ const Search_result = ({ language }: ISearch_result) => {
             show_filter_prop_reset={() => {
               setShow_filter(false);
             }}
-            initialFilterValues={Router}
+            initialFilterValues={router}
             language={language}
           />
         </filterContext.Provider>
@@ -713,6 +691,7 @@ const Search_result = ({ language }: ISearch_result) => {
 
 interface ISearch_result {
   language: any;
+  initialResults: any;
 }
 
 export default Search_result;

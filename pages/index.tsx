@@ -1,6 +1,5 @@
 import React from "react";
 import { NextSeo } from "next-seo";
-
 import Layout from "../src/Layout";
 import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
@@ -13,6 +12,7 @@ const HomePage = () => {
   React.useEffect(() => {
     logPageView();
   }, []);
+
   return (
     <Layout>
       <NextSeo

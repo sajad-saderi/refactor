@@ -3,7 +3,7 @@ import filterContext from "../../context/filter-context";
 import Filters from "../Filters";
 import SearchResultList from "../car/search-result";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import moment from "moment-jalaali";
 // import "./Search_result.scss";
 import Search from "../Search";
@@ -16,8 +16,9 @@ import {
 } from "react-icons/io";
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
+import search_query_builder from "../../../utils/search-query-builder";
 
-let Glob_route = null;
+// let Glob_route = null;
 // default location is Tehran
 let staticRoute = null;
 let Location = 1;
@@ -73,6 +74,7 @@ const Landing_page_container = ({
   });
   const [carLocationName, setCarLocationName] = useState(null);
   const new_search_ref = useRef(null);
+  const router = useRouter();
 
   const handleClickOutside = (e) => {
     // If the click is outside of the drop-down box the drop-down section will be close
@@ -86,7 +88,7 @@ const Landing_page_container = ({
     document.addEventListener("mousedown", handleClickOutside);
     // reset the data
     return () => {
-      Glob_route = null;
+      // Glob_route = null;
       Location = 1;
       Start_date = null;
       End_date = null;
@@ -116,9 +118,9 @@ const Landing_page_container = ({
   }, []);
 
   useEffect(() => {
-    Glob_route = `/rent/${Router.router.query.id}`;
-    staticRoute = { ...Router.router.query };
-    const url_checked = UrlChecker(Router.router.query);
+    // Glob_route = `/rent/${router.query.id}`;
+    staticRoute = { ...router.query };
+    const url_checked = UrlChecker(router.query);
 
     if (url_checked.location_id) {
       filtersChecker.Location = true;
@@ -139,26 +141,26 @@ const Landing_page_container = ({
         max: url_checked.max_price,
       };
     }
-    if (Router.router.query.deliver_at_renters_place === "1") {
+    if (router.query.deliver_at_renters_place === "1") {
       filtersChecker.deliver_at_renters_place = true;
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
-    if (Router.router.query.with_driver === "1") {
+    if (router.query.with_driver === "1") {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
 
-    if (url_checked.body_style_id !== "all") {
+    if (url_checked.body_style_id !== "") {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
         ? [url_checked.body_style_id]
         : [];
     }
-    if (url_checked.brand_id !== "all") {
+    if (url_checked.brand_id !== "") {
       brand_id = +url_checked.brand_id;
       filtersChecker.brand_id = true;
     }
-    if (url_checked.car_id !== "all") {
+    if (url_checked.car_id !== "") {
       car_id = +url_checked.car_id;
       filtersChecker.car_id = true;
     }
@@ -187,40 +189,60 @@ const Landing_page_container = ({
     }
     setExtra_info([]);
     // filter by landing page unique parameter
-    let queryString = `${searchParamKey}=${landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
+    // let queryString = `${searchParamKey}=${landing_data.search_params[searchParamKey]}&start_date=${Start_date}&end_date=${End_date}&o=${o}`;
     // check the location filer
-    if (filtersChecker.Location) {
-      queryString += `&location_id=${Location}`;
-    }
-    // check the price sort
-    if (filtersChecker.price) {
-      queryString += `&min_price=${price.min}&max_price=${price.max}`;
-    }
-    // check the delivery option
-    if (filtersChecker.deliver_at_renters_place) {
-      queryString += `&deliver_at_renters_place=1`;
-    }
-    // with driver
-    if (filtersChecker.with_driver) {
-      queryString += `&with_driver=1`;
-    }
-    // body style
-    if (filtersChecker.body_style_id) {
-      queryString += `&body_style_id=${body_style_id.join(",")}`;
-    }
-    // check the brand id
-    if (filtersChecker.brand_id) {
-      queryString += `&brand_id=${brand_id}`;
-    }
-    // check the car id
-    if (filtersChecker.car_id) {
-      queryString += `&car_id=${car_id}`;
-    }
+    // if (filtersChecker.Location) {
+    //   queryString += `&location_id=${Location}`;
+    // }
+    // // check the price sort
+    // if (filtersChecker.price) {
+    //   queryString += `&min_price=${price.min}&max_price=${price.max}`;
+    // }
+    // // check the delivery option
+    // if (filtersChecker.deliver_at_renters_place) {
+    //   queryString += `&deliver_at_renters_place=1`;
+    // }
+    // // with driver
+    // if (filtersChecker.with_driver) {
+    //   queryString += `&with_driver=1`;
+    // }
+    // // body style
+    // if (filtersChecker.body_style_id) {
+    //   queryString += `&body_style_id=${body_style_id.join(",")}`;
+    // }
+    // // check the brand id
+    // if (filtersChecker.brand_id) {
+    //   queryString += `&brand_id=${brand_id}`;
+    // }
+    // // check the car id
+    // if (filtersChecker.car_id) {
+    //   queryString += `&car_id=${car_id}`;
+    // }
     try {
-      const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
-        queryString,
-        limit: 15,
+      let searchQuery = search_query_builder({
+        location_id: Location,
+        start_date: Start_date,
+        end_date: End_date,
+        price_order: o,
+        min_price: price.min ? price.min : null,
+        max_price: price.max ? price.max : null,
+        deliver_at_renters_place: filtersChecker.deliver_at_renters_place
+          ? 1
+          : 0,
+        with_driver: filtersChecker.with_driver ? 1 : 0,
+        body_style_id: filtersChecker.body_style_id
+          ? body_style_id.join(",")
+          : null,
+        brand_id: filtersChecker.brand_id ? brand_id : null,
+        car_id: filtersChecker.car_id ? car_id : null,
+        [searchParamKey]: searchParamKey
+          ? landing_data.search_params[searchParamKey]
+          : null,
         page,
+        limit: 15,
+      });
+      const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
+        searchQuery,
       });
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
@@ -285,7 +307,7 @@ const Landing_page_container = ({
       staticRoute = {
         ...staticRoute,
         body_style_id:
-          v.body_style_id.value.length === 0 ? "all" : v.body_style_id.value,
+          v.body_style_id.value.length === 0 ? "" : v.body_style_id.value,
       };
     }
     if (v.brand_id) {
@@ -293,10 +315,8 @@ const Landing_page_container = ({
       brand_id = v.brand_id.value;
       staticRoute = {
         ...staticRoute,
-        brand_name: v.brand_id.value
-          ? v.brand_id.name.replace(/ +/g, "-")
-          : "all",
-        brand_id: v.brand_id.value ? v.brand_id.value : "all",
+        brand_name: v.brand_id.value ? v.brand_id.name.replace(/ +/g, "-") : "",
+        brand_id: v.brand_id.value ? v.brand_id.value : "",
       };
     }
     if (v.car_id) {
@@ -304,13 +324,13 @@ const Landing_page_container = ({
       car_id = v.car_id.value;
       staticRoute = {
         ...staticRoute,
-        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "all",
-        car_id: v.car_id.value ? v.car_id.value : "all",
+        car_name: v.car_id.value ? v.car_id.name.replace(/ +/g, "-") : "",
+        car_id: v.car_id.value ? v.car_id.value : "",
       };
     }
     UrlCreator({
       query: staticRoute,
-      route: Glob_route,
+      route: router.route,
       cb: UrlUpdater,
     });
     page = 1;
@@ -327,7 +347,7 @@ const Landing_page_container = ({
     };
     UrlCreator({
       query: staticRoute,
-      route: Glob_route,
+      route: router.route,
       cb: UrlUpdater,
     });
     initSearch();
@@ -401,7 +421,7 @@ const Landing_page_container = ({
       };
       UrlCreator({
         query: staticRoute,
-        route: Glob_route,
+        route: router.route,
         cb: UrlUpdater,
       });
       initSearch();
@@ -409,7 +429,7 @@ const Landing_page_container = ({
   };
 
   const UrlUpdater = (url) => {
-    window.history.replaceState(null, "", url);
+    router.push(url, undefined, { shallow: true });
   };
 
   return (
@@ -490,7 +510,7 @@ const Landing_page_container = ({
               loadMoreCar = false;
               UrlCreator({
                 query: { ...staticRoute, price_order: "-price" },
-                route: Glob_route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -505,7 +525,7 @@ const Landing_page_container = ({
               loadMoreCar = false;
               UrlCreator({
                 query: { ...staticRoute, price_order: "price" },
-                route: Glob_route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -532,7 +552,7 @@ const Landing_page_container = ({
               filtersChecker.Location = false;
               UrlCreator({
                 query: { ...staticRoute, location_id: "", location_name: "" },
-                route: Glob_route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -557,7 +577,7 @@ const Landing_page_container = ({
                   min_price: 0,
                   max_price: 10000000,
                 },
-                route: Glob_route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -581,7 +601,7 @@ const Landing_page_container = ({
               filtersChecker.deliver_at_renters_place = false;
               UrlCreator({
                 query: { ...staticRoute, deliver_at_renters_place: 0 },
-                route: Glob_route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -602,7 +622,7 @@ const Landing_page_container = ({
               filtersChecker.with_driver = false;
               UrlCreator({
                 query: { ...staticRoute, with_driver: 0 },
-                route: Glob_route,
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -622,8 +642,8 @@ const Landing_page_container = ({
               loadMoreCar = false;
               filtersChecker.body_style_id = false;
               UrlCreator({
-                query: { ...staticRoute, body_style_id: "all" },
-                route: Glob_route,
+                query: { ...staticRoute, body_style_id: "" },
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -644,8 +664,8 @@ const Landing_page_container = ({
               filtersChecker.brand_id = false;
               filtersChecker.car_id = false;
               UrlCreator({
-                query: { ...staticRoute, brand_id: "all" },
-                route: Glob_route,
+                query: { ...staticRoute, brand_id: "" },
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -665,8 +685,8 @@ const Landing_page_container = ({
               loadMoreCar = false;
               filtersChecker.car_id = false;
               UrlCreator({
-                query: { ...staticRoute, car_id: "all" },
-                route: Glob_route,
+                query: { ...staticRoute, car_id: "" },
+                route: router.route,
                 cb: UrlUpdater,
               });
               initSearch();
@@ -695,7 +715,7 @@ const Landing_page_container = ({
             show_filter_prop_reset={() => {
               setShow_filter(false);
             }}
-            initialFilterValues={Router}
+            initialFilterValues={router}
             language={language}
           />
         </filterContext.Provider>

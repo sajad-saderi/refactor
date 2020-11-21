@@ -6,20 +6,14 @@ const GET_SEARCH_FOR_RENT = "/core/rental-car/search-for-rent/list";
 
 export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
   return new Promise((resolve, reject) => {
-    let queryString;
+    let searchQuery;
     if (data.result_key) {
-      queryString = "result_key=" + data.result_key + "&o=" + data.o;
+      searchQuery = "result_key=" + data.result_key + "&o=" + data.o;
     } else {
-      queryString = data.queryString;
+      searchQuery = data.searchQuery;
     }
-
     axios
-      .get(
-        DOMAIN +
-          GET_SEARCH_FOR_RENT +
-          ("?limit=" + data.limit + "&page=" + data.page) +
-          ("&" + queryString)
-      )
+      .get(DOMAIN + GET_SEARCH_FOR_RENT + "?" + searchQuery)
       .then((response) => {
         if (response.data.success) {
           let statsObj = {};
@@ -72,11 +66,11 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
 
 interface IgetSearchForRent {
   // number of the result length in each search
-  limit: number;
+  limit?: number;
   // page number
-  page: number;
+  page?: number;
   // search by filters
-  queryString?: string;
+  searchQuery?: string;
   result_key?: string;
   // price sort
   o?: string;

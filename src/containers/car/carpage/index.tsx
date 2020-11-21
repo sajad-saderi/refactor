@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { REQUEST_GET_RENTAL_CAR } from "../../../../src/API";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import Slider from "../../../../src/components/Slider";
 import Button from "../../../components/form/Button";
 import { IoIosLink, IoIosArrowRoundBack } from "react-icons/io";
@@ -9,17 +9,25 @@ import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
-import { NextSeo } from "next-seo";
 import jsCookie from "js-cookie";
 import moment from "moment-jalaali";
 import Spinner from "../../../components/Spinner";
 import carImage from "../../../../public/image/car-image.jpg";
+import { payBackInObject } from "../../../../utils/date-range-creator";
+import { NextSeo } from "next-seo";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
 // import "./carpage.scss";
 
-const CarPage = ({ language }: ICarPage) => {
+const CarPage = ({
+  language,
+  is_mine,
+  initial_search_id,
+  id,
+  expired,
+  car_Information,
+}: ICarPage) => {
   // set date picker date to get new price and availability
   const [dayRange, setDayRange] = React.useState<DayRange>({
     from: null,
@@ -42,7 +50,6 @@ const CarPage = ({ language }: ICarPage) => {
   const [max_km_per_day, setMax_km_per_day] = useState(null);
   const [extra_km_price_name, setExtra_km_price_name] = useState(null);
   const [is_out_of_service, setIs_out_of_service] = useState(null);
-  const [id, setId] = useState(null);
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(
     null
   );
@@ -56,7 +63,6 @@ const CarPage = ({ language }: ICarPage) => {
   const [search_id, setSearch_id] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCalender, setShowCalender] = useState(false);
-  const [is_mine, setIs_mine] = useState(false);
   const [total_discount, setTotal_discount] = useState(false);
   const [calenderClick, setCalenderClick] = useState(false);
   const [showPriceLoading, setShowPriceLoading] = useState(false);
@@ -67,16 +73,15 @@ const CarPage = ({ language }: ICarPage) => {
   const [no_of_days, setNo_of_days] = useState("...");
   const [showDateText, setShowDateText] = useState(true);
 
-  useEffect(() => {
-    const { search_id, id, owner } = Router.router.query;
+  const router = useRouter();
 
-    // if the car is mine, I can't rent it
-    if (owner) {
-      setIs_mine(true);
-    }
-    // if the page have search id we can get the price
-    if (search_id) {
-      fetchData({ search_id });
+  useEffect(() => {
+    if (expired) {
+      DateSetter(id);
+    } else {
+      // fetchData({ search_id });
+      set_CarInformation(car_Information);
+      setSearch_id(initial_search_id);
       if (localStorage["start"]) {
         let startDate = JSON.parse(localStorage["start"]);
         let endDate = JSON.parse(localStorage["end"]);
@@ -92,27 +97,29 @@ const CarPage = ({ language }: ICarPage) => {
       }
     }
     // if doesn't have search id and it's not mine the user can select day range and get price and search id
-    else {
-      // if (localStorage["start"]) {
-      // get the car information and price based on the start date and the end date, if there are on storage.
-      DateSetter(id);
-      // } else {
-      // just get the main info about the car
-      // DateSetter(id);
-      // }
-    }
+    // else {
+    //   // if (localStorage["start"]) {
+    //   // get the car information and price based on the start date and the end date, if there are on storage.
+    //   DateSetter(id);
+    //   // } else {
+    //   // just get the main info about the car
+    //   // DateSetter(id);
+    //   // }
+    // }
     const handleRouteChange = (url) => {
       if (url.includes("/search-result")) {
         jsCookie.set("JumpTo", 1);
       }
     };
-    Router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
     return () => {
-      Router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeStart", handleRouteChange);
     };
   }, []);
 
   const fetchData = async (data) => {
+    console.log("client load");
+
     setNo_of_days("...");
     let localData = null;
     setShowPriceLoading(true);
@@ -123,13 +130,13 @@ const CarPage = ({ language }: ICarPage) => {
           to: data.to,
         });
         localData = {
-          id: Router.router.query.id,
+          id: id,
           start_date: `${data.from.year}/${data.from.month}/${data.from.day}`,
           end_date: `${data.to.year}/${data.to.month}/${data.to.day}`,
         };
       } else if (dayRange.from && dayRange.to) {
         localData = {
-          id: Router.router.query.id,
+          id: id,
           start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
           end_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
         };
@@ -143,45 +150,25 @@ const CarPage = ({ language }: ICarPage) => {
       setShowPriceLoading(false);
     } catch (error) {
       if (error === "Invalid search_id.") {
-        DateSetter(Router.router.query.id);
+        DateSetter(id);
       }
       console.log("!Error", error);
     }
   };
 
-  const DateSetter = (data) => {
+  const DateSetter = (id) => {
     if (localStorage["start"]) {
       fetchData({
-        id: data,
+        id,
         from: JSON.parse(localStorage["start"]),
         to: JSON.parse(localStorage["end"]),
       });
     } else {
-      // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-      let Start_date = moment()
-        .add(3, "day")
-        .format("jYYYY/jMM/jDD");
-      let End_date = moment()
-        .add(6, "day")
-        .format("jYYYY/jMM/jDD");
-      let SplitStartDate = Start_date.split("/");
-      let SplitEndDate = End_date.split("/");
+      let { from, to } = payBackInObject(6, 3);
       // just get the main info about the car
       // show calender if the dates are not on storage
       setShowCalender(true);
-      fetchData({
-        id: data,
-        from: {
-          year: +SplitStartDate[0],
-          month: +SplitStartDate[1],
-          day: +SplitStartDate[2],
-        },
-        to: {
-          year: +SplitEndDate[0],
-          month: +SplitEndDate[1],
-          day: +SplitEndDate[2],
-        },
-      });
+      fetchData({ id, from, to });
     }
   };
 
@@ -240,14 +227,13 @@ const CarPage = ({ language }: ICarPage) => {
     else setMedia_set([{ url: carImage }]);
     setSearch_id(res.search_id);
     setTotal_discount(res.total_discount);
-    setSearch_id(res.search_id);
   };
 
   const GoToCheckout = () => {
     setLoading(true);
     localStorage["start"] = JSON.stringify(dayRange.from);
     localStorage["end"] = JSON.stringify(dayRange.to);
-    Router.push({
+    router.push({
       pathname: "/checkout",
       query: { search_id: search_id },
     });
@@ -256,7 +242,7 @@ const CarPage = ({ language }: ICarPage) => {
   useEffect(() => {
     if (showCalender && calenderClick) {
       if (dayRange.from?.day && dayRange.to?.day) {
-        fetchData({ id: Router.router.query.id });
+        fetchData({ id });
         setShowDateText(true);
       }
     }
@@ -285,29 +271,31 @@ const CarPage = ({ language }: ICarPage) => {
     <>
       {media_set.length > 0 ? (
         <>
-          <NextSeo
-            title={`${
-              owner.company_name
-                ? owner.company_name
-                : owner.first_name + " " + owner.last_name
-            } - ${car.name.fa}${language.next_seo.title.otoli}`}
-            description={language.next_seo.description}
-            noindex={true}
-            openGraph={{
-              title: `${
+          {expired && (
+            <NextSeo
+              title={`${
                 owner.company_name
                   ? owner.company_name
                   : owner.first_name + " " + owner.last_name
-              } - ${car.name.fa}${language.next_seo.title.otoli}`,
-              description: language.next_seo.description,
-              site_name: language.next_seo.site_name,
-            }}
-            twitter={{
-              handle: language.next_seo.handle,
-              site: language.next_seo.site,
-              cardType: language.next_seo.cardType,
-            }}
-          />
+              } - ${car.name.fa}${language.next_seo.title.otoli}`}
+              description={language.next_seo.description}
+              noindex={true}
+              openGraph={{
+                title: `${
+                  owner.company_name
+                    ? owner.company_name
+                    : owner.first_name + " " + owner.last_name
+                } - ${car.name.fa}${language.next_seo.title.otoli}`,
+                description: language.next_seo.description,
+                site_name: language.next_seo.site_name,
+              }}
+              twitter={{
+                handle: language.next_seo.handle,
+                site: language.next_seo.site,
+                cardType: language.next_seo.cardType,
+              }}
+            />
+          )}
           {/* {dayRange.from?.day && dayRange.to?.day && !is_mine ? (
             <div className="Top_Rent_date">
               <p>{`از ${dayRange.from.day} ${moment(
@@ -723,7 +711,6 @@ const CarPage = ({ language }: ICarPage) => {
         </>
       ) : (
         <>
-          <NextSeo title={language.next_seo.load_title} noindex={true} />
           <CarPageLoading />
         </>
       )}
@@ -733,5 +720,10 @@ const CarPage = ({ language }: ICarPage) => {
 
 interface ICarPage {
   language: any;
+  is_mine: boolean;
+  initial_search_id: string | number;
+  id: string | number;
+  car_Information: any;
+  expired: boolean;
 }
 export default CarPage;

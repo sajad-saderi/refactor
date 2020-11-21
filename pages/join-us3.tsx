@@ -18,7 +18,7 @@ const JoinUs1 = (props) => {
     }
   }, [props.BotScore]);
   return (
-    <Layout>
+    <Layout LinkControl={true}>
       <NextSeo
         title={language.next_seo.title}
         description={language.next_seo.description}
