@@ -10,6 +10,12 @@ import language from "../public/languages/fa/joinus.json";
 const JoinUs1 = (props) => {
   const [Score, SetScore] = useState(null);
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/join-us3",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   useEffect(() => {

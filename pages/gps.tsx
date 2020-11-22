@@ -6,6 +6,12 @@ import language from "../public/languages/fa/gps.json";
 
 const gps = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/gps",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

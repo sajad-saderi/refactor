@@ -20,6 +20,12 @@ const Success_payment = () => {
   const token = jsCookie.get("token");
 
   useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/payment-success",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
     fetchAPI(Router.router.query.id);
   }, []);

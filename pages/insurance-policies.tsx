@@ -6,6 +6,12 @@ import language from "../public/languages/fa/insurancepolicies.json";
 
 const InsurancePolicies = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/insurance-policies",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

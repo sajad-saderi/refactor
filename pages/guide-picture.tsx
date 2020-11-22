@@ -6,6 +6,12 @@ import language from "../public/languages/fa/guidepicture.json";
 
 const guidePicture = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/guide-picture",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

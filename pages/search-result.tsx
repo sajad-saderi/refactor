@@ -11,6 +11,12 @@ import search_query_builder from "../utils/search-query-builder";
 
 const SearchResult = ({ searchResponse, initialFilters }) => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/search-result",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
 

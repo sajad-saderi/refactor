@@ -11,6 +11,12 @@ import language from "../public/languages/fa/faq.json";
 const FAQ = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/faq",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
     fetchAPI();
   }, []);

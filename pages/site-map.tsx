@@ -10,6 +10,12 @@ const Site_map = () => {
   const [UrlList, UrlSetter] = useState([]);
 
   useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/site-map",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
     fetchAPIs();
   }, []);

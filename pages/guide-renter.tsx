@@ -7,6 +7,12 @@ import language from "../public/languages/fa/guiderenter.json";
 
 const guideRenter = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/guide-renter",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

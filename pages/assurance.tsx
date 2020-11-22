@@ -6,6 +6,12 @@ import language from "../public/languages/fa/assurance.json";
 
 const assurance = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/assurance",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

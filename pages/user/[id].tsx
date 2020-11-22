@@ -6,6 +6,12 @@ import language from "../../public/languages/fa/user.json";
 
 const Profile = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/user",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

@@ -6,6 +6,12 @@ import language from "../public/languages/fa/checkout.json";
 
 const Checkout = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/checkout",
+      pageTitle: "checkout",
+    });
     // logPageView();
   }, []);
   return (

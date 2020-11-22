@@ -28,6 +28,12 @@ const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
 
   useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/rent",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
     fetchData();
   }, []);

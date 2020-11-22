@@ -9,6 +9,12 @@ import language from "../public/languages/fa/joinus.json";
 const JoinUs = (props) => {
   const [Score, SetScore] = useState(null);
   useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/join-us",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   useEffect(() => {

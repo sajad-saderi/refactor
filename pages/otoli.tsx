@@ -7,6 +7,12 @@ import language from "../public/languages/fa/otoli.json";
 
 const AboutUs = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/otoli",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

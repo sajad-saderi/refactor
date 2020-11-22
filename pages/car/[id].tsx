@@ -8,6 +8,18 @@ import { REQUEST_GET_RENTAL_CAR } from "../../src/API";
 
 const Car = ({ car_Information, is_mine, initial_search_id, id, expired }) => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/car",
+      pageTitle: `${
+        car_Information.owner.company_name
+          ? car_Information.owner.company_name
+          : car_Information.owner.first_name +
+            " " +
+            car_Information.owner.last_name
+      } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`,
+    });
     // logPageView();
   }, []);
 

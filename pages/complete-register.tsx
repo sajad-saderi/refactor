@@ -7,6 +7,12 @@ import language from "../public/languages/fa/completeregister.json";
 
 const CompleteRegister = () => {
   useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/complete-register",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
     // if (window["ga"]) {
     //   window["ga"]("send", {

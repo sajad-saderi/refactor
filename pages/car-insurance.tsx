@@ -5,6 +5,12 @@ import language from "../public/languages/fa/carinsurance.json";
 // import { logPageView } from "../utils/analytics";
 const car_insurance_page = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/car-insurance",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

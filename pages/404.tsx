@@ -8,6 +8,12 @@ import language from "../public/languages/fa/_404.json";
 
 const page_404 = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/404",
+      pageTitle: language.title,
+    });
     // logPageView();
   }, []);
   return (

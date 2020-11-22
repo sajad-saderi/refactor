@@ -5,6 +5,12 @@ import language from "../public/languages/fa/ourpolicies.json";
 // import { logPageView } from "../utils/analytics";
 const OtoliPolicies = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/our-policies",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

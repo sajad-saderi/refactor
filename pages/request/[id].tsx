@@ -7,6 +7,12 @@ import language from "../../public/languages/fa/requestpage.json";
 
 const Request = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/request",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

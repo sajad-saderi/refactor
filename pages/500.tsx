@@ -8,6 +8,12 @@ import language from "../public/languages/fa/_500.json";
 
 const page_500 = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/500",
+      pageTitle: language.title,
+    });
     // logPageView();
   }, []);
   return (

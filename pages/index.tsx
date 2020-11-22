@@ -10,6 +10,12 @@ import language from "../public/languages/fa/homepage.json";
 
 const HomePage = () => {
   React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
 
