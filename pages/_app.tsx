@@ -7,7 +7,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 import Axios from "axios";
-import { initGA } from "../utils/analytics";
+// import { initGA } from "../utils/analytics";
 import { REQUEST_GET_USER_INFO } from "../src/API";
 import jsCookie from "js-cookie";
 import user_context from "../src/context/User_info";
@@ -126,10 +126,10 @@ class App_Otoli extends App {
 
   componentDidMount = () => {
     // Initial React GA library after the mount
-    if (!window["GA_INITIALIZED"]) {
-      initGA();
-      window["GA_INITIALIZED"] = true;
-    }
+    // if (!window["GA_INITIALIZED"]) {
+    //   initGA();
+    //   window["GA_INITIALIZED"] = true;
+    // }
     const userId = jsCookie.get("user_id");
     if (userId && sessionStorage["flag"] !== "true") {
       sessionStorage["flag"] = true;

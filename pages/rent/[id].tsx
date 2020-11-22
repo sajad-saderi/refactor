@@ -6,14 +6,14 @@ import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 
 const Rent_dynamic = ({Landing_page}) => {
   React.useEffect(() => {    
     if (!Landing_page) {
       Router.push("/404");
     } else {
-      logPageView();
+      // logPageView();
     }
   }, []);
 

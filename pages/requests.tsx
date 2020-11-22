@@ -3,11 +3,11 @@ import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import Requests_page from "../src/containers/Requests_page";
 import language from "../public/languages/fa/requestspage.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const Request = () => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
   return (
     <Layout>

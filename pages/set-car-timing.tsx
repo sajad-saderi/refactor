@@ -3,11 +3,11 @@ import Layout from "../src/Layout";
 import Set_car_timing from "../src/containers/Set_car_timing";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/setcartimig.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const SetTimeAndPrice = () => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
   return (
     <Layout LinkControl={true}>

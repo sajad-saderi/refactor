@@ -6,12 +6,12 @@ import Accordion from "../src/components/Accordion";
 import "../src/styles/pages/faq.scss";
 import Spinner from "../src/components/Spinner";
 import language from "../public/languages/fa/faq.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const FAQ = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    logPageView();
+    // logPageView();
     fetchAPI();
   }, []);
   const fetchAPI = async () => {

@@ -2,10 +2,10 @@ import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import language from "../public/languages/fa/carinsurance.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 const car_insurance_page = () => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

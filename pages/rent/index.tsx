@@ -9,7 +9,7 @@ import Link from "next/link";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 
 const question_set = [
   {
@@ -28,7 +28,7 @@ const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
 
   useEffect(() => {
-    logPageView();
+    // logPageView();
     fetchData();
   }, []);
 

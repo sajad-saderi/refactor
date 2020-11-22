@@ -3,11 +3,11 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import language from "../public/languages/fa/guideforrent.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const guideForRent = () => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

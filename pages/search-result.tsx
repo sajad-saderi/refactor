@@ -4,14 +4,14 @@ import "../src/styles/pages/search_result.scss";
 import Search_result from "../src/containers/Search_result";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/searchresult.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../src/API";
 import { payBackInString } from "../utils/date-range-creator";
 import search_query_builder from "../utils/search-query-builder";
 
 const SearchResult = ({ searchResponse, initialFilters }) => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
 
   return (

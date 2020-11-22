@@ -6,11 +6,11 @@ import insurance from "../public/image/SamanInsurance.png";
 import "../src/styles/pages/index.scss";
 import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const HomePage = () => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
 
   return (

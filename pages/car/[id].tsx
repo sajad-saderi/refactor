@@ -3,12 +3,12 @@ import Layout from "../../src/Layout";
 import CarPage from "../../src/containers/car/carpage";
 import { NextSeo } from "next-seo";
 import language from "../../public/languages/fa/carpage.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 import { REQUEST_GET_RENTAL_CAR } from "../../src/API";
 
 const Car = ({ car_Information, is_mine, initial_search_id, id, expired }) => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
 
   return (

@@ -2,11 +2,11 @@ import React from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/guidepicture.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const guidePicture = () => {
   React.useEffect(() => {
-    logPageView();
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>
