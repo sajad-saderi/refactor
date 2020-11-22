@@ -15,7 +15,7 @@ const SearchResult = ({ searchResponse, initialFilters }) => {
       event: "virtualPageView",
       pageURL: window.location.href,
       pagePath: "/search-result",
-      pageTitle: language.next_seo.title,
+      pageTitle: `${language.next_seo.title.start}${initialFilters.start_date}${language.next_seo.title.ta}${initialFilters.end_date}${language.next_seo.title.otoli}`,
     });
     // logPageView();
   }, []);
