@@ -12,13 +12,15 @@ const Car = ({ car_Information, is_mine, initial_search_id, id, expired }) => {
       event: "virtualPageView",
       pageURL: window.location.href,
       pagePath: "/car",
-      pageTitle: `${
-        car_Information.owner.company_name
-          ? car_Information.owner.company_name
-          : car_Information.owner.first_name +
-            " " +
-            car_Information.owner.last_name
-      } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`,
+      pageTitle: car_Information
+        ? `${
+            car_Information.owner.company_name
+              ? car_Information.owner.company_name
+              : car_Information.owner.first_name +
+                " " +
+                car_Information.owner.last_name
+          } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`
+        : null,
     });
     // logPageView();
   }, []);
