@@ -13,7 +13,7 @@ const HomePage = () => {
     console.count("dataLayer");
     window["dataLayer"].push({
       event: "virtualPageView",
-      pageURL: window.location.href,
+      pageURL: window.location.href+"?person=otoli",
       pagePath: "/",
       pageTitle: language.next_seo.title,
     });
