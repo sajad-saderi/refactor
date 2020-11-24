@@ -10,6 +10,7 @@ import language from "../public/languages/fa/homepage.json";
 
 const HomePage = () => {
   React.useEffect(() => {
+    console.count("dataLayer");
     window["dataLayer"].push({
       event: "virtualPageView",
       pageURL: window.location.href,
