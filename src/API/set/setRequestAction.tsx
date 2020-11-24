@@ -44,7 +44,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       case "deliver":
         ACTION_URL = SET_ORDER_DELIVER;
         message =
-          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با مهمان یا اتولی تماس بگیرید.";
+          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با میزبان یا اتولی تماس بگیرید.";
         break;
       case "return":
         ACTION_URL = SET_ORDER_RETURN;
