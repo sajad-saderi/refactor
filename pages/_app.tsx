@@ -21,7 +21,7 @@ Router.events.on("routeChangeError", (err, url) => {
   // Router.push("/500");
 });
 
-Router.events.on("routeChangeComplete", (url) => {
+Router.events.on("routeChangeComplete", (url) => { 
   if (url.indexOf("/rent/") !== -1 || url.indexOf("/search-result?") !== -1) {
     return;
   }
