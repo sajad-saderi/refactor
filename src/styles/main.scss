@@ -194,7 +194,7 @@ input {
   border-radius: 4px;
   border: none;
   padding: 0.8rem 2.1rem;
-  border: 1px solid $blue; 
+  border: 1px solid $blue;
   transition: 0.25s all;
   cursor: pointer;
   &:hover {
@@ -325,7 +325,7 @@ input {
       color: #fff;
       margin-bottom: 1rem;
       background: $purple;
-      border: 1px solid $purple; 
+      border: 1px solid $purple;
     }
     .call_us {
       text-align: center;
@@ -551,6 +551,14 @@ input {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.expired_order {
+  margin-top: 3rem;
+  p {
+    font-size: 1.6rem;
+    text-align: center;
   }
 }
 
