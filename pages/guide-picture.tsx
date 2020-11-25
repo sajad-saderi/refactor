@@ -2,11 +2,17 @@ import React from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/guidepicture.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const guidePicture = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/guide-picture",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

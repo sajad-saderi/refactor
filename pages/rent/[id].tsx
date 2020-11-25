@@ -6,14 +6,20 @@ import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 
-const Rent_dynamic = ({Landing_page}) => {
-  React.useEffect(() => {    
+const Rent_dynamic = ({ Landing_page }) => {
+  React.useEffect(() => {
     if (!Landing_page) {
       Router.push("/404");
     } else {
-      logPageView();
+      window["dataLayer"].push({
+        event: "virtualPageView",
+        pageURL: window.location.href,
+        pagePath: `/rent/${Landing_page.meta_title}`,
+        pageTitle: Landing_page.meta_title,
+      });
+      // logPageView();
     }
   }, []);
 
@@ -34,10 +40,7 @@ const Rent_dynamic = ({Landing_page}) => {
           cardType: language.cardType,
         }}
       />
-      <Landing_page_container
-        landing_data={Landing_page}
-        language={language}
-      />
+      <Landing_page_container landing_data={Landing_page} language={language} />
       <Landing_Page_Content data={Landing_page} language={language} />
     </Layout>
   ) : null;

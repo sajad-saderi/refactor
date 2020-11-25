@@ -2,11 +2,17 @@ import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import language from "../public/languages/fa/gps.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const gps = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/gps",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

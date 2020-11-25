@@ -4,13 +4,19 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "../src/API";
 import language from "../public/languages/fa/sitemap.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const Site_map = () => {
   const [UrlList, UrlSetter] = useState([]);
 
   useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/site-map",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
     fetchAPIs();
   }, []);
 

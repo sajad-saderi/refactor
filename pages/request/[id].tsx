@@ -3,11 +3,17 @@ import { NextSeo } from "next-seo";
 import Layout from "../../src/Layout";
 import Request_page from "../../src/containers/Request_page";
 import language from "../../public/languages/fa/requestpage.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 
 const Request = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/request",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout>

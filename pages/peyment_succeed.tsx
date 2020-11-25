@@ -9,7 +9,7 @@ import "../src/styles/pages/Success_payment.scss";
 import carImage from "../public/image/car-image-thumbnail.jpg";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentsucceed.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -20,7 +20,13 @@ const Success_payment = () => {
   const token = jsCookie.get("token");
 
   useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/payment-success",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
     fetchAPI(Router.router.query.id);
   }, []);
 

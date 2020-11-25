@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../src/Layout";
 import Add_car from "../src/containers/Add_car";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/addcar.json";
 
 const AddCar = () => {
+  useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/add-car",
+      pageTitle: language.next_seo.title,
+    });
+  }, []);
   return (
     <Layout LinkControl={true}>
       <NextSeo

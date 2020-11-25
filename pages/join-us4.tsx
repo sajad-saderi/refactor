@@ -4,12 +4,18 @@ import { NextSeo } from "next-seo";
 import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content/AbTestContent";
 import language from "../public/languages/fa/joinus.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const JoinUs1 = (props) => {
   const [Score, SetScore] = useState(null);
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/join-us4",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   useEffect(() => {
     if (props.BotScore) {

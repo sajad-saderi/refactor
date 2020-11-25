@@ -4,11 +4,17 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import _500 from "../public/image/500.png";
 import language from "../public/languages/fa/_500.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const page_500 = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/500",
+      pageTitle: language.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout>

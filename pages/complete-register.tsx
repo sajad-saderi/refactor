@@ -3,11 +3,17 @@ import Layout from "../src/Layout";
 import Complete_register_container from "../src/containers/CompleteRegister";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/completeregister.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const CompleteRegister = () => {
   useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/complete-register",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
     // if (window["ga"]) {
     //   window["ga"]("send", {
     //     hitType: "pageview",

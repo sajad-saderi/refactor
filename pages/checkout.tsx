@@ -2,14 +2,19 @@ import React from "react";
 import Layout from "../src/Layout";
 import Checkout_Container from "../src/containers/Checkout_Container";
 import language from "../public/languages/fa/checkout.json";
-import { logPageView } from "../utils/analytics";
 import { NextSeo } from "next-seo";
 import { REQUEST_GET_RENTAL_CAR } from "../src/API";
 import Link from "next/link";
 
 const Checkout = ({ order_information, expired }) => {
-  React.useEffect(() => {    
-    logPageView();
+  React.useEffect(() => {
+    window["dataLayer"].push({
+      event: "virtualPageView",
+      pageURL: window.location.href,
+      pagePath: "/checkout",
+      pageTitle: "checkout",
+    });
+    // logPageView();
   }, []);
   return (
     <>
