@@ -20,7 +20,7 @@ export const REQUEST_SET_USERNAME = (data: ISetUsername) => {
       )
       .then((response) => {
         if (response.data.success) {
-          resolve(response.data.success);
+          resolve(response.data.data);
         }
       })
       .catch((e) => {

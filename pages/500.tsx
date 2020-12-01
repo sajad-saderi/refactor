@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import language from "../public/languages/fa/_500.json";
 // import { logPageView } from "../utils/analytics";
 
 const page_500 = () => {
-  React.useEffect(() => {
+   useEffect(() => {
     window["dataLayer"].push({
       event: "virtualPageView",
       pageURL: window.location.href,

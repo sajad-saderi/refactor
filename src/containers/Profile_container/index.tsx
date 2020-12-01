@@ -1,48 +1,44 @@
-import React, { useEffect, useState } from "react";
-// import "./Profile_container.scss";
+import React, { useContext, useEffect, useState } from "react";
 import Profile_info from "./Profile_info";
 import Profile_Cars from "./Profile_Cars";
 import jsCookie from "js-cookie";
 import Router from "next/router";
 import { REQUEST_GET_USER_INFO } from "../../API";
+import context_user from "../../context/User_info.js";
 import { NextSeo } from "next-seo";
+import { guard_controller } from "../../../utils/guard_controller";
 
 const Profile_container = ({ language }: IProfile_container) => {
   const [is_mine, setIs_mine] = useState(false);
   const [profile_Id, setProfile_Id] = useState(null);
-
   const [data, setData] = useState(null);
+  const user = useContext(context_user);
 
   useEffect(() => {
-    if (!checkRegister()) {
-      return;
-    }
     fetchApi();
   }, []);
 
   const fetchApi = async () => {
     const user_id = jsCookie.get("user_id");
+
     const user_cars_info: any = await REQUEST_GET_USER_INFO({
-      id: `${Router.router.query.id}`,
+      id: Router.router.query.id,
     });
-    setIs_mine(user_id == user_cars_info.id ? true : false);
+
+    if (user_id == user_cars_info.id) {
+      setIs_mine(true);
+      const guard = guard_controller();
+      if (guard !== "auth") {
+        Router.router.push(`/${guard}`);
+        return;
+      }
+    }
     setProfile_Id(user_cars_info.id);
     setData(user_cars_info);
   };
 
-  const checkRegister = () => {
-    const user_id = jsCookie.get("user_id");
-    const complete_register = jsCookie.get("complete_register");
-    if (user_id && complete_register !== "true") {
-      Router.push("/complete-register");
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   return (
-    <article className="responsive minHeight profile_container">
+    <article className='responsive minHeight profile_container'>
       {data ? (
         <>
           <NextSeo

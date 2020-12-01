@@ -7,7 +7,7 @@ import language from "../public/languages/fa/_404.json";
 // import { logPageView } from "../utils/analytics";
 
 const page_404 = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "virtualPageView",
       pageURL: window.location.href,

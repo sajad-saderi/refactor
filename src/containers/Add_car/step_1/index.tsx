@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { IoIosCar, IoIosArrowDown } from "react-icons/io";
 // import "./step_1.scss";
 import DropdownSearch from "../../../components/form/Dropdown";
@@ -22,6 +22,7 @@ import Checkbox from "../../../components/form/Checkbox";
 import ImageUploader from "../../../components/ImageUploader";
 import Button from "../../../components/form/Button";
 import Router from "next/router";
+import context_user from "../../../context/User_info";
 import jsCookie from "js-cookie";
 
 /**
@@ -82,6 +83,7 @@ let incompleteInfo = {
   capacity: null,
   mileage_range: { id: null },
   value: null,
+  duplicate_plate: null,
   registration_plate_first_part: null,
   registration_plate_forth_part: null,
   registration_plate_second_part: null,
@@ -145,6 +147,13 @@ const stateReducer = (current, action) => {
     case "value":
       if (incompleteCarMode) incompleteInfo.value = action.value;
       return { ...current, value: action.value };
+    case "duplicate_plate":
+      if (incompleteCarMode)
+        incompleteInfo.duplicate_plate = action.duplicate_plate;
+      return {
+        ...current,
+        duplicate_plate: action.duplicate_plate,
+      };
     case "registration_plate_first_part":
       if (incompleteCarMode)
         incompleteInfo.registration_plate_first_part =
@@ -327,6 +336,12 @@ const error_reducer = (current, action) => {
         value: action.value,
         error_message: action.error_message,
       };
+    case "duplicate_plate":
+      return {
+        ...current,
+        duplicate_plate: action.duplicate_plate,
+        error_message: action.error_message,
+      };
     case "registration_plate_first_part":
       return {
         ...current,
@@ -474,6 +489,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
     registration_plate_second_part: null,
     registration_plate_third_part: null,
     registration_plate_forth_part: null,
+    duplicate_plate: null,
     facility_id: null,
     media_id: null,
     cylinder_id: null,
@@ -507,9 +523,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
     is_out_of_service: false,
     min_days_to_rent: 1,
   });
-
-  const token = jsCookie.get("token");
-  const user_id = jsCookie.get("user_id");
+  const user = useContext(context_user);
+  const user_id = user.data?.id;
+  const token = user.data?.token;
 
   useEffect(() => {
     // logPageView();
@@ -835,6 +851,13 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           );
         }
       } catch (error) {
+
+        if (error?.data.error === "DUPLICATE_REGISTRATION_PLATE") {
+          Dispatcher({
+            type: "duplicate_plate",
+            error_message: language.duplicate_plate,
+          });
+        }
         console.log("!Error", error);
         setLoading(false);
       }
@@ -980,6 +1003,10 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
     } else {
       resetTheErrorStatus("registration_plate_first_part");
     }
+    Dispatcher({
+      type: "duplicate_plate",
+      error_message: language.duplicate_plate,
+    });
     if (!state.registration_plate_second_part) {
       Dispatcher({
         type: "registration_plate_second_part",
@@ -1149,16 +1176,16 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
   };
 
   return (
-    <article className="responsive add_car_form_container">
+    <article className='responsive add_car_form_container'>
       <form
-        className="add_car_form_step_1"
+        className='add_car_form_step_1'
         onSubmit={(e) => submitHandler(e, state)}
       >
-        <div className="pageTitle">
+        <div className='pageTitle'>
           {/* <IoIosCar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
           <h3>{language.add_car}</h3>
         </div>
-        <p className="extra_text form_title">{language.fill_the_form}</p>
+        <p className='extra_text form_title'>{language.fill_the_form}</p>
         <DropdownSearch
           InputDisable={true}
           error_status={!showDistrict ? ErrorState.location_id : false}
@@ -1200,7 +1227,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         {state.location_id !== 1 &&
           state.location_id !== null &&
           !showDistrict && (
-            <p className="extra_text">{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
+            <p className='extra_text'>{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
           )}
 
         {showDistrict && (
@@ -1233,7 +1260,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             }}
           />
         )}
-        <div className="Car_info_step_1">
+        <div className='Car_info_step_1'>
           <DropdownSearch
             InputDisable={true}
             error_status={Brand_id_error}
@@ -1313,7 +1340,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           />
         </div>
         {showTransmissionRadio && (
-          <div className="radio_father">
+          <div className='radio_father'>
             <label
               className={[
                 "transition_type_Label",
@@ -1323,7 +1350,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
               {language.transmission_type_label}
             </label>
             <Radio
-              name="transmission_type_id"
+              name='transmission_type_id'
               error_status={ErrorState.transmission_type_id}
               SelectHandler={(i) => {
                 if (ErrorState.transmission_type_id) {
@@ -1446,9 +1473,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             dispatch({ type: "mileage_range_id", mileage_range_id: i.value });
           }}
         />
-        <div className="value_container">
+        <div className='value_container'>
           <TextInput
-            name="value"
+            name='value'
             number={true}
             onChangeHandler={(e) => {
               if (ErrorState.value) {
@@ -1493,17 +1520,17 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             })} ${language.toman}`}
           />
         </div>
-        <div className="pelak_container">
+        <div className='pelak_container'>
           <label>{language.car_license_label}</label>
-          <p className="extra_text">{language.car_license_text}</p>
-          <div className="license_palte_container">
+          <p className='extra_text'>{language.car_license_text}</p>
+          <div className='license_palte_container'>
             <img src={pelak} alt={language.car_license_image_alt} />
-            <div className="pelak_input">
-              <div className="pelak_input_box_controller">
-                <div className="Fourth_part_pelak">
+            <div className='pelak_input'>
+              <div className='pelak_input_box_controller'>
+                <div className='Fourth_part_pelak'>
                   <TextInput
-                    label="4"
-                    name="registration_plate_forth_part"
+                    label='4'
+                    name='registration_plate_forth_part'
                     clearField={() =>
                       dispatch({
                         type: "registration_plate_forth_part",
@@ -1534,10 +1561,10 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
                     }}
                   />
                 </div>
-                <div className="Third_part_pelak">
+                <div className='Third_part_pelak'>
                   <TextInput
-                    label="3"
-                    name="registration_plate_third_part"
+                    label='3'
+                    name='registration_plate_third_part'
                     clearField={() =>
                       dispatch({
                         type: "registration_plate_third_part",
@@ -1568,7 +1595,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
                     }}
                   />
                 </div>
-                <div className="Second_part_pelak">
+                <div className='Second_part_pelak'>
                   <DropdownSearch
                     InputDisable={true}
                     error_status={ErrorState.registration_plate_second_part}
@@ -1598,10 +1625,10 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
                     hideClearField={true}
                   />
                 </div>
-                <div className="First_part_pelak">
+                <div className='First_part_pelak'>
                   <TextInput
-                    label="1"
-                    name="registration_plate_first_part"
+                    label='1'
+                    name='registration_plate_first_part'
                     value={state.registration_plate_first_part}
                     error={{
                       status: ErrorState.registration_plate_first_part,
@@ -1636,24 +1663,24 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             </div>
           </div>
         </div>
-        <label className="add_car_Facilities_label">
+        <label className='add_car_Facilities_label'>
           {language.car_facilities_lable}
         </label>
         {facilitesList.length === 0 ? (
-          <div className="Step1_checkoout_placeholder">
+          <div className='Step1_checkoout_placeholder'>
             {checkListLoaderLength.map((_, i) => (
               <CheckBox_Loader key={i} />
             ))}
           </div>
         ) : (
-          <div className="facilities_container">
+          <div className='facilities_container'>
             <Checkbox
               custom_className={
                 showMoreFacilities ? "" : "show_partial_facilities"
               }
               initialValue={state.facility_id}
               data={facilitesList}
-              name="facility_id"
+              name='facility_id'
               clearField={(item) =>
                 dispatch({
                   type: "Remove_facility_id",
@@ -1669,21 +1696,21 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             />
             {showMoreFacilities ? null : (
               <>
-                <div className="gradient_transparent" />
+                <div className='gradient_transparent' />
                 <p
                   onClick={() => {
                     setShowMoreFacilities(true);
                   }}
-                  className="show_more_facilities_button"
+                  className='show_more_facilities_button'
                 >
                   {language.car_facilities_show_more_facilities_button}
-                  <IoIosArrowDown size="2rem" color="#4ba3ce" />
+                  <IoIosArrowDown size='2rem' color='#4ba3ce' />
                 </p>
               </>
             )}
           </div>
         )}
-        <div className="colorPicker_container">
+        <div className='colorPicker_container'>
           <DropdownSearch
             label={language.car_color_picker_lable}
             error_status={ErrorState.color_id}
@@ -1738,11 +1765,11 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           {language.car_description_lable}
           <span> {language.car_description_option}</span>
         </label>
-        <p className="step_one_under_label_descripe">
+        <p className='step_one_under_label_descripe'>
           {language.car_description_text}
         </p>
         <textarea
-          className="text_area_step_1"
+          className='text_area_step_1'
           value={state.description}
           onChange={(e) => {
             dispatch({
@@ -1755,12 +1782,12 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           value={language.form_submit_button}
           loading={Loading}
           disable={Loading}
-          class="Blue_BTN local_style HEAP_AddCar_Btn_Submit"
+          class='Blue_BTN local_style HEAP_AddCar_Btn_Submit'
           // onCLick nothing happend we listen to the form submition
           click={() => {}}
         />
         {/* show the error message */}
-        <p className="Error_message_text">{ErrorState.error_message}</p>
+        <p className='Error_message_text'>{ErrorState.error_message}</p>
       </form>
     </article>
   );

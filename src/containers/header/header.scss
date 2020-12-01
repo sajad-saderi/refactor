@@ -120,6 +120,12 @@
           display: inline-block;
         }
       }
+      .header_spinner{
+        margin-left: 2.4rem;
+        span{
+          padding: 0;
+        }
+      }
       .Drop_Down {
         &:hover .Sub_Nav_Level_2 {
           display: block;

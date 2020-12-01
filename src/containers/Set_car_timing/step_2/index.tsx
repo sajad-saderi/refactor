@@ -14,11 +14,12 @@ import Radio from "../../../components/form/Radio";
 import TextInput from "../../../components/form/TextInput";
 import Checkbox from "../../../components/form/Checkbox";
 import Button from "../../../components/form/Button";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 import validator from "validator";
 import Spinner from "../../../components/Spinner";
 import Modal_context from "../../../context/Modal_context";
+import context_user from "../../../context/User_info";
 import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
 import DiscountBox from "../DiscountBox";
@@ -234,13 +235,14 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   });
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
-
-  const token = jsCookie.get("token");
+  const router = useRouter();
+  const user = useContext(context_user)
+  const token = user.data?.token
   const [checkbox_list, setCheckbox_list] = useState([]);
 
   useEffect(() => {
     scrollTo(0, 0);
-    getCarInfoToEdit(Router.router.query.car_id);
+    getCarInfoToEdit(router.query.car_id);
   }, []);
 
   const getCarInfoToEdit = async (id) => {
@@ -443,15 +445,15 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           token: token,
         });
         localStorage.removeItem("red_dot");
-        if (Router.router.query?.newcaradded === "true") {
+        if (router.query?.newcaradded === "true") {
           TOAST_CONTEXT.toast_option({
             message: `${language.toast_1} ${CarModelName} ${language.toast_2}`,
             time: 10,
             autoClose: true,
           });
-          Router.push(`/user/${state.owner_id}?newcaradded=true`);
+          router.push(`/user/${state.owner_id}?newcaradded=true`);
         } else {
-          Router.push(`/user/${state.owner_id}`);
+          router.push(`/user/${state.owner_id}`);
         }
       } catch (error) {
         setLoading(false);

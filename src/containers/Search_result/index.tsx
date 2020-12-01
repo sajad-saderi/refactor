@@ -57,7 +57,7 @@ let filtersChecker = {
 // Set position
 let position = 0;
 
-const Search_result = ({ language, initialResults }: ISearch_result) => {
+const Search_result = ({ language }: ISearch_result) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
@@ -126,12 +126,12 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
       filtersChecker.car_id = true;
     }
 
-    setTotal_count(initialResults.total_count);
-    setRemained_count(initialResults.remained_count);
-    setExtra_info(initialResults.extra_info);
-    setResult(initialResults.results);
+    // setTotal_count(initialResults.total_count);
+    // setRemained_count(initialResults.remained_count);
+    // setExtra_info(initialResults.extra_info);
+    // setResult(initialResults.results);
 
-    // initSearch();
+    initSearch();
 
     const handleRouteChange = (url) => {
       if (url.includes("/car/")) {
@@ -679,7 +679,6 @@ const Search_result = ({ language, initialResults }: ISearch_result) => {
 
 interface ISearch_result {
   language: any;
-  initialResults: any;
 }
 
 export default Search_result;

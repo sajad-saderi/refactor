@@ -475,7 +475,7 @@ const CarPage = ({
                 {language.extra_price}
                 {extra_km_price_name}
               </p>
-              {extra_km_price_name && (
+              {extra_hour_price_name && (
                 <p>
                   {language.extra_hour}
                   {extra_hour_price_name}

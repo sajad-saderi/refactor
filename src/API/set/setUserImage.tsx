@@ -1,5 +1,4 @@
 import axios from "axios";
-import jsCookie from "js-cookie";
 import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
@@ -19,10 +18,7 @@ export const REQUEST_SET_USER_IMAGE = (data: ISetUSerImage) => {
       })
       .then((response) => {
         if (response.data.success) {
-          jsCookie.set("thumbnail_url", response.data.data.image_url, {
-            expires: 100,
-          });
-          resolve(response.data);
+          resolve(response.data.data);
         }
       })
       .catch((e) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../src/Layout";
-import Router from "next/router";
+import {useRouter} from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Button from "../src/components/form/Button";
 import "../src/styles/pages/Failed_payment.scss";
@@ -9,6 +9,7 @@ import language from "../public/languages/fa/paymentfaild.json";
 // import { logPageView } from "../utils/analytics";
 
 const Failed_payment = () => {
+  const router = useRouter()
   React.useEffect(() => {
     window["dataLayer"].push({
       event: "virtualPageView",
@@ -40,7 +41,7 @@ const Failed_payment = () => {
         </section>
         <Button
           class="Blue_BTN local_style"
-          click={() => Router.push("/")}
+          click={() => router.push("/")}
           value={language.main_page}
           loading={false}
         />

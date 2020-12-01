@@ -14,12 +14,6 @@ const CompleteRegister = () => {
       pageTitle: language.next_seo.title,
     });
     // logPageView();
-    // if (window["ga"]) {
-    //   window["ga"]("send", {
-    //     hitType: "pageview",
-    //     page: location.pathname,
-    //   });
-    // }
   }, []);
 
   return (

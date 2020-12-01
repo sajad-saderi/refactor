@@ -5,6 +5,7 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const USER_INFO_UPDATE = "/core/user/update";
 
 export const REQUEST_USER_INFO_UPDATE = (data: IUserInfoUpdate) => {
+  
   return new Promise((resolve, reject) => {
     axios
       .post(

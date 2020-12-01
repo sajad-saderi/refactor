@@ -5,17 +5,15 @@ import Search_result from "../src/containers/Search_result";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/searchresult.json";
 // import { logPageView } from "../utils/analytics";
-import { REQUEST_GET_SEARCH_FOR_RENT } from "../src/API";
 import { payBackInString } from "../utils/date-range-creator";
-import search_query_builder from "../utils/search-query-builder";
 
-const SearchResult = ({ searchResponse, initialFilters }) => {
+const SearchResult = ({ page_title }) => {
   React.useEffect(() => {
     window["dataLayer"].push({
       event: "virtualPageView",
       pageURL: window.location.href,
       pagePath: "/search-result",
-      pageTitle: `${language.next_seo.title.start}${initialFilters.start_date}${language.next_seo.title.ta}${initialFilters.end_date}${language.next_seo.title.otoli}`,
+      pageTitle: `${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`,
     });
     // logPageView();
   }, []);
@@ -23,10 +21,10 @@ const SearchResult = ({ searchResponse, initialFilters }) => {
   return (
     <Layout>
       <NextSeo
-        title={`${language.next_seo.title.start}${initialFilters.start_date}${language.next_seo.title.ta}${initialFilters.end_date}${language.next_seo.title.otoli}`}
+        title={`${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`}
         description={language.nextSeo_description}
         openGraph={{
-          title: `${language.next_seo.title.start}${initialFilters.start_date}${language.next_seo.title.ta}${initialFilters.end_date}${language.next_seo.title.otoli}`,
+          title: `${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`,
           description: language.next_seo.description,
           site_name: language.next_seo.site_name,
         }}
@@ -36,34 +34,31 @@ const SearchResult = ({ searchResponse, initialFilters }) => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <Search_result language={language} initialResults={searchResponse} />
+      <Search_result language={language} />
     </Layout>
   );
 };
 
 export async function getServerSideProps(props) {
-  let searchQuery = "";
-  let initialFilters = null;
+  const page_title = {
+    param_location_name: null,
+    param_start_date: null,
+    param_end_date: null,
+  };
   if (Object.keys(props.query).length !== 0) {
-    searchQuery = search_query_builder(props.query);
-    initialFilters = props.query;
+    const { location_name, start_date, end_date } = props.query;
+    page_title.param_location_name = location_name;
+    page_title.param_start_date = start_date;
+    page_title.param_end_date = end_date;
   } else {
     const { start_date, end_date } = payBackInString(6, 3);
-    searchQuery = search_query_builder({ start_date, end_date });
-    initialFilters = { start_date, end_date };
+    page_title.param_location_name = "تهران";
+    page_title.param_start_date = start_date;
+    page_title.param_end_date = end_date;
   }
-  try {
-    const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
-      searchQuery,
-    });
-    return {
-      props: { searchResponse: res, initialFilters },
-    };
-  } catch (error) {
-    return {
-      props: { searchResponse: null, initialFilters },
-    };
-  }
+  return {
+    props: { page_title },
+  };
 }
 
 export default SearchResult;

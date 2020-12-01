@@ -15,8 +15,7 @@ moment.loadPersian({ dialect: "persian-modern" });
 
 const Success_payment = () => {
   const [renter, setRenter] = useState(null);
-  const [rent_search_dump, setRent_search_dump] = useState(null);
-
+  const [rent_search_dump, setRent_search_dump] = useState(null); 
   const token = jsCookie.get("token");
 
   useEffect(() => {

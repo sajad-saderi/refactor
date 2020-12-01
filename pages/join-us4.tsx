@@ -6,7 +6,7 @@ import Join_us_content from "../src/components/calculator/Join_us_content/AbTest
 import language from "../public/languages/fa/joinus.json";
 // import { logPageView } from "../utils/analytics";
 
-const JoinUs1 = (props) => {
+const JoinUs1 = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
   React.useEffect(() => {
     window["dataLayer"].push({
@@ -18,10 +18,10 @@ const JoinUs1 = (props) => {
     // logPageView();
   }, []);
   useEffect(() => {
-    if (props.BotScore) {
-      SetScore(props.BotScore);
+    if (BotScore) {
+      SetScore(BotScore);
     }
-  }, [props.BotScore]);
+  }, [BotScore]);
   return (
     <Layout>
       <NextSeo

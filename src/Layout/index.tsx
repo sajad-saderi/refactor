@@ -79,26 +79,6 @@ const Layout = (props: ILayout) => {
       }
       return false;
     });
-    if (Router.router) {
-      /*
-        It checks the current URL if there are any UTM values in there
-        NOTE 
-          If user login, these information will sended to API
-            "/core/device/send-code"
-      */
-      if (Router.router.query.utm_source) {
-        localStorage["utm_source"] = Router.query.utm_source;
-        localStorage["utm_medium"] = Router.query.utm_medium;
-        localStorage["utm_campaign"] = Router.query.utm_campaign;
-        localStorage["utm_term"] = Router.query.utm_term;
-        localStorage["utm_content"] = Router.query.utm_content;
-        localStorage["utm_landing_url"] = "https://otoli.net/join-us";
-      } else if(!localStorage["utm_source"]) {
-        localStorage["utm_source"] = "google";
-        localStorage["utm_medium"] = "organic";
-        localStorage["utm_landing_url"] = Router.router.asPath;
-      }
-    }
     checkToast();
   }, []);
 

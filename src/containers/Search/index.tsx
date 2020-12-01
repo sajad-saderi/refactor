@@ -7,7 +7,7 @@ import moment from "moment-jalaali";
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_LOCATION } from "../../API/index";
 
-import Router from "next/router";
+import {useRouter} from "next/router";
 
 // import "./search.scss";
 import Button from "../../components/form/Button";
@@ -38,6 +38,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   });
 
   const MODAL_CONTEXT = useContext(modal_context);
+  const router = useRouter()
 
   // get a list of cities
   const get_car_location = async () => {
@@ -124,8 +125,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       localStorage["start"] = JSON.stringify(dayRange.from);
       localStorage["end"] = JSON.stringify(dayRange.to);
       setLoading(true);
-      Router.push(
-        `/search-result?location_id=${LocationId}&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15`
+      router.push(
+        `/search-result?location_id=${LocationId}&location_name=تهران&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15`
       );
     } else if (!dayRange.from) {
       setFromError({ status: true, message: language.search.error_start_date });

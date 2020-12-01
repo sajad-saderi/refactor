@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from "../../API";
-import Router from "next/router";
+import { useRouter } from "next/router";
 // import "./checkout.scss";
-
+import context_user from "../../context/User_info";
 import Button from "../../components/form/Button";
 import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
 import moment from "moment-jalaali";
 import Insurance from "./insurance";
 import TextInput from "../../components/form/TextInput";
-import jsCookie from "js-cookie";
 import Checkout_Container_Loader from "../../components/cartPlaceholder/checkoutLoading";
-import Modal_context from "../../../src/context/Modal_context";
 import Toast_context from "../../context/Toast_context";
 import carImage from "../../../public/image/car-image-thumbnail.jpg";
+import { guard_controller } from "../../../utils/guard_controller";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -58,10 +57,10 @@ const Checkout_Container = ({
   });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const MODAL_CONTEXT = useContext(Modal_context);
+  const [token, set_token] = useState(false);
   const TOAST_CONTEXT = useContext(Toast_context);
-
-  const token = jsCookie.get("token");
+  const user = useContext(context_user);
+  const router = useRouter();
 
   // useEffect(() => {
   //   const { search_id } = Router.router.query;
@@ -78,6 +77,7 @@ const Checkout_Container = ({
   // };
 
   useEffect(() => {
+    set_token(user.data?.token);
     if (order_information) {
       setCar(order_information.car);
       setYear(order_information.year);
@@ -122,12 +122,12 @@ const Checkout_Container = ({
   const couponHandler = async (e) => {
     e.preventDefault();
     if (!token) {
-      MODAL_CONTEXT.modalHandler("Login");
-      setLoading(false);
-      return;
-    }
-    if (!checkRegister()) {
-      return;
+      const guard = guard_controller();
+      if (guard !== "auth") {
+        setLoading(false);
+        router.push(`/${guard}`);
+        return;
+      }
     }
     setCoupanLoading(true);
     // validation
@@ -164,28 +164,17 @@ const Checkout_Container = ({
     }
   };
 
-  const checkRegister = () => {
-    const complete_register = jsCookie.get("complete_register");
-    if (complete_register !== "true") {
-      Router.push("/complete-register");
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   const GoToRequests = async () => {
     setLoading(true);
     if (!token) {
-      MODAL_CONTEXT.modalHandler("Login");
-      setLoading(false);
-      return;
+      const guard = guard_controller();
+      if (guard !== "auth") {
+        setLoading(false);
+        router.push(`/${guard}`);
+        return;
+      }
     }
-    if (!checkRegister()) {
-      return;
-    }
-    const user_id = jsCookie.get("user_id");
-    if (user_id == owner.id) {
+    if (user.data.id == owner.id) {
       alert("شما نمیتوانید خودرو خودتان را اجاره کنید");
       setLoading(false);
       return;
@@ -203,7 +192,7 @@ const Checkout_Container = ({
         time: 10,
         autoClose: true,
       });
-      Router.push("/requests");
+      router.push("/requests");
     } catch (error) {
       setLoading(false);
       console.log("!Error", error);
