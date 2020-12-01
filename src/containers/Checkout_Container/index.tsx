@@ -57,7 +57,7 @@ const Checkout_Container = ({
   });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [token, set_token] = useState(false);
+  const [token, set_token] = useState("");
   const TOAST_CONTEXT = useContext(Toast_context);
   const user = useContext(context_user);
   const router = useRouter();
