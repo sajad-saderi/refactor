@@ -236,8 +236,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
   const router = useRouter();
-  const user = useContext(context_user)
-  const token = user.data?.token
+  const user = useContext(context_user);
+  const token = user.data?.token;
   const [checkbox_list, setCheckbox_list] = useState([]);
 
   useEffect(() => {
@@ -451,9 +451,12 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             time: 10,
             autoClose: true,
           });
-          router.push(`/user/${state.owner_id}?newcaradded=true`);
+          router.push(
+            { pathname: "/user/[id]?newcaradded=true`" },
+            `/user/${state.owner_id}?newcaradded=true`
+          );
         } else {
-          router.push(`/user/${state.owner_id}`);
+          router.push({ pathname: "/user/[id]" }, `/user/${state.owner_id}`);
         }
       } catch (error) {
         setLoading(false);

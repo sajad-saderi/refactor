@@ -23,7 +23,7 @@ const Menu = () => {
     }
   }, []);
 
-  useEffect(() => {    
+  useEffect(() => {
     if (user.data) {
       const {
         first_name,
@@ -64,7 +64,8 @@ const Menu = () => {
       {token ? (
         spinner ? (
           <li className='header_spinner'>
-            <Spinner display='inline-block' color='#dcdcdc' width={20} />
+            <p className='Gradient profile_icon_place_holder' />
+            <span className='Gradient' />
           </li>
         ) : (
           <li className='first_element_li'>
@@ -89,7 +90,8 @@ const Menu = () => {
         )
       ) : spinner ? (
         <li className='header_spinner'>
-          <Spinner display='inline-block' color='#dcdcdc' width={20} />
+          <p className='Gradient profile_icon_place_holder' />
+          <span className='Gradient' />
         </li>
       ) : (
         <li

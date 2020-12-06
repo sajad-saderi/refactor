@@ -78,6 +78,29 @@ const CarPage = ({
   useEffect(() => {
     if (expired) {
       DateSetter(id);
+    }
+    if (!car_Information) {
+      // if the page have search id we can get the price
+      if (initial_search_id) {
+        fetchData({ search_id: initial_search_id });
+        if (localStorage["start"]) {
+          let startDate = JSON.parse(localStorage["start"]);
+          let endDate = JSON.parse(localStorage["end"]);
+          setDayRange({
+            from: {
+              year: startDate.year,
+              month: startDate.month,
+              day: startDate.day,
+            },
+            to: { year: endDate.year, month: endDate.month, day: endDate.day },
+          });
+          setShowCalender(true);
+        }
+      }
+      // if doesn't have search id and it's not mine the user can select day range and get price and search id
+      else {
+        DateSetter(id);
+      }
     } else {
       // fetchData({ search_id });
       set_CarInformation(car_Information);
@@ -118,8 +141,6 @@ const CarPage = ({
   }, []);
 
   const fetchData = async (data) => {
-    console.log("client load");
-
     setNo_of_days("...");
     let localData = null;
     setShowPriceLoading(true);
@@ -149,6 +170,9 @@ const CarPage = ({
       set_CarInformation(res);
       setShowPriceLoading(false);
     } catch (error) {
+      if (error === "Not found!") {
+        router.push("/404");
+      }
       if (error === "Invalid search_id.") {
         DateSetter(id);
       }

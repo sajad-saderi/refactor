@@ -369,8 +369,18 @@ const Search_result = ({ language }: ISearch_result) => {
     }
   };
 
-  const UrlUpdater = (url) => {
-    router.push(url, undefined, { shallow: true });
+  const UrlUpdater = (data) => {
+    const { pathname, query } = data;
+
+    router.push(
+      {
+        pathname: pathname,
+        query: query,
+      },
+      undefined,
+      { shallow: true }
+    );
+    // router.push(url, undefined, { shallow: true });
   };
 
   return (

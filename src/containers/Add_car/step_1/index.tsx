@@ -840,7 +840,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         localStorage.removeItem("halfcompletecar");
         localStorage["red_dot"] = 1;
         if (Router.router.query.mode === "edit") {
-          Router.push(`/user/${user_id}`);
+          Router.push({ pathname: `/user/[id]` }, `/user/${user_id}`);
         }
         // else go to set car and timing
         else {
@@ -851,7 +851,6 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           );
         }
       } catch (error) {
-
         if (error?.data.error === "DUPLICATE_REGISTRATION_PLATE") {
           Dispatcher({
             type: "duplicate_plate",
@@ -1524,7 +1523,11 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           <label>{language.car_license_label}</label>
           <p className='extra_text'>{language.car_license_text}</p>
           <div className='license_palte_container'>
-            <img src={pelak} alt={language.car_license_image_alt} />
+            <img
+              src={pelak}
+              className={ErrorState.duplicate_plate ? "license_error" : null}
+              alt={language.car_license_image_alt}
+            />
             <div className='pelak_input'>
               <div className='pelak_input_box_controller'>
                 <div className='Fourth_part_pelak'>

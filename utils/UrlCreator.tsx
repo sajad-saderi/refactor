@@ -1,13 +1,24 @@
 const UrlCreator = (data: Idata) => {
-  let query = "?";  
+  let query = "?";
+  let asPath = null;
+
   for (const [key, value] of Object.entries(data.query)) {
     if (value == 0) {
       continue;
     }
-    query += `&${key}=${value}`;
+    if (query === "?") query += `${key}=${value}`;
+    else query += `&${key}=${value}`;
+  }
+  if (data.query.id) {
+    asPath = data.route.replace(/\[id\]/gi, data.query.id);
   }
 
-  data.cb(data.route + query);
+  data.cb({
+    pathname: data.route,
+    queryString: query,
+    asPath,
+    query: data.query,
+  });
 };
 
 interface Idata {

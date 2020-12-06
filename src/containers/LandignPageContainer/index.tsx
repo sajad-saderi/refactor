@@ -415,8 +415,18 @@ const Landing_page_container = ({
     }
   };
 
-  const UrlUpdater = (url) => {
-    router.push(url, undefined, { shallow: true });
+  const UrlUpdater = (data) => {
+    const { pathname, queryString, asPath, query } = data;
+
+    router.push(
+      {
+        pathname: pathname,
+        query: query,
+      },
+      `${asPath}${queryString}`,
+      { shallow: true }
+    );
+    // window.history.replaceState(null, "", url);
   };
 
   return (

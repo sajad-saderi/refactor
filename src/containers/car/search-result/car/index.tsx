@@ -24,6 +24,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     is_promoted,
     has_media,
     location,
+    owner,
   } = data;
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
@@ -49,6 +50,8 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
       ? language.search_result_section.car.million
       : language.search_result_section.car.thousand;
 
+  let owner_name = owner.company_name ? owner.company_name : owner.name;
+
   useEffect(() => {
     let containerWidth = cardRef.current.clientWidth;
     let aThirdOfTheContainerWidth = Math.ceil(containerWidth / 3);
@@ -64,9 +67,14 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
       <Link
         href={{
           pathname: "/car/[id]",
-          query: { id: id, search_id: search_id },
+          query: {
+            id: id,
+            search_id: search_id,
+            owner_name,
+            car_name: title,
+          },
         }}
-        as={`/car/${id}?search_id=${search_id}`}
+        as={`/car/${id}?search_id=${search_id}&owner_name=${owner_name}&car_name=${title}`}
       >
         <a className={`CAR_CART_${title}`}>
           <div className='card_wrapper'>
