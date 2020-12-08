@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
+import arrow_right from "../../../public/image/svg/arrow-right.svg";
+import Icon from "../../../utils/Icon";
 // import "./slider.scss";
-import Gallery from "./Gallery";
+// import Gallery from "./Gallery";
 
 const Slider = (props: ISlider) => {
   const [Feed, setFeed] = useState([]);
@@ -53,26 +55,26 @@ const Slider = (props: ISlider) => {
 
   return (
     Loade && (
-      <div className="carousel_container">
+      <div className='carousel_container'>
         {/* extend icon */}
-        {!colseModal && (
+        {/* {!colseModal && (
           <Gallery
             Feed={Feed}
             CloseGallery={CloseGallery}
             index={slideIndex}
             alt={alt}
           />
-        )}
+        )} */}
         {/* carousel section */}
         {carousel ? (
           <>
             <div>
               {/* Open the gallery */}
-              {carousel && (
+              {/* {carousel && (
                 <div className="FullScreen" onClick={CloseGallery}>
                   <IoMdExpand size="4rem" />
                 </div>
-              )}
+              )} */}
               {Feed.map((item, i) => {
                 return (
                   <img
@@ -161,7 +163,7 @@ const Slider = (props: ISlider) => {
             </div>
             {/* background image */}
             <img
-              className="carousel_BackImage"
+              className='carousel_BackImage'
               // className={[
               //   "carousel_BackImage",
               //   this.state.slideIndex === i ? "activslide" : "HiddenSlide"
@@ -186,13 +188,13 @@ const Slider = (props: ISlider) => {
           <>
             {/* If carousel is not active just show a single image and background */}
             <img
-              className="carousel_FrontImage"
+              className='carousel_FrontImage'
               src={Feed[0].url}
               alt={alt}
               // onLoad={() => positionController(Feed[0].width, Feed[0].height)}
             />
             <img
-              className="carousel_BackImage"
+              className='carousel_BackImage'
               src={Feed[0].url}
               style={{
                 top: `-${heightController}px`,
@@ -208,27 +210,27 @@ const Slider = (props: ISlider) => {
           <>
             {/* if there is no more image right to swipe to right, hide the right arrow icon */}
             {slideIndex < Feed.length - 1 && (
-              <button className="NAVIGA arrow-right">
-                <IoIosArrowForward
-                  onClick={() => SliderNav("right")}
-                  size="3.3rem"
-                />
+              <button
+                className='NAVIGA arrow-right'
+                onClick={() => SliderNav("right")}
+              >
+                <Icon name='arrow_right' />
               </button>
             )}
             {/* if there is no more image left to swipe to left, hide the left arrow icon */}
             {slideIndex > 0 && (
-              <button className="NAVIGA arrow-left">
-                <IoIosArrowBack
-                  onClick={() => SliderNav("left")}
-                  size="3.2rem"
-                />
+              <button
+                className='NAVIGA arrow-left'
+                onClick={() => SliderNav("left")}
+              >
+                <Icon name='arrow_right' />
               </button>
             )}
           </>
         )}
         {/* bullet icons */}
         {carousel && (
-          <div className="NavBotton">
+          <div className='NavBotton'>
             {Feed.map((_, i) => {
               return (
                 <span
@@ -246,9 +248,9 @@ const Slider = (props: ISlider) => {
 };
 
 interface ISlider {
-  // a list of images 
+  // a list of images
   Feed: any;
-  // The image name 
+  // The image name
   alt: string;
 }
 

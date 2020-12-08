@@ -94,26 +94,6 @@
   }
 }
 
-.activeDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50px;
-  background: #fff;
-  margin: 6px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.deactiveDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50px;
-  background: #fff;
-  margin: 6px;
-  display: inline-block;
-  vertical-align: middle;
-  opacity: 0.3;
-}
 
 @media (max-width: 660px) {
   .closeButton {

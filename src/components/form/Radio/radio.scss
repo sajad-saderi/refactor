@@ -45,7 +45,7 @@
   }
 
   .container:hover {
-    color: $dark_gray;
+    color: $almost_black;
   }
   /* On mouse-over, add a grey background color */
   .container:hover input ~ .checkmark {
@@ -83,7 +83,7 @@
 
 .active_radio_item {
   label {
-    color: $dark_gray !important;
+    color: $almost_black !important;
     font-weight: 500 !important;
     p {
       color: #2a2a2a !important;

@@ -14,6 +14,7 @@ import jsCookie from "js-cookie";
 import moment from "moment-jalaali";
 import Spinner from "../../../components/Spinner";
 import carImage from "../../../../public/image/car-image.jpg";
+import Icon from "../../../../utils/Icon";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -42,7 +43,7 @@ const CarPage = ({ language }: ICarPage) => {
   const [max_km_per_day, setMax_km_per_day] = useState(null);
   const [extra_km_price_name, setExtra_km_price_name] = useState(null);
   const [is_out_of_service, setIs_out_of_service] = useState(null);
-  const [id, setId] = useState(null);
+  const [rate, setRate] = useState(null);
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(
     null
   );
@@ -61,6 +62,7 @@ const CarPage = ({ language }: ICarPage) => {
   const [calenderClick, setCalenderClick] = useState(false);
   const [showPriceLoading, setShowPriceLoading] = useState(false);
   const [availableCar, setAvailableCar] = useState(true);
+  const [is_verified, setIs_verified] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
@@ -225,11 +227,12 @@ const CarPage = ({ language }: ICarPage) => {
     setMax_km_per_day(res.max_km_per_day);
     setExtra_km_price_name(res.extra_km_price_name);
     // setIs_out_of_service(res.is_out_of_service);
-    // setId(res.id);
+    setRate(res.rate);
     setDeliver_at_renters_place(res.deliver_at_renters_place);
     setNo_of_days(res.no_of_days);
     setLocation(res.location);
     setMileage_range(res.mileage_range);
+    setIs_verified(res.is_verified);
     if (res.extra_hour_price > 0)
       setExtra_hour_price_name(res.extra_hour_price_name);
     setOwner(res.owner);
@@ -353,13 +356,38 @@ const CarPage = ({ language }: ICarPage) => {
               )}
               <h1>
                 {car.brand.name.fa} {car.name.fa}
+                <span>({year.name.fa})</span>
               </h1>
-              <h4>{year.name.fa}</h4>
+              <p className='owner_name_carinfo'>{owner.name}</p>
+              {rate?.no_of_received_rates ? (
+                <div className='rate_container'>
+                  <Icon name='star' />
+                  <span>
+                    {rate.avg_rate} ({rate.no_of_received_rates} نظر)
+                  </span>
+                </div>
+              ) : null}
+              {with_driver && (
+                <div className='driver_container'>
+                  <span>{language.just_with_drive}</span>
+                </div>
+              )}
+              {is_verified && (
+                <div className='isverified_container'>
+                  <span>
+                    <Icon name='check' />
+                    {language.is_verified}
+                  </span>
+                </div>
+              )}
               {!is_mine ? (
                 showCalender ? (
                   <div className='calender_section_mobile_view'>
                     <hr />
-                    <h2>{language.calender_section_mobile_view_h2}</h2>
+                    <h2>
+                      <Icon name='calendar' />
+                      <span>{language.calender_section_mobile_view_h2}</span>
+                    </h2>
                     {showDateText && dayRange.from ? (
                       <div className='Rent_date'>
                         <p>
@@ -465,44 +493,88 @@ const CarPage = ({ language }: ICarPage) => {
                 ) : null
               ) : null}
               <hr />
-              <h2>{language.location_for_deliver}</h2>
-              <p>{location.name.breadcrumb_fa}</p>
-              {location.parent_id === 1 && deliver_at_renters_place ? (
-                <p>{language.deliver_at_tehran}</p>
-              ) : null}
-              {with_driver && (
+              <h2>
+                <Icon name='pin' />
+                <span>{language.location_for_deliver}</span>
+              </h2>
+              <div className='car_delivery padding_right_24'>
+                <p className='margin_bottom_16'>
+                  {location.name.breadcrumb_fa}
+                </p>
+                {location.parent_id === 1 && deliver_at_renters_place ? (
+                  <p className='margin_bottom_16'>
+                    {language.deliver_at_tehran}
+                    <strong>{language.you_location}</strong>
+                    {language.mishavad}
+                  </p>
+                ) : null}
+              </div>
+              {/* {with_driver && (
                 <>
                   <hr />
                   <h2>{language.with_driver}</h2>
                   <span>{language.just_with_drive}</span>
                 </>
-              )}
+              )} */}
               <hr />
-              <h2>{language.distance_in_day}</h2>
-              <p>
-                {max_km_per_day}
+              <h2>
+                <Icon name='opposite_arrows' />
+                <span>{language.distance_in_day}</span>
+              </h2>
+              <p className='distance_limitation margin_bottom_16 padding_right_24'>
+                {language.KM_in_day_limit}:{" "}
+                <strong>
+                  {max_km_per_day}
+                  {language.KM}
+                </strong>
                 {language.KM_in_day}
               </p>
-              <p>
-                {language.extra_price}
-                {extra_km_price_name}
+              <p className='distance_limitation_penalty margin_bottom_16 padding_right_24'>
+                {language.extra_price_limit}:{" "}
+                <strong>{extra_km_price_name}</strong>
               </p>
-              {extra_km_price_name && (
-                <p>
-                  {language.extra_hour}
-                  {extra_hour_price_name}
+              {!extra_hour_price_name && (
+                <p className='margin_bottom_16 hour_limitation_penalty padding_right_24'>
+                  {language.extra_hour_limit}:{" "}
+                  <strong>{extra_hour_price_name}</strong>
                 </p>
               )}
+              <hr />
+              <h2>
+                <Icon name='document' />
+                <span>{language.condition_and_cancellation}</span>
+              </h2>
+              <pre className='padding_right_24'>{cancellation_policy}</pre>
               {description && (
                 <>
                   <hr />
-                  <h2>{language.about_car}</h2>
-                  <pre>{description}</pre>
+                  <h2>
+                    <Icon name='car' />
+                    <span>{language.about_car}</span>
+                  </h2>
+                  <pre className='padding_right_24'>{description}</pre>
+                </>
+              )}
+              {facility_set.length > 0 && (
+                <>
+                  <hr />
+                  <h2>
+                    <Icon name='boxes' />
+                    <span>{language.facilities}</span>
+                  </h2>
+                  <div className='facilities_container padding_right_24'>
+                    {facility_set.map((item) => (
+                      <p key={item.id}>{item.name.fa}</p>
+                    ))}
+                  </div>
                 </>
               )}
               <hr />
-              <h2>{language.features}</h2>
-              <div className='info_container'>
+              <h2>
+                <Icon name='gear' />
+                <span>{language.features}</span>
+              </h2>
+              <div className='info_container padding_right_24'>
                 <p className='alignThem'>
                   <span className='info_name'>{language.body_style}</span>{" "}
                   <span className='info_value'>{body_style.name.fa}</span>
@@ -530,22 +602,10 @@ const CarPage = ({ language }: ICarPage) => {
                   </span>
                 </p>
               </div>
-
-              {facility_set.length > 0 && (
-                <>
-                  <hr />
-                  <h2>{language.facilities}</h2>
-                  <div className='facilities_container'>
-                    {facility_set.map((item) => (
-                      <p key={item.id}>{item.name.fa}</p>
-                    ))}
-                  </div>
-                </>
-              )}
-              <hr />
-              <h2>{language.condition_and_cancellation}</h2>
-              <pre>{cancellation_policy}</pre>
-              {car.category_set.length > 0 && (
+              {/* <hr /> */}
+              {/* <h2>{language.condition_and_cancellation}</h2>
+              <pre>{cancellation_policy}</pre> */}
+              {/* {car.category_set.length > 0 && (
                 <>
                   <hr />
                   <h2>{language.tag}</h2>
@@ -562,7 +622,7 @@ const CarPage = ({ language }: ICarPage) => {
                     </Link>
                   ))}
                 </>
-              )}
+              )} */}
             </section>
             {/* user info section */}
             <section className='onwnerInfo_container'>
@@ -703,8 +763,20 @@ const CarPage = ({ language }: ICarPage) => {
                 <a className='HEAP_Car_Link_Profile'>
                   <figure className='owner_part'>
                     <img src={owner.thumbnail_url} alt={owner.name} />
-                    <p>{owner.name}</p>
                   </figure>
+                  <div>
+                    <p>{owner.name}</p>
+                    {owner.no_of_successfully_rented_cars_as_owner > 0 ? (
+                      <p>
+                        {language.mizban}{" "}
+                        <strong>
+                          {owner.no_of_successfully_rented_cars_as_owner}
+                          {language.safar}
+                        </strong>{" "}
+                        {language.bodeh}
+                      </p>
+                    ) : null}
+                  </div>
                 </a>
               </Link>
               {availableCar && !is_mine ? (

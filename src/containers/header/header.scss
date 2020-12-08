@@ -2,7 +2,7 @@
 @import "./modals/modal.scss";
 .header {
   background-color: $black;
-  padding-top: 1.2rem;
+  padding: 0.8rem 0;
   // height: 64px;
   .Logo {
     float: left;
@@ -12,7 +12,7 @@
       content: "";
     }
     img {
-      width: 8.1rem;
+      height: 2.8rem;
     }
   }
 
@@ -55,7 +55,7 @@
         font-weight: 500;
         cursor: pointer;
         .profile_icon {
-          width: 2.8rem;
+          width: 3.2rem;
           display: inline-block;
           vertical-align: middle;
           border-radius: 50%;
@@ -95,7 +95,7 @@
             }
             a {
               font-size: 1.1rem;
-              color: $dark_gray;
+              color: $almost_black;
               display: block;
               line-height: 1;
               border-bottom: 1px solid rgb(254, 254, 254);
@@ -110,9 +110,8 @@
         span {
           font-weight: 500;
           font-size: 1.4rem;
-          color: $white;
-          padding-bottom: 1.2rem;
-          padding-left: 2.4rem;
+          color: $white; 
+          padding-left: 1.6rem;
           display: block;
         }
         .user-name {
@@ -205,6 +204,9 @@
           }
         }
         li {
+          .profile_icon {
+            margin-left: 0;
+          }
           .user-name {
             display: none;
           }

@@ -89,3 +89,17 @@
     /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
       url("../../public/fonts/ttf/IRANSansWeb.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: danabold;
+  font-style: normal;
+  font-display: swap;
+  font-weight: bold;
+  src: url("../../public/fonts/dana/eot/dana-fanum-bold.eot");
+  src: url("../../public/fonts/dana/eot/dana-fanum-bold.eot?#iefix")
+      format("embedded-opentype"),
+    /* FF39+,Chrome36+, Opera24+*/
+      url("../../public/fonts/dana/woff/dana-fanum-bold.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("../../public/fonts/dana/ttf/Dana-FaNum-Bold.ttf") format("truetype");
+}
