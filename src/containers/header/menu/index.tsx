@@ -102,7 +102,7 @@ const Menu = () => {
         >
           <Link href={`/login`}>
             <a>
-              <span className='user-name'>{language.li}</span>
+              <span className='login-out'>{language.li}</span>
             </a>
           </Link>
         </li>
