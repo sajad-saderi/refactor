@@ -10,6 +10,7 @@ import Car from "../public/image/svg/car.svg";
 import Boxes from "../public/image/svg/boxes.svg";
 import Gear from "../public/image/svg/gear.svg";
 import Avatar from "../public/image/svg/avatar.svg";
+import Fullscreen from "../public/image/svg/fullscreen.svg";
 
 const Icon = ({ name }: IIcon) => {
   let icon = null;
@@ -47,6 +48,9 @@ const Icon = ({ name }: IIcon) => {
     case "avatar":
       icon = Avatar;
       break;
+    case "fullscreen":
+      icon = Fullscreen;
+      break;
     default:
       // eslint-disable-next-line no-console
       console.warn("Incorrect icon name specified");
@@ -68,6 +72,7 @@ interface IIcon {
     | "boxes"
     | "gear"
     | "avatar"
+    | "fullscreen"
     | "opposite_arrows";
 }
 

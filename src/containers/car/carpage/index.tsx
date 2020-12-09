@@ -574,7 +574,7 @@ const CarPage = ({ language }: ICarPage) => {
                 <Icon name='gear' />
                 <span>{language.features}</span>
               </h2>
-              <div className='info_container padding_right_24'>
+              <div className='info_container padding_right_24 margin_bottom_24'>
                 <p className='alignThem'>
                   <span className='info_name'>{language.body_style}</span>{" "}
                   <span className='info_value'>{body_style.name.fa}</span>
@@ -625,7 +625,7 @@ const CarPage = ({ language }: ICarPage) => {
               )} */}
             </section>
             {/* user info section */}
-            <section className='onwnerInfo_container'>
+            <section className='onwnerInfo_container padding_16'>
               {showPriceLoading ? (
                 <div className='price_place_holder'>
                   <Spinner color='#737373' display='block' width={20} />
@@ -762,10 +762,20 @@ const CarPage = ({ language }: ICarPage) => {
               >
                 <a className='HEAP_Car_Link_Profile'>
                   <figure className='owner_part'>
-                    <img src={owner.thumbnail_url} alt={owner.name} />
+                    <img
+                      className='user_avatar'
+                      src={owner.thumbnail_url}
+                      alt={owner.name}
+                    />
+                    {owner.rate.avg_rate_as_owner ? (
+                      <p>
+                        <Icon name='star' />
+                        {owner.rate.avg_rate_as_owner}
+                      </p>
+                    ) : null}
                   </figure>
-                  <div>
-                    <p>{owner.name}</p>
+                  <div className='owner_info'>
+                    <p className='owner_name'>{owner.name}</p>
                     {owner.no_of_successfully_rented_cars_as_owner > 0 ? (
                       <p>
                         {language.mizban}{" "}
@@ -776,6 +786,9 @@ const CarPage = ({ language }: ICarPage) => {
                         {language.bodeh}
                       </p>
                     ) : null}
+                  </div>
+                  <div className="go_to_profile"> 
+                    <p>{language.moshahedeh}</p>
                   </div>
                 </a>
               </Link>

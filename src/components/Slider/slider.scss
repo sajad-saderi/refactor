@@ -106,6 +106,7 @@ img.TranslateLeft {
   position: absolute;
   transform: rotate(180deg);
   svg {
+    transform: rotate(180deg);
     margin-left: -3px;
     margin-top: 3px;
     width: 3rem;
@@ -114,7 +115,7 @@ img.TranslateLeft {
 .NavBotton {
   cursor: pointer;
   position: absolute;
-  bottom: 22px;
+  bottom: 0px;
   background: #fff;
   right: 0;
   left: 0;
@@ -126,9 +127,8 @@ img.TranslateLeft {
 .FullScreen {
   cursor: pointer;
   position: absolute;
-  top: 20px;
-  right: 16px;
-  color: #fff;
+  bottom: 38px;
+  right: 12px;
   z-index: 3;
   svg {
     width: 4rem;
@@ -157,13 +157,7 @@ img.TranslateLeft {
   .activeDot {
     margin: 0 3px !important;
   }
-  .NavBotton {
-    bottom: 0px !important;
-  }
   .FullScreen {
-    svg {
-      width: 3rem;
-      height: 3rem;
-    }
+    bottom: 32px;
   }
 }

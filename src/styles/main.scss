@@ -560,12 +560,17 @@ input {
     display: block;
   }
 }
-
+.padding_16 {
+  padding: 1.6rem;
+}
 .padding_right_24 {
   padding-right: 2.4rem;
 }
 .margin_bottom_16 {
   margin-bottom: 1.6rem;
+}
+.margin_bottom_24 {
+  margin-bottom: 2.4rem;
 }
 
 // 3rd parties

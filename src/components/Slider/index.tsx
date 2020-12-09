@@ -3,7 +3,7 @@ import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
 import arrow_right from "../../../public/image/svg/arrow-right.svg";
 import Icon from "../../../utils/Icon";
 // import "./slider.scss";
-// import Gallery from "./Gallery";
+import Gallery from "./Gallery";
 
 const Slider = (props: ISlider) => {
   const [Feed, setFeed] = useState([]);
@@ -57,24 +57,24 @@ const Slider = (props: ISlider) => {
     Loade && (
       <div className='carousel_container'>
         {/* extend icon */}
-        {/* {!colseModal && (
+        {!colseModal && (
           <Gallery
             Feed={Feed}
             CloseGallery={CloseGallery}
             index={slideIndex}
             alt={alt}
           />
-        )} */}
+        )}
         {/* carousel section */}
         {carousel ? (
           <>
             <div>
               {/* Open the gallery */}
-              {/* {carousel && (
-                <div className="FullScreen" onClick={CloseGallery}>
-                  <IoMdExpand size="4rem" />
+              {carousel && (
+                <div className='FullScreen' onClick={CloseGallery}>
+                  <Icon name='fullscreen' />
                 </div>
-              )} */}
+              )}
               {Feed.map((item, i) => {
                 return (
                   <img
