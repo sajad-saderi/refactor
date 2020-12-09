@@ -3,14 +3,19 @@
 .header {
   background-color: $black;
   padding: 0.8rem 0;
-  // height: 64px;
+  height: 4.8rem;
+  .header_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .Logo {
-    float: left;
-    &::after {
-      display: block;
-      clear: both;
-      content: "";
-    }
+    // float: left;
+    // &::after {
+    //   display: block;
+    //   clear: both;
+    //   content: "";
+    // }
     img {
       margin-top: 0.2rem;
       height: 2.8rem;

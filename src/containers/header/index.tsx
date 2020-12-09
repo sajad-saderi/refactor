@@ -9,13 +9,16 @@ import { IoIosMenu } from "react-icons/io";
 const Header = (props: IHeader) => {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <header className="header">
-      <article className="responsive">
+    <header className='header'>
+      <article className='responsive header_container'>
         {/* logo section */}
-        <section className="Logo">
-          <Link href="/">
+        <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
+          <Menu />
+        </section>
+        <section className='Logo'>
+          <Link href='/'>
             <a>
-              <img src={logo} alt="اتولی لوگو" />
+              <img src={logo} alt='اتولی لوگو' />
             </a>
           </Link>
         </section>
@@ -27,9 +30,6 @@ const Header = (props: IHeader) => {
           className={showMenu ? "show_menu_drawer" : "hide_menu_drawer"}
         /> */}
         {/* Menu Links */}
-        <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
-          <Menu />
-        </section>
       </article>
       {/* NOTE Models */}
       {props.Show_Modal && (
