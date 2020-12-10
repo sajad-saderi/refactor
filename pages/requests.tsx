@@ -8,7 +8,7 @@ import language from "../public/languages/fa/requestspage.json";
 const Request = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/requests",
       pageTitle: language.next_seo.title,

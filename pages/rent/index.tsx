@@ -29,7 +29,7 @@ const Rent = () => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/rent",
       pageTitle: language.next_seo.title,

@@ -11,7 +11,7 @@ import language from "../public/languages/fa/homepage.json";
 const HomePage = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href+"?person=otoli",
       pagePath: "/",
       pageTitle: language.next_seo.title,

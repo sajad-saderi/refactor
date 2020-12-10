@@ -8,7 +8,7 @@ import language from "../public/languages/fa/otoli.json";
 const AboutUs = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/otoli",
       pageTitle: language.next_seo.title,

@@ -7,7 +7,7 @@ import language from "../public/languages/fa/gps.json";
 const gps = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/gps",
       pageTitle: language.next_seo.title,

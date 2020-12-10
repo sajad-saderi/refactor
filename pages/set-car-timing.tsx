@@ -8,7 +8,7 @@ import language from "../public/languages/fa/setcartimig.json";
 const SetTimeAndPrice = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/set-car-timing",
       pageTitle: language.next_seo.title,

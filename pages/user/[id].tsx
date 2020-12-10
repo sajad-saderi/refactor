@@ -5,15 +5,15 @@ import language from "../../public/languages/fa/user.json";
 // import { logPageView } from "../../utils/analytics";
 
 const Profile = () => {
-  React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "virtualPageView",
-      pageURL: window.location.href,
-      pagePath: "/user",
-      pageTitle: language.next_seo.title,
-    });
-    // logPageView();
-  }, []);
+  // React.useEffect(() => {
+  //   window["dataLayer"].push({
+  //     event: "page_view",
+  //     pageURL: window.location.href,
+  //     pagePath: "/user",
+  //     pageTitle: language.next_seo.title,
+  //   });
+  //   // logPageView();
+  // }, []);
   return (
     <Layout>
       <Profile_container language={language} />

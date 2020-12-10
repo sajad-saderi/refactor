@@ -10,7 +10,7 @@ import { payBackInString } from "../utils/date-range-creator";
 const SearchResult = ({ page_title }) => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/search-result",
       pageTitle: `${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`,

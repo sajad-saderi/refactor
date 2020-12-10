@@ -20,7 +20,7 @@ const Success_payment = () => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/payment-success",
       pageTitle: language.next_seo.title,

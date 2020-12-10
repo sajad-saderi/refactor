@@ -246,14 +246,20 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   }, []);
 
   const getCarInfoToEdit = async (id) => {
+    let user_token;
+    if (token) {
+      user_token = token;
+    } else {
+      user_token = jsCookie.get("token");
+    }
     try {
       const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
         id: id,
-        token: token,
+        token: user_token,
       });
       SetCar(car_info_res);
       const car_availability_res: any = await REQUEST_GET_RENTAL_CAR_AVAILABILITIES(
-        { id: id, token: token }
+        { id: id, token: user_token }
       );
       if (car_availability_res.length > 0) {
         // get a list of available time to rent
@@ -262,7 +268,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
       // get a list of discounts
       const car_discount_res: any = await REQUEST_GET_RENTAL_CAR_DISCOUNTS({
         id: id,
-        token: token,
+        token: user_token,
       });
       if (car_discount_res.length > 0) {
         setShowDiscount(1);

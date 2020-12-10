@@ -12,7 +12,7 @@ const Failed_payment = () => {
   const router = useRouter()
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/payment-failed",
       pageTitle: language.next_seo.title,

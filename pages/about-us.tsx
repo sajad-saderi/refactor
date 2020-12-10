@@ -7,7 +7,7 @@ import language from "../public/languages/fa/aboutus.json";
 const AboutUs = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/about-us",
       pageTitle: language.next_seo.title,

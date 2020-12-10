@@ -20,16 +20,18 @@ const Request_page = ({ language }: IRequest_page) => {
       router.push(`/${guard}`);
       return;
     }
-    if (window["auth"] && user_info.data?.first_name) {
-      if (user_info.data.first_name) {
-        fetchAPI(router.query.id);
+    if (user_info.data) {
+      if (window["auth"] && user_info.data?.first_name) {
+        if (user_info.data.first_name) {
+          fetchAPI(router.query.id);
+        }
+      } else {
+        localStorage["last_location"] = router.asPath;
+        router.push("/login");
       }
-    } else {
-      localStorage["last_location"] = router.asPath;
-      router.push("/login");
+      setShow(true);
     }
-    setShow(true);
-  }, []);
+  }, [user_info]);
 
   const fetchAPI = async (id) => {
     try {

@@ -9,10 +9,12 @@ import Link from "next/link";
 const Checkout = ({ order_information, expired }) => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/checkout",
-      pageTitle: "checkout",
+      pageTitle: order_information
+        ? `${language.next_seo.title.start}${order_information.car.brand.name.fa} ${order_information.car.name.fa}${language.next_seo.title.otoli}`
+        : "checkout",
     });
     // logPageView();
   }, []);

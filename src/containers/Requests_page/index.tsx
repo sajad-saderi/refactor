@@ -33,24 +33,26 @@ const Requests_page = ({ language }: IRequests_page) => {
       return;
     }
 
-    if (router.query.status_id) {
-      fetchAPI({
-        page,
-        status_id: router.query.status_id,
-      });
-      filter_id = (router.query.status_id as string).split(",");
-      setActive_filters(filter_id);
-    } else {
-      fetchAPI({
-        page,
-      });
+    if (user.data) {
+      if (router.query.status_id) {
+        fetchAPI({
+          page,
+          status_id: router.query.status_id,
+        });
+        filter_id = (router.query.status_id as string).split(",");
+        setActive_filters(filter_id);
+      } else {
+        fetchAPI({
+          page,
+        });
+      }
+      setShow(true);
+      return () => {
+        filter_id = [];
+        page = 1;
+      };
     }
-    setShow(true);
-    return () => {
-      filter_id = [];
-      page = 1;
-    };
-  }, []);
+  }, [user]);
 
   // useEffect(() => {
   //   if (AUTH_CONTEXT.Auth) {

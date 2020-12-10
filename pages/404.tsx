@@ -9,7 +9,7 @@ import language from "../public/languages/fa/_404.json";
 const page_404 = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/404",
       pageTitle: language.title,

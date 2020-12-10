@@ -18,15 +18,14 @@ const Car = ({
   _404,
 }) => {
   const router = useRouter();
-
   React.useEffect(() => {
     if (_404) {
       router.push("/404");
-    } else {
+    } else { 
       window["dataLayer"].push({
-        event: "virtualPageView",
+        event: "page_view",
         pageURL: window.location.href,
-        pagePath: "/car",
+        pagePath: `/car/${id}`,
         pageTitle: car_Information
           ? `${
               car_Information.owner.company_name

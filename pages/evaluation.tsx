@@ -7,7 +7,7 @@ import language from "../public/languages/fa/evaluation.json";
 const evaluation = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/evaluation",
       pageTitle: language.next_seo.title,

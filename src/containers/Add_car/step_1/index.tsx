@@ -597,9 +597,15 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
 
   const getCarInfoToEdit = async (id) => {
     try {
+      let user_token;
+      if (token) {
+        user_token = token;
+      } else {
+        user_token = jsCookie.get("token");
+      }
       const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
         id: id,
-        token: token,
+        token: user_token,
       });
       SetCar(car_info_res);
     } catch (error) {

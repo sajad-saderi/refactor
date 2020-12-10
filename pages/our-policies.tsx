@@ -6,7 +6,7 @@ import language from "../public/languages/fa/ourpolicies.json";
 const OtoliPolicies = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/our-policies",
       pageTitle: language.next_seo.title,

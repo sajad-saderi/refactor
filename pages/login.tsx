@@ -22,7 +22,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/login",
       pageTitle: language.next_seo.title,

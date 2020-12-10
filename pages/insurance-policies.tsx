@@ -7,7 +7,7 @@ import language from "../public/languages/fa/insurancepolicies.json";
 const InsurancePolicies = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "virtualPageView",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/insurance-policies",
       pageTitle: language.next_seo.title,

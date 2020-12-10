@@ -289,7 +289,7 @@ const Checkout_Container = ({
             {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
           </p>
         </div>
-        <p className='number_of_days'>{`${language.time_for_rent}${no_of_days}${language.day}`}</p>
+        <p className='number_of_days'>{`${language.time_for_rent}${no_of_days} ${language.day}`}</p>
         <div className='payment_information'>
           {/* <p>
               <span>قیمت روزانه</span>
