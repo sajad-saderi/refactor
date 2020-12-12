@@ -566,11 +566,30 @@ input {
 .padding_right_24 {
   padding-right: 2.4rem;
 }
+
+// margin
+.margin_right_24 {
+  margin-right: 2.4rem;
+}
 .margin_bottom_16 {
   margin-bottom: 1.6rem;
 }
 .margin_bottom_24 {
   margin-bottom: 2.4rem;
+}
+.margin_bottom_12 {
+  margin-bottom: 1.2rem;
+}
+
+.tag_class {
+  padding: 0.6rem;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  background-color: $ultimate_gray;
+  color: $dark_gray;
+  border: 1px solid $lighter_grey;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 // 3rd parties

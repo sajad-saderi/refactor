@@ -59,6 +59,7 @@ const CarPage = ({ language }: ICarPage) => {
   const [showCalender, setShowCalender] = useState(false);
   const [is_mine, setIs_mine] = useState(false);
   const [total_discount, setTotal_discount] = useState(false);
+  const [total_discount_percent, setTotal_discount_percent] = useState(false);
   const [calenderClick, setCalenderClick] = useState(false);
   const [showPriceLoading, setShowPriceLoading] = useState(false);
   const [availableCar, setAvailableCar] = useState(true);
@@ -243,6 +244,7 @@ const CarPage = ({ language }: ICarPage) => {
     else setMedia_set([{ url: carImage }]);
     setSearch_id(res.search_id);
     setTotal_discount(res.total_discount);
+    setTotal_discount_percent(res.total_discount_percent);
     setSearch_id(res.search_id);
   };
 
@@ -330,56 +332,76 @@ const CarPage = ({ language }: ICarPage) => {
           {/* car info section */}
           <article className='responsive Car_page_container'>
             <section className='carInfo_container'>
-              {showPriceLoading ? (
-                <div className='price_place_holder'>
-                  <Spinner color='#737373' display='block' width={20} />
-                </div>
-              ) : (
-                availableCar && (
-                  <div className='avg_discounted_price_per_day'>
-                    <p className={total_discount ? "discount_price" : null}>
-                      {avg_price_per_day
-                        ? avg_price_per_day.toLocaleString()
-                        : null}
-                    </p>
-                    {total_discount ? (
-                      <p>
-                        {avg_discounted_price_per_day
-                          ? avg_discounted_price_per_day.toLocaleString()
-                          : null}
-                      </p>
-                    ) : null}
-                    {/* <span className="unit_name">{unit} تومان</span> */}
-                    {avg_price_per_day && <span>{language.toman_per_day}</span>}
+              <div className='first_section_carpage'>
+                <h1>
+                  {car.brand.name.fa} {car.name.fa}
+                  <span>({year.name.fa})</span>
+                </h1>
+                {showPriceLoading ? (
+                  <div className='price_place_holder'>
+                    <Spinner color='#737373' display='block' width={20} />
                   </div>
-                )
-              )}
-              <h1>
-                {car.brand.name.fa} {car.name.fa}
-                <span>({year.name.fa})</span>
-              </h1>
-              <p className='owner_name_carinfo'>{owner.name}</p>
-              {rate?.no_of_received_rates ? (
-                <div className='rate_container'>
-                  <Icon name='star' />
-                  <span>
-                    {rate.avg_rate} ({rate.no_of_received_rates} نظر)
-                  </span>
-                </div>
-              ) : null}
-              {with_driver && (
-                <div className='driver_container'>
-                  <span>{language.just_with_drive}</span>
-                </div>
-              )}
-              {is_verified && (
-                <div className='isverified_container'>
-                  <span>
-                    <Icon name='check' />
-                    {language.is_verified}
-                  </span>
-                </div>
-              )}
+                ) : (
+                  availableCar && (
+                    <div className='avg_discounted_price_per_day'>
+                      <div className='discount_part'>
+                        <span
+                          className={total_discount ? "discount_price" : "normal_price"}
+                        >
+                          {avg_price_per_day
+                            ? avg_price_per_day.toLocaleString()
+                            : null}
+                        </span>
+                        {total_discount_percent ? (
+                          <span className='percentage'>
+                            {total_discount_percent} %
+                          </span>
+                        ) : null}
+                      </div>
+                      {total_discount ? (
+                        <p>
+                          {avg_discounted_price_per_day
+                            ? avg_discounted_price_per_day.toLocaleString()
+                            : null}
+                        </p>
+                      ) : null}
+                      {/* <span className="unit_name">{unit} تومان</span> */}
+                      {avg_price_per_day && (
+                        <span className='unit_name'>
+                          {language.toman_per_day}
+                        </span>
+                      )}
+                    </div>
+                  )
+                )}
+                {/* <p className='owner_name_carinfo'>{owner.name}</p> */}
+                {rate?.no_of_received_rates ? (
+                  <div className='rate_container'>
+                    <Icon name='star' />
+                    <span>
+                      {rate.avg_rate}{" "}
+                      <span className='sum_rent'>
+                        ({rate.no_of_received_rates} نظر)
+                      </span>
+                    </span>
+                  </div>
+                ) : null}
+                {with_driver && (
+                  <div className='driver_container'>
+                    <span className='tag_class'>
+                      {language.just_with_drive}
+                    </span>
+                  </div>
+                )}
+                {is_verified && (
+                  <div className='isverified_container tag_class'>
+                    <span>
+                      <Icon name='check' />
+                      {language.is_verified}
+                    </span>
+                  </div>
+                )}
+              </div>
               {!is_mine ? (
                 showCalender ? (
                   <div className='calender_section_mobile_view'>
@@ -509,6 +531,12 @@ const CarPage = ({ language }: ICarPage) => {
                   </p>
                 ) : null}
               </div>
+              <hr />
+              <h2>
+                <Icon name='document' />
+                <span>{language.condition_and_cancellation}</span>
+              </h2>
+              <pre className='padding_right_24'>{cancellation_policy}</pre>
               {/* {with_driver && (
                 <>
                   <hr />
@@ -539,12 +567,6 @@ const CarPage = ({ language }: ICarPage) => {
                   <strong>{extra_hour_price_name}</strong>
                 </p>
               )}
-              <hr />
-              <h2>
-                <Icon name='document' />
-                <span>{language.condition_and_cancellation}</span>
-              </h2>
-              <pre className='padding_right_24'>{cancellation_policy}</pre>
               {description && (
                 <>
                   <hr />
@@ -564,7 +586,9 @@ const CarPage = ({ language }: ICarPage) => {
                   </h2>
                   <div className='facilities_container padding_right_24'>
                     {facility_set.map((item) => (
-                      <p key={item.id}>{item.name.fa}</p>
+                      <p className='tag_class' key={item.id}>
+                        {item.name.fa}
+                      </p>
                     ))}
                   </div>
                 </>
@@ -574,7 +598,7 @@ const CarPage = ({ language }: ICarPage) => {
                 <Icon name='gear' />
                 <span>{language.features}</span>
               </h2>
-              <div className='info_container padding_right_24 margin_bottom_24'>
+              <div className='info_container margin_right_24 margin_bottom_24'>
                 <p className='alignThem'>
                   <span className='info_name'>{language.body_style}</span>{" "}
                   <span className='info_value'>{body_style.name.fa}</span>
@@ -633,11 +657,20 @@ const CarPage = ({ language }: ICarPage) => {
               ) : (
                 availableCar && (
                   <div className='avg_discounted_price_per_day'>
-                    <p className={total_discount ? "discount_price" : null}>
-                      {avg_price_per_day
-                        ? avg_price_per_day.toLocaleString()
-                        : null}
-                    </p>
+                    <div className='discount_part'>
+                      <span
+                        className={total_discount ? "discount_price" : "normal_price"}
+                      >
+                        {avg_price_per_day
+                          ? avg_price_per_day.toLocaleString()
+                          : null}
+                      </span>
+                      {total_discount_percent ? (
+                        <span className='percentage'>
+                          {total_discount_percent} %
+                        </span>
+                      ) : null}
+                    </div>
                     {total_discount ? (
                       <p>
                         {avg_discounted_price_per_day
@@ -787,7 +820,7 @@ const CarPage = ({ language }: ICarPage) => {
                       </p>
                     ) : null}
                   </div>
-                  <div className="go_to_profile"> 
+                  <div className='go_to_profile'>
                     <p>{language.moshahedeh}</p>
                   </div>
                 </a>

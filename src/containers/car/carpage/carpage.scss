@@ -19,6 +19,9 @@
     vertical-align: top;
     border-radius: 4px;
     font-size: 1.4rem;
+    .first_section_carpage {
+      position: relative;
+    }
     .price_place_holder {
       display: none;
       position: absolute;
@@ -32,10 +35,27 @@
     }
     .avg_discounted_price_per_day {
       display: none;
-      .discount_price {
-        color: $orange;
-        text-decoration: line-through;
-        font-size: 1.8rem;
+      .discount_part {
+        .percentage {
+          padding: 0.4rem;
+          background-color: $dark_orange;
+          font-size: 1.4rem;
+          line-height: 1.4rem;
+        }
+        .discount_price {
+          color: $dark_gray;
+          text-decoration: line-through;
+          font-size: 1.8rem;
+          vertical-align: middle;
+        }
+        .normal_price {
+          font-weight: 500;
+          font-size: 2rem;
+          line-height: 1.6rem;
+          color: $almost_black;
+          text-align: center;
+          margin-bottom: 0.6rem;
+        }
       }
       span {
         color: $more_gray;
@@ -46,7 +66,7 @@
       font-size: 2.2rem;
       line-height: 2.2rem;
       line-height: unset;
-      margin: 0 0 0.8rem;
+      margin: 0 0 1.2rem;
       span {
         color: $almost_black;
         font-size: 1.4rem;
@@ -64,7 +84,7 @@
       margin-bottom: 2.4rem;
     }
     .rate_container {
-      margin-bottom: 1.6rem;
+      margin-bottom: 2.4rem;
       img {
         display: inline-block;
         vertical-align: top;
@@ -75,32 +95,25 @@
         font-size: 1.2rem;
         line-height: 1.2rem;
         color: $dark_blue;
+        .sum_rent {
+          color: $dark_gray;
+        }
       }
     }
     .driver_container {
       margin-bottom: 1.6rem;
       span {
-        font-size: 1.4rem;
-        line-height: 1.4rem;
-        background-color: $ultimate_gray;
-        color: $dark_gray;
-        padding: 0.3rem 0.4rem;
         display: inline-block;
       }
     }
     .isverified_container {
       display: inline-block;
-      background-color: $ultimate_gray;
-      padding: 0.4rem;
       img {
         margin-left: 0.4rem;
         display: inline-block;
         vertical-align: middle;
       }
       span {
-        color: $dark_gray;
-        font-size: 1.4rem;
-        line-height: 1.4rem;
         display: inline-block;
       }
     }
@@ -320,12 +333,13 @@
     }
     .info_container {
       width: 30rem;
+      border: 1px solid $lighter_grey;
       p:last-child {
         border-bottom-color: transparent !important;
       }
       .alignThem {
         padding: 1rem;
-        border-bottom: 1px solid rgba(204, 204, 204, 0.25);
+        border-bottom: 1px solid $lighter_grey;
         background-color: $almost_white;
         &:nth-child(even) {
           background-color: $ultimate_gray;
@@ -355,17 +369,10 @@
       p {
         display: inline-block;
         vertical-align: middle;
-        color: $dark_gray;
-        border: none;
-        background: $ultimate_gray;
         width: auto;
         margin-bottom: 1.6rem;
-        border-radius: 4px;
         text-align: center;
-        padding: 0.6rem;
         margin-left: 0.8rem;
-        font-size: 1.2rem;
-        line-height: 1.2rem;
       }
     }
     .car_Tags {
@@ -397,15 +404,43 @@
       padding-top: 3rem;
     }
     .avg_discounted_price_per_day {
-      .discount_price {
-        color: $orange;
-        text-decoration: line-through;
-        font-size: 1.8rem;
+      .discount_part {
+        text-align: center;
+        margin-bottom: 0.8rem;
+        .percentage {
+          border-radius: 0.5rem;
+          margin-right: 0.4rem;
+          display: inline-block;
+          width: auto;
+          color: $white;
+          vertical-align: middle;
+          padding: 0.4rem;
+          background-color: $dark_orange;
+          font-size: 1.4rem;
+          line-height: 1.4rem;
+        }
+        .discount_price {
+          color: $dark_gray;
+          display: inline-block;
+          text-decoration: line-through;
+          vertical-align: middle;
+          font-size: 1.8rem;
+        }
+        .normal_price {
+          font-weight: 500;
+          font-size: 2rem;
+          color: $almost_black;
+          line-height: 1.6rem;
+          text-align: center;
+          margin-bottom: 0.6rem;
+        }
       }
       p {
         font-weight: 500;
-        font-size: 2.8rem;
+        font-size: 2rem;
+        line-height: 1.6rem;
         text-align: center;
+        margin-bottom: 0.6rem;
       }
       span.unit_name {
         font-size: 1.4rem;
@@ -413,9 +448,9 @@
       span {
         font-size: 1.2rem;
         display: block;
-        color: $more_gray;
+        color: $dark_gray;
         text-align: center;
-        line-height: 0.7;
+        line-height: 1.2rem;
       }
     }
     .search_box_div {
@@ -671,19 +706,43 @@
       }
       .avg_discounted_price_per_day {
         display: block;
-        position: absolute;
-        padding: 0.5rem 1rem;
+        float: left;
         background: #fff;
-        top: 1.8rem;
+        // top: 20%;
         text-align: center;
-        left: 1rem;
+        // left: 0;
         border-radius: 4px;
+        .discount_part {
+          text-align: left;
+          margin-bottom: 0.8rem;
+          .percentage {
+            border-radius: 0.5rem;
+            margin-right: 0.4rem;
+            display: inline-block;
+            width: auto;
+            color: $white;
+            vertical-align: middle;
+            padding: 0.4rem;
+            background-color: $dark_orange;
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+          }
+          .discount_price {
+            color: $dark_gray;
+            display: inline-block;
+            text-decoration: line-through;
+            font-size: 1.8rem;
+          }
+        }
         p {
           font-size: 2rem;
-          line-height: 1.5;
+          line-height: 1.6rem;
+          margin-bottom: 0.6rem;
+          text-align: left;
         }
-        span.unit_name {
+        .unit_name {
           font-size: 1.2rem;
+          text-align: left;
         }
       }
       .info_container {
