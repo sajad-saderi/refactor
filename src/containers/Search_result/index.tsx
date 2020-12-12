@@ -109,19 +109,22 @@ const Search_result = ({ language }: ISearch_result) => {
     if (router.query.with_driver === "1") {
       filtersChecker.with_driver = true;
     }
-    with_driver = +url_checked.with_driver;
+    with_driver = +url_checked.with_driver; 
 
-    if (url_checked.body_style_id !== "") {
+    if (
+      url_checked.body_style_id !== "" &&
+      url_checked.body_style_id !== "all"
+    ) {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
         ? [url_checked.body_style_id]
         : [];
     }
-    if (url_checked.brand_id !== "") {
+    if (url_checked.brand_id !== "" && url_checked.brand_id !== "all") {
       brand_id = +url_checked.brand_id;
       filtersChecker.brand_id = true;
     }
-    if (url_checked.car_id !== "") {
+    if (url_checked.car_id !== "" && url_checked.car_id !== "all") {
       car_id = +url_checked.car_id;
       filtersChecker.car_id = true;
     }

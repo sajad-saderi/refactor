@@ -181,27 +181,41 @@ const Filters = ({
       ) {
         setwith_driver(+initialFilterValues.query.with_driver);
       }
-      if (
-        initialFilterValues.query.body_style_id &&
-        initialFilterValues.query.body_style_id !== ""
-      ) {
-        let convertStringToArray = initialFilterValues.query.body_style_id.split(
-          ","
-        );
-        let convertIndexToNumber = convertStringToArray.reduce((s, c) => {
-          return s.concat(+c);
-        }, []);
-        body_style_list = convertIndexToNumber;
-      }
+      if (initialFilterValues.query.body_style_id) {
+        if (
+          initialFilterValues.query.body_style_id !== "" &&
+          initialFilterValues.query.body_style_id !== "all"
+        ) {
+          let convertStringToArray = initialFilterValues.query.body_style_id.split(
+            ","
+          );
+          let convertIndexToNumber = convertStringToArray.reduce((s, c) => {
+            return s.concat(+c);
+          }, []);
+          body_style_list = convertIndexToNumber;
+        }
+      }      
       if (initialFilterValues.query.brand_id) {
-        setBrand_id_name(
-          initialFilterValues.query.brand_name.replace(/-/g, " ")
-        );
-        let brand_id = +initialFilterValues.query.brand_id;
-        setBrand_id(brand_id);
-        getModelList(brand_id);
-        if (initialFilterValues.query.car_id) {
-          setCar_id_name(initialFilterValues.query.car_name.replace(/-/g, " "));
+        if (
+          initialFilterValues.query.brand_id !== "" &&
+          initialFilterValues.query.brand_id !== "all"
+        ) {
+          setBrand_id_name(
+            initialFilterValues.query.brand_name.replace(/-/g, " ")
+          );
+          let brand_id = +initialFilterValues.query.brand_id;
+          setBrand_id(brand_id);
+          getModelList(brand_id);
+          if (initialFilterValues.query.car_id) {
+            if (
+              initialFilterValues.query.car_id !== "" &&
+              initialFilterValues.query.car_id !== "all"
+            ) {
+              setCar_id_name(
+                initialFilterValues.query.car_name.replace(/-/g, " ")
+              );
+            }
+          }
         }
       }
     }
@@ -242,7 +256,10 @@ const Filters = ({
         {hidePrice ? (
           <Spinner display='block' width={20} color='#737373' />
         ) : (
-          <PriceSlider initialValueMin={initialValueMin} initialValueMax={initialValueMax}  />
+          <PriceSlider
+            initialValueMin={initialValueMin}
+            initialValueMax={initialValueMax}
+          />
         )}
         <h3>{language.filter.filter_section_h3_1}</h3>
         <Checkbox

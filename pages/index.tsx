@@ -12,7 +12,7 @@ const HomePage = () => {
   React.useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
-      pageURL: window.location.href+"?person=otoli",
+      pageURL: window.location.href,
       pagePath: "/",
       pageTitle: language.next_seo.title,
     });

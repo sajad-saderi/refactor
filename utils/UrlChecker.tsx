@@ -37,9 +37,10 @@ const UrlChecker = (props) => {
       ? deliver_at_renters_place
       : "0",
     with_driver: with_driver ? with_driver : "0",
-    body_style_id: body_style_id ? body_style_id : "",
-    brand_id: brand_id ? brand_id : "",
-    car_id: car_id ? car_id : "",
+    body_style_id:
+      body_style_id && body_style_id !== "all" ? body_style_id : "",
+    brand_id: brand_id && brand_id !== "all" ? brand_id : "",
+    car_id: car_id && car_id !== "all" ? car_id : "",
   };
 
   return data;

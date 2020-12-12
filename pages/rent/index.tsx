@@ -137,7 +137,11 @@ const Rent = () => {
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}
         </div>
-        <div itemScope itemType="https://schema.org/FAQPage" className='responsive'>
+        <div
+          itemScope
+          itemType='https://schema.org/FAQPage'
+          className='responsive'
+        >
           <Accordion question_set={question_set} />
         </div>
         <section className='responsive third_container'>
@@ -145,9 +149,25 @@ const Rent = () => {
             <div className='RentPage_Dynamic_links'>
               <ul>
                 {dynamicLinks.map((item) => {
+                  let id = item.url.split("/").pop();
                   return (
                     <li key={item.name}>
-                      <a href={item.url}>{item.name}</a>
+                      <Link
+                        href={{
+                          pathname: "/rent/[id]",
+                          query: {
+                            id: id,
+                          },
+                        }}
+                        as={`/rent/${id}`}
+                      >
+                        <a
+                          className='HEAP_LandingPages_Link_RelatedLinks'
+                          href={item.url}
+                        >
+                          {item.name}
+                        </a>
+                      </Link>
                     </li>
                   );
                 })}

@@ -13,7 +13,7 @@ const SearchResult = ({ page_title }) => {
       event: "page_view",
       pageURL: window.location.href,
       pagePath: "/search-result",
-      pageTitle: `${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`,
+      pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
     });
     // logPageView();
   }, []);
@@ -21,10 +21,10 @@ const SearchResult = ({ page_title }) => {
   return (
     <Layout>
       <NextSeo
-        title={`${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`}
+        title={`${language.next_seo.title.start}${language.next_seo.title.otoli}`}
         description={language.nextSeo_description}
         openGraph={{
-          title: `${language.next_seo.title.start}${page_title.param_start_date}${language.next_seo.title.ta}${page_title.param_end_date}${language.next_seo.title.otoli}`,
+          title: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
           description: language.next_seo.description,
           site_name: language.next_seo.site_name,
         }}
