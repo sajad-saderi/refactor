@@ -161,10 +161,7 @@ const Rent = () => {
                         }}
                         as={`/rent/${id}`}
                       >
-                        <a
-                          className='HEAP_LandingPages_Link_RelatedLinks'
-                          href={item.url}
-                        >
+                        <a className='HEAP_LandingPages_Link_RelatedLinks'>
                           {item.name}
                         </a>
                       </Link>
