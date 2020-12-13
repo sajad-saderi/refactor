@@ -4,6 +4,7 @@ import React, {
   useReducer,
   useRef,
   useCallback,
+  useContext,
 } from "react";
 import {
   REQUEST_SET_USER_IMAGE,
@@ -15,7 +16,8 @@ import Router from "next/router";
 import TextInput from "../../../../components/form/TextInput";
 // import "./edit_profile.scss";
 import Button from "../../../../components/form/Button";
-import jsCookie from "js-cookie";
+// import jsCookie from "js-cookie";
+import context_user from "../../../../context/User_info";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../../../../utils/cropImage";
 
@@ -107,8 +109,9 @@ const Edit_profile = ({
 
   const file_input = useRef(null);
   const canvas_ref = useRef(null);
+  const user = useContext(context_user);
 
-  const token = jsCookie.get("token");
+  // const token = jsCookie.get("token");
 
   const ResetError = () => {
     dispatchError({ type: "first_name", first_name: false, message: "" });
@@ -144,6 +147,8 @@ const Edit_profile = ({
 
   const EditFormSubmit = async (e) => {
     e.preventDefault();
+    const userReplica = { ...user.data };
+    const token = user.data.token;
     ResetError();
     setLoading(true);
     if (!state.first_name || !state.last_name) {
@@ -185,19 +190,23 @@ const Edit_profile = ({
 
     if (newImage) {
       try {
-        await REQUEST_SET_USER_IMAGE({ token, file: newImage });
+        const res: any = await REQUEST_SET_USER_IMAGE({
+          token: userReplica.token,
+          file: newImage,
+        });
+        user.update_user_data({ ...res, token });
       } catch (error) {
         console.log("!Error", error);
       }
     }
 
     try {
-      if (state.username !== "") {
+      if (state.username !== userReplica.username) {
         const res: any = await REQUEST_SET_USERNAME({
-          token,
+          token: userReplica.token,
           username: state.username,
         });
-        jsCookie.set("username", state.username, { expires: 100 });
+        user.update_user_data({ ...res, token });
         window.history.replaceState(null, "", `/user/${state.username}`);
       }
     } catch (error) {
@@ -211,16 +220,18 @@ const Edit_profile = ({
       return;
     }
     try {
-      if (!privateLink && !showCompany) {
-        jsCookie.set("name", state.first_name + " " + state.last_name, {
-          expires: 100,
+      // if (!privateLink && !showCompany) {
+      if (
+        state.first_name !== userReplica.first_name ||
+        state.last_name !== userReplica.last_name
+      ) {
+        const res: any = await REQUEST_SET_FIRST_LAST_NAME({
+          token: userReplica.token,
+          first_name: state.first_name,
+          last_name: state.last_name,
         });
+        user.update_user_data({ ...res, token });
       }
-      await REQUEST_SET_FIRST_LAST_NAME({
-        token,
-        first_name: state.first_name,
-        last_name: state.last_name,
-      });
     } catch (error) {
       console.log("!Error", error);
       dispatchError({
@@ -233,14 +244,16 @@ const Edit_profile = ({
     }
 
     try {
-      if (state.company_name !== "") {
-        jsCookie.set("company_name", state.company_name, {
-          expires: 100,
-        });
-        await REQUEST_SET_COMPANY_NAME({
-          token,
+      if (
+        showCompany &&
+        state.company_name !== "" &&
+        state.company_name !== userReplica.company_name
+      ) {
+        const res: any = await REQUEST_SET_COMPANY_NAME({
+          token: userReplica.token,
           company_name: state.company_name,
         });
+        user.update_user_data({ ...res, token });
       }
     } catch (error) {
       console.log("!Error", error);
@@ -267,7 +280,7 @@ const Edit_profile = ({
   }, [croppedAreaPixels]);
 
   return (
-    <form className="edit_profile_form" onSubmit={EditFormSubmit}>
+    <form className='edit_profile_form' onSubmit={EditFormSubmit}>
       <img
         src={
           state.image
@@ -276,13 +289,13 @@ const Edit_profile = ({
         }
         alt={state.first_name}
       />
-      <div className="change_image_container">
+      <div className='change_image_container'>
         <p>{language.change_the_profile_image}</p>
 
         <input
-          type="file"
-          id="file"
-          accept=".jpg,.jpeg,.png"
+          type='file'
+          id='file'
+          accept='.jpg,.jpeg,.png'
           ref={file_input}
           onClick={() => {
             file_input.current.value = null;
@@ -306,7 +319,7 @@ const Edit_profile = ({
           }}
         />
         {croptStart && (
-          <div className="crop_container">
+          <div className='crop_container'>
             <Cropper
               image={state.image}
               crop={crop}
@@ -317,14 +330,14 @@ const Edit_profile = ({
               onCropChange={setCrop}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
-              cropShape="round" 
+              cropShape='round'
             />
-            <div className="Crop_BTN_container">
-              <span className="Blue_BTN local_class" onClick={showCroppedImage}>
+            <div className='Crop_BTN_container'>
+              <span className='Blue_BTN local_class' onClick={showCroppedImage}>
                 تایید
               </span>
               <span
-                className="Blue_BTN cancel_class"
+                className='Blue_BTN cancel_class'
                 onClick={() => {
                   setNewImage(null);
                   setCroptStart(false);
@@ -341,7 +354,7 @@ const Edit_profile = ({
         )}
       </div>
       <TextInput
-        name="first_name"
+        name='first_name'
         number={false}
         onChangeHandler={(e) => {
           dispatch({ type: "first_name", first_name: e });
@@ -358,7 +371,7 @@ const Edit_profile = ({
         label={language.name}
       />
       <TextInput
-        name="last_name"
+        name='last_name'
         number={false}
         onChangeHandler={(e) => {
           dispatch({ type: "last_name", last_name: e });
@@ -375,12 +388,12 @@ const Edit_profile = ({
         label={language.last_name}
       />
       {!showCompany ? (
-        <p className="link_text" onClick={() => setShowCompany(true)}>
+        <p className='link_text' onClick={() => setShowCompany(true)}>
           {language.company_name}
         </p>
       ) : (
         <TextInput
-          name="company_name"
+          name='company_name'
           number={false}
           onChangeHandler={(e) => {
             dispatch({ type: "company_name", company_name: e });
@@ -400,12 +413,12 @@ const Edit_profile = ({
         />
       )}
       {!privateLink ? (
-        <p className="link_text" onClick={() => setPrivateLink(true)}>
+        <p className='link_text' onClick={() => setPrivateLink(true)}>
           {language.create_personal_link}
         </p>
       ) : (
         <TextInput
-          name="username"
+          name='username'
           number={false}
           onChangeHandler={(e) => {
             dispatch({ type: "username", username: e });
@@ -422,22 +435,22 @@ const Edit_profile = ({
           label={language.personal_link}
         />
       )}
-      <div className="BTN_container">
+      <div className='BTN_container'>
         <Button
-          class="Blue_BTN local_class"
+          class='Blue_BTN local_class'
           value={language.ok}
           click={() => {}}
           loading={loading}
         />
         <Button
-          class="Blue_BTN cancel_class"
+          class='Blue_BTN cancel_class'
           value={language.cancel}
           click={() => setEdit(false)}
           loading={false}
         />
       </div>
       {ErrorState.message ? (
-        <p className="Error_message_text">{ErrorState.message}</p>
+        <p className='Error_message_text'>{ErrorState.message}</p>
       ) : null}
     </form>
   );

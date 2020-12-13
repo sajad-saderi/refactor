@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import _500 from "../public/image/500.png";
 import language from "../public/languages/fa/_500.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const page_500 = () => {
-  React.useEffect(() => {
-    logPageView();
+   useEffect(() => {
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/500",
+      pageTitle: language.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout>

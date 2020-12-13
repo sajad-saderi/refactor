@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
-import Router from "next/router";
+import Link from "next/link";
 // import "./car.scss";
 
 const Car = ({ data, showLocation, tagClick, language }: ICar) => {
-  const [heightController, setheightController] = useState(0);
   const [h3Width, setH3Width] = useState(null);
 
   const cardRef = useRef(null);
@@ -26,6 +24,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     is_promoted,
     has_media,
     location,
+    owner,
   } = data;
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
@@ -51,6 +50,8 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
       ? language.search_result_section.car.million
       : language.search_result_section.car.thousand;
 
+  let owner_name = owner.company_name ? owner.company_name : owner.name;
+
   useEffect(() => {
     let containerWidth = cardRef.current.clientWidth;
     let aThirdOfTheContainerWidth = Math.ceil(containerWidth / 3);
@@ -63,31 +64,37 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   }, []);
   return (
     <div className='carCart HEAP_SearchResult_Card_Car' ref={cardRef}>
-      {/* <Link href={link}> */}
-      {/* <a className={`CAR_CART_${title}`}> */}
-      <div
-        className='card_wrapper'
-        onClick={() => {
-          Router.push(link);
+      <Link
+        href={{
+          pathname: "/car/[id]",
+          query: {
+            id: id,
+            search_id: search_id,
+            owner_name,
+            car_name: title,
+          },
         }}
+        as={`/car/${id}?search_id=${search_id}&owner_name=${owner_name}&car_name=${title}`}
       >
-        <figure
-          style={{
-            backgroundImage: `url(${img})`,
-          }}
-        >
-          {total_discount_percent > 0 && (
-            <span className='discount_badge'>
-              {total_discount_percent}
-              {language.search_result_section.car.discount}
-            </span>
-          )}
-          {is_promoted && (
-            <span className='Special'>
-              {language.search_result_section.car.special}
-            </span>
-          )}
-          {/* {has_media ? (
+        <a className={`CAR_CART_${title}`}>
+          <div className='card_wrapper'>
+            <figure
+              style={{
+                backgroundImage: `url(${img})`,
+              }}
+            >
+              {total_discount_percent > 0 && (
+                <span className='discount_badge'>
+                  {total_discount_percent}
+                  {language.search_result_section.car.discount}
+                </span>
+              )}
+              {is_promoted && (
+                <span className='Special'>
+                  {language.search_result_section.car.special}
+                </span>
+              )}
+              {/* {has_media ? (
             <img
               style={{
                 position: "absolute",
@@ -111,62 +118,63 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
               alt={language.search_result_section.car.default_image}
             />
           )} */}
-          <div className='read_more'>
-            <span>{language.search_result_section.car.show_details}</span>
+              <div className='read_more'>
+                <span>{language.search_result_section.car.show_details}</span>
+              </div>
+            </figure>
+            <div className='info_box'>
+              <div className='car_brand'>
+                <h3
+                  ref={h3Ref}
+                  style={{
+                    width: h3Width ? h3Width : "auto",
+                  }}
+                >
+                  {title}
+                </h3>
+                <p>{year.name.fa}</p>
+              </div>
+              <div className='price'>
+                <p className='Price_number'>{price}</p>
+                <p>{`${unit}${language.search_result_section.car.toman_per_day}`}</p>
+              </div>
+              <ul className='tags_container'>
+                {deliver_at_renters_place && (
+                  <li>
+                    <span className='tags'>
+                      {language.search_result_section.car.delivar_at_your_palce}
+                    </span>
+                  </li>
+                )}
+                {with_driver && (
+                  <li>
+                    <span className='tags'>
+                      {language.search_result_section.car.with_driver}
+                    </span>
+                  </li>
+                )}
+                {showLocation ? (
+                  <li
+                    onClick={(e) => {
+                      e.preventDefault();
+                      tagClick({
+                        type: "location",
+                        value: location.parent_id === 1 ? 1 : location.id,
+                        name:
+                          location.parent_id === 1 ? "تهران" : location.name.fa,
+                      });
+                    }}
+                  >
+                    <span className='tags location_tag'>
+                      {location.parent_id === 1 ? "تهران" : location.name.fa}
+                    </span>
+                  </li>
+                ) : null}
+              </ul>
+            </div>
           </div>
-        </figure>
-        <div className='info_box'>
-          <div className='car_brand'>
-            <h3
-              ref={h3Ref}
-              style={{
-                width: h3Width ? h3Width : "auto",
-              }}
-            >
-              {title}
-            </h3>
-            <p>{year.name.fa}</p>
-          </div>
-          <div className='price'>
-            <p className='Price_number'>{price}</p>
-            <p>{`${unit}${language.search_result_section.car.toman_per_day}`}</p>
-          </div>
-          <ul className='tags_container'>
-            {deliver_at_renters_place && (
-              <li>
-                <span className='tags'>
-                  {language.search_result_section.car.delivar_at_your_palce}
-                </span>
-              </li>
-            )}
-            {with_driver && (
-              <li>
-                <span className='tags'>
-                  {language.search_result_section.car.with_driver}
-                </span>
-              </li>
-            )}
-            {showLocation ? (
-              <li
-                onClick={(e) => {
-                  e.stopPropagation();
-                  tagClick({
-                    type: "location",
-                    value: location.parent_id === 1 ? 1 : location.id,
-                    name: location.parent_id === 1 ? "تهران" : location.name.fa,
-                  });
-                }}
-              >
-                <span className='tags location_tag'>
-                  {location.parent_id === 1 ? "تهران" : location.name.fa}
-                </span>
-              </li>
-            ) : null}
-          </ul>
-        </div>
-        {/* </a>
-      </Link> */}
-      </div>
+        </a>
+      </Link>
     </div>
   );
 };

@@ -21,7 +21,7 @@ export const REQUEST_SET_FIRST_LAST_NAME = (data: INewRentRequest) => {
       )
       .then((response) => {
         if (response.data.success) {
-          resolve(response.data.success);
+          resolve(response.data.data);
         }
       })
       .catch((e) => {

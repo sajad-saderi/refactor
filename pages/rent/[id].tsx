@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Landing_page_container from "../../src/containers/LandignPageContainer";
 import Layout from "../../src/Layout";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
@@ -6,26 +6,32 @@ import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 
-const Rent_dynamic = (props) => {
-  useEffect(() => {
-    if (!props.Landing_page) {
+const Rent_dynamic = ({ Landing_page }) => {
+  React.useEffect(() => {
+    if (!Landing_page) {
       Router.push("/404");
     } else {
-      logPageView();
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: `/rent/${Landing_page.unique_id}`,
+        pageTitle: Landing_page.meta_title,
+      });
+      // logPageView();
     }
   }, []);
 
-  return props.Landing_page ? (
+  return Landing_page ? (
     <Layout>
       <NextSeo
-        title={props.Landing_page.meta_title}
-        description={props.Landing_page.meta_description}
-        canonical={props.Landing_page.canonical_url}
+        title={Landing_page.meta_title}
+        description={Landing_page.meta_description}
+        canonical={Landing_page.canonical_url}
         openGraph={{
-          title: `${props.Landing_page.meta_title}`,
-          description: props.Landing_page.meta_description,
+          title: `${Landing_page.meta_title}`,
+          description: Landing_page.meta_description,
           site_name: language.site_name,
         }}
         twitter={{
@@ -34,11 +40,8 @@ const Rent_dynamic = (props) => {
           cardType: language.cardType,
         }}
       />
-      <Landing_page_container
-        landing_data={props.Landing_page}
-        language={language}
-      />
-      <Landing_Page_Content data={props.Landing_page} language={language} />
+      <Landing_page_container landing_data={Landing_page} language={language} />
+      <Landing_Page_Content data={Landing_page} language={language} />
     </Layout>
   ) : null;
 };
@@ -61,7 +64,6 @@ export async function getServerSideProps(props) {
       },
     };
   } catch (error) {
-    console.log("!Error", error);
     return {
       props: {
         Landing_page: false,

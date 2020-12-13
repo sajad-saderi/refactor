@@ -37,7 +37,8 @@ const Filters = ({
   const [show_filter, setShow_filter] = useState(false);
   const [hidePrice, setHidePrice] = useState(false);
 
-  const [initialValue, setInitialValue] = useState([0, 10000000]);
+  const [initialValueMin, setInitialValueMin] = useState(0);
+  const [initialValueMax, setInitialValueMax] = useState(10000000);
 
   const FilterContext = useContext(filterContext);
 
@@ -94,7 +95,8 @@ const Filters = ({
       if (reset.price) {
         setHidePrice(true);
         mounter("price");
-        setInitialValue([0, 10000000]);
+        setInitialValueMin(0);
+        setInitialValueMax(10000000);
       }
       if (reset.deliver_at_renters_place) {
         setDeliver_at_renters_place(0);
@@ -159,52 +161,61 @@ const Filters = ({
 
   useEffect(() => {
     if (initialFilterValues) {
-      if (initialFilterValues.router.query.min_price) {
-        setInitialValue([
-          +initialFilterValues.router.query.min_price,
-          +initialFilterValues.router.query.max_price,
-        ]);
+      if (initialFilterValues.query.min_price) {
+        setInitialValueMin(+initialFilterValues.query.min_price);
+      }
+      if (initialFilterValues.query.max_price) {
+        setInitialValueMax(+initialFilterValues.query.max_price);
       }
       if (
-        initialFilterValues.router.query.deliver_at_renters_place &&
-        initialFilterValues.router.query.deliver_at_renters_place === "1"
+        initialFilterValues.query.deliver_at_renters_place &&
+        initialFilterValues.query.deliver_at_renters_place === "1"
       ) {
         setDeliver_at_renters_place(
-          +initialFilterValues.router.query.deliver_at_renters_place
+          +initialFilterValues.query.deliver_at_renters_place
         );
       }
       if (
-        initialFilterValues.router.query.with_driver &&
-        initialFilterValues.router.query.with_driver === "1"
+        initialFilterValues.query.with_driver &&
+        initialFilterValues.query.with_driver === "1"
       ) {
-        setwith_driver(+initialFilterValues.router.query.with_driver);
+        setwith_driver(+initialFilterValues.query.with_driver);
       }
-      if (
-        initialFilterValues.router.query.body_style_id &&
-        initialFilterValues.router.query.body_style_id !== "all"
-      ) {
-        let convertStringToArray = initialFilterValues.router.query.body_style_id.split(
-          ","
-        );
-        let convertIndexToNumber = convertStringToArray.reduce((s, c) => {
-          return s.concat(+c);
-        }, []);
-        body_style_list = convertIndexToNumber;
-      }
-      if (
-        initialFilterValues.router.query.brand_id &&
-        initialFilterValues.router.query.brand_id !== "all"
-      ) {
-        setBrand_id_name(
-          initialFilterValues.router.query.brand_name.replace(/-/g, " ")
-        );
-        let brand_id = +initialFilterValues.router.query.brand_id;
-        setBrand_id(brand_id);
-        getModelList(brand_id);
-        if (initialFilterValues.router.query.car_id !== "all") {
-          setCar_id_name(
-            initialFilterValues.router.query.car_name.replace(/-/g, " ")
+      if (initialFilterValues.query.body_style_id) {
+        if (
+          initialFilterValues.query.body_style_id !== "" &&
+          initialFilterValues.query.body_style_id !== "all"
+        ) {
+          let convertStringToArray = initialFilterValues.query.body_style_id.split(
+            ","
           );
+          let convertIndexToNumber = convertStringToArray.reduce((s, c) => {
+            return s.concat(+c);
+          }, []);
+          body_style_list = convertIndexToNumber;
+        }
+      }      
+      if (initialFilterValues.query.brand_id) {
+        if (
+          initialFilterValues.query.brand_id !== "" &&
+          initialFilterValues.query.brand_id !== "all"
+        ) {
+          setBrand_id_name(
+            initialFilterValues.query.brand_name.replace(/-/g, " ")
+          );
+          let brand_id = +initialFilterValues.query.brand_id;
+          setBrand_id(brand_id);
+          getModelList(brand_id);
+          if (initialFilterValues.query.car_id) {
+            if (
+              initialFilterValues.query.car_id !== "" &&
+              initialFilterValues.query.car_id !== "all"
+            ) {
+              setCar_id_name(
+                initialFilterValues.query.car_name.replace(/-/g, " ")
+              );
+            }
+          }
         }
       }
     }
@@ -219,7 +230,7 @@ const Filters = ({
             document.body.style.overflow = "unset";
             show_filter_prop_reset();
           }}
-          className="with_drawer"
+          className='with_drawer'
         ></div>
       )}
       <section
@@ -228,10 +239,10 @@ const Filters = ({
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
       >
-        <div className="closeBtnWrapper">
-          <span className="bar"></span>
+        <div className='closeBtnWrapper'>
+          <span className='bar'></span>
           <div
-            className="Close_filter"
+            className='Close_filter'
             onClick={() => {
               setShow_filter(false);
               show_filter_prop_reset();
@@ -239,13 +250,16 @@ const Filters = ({
             }}
           >
             {/* <p>بستن</p> */}
-            <IoMdClose size="3rem" color="#909090" />
+            <IoMdClose size='3rem' color='#909090' />
           </div>
         </div>
         {hidePrice ? (
-          <Spinner display="block" width={20} color="#737373" />
+          <Spinner display='block' width={20} color='#737373' />
         ) : (
-          <PriceSlider initialValue={initialValue} />
+          <PriceSlider
+            initialValueMin={initialValueMin}
+            initialValueMax={initialValueMax}
+          />
         )}
         <h3>{language.filter.filter_section_h3_1}</h3>
         <Checkbox
@@ -258,7 +272,7 @@ const Filters = ({
               value: deliver_at_renters_place,
             },
           ]}
-          name="deliver_at_renters_place"
+          name='deliver_at_renters_place'
           clearField={(item) => {
             FilterContext.setDataForSearch({
               deliver_at_renters_place: { status: false, value: 0 },
@@ -281,7 +295,7 @@ const Filters = ({
               value: with_driver,
             },
           ]}
-          name="with_driver"
+          name='with_driver'
           clearField={(item) => {
             FilterContext.setDataForSearch({
               with_driver: { status: false, value: 0 },
@@ -296,12 +310,12 @@ const Filters = ({
             setwith_driver(1);
           }}
         />
-        <div className="body_style_type_wrapper">
+        <div className='body_style_type_wrapper'>
           <h3>{language.filter.filter_section_h3_2}</h3>
           <Checkbox
             initialValue={body_style_list}
             data={body_style_set}
-            name="body_style_set"
+            name='body_style_set'
             clearField={(item) => {
               body_style_remove(item);
             }}
@@ -322,6 +336,7 @@ const Filters = ({
             setBrand_id(null);
             FilterContext.setDataForSearch({
               brand_id: { status: false, value: null },
+              car_id: { status: false, value: null },
             });
           }}
           callClearFieldReset={() => {
@@ -370,9 +385,9 @@ const Filters = ({
           browserDropdown={true}
         />
         {show_filter ? (
-          <div className="result_count_wrapper">
+          <div className='result_count_wrapper'>
             <h2
-              className="ResultCount"
+              className='ResultCount'
               onClick={() => {
                 document.body.style.overflow = "unset";
                 setShow_filter(false);
@@ -380,7 +395,7 @@ const Filters = ({
               }}
             >
               {extra_info.length === 0 ? (
-                <Spinner display="block" color="#fff" width={28} />
+                <Spinner display='block' color='#fff' width={28} />
               ) : ResultCount.total_count > 0 ? (
                 `${language.filter.filter_section_result_count_wrapper_namayesh}${ResultCount.total_count}${language.filter.filter_section_result_count_wrapper_khodro}`
               ) : (

@@ -9,7 +9,7 @@ import Link from "next/link";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
-import { logPageView } from "../../utils/analytics";
+// import { logPageView } from "../../utils/analytics";
 
 const question_set = [
   {
@@ -28,7 +28,13 @@ const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
 
   useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/rent",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
     fetchData();
   }, []);
 
@@ -131,7 +137,11 @@ const Rent = () => {
           {/* Creating tab menu */}
           {/* <TabCreator data_arr={data} /> */}
         </div>
-        <div itemScope itemType="https://schema.org/FAQPage" className='responsive'>
+        <div
+          itemScope
+          itemType='https://schema.org/FAQPage'
+          className='responsive'
+        >
           <Accordion question_set={question_set} />
         </div>
         <section className='responsive third_container'>
@@ -139,9 +149,22 @@ const Rent = () => {
             <div className='RentPage_Dynamic_links'>
               <ul>
                 {dynamicLinks.map((item) => {
+                  let id = item.url.split("/").pop();
                   return (
                     <li key={item.name}>
-                      <a href={item.url}>{item.name}</a>
+                      <Link
+                        href={{
+                          pathname: "/rent/[id]",
+                          query: {
+                            id: id,
+                          },
+                        }}
+                        as={`/rent/${id}`}
+                      >
+                        <a className='HEAP_LandingPages_Link_RelatedLinks'>
+                          {item.name}
+                        </a>
+                      </Link>
                     </li>
                   );
                 })}

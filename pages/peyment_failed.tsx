@@ -1,16 +1,23 @@
 import React from "react";
 import Layout from "../src/Layout";
-import Router from "next/router";
+import {useRouter} from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Button from "../src/components/form/Button";
 import "../src/styles/pages/Failed_payment.scss";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentfaild.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const Failed_payment = () => {
+  const router = useRouter()
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/payment-failed",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout>
@@ -34,7 +41,7 @@ const Failed_payment = () => {
         </section>
         <Button
           class="Blue_BTN local_style"
-          click={() => Router.push("/")}
+          click={() => router.push("/")}
           value={language.main_page}
           loading={false}
         />

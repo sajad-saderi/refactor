@@ -1,4 +1,4 @@
-import React, { Context } from "react";
+import React from "react";
 import App from "next/app";
 import Router from "next/router";
 import * as Sentry from "@sentry/browser";
@@ -7,7 +7,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 import Axios from "axios";
-import { initGA } from "../utils/analytics";
+// import { initGA } from "../utils/analytics";
 import { REQUEST_GET_USER_INFO } from "../src/API";
 import jsCookie from "js-cookie";
 import user_context from "../src/context/User_info";
@@ -47,16 +47,6 @@ class App_Otoli extends App {
     BotScore: null,
     user_data: null,
   };
-  // static async getInitialProps({ Component, ctx }) {
-  //     let pageProps = {};
-
-  //     if (Component.getInitialProps) {
-  //         pageProps = await Component.getInitialProps(ctx);
-  //     }
-
-  //     return { pageProps };
-  // }
-
   componentDidCatch(error, errorInfo) {
     if (process.env.NODE_ENV !== "development") {
       Sentry.withScope((scope) => {
@@ -70,7 +60,7 @@ class App_Otoli extends App {
     }
   }
 
-  Captcha = () => {
+  Captcha = (token) => {
     let scoreData = null;
     try {
       window["__recaptchaCallback"] = () => {
@@ -81,7 +71,7 @@ class App_Otoli extends App {
             })
             .then(() => {
               var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
-              Axios.get(url + "?g-recaptcha-response=" + this.state.token)
+              Axios.get(url + "?g-recaptcha-response=" + token)
                 .then((res) => {
                   this.setState({ BotScore: res.data.recaptcha.score });
                   scoreData = res;
@@ -125,36 +115,47 @@ class App_Otoli extends App {
   };
 
   componentDidMount = () => {
-    // Initial React GA library after the mount
-    if (!window["GA_INITIALIZED"]) {
-      initGA();
-      window["GA_INITIALIZED"] = true;
-    }
     const userId = jsCookie.get("user_id");
-    if (userId && sessionStorage["flag"] !== "true") {
-      sessionStorage["flag"] = true;
-      this.get_user_data(userId);
+    const token = jsCookie.get("token");
+    const first_name = jsCookie.get("first_name");
+    if (userId) {
+      this.get_user_data(userId, token);
+      window["auth"] = true;
+
+      if (first_name) {
+        window["complete_register"] = true;
+      }
+    } else {
+      window["auth"] = false;
+      window["complete_register"] = false;
     }
+    /*
+        It checks the current URL if there are any UTM values in there
+        NOTE 
+          If user login, these information will sended to API
+            "/core/device/send-code"
+      */
+    if (Router.router.query.utm_source) {
+      localStorage["utm_source"] = Router.query.utm_source;
+      localStorage["utm_medium"] = Router.query.utm_medium;
+      localStorage["utm_campaign"] = Router.query.utm_campaign;
+      localStorage["utm_term"] = Router.query.utm_term;
+      localStorage["utm_content"] = Router.query.utm_content;
+    }
+    localStorage["utm_landing_url"] = Router.router.asPath;
+    localStorage["utm_referrer"] = document.referrer;
   };
 
-  get_user_data = async (id) => {
+  get_user_data = async (id, token) => {
     try {
       const response: any = await REQUEST_GET_USER_INFO({ id });
-      jsCookie.set("complete_register", response.first_name ? true : null);
-      jsCookie.set("name", response.name);
-      jsCookie.set("company_name", response.company_name);
-      if (response.username) {
-        jsCookie.set("username", response.username);
-      }
-      jsCookie.set(
-        "thumbnail_url",
-        response.thumbnail_url
-          ? response.thumbnail_url
-          : "https://core.otoli.net/static/core/default_profile_pic.png"
-      );
-      this.setState({ user_data: { ...response } });
+      if (response.first_name)
+        jsCookie.set("first_name", response.first_name, {
+          expires: 100,
+        });
+      this.setState({ user_data: { ...response, token } });
     } catch (error) {
-      sessionStorage["flag"] = false;
+      console.log(error);
     }
   };
 
@@ -169,18 +170,17 @@ class App_Otoli extends App {
                 user_data: v,
               });
             },
-            user_data: this.state.user_data,
+            data: this.state.user_data,
           }}
         >
           <Component {...pageProps} BotScore={this.state.BotScore} />
         </user_context.Provider>
 
         <GoogleReCaptcha
-          onVerify={(token) =>
-            this.setState({ token }, () => {
-              this.Captcha();
-            })
-          }
+          onVerify={(token) => {
+            this.Captcha(token);
+            this.setState({ token });
+          }}
         />
       </GoogleReCaptchaProvider>
     );

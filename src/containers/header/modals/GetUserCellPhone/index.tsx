@@ -4,7 +4,7 @@ import axios from "axios";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 // import "./userCellphone.scss";
 import Button from "../../../../components/form/Button";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
   const [cellPhone, setCellPhone] = useState("");
@@ -14,23 +14,23 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
     message: "",
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
-
-  useEffect(() => {
-    if (window["ga"]) {
-      window["ga"]("send", {
-        hitType: "pageview",
-        page: "/log-in-modal",
-        title: "ورود / ثبت نام",
-      });
-    }
-  }, []);
+  const router = useRouter();
+  // useEffect(() => {
+  //   if (window["ga"]) {
+  //     window["ga"]("send", {
+  //       hitType: "pageview",
+  //       page: "/log-in-modal",
+  //       title: "ورود / ثبت نام",
+  //     });
+  //   }
+  // }, []);
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
     if (!cellPhone) {
       return;
     }
-    localStorage["last_location"] = Router.router.asPath;
+    // localStorage["last_location"] = router.asPath;
     setLoading(true);
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
     const SEND_CONFIRM_CODE = "/core/device/send-code";
@@ -51,6 +51,7 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
         utm_campaign: localStorage["utm_campaign"]
           ? localStorage["utm_campaign"]
           : "",
+        utm_referrer: localStorage["utm_referrer"] ? localStorage["utm_referrer"] : "",
         utm_term: localStorage["utm_term"] ? localStorage["utm_term"] : "",
         utm_content: localStorage["utm_content"]
           ? localStorage["utm_content"]

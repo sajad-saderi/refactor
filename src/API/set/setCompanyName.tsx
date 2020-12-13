@@ -1,13 +1,8 @@
 import axios from "axios";
-import jsCookie from "js-cookie";
 import Error_middleware from "../ApiUtils";
 
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_COMPANY_NAME = "/core/user/set-company-name";
-
-const cook_option = {
-  expires: 100,
-};
 
 export const REQUEST_SET_COMPANY_NAME = (data: ICompanyName) => {
   return new Promise((resolve, reject) => {
@@ -25,13 +20,7 @@ export const REQUEST_SET_COMPANY_NAME = (data: ICompanyName) => {
       )
       .then((response) => {
         if (response.data.success) {
-          jsCookie.set(
-            "company_name",
-            response.data.data.company_name,
-            cook_option
-          );
-
-          resolve(response.data.success);
+          resolve(response.data.data);
         }
       })
       .catch((e) => {

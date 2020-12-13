@@ -591,6 +591,13 @@ input {
   border-radius: 5px;
   display: inline-block;
 }
+.expired_order {
+  margin-top: 3rem;
+  p {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
 
 // 3rd parties
 // @import "react-modern-calendar-datepicker/lib/DatePicker.css";

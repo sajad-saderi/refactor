@@ -2,10 +2,16 @@ import React from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/ourpolicies.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 const OtoliPolicies = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/our-policies",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

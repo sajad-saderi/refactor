@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 // import "./car.scss";
 import { IoMdTrash, IoMdCreate } from "react-icons/io";
-import Router from "next/router";
+import { useRouter } from "next/router";
+import context_user from "../../../../context/User_info";
 import jsCookie from "js-cookie";
 import {
   REQUEST_SET_OUT_OF_SERVICE,
@@ -28,9 +29,8 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   );
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
-
-  const token = jsCookie.get("token");
-
+  const user = useContext(context_user);
+  const router = useRouter();
   useEffect(() => {
     if (data) {
       /**
@@ -64,7 +64,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
     setIs_out_of_service_loading(true);
     try {
       const service_res: any = await REQUEST_SET_OUT_OF_SERVICE({
-        token,
+        token: user.data?.token,
         id: id || localId,
         // send apposite of current status
         value: !is_out_of_service,
@@ -87,7 +87,10 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
 
   const deleteTheCar = async () => {
     try {
-      const delete_res = await REQUEST_DELETE_CAR({ token, id });
+      const delete_res = await REQUEST_DELETE_CAR({
+        token: user.data?.token,
+        id,
+      });
       jsCookie.remove("new_car");
       getListAgain();
     } catch (error) {
@@ -137,7 +140,13 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                   <p
                     onClick={(e) => {
                       e.preventDefault();
-                      Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
+                      router.push({
+                        pathname: "/set-car-timing",
+                        query: {
+                          car_id: id,
+                          mode: "edit",
+                        },
+                      });
                     }}
                   >
                     {language.to_show_this_car}
@@ -164,7 +173,13 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
           <div className='edit_part'>
             <p
               onClick={() => {
-                Router.push(`/set-car-timing?car_id=${id}&mode=edit`);
+                router.push({
+                  pathname: "/set-car-timing",
+                  query: {
+                    car_id: id,
+                    mode: "edit",
+                  },
+                });
               }}
               className={[
                 "HEAP_Profile_Btn_ChangeCarTiming",
@@ -196,7 +211,13 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                   color='#4ba3ce'
                   size='2rem'
                   onClick={() => {
-                    Router.push(`/add-car?mode=edit&car_id=${id}`);
+                    router.push({
+                      pathname: "/add-car",
+                      query: {
+                        car_id: id,
+                        mode: "edit",
+                      },
+                    });
                   }}
                 />
               </span>

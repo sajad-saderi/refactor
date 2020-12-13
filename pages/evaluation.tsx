@@ -2,11 +2,17 @@ import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import language from "../public/languages/fa/evaluation.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const evaluation = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/evaluation",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

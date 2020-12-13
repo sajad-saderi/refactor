@@ -124,6 +124,28 @@
           padding: 0;
           display: inline-block;
         }
+        .login-out {
+          padding: 0;
+          display: inline-block;
+        }
+      }
+      .header_spinner {
+        margin-left: 2.4rem;
+        .profile_icon_place_holder {
+          display: inline-block;
+          width: 2.8rem;
+          height: 2.8rem;
+          vertical-align: middle;
+          margin-left: 8px;
+          border-radius: 50%;
+        }
+        span {
+          padding: 0;
+          width: 6rem;
+          display: inline-block;
+          height: 1.2rem;
+          border-radius: 8px;
+        }
       }
       .Drop_Down {
         &:hover .Sub_Nav_Level_2 {

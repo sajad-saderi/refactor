@@ -1,47 +1,26 @@
-import React, { useEffect, useContext, useState } from "react";
-import jsCookie from "js-cookie";
-import Modal_context from "../../../src/context/Modal_context";
-import Auth_context from "../../../src/context/Auth_context";
-import PleaseLogin from "../../../src/components/PleaseLogin";
+import React, { useEffect, useState } from "react";
 import Add_Car_Step_2 from "./step_2";
-import Router from "next/router";
+import { useRouter } from "next/router";
+import { guard_controller } from "../../../utils/guard_controller";
 
-const Set_car_timing = ({ language }: ISet_car_timing) => {
-  const [Authorize, setAuthorize] = useState(false);
+const Set_car_timing = ({ language }: ISet_car_timing) => { 
   const [show, setShow] = useState(false);
-  const MODAL_CONTEXT = useContext(Modal_context);
-  const AUTH_CONTEXT = useContext(Auth_context);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!checkRegister()) {
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      router.push(`/${guard}`);
       return;
     }
-    if (jsCookie.get("complete_register") === "true") {
-      setAuthorize(true);
-    } else {
-      MODAL_CONTEXT.modalHandler("Login");
-    }
+
     setShow(true);
   }, []);
 
-  const checkRegister = () => {
-    const complete_register = jsCookie.get("complete_register");
-    if (complete_register === "false") {
-      Router.push("/complete-register");
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   return show ? (
-    Authorize || AUTH_CONTEXT.Auth ? (
-      <Add_Car_Step_2 language={language.add_car_step_2} />
-    ) : (
-      <PleaseLogin language={language.please_login} />
-    )
+    <Add_Car_Step_2 language={language.add_car_step_2} />
   ) : (
-    <article className="minHeight"></article>
+    <article className='minHeight'></article>
   );
 };
 

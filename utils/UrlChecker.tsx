@@ -1,5 +1,6 @@
 import moment from "moment-jalaali";
-moment.loadPersian({ dialect: "persian-modern" }); 
+import { payBackInString } from "./date-range-creator";
+moment.loadPersian({ dialect: "persian-modern" });
 
 const UrlChecker = (props) => {
   let data = null;
@@ -18,13 +19,16 @@ const UrlChecker = (props) => {
     brand_id,
     car_id,
   } = props;
+
   data = {
     location_id: location_id ? +location_id : null,
     location_n: location_name ? location_name : "tehran",
     start_date: start_date
       ? (start_date as string).replace(/-/g, "/")
-      : setStartSate(),
-    end_date: end_date ? (end_date as string).replace(/-/g, "/") : setEndSate(),
+      : generate_dates().generate_start,
+    end_date: end_date
+      ? (end_date as string).replace(/-/g, "/")
+      : generate_dates().generate_end,
     price_order: price_order ? (price_order as string) : "-price",
     page: page ? +page : 1,
     min_price: min_price ? +min_price : 0,
@@ -33,28 +37,18 @@ const UrlChecker = (props) => {
       ? deliver_at_renters_place
       : "0",
     with_driver: with_driver ? with_driver : "0",
-    body_style_id: body_style_id ? body_style_id : "all",
-    brand_id: brand_id ? brand_id : "all",
-    car_id: brand_id ? car_id : "all",
+    body_style_id:
+      body_style_id && body_style_id !== "all" ? body_style_id : "",
+    brand_id: brand_id && brand_id !== "all" ? brand_id : "",
+    car_id: car_id && car_id !== "all" ? car_id : "",
   };
+
   return data;
 };
 
-const setStartSate = () => {
-  // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-  let from_date = moment()
-    .add(3, "day")
-    .format("jYYYY/jMM/jDD")
-    .split("/");
-  return `${+from_date[0]}/${from_date[1]}/${from_date[2]}`;
-};
-
-const setEndSate = () => {
-  let to_date = moment()
-    .add(6, "day")
-    .format("jYYYY/jMM/jDD")
-    .split("/");
-  return `${+to_date[0]}/${to_date[1]}/${to_date[2]}`;
+const generate_dates = () => {
+  const { start_date, end_date } = payBackInString(6, 3);
+  return { generate_start: start_date, generate_end: end_date };
 };
 
 export default UrlChecker;

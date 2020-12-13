@@ -1,87 +1,114 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import modal_context from "../../../context/Modal_context";
-import jsCookie from "js-cookie";
-import Router from "next/router";
 import language from "../../../../public/languages/fa/header.json";
-import user_context from "../../../context/User_info";
+import context_user from "../../../context/User_info";
+import Spinner from "../../../components/Spinner";
+import { useRouter } from "next/router";
+
+let token = null;
+let complete_register = null;
+let company_name = null;
+let img_profile = null;
+let profile = null;
+let user_id = null;
 
 const Menu = () => {
-  const USER_CONTEXT = useContext(user_context);
-  const MODAL_CONTEXT = useContext(modal_context);
-
-  let complete_register = jsCookie.get("complete_register");
-  let token = jsCookie.get("token");
-  let img_profile = jsCookie.get("thumbnail_url");
-  let company_name = jsCookie.get("company_name");
-  let profile = company_name
-    ? company_name !== "null"
-      ? company_name
-      : jsCookie.get("user_name")
-      ? `${jsCookie.get("user_name")}`
-      : `${jsCookie.get("name")}`
-    : null;
-  let user_id = jsCookie.get("username")
-    ? jsCookie.get("username")
-    : jsCookie.get("user_id");
+  const [spinner, set_spinner] = useState(false);
+  const user = useContext(context_user);
+  const router = useRouter();
 
   useEffect(() => {
-    if (USER_CONTEXT.user_data && sessionStorage["flag"] !== "true") {
+    if (window["auth"] && !user.data) {
+      set_spinner(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user.data) {
       const {
         first_name,
         last_name,
         name,
         thumbnail_url,
         company_name,
-        token,
         username,
         id,
-      } = USER_CONTEXT.user_data;
+      } = user.data;
+      set_spinner(false);
 
+      token = user.data?.token;
       if (first_name) {
         complete_register = true;
       }
       img_profile = thumbnail_url;
-      profile = company_name ? company_name : username ? username : name;
-      if (username) {
-        user_id = username;
-      }
+      user_id = username ? username : id;
+      profile = company_name
+        ? company_name
+        : username
+        ? username
+        : first_name
+        ? name
+        : "";
+    } else if (!window["auth"] && !user.data) {
+      token = null;
+      complete_register = null;
+      company_name = null;
+      img_profile = null;
+      profile = null;
+      user_id = null;
     }
-  }, [USER_CONTEXT.user_data]);
+  }, [user.data]);
 
   return (
     <ul>
       {token ? (
-        <li className='first_element_li'>
-          <Link href={`/user/[id]`} as={`/user/${user_id}`}>
-            <a>
-              <img
-                className='profile_icon'
-                // show user image or chow account icon
-                src={
-                  img_profile ||
-                  "https://core.otoli.net/static/core/default_profile_pic.png"
-                }
-                alt={profile}
-              />
-              <span className="user-name">{profile && profile}</span>
-              {localStorage["red_dot"] === "1" && <span className='red_dot' />}
-            </a>
-          </Link>
+        spinner ? (
+          <li className='header_spinner'>
+            <p className='Gradient profile_icon_place_holder' />
+            <span className='Gradient' />
+          </li>
+        ) : (
+          <li className='first_element_li'>
+            <Link href={`/user/[id]`} as={`/user/${user_id}`}>
+              <a>
+                <img
+                  className='profile_icon'
+                  // show user image or chow account icon
+                  src={
+                    img_profile ||
+                    "https://core.otoli.net/static/core/default_profile_pic.png"
+                  }
+                  alt={profile}
+                />
+                <span className='user-name'>{profile && profile}</span>
+                {localStorage["red_dot"] === "1" && (
+                  <span className='red_dot' />
+                )}
+              </a>
+            </Link>
+          </li>
+        )
+      ) : spinner ? (
+        <li className='header_spinner'>
+          <p className='Gradient profile_icon_place_holder' />
+          <span className='Gradient' />
         </li>
       ) : (
         <li
           className='HEAP_Header_Btn_Login'
           onClick={() => {
-            // set the 'login' model to appear
-            MODAL_CONTEXT.modalHandler("Login");
+            localStorage["last_location"] = router.asPath;
           }}
         >
-          <span>{language.li}</span>
+          <Link href={`/login`}>
+            <a>
+              <span className='login-out'>{language.li}</span>
+            </a>
+          </Link>
         </li>
       )}
       {/* if the user had registered completely, can access to orders history */}
-      {complete_register === "true" && (
+      {complete_register && (
         <li>
           <Link href='/requests'>
             <a className='HEAP_Header_Link_MyOrders'>{language.a_1}</a>

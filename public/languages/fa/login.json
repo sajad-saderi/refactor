@@ -1,0 +1,32 @@
+{
+  "next_seo": {
+    "title": "ورود / ثبت نام",
+    "description": "ورود / ثبت نام",
+    "site_name": "اتولی",
+    "handle": "@otoli_net",
+    "site": "@otoli_net",
+    "cardType": "summary_large_image"
+  },
+  "GetUserCellPhone": {
+    "log_sigh": "ورود / ثبت نام",
+    "cell_phone": "شماره تلفن همراه",
+    "example": "مثال: 09121234567",
+    "error_1": "لطفا تلفن همراه را وارد کنید",
+    "error_2": "شماره همراه باید 11 رقم باشد",
+    "error_3": "شماره وارد شده صحیح نیست",
+    "error_4": "شماره وارد شده صحیح نیست",
+    "send": "ارسال کد ورود"
+  },
+  "ConfirmCode": {
+    "confirm_code_title": "ورود کد تایید",
+    "text_input_label_1": "کد چهار رقمی ارسال شده به شماره",
+    "text_input_label_2": "را وارد کنید.",
+    "place_holder": "لطفا کد را وارد کنید",
+    "require": "لطفا کد تایید را وارد کنید",
+    "length": "کد تایید باید 4 رقم باشد",
+    "send_again": "ارسال مجدد",
+    "seconds": "ثانیه",
+    "edit_the_number": "ویرایش شماره",
+    "enter": "ورود"
+  }
+}

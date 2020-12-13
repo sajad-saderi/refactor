@@ -4,18 +4,25 @@ import { NextSeo } from "next-seo";
 import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content";
 import language from "../public/languages/fa/joinus.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
-const JoinUs = (props) => {
+const JoinUs = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
   useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/join-us",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
+
   useEffect(() => {
-    if (props.BotScore) {
-      SetScore(props.BotScore);
+    if (BotScore) {
+      SetScore(BotScore);
     }
-  }, [props.BotScore]);
+  }, [BotScore]);
   return (
     <Layout LinkControl={true}>
       <NextSeo

@@ -3,11 +3,17 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import language from "../public/languages/fa/guideforrent.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const guideForRent = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/guide-for-rent",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout showToTop={true}>

@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
-import TextInput from "../../../../components/form/TextInput";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import modal_context from "../../../../context/Modal_context";
-import Auth_context from "../../../../context/Auth_context";
 import axios from "axios";
-import Router from "next/router";
-import jsCookie from "js-cookie";
+import { useRouter } from "next/router";
 import Button from "../../../../components/form/Button";
 import CountDown from "../../../../components/countDown";
 import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
+import context_user from "../../../../context/User_info";
+import jsCookie from "js-cookie";
 
 const ConfirmCode = ({
   panelController,
@@ -25,7 +24,8 @@ const ConfirmCode = ({
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
   const Modal_context = useContext(modal_context);
-  const AUTH_CONTEXT = useContext(Auth_context);
+  const router = useRouter();
+  const user = useContext(context_user);
 
   const sendConfirmCode = (e) => {
     e.preventDefault();
@@ -45,64 +45,61 @@ const ConfirmCode = ({
         code: code,
       })
       .then((response) => {
-        setLoading(false);
+        // setLoading(false);
         const cook_option = {
           expires: 100,
         };
-        // If the user hasn't completed the registration
-        if (response.data.token && !response.data.has_name) {
+        if (response.data.token) {
+          // If the user hasn't completed the registration
           const data = response.data;
-
-          // save data in cache
-          jsCookie.set("token", data.token, cook_option);
-          jsCookie.set("phone", data.user_profile.cell, cook_option);
-          jsCookie.set("user_id", data.user_profile.id, cook_option);
-          jsCookie.set("complete_register", data.has_name);
-          jsCookie.set("name", " ");
-
-          // NOTE: save data in cache and active heap
-          try {
-            if (window["heap"]) {
-              window["heap"].identify(`${cellNumber}`);
+          if (!data.user_profile.first_name) {
+            // save data in cache
+            window["complete_register"] = false;
+            // NOTE: save data in cache and active heap
+            try {
+              if (window["heap"]) {
+                window["heap"].identify(`${cellNumber}`);
+              }
+            } catch (e) {
+              console.log("Em...I think heap not work correctly :/");
             }
-          } catch (e) {
-            console.log("Em...I think heap not work correctly :/");
+            router.push({
+              pathname: "/complete-register",
+            });
           }
-          Router.push({
-            pathname: "/complete-register",
+          // if user completely registered
+          else {
+            jsCookie.set(
+              "first_name",
+              data.user_profile.first_name,
+              cook_option
+            );
+            window["complete_register"] = true;
+            // NOTE: activate heap
+            try {
+              if (window["heap"]) {
+                window["heap"].identify(`${cellNumber}`);
+                window["heap"].addUserProperties({
+                  Name: `${data.user_profile.first_name}-${data.user_profile.last_name}`,
+                });
+              }
+            } catch (e) {
+              console.log("Em...I think heap not work correctly :/");
+            }
+            router.push(
+              localStorage["last_location"]
+                ? localStorage["last_location"]
+                : "/"
+            );
+          }
+          jsCookie.set("token", response.data.token, cook_option);
+          jsCookie.set("user_id", data.user_profile.id, cook_option);
+          user.update_user_data({
+            ...data.user_profile,
+            token: response.data.token,
           });
-        }
-        // if user completely registered
-        else if (response.data.token && response.data.has_name) {
-          const data = response.data;
-          jsCookie.set("token", data.token, cook_option);
-          jsCookie.set("phone", data.user_profile.cell, cook_option);
-          jsCookie.set("user_id", data.user_profile.id, cook_option);
-          jsCookie.set("complete_register", data.has_name);
-          jsCookie.set("name", data.user_profile.name);
-          jsCookie.set("company_name", data.user_profile.company_name);
-          if (data.user_profile.username) {
-            jsCookie.set("username", data.user_profile.username);
-          }
-          jsCookie.set(
-            "thumbnail_url",
-            data.user_profile.thumbnail_url
-              ? data.user_profile.thumbnail_url
-              : "https://core.otoli.net/static/core/default_profile_pic.png"
-          );
-          // NOTE: activate heap
-          try {
-            if (window["heap"]) {
-              window["heap"].identify(`${cellNumber}`);
-              window["heap"].addUserProperties({
-                Name: `${data.user_profile.first_name}-${data.user_profile.last_name}`,
-              });
-            }
-          } catch (e) {
-            console.log("Em...I think heap not work correctly :/");
-          }
           // set authorize to auth context
-          AUTH_CONTEXT.Auth_Manager(true);
+          window["auth"] = true;
         } else {
           // TODO: handle errors
           console.error("error");

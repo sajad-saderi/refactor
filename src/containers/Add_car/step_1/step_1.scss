@@ -183,6 +183,9 @@
       margin-bottom: 3rem;
       .license_palte_container {
         position: relative;
+        .license_error {
+          background: rgba(216, 48, 48, 0.1) !important;
+        }
         .pelak_input {
           position: absolute;
           // display: flex;

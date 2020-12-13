@@ -7,7 +7,7 @@ import moment from "moment-jalaali";
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_LOCATION } from "../../API/index";
 
-import Router from "next/router";
+import {useRouter} from "next/router";
 
 // import "./search.scss";
 import Button from "../../components/form/Button";
@@ -38,6 +38,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   });
 
   const MODAL_CONTEXT = useContext(modal_context);
+  const router = useRouter()
 
   // get a list of cities
   const get_car_location = async () => {
@@ -89,7 +90,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   };
 
   const set_default_date_for_search = () => {
-    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead      
+    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
     let from_date = moment()
       .add(3, "day")
       .format("jYYYY/jMM/jDD")
@@ -97,7 +98,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     let to_date = moment()
       .add(6, "day")
       .format("jYYYY/jMM/jDD")
-      .split("/");       
+      .split("/");
 
     setDayRange({
       from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },
@@ -124,26 +125,9 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       localStorage["start"] = JSON.stringify(dayRange.from);
       localStorage["end"] = JSON.stringify(dayRange.to);
       setLoading(true);
-      Router.push({
-        pathname: "/search-result",
-        query: {
-          location_id: LocationId,
-          location_name: "tehran",
-          start_date: `${dayRange.from.year}-${dayRange.from.month}-${dayRange.from.day}`,
-          end_date: `${dayRange.to.year}-${dayRange.to.month}-${dayRange.to.day}`,
-          price_order: "-price",
-          page: 1,
-          min_price: 0,
-          max_price: 10000000,
-          deliver_at_renters_place: 0,
-          with_driver: 0,
-          body_style_id: "all",
-          brand_id: "all",
-          brand_name: "all",
-          car_id: "all",
-          car_name: "all",
-        },
-      });
+      router.push(
+        `/search-result?location_id=${LocationId}&location_name=تهران&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15`
+      );
     } else if (!dayRange.from) {
       setFromError({ status: true, message: language.search.error_start_date });
     } else if (!dayRange.to) {
@@ -192,17 +176,17 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   };
 
   return (
-    <section className="search_box">
+    <section className='search_box'>
       <form
-        data-test-id="GotoSearchResult"
+        data-test-id='GotoSearchResult'
         onSubmit={(e) => GotoSearchResult(e)}
       >
-        <div className="search_box_div">
-          <p className="label">{language.search.label_location}</p>
+        <div className='search_box_div'>
+          <p className='label'>{language.search.label_location}</p>
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
-            hardValue="تهران"
+            hardValue='تهران'
             search_place_holder={
               language.search.label_location_search_place_holder
             }
@@ -216,7 +200,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             // clearField={() => setLocationId(1)}
           />
         </div>
-        <div className="Date_picker_container">
+        <div className='Date_picker_container'>
           <div
             className={[
               "date_Input_Container",
@@ -233,12 +217,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               onChange={setDayRange}
               shouldHighlightWeekends
               minimumDate={utils("fa").getToday()}
-              locale="fa"
-              colorPrimary="#4ba3ce"
+              locale='fa'
+              colorPrimary='#4ba3ce'
               // disabledDays={[utils("fa").getToday()]}
             />
-            <div className="input_container">
-              <p className="label">{language.search.label_start_date}</p>
+            <div className='input_container'>
+              <p className='label'>{language.search.label_start_date}</p>
               <input
                 data-hj-allow
                 className={
@@ -258,8 +242,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               {/* appear the error for the start date here */}
               <span>{fromError.message}</span>
             </div>
-            <div className="input_container">
-              <p className="label">{language.search.label_end_date}</p>
+            <div className='input_container'>
+              <p className='label'>{language.search.label_end_date}</p>
               <input
                 data-hj-allow
                 className={[
@@ -284,11 +268,11 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             </div>
           </div>
         </div>
-        <div className="search_box_div">
-          <p className="Search_Text_transparent">search</p>
+        <div className='search_box_div'>
+          <p className='Search_Text_transparent'>search</p>
           <Button
             value={language.search.btn}
-            class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
+            class='Blue_BTN search_Btn HEAP_Home_Btn_Search'
             loading={loading}
             click={() => {}}
           />

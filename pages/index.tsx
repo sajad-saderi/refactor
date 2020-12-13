@@ -1,18 +1,24 @@
 import React from "react";
 import { NextSeo } from "next-seo";
-
 import Layout from "../src/Layout";
 import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
 import "../src/styles/pages/index.scss";
 import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const HomePage = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
+
   return (
     <Layout>
       <NextSeo

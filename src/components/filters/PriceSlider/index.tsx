@@ -40,26 +40,26 @@ const PriceSlider = (props) => {
   };
 
   useEffect(() => {
-    if (props.initialValue) {
-      setValue([props.initialValue[0], props.initialValue[1]]);
+    if (props.initialValueMin || props.initialValueMax) {
+      setValue([props.initialValueMin, props.initialValueMax]);
     }
-  }, [props.initialValue]);
+  }, [props.initialValueMin, props.initialValueMax]);
 
   return (
-    <div className="price_filter">
+    <div className='price_filter'>
       <h3>قیمت</h3>
-      <div className="price_text">
+      <div className='price_text'>
         <p>
-          <span className="TA">{`${Number(
+          <span className='TA'>{`${Number(
             Number(
               value[0] < 1000000 ? value[0] / 1000 : value[0] / 1000000
             ).toFixed(1)
           ).toLocaleString()}`}</span>{" "}
           {`${value[0] >= 1000000 ? "میلیون" : "هزار"} تومان `}
         </p>
-        <p className="TA"> تا </p>
+        <p className='TA'> تا </p>
         <p>
-          <span className="TA">{`${Number(
+          <span className='TA'>{`${Number(
             Number(
               value[1] < 1000000 ? value[1] / 1000 : value[1] / 1000000
             ).toFixed(1)

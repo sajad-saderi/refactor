@@ -3,11 +3,17 @@ import Layout from "../src/Layout";
 import Set_car_timing from "../src/containers/Set_car_timing";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/setcartimig.json";
-import { logPageView } from "../utils/analytics";
+// import { logPageView } from "../utils/analytics";
 
 const SetTimeAndPrice = () => {
   React.useEffect(() => {
-    logPageView();
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/set-car-timing",
+      pageTitle: language.next_seo.title,
+    });
+    // logPageView();
   }, []);
   return (
     <Layout LinkControl={true}>
