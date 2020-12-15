@@ -55,7 +55,9 @@ const Slider = (props: ISlider) => {
 
   return (
     Loade && (
-      <div className='carousel_container'>
+      <div className='carousel_container' style={{
+        height: `${(window.innerWidth * 0.5625).toFixed(0)}px`
+      }}>
         {/* extend icon */}
         {!colseModal && (
           <Gallery
