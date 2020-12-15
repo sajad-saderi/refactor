@@ -8,6 +8,10 @@
   transition: 0.5s all;
   direction: ltr;
 }
+.border-gap {
+  border-left: 1.6rem solid $white;
+  border-right: 1.6rem solid $white;
+}
 .carousel_container .carousel_FrontImage {
   transition: 0.5s all;
   max-width: auto;
@@ -137,7 +141,7 @@ img.TranslateLeft {
 
 @media (max-width: 720px) {
   .carousel_container {
-    height:auto;
+    height: auto;
   }
   .NAVIGA {
     top: 38%;

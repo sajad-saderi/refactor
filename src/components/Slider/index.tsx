@@ -56,7 +56,12 @@ const Slider = (props: ISlider) => {
   return (
     Loade && (
       <div
-        className='carousel_container'
+        className={[
+          "carousel_container",
+          window.innerWidth > 720
+            ? "responsive border-gap"
+            : null,
+        ].join(" ")}
         style={{
           height:
             window.innerWidth < 720 &&
