@@ -353,87 +353,93 @@ const CarPage = ({
               <div className='first_section_carpage'>
                 <h1>
                   {car.brand.name.fa} {car.name.fa}
-                  <span>({year.name.fa})</span>
-                </h1>
-                {showPriceLoading ? (
-                  <div className='price_place_holder'>
-                    <Spinner color='#737373' display='block' width={20} />
-                  </div>
-                ) : (
-                  availableCar && (
-                    <div className='avg_discounted_price_per_day'>
-                      <div className='discount_part'>
-                        <span
-                          className={
-                            total_discount ? "discount_price" : "normal_price"
-                          }
-                        >
-                          {avg_price_per_day
-                            ? avg_price_per_day.toLocaleString()
-                            : null}
+                  {/* <p className='owner_name_carinfo'>{owner.name}</p> */}
+                  {rate?.no_of_received_rates ? (
+                    <div className='rate_container'>
+                      <Icon name='star' />
+                      <span>
+                        {rate.avg_rate}{" "}
+                        <span className='sum_rent'>
+                          ({rate.no_of_received_rates} نظر)
                         </span>
-                        {total_discount_percent ? (
-                          <span className='percentage'>
-                            {total_discount_percent} %
-                          </span>
-                        ) : null}
-                      </div>
-                      {total_discount ? (
-                        <p>
-                          {avg_discounted_price_per_day
-                            ? avg_discounted_price_per_day.toLocaleString()
-                            : null}
-                        </p>
-                      ) : null}
-                      {/* <span className="unit_name">{unit} تومان</span> */}
-                      {avg_price_per_day && (
-                        <span className='unit_name'>
-                          {language.toman_per_day}
-                        </span>
-                      )}
-                    </div>
-                  )
-                )}
-                {/* <p className='owner_name_carinfo'>{owner.name}</p> */}
-                {rate?.no_of_received_rates ? (
-                  <div className='rate_container'>
-                    <Icon name='star' />
-                    <span>
-                      {rate.avg_rate}{" "}
-                      <span className='sum_rent'>
-                        ({rate.no_of_received_rates} نظر)
                       </span>
-                    </span>
+                    </div>
+                  ) : null}
+                  {/* <span>({year.name.fa})</span> */}
+                </h1>
+                <div className='separate_info'>
+                  {showPriceLoading ? (
+                    <div className='price_place_holder'>
+                      <Spinner color='#737373' display='block' width={20} />
+                    </div>
+                  ) : (
+                    availableCar && (
+                      <div className='avg_discounted_price_per_day'>
+                        <div className='discount_part'>
+                          <span
+                            className={
+                              total_discount ? "discount_price" : "normal_price"
+                            }
+                          >
+                            {avg_price_per_day
+                              ? avg_price_per_day.toLocaleString()
+                              : null}
+                          </span>
+                          {total_discount_percent ? (
+                            <span className='percentage'>
+                              {total_discount_percent} %
+                            </span>
+                          ) : null}
+                        </div>
+                        {total_discount ? (
+                          <p>
+                            {avg_discounted_price_per_day
+                              ? avg_discounted_price_per_day.toLocaleString()
+                              : null}
+                          </p>
+                        ) : null}
+                        {/* <span className="unit_name">{unit} تومان</span> */}
+                        {avg_price_per_day && (
+                          <span className='unit_name'>
+                            {language.toman_per_day}
+                          </span>
+                        )}
+                      </div>
+                    )
+                  )}
+                  <div className='driver_and_verified'>
+                    {with_driver && without_driver ? (
+                      <div className='driver_container'>
+                        <span className='tag_class'>
+                          {language.with_and_without_driver1}
+                        </span>
+                        <span className='tag_class margin_right_8'>
+                          {language.with_and_without_driver2}
+                        </span>
+                      </div>
+                    ) : with_driver ? (
+                      <div className='driver_container'>
+                        <span className='tag_class'>
+                          {language.just_with_drive}
+                        </span>
+                      </div>
+                    ) : without_driver ? (
+                      <div className='driver_container'>
+                        <span className='tag_class'>
+                          {language.without_derive}
+                        </span>
+                      </div>
+                    ) : null}
+                    {is_audited && (
+                      <div className='isverified_container tag_class'>
+                        <span>
+                          <Icon name='check' />
+                          {language.is_audited}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                ) : null}
-                {with_driver && without_driver ? (
-                  <div className='driver_container'>
-                    <span className='tag_class'>
-                      {language.with_and_without_driver1}
-                    </span>
-                    <span className='tag_class margin_right_8'>
-                      {language.with_and_without_driver2}
-                    </span>
-                  </div>
-                ) : with_driver ? (
-                  <div className='driver_container'>
-                    <span className='tag_class'>
-                      {language.just_with_drive}
-                    </span>
-                  </div>
-                ) : without_driver ? (
-                  <div className='driver_container'>
-                    <span className='tag_class'>{language.without_derive}</span>
-                  </div>
-                ) : null}
-                {is_audited && (
-                  <div className='isverified_container tag_class'>
-                    <span>
-                      <Icon name='check' />
-                      {language.is_audited}
-                    </span>
-                  </div>
-                )}
+                </div>
               </div>
               {!is_mine ? (
                 showCalender ? (

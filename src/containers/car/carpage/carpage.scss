@@ -24,7 +24,7 @@
     }
     .price_place_holder {
       display: none;
-      position: absolute;
+      // position: absolute;
       background: #fff;
       top: 0rem;
       text-align: center;
@@ -66,16 +66,40 @@
       font-size: 2.2rem;
       line-height: 2.2rem;
       line-height: unset;
-      margin: 0 0 1.2rem;
-      span {
-        color: $almost_black;
-        font-size: 1.4rem;
-        line-height: 1.4rem;
-        display: inline-block;
-        vertical-align: middle;
-        color: $dark_gray;
-        margin-right: 0.6rem;
+      margin: 0 0;
+      // span {
+      //   color: $almost_black;
+      //   font-size: 1.4rem;
+      //   line-height: 1.4rem;
+      //   display: inline-block;
+      //   vertical-align: middle;
+      //   color: $dark_gray;
+      //   margin-right: 0.6rem;
+      // }
+      .rate_container {
+        margin-top: 0.4rem;
+        img {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 0.4rem;
+        }
+        span {
+          display: inline-block;
+          font-size: 1.2rem;
+          line-height: 1.2rem;
+          color: $dark_blue;
+          .sum_rent {
+            color: $dark_gray;
+          }
+        }
       }
+    }
+    .separate_info {
+      margin-top: 2.4rem;
+      direction: ltr;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
     }
     .owner_name_carinfo {
       font-size: 1.2rem;
@@ -83,22 +107,8 @@
       color: $dark_gray;
       margin-bottom: 2.4rem;
     }
-    .rate_container {
-      margin-bottom: 2.4rem;
-      img {
-        display: inline-block;
-        vertical-align: top;
-        margin-left: 0.4rem;
-      }
-      span {
-        display: inline-block;
-        font-size: 1.2rem;
-        line-height: 1.2rem;
-        color: $dark_blue;
-        .sum_rent {
-          color: $dark_gray;
-        }
-      }
+    .driver_and_verified {
+      direction: rtl;
     }
     .driver_container {
       margin-bottom: 1.6rem;
@@ -708,7 +718,7 @@
       }
       .avg_discounted_price_per_day {
         display: block;
-        float: left;
+        // float: left;
         background: #fff;
         // top: 20%;
         text-align: center;
