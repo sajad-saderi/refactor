@@ -98,7 +98,9 @@ let incompleteInfo = {
   cancellation_policy: null,
   price_per_day: null,
   with_driver: false,
+  without_driver: false,
   extra_km_price: null,
+  extra_hour_price: null,
   max_km_per_day: null,
   days_to_get_reminded: 0,
   deliver_at_renters_place: false,
@@ -260,10 +262,17 @@ const stateReducer = (current, action) => {
       return { ...current, max_km_per_day: action.max_km_per_day };
     case "extra_km_price":
       return { ...current, extra_km_price: action.extra_km_price };
+    case "extra_hour_price":
+      return { ...current, extra_hour_price: action.extra_hour_price };
     case "with_driver":
       return {
         ...current,
         with_driver: action.with_driver,
+      };
+    case "without_driver":
+      return {
+        ...current,
+        without_driver: action.without_driver,
       };
     case "price_per_day":
       return {
@@ -770,8 +779,16 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
       with_driver: car.with_driver,
     });
     dispatch({
+      type: "without_driver",
+      without_driver: car.without_driver,
+    });
+    dispatch({
       type: "extra_km_price",
       extra_km_price: car.extra_km_price,
+    });
+    dispatch({
+      type: "extra_hour_price",
+      extra_hour_price: car.extra_hour_price,
     });
     dispatch({
       type: "max_km_per_day",

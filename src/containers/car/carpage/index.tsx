@@ -47,6 +47,7 @@ const CarPage = ({
   const [body_style, setBody_style] = useState(null);
   const [transmission_type, setTransmission_type] = useState(null);
   const [with_driver, setWith_driver] = useState(null);
+  const [without_driver, setWithout_driver] = useState(null);
   const [description, setDescription] = useState(null);
   const [max_km_per_day, setMax_km_per_day] = useState(null);
   const [extra_km_price_name, setExtra_km_price_name] = useState(null);
@@ -71,6 +72,7 @@ const CarPage = ({
   const [showPriceLoading, setShowPriceLoading] = useState(false);
   const [availableCar, setAvailableCar] = useState(true);
   const [is_verified, setIs_verified] = useState(false);
+  const [is_audited, setIs_audited] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
@@ -236,6 +238,7 @@ const CarPage = ({
     setBody_style(res.body_style);
     setTransmission_type(res.transmission_type);
     setWith_driver(res.with_driver);
+    setWithout_driver(res.without_driver);
     setDescription(res.description);
     setMax_km_per_day(res.max_km_per_day);
     setExtra_km_price_name(res.extra_km_price_name);
@@ -246,6 +249,7 @@ const CarPage = ({
     setLocation(res.location);
     setMileage_range(res.mileage_range);
     setIs_verified(res.is_verified);
+    setIs_audited(res.is_audited);
     if (res.extra_hour_price > 0)
       setExtra_hour_price_name(res.extra_hour_price_name);
     setOwner(res.owner);
@@ -402,18 +406,31 @@ const CarPage = ({
                     </span>
                   </div>
                 ) : null}
-                {with_driver && (
+                {with_driver && without_driver ? (
+                  <div className='driver_container'>
+                    <span className='tag_class'>
+                      {language.with_and_without_driver1}
+                    </span>
+                    <span className='tag_class margin_right_8'>
+                      {language.with_and_without_driver2}
+                    </span>
+                  </div>
+                ) : with_driver ? (
                   <div className='driver_container'>
                     <span className='tag_class'>
                       {language.just_with_drive}
                     </span>
                   </div>
-                )}
-                {is_verified && (
+                ) : without_driver ? (
+                  <div className='driver_container'>
+                    <span className='tag_class'>{language.without_derive}</span>
+                  </div>
+                ) : null}
+                {is_audited && (
                   <div className='isverified_container tag_class'>
                     <span>
                       <Icon name='check' />
-                      {language.is_verified}
+                      {language.is_audited}
                     </span>
                   </div>
                 )}
@@ -828,14 +845,14 @@ const CarPage = ({
                   <div className='owner_info'>
                     <p className='owner_name'>{owner.name}</p>
                     {owner.no_of_successfully_rented_cars_as_owner > 0 ? (
-                      <p>
+                      <span>
                         {language.mizban}{" "}
                         <strong>
                           {owner.no_of_successfully_rented_cars_as_owner}
                           {language.safar}
                         </strong>{" "}
                         {language.bodeh}
-                      </p>
+                      </span>
                     ) : null}
                   </div>
                   <div className='go_to_profile'>

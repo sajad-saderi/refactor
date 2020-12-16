@@ -63,6 +63,8 @@ const stateReducer = (current, action) => {
         ...current,
         deliver_at_renters_place: action.deliver_at_renters_place,
       };
+    case "driver_status":
+      return { ...current, driver_status: action.driver_status };
     case "with_driver":
       return {
         ...current,
@@ -125,6 +127,12 @@ const error_reducer = (current, action) => {
         extra_km_price: action.extra_km_price,
         error_message: action.error_message,
       };
+    case "driver_status":
+      return {
+        ...current,
+        driver_status: action.driver_status,
+        error_message: action.error_message,
+      };
     case "extra_hour_price":
       return {
         ...current,
@@ -179,6 +187,7 @@ const error_reducer = (current, action) => {
 
 const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const [DateAndPrice, setDateAndPrice] = useState(1);
+  const [driver_status, setDriver_status] = useState(1);
   const [initialAvailabilityList, setInitialAvailabilityList] = useState([]);
   const [availabilityList, setAvailabilityList] = useState([]);
 
@@ -206,6 +215,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     days_to_get_reminded: false,
     deliver_at_renters_place: false,
     with_driver: false,
+    driver_status: false,
     is_out_of_service: false,
     min_days_to_rent: false,
     price_per_day: false,
@@ -225,6 +235,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     max_km_per_day: 250,
     extra_km_price: "",
     extra_hour_price: "",
+    driver_status: null,
     days_to_get_reminded: 0,
     deliver_at_renters_place: 0,
     with_driver: 0,
@@ -351,10 +362,29 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     setYear(car.year.name.fa);
 
     // SET CAR WITH DRIVER
-    dispatch({
-      type: "with_driver",
-      with_driver: car.with_driver ? 1 : 0,
-    });
+    console.log(car.with_driver, car.without_driver);
+
+    if (car.with_driver && car.without_driver) {
+      dispatch({
+        type: "driver_status",
+        driver_status: 3,
+      });
+    } else if (car.with_driver) {
+      dispatch({
+        type: "driver_status",
+        driver_status: 2,
+      });
+    } else if (car.without_driver) {
+      dispatch({
+        type: "driver_status",
+        driver_status: 1,
+      });
+    } else {
+      dispatch({
+        type: "driver_status",
+        driver_status: 3,
+      });
+    }
 
     // SET CAR DELIVER AT RENTERS PLACE
     dispatch({
@@ -440,7 +470,14 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         const partial_car_res = await REQUEST_SET_CAR_PARTIAL({
           id: state.id,
           deliver_at_renters_place: state.deliver_at_renters_place,
-          with_driver: state.with_driver,
+          with_driver:
+            state.driver_status === 2 || state.driver_status === 3
+              ? true
+              : false,
+          without_driver:
+            state.driver_status === 1 || state.driver_status === 3
+              ? true
+              : false,
           max_km_per_day: state.max_km_per_day,
           extra_km_price: state.extra_km_price,
           extra_hour_price: state.extra_hour_price,
@@ -1015,7 +1052,33 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 });
               }}
             />
-            <Checkbox
+            <Radio
+              name='driver_status'
+              error_status={ErrorState.driver_status}
+              SelectHandler={(i) => {
+                // setDriver_status(+i);
+                dispatch({
+                  type: "driver_status",
+                  driver_status: +i,
+                });
+              }}
+              defaultCheck={state.driver_status}
+              data={[
+                {
+                  label: language.without_driver,
+                  value: 1,
+                },
+                {
+                  label: language.with_driver_rent,
+                  value: 2,
+                },
+                {
+                  label: language.with_and_without_drive,
+                  value: 3,
+                },
+              ]}
+            />
+            {/* <Checkbox
               initialValue={[state.with_driver]}
               data={[
                 {
@@ -1036,7 +1099,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   with_driver: 1,
                 });
               }}
-            />
+            /> */}
           </div>
           <div className='add_car_form_step_2'>
             <h4 className='extra_text'>{language.extra_text_2_h4}</h4>

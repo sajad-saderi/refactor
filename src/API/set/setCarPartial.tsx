@@ -11,6 +11,7 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
       id,
       deliver_at_renters_place,
       with_driver,
+      without_driver,
       max_km_per_day,
       extra_km_price,
       cancellation_policy,
@@ -29,6 +30,7 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
           with_driver,
           is_out_of_service,
           extra_km_price,
+          without_driver,
           extra_hour_price,
           id,
           max_km_per_day,
@@ -57,6 +59,7 @@ interface ISetCarPartial {
   id: string | number;
   deliver_at_renters_place: number | boolean;
   with_driver: number | boolean;
+  without_driver: number | boolean;
   max_km_per_day: number;
   extra_km_price: number;
   cancellation_policy: string;

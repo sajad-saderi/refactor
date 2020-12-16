@@ -69,6 +69,9 @@
     "day": "روز",
     "deliver_at_your_place": "در محل مهمان تحویل می‌دهم",
     "with_driver": "فقط با راننده اجاره می‌دهم",
+    "with_driver_rent": "فقط با راننده",
+    "without_driver": "فقط بدون راننده",
+    "with_and_without_drive": "با راننده و بدون راننده",
     "extra_text_2_h4": "تخفیف‌ها",
     "discount_box": {
       "error_1": "لطفا تعداد روز را مشخص کنید",

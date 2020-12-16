@@ -18,7 +18,7 @@ const Car = ({
   _404,
 }) => {
   const router = useRouter();
-  React.useEffect(() => {
+  React.useEffect(() => {    
     if (_404) {
       router.push("/404");
     } else { 
