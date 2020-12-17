@@ -574,6 +574,9 @@ input {
 }
 
 // margin
+.margin_bottom_8 {
+  margin-bottom: 0.8rem;
+}
 .margin_right_8 {
   margin-right: 0.8rem;
 }
@@ -583,11 +586,17 @@ input {
 .margin_bottom_16 {
   margin-bottom: 1.6rem;
 }
+.margin_top_24 {
+  margin-top: 2.4rem;
+}
 .margin_bottom_24 {
   margin-bottom: 2.4rem;
 }
 .margin_bottom_12 {
   margin-bottom: 1.2rem;
+}
+.margin_top_12 {
+  margin-top: 1.2rem;
 }
 
 .tag_class {
@@ -606,6 +615,20 @@ input {
     font-size: 1.6rem;
     text-align: center;
   }
+}
+
+.size_14 {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+}
+.size_12 {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+
+.dark_gray{
+  color: $dark_gray
 }
 
 // 3rd parties
@@ -646,6 +669,8 @@ input {
 @import "../components/ImageUploader/ImageUploader.scss";
 @import "../components/pelak/pelak.scss";
 @import "../components/PleaseLogin/please_login.scss";
+@import "../components/Review/review.scss";
+@import "../components/StarGenerator/starGenerator.scss";
 @import "../components/Slider/slider.scss";
 @import "../components/Slider/Gallery/Gallery.scss";
 @import "../components/Spinner/spinner.scss";

@@ -1,5 +1,5 @@
 /**
- * You can find the list of the all APIs in points.txt  
+ * You can find the list of the all APIs in points.txt
  */
 
 import { REQUEST_GET_LOCATION } from "./get/getLocations";
@@ -9,6 +9,7 @@ import { GET_ORDER_REQUEST } from "./get/getOrderRequest";
 import { REQUEST_GET_ORDER_REQUESTS } from "./get/getOrderRequests";
 import { REQUEST_GET_CAR_BRAND } from "./get/getCarBrand";
 import { REQUEST_GET_YEAR } from "./get/getYear";
+import { REQUEST_GET_CAR_REVIEW } from "./get/getCarReview";
 import { REQUEST_GET_CAR_MODEL } from "./get/getCarModel";
 import { REQUEST_GET_CAR_BODY_STYLE } from "./get/getBodyStyle";
 import { REQUEST_GET_CAR_CYLINDER } from "./get/getCylinder";
@@ -80,4 +81,5 @@ export {
   REQUEST_SET_CAR_DISCOUNT,
   REQUEST_SET_CAR_AVAILABILITY,
   REQUEST_SET_CAR_PARTIAL,
+  REQUEST_GET_CAR_REVIEW,
 };

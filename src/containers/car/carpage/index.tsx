@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { REQUEST_GET_RENTAL_CAR } from "../../../../src/API";
+import {
+  REQUEST_GET_CAR_REVIEW,
+  REQUEST_GET_RENTAL_CAR,
+} from "../../../../src/API";
 import { useRouter } from "next/router";
 import Slider from "../../../../src/components/Slider";
 import Button from "../../../components/form/Button";
@@ -16,6 +19,7 @@ import carImage from "../../../../public/image/car-image.jpg";
 import Icon from "../../../../utils/Icon";
 import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
+import Review from "../../../components/Review";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -78,6 +82,8 @@ const CarPage = ({
   const [toDay, setToDay] = useState("");
   const [no_of_days, setNo_of_days] = useState("...");
   const [showDateText, setShowDateText] = useState(true);
+
+  const [review, setReView] = useState(null);
 
   const router = useRouter();
 
@@ -175,6 +181,8 @@ const CarPage = ({
       const res: any = await REQUEST_GET_RENTAL_CAR(localData);
       set_CarInformation(res);
       setShowPriceLoading(false);
+      const reviews: any = await REQUEST_GET_CAR_REVIEW(id);
+      setReView(reviews.items);
     } catch (error) {
       if (error === "Not found!") {
         router.push("/404");
@@ -879,6 +887,9 @@ const CarPage = ({
               ) : null}
             </section>
           </article>
+          {review ? (
+            <Review review={review} language={language.review} />
+          ) : null}
         </>
       ) : (
         <>
