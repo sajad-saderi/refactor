@@ -55,8 +55,8 @@ img.TranslateLeft {
 }
 
 .activeDot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50px;
   background: $dark_blue;
   margin: 6px;
@@ -65,16 +65,19 @@ img.TranslateLeft {
 }
 
 .deactiveDot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50px;
-  background: #bfbfbf;
+  background: $gray;
   margin: 6px;
   display: inline-block;
   vertical-align: middle;
   opacity: 0.3;
 }
 .NAVIGA {
+  padding: 2rem 0 2rem 2rem;
+  width: auto;
+  height: auto;
   transition: 0.2s;
   position: absolute;
   top: 246px;
@@ -85,9 +88,6 @@ img.TranslateLeft {
   font-size: 12px;
   color: #7d7d7d;
   border-radius: 50px;
-  height: 22px;
-  width: 13px;
-  padding: 0;
 }
 .NAVIGA:hover {
   opacity: 0.8;
@@ -118,7 +118,7 @@ img.TranslateLeft {
 }
 .NavBotton {
   cursor: pointer;
-  position: absolute;
+  // position: absolute;
   bottom: 0px;
   background: #fff;
   right: 0;
@@ -127,12 +127,14 @@ img.TranslateLeft {
   padding-top: 8px;
   z-index: 4;
   text-align: center;
+  margin-bottom: 0.8rem;
 }
 .FullScreen {
+  padding: 1.2rem;
   cursor: pointer;
   position: absolute;
-  bottom: 38px;
-  right: 12px;
+  bottom: 0px;
+  right: 0px;
   z-index: 3;
   svg {
     width: 4rem;
@@ -159,9 +161,8 @@ img.TranslateLeft {
   }
   .deactiveDot,
   .activeDot {
+    width: 0.6rem;
+    height: 0.6rem;
     margin: 0 3px !important;
-  }
-  .FullScreen {
-    bottom: 32px;
   }
 }

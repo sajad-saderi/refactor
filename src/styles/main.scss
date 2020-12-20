@@ -589,6 +589,9 @@ input {
 .margin_top_24 {
   margin-top: 2.4rem;
 }
+.margin_top_16 {
+  margin-top: 1.6rem;
+}
 .margin_bottom_24 {
   margin-bottom: 2.4rem;
 }
@@ -626,9 +629,8 @@ input {
   line-height: 1.2rem;
 }
 
-
-.dark_gray{
-  color: $dark_gray
+.dark_gray {
+  color: $dark_gray;
 }
 
 // 3rd parties

@@ -395,7 +395,7 @@ const CarPage = ({
                           </span>
                           {total_discount_percent ? (
                             <span className='percentage'>
-                              {total_discount_percent} %
+                              %{total_discount_percent}
                             </span>
                           ) : null}
                         </div>
@@ -645,7 +645,7 @@ const CarPage = ({
                 <Icon name='gear' />
                 <span>{language.features}</span>
               </h2>
-              <div className='info_container margin_right_24 margin_bottom_24'>
+              <div className='info_container margin_right_24'>
                 <p className='alignThem'>
                   <span className='info_name'>{language.body_style}</span>{" "}
                   <span className='info_value'>{body_style.name.fa}</span>
@@ -696,7 +696,7 @@ const CarPage = ({
               )} */}
             </section>
             {/* user info section */}
-            <section className='onwnerInfo_container padding_16'>
+            <section className='onwnerInfo_container padding_16 margin_bottom_24'>
               {showPriceLoading ? (
                 <div className='price_place_holder'>
                   <Spinner color='#737373' display='block' width={20} />
@@ -716,7 +716,7 @@ const CarPage = ({
                       </span>
                       {total_discount_percent ? (
                         <span className='percentage'>
-                          {total_discount_percent} %
+                          {total_discount_percent}%
                         </span>
                       ) : null}
                     </div>
@@ -842,19 +842,21 @@ const CarPage = ({
                 href={`/user/[id]`}
                 as={`/user/${owner.username ? owner.username : owner.id}`}
               >
-                <a className='HEAP_Car_Link_Profile'>
+                <a className='HEAP_Car_Link_Profile profile_anchor_tag_container'>
                   <figure className='owner_part'>
-                    <img
-                      className='user_avatar'
-                      src={owner.thumbnail_url}
-                      alt={owner.name}
-                    />
-                    {owner.rate.avg_rate_as_owner ? (
-                      <p>
-                        <Icon name='star' />
-                        {owner.rate.avg_rate_as_owner}
-                      </p>
-                    ) : null}
+                    <div className='owner_part_avatar_container'>
+                      <img
+                        className='user_avatar'
+                        src={owner.thumbnail_url}
+                        alt={owner.name}
+                      />
+                      {owner.rate.avg_rate_as_owner ? (
+                        <p>
+                          <Icon name='star' />
+                          {owner.rate.avg_rate_as_owner}
+                        </p>
+                      ) : null}
+                    </div>
                   </figure>
                   <div className='owner_info'>
                     <p className='owner_name'>{owner.name}</p>
@@ -867,6 +869,15 @@ const CarPage = ({
                         </strong>{" "}
                         {language.bodeh}
                       </span>
+                    ) : null}
+                    {owner.owner_avg_response_time ? (
+                      <p className='size_14 margin_top_16 margin_bottom_16'>
+                        {language.mamoolan}
+                        <strong>
+                          {language.hodood} {owner.owner_avg_response_time.name}{" "}
+                        </strong>
+                        {language.pasokh}
+                      </p>
                     ) : null}
                   </div>
                   <div className='go_to_profile'>
@@ -887,7 +898,7 @@ const CarPage = ({
               ) : null}
             </section>
           </article>
-          {review ? (
+          {review && review.length > 0 ? (
             <Review review={review} language={language.review} />
           ) : null}
         </>

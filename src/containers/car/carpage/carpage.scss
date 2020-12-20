@@ -13,7 +13,7 @@
   .carInfo_container {
     box-shadow: $box_shadow;
     background: #fff;
-    padding: 3.2rem 1.6rem 1.6rem;
+    padding: 1.6rem;
     width: 63%;
     display: inline-block;
     vertical-align: top;
@@ -96,7 +96,7 @@
     }
     .separate_info {
       margin-top: 2.4rem;
-      direction: ltr;
+      direction: rtl;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -332,7 +332,7 @@
     pre {
       white-space: pre-line;
       font-size: 1.4rem;
-      line-height: 1.8rem;
+      line-height: normal;
     }
     hr {
       border-width: 0.1rem;
@@ -357,14 +357,14 @@
         .info_name {
           font-weight: 500;
           width: 9rem;
-          line-height: 1.2rem;
-          font-size: 1.2rem;
+          line-height: 1.4rem;
+          font-size: 1.4rem;
           display: inline-block;
           vertical-align: middle;
         }
         .info_value {
-          line-height: 1.2rem;
-          font-size: 1.2rem;
+          line-height: 1.4rem;
+          font-size: 1.4rem;
           display: inline-block;
           padding-right: 1rem;
           vertical-align: middle;
@@ -565,15 +565,21 @@
         }
       }
     }
+    .profile_anchor_tag_container {
+      margin-bottom: 1.6rem;
+      margin-top: 2.4rem;
+      display: flex;
+      align-items: flex-start;
+    }
     .Rent_date {
       text-align: right;
       font-weight: 500;
-      font-size: 1.2rem;
-      margin-top: 2.5rem;
-      margin-bottom: 4rem;
+      margin-top: 4.8rem;
+      margin-bottom: 4.8rem;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       p {
+        font-size: 1.4rem;
         svg {
           display: inline-block;
           vertical-align: middle;
@@ -592,29 +598,29 @@
     }
     .owner_part {
       display: inline-block;
-      margin-top: 2.4rem;
       vertical-align: middle;
-      .user_avatar {
-        width: 4.8rem;
-        height: 4.8rem;
-        border-radius: 50%;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      p {
-        margin-top: 0.8rem;
-        text-align: center;
-        font-size: 1.2rem;
-        img {
+      .owner_part_avatar_container {
+        .user_avatar {
+          width: 4.8rem;
+          height: 4.8rem;
+          border-radius: 50%;
           display: inline-block;
-          vertical-align: top;
-          margin-left: 0.4rem;
+          vertical-align: middle;
+        }
+        p {
+          margin-top: 0.8rem;
+          text-align: center;
+          font-size: 1.2rem;
+          img {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 0.4rem;
+          }
         }
       }
     }
     .owner_info {
       display: inline-block;
-      margin-top: 2.4rem;
       margin-right: 0.8rem;
       vertical-align: middle;
       .owner_name {
@@ -627,7 +633,6 @@
         margin-top: 2.4rem;
         font-size: 1.4rem;
         line-height: 1.4rem;
-        margin-bottom: 1.6rem;
       }
     }
     .go_to_profile {
@@ -707,6 +712,10 @@
       display: block;
       position: relative;
       border-radius: 0;
+      box-shadow: 0px 2px 2px -1px rgba(0, 0, 0, 0.1);
+      .separate_info {
+        direction: ltr;
+      }
       .price_place_holder {
         display: block;
       }
@@ -802,6 +811,7 @@
       width: 100%;
       margin-top: 0.8rem;
       border-radius: 0;
+      padding-top: 1.6rem;
       .avg_discounted_price_per_day {
         display: none;
         p {
@@ -824,6 +834,9 @@
       }
       .search_box_div {
         display: none;
+      }
+      .profile_anchor_tag_container {
+        margin-bottom: 0;
       }
       // .owner_part {
       //   margin-top: 2rem;

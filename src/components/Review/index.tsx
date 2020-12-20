@@ -6,7 +6,7 @@ import StarGenerator from "../StarGenerator";
 const Review = ({ review, language }: IReview) => {
   return (
     <article className='review_article responsive'>
-      <section className='review_container_car_page padding_16'>
+      <section className='review_container_car_page padding_16 padding_bottom_24'>
         <h2>
           <Icon name='balloon' />
           <span>{language.user_reviews}</span>
@@ -22,12 +22,16 @@ const Review = ({ review, language }: IReview) => {
                   <StarGenerator count={item.rate} />
                   {moment.unix(item.creation_time.timestamp).format("jD jMMMM")}
                 </p>
-                <p className='margin_top_12 size_14'>{item.review}</p>
+                <p className='margin_top_12 size_14 review_content'>
+                  {item.review}
+                </p>
               </div>
             );
           })
         ) : (
-          <p>تا کنون نظری برای این خودرو ثبت نشده است.</p>
+          <p className='margin_right_24 size_14'>
+            تا کنون نظری برای این خودرو ثبت نشده است.
+          </p>
         )}
       </section>
     </article>
