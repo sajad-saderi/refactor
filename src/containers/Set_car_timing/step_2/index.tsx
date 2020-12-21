@@ -1030,6 +1030,37 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               text={language.day}
               value={state.min_days_to_rent}
             />
+            <div className='driver_satus'>
+              <label>{language.mikhay_mashin_ba_rannade}</label>
+              <p>{language.most_cases}</p>
+              <Radio
+                name='driver_status'
+                error_status={ErrorState.driver_status}
+                SelectHandler={(i) => {
+                  // setDriver_status(+i);
+                  dispatch({
+                    type: "driver_status",
+                    driver_status: +i,
+                  });
+                }}
+                defaultCheck={state.driver_status}
+                data={[
+                  {
+                    label: language.without_driver,
+                    value: 1,
+                  },
+                  {
+                    label: language.with_driver_rent,
+                    value: 2,
+                  },
+                  {
+                    label: language.with_and_without_drive,
+                    value: 3,
+                  },
+                ]}
+              />
+            </div>
+            <label>{language.deliver_type}</label>
             <Checkbox
               initialValue={[state.deliver_at_renters_place]}
               data={[
@@ -1051,32 +1082,6 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   deliver_at_renters_place: 1,
                 });
               }}
-            />
-            <Radio
-              name='driver_status'
-              error_status={ErrorState.driver_status}
-              SelectHandler={(i) => {
-                // setDriver_status(+i);
-                dispatch({
-                  type: "driver_status",
-                  driver_status: +i,
-                });
-              }}
-              defaultCheck={state.driver_status}
-              data={[
-                {
-                  label: language.without_driver,
-                  value: 1,
-                },
-                {
-                  label: language.with_driver_rent,
-                  value: 2,
-                },
-                {
-                  label: language.with_and_without_drive,
-                  value: 3,
-                },
-              ]}
             />
             {/* <Checkbox
               initialValue={[state.with_driver]}

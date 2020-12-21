@@ -201,6 +201,26 @@
           }
         }
       }
+      .driver_satus {
+        margin-bottom: 3rem;
+        p {
+          margin-bottom: 1.6rem;
+          line-height: 2.4rem;
+        }
+        .radio_container {
+          margin-bottom: 1.6rem;
+          display: block;
+          .checkmark {
+            top: -4px;
+          }
+          label {
+            margin-bottom: 0;
+            color: #707070;
+            font-size: 1.3rem;
+            font-weight: 400;
+          }
+        }
+      }
       .check_box_container {
         margin-bottom: 2.4rem;
         .container {
@@ -312,7 +332,7 @@
         box-shadow: 0 0 0 0 transparent inset;
         box-sizing: border-box;
         &::placeholder {
-          color:$gray;
+          color: $gray;
         }
         &:focus {
           background: #fff;
