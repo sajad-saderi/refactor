@@ -103,3 +103,17 @@
     /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
       url("../../public/fonts/dana/ttf/Dana-FaNum-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: dana_medium;
+  font-style: normal;
+  font-display: swap;
+  font-weight: bold;
+  src: url("../../public/fonts/dana/eot/dana-fanum-medium.eot");
+  src: url("../../public/fonts/dana/eot/dana-fanum-medium.eot?#iefix")
+      format("embedded-opentype"),
+    /* FF39+,Chrome36+, Opera24+*/
+      url("../../public/fonts/dana/woff/dana-fanum-medium.woff") format("woff"),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url("../../public/fonts/dana/ttf/Dana-FaNum-Medium.ttf") format("truetype");
+}

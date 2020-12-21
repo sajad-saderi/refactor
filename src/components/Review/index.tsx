@@ -6,7 +6,7 @@ import StarGenerator from "../StarGenerator";
 const Review = ({ review, language }: IReview) => {
   return (
     <article className='review_article responsive'>
-      <section className='review_container_car_page padding_16 padding_bottom_24'>
+      <section className='review_container_car_page'>
         <h2>
           <Icon name='balloon' />
           <span>{language.user_reviews}</span>

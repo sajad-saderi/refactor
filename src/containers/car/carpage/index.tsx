@@ -645,7 +645,7 @@ const CarPage = ({
                 <Icon name='gear' />
                 <span>{language.features}</span>
               </h2>
-              <div className='info_container margin_right_24'>
+              <div className='info_container margin_right_24 margin_bottom_24'>
                 <p className='alignThem'>
                   <span className='info_name'>{language.body_style}</span>{" "}
                   <span className='info_value'>{body_style.name.fa}</span>
@@ -696,7 +696,7 @@ const CarPage = ({
               )} */}
             </section>
             {/* user info section */}
-            <section className='onwnerInfo_container padding_16 margin_bottom_24'>
+            <section className='onwnerInfo_container margin_bottom_24'>
               {showPriceLoading ? (
                 <div className='price_place_holder'>
                   <Spinner color='#737373' display='block' width={20} />
@@ -728,7 +728,11 @@ const CarPage = ({
                       </p>
                     ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
-                    {avg_price_per_day && <span>{language.toman_per_day}</span>}
+                    {avg_price_per_day && (
+                      <span className='unit_name'>
+                        {language.toman_per_day}
+                      </span>
+                    )}
                   </div>
                 )
               )}
