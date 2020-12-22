@@ -75,7 +75,7 @@ img.TranslateLeft {
   opacity: 0.3;
 }
 .NAVIGA {
-  padding: 2rem 0 2rem 4rem;
+  padding: 2rem 1.6rem 2rem 4rem;
   width: auto;
   height: 100%;
   transition: 0.2s;
@@ -98,7 +98,7 @@ img.TranslateLeft {
 }
 
 .NAVIGA.arrow-right {
-  right: 1.6rem;
+  right: 0;
   position: absolute;
   svg {
     margin-top: 3px;
@@ -106,7 +106,7 @@ img.TranslateLeft {
   }
 }
 .NAVIGA.arrow-left {
-  left: 1.6rem;
+  left: 0;
   position: absolute;
   transform: rotate(180deg);
   svg {
@@ -148,13 +148,9 @@ img.TranslateLeft {
   .NAVIGA {
     // top: 38%;
     display: block;
+    padding: 2rem 1.2rem 2rem 4rem;
   }
-  .NAVIGA.arrow-right {
-    right: 1.2rem;
-  }
-  .NAVIGA.arrow-left {
-    left: 1.2rem;
-  }
+
   // .G_R,
   // .G_L {
   //   top: 26%;

@@ -76,6 +76,12 @@
       //   color: $dark_gray;
       //   margin-right: 0.6rem;
       // }
+      .year_of_build {
+        color: $dark_gray;
+        margin-right: 0.4rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
       .rate_container {
         margin-top: 1.4rem;
         img {
