@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import Search from "../src/containers/Search";
@@ -6,9 +6,11 @@ import insurance from "../public/image/SamanInsurance.png";
 import "../src/styles/pages/index.scss";
 import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
+import { guard_controller } from "../utils/guard_controller";
 // import { logPageView } from "../utils/analytics";
 
 const HomePage = () => {
+  const [authorize, set_authorize] = useState(true);
   React.useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
@@ -16,6 +18,10 @@ const HomePage = () => {
       pagePath: "/",
       pageTitle: language.next_seo.title,
     });
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      set_authorize(false);
+    }
     // logPageView();
   }, []);
 
@@ -70,7 +76,7 @@ const HomePage = () => {
             </section>
           </div>
           <div className='add_car_section'>
-            <Link href='/add-car'>
+            <Link href={authorize ? "/add-car" : "/login"}>
               <a className='Blue_BTN add_car_custom'>
                 {language.second_container_add_car_section_a_1}
               </a>

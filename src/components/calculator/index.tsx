@@ -9,6 +9,7 @@ import TextInput from "../form/TextInput";
 import Button from "../form/Button";
 import ShowResult from "./ShowResult/ShowResult";
 import Link from "next/link";
+import { guard_controller } from "../../../utils/guard_controller";
 
 const Calculator = ({ AbText, language }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
@@ -35,8 +36,13 @@ const Calculator = ({ AbText, language }: ICalculator) => {
     model: null,
     value: null,
   });
+  const [authorize, set_authorize] = useState(true);
 
   useEffect(() => {
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      set_authorize(false);
+    }
     fetchData();
   }, []);
 
@@ -149,11 +155,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       {showCalculateBox ? (
         <>
           <h2>{language.h2}</h2>
-          <p className="title">{language.p_title}</p>
-          <form data-test-id="form" onSubmit={calculator}>
-            <div className="calculator_dropDown">
+          <p className='title'>{language.p_title}</p>
+          <form data-test-id='form' onSubmit={calculator}>
+            <div className='calculator_dropDown'>
               <DropdownSearch
-                data-test-id="brand"
+                data-test-id='brand'
                 search_place_holder={language.brand_place_holder}
                 defaultVal={brand.name}
                 data={brandList}
@@ -186,9 +192,9 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 InputDisable={true}
                 error_status={brandError.status}
               />
-              <span className="error_Field">{brandError.message}</span>
+              <span className='error_Field'>{brandError.message}</span>
             </div>
-            <div className="calculator_dropDown">
+            <div className='calculator_dropDown'>
               <DropdownSearch
                 defaultVal={model.name}
                 data={modelList}
@@ -216,11 +222,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 placeholder={language.model}
                 error_status={modelError.status}
               />
-              <span className="error_Field">{modelError.message}</span>
+              <span className='error_Field'>{modelError.message}</span>
             </div>
-            <div className="value_container">
+            <div className='value_container'>
               <TextInput
-                name="value"
+                name='value'
                 number={true}
                 onChangeHandler={(e) => {
                   setSaveCarInfo((saveCarInfo) => {
@@ -251,11 +257,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
               <span>{language.toman}</span>
             </div>
             <Button
-              data-test-id="local_Button_joinUs"
+              data-test-id='local_Button_joinUs'
               // onClick on this button nothing happened, the event listening to submitting the form
               value={language.estimate}
               click={() => {}}
-              class="Blue_BTN local_Button_joinUs"
+              class='Blue_BTN local_Button_joinUs'
               loading={loading}
             />
           </form>
@@ -268,11 +274,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
             weekly={weekly}
             monthly={monthly}
           />
-          <div className="addCarnowInlanding">
-            <Link href="/add-car">
+          <div className='addCarnowInlanding'>
+            <Link href={authorize ? "/add-car" : "/login"}>
               <a
-                className="Blue_BTN addCar_top_joinus_a"
-                data-test-id="addCar_top_joinus_a"
+                className='Blue_BTN addCar_top_joinus_a'
+                data-test-id='addCar_top_joinus_a'
               >
                 {AbText ? AbText : language.add_your_car}
               </a>
@@ -280,7 +286,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
           </div>
           {/* show the calculation box */}
           <p
-            className="tryAgainCalc"
+            className='tryAgainCalc'
             onClick={() => {
               window.scrollTo(0, 0);
               // Reset the car value
