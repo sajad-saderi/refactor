@@ -310,7 +310,7 @@ const Checkout_Container = ({
             <p className='Discount_color'>
               <span>
                 {!has_system_discount
-                  ? `${language.discount_for}${no_of_days}${language.day}`
+                  ? `${language.discount_for} ${no_of_days} ${language.day}`
                   : language.discount}
               </span>
               <span>
