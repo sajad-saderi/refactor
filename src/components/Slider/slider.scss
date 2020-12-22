@@ -75,12 +75,12 @@ img.TranslateLeft {
   opacity: 0.3;
 }
 .NAVIGA {
-  padding: 2rem 0 2rem 2rem;
+  padding: 2rem 0 2rem 4rem;
   width: auto;
-  height: auto;
+  height: 100%;
   transition: 0.2s;
   position: absolute;
-  top: 246px;
+  top: 0;
   z-index: 10;
   cursor: pointer;
   background: transparent;
@@ -135,7 +135,7 @@ img.TranslateLeft {
   position: absolute;
   bottom: 0px;
   right: 0px;
-  z-index: 3;
+  z-index: 20;
   svg {
     width: 4rem;
   }
@@ -146,7 +146,7 @@ img.TranslateLeft {
     height: auto;
   }
   .NAVIGA {
-    top: 38%;
+    // top: 38%;
     display: block;
   }
   .NAVIGA.arrow-right {
@@ -155,10 +155,10 @@ img.TranslateLeft {
   .NAVIGA.arrow-left {
     left: 1.2rem;
   }
-  .G_R,
-  .G_L {
-    top: 26%;
-  }
+  // .G_R,
+  // .G_L {
+  //   top: 26%;
+  // }
   .G_R {
     right: 0;
   }

@@ -36,7 +36,7 @@
   width: 80%;
   margin: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   overflow-x: scroll;
   height: 100px;
   margin-top: 20px;
@@ -93,7 +93,6 @@
     right: 10px;
   }
 }
-
 
 @media (max-width: 660px) {
   .closeButton {

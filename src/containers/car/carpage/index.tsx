@@ -384,6 +384,11 @@ const CarPage = ({
                     availableCar && (
                       <div className='avg_discounted_price_per_day'>
                         <div className='discount_part'>
+                          {total_discount_percent ? (
+                            <span className='percentage'>
+                              {total_discount_percent}%
+                            </span>
+                          ) : null}
                           <span
                             className={
                               total_discount ? "discount_price" : "normal_price"
@@ -393,11 +398,6 @@ const CarPage = ({
                               ? avg_price_per_day.toLocaleString()
                               : null}
                           </span>
-                          {total_discount_percent ? (
-                            <span className='percentage'>
-                              %{total_discount_percent}
-                            </span>
-                          ) : null}
                         </div>
                         {total_discount ? (
                           <p>
