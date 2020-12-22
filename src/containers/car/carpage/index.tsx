@@ -864,6 +864,13 @@ const CarPage = ({
                   </figure>
                   <div className='owner_info'>
                     <p className='owner_name'>{owner.name}</p>
+                    <p className='since_from'>
+                      {language.az}
+                      <strong>
+                        {owner.join_date.name.fa.split("،")[0].slice(2)}
+                      </strong>
+                      {language.member}
+                    </p>
                     {owner.no_of_successfully_rented_cars_as_owner > 0 ? (
                       <span>
                         {language.mizban}{" "}

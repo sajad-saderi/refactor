@@ -98,7 +98,7 @@ img.TranslateLeft {
 }
 
 .NAVIGA.arrow-right {
-  right: 1.2rem;
+  right: 1.6rem;
   position: absolute;
   svg {
     margin-top: 3px;
@@ -106,7 +106,7 @@ img.TranslateLeft {
   }
 }
 .NAVIGA.arrow-left {
-  left: 1.2rem;
+  left: 1.6rem;
   position: absolute;
   transform: rotate(180deg);
   svg {
@@ -130,7 +130,7 @@ img.TranslateLeft {
   margin-bottom: 0.8rem;
 }
 .FullScreen {
-  padding: 1.2rem;
+  padding: 1.6rem;
   cursor: pointer;
   position: absolute;
   bottom: 0px;
@@ -149,6 +149,12 @@ img.TranslateLeft {
     top: 38%;
     display: block;
   }
+  .NAVIGA.arrow-right {
+    right: 1.2rem;
+  }
+  .NAVIGA.arrow-left {
+    left: 1.2rem;
+  }
   .G_R,
   .G_L {
     top: 26%;
@@ -158,6 +164,9 @@ img.TranslateLeft {
   }
   .G_L {
     left: 0;
+  }
+  .FullScreen {
+    padding: 1.2rem;
   }
   .deactiveDot,
   .activeDot {
