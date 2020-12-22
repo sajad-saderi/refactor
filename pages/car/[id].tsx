@@ -18,10 +18,10 @@ const Car = ({
   _404,
 }) => {
   const router = useRouter();
-  React.useEffect(() => {    
+  React.useEffect(() => {
     if (_404) {
       router.push("/404");
-    } else { 
+    } else {
       window["dataLayer"].push({
         event: "page_view",
         pageURL: window.location.href,
@@ -114,7 +114,7 @@ export async function getServerSideProps(props) {
           id,
         },
       };
-    } else {       
+    } else {
       let param = null;
       if (search_id) {
         param = { search_id };
