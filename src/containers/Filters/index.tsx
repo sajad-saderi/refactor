@@ -114,12 +114,14 @@ const Filters = ({
       if (reset.brand_id) {
         setBrand_Name_ComponentReset(true);
         setBrand_id(null);
+        setBrand_id_name("");
         setModelList([]);
         clearReset("brand_id");
       }
       if (reset.car_id) {
         setCar_Name_ComponentReset(true);
         setcar_id(null);
+        setCar_id_name("");
         clearReset("car_id");
       }
       //     break;
@@ -194,7 +196,7 @@ const Filters = ({
           }, []);
           body_style_list = convertIndexToNumber;
         }
-      }      
+      }
       if (initialFilterValues.query.brand_id) {
         if (
           initialFilterValues.query.brand_id !== "" &&
@@ -334,6 +336,7 @@ const Filters = ({
           defaultVal={Brand_id_name}
           clearField={() => {
             setBrand_id(null);
+            setBrand_id_name("");
             FilterContext.setDataForSearch({
               brand_id: { status: false, value: null },
               car_id: { status: false, value: null },
@@ -371,6 +374,7 @@ const Filters = ({
           callClearField={car_Name_ComponentReset}
           clearField={() => {
             setcar_id(null);
+            setCar_id_name("");
             FilterContext.setDataForSearch({
               car_id: { status: false, value: null },
             });
