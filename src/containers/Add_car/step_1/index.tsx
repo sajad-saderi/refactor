@@ -527,6 +527,8 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
     cylinder_id: null,
     value: "",
     deliver_at_renters_place: 1,
+    with_driver: false,
+    without_driver: true,
     days_to_get_reminded: 0,
     special_type_id: 1,
     is_out_of_service: false,

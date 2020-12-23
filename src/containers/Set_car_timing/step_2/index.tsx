@@ -235,7 +235,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     max_km_per_day: 250,
     extra_km_price: "",
     extra_hour_price: "",
-    driver_status: null,
+    driver_status: 1,
     days_to_get_reminded: 0,
     deliver_at_renters_place: 1,
     with_driver: 0,
