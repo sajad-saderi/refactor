@@ -142,6 +142,7 @@ class App_Otoli extends App {
       localStorage["utm_term"] = Router.query.utm_term;
       localStorage["utm_content"] = Router.query.utm_content;
     }
+    alert(document.referrer);
     localStorage["utm_landing_url"] = Router.router.asPath;
     localStorage["utm_referrer"] = document.referrer;
   };
