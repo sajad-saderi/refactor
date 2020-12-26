@@ -26,7 +26,7 @@ export const REQUEST_SET_RENT_REQUEST = (data: IRentRequest) => {
       )
       .then((response) => {
         if (response.data.success) {
-          resolve(response.data.success);
+          resolve(response.data.data);
         }
       })
       .catch((e) => {

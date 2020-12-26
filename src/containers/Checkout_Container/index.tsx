@@ -186,13 +186,19 @@ const Checkout_Container = ({
       has_insurance: showInsurance,
     };
     try {
-      const new_rent_req_res = await REQUEST_SET_RENT_REQUEST(data);
+      const new_rent_req_res: any = await REQUEST_SET_RENT_REQUEST(data);
       TOAST_CONTEXT.toast_option({
         message: language.toast_message,
         time: 10,
         autoClose: true,
       });
-      router.push("/requests");
+      router.push(
+        {
+          pathname: "/request/[id]",
+          query: { newrequest: true },
+        },
+        `/request/${new_rent_req_res.id}?newrequest=true`
+      );
     } catch (error) {
       setLoading(false);
       console.log("!Error", error);

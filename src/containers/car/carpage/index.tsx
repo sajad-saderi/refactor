@@ -361,7 +361,7 @@ const CarPage = ({
               <div className='first_section_carpage'>
                 <h1>
                   {car.brand.name.fa} {car.name.fa}
-                  <p className="size_14 year_of_build">({year.name.fa})</p>
+                  <p className='size_14 year_of_build'>({year.name.fa})</p>
                   {/* <p className='owner_name_carinfo'>{owner.name}</p> */}
                   {rate?.no_of_received_rates ? (
                     <div className='rate_container'>
