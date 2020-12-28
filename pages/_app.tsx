@@ -2,11 +2,11 @@ import React from "react";
 import App from "next/app";
 import Router from "next/router";
 import * as Sentry from "@sentry/browser";
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha,
-} from "react-google-recaptcha-v3";
-import Axios from "axios";
+// import {
+//   GoogleReCaptchaProvider,
+//   GoogleReCaptcha,
+// } from "react-google-recaptcha-v3";
+// import Axios from "axios";
 // import { initGA } from "../utils/analytics";
 import { REQUEST_GET_USER_INFO } from "../src/API";
 import jsCookie from "js-cookie";
@@ -60,59 +60,59 @@ class App_Otoli extends App {
     }
   }
 
-  Captcha = (token) => {
-    let scoreData = null;
-    try {
-      window["__recaptchaCallback"] = () => {
-        if (window["grecaptcha"]) {
-          window["grecaptcha"]
-            .execute(process.env.GOOGLE_CAPTCHA, {
-              action: window.location.pathname.slice(1).replace(/-/, ""),
-            })
-            .then(() => {
-              var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
-              Axios.get(url + "?g-recaptcha-response=" + token)
-                .then((res) => {
-                  this.setState({ BotScore: res.data.recaptcha.score });
-                  scoreData = res;
-                  window["dataLayer"].push({
-                    event: "recaptcha",
-                    recaptchaAnswer: res.data.status,
-                    recaptchaScore: res.data.recaptcha.score,
-                  });
-                })
-                .then(() => {
-                  Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
-                    success: true, // whether this request was a valid reCAPTCHA token for your site
-                    score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
-                    action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
-                    hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
-                  })
-                    .then((res) => {
-                      if (window["heap"]) {
-                        window["heap"].addUserProperties({
-                          RecaptchaScore: scoreData.data.recaptcha.score,
-                        });
-                      }
-                    })
-                    .catch((e) => {
-                      console.log(e);
-                    });
-                })
-                .catch((e) => {
-                  console.log(e);
-                });
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-        }
-      };
-      window["__recaptchaCallback"]();
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // Captcha = (token) => {
+  //   let scoreData = null;
+  //   try {
+  //     window["__recaptchaCallback"] = () => {
+  //       if (window["grecaptcha"]) {
+  //         window["grecaptcha"]
+  //           .execute(process.env.GOOGLE_CAPTCHA, {
+  //             action: window.location.pathname.slice(1).replace(/-/, ""),
+  //           })
+  //           .then(() => {
+  //             var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
+  //             Axios.get(url + "?g-recaptcha-response=" + token)
+  //               .then((res) => {
+  //                 this.setState({ BotScore: res.data.recaptcha.score });
+  //                 scoreData = res;
+  //                 window["dataLayer"].push({
+  //                   event: "recaptcha",
+  //                   recaptchaAnswer: res.data.status,
+  //                   recaptchaScore: res.data.recaptcha.score,
+  //                 });
+  //               })
+  //               .then(() => {
+  //                 Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
+  //                   success: true, // whether this request was a valid reCAPTCHA token for your site
+  //                   score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
+  //                   action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
+  //                   hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
+  //                 })
+  //                   .then((res) => {
+  //                     if (window["heap"]) {
+  //                       window["heap"].addUserProperties({
+  //                         RecaptchaScore: scoreData.data.recaptcha.score,
+  //                       });
+  //                     }
+  //                   })
+  //                   .catch((e) => {
+  //                     console.log(e);
+  //                   });
+  //               })
+  //               .catch((e) => {
+  //                 console.log(e);
+  //               });
+  //           })
+  //           .catch((e) => {
+  //             console.log(e);
+  //           });
+  //       }
+  //     };
+  //     window["__recaptchaCallback"]();
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   componentDidMount = () => {
     const userId = jsCookie.get("user_id");
@@ -162,27 +162,27 @@ class App_Otoli extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
-        <user_context.Provider
-          value={{
-            update_user_data: (v) => {
-              this.setState({
-                user_data: v,
-              });
-            },
-            data: this.state.user_data,
-          }}
-        >
-          <Component {...pageProps} BotScore={this.state.BotScore} />
-        </user_context.Provider>
+      // <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
+      <user_context.Provider
+        value={{
+          update_user_data: (v) => {
+            this.setState({
+              user_data: v,
+            });
+          },
+          data: this.state.user_data,
+        }}
+      >
+        <Component {...pageProps} BotScore={this.state.BotScore} />
+      </user_context.Provider>
 
-        <GoogleReCaptcha
-          onVerify={(token) => {
-            this.Captcha(token);
-            this.setState({ token });
-          }}
-        />
-      </GoogleReCaptchaProvider>
+      // <GoogleReCaptcha
+      //   onVerify={(token) => {
+      //     this.Captcha(token);
+      //     this.setState({ token });
+      //   }}
+      // />
+      // </GoogleReCaptchaProvider>
     );
   }
 }

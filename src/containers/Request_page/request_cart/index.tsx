@@ -404,7 +404,6 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 onLoadCapture={(e) => {
                   e.persist();
                   // adjust the image at the center of division container
-                  console.log(imageHeight / 84, 84 / 2.2);
                   if (imageHeight / 84 > 2.2) {
                     setheightController(84 / 4);
                   }

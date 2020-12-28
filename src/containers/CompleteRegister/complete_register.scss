@@ -1,7 +1,12 @@
 @import "../../styles/colors";
 
 .complete_register_container {
-  max-width: 69rem;
+  min-width: 30rem;
+  max-width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 55rem;
   .pageTitle {
     position: relative;
     .Person_icon {
@@ -25,18 +30,43 @@
     padding: 1.6rem;
     border: none;
     box-shadow: $box_shadow;
-    .text_input_container {
-      margin: 0 0 2rem;
-      label {
+    .login_modal_title {
+      position: relative;
+      text-align: center;
+      margin-bottom: 2rem;
+      width: 100%;
+      .login_person_icon {
+        position: absolute;
+        right: 0;
+        width: 2rem;
+        top: 0;
+        color: rgb(255, 255, 255);
+        background: $blue;
+        border: 3px solid $blue;
+        border-radius: 50%;
+      }
+      h2 {
+        line-height: 23px;
+        width: auto;
+        display: inline-block;
+        font-size: 1.4rem;
         font-weight: 500;
+        margin: 0;
+        text-align: center;
       }
     }
+    .text_input_container {
+      margin: 0 0 2rem;
+      // label {
+      //   font-weight: 500;
+      // }
+    }
     .name_container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      // display: flex;
+      // justify-content: space-between;
+      // align-items: center;
       .text_input_container {
-        width: 49%;
+        // width: 49%;
         .clean_icon {
           bottom: 1.5rem;
         }
@@ -49,6 +79,10 @@
         font-size: 1.4rem;
         margin-bottom: 2rem;
         cursor: pointer;
+        span {
+          font-size: 1.3rem;
+          color: $dark_gray;
+        }
       }
       .add_company_input_container {
         display: flex;
@@ -95,6 +129,8 @@
     }
     .check_box_container {
       .container {
+        font-size: 1.3rem;
+        padding-right: 2.2rem;
         margin-top: 1rem;
         margin-bottom: 0rem;
       }
@@ -117,8 +153,8 @@
 @media screen and(max-width:575px) {
   .complete_register_container {
     .complete_register_form {
-      background-color: transparent;
-      box-shadow: none;
+      // background-color: transparent;
+      // box-shadow: none;
       .name_container {
         display: block;
         .text_input_container {
@@ -133,6 +169,18 @@
         }
         .DropDown_container {
           margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width:375px) {
+  .complete_register_container {
+    .complete_register_form {
+      .check_box_container {
+        .container {
+          font-size: 1.2rem;
         }
       }
     }

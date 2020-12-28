@@ -5,7 +5,7 @@ import TextInput from "../../components/form/TextInput";
 import Button from "../../components/form/Button";
 import Modal_context from "../../context/Modal_context";
 import context_user from "../../context/User_info";
-import { IoMdPersonAdd } from "react-icons/io";
+import { IoMdPerson, IoMdPersonAdd } from "react-icons/io";
 import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
@@ -80,9 +80,9 @@ const Complete_register_container = ({
     first_name: "",
     last_name: "",
     company_name: "",
-    day: "",
-    month: null,
-    year: "",
+    // day: "",
+    // month: null,
+    // year: "",
   });
 
   const [stateError, errorDispatch] = useReducer(stateErrorReducer, {
@@ -125,8 +125,6 @@ const Complete_register_container = ({
     e.preventDefault();
     setLoading(true);
     const userReplica = { ...user.data };
-    console.log("userReplica", userReplica);
-
     const image_url =
       "https://core.otoli.net/static/core/default_profile_pic.png";
     // if all the validation is true
@@ -139,7 +137,7 @@ const Complete_register_container = ({
           // company_name is optional
           company_name: state.company_name === "" ? null : state.company_name,
           // birth_date constructor 1399/01/01
-          birth_date: `${state.year}/${state.month}/${state.day}`,
+          // birth_date: `${state.year}/${state.month}/${state.day}`,
         });
         // cache expire after 100 days
         jsCookie.set("first_name", state.first_name, {
@@ -208,53 +206,53 @@ const Complete_register_container = ({
     } else {
       resetTheErrorStatus("last_name");
     }
-    // if (showCompanyName && state.company_name === "") {
+    if (showCompanyName && state.company_name === "") {
+      errorDispatch({
+        type: "company_name",
+        company_name: true,
+        message: "لطفاً نام شرکت را وارد کنید",
+      });
+      return;
+    } else {
+      resetTheErrorStatus("company_name");
+    }
+    // if (state.day.trim() === "") {
     //   errorDispatch({
-    //     type: "company_name",
-    //     company_name: true,
-    //     message: "لطفاً نام شرکت را وارد کنید",
+    //     type: "day",
+    //     day: true,
+    //     message: language.fill_day,
+    //   });
+    //   return;
+    // } else if (+state.day > 31) {
+    //   errorDispatch({
+    //     type: "day",
+    //     day: true,
+    //     message: language.fill_correctly,
     //   });
     //   return;
     // } else {
-    //   resetTheErrorStatus("company_name");
+    //   resetTheErrorStatus("day");
     // }
-    if (state.day.trim() === "") {
-      errorDispatch({
-        type: "day",
-        day: true,
-        message: language.fill_day,
-      });
-      return;
-    } else if (+state.day > 31) {
-      errorDispatch({
-        type: "day",
-        day: true,
-        message: language.fill_correctly,
-      });
-      return;
-    } else {
-      resetTheErrorStatus("day");
-    }
-    if (!state.month) {
-      errorDispatch({
-        type: "month",
-        month: true,
-        message: language.fill_month,
-      });
-      return;
-    } else {
-      resetTheErrorStatus("month");
-    }
-    if (state.year.trim() === "") {
-      errorDispatch({
-        type: "year",
-        year: true,
-        message: language.fill_year,
-      });
-      return;
-    } else {
-      resetTheErrorStatus("year");
-    }
+    // if (!state.month) {
+    //   errorDispatch({
+    //     type: "month",
+    //     month: true,
+    //     message: language.fill_month,
+    //   });
+    //   return;
+    // } else {
+    //   resetTheErrorStatus("month");
+    // }
+    // if (state.year.trim() === "") {
+    //   errorDispatch({
+    //     type: "year",
+    //     year: true,
+    //     message: language.fill_year,
+    //   });
+    //   return;
+    // } else {
+    //   resetTheErrorStatus("year");
+    // }
     if (!rolesCheck) {
       errorDispatch({
         type: "condition",
@@ -280,14 +278,18 @@ const Complete_register_container = ({
 
   return show ? (
     <article className='responsive  complete_register_container'>
-      <div className='pageTitle'>
+      {/* <div className='pageTitle'>
         <IoMdPersonAdd className='Person_icon' size='6rem' color='#4ba3ce' />
         <h3>{language.complete_register}</h3>
-      </div>
+      </div> */}
       <form
         className='complete_register_form'
         onSubmit={(e) => submitHandler(e, state)}
       >
+        <div className='login_modal_title'>
+          <IoMdPerson size='2rem' color='#fff' className='login_person_icon' />
+          <h2>{language.complete_register}</h2>
+        </div>
         <div className='name_container'>
           <TextInput
             name='first_name'
@@ -338,6 +340,7 @@ const Complete_register_container = ({
           {!showCompanyName ? (
             <p onClick={() => setShowCompanyName(true)}>
               {language.add_company_name}
+              <span> ({language.just_for_rental_companies})</span>
             </p>
           ) : (
             <div className='add_company_input_container'>
@@ -371,7 +374,7 @@ const Complete_register_container = ({
             </div>
           )}
         </div>
-        <label>{language.dob}</label>
+        {/* <label>{language.dob}</label>
         <div className='date_birth'>
           <TextInput
             name='day'
@@ -430,7 +433,7 @@ const Complete_register_container = ({
               required: true,
             }}
           />
-        </div>
+        </div> */}
         <div className='check_box_container'>
           <label className='container'>
             <span
