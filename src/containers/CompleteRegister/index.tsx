@@ -440,7 +440,7 @@ const Complete_register_container = ({
               onClick={() => MODAL_CONTEXT.modalHandler("Law")}
               style={{
                 textDecoration: "underline",
-                color: "#0099ff",
+                color: "#3fa6da",
                 cursor: "pointer",
                 display: "inline-block",
                 marginBottom: "11px",

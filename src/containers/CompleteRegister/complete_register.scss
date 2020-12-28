@@ -1,8 +1,6 @@
 @import "../../styles/colors";
 
 .complete_register_container {
-  min-width: 30rem;
-  max-width: 40rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,6 +21,7 @@
     }
   }
   .complete_register_form {
+    width: 38rem;
     background: #fdfdfd;
     border: 1px solid $light_grey;
     font-size: 1.4rem;
