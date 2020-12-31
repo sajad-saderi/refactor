@@ -19,9 +19,12 @@ const Filters = ({
   show_filter_prop_reset,
   initialFilterValues,
   language,
+  sliderRange,
+  sliderPrice,
 }: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
   const [with_driver, setwith_driver] = useState(0);
+  const [without_driver, setwithout_driver] = useState(0);
   const [body_style_set, setbody_style_set] = useState([]);
 
   const [BrandList, setBrandList] = useState([]);
@@ -35,10 +38,10 @@ const Filters = ({
   const [car_id_name, setCar_id_name] = useState("");
   const [car_Name_ComponentReset, setCar_Name_ComponentReset] = useState(false);
   const [show_filter, setShow_filter] = useState(false);
-  const [hidePrice, setHidePrice] = useState(false);
+  // const [hidePrice, setHidePrice] = useState(false);
 
-  const [initialValueMin, setInitialValueMin] = useState(0);
-  const [initialValueMax, setInitialValueMax] = useState(10000000);
+  // const [initialValueMin, setInitialValueMin] = useState(0);
+  // const [initialValueMax, setInitialValueMax] = useState(10000000);
 
   const FilterContext = useContext(filterContext);
 
@@ -92,12 +95,12 @@ const Filters = ({
 
   useEffect(() => {
     if (reset) {
-      if (reset.price) {
-        setHidePrice(true);
-        mounter("price");
-        setInitialValueMin(0);
-        setInitialValueMax(10000000);
-      }
+      // if (reset.price) {
+      // setHidePrice(true);
+      // mounter("price");
+      // setInitialValueMin(0);
+      // setInitialValueMax(10000000);
+      // }
       if (reset.deliver_at_renters_place) {
         setDeliver_at_renters_place(0);
         clearReset("deliver_at_renters_place");
@@ -105,6 +108,10 @@ const Filters = ({
       if (reset.with_driver) {
         setwith_driver(0);
         clearReset("with_driver");
+      }
+      if (reset.without_driver) {
+        setwithout_driver(0);
+        clearReset("without_driver");
       }
       if (reset.body_style_id) {
         setbody_style_set([]);
@@ -141,15 +148,15 @@ const Filters = ({
     }
   }, [reset]);
 
-  const mounter = (v) => {
-    if (v === "price") {
-      const hideTimer = setTimeout(() => {
-        setHidePrice(false);
-        clearTimeout(hideTimer);
-        clearReset(v);
-      }, 500);
-    }
-  };
+  // const mounter = (v) => {
+  //   if (v === "price") {
+  //     const hideTimer = setTimeout(() => {
+  //       // setHidePrice(false);
+  //       clearTimeout(hideTimer);
+  //       clearReset(v);
+  //     }, 500);
+  //   }
+  // };
 
   // remove the filter from the filter context
   const body_style_remove = (item) => {
@@ -163,12 +170,12 @@ const Filters = ({
 
   useEffect(() => {
     if (initialFilterValues) {
-      if (initialFilterValues.query.min_price) {
-        setInitialValueMin(+initialFilterValues.query.min_price);
-      }
-      if (initialFilterValues.query.max_price) {
-        setInitialValueMax(+initialFilterValues.query.max_price);
-      }
+      // if (initialFilterValues.query.min_price) {
+      //   setInitialValueMin(+initialFilterValues.query.min_price);
+      // }
+      // if (initialFilterValues.query.max_price) {
+      //   setInitialValueMax(+initialFilterValues.query.max_price);
+      // }
       if (
         initialFilterValues.query.deliver_at_renters_place &&
         initialFilterValues.query.deliver_at_renters_place === "1"
@@ -182,6 +189,12 @@ const Filters = ({
         initialFilterValues.query.with_driver === "1"
       ) {
         setwith_driver(+initialFilterValues.query.with_driver);
+      }
+      if (
+        initialFilterValues.query.without_driver &&
+        initialFilterValues.query.without_driver === "1"
+      ) {
+        setwithout_driver(+initialFilterValues.query.without_driver);
       }
       if (initialFilterValues.query.body_style_id) {
         if (
@@ -255,14 +268,16 @@ const Filters = ({
             <IoMdClose size='3rem' color='#909090' />
           </div>
         </div>
-        {hidePrice ? (
+        {/* {hidePrice ? (
           <Spinner display='block' width={20} color='#737373' />
-        ) : (
-          <PriceSlider
-            initialValueMin={initialValueMin}
-            initialValueMax={initialValueMax}
-          />
-        )}
+        ) : ( */}
+        <PriceSlider
+          sliderRange={sliderRange}
+          sliderPrice={sliderPrice}
+          // initialValueMin={initialValueMin}
+          // initialValueMax={initialValueMax}
+        />
+        {/* )} */}
         <h3>{language.filter.filter_section_h3_1}</h3>
         <Checkbox
           initialValue={[deliver_at_renters_place]}
@@ -310,6 +325,29 @@ const Filters = ({
               with_driver: { status: true, value: 1 },
             });
             setwith_driver(1);
+          }}
+        />
+        <Checkbox
+          initialValue={[without_driver]}
+          data={[
+            {
+              text: language.filter.filter_section_check_box_without_driver,
+              value: without_driver,
+            },
+          ]}
+          name='without_driver'
+          clearField={(item) => {
+            FilterContext.setDataForSearch({
+              without_driver: { status: false, value: 0 },
+            });
+            setwithout_driver(0);
+          }}
+          Select={(item) => {
+            // add this filter to the filter context
+            FilterContext.setDataForSearch({
+              without_driver: { status: true, value: 1 },
+            });
+            setwithout_driver(1);
           }}
         />
         <div className='body_style_type_wrapper'>
@@ -423,6 +461,8 @@ interface IFilter {
   show_filter_prop_reset: any;
   initialFilterValues: any;
   language: any;
+  sliderRange: any;
+  sliderPrice: any;
 }
 
 export default Filters;

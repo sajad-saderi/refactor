@@ -32,9 +32,14 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
           // set the filter data
           statsObj = {
             extra_info: {
+              params: response.data.extra_info.params,
+              pre_loads: response.data.extra_info.pre_loads,
+              avg_price_per_day_min: extra_info.avg_price_per_day_min,
+              avg_price_per_day_max: extra_info.avg_price_per_day_max,
               body_style_id: body_style_id,
               deliver_at_renters_place: extra_info.deliver_at_renters_place,
               with_driver: extra_info.with_driver,
+              without_driver: extra_info.without_driver,
             },
           };
           const results = response.data.items;

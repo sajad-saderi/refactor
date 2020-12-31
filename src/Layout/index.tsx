@@ -68,7 +68,15 @@ const Layout = (props: ILayout) => {
   const TOAST_CONTEXT = useContext(toast_context);
 
   useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (e) => { 
+    if (Router.router.query.utm_source) {
+      localStorage["utm_source"] = Router.router.query.utm_source;
+      localStorage["utm_medium"] = Router.router.query.utm_medium;
+      localStorage["utm_campaign"] = Router.router.query.utm_campaign;
+      localStorage["utm_term"] = Router.router.query.utm_term;
+      localStorage["utm_content"] = Router.router.query.utm_content;
+    }
+
+    window.addEventListener("beforeinstallprompt", (e) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.
@@ -139,22 +147,22 @@ const Layout = (props: ILayout) => {
           context Providers wrap the Header and main section in the app to track data change in content   
       */}
       {showPwaBanner ? (
-        <section className="pwa_invitation_banner">
+        <section className='pwa_invitation_banner'>
           <div
-            className="pwa_content HEAP_PWA_INVITATION"
+            className='pwa_content HEAP_PWA_INVITATION'
             onClick={customPwaPrompt}
           >
-            <img src={logo} alt="pwa logo icon" />
+            <img src={logo} alt='pwa logo icon' />
             اپلیکیشن اتولی را نصب کنید.
           </div>
           <p
-            className="close_pwa_invitation"
+            className='close_pwa_invitation'
             onClick={() => {
               AnalyticsEvent("pwa", "install-banner", "closed");
               setShowPwaBanner(false);
             }}
           >
-            <IoIosClose color="#fff" size="2rem" />
+            <IoIosClose color='#fff' size='2rem' />
             بستن
           </p>
         </section>

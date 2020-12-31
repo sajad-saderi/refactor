@@ -659,6 +659,10 @@ input {
 
 // component
 @import "../components/cartPlaceholder/CarLoading/car_cart.scss";
+
+// Loaders
+@import "../components/loaders/PriceSliderLoader/PriceSliderLoader.scss";
+
 // Place holders
 @import "../components/cartPlaceholder/carPageLoading/carPageLoading.scss";
 @import "../components/cartPlaceholder/CarLoadingProfile/profile_car_cart.scss";

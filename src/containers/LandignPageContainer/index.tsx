@@ -36,9 +36,13 @@ let o = "-price";
 let loadMoreCar = false;
 let deliver_at_renters_place = 0;
 let with_driver = 0;
+let without_driver = 0;
 let body_style_id = [];
+let body_style_names = [];
 let brand_id = null;
+let brand_name = null;
 let car_id = null;
+let car_name = null;
 
 // this object check which filter is activated
 // you can combined several filter in a single search request
@@ -46,6 +50,7 @@ let filtersChecker = {
   Location: false,
   price: false,
   with_driver: false,
+  without_driver: false,
   body_style_id: false,
   deliver_at_renters_place: false,
   brand_id: false,
@@ -63,10 +68,13 @@ const Landing_page_container = ({
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
   const [show_filter, setShow_filter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [sliderRange, setSliderRange] = useState([]);
+  const [sliderPrice, setSliderPrice] = useState([]);
   const [filterReset, setFilterReset] = useState({
     location: false,
     price: false,
     with_driver: false,
+    without_driver: false,
     body_style_id: false,
     deliver_at_renters_place: false,
     brand_id: false,
@@ -101,13 +109,17 @@ const Landing_page_container = ({
       loadMoreCar = false;
       deliver_at_renters_place = 0;
       with_driver = 0;
+      without_driver = 0;
       body_style_id = [];
+      body_style_names = [];
       brand_id = null;
+      brand_name = null;
       car_id = null;
       filtersChecker = {
         Location: false,
         price: false,
         with_driver: false,
+        without_driver: false,
         body_style_id: false,
         deliver_at_renters_place: false,
         brand_id: false,
@@ -149,6 +161,11 @@ const Landing_page_container = ({
     }
     with_driver = +url_checked.with_driver;
 
+    if (router.query.without_driver === "1") {
+      filtersChecker.without_driver = true;
+    }
+    without_driver = +url_checked.without_driver;
+
     if (url_checked.body_style_id !== "") {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
@@ -181,6 +198,8 @@ const Landing_page_container = ({
 
   async function initSearch() {
     // set the filter name
+    body_style_names = [];
+    setSliderRange([]);
     const searchParamKey: any = Object.keys(landing_data.search_params);
     if (!loadMoreCar) {
       page = 1;
@@ -223,12 +242,13 @@ const Landing_page_container = ({
         start_date: Start_date,
         end_date: End_date,
         price_order: o,
-        min_price: price.min ? price.min : null,
-        max_price: price.max ? price.max : null,
+        min_price: filtersChecker.price ? (price.min ? price.min : null) : null,
+        max_price: filtersChecker.price ? (price.max ? price.max : null) : null,
         deliver_at_renters_place: filtersChecker.deliver_at_renters_place
           ? 1
           : 0,
         with_driver: filtersChecker.with_driver ? 1 : 0,
+        without_driver: filtersChecker.without_driver ? 1 : 0,
         body_style_id: filtersChecker.body_style_id
           ? body_style_id.join(",")
           : null,
@@ -245,7 +265,12 @@ const Landing_page_container = ({
       });
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
-
+      filter_checker_controller({
+        params: res.extra_info.params,
+        pre_loads: res.extra_info.pre_loads,
+        sliderMin: res.extra_info.avg_price_per_day_min,
+        sliderMax: res.extra_info.avg_price_per_day_max,
+      });
       setExtra_info(res.extra_info);
       if (loadMoreCar) {
         // add the new result to old result
@@ -273,8 +298,8 @@ const Landing_page_container = ({
         min: +v.price.value[0],
         max: +v.price.value[1],
       };
-      staticRoute.min_price = v.price.value[0].slice(0, -3);
-      staticRoute.max_price = v.price.value[1].slice(0, -3);
+      staticRoute.min_price = +v.price.value[0];
+      staticRoute.max_price = +v.price.value[1];
     }
     if (v.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place =
@@ -286,6 +311,11 @@ const Landing_page_container = ({
       filtersChecker.with_driver = v.with_driver.status;
       with_driver = v.with_driver.value;
       staticRoute.with_driver = v.with_driver.value;
+    }
+    if (v.without_driver) {
+      filtersChecker.without_driver = v.without_driver.status;
+      without_driver = v.without_driver.value;
+      staticRoute.without_driver = v.without_driver.value;
     }
     if (v.body_style_id) {
       if (v.body_style_id.value.length === 0) {
@@ -357,7 +387,11 @@ const Landing_page_container = ({
           return { ...filterReset, with_driver: false };
         });
         break;
-
+      case "without_driver":
+        setFilterReset((filterReset) => {
+          return { ...filterReset, without_driver: false };
+        });
+        break;
       case "body_style_id":
         setFilterReset((filterReset) => {
           return { ...filterReset, body_style_id: false };
@@ -385,6 +419,7 @@ const Landing_page_container = ({
           location: false,
           price: false,
           with_driver: false,
+          without_driver: false,
           body_style_id: false,
           deliver_at_renters_place: false,
           brand_id: false,
@@ -412,6 +447,68 @@ const Landing_page_container = ({
         cb: UrlUpdater,
       });
       initSearch();
+    }
+  };
+
+  const filter_checker_controller = ({
+    params,
+    pre_loads,
+    sliderMin,
+    sliderMax,
+  }) => {
+    console.log("run");
+
+    setSliderRange([sliderMin, sliderMax]);
+    let min = params.min_price ? params.min_price : sliderMin;
+    let max = params.max_price ? params.max_price : sliderMax;
+    setSliderPrice([min, max]);
+    if (params.min_price || params.max_price) {
+      filtersChecker.price = true;
+      price.min = min;
+      price.max = max;
+      staticRoute.min_price = min;
+      staticRoute.max_price = max;
+    }
+    if (params.deliver_at_renters_place) {
+      filtersChecker.deliver_at_renters_place = true;
+      deliver_at_renters_place = +params.deliver_at_renters_place;
+      staticRoute.deliver_at_renters_place = params.deliver_at_renters_place;
+    }
+    if (params.with_driver) {
+      filtersChecker.with_driver = true;
+      with_driver = params.with_driver;
+      staticRoute.with_driver = params.with_driver;
+    }
+    if (params.without_driver) {
+      filtersChecker.without_driver = true;
+      without_driver = params.without_driver;
+      staticRoute.without_driver = params.without_driver;
+    }
+    if (params.body_style_id) {
+      filtersChecker.body_style_id = true;
+      body_style_id = params.body_style_id.split(",");
+      body_style_names = body_style_names.concat(
+        pre_loads.body_style_set.map((item) => {
+          return item.name.fa;
+        })
+      );
+      console.log(body_style_names);
+
+      staticRoute.body_style_id = params.body_style_id;
+    }
+    if (params.brand_id) {
+      filtersChecker.brand_id = true;
+      brand_id = params.brand_id;
+      brand_name = pre_loads.brand_set[0].name.fa;
+      staticRoute.brand_name = pre_loads.brand_set[0].slug.fa;
+      staticRoute.brand_id = params.brand_id;
+    }
+    if (params.car_id) {
+      filtersChecker.car_id = true;
+      car_id = params.car_id;
+      car_name = pre_loads.car_set[0].name.fa;
+      staticRoute.car_name = pre_loads.car_set[0].slug.fa;
+      staticRoute.car_id = params.car_id;
     }
   };
 
@@ -570,6 +667,7 @@ const Landing_page_container = ({
               setFilterReset((filterReset) => {
                 return { ...filterReset, price: true };
               });
+              setSliderPrice([]);
               loadMoreCar = false;
               filtersChecker.price = false;
               staticRoute.min_price = 0;
@@ -633,16 +731,16 @@ const Landing_page_container = ({
             {language.minimal_filters_with_deriver}
           </p>
         ) : null}
-        {filtersChecker.body_style_id ? (
+        {filtersChecker.without_driver ? (
           <p
             className='minimal_filter_tags'
             onClick={() => {
               setFilterReset((filterReset) => {
-                return { ...filterReset, body_style_id: true };
+                return { ...filterReset, without_driver: true };
               });
               loadMoreCar = false;
-              filtersChecker.body_style_id = false;
-              staticRoute.body_style_id = "";
+              filtersChecker.without_driver = false;
+              staticRoute.without_driver = 0;
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -651,11 +749,46 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
-            {language.minimal_filters_body_style}
+            <IoMdClose size='1.3rem' color='#8c8c8c' />
+            {language.minimal_filters_without_driver}
           </p>
         ) : null}
-        {filtersChecker.brand_id ? (
+        {body_style_names.length > 0
+          ? body_style_names.map((item, i) => {
+              return (
+                <p
+                  key={i}
+                  className='minimal_filter_tags'
+                  onClick={() => {
+                    if (body_style_names.length === 1) {
+                      setFilterReset((filterReset) => {
+                        return { ...filterReset, body_style_id: true };
+                      });
+                      filtersChecker.body_style_id = false;
+                      staticRoute.body_style_id = "";
+                    } else {
+                      body_style_id = body_style_id.filter(
+                        (_, index) => index !== i
+                      );
+                      staticRoute.body_style_id = body_style_id.join(",");
+                    }
+                    loadMoreCar = false;
+                    UrlCreator({
+                      query: staticRoute,
+                      route: router.route,
+                      cb: UrlUpdater,
+                    });
+                    initSearch();
+                  }}
+                >
+                  <IoMdClose size='1.3rem' color='#8c8c8c' />
+                  {language.minimal_filters_body_style}
+                  {item}
+                </p>
+              );
+            })
+          : null}
+        {!car_name && brand_name ? (
           <p
             className='minimal_filter_tags'
             onClick={() => {
@@ -664,6 +797,7 @@ const Landing_page_container = ({
               });
               loadMoreCar = false;
               filtersChecker.brand_id = false;
+              brand_name = null;
               filtersChecker.car_id = false;
               staticRoute.brand_id = "";
               UrlCreator({
@@ -676,15 +810,17 @@ const Landing_page_container = ({
           >
             <IoMdClose size='1.3rem' color='#ababab' />
             {language.minimal_filters_brand}
+            {brand_name}
           </p>
         ) : null}
-        {filtersChecker.car_id ? (
+        {car_name ? (
           <p
             className='minimal_filter_tags'
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, car_id: true };
               });
+              car_name = null;
               loadMoreCar = false;
               filtersChecker.car_id = false;
               staticRoute.car_id = "";
@@ -698,6 +834,7 @@ const Landing_page_container = ({
           >
             <IoMdClose size='1.3rem' color='#ababab' />
             {language.minimal_filters_model}
+            {car_name}
           </p>
         ) : null}
       </section>
@@ -720,6 +857,8 @@ const Landing_page_container = ({
               setShow_filter(false);
             }}
             initialFilterValues={router}
+            sliderRange={sliderRange}
+            sliderPrice={sliderPrice}
             language={language}
           />
         </filterContext.Provider>

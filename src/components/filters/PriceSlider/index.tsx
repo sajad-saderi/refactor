@@ -16,9 +16,12 @@ import "./price_filter.scss";
 import "nouislider/distribute/nouislider.css";
 
 import filterContext from "../../../context/filter-context";
+import Price_slider_loader from "../../loaders/PriceSliderLoader";
 
-const PriceSlider = (props) => {
+const PriceSlider = ({ sliderRange, sliderPrice }: IPriceSlider) => {
   const [value, setValue] = useState([0, 10000000]);
+  const [range, setRange] = useState(null);
+  const [noSlider, setNoSlider] = useState(false);
   const FilterContext = useContext(filterContext);
 
   /**
@@ -29,9 +32,9 @@ const PriceSlider = (props) => {
    */
   const onSlide = (value) => {
     // Deactivate the price filter in initial search for default value
-    if (value[0] === "0.00" && value[1] === "10000000.00") {
+    if (+value[0] === range[0] && +value[1] === range[1]) {
       FilterContext.setDataForSearch({
-        price: { status: false, value: value },
+        price: { status: false, value: [0, 0] },
       });
     } else {
       FilterContext.setDataForSearch({ price: { status: true, value: value } });
@@ -40,53 +43,80 @@ const PriceSlider = (props) => {
   };
 
   useEffect(() => {
-    if (props.initialValueMin || props.initialValueMax) {
-      setValue([props.initialValueMin, props.initialValueMax]);
+    if (sliderPrice.length > 0) {
+      setValue([sliderPrice[0], sliderPrice[1]]);
     }
-  }, [props.initialValueMin, props.initialValueMax]);
+  }, [sliderPrice]);
+
+  useEffect(() => {
+    if (sliderRange.length > 0) {
+      if (sliderRange[0] === sliderRange[1]) {
+        setNoSlider(true);
+        setRange(true);
+      } else {
+        setRange([sliderRange[0], sliderRange[1]]);
+        setNoSlider(false);
+      }
+    } else {
+      setRange(null);
+    }
+  }, [sliderRange]);
 
   return (
-    <div className='price_filter'>
-      <h3>قیمت</h3>
-      <div className='price_text'>
-        <p>
-          <span className='TA'>{`${Number(
-            Number(
-              value[0] < 1000000 ? value[0] / 1000 : value[0] / 1000000
-            ).toFixed(1)
-          ).toLocaleString()}`}</span>{" "}
-          {`${value[0] >= 1000000 ? "میلیون" : "هزار"} تومان `}
-        </p>
-        <p className='TA'> تا </p>
-        <p>
-          <span className='TA'>{`${Number(
-            Number(
-              value[1] < 1000000 ? value[1] / 1000 : value[1] / 1000000
-            ).toFixed(1)
-          ).toLocaleString()}`}</span>{" "}
-          {`${value[1] >= 1000000 ? "میلیون" : "هزار"} تومان `}
-        </p>
-      </div>
-      <Nouislider
-        /**
-         * @range
-         * set the default range value between 0 to 10.000.000
-         */
-        range={{ min: 0, max: 10000000 }}
-        start={value}
-        margin={100000}
-        // Show the blue color between to handles
-        connect
-        direction={"rtl"}
-        onSlide={(i) => {
-          setValue([+i[0], +i[1]]);
-        }}
-        // after click, the function will be running
-        onEnd={(v) => onSlide(v)}
-        step={100000}
-      />
-    </div>
+    <>
+      {range ? (
+        noSlider ? null : (
+          <div className='price_filter'>
+            <h3>قیمت</h3>
+            <div className='price_text'>
+              <p>
+                <span className='TA'>{`${Number(
+                  Number(
+                    value[0] < 1000000 ? value[0] / 1000 : value[0] / 1000000
+                  ).toFixed(1)
+                ).toLocaleString()}`}</span>{" "}
+                {`${value[0] >= 1000000 ? "میلیون" : "هزار"} تومان `}
+              </p>
+              <p className='TA'> تا </p>
+              <p>
+                <span className='TA'>{`${Number(
+                  Number(
+                    value[1] < 1000000 ? value[1] / 1000 : value[1] / 1000000
+                  ).toFixed(1)
+                ).toLocaleString()}`}</span>{" "}
+                {`${value[1] >= 1000000 ? "میلیون" : "هزار"} تومان `}
+              </p>
+            </div>
+            <Nouislider
+              /**
+               * @range
+               * set the default range value between 0 to 10.000.000
+               */
+              range={{ min: range[0], max: range[1] }}
+              start={value}
+              margin={100000}
+              // Show the blue color between to handles
+              connect
+              direction={"rtl"}
+              onSlide={(i) => {
+                setValue([+i[0], +i[1]]);
+              }}
+              // after click, the function will be running
+              onEnd={(v) => onSlide(v)}
+              step={100000}
+            />
+          </div>
+        )
+      ) : (
+        <Price_slider_loader />
+      )}
+    </>
   );
 };
+
+interface IPriceSlider {
+  sliderPrice: any;
+  sliderRange: any;
+}
 
 export default PriceSlider;

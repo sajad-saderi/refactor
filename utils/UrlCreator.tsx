@@ -1,11 +1,12 @@
 const UrlCreator = (data: Idata) => {
   let query = "?";
   let asPath = null;
-
+  let paramData = {};
   for (const [key, value] of Object.entries(data.query)) {
     if (value == 0) {
       continue;
     }
+    paramData[key] = value;
     if (query === "?") query += `${key}=${value}`;
     else query += `&${key}=${value}`;
   }
@@ -17,7 +18,7 @@ const UrlCreator = (data: Idata) => {
     pathname: data.route,
     queryString: query,
     asPath,
-    query: data.query,
+    query: paramData,
   });
 };
 

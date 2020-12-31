@@ -9,6 +9,7 @@ const search_query_builder = ({
   max_price,
   deliver_at_renters_place,
   with_driver,
+  without_driver,
   body_style_id,
   brand_id,
   category_id,
@@ -39,6 +40,8 @@ const search_query_builder = ({
     }`;
 
   if (with_driver) query += `&with_driver=${with_driver ? with_driver : 0}`;
+  if (without_driver)
+    query += `&without_driver=${without_driver ? without_driver : 0}`;
 
   if (body_style_id)
     query += `&body_style_id=${body_style_id ? body_style_id : ""}`;
@@ -65,6 +68,7 @@ interface ISearch_query_builder {
   max_price?: number | string;
   deliver_at_renters_place?: number | string;
   with_driver?: number | string;
+  without_driver?: number | string;
   body_style_id?: number | string;
   brand_id?: number | string;
   category_id?: number | string;
