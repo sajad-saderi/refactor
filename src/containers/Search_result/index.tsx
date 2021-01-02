@@ -199,7 +199,7 @@ const Search_result = ({ language }: ISearch_result) => {
   async function initSearch() {
     JumpTo = jsCookie.get("JumpTo");
     body_style_names = [];
-    setSliderRange([]);
+    // setSliderRange([]);
     // reset the data
     if (!loadMoreCar) {
       page = 1;
@@ -713,7 +713,7 @@ const Search_result = ({ language }: ISearch_result) => {
                   }}
                 >
                   <IoMdClose size='1.3rem' color='#8c8c8c' />
-                  {language.minimal_filters_body_style}
+                  {/* {language.minimal_filters_body_style} */}
                   {item}
                 </p>
               );
@@ -740,7 +740,7 @@ const Search_result = ({ language }: ISearch_result) => {
             }}
           >
             <IoMdClose size='1.3rem' color='#8c8c8c' />
-            {language.minimal_filters_brand}
+            {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
         ) : null}
@@ -764,7 +764,7 @@ const Search_result = ({ language }: ISearch_result) => {
             }}
           >
             <IoMdClose size='1.3rem' color='#8c8c8c' />
-            {language.minimal_filters_model}
+            {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
         ) : null}

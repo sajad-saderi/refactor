@@ -199,7 +199,7 @@ const Landing_page_container = ({
   async function initSearch() {
     // set the filter name
     body_style_names = [];
-    setSliderRange([]);
+    // setSliderRange([]);
     const searchParamKey: any = Object.keys(landing_data.search_params);
     if (!loadMoreCar) {
       page = 1;
@@ -456,8 +456,6 @@ const Landing_page_container = ({
     sliderMin,
     sliderMax,
   }) => {
-    console.log("run");
-
     setSliderRange([sliderMin, sliderMax]);
     let min = params.min_price ? params.min_price : sliderMin;
     let max = params.max_price ? params.max_price : sliderMax;
@@ -492,7 +490,6 @@ const Landing_page_container = ({
           return item.name.fa;
         })
       );
-      console.log(body_style_names);
 
       staticRoute.body_style_id = params.body_style_id;
     }
@@ -782,7 +779,7 @@ const Landing_page_container = ({
                   }}
                 >
                   <IoMdClose size='1.3rem' color='#8c8c8c' />
-                  {language.minimal_filters_body_style}
+                  {/* {language.minimal_filters_body_style} */}
                   {item}
                 </p>
               );
@@ -809,7 +806,7 @@ const Landing_page_container = ({
             }}
           >
             <IoMdClose size='1.3rem' color='#ababab' />
-            {language.minimal_filters_brand}
+            {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
         ) : null}
@@ -833,7 +830,7 @@ const Landing_page_container = ({
             }}
           >
             <IoMdClose size='1.3rem' color='#ababab' />
-            {language.minimal_filters_model}
+            {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
         ) : null}
