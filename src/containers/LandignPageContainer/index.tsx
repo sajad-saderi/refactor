@@ -688,9 +688,9 @@ const Landing_page_container = ({
           >
             <IoMdClose size='1.3rem' color='#ababab' />
             {language.minimal_filters_price_from}
-            {price.min.toLocaleString()}
+            {Number(price.min).toLocaleString()}
             {language.minimal_filters_ta}
-            {price.max.toLocaleString()}
+            {Number(price.max).toLocaleString()}
           </p>
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (

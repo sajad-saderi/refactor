@@ -624,9 +624,9 @@ const Search_result = ({ language }: ISearch_result) => {
           >
             <IoMdClose size='1.3rem' color='#8c8c8c' />
             {language.minimal_filters_price_from}
-            {price.min.toLocaleString()}
+            {Number(price.min).toLocaleString()}
             {language.minimal_filters_ta}
-            {price.max.toLocaleString()}
+            {Number(price.max).toLocaleString()}
           </p>
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (
