@@ -66,32 +66,14 @@ const PriceSlider = ({ sliderRange, sliderPrice }: IPriceSlider) => {
     <>
       {range ? (
         noSlider ? (
-          <div className='price_filter'>
+          <div className='price_filter fake_price_slider'>
             <h3>قیمت</h3>
-            <div className='price_text'>
-              <p>
-                <span className='TA'>-</span>
-                {` تومان `}
-              </p>
-              <p className='TA'> تا </p>
-              <p>
-                <span className='TA'>-</span>
-                {` تومان `}
-              </p>
+            <div className='fake_slider_texts'>
+              <p>- تومان</p>
+              <span>تا</span>
+              <p className='text_align_left'>- تومان</p>
             </div>
-            <Nouislider
-              /**
-               * @range
-               * set the default range value between 0 to 10.000.000
-               */
-              range={{ min: 0, max: 1 }}
-              start={[0, 1]}
-              margin={1}
-              // Show the blue color between to handles
-              connect
-              direction={"rtl"}
-              step={1}
-            />
+            <div className='fake_price_slider'></div>
           </div>
         ) : (
           <div className='price_filter'>

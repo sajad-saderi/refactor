@@ -633,6 +633,11 @@ input {
   color: $dark_gray;
 }
 
+// TEXT
+.text_align_left {
+  text-align: left;
+}
+
 // 3rd parties
 // @import "react-modern-calendar-datepicker/lib/DatePicker.css";
 // @import "nouislider/distribute/nouislider.css";
