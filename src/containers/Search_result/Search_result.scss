@@ -109,10 +109,10 @@
       font-weight: normal;
       margin-left: 1rem;
       margin-bottom: 1rem;
+      border: 1px solid $lighter_grey;
       cursor: pointer;
-      background: #e3e3e3;
-      color: #262626;
-      cursor: pointer;
+      background: $ultimate_gray;
+      color: $dark_gray;
       svg {
         display: inline-block;
         vertical-align: top;

@@ -115,15 +115,17 @@
           display: inline-block;
           margin-left: 0.8rem;
           .tags {
-            color: #262626;
-            background: #e3e3e3;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 1rem;
+            color: $dark_gray;
+            background: $ultimate_gray;
+            padding: 0.2rem 0.4rem !important;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            border: 1px solid $lighter_grey;
           }
           .location_tag {
-            background: rgba(3, 142, 210, 0.11);
-            color: $blue;
+            background: $ultimate_blue;
+            color: $dark_blue;
+            border-color: $light_blue;
             font-weight: 500;
           }
         }
