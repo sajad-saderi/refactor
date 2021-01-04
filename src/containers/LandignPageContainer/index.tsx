@@ -456,16 +456,25 @@ const Landing_page_container = ({
     sliderMin,
     sliderMax,
   }) => {
-    setSliderRange([sliderMin, sliderMax]);
     let min = params.min_price ? params.min_price : sliderMin;
     let max = params.max_price ? params.max_price : sliderMax;
-    setSliderPrice([min, max]);
     if (params.min_price || params.max_price) {
-      filtersChecker.price = true;
-      price.min = min;
-      price.max = max;
-      staticRoute.min_price = min;
-      staticRoute.max_price = max;
+      if (sliderMin > +min || sliderMax < +max) {
+        filtersChecker.price = false;
+        setSliderPrice([sliderMin, sliderMax]);
+        setSliderRange([sliderMin, sliderMax]);
+      } else {
+        filtersChecker.price = true;
+        setSliderRange([sliderMin, sliderMax]);
+        setSliderPrice([min, max]);
+        price.min = min;
+        price.max = max;
+        staticRoute.min_price = min;
+        staticRoute.max_price = max;
+      }
+    } else {
+      setSliderRange([sliderMin, sliderMax]);
+      setSliderPrice([min, max]);
     }
     if (params.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place = true;

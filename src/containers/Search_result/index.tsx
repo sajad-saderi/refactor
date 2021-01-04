@@ -307,6 +307,7 @@ const Search_result = ({ language }: ISearch_result) => {
           : v.body_style_id.value.join(",");
     }
     if (v.brand_id) {
+      brand_name = null;
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
       staticRoute.brand_name = v.brand_id.value
@@ -316,6 +317,7 @@ const Search_result = ({ language }: ISearch_result) => {
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
+      car_name = null;
       car_id = v.car_id.value;
       staticRoute.car_name = v.car_id.value
         ? v.car_id.name.replace(/ +/g, "-")
@@ -412,16 +414,25 @@ const Search_result = ({ language }: ISearch_result) => {
     sliderMin,
     sliderMax,
   }) => {
-    setSliderRange([sliderMin, sliderMax]);
     let min = params.min_price ? params.min_price : sliderMin;
     let max = params.max_price ? params.max_price : sliderMax;
-    setSliderPrice([min, max]);
     if (params.min_price || params.max_price) {
-      filtersChecker.price = true;
-      price.min = min;
-      price.max = max;
-      staticRoute.min_price = min;
-      staticRoute.max_price = max;
+      if (sliderMin > +min || sliderMax < +max) {
+        filtersChecker.price = false;
+        setSliderPrice([sliderMin, sliderMax]);
+        setSliderRange([sliderMin, sliderMax]);
+      } else {
+        filtersChecker.price = true;
+        setSliderRange([sliderMin, sliderMax]);
+        setSliderPrice([min, max]);
+        price.min = min;
+        price.max = max;
+        staticRoute.min_price = min;
+        staticRoute.max_price = max;
+      }
+    } else {
+      setSliderRange([sliderMin, sliderMax]);
+      setSliderPrice([min, max]);
     }
     if (params.deliver_at_renters_place) {
       filtersChecker.deliver_at_renters_place = true;
@@ -443,7 +454,7 @@ const Search_result = ({ language }: ISearch_result) => {
       body_style_id = params.body_style_id.split(",");
       body_style_names = body_style_names.concat(
         pre_loads.body_style_set.map((item) => {
-          return item.name.fa;
+          return { name: item.name.fa, id: item.id };
         })
       );
       staticRoute.body_style_id = params.body_style_id;
@@ -685,10 +696,10 @@ const Search_result = ({ language }: ISearch_result) => {
           </p>
         ) : null}
         {body_style_names.length > 0
-          ? body_style_names.map((item, i) => {
+          ? body_style_names.map(({ name, id }) => {
               return (
                 <p
-                  key={i}
+                  key={id}
                   className='minimal_filter_tags'
                   onClick={() => {
                     if (body_style_names.length === 1) {
@@ -699,7 +710,7 @@ const Search_result = ({ language }: ISearch_result) => {
                       staticRoute.body_style_id = "";
                     } else {
                       body_style_id = body_style_id.filter(
-                        (_, index) => index !== i
+                        (item) => +item !== id
                       );
                       staticRoute.body_style_id = body_style_id.join(",");
                     }
@@ -714,7 +725,7 @@ const Search_result = ({ language }: ISearch_result) => {
                 >
                   <IoMdClose size='1.3rem' color='#8c8c8c' />
                   {/* {language.minimal_filters_body_style} */}
-                  {item}
+                  {name}
                 </p>
               );
             })
