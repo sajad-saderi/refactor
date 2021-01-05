@@ -270,7 +270,7 @@ const Edit_profile = ({
 
   const showCroppedImage = useCallback(async () => {
     try {
-      const image = await getCroppedImg(state.image, croppedAreaPixels);
+      const image = await getCroppedImg(state.image, croppedAreaPixels, false);
       dispatch({ type: "image", image: URL.createObjectURL(image) });
       setNewImage(image);
       setCroptStart(false);

@@ -16,6 +16,8 @@ import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "../../../utils/cropImage";
 
 const ImageUploader = ({
   Upload_image,
@@ -26,16 +28,26 @@ const ImageUploader = ({
 }: IImageUpload) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
   const [loading, setloading] = useState(false);
-  const wrapperRef = useRef(null);
 
+  const [currentImage, setCurrentImage] = useState(null);
+  const [croptStart, setCroptStart] = useState(false);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+
+  const wrapperRef = useRef(null);
   const token = jsCookie.get("token");
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
+      console.log("file", file);
       const reader: any = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        sendTheImage(file, reader.result);
+        // showCroppedImage(file, reader.result)
+        setCroptStart(true);
+        setCurrentImage(URL.createObjectURL(file));
+        // sendTheImage(file, reader.result);
       };
     });
   }, []);
@@ -93,6 +105,20 @@ const ImageUploader = ({
   //   }
   // }, [error_status]);
 
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const showCroppedImage = useCallback(async () => {
+    try {
+      const image = await getCroppedImg(currentImage, croppedAreaPixels, true);
+      sendTheImage(image, URL.createObjectURL(image));
+      setCroptStart(false);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels]);
+
   return (
     <div ref={wrapperRef}>
       <label>{language.car_picture}</label>
@@ -102,8 +128,42 @@ const ImageUploader = ({
         {language.text_2}
         <u>{language.text_2_italic}</u>
       </p>
+      {croptStart && (
+        <div className='crop_container'>
+          <Cropper
+            image={currentImage}
+            crop={crop}
+            zoom={zoom}
+            minZoom={1}
+            maxZoom={5}
+            aspect={16 / 9}
+            onCropChange={setCrop}
+            onCropComplete={onCropComplete}
+            onZoomChange={setZoom}
+            cropShape='rect'
+          />
+          <div className='Crop_BTN_container'>
+            <span className='Blue_BTN local_class' onClick={showCroppedImage}>
+              تایید
+            </span>
+            <span
+              className='Blue_BTN cancel_class'
+              onClick={() => {
+                setCurrentImage(null);
+                setCroptStart(false);
+                // if (data.thumbnail_url) {
+                //   dispatch({ type: "image", image: data.thumbnail_url });
+                // }
+                // file_input.current.value = null;
+              }}
+            >
+              لغو
+            </span>
+          </div>
+        </div>
+      )}
       <div className='drop_zone' {...getRootProps()}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} multiple={false} />
         <p className='uploadText'>{language.text_3}</p>
         {picturesPreview.length > 0 ? (
           <div

@@ -11,6 +11,57 @@
     text-underline-position: under;
   }
 }
+.crop_container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  right: 0;
+  background: #313131;
+  z-index: 10;
+  .reactEasyCrop_Container {
+    z-index: 11;
+    .reactEasyCrop_CropArea {
+      color: rgba($almost_black, 0.9);
+    }
+    img {
+      width: auto;
+      height: auto;
+      border-radius: 0;
+    }
+  }
+}
+.Crop_BTN_container {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 1.5rem;
+  z-index: 20;
+  .cancel_class {
+    background: transparent;
+    border: 1px solid $blue;
+    color: $blue;
+  }
+  .cancel_class,
+  .local_class {
+    width: 49%;
+    text-align: center;
+  }
+  @media screen and(min-width:557px) {
+    width: 32rem;
+  }
+  .cancel_class {
+    color: $light_grey;
+    border-color: $light_grey;
+  }
+}
+
 .drop_zone {
   display: flex;
   flex-direction: column;
