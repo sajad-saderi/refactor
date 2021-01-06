@@ -18,6 +18,7 @@ import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../../utils/cropImage";
+import ZoomSlider from "./ZoomSlider";
 
 const ImageUploader = ({
   Upload_image,
@@ -124,9 +125,7 @@ const ImageUploader = ({
       <label>{language.car_picture}</label>
       <p className='image_upload_under_label'>
         {language.text_1}
-        <br />
         {language.text_2}
-        <u>{language.text_2_italic}</u>
       </p>
       {croptStart && (
         <div className='crop_container'>
@@ -134,14 +133,13 @@ const ImageUploader = ({
             image={currentImage}
             crop={crop}
             zoom={zoom}
-            minZoom={1}
-            maxZoom={5}
             aspect={16 / 9}
             onCropChange={setCrop}
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
             cropShape='rect'
           />
+          <ZoomSlider zoomChange={setZoom} zoom={zoom} />
           <div className='Crop_BTN_container'>
             <span className='Blue_BTN local_class' onClick={showCroppedImage}>
               تایید
