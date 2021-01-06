@@ -1,8 +1,8 @@
 @import "../../../styles/colors";
 .zoom_slider {
   position: absolute;
-  top: 9%;
-  width: 77%;
+  bottom: 13%;
+  width: 50%;
   left: 0;
   right: 0;
   margin: auto;
@@ -19,12 +19,23 @@
       font-weight: 100;
     }
   }
-  position: relative;
+  .zoom_plus_icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 2rem;
+  }
+  .zoom_out_icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2rem 0 0;
+  }
   .noUi-target {
     border: none;
     box-shadow: none;
     height: 5px;
     margin: 1rem 0;
+    display: inline-block;
+    width: 76%;
     .noUi-origin {
       left: -10px !important;
       right: -15px;
@@ -36,8 +47,8 @@
         width: 24px;
         height: 24px;
         top: -10px;
-        left: 0;
-        right: 0;
+        left: 0px;
+        right: auto;
         &:focus {
           outline: none;
         }
@@ -56,15 +67,8 @@
     }
   }
 }
-@media screen and(max-width:960px) {
+@media screen and(max-width:720px) {
   .zoom_slider {
-    .noUi-target {
-      margin: 1rem 1.6rem;
-      .noUi-origin {
-        .noUi-handle {
-          right: auto;
-        }
-      }
-    }
+    display: none;
   }
 }

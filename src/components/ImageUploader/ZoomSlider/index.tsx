@@ -14,6 +14,7 @@ import Nouislider from "nouislider-react";
 // Had to import noUiSlider and filter style file modular, to work correctly
 import "./ZoomSlider.scss";
 import "nouislider/distribute/nouislider.css";
+import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
 const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
   /**
@@ -56,6 +57,7 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
 
   return (
     <div className='zoom_slider'>
+      <IoMdAdd size='2.2rem' color='#fff' className='zoom_plus_icon' />
       <Nouislider
         /**
          * @range
@@ -66,6 +68,7 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
         onSlide={(zoom) => zoomChange(zoom)}
         step={0.1}
       />
+      <IoMdRemove size='2.2rem' color='#fff' className='zoom_out_icon' />
     </div>
   );
 };
