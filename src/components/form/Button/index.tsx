@@ -4,7 +4,8 @@ import React from "react";
 const Button = (props: IButton) => {
   return (
     <button
-      data-test-id="btn"
+      ref={props.reference}
+      data-test-id='btn'
       className={props.class}
       disabled={props.disable || props.loading}
       onClick={() => props.click()}
@@ -15,8 +16,8 @@ const Button = (props: IButton) => {
           style={{
             borderRightColor: props.loadingColor,
           }}
-          data-test-id="Loading"
-          className="Loading"
+          data-test-id='Loading'
+          className='Loading'
         />
       ) : (
         props.value
@@ -47,6 +48,7 @@ interface IButton {
    * It can do nothing
    */
   click: any;
+  reference?: any;
 
   /**
    * @laodingColor

@@ -115,7 +115,10 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
             e.persist();
             if (props.value.length === 4)
               if (e.keyCode !== 8)
-                if (e.keyCode !== 46) return input_ref_separated.current.blur();
+                if (e.keyCode !== 46) {
+                  props.tabToButton();
+                  return input_ref_separated.current.blur();
+                }
           }}
           max={9999}
           min={0}
@@ -158,6 +161,7 @@ interface ItextInput {
   // validation rules and requirements
   validation?: any;
   value: any;
+  tabToButton: any;
 }
 
 export default NumberSeparatedTextInput;

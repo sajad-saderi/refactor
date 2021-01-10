@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import modal_context from "../../../../context/Modal_context";
 import axios from "axios";
@@ -26,7 +26,7 @@ const ConfirmCode = ({
   const Modal_context = useContext(modal_context);
   const router = useRouter();
   const user = useContext(context_user);
-
+  const buttonRef = useRef(null);
   const sendConfirmCode = (e) => {
     e.preventDefault();
     if (!code) {
@@ -151,6 +151,7 @@ const ConfirmCode = ({
             },
             required: true,
           }}
+          tabToButton={() => buttonRef.current.focus()}
         />
 
         {/* <TextInput
@@ -211,6 +212,7 @@ const ConfirmCode = ({
           )}
         </div>
         <Button
+          reference={buttonRef}
           class='Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login'
           value={language.enter}
           loading={loading}

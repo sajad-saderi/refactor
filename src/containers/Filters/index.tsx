@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import PriceSlider from "../../components/filters/PriceSlider";
+// import PriceSlider from "../../components/filters/PriceSlider";
 // import "./Filter.scss";
 import Checkbox from "../../components/form/Checkbox";
 import filterContext from "../../context/filter-context";
@@ -7,6 +7,7 @@ import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
 import { IoIosOptions, IoMdClose } from "react-icons/io";
 import Spinner from "../../components/Spinner";
+import PriceSlider from "../../components/filters/PriceSlider/PriceSlider";
 
 let body_style_list = [];
 
@@ -271,12 +272,13 @@ const Filters = ({
         {/* {hidePrice ? (
           <Spinner display='block' width={20} color='#737373' />
         ) : ( */}
-        <PriceSlider
+        {/* <PriceSlider
           sliderRange={sliderRange}
           sliderPrice={sliderPrice}
           // initialValueMin={initialValueMin}
           // initialValueMax={initialValueMax}
-        />
+        /> */}
+        <PriceSlider sliderRange={sliderRange} sliderPrice={sliderPrice} />
         {/* )} */}
         <h3>{language.filter.filter_section_h3_1}</h3>
         <Checkbox

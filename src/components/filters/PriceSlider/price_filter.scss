@@ -49,6 +49,21 @@
       height: 5px;
     }
   }
+  .rc-slider-handle {
+    border: 3px solid $blue;
+    width: 24px;
+    height: 24px;
+    top: 0px;
+  }
+  .rc-slider-track {
+    border: 3px solid $blue;
+  }
+  .rc-slider-rail {
+    border: 3px solid $ultimate_gray;
+  }
+  .rc-slider-disabled {
+    background-color: transparent;
+  }
 }
 .fake_price_slider {
   .fake_slider_texts {
