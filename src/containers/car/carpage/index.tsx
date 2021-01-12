@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import {
   REQUEST_GET_CAR_REVIEW,
@@ -24,7 +24,9 @@ import Review from "../../../components/Review";
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
 // import "./carpage.scss";
-
+let hight_template = 0;
+let initial_slider_hight = 0;
+let initial_offsetY = 0;
 const CarPage = ({
   language,
   is_mine,
@@ -82,9 +84,12 @@ const CarPage = ({
   const [toDay, setToDay] = useState("");
   const [no_of_days, setNo_of_days] = useState("...");
   const [showDateText, setShowDateText] = useState(true);
-
   const [review, setReView] = useState(null);
+  const [move, setMove] = useState(null);
+  const [dummy_div_height, setDummy_div_height] = useState(0);
 
+  const carousel_section = useRef(null);
+  const context_section = useRef(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -147,10 +152,17 @@ const CarPage = ({
       }
     };
     router.events.on("routeChangeStart", handleRouteChange);
+    window.addEventListener("scroll", scrollHandler);
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
     };
   }, []);
+
+  // useEffect(() => {
+  //   console.log(carousel_section);
+
+  //   if (carousel_section.current)
+  // }, [carousel_section]);
 
   const fetchData = async (data) => {
     setNo_of_days("...");
@@ -310,6 +322,47 @@ const CarPage = ({
     return value;
   };
 
+  useEffect(() => {
+    if (carousel_section.current) {
+      let height = carousel_section.current.scrollHeight;
+      setDummy_div_height(height);
+      initial_slider_hight = height;
+      hight_template = height;
+    }
+  }, [carousel_section.current]);
+
+  const scrollHandler = (event) => {
+    //  amount of scroll
+    let pageOffset = window.pageYOffset;
+    let scrolled_px = 0;
+
+    if (initial_offsetY > pageOffset) {
+      // up
+      scrolled_px = initial_offsetY - window.pageYOffset;
+      initial_offsetY = pageOffset;
+      if (hight_template >= initial_slider_hight) {
+        hight_template = initial_slider_hight;
+        setDummy_div_height(initial_slider_hight);
+      } else {
+        hight_template = hight_template + scrolled_px;
+        setDummy_div_height(hight_template);
+      }
+      console.log("hight_template", hight_template);
+    } else if (initial_offsetY < pageOffset) {
+      scrolled_px = window.pageYOffset - initial_offsetY;
+      // down
+      initial_offsetY = pageOffset;
+      if (hight_template > 0) {
+        hight_template = hight_template - scrolled_px;
+        setDummy_div_height(hight_template);
+      } else {
+        hight_template = 0;
+        setDummy_div_height(0);
+      }
+      console.log("hight_template", hight_template);
+    }
+  };
+
   return (
     <>
       {media_set.length > 0 ? (
@@ -339,22 +392,17 @@ const CarPage = ({
               }}
             />
           )}
-          {/* {dayRange.from?.day && dayRange.to?.day && !is_mine ? (
-            <div className="Top_Rent_date">
-              <p>{`از ${dayRange.from.day} ${moment(
-                dayRange.from.month,
-                "jM"
-              ).format("jMMMM")} تا ${dayRange.to.day} ${moment(
-                dayRange.to.month,
-                "jM"
-              ).format("jMMMM")}`}</p>
-            </div>
-          ) : null} */}
-          {/* slider section */}
-          <Slider
-            Feed={media_set}
-            alt={`${car.brand.name.fa} ${car.name.fa}`}
-          />
+          {/* <div style={{ height: `${dummy_div_height}px` }}></div> */}
+          <section
+            className='slider_portion'
+            ref={carousel_section}
+            style={{ height: `${dummy_div_height}px` }}
+          >
+            <Slider
+              Feed={media_set}
+              alt={`${car.brand.name.fa} ${car.name.fa}`}
+            />
+          </section>
           {/* car info section */}
           <article className='responsive Car_page_container'>
             <section className='carInfo_container'>
