@@ -3,14 +3,15 @@
 .Top_Rent_date {
   display: none;
 }
-.slider_portion {
-  // transition: all 0.01s linear;
-}
+// .slider_portion {
+//   transition: all 0.25s linear;
+// }
 .Car_page_container {
   margin-top: 0.1rem;
   position: relative;
   z-index: 2;
   display: flex;
+  // z-index: 100;
   justify-content: space-between;
   align-items: self-start;
   background-color: $white;

@@ -394,21 +394,21 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               }}
             >
               <img
-                style={{
-                  position: "absolute",
-                  // control the top position of the image by "setheightController()"
-                  top: -heightController + "px",
-                }}
+                // style={{
+                //   position: "absolute",
+                //   // control the top position of the image by "setheightController()"
+                //   top: -heightController + "px",
+                // }}
                 src={media_set.thumbnail_url}
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
-                onLoadCapture={(e) => {
-                  e.persist();
-                  // adjust the image at the center of division container
-                  console.log(imageHeight / 84, 84 / 2.2);
-                  if (imageHeight / 84 > 2.2) {
-                    setheightController(84 / 4);
-                  }
-                }}
+                // onLoadCapture={(e) => {
+                //   e.persist();
+                //   // adjust the image at the center of division container
+                //   console.log(imageHeight / 84, 84 / 2.2);
+                //   if (imageHeight / 84 > 2.2) {
+                //     setheightController(84 / 4);
+                //   }
+                // }}
               />
             </figure>
           </div>

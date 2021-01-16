@@ -44,6 +44,7 @@ const Checkout_Container = ({
   const [insurance_total_price, setInsurance_total_price] = useState(null);
   const [has_system_discount, setHas_system_discount] = useState(null);
   const [no_of_days, setNo_of_days] = useState(null);
+  const [can_get_insurance, useCan_get_insurance] = useState(true);
   const [discounted_total_price, setDiscounted_total_price] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
   const [showInsurance, setShowInsurance] = useState(true);
@@ -79,6 +80,8 @@ const Checkout_Container = ({
   useEffect(() => {
     set_token(user.data?.token);
     if (order_information) {
+      console.log(order_information);
+
       setCar(order_information.car);
       setYear(order_information.year);
       setInsurance_total_price(order_information.insurance_total_price);
@@ -94,6 +97,11 @@ const Checkout_Container = ({
       setHas_system_discount(order_information.has_system_discount);
       setWith_driver(order_information.with_driver);
       setNo_of_days(order_information.no_of_days);
+      useCan_get_insurance(order_information.can_get_insurance);
+      if (!order_information.can_get_insurance) {
+        setShowInsurance(false);
+        setInsurance_total_price(0);
+      }
       setMax_km_per_day(order_information.max_km_per_day);
       setExtra_km_price_name(order_information.extra_km_price_name);
       if (order_information.extra_hour_price)
@@ -271,13 +279,15 @@ const Checkout_Container = ({
             </p>
           )}
         </div>
-        <div className='insurance'>
-          <h2>{language.insurance_for_rent}</h2>
-          <Insurance
-            insurance_price={insurance_total_price}
-            hasInsurance={hasInsurance}
-          />
-        </div>
+        {can_get_insurance ? (
+          <div className='insurance'>
+            <h2>{language.insurance_for_rent}</h2>
+            <Insurance
+              insurance_price={insurance_total_price}
+              hasInsurance={hasInsurance}
+            />
+          </div>
+        ) : null}
       </section>
       <section className='payment_info_container'>
         <div className='Date_container'>
