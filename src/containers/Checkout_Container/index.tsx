@@ -80,8 +80,6 @@ const Checkout_Container = ({
   useEffect(() => {
     set_token(user.data?.token);
     if (order_information) {
-      console.log(order_information);
-
       setCar(order_information.car);
       setYear(order_information.year);
       setInsurance_total_price(order_information.insurance_total_price);
@@ -335,19 +333,21 @@ const Checkout_Container = ({
               </span>
             </p>
           )}
-          <p>
-            <span>{language.insurance}</span>
-            <span>
-              {showInsurance ? (
-                <>
-                  {`${insurance_total_price.toLocaleString()} `}
-                  <span className='Toman'>{language.toman}</span>
-                </>
-              ) : (
-                language.nothing
-              )}
-            </span>
-          </p>
+          {can_get_insurance ? (
+            <p>
+              <span>{language.insurance}</span>
+              <span>
+                {showInsurance ? (
+                  <>
+                    {`${insurance_total_price.toLocaleString()} `}
+                    <span className='Toman'>{language.toman}</span>
+                  </>
+                ) : (
+                  language.nothing
+                )}
+              </span>
+            </p>
+          ) : null}
           {!useCouponPrice ? (
             !showcoupon ? (
               <p
