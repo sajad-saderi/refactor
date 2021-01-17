@@ -51,7 +51,9 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
         utm_campaign: localStorage["utm_campaign"]
           ? localStorage["utm_campaign"]
           : "",
-        utm_referrer: localStorage["utm_referrer"] ? localStorage["utm_referrer"] : "",
+        utm_referrer: localStorage["utm_referrer"]
+          ? localStorage["utm_referrer"]
+          : "",
         utm_term: localStorage["utm_term"] ? localStorage["utm_term"] : "",
         utm_content: localStorage["utm_content"]
           ? localStorage["utm_content"]
@@ -110,7 +112,7 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
             // min={11}
             // max={11}
             label={language.cell_phone}
-            placeholder={language.example}
+            // placeholder={language.example}
             clearField={clearField}
             validation={{
               number: true,

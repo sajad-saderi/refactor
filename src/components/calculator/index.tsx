@@ -274,7 +274,14 @@ const Calculator = ({ AbText, language }: ICalculator) => {
             weekly={weekly}
             monthly={monthly}
           />
-          <div className='addCarnowInlanding'>
+          <div
+            className='addCarnowInlanding'
+            onClickCapture={() => {
+              if (!authorize) {
+                localStorage["last_location"] = "/add-car";
+              }
+            }}
+          >
             <Link href={authorize ? "/add-car" : "/login"}>
               <a
                 className='Blue_BTN addCar_top_joinus_a'

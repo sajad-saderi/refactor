@@ -75,7 +75,14 @@ const HomePage = () => {
               <p>{language.second_container_three_columns_2_p_3}</p>
             </section>
           </div>
-          <div className='add_car_section'>
+          <div
+            className='add_car_section'
+            onClickCapture={() => {
+              if (!authorize) {
+                localStorage["last_location"] = "/add-car";
+              }
+            }}
+          >
             <Link href={authorize ? "/add-car" : "/login"}>
               <a className='Blue_BTN add_car_custom'>
                 {language.second_container_add_car_section_a_1}

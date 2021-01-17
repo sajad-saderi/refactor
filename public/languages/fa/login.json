@@ -19,7 +19,7 @@
   },
   "ConfirmCode": {
     "confirm_code_title": "ورود کد تایید",
-    "text_input_label_1": "کد چهار رقمی ارسال شده به شماره",
+    "text_input_label_1": "کد چهار رقمی پیامک شده به شماره",
     "text_input_label_2": "را وارد کنید.",
     "place_holder": "لطفا کد را وارد کنید",
     "require": "لطفا کد تایید را وارد کنید",

@@ -43,7 +43,14 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
             <p>{language.three_columns_p_3}</p>
           </section>
         </div>
-        <div className='add_car_section'>
+        <div
+          className='add_car_section'
+          onClickCapture={() => {
+            if (!authorize) {
+              localStorage["last_location"] = "/add-car";
+            }
+          }}
+        >
           <Link href={authorize ? "/add-car" : "/login"}>
             <a className='Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar'>
               {AbText}
