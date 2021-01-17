@@ -28,6 +28,10 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
   const sendConfirmCode = (e) => {
     e.preventDefault();
     if (!cellPhone) {
+      setError({
+        status: true,
+        message: "شماره تلفن همراه‌تان را وارد  کنید.",
+      });
       return;
     }
     // localStorage["last_location"] = router.asPath;
