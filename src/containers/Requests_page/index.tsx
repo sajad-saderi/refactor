@@ -21,6 +21,8 @@ const Requests_page = ({ language }: IRequests_page) => {
   const [showMoreButton, setShowMoreButton] = useState(false);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
   const [active_filters, setActive_filters] = useState([]);
+  const [active_orders, setActive_orders] = useState([]);
+  const [deactivate_orders, setDeactivate_orders] = useState([]);
 
   const user = useContext(context_user);
   const token = user.data?.token;
@@ -76,6 +78,7 @@ const Requests_page = ({ language }: IRequests_page) => {
         setShow_spinner_loadMore(false);
         setResult((result) => result.concat(res.items));
       } else {
+        result_regulator(res.items);
         setResult(res.items);
       }
       if (res.total_count > 14 && res.remained_count > 0) {
@@ -84,6 +87,25 @@ const Requests_page = ({ language }: IRequests_page) => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const result_regulator = (data) => {
+    let deactivate_orders = [];
+    let active_orders = data.filter((item, index) => {
+      if (
+        +(
+          (Math.round(Date.now() / 1000) - item.creation_time.timestamp) /
+          86400
+        ).toFixed(2) <= 6 &&
+        item.status.id !== "returned"
+      ) {
+        return item;
+      } else {
+        deactivate_orders.push(item);
+      }
+    });
+    setActive_orders(active_orders);
+    setDeactivate_orders(active_orders);
   };
 
   const filterHandler = (value, option) => {
@@ -147,7 +169,7 @@ const Requests_page = ({ language }: IRequests_page) => {
           {result ? (
             result.length > 0 ? (
               <>
-                {result.map((item, i) => {
+                {active_orders.map((item, i) => {
                   return (
                     <div className='Request_car' key={i}>
                       <Request_cart

@@ -10,15 +10,13 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
     query = `&status_id=${data.status_id}`;
   }
   return new Promise((resolve, reject) => {
+    // DEV
     axios
-      .get(
-        DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=14` + query,
-        {
-          headers: {
-            Authorization: "Bearer " + data.token,
-          },
-        }
-      )
+      .get(DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=2` + query, {
+        headers: {
+          Authorization: "Bearer " + data.token,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           resolve(response.data);
