@@ -78,6 +78,7 @@ const Requests_page = ({ language }: IRequests_page) => {
         setShow_spinner_loadMore(false);
         setResult((result) => result.concat(res.items));
       } else {
+        // VV
         result_regulator(res.items);
         setResult(res.items);
       }
@@ -89,6 +90,7 @@ const Requests_page = ({ language }: IRequests_page) => {
     }
   };
 
+  // VV
   const result_regulator = (data) => {
     let deactivate_orders = [];
     let active_orders = data.filter((item, index) => {
@@ -107,6 +109,7 @@ const Requests_page = ({ language }: IRequests_page) => {
     setActive_orders(active_orders);
     setDeactivate_orders(active_orders);
   };
+  // ^^
 
   const filterHandler = (value, option) => {
     if (option === "add") {
