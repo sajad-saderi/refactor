@@ -26,6 +26,7 @@
     box-shadow: $box_shadow;
     border-radius: 4px;
     margin-top: 0;
+    margin-left: 1rem;
     .check_box_container {
       display: block;
     }
@@ -48,7 +49,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto;
     flex-wrap: wrap;
+    .orders_tabs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 55rem;
+      font-family: "dana_medium";
+      background: #fff;
+      box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+      margin: auto;
+      margin-bottom: 1.6rem;
+      p {
+        cursor: pointer;
+        text-align: center;
+        color: $more_gray;
+        font-size: 1.4rem;
+        width: 50%;
+        padding: 1rem 0;
+      }
+      .active {
+        color: $blue;
+        border-bottom: 2px solid $blue;
+      }
+    }
+    .active_tab_container {
+      width: 100%;
+      max-width: 55rem;
+    }
   }
   .NoResult {
     padding-top: 3rem;

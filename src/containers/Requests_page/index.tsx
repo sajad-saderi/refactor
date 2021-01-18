@@ -23,6 +23,7 @@ const Requests_page = ({ language }: IRequests_page) => {
   const [active_filters, setActive_filters] = useState([]);
   const [active_orders, setActive_orders] = useState([]);
   const [deactivate_orders, setDeactivate_orders] = useState([]);
+  const [activeTab, setActiveTab] = useState(1);
 
   const user = useContext(context_user);
   const token = user.data?.token;
@@ -107,7 +108,7 @@ const Requests_page = ({ language }: IRequests_page) => {
       }
     });
     setActive_orders(active_orders);
-    setDeactivate_orders(active_orders);
+    setDeactivate_orders(deactivate_orders);
   };
   // ^^
 
@@ -169,37 +170,90 @@ const Requests_page = ({ language }: IRequests_page) => {
             totalCount === 0 ? "blockSection" : null,
           ].join(" ")}
         >
-          {result ? (
-            result.length > 0 ? (
-              <>
-                {active_orders.map((item, i) => {
-                  return (
-                    <div className='Request_car' key={i}>
-                      <Request_cart
-                        language={language.request_cart}
-                        data={item}
-                        getDataAgain={() => {
-                          page = 1;
-                          fetchAPI({
-                            page: 1,
-                            status_id: filter_id.join(","),
-                          });
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </>
-            ) : (
-              <p className='NoResult'>{language.no_order}</p>
-            )
+          <div className='orders_tabs'>
+            <p
+              onClick={() => setActiveTab(1)}
+              className={activeTab === 1 ? "active" : null}
+            >
+              {language.activeOrders}
+            </p>
+            <p
+              onClick={() => setActiveTab(2)}
+              className={activeTab === 2 ? "active" : null}
+            >
+              {language.deactivateOrders}
+            </p>
+          </div>
+          {activeTab === 1 ? (
+            <div className='active_tab_container'>
+              {result ? (
+                result.length > 0 ? (
+                  <>
+                    {active_orders.map((item, i) => {
+                      return (
+                        <div className='Request_car' key={i}>
+                          <Request_cart
+                            language={language.request_cart}
+                            data={item}
+                            getDataAgain={() => {
+                              page = 1;
+                              fetchAPI({
+                                page: 1,
+                                status_id: filter_id.join(","),
+                              });
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <p className='NoResult'>{language.no_order}</p>
+                )
+              ) : (
+                <>
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                </>
+              )}
+            </div>
           ) : (
-            <>
-              <Requests_page_Loading />
-              <Requests_page_Loading />
-              <Requests_page_Loading />
-              <Requests_page_Loading />
-            </>
+            <div className='active_tab_container'>
+              {result ? (
+                result.length > 0 ? (
+                  <>
+                    {deactivate_orders.map((item, i) => {
+                      return (
+                        <div className='Request_car' key={i}>
+                          <Request_cart
+                            language={language.request_cart}
+                            data={item}
+                            getDataAgain={() => {
+                              page = 1;
+                              fetchAPI({
+                                page: 1,
+                                status_id: filter_id.join(","),
+                              });
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <p className='NoResult'>{language.no_order}</p>
+                )
+              ) : (
+                <>
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                  <Requests_page_Loading />
+                </>
+              )}
+            </div>
           )}
         </section>
       </section>

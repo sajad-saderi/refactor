@@ -12,6 +12,7 @@ import {
   IoMdArrowRoundBack,
   IoMdPerson,
 } from "react-icons/io";
+import Icon from "../../../../utils/Icon";
 import {
   MdAccountCircle,
   MdAlarm,
@@ -27,7 +28,7 @@ import {
   MdVpnKey,
 } from "react-icons/md";
 import PelakView from "../../../components/pelak";
-
+import CountdownTimer from "timer-countdown";
 // import "./request_cart.scss";
 import Link from "next/link";
 import Button from "../../../components/form/Button";
@@ -36,6 +37,7 @@ import jsCookie from "js-cookie";
 import Modal_context from "../../../context/Modal_context";
 import Toast_context from "../../../context/Toast_context";
 import carImage from "../../../../public/image/car-image-thumbnail.jpg";
+import { FiClock } from "react-icons/fi";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -138,8 +140,19 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "new":
         RentStatus = (
           <div className='rent_status status_new'>
-            <MdAlarm size='2rem' color='#f7941d' />
-            <span>{language.new}</span>
+            <div className='card_status'>
+              <MdAlarm size='2rem' color='#f7941d' />
+              <span>{language.new}</span>
+            </div>
+            <div className='timer'>
+              <CountdownTimer
+                timeLeft={
+                  data.time_remaining_to_take_action.total_seconds * 1000
+                }
+                completeCallback={() => CreateTheStatusForThisCard("expired")}
+              />
+              <FiClock size='2rem' color='#f7941d' />
+            </div>
           </div>
         );
         // set the button attribute base on the role and action
@@ -167,8 +180,19 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "approved":
         RentStatus = (
           <div className='rent_status status_approved'>
-            <MdCreditCard size='2rem' color='#a3678b' />
-            <span>{language.approved}</span>
+            <div className='card_status'>
+              <MdCreditCard size='2rem' color='#a3678b' />
+              <span>{language.approved}</span>
+            </div>
+            <div className='timer'>
+              <CountdownTimer
+                timeLeft={
+                  data.time_remaining_to_take_action.total_seconds * 1000
+                }
+                completeCallback={() => CreateTheStatusForThisCard("expired")}
+              />
+              <FiClock size='2rem' color='#a3678b' />
+            </div>
           </div>
         );
         setButton_code(
@@ -438,12 +462,14 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
           <p className='insurance_badge'>
             {has_Insurance ? (
               <>
-                <MdDone size='1.4rem' color='#2cbbc2' />
+                <Icon name='active_shield' />
+                {/* <MdDone size='1.4rem' color='#2cbbc2' /> */}
                 {language.with_insurance}
               </>
             ) : (
               <>
-                <MdClear size='1.4rem' color='#707070' />
+                <Icon name='deactivate_shield' />
+                {/* <MdClear size='1.4rem' color='#707070' /> */}
                 {language.without_insurance}
               </>
             )}
