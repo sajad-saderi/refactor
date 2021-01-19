@@ -5,7 +5,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: start;
-  padding-top: $padding_top;
   position: relative;
   .show_filter {
     color: #656565;
@@ -59,7 +58,7 @@
       max-width: 55rem;
       font-family: "dana_medium";
       background: #fff;
-      box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
       margin: auto;
       margin-bottom: 1.6rem;
       p {
@@ -78,6 +77,7 @@
     .active_tab_container {
       width: 100%;
       max-width: 55rem;
+      margin: auto;
     }
   }
   .NoResult {
@@ -89,7 +89,6 @@
 
 @media screen and(max-width:720px) {
   .requests_page_container {
-    padding-top: 2 * $padding_top;
     .requests_section {
       display: block;
       width: 100%;

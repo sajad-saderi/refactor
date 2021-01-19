@@ -459,7 +459,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {language.toman} ({language.for} {no_of_days} {language.day})
             </>
           )}
-          <p className='insurance_badge'>
+          <span className='insurance_badge'>
             {has_Insurance ? (
               <>
                 <Icon name='active_shield' />
@@ -473,7 +473,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 {language.without_insurance}
               </>
             )}
-          </p>
+          </span>
         </p>
         <div className='Role_container'>
           {role ? (
