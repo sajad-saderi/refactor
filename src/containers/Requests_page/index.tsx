@@ -268,7 +268,7 @@ const Requests_page = ({ language }: IRequests_page) => {
 
   const getOlderOrder = (tab) => {
     let t_until_date = moment()
-      .subtract(8, "d")
+      .subtract(7, "d")
       .format("jYYYY/jM/jD");
     until_date = t_until_date;
     fetchAPI(
@@ -281,7 +281,7 @@ const Requests_page = ({ language }: IRequests_page) => {
   };
 
   return show ? (
-    <article className='responsive '>
+    <article>
       <section className='requests_page_container'>
         {/* <Requests_filter
           language={language.filters}

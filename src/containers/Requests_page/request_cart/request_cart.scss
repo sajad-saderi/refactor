@@ -222,7 +222,7 @@
         display: inline-block;
         vertical-align: middle;
         color: $blue;
-        font-weight: 100;
+        font-weight: 400;
       }
       svg {
         display: inline-block;
@@ -358,6 +358,7 @@
       }
     }
     .invoice_and_insurance {
+      font-size: 1.2rem;
       .insurance_badge {
         svg {
           width: 1.4rem;

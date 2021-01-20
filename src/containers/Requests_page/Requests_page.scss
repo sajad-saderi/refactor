@@ -58,7 +58,7 @@
       max-width: 55rem;
       font-family: "dana_medium";
       background: #fff;
-      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
       margin: auto;
       margin-bottom: 1.6rem;
       p {
@@ -92,6 +92,16 @@
     .requests_section {
       display: block;
       width: 100%;
+      .orders_tabs {
+        max-width: none;
+      }
+      .active_tab_container {
+        padding-right: 1.6rem;
+        padding-left: 1.6rem;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: none;
+      }
     }
     .filter_section {
       &.show_Filter_section {
