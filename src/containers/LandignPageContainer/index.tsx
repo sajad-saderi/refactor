@@ -543,6 +543,9 @@ const Landing_page_container = ({
               onClick={() => {
                 setShowSearch(!showSearch);
               }}
+              style={{
+                height: showSearch ? "auto" : "42px",
+              }}
             >
               {!showSearch ? (
                 <p className='count_bar_count'>{`${total_count}${

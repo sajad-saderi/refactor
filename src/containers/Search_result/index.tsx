@@ -506,6 +506,9 @@ const Search_result = ({ language }: ISearch_result) => {
               onClick={() => {
                 setShowSearch(!showSearch);
               }}
+              style={{
+                height: showSearch ? "auto" : "42px",
+              }}
             >
               {!showSearch ? (
                 <p className='count_bar_count'>{`${total_count}${
