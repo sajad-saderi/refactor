@@ -18,7 +18,6 @@ import { REQUEST_REQUEST_ACTION } from "../../../../API";
 import Router from "next/router";
 import car_image from "../../../../../public/image/car-image-thumbnail.jpg";
 
-
 const Owner = (props: IRenter) => {
   const [renter, setRenter] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -71,9 +70,9 @@ const Owner = (props: IRenter) => {
   return (
     <>
       {renter && (
-        <div className="modal_box_div">
+        <div className='modal_box_div'>
           <form
-            className="rate_to_owner_car"
+            className='rate_to_owner_car'
             onSubmit={(e) => {
               setForRequest(e, {
                 id: props.data.id,
@@ -81,18 +80,21 @@ const Owner = (props: IRenter) => {
               });
             }}
           >
-            <img src={renter.thumbnail_url ?renter.thumbnail_url : car_image } alt={renter.name} />
+            <img
+              src={renter.thumbnail_url ? renter.thumbnail_url : car_image}
+              alt={renter.name}
+            />
             <h3>{renter.name}</h3>
             <p>امتیاز شما به مهمان</p>
             <StarRatings
               rating={ownerRate}
-              starRatedColor="rgb(255, 204, 0)"
-              starHoverColor="rgb(255, 204, 0)"
-              starDimension="20px"
-              starSpacing="5px"
+              starRatedColor='rgb(255, 204, 0)'
+              starHoverColor='rgb(255, 204, 0)'
+              starDimension='20px'
+              starSpacing='5px'
               changeRating={(e) => setOwnerRate(e)}
               numberOfStars={5}
-              name="ownerRate"
+              name='ownerRate'
             />
             <label>توضیح:</label>
             <textarea
@@ -100,18 +102,18 @@ const Owner = (props: IRenter) => {
               onChange={(e) => {
                 setTextareaValue(e.target.value);
               }}
-              placeholder="(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)"
+              placeholder='(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)'
             />
-            <div className="rate_buttons">
+            <div className='rate_buttons'>
               <Button
-                class="Blue_BTN submit_submit HEAP_ModalReviewOwnerToRenter_Btn_Submit"
-                value="ثبت امتیاز"
+                class='Blue_BTN submit_submit HEAP_ModalReviewOwnerToRenter_Btn_Submit'
+                value='ثبت امتیاز'
                 loading={loading}
-                click={() => { }}
+                click={() => {}}
               />
               <Button
-                class="Blue_BTN cancel_submit"
-                value="لغو"
+                class='Blue_BTN cancel_submit'
+                value='لغو'
                 loading={loading}
                 click={() => {
                   // close the modal

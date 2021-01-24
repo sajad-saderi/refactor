@@ -251,7 +251,6 @@ const Requests_page = ({ language }: IRequests_page) => {
       fetchAPI({
         page,
         creation_time_from: start_date,
-        creation_time_to: end_date,
       });
     } else {
       fetchAPI(
@@ -304,7 +303,6 @@ const Requests_page = ({ language }: IRequests_page) => {
                 fetchAPI({
                   page: 1,
                   creation_time_from: start_date,
-                  creation_time_to: end_date,
                 });
               }}
               className={activeTab === 1 ? "active" : null}
