@@ -48,6 +48,7 @@ const Checkout_Container = ({
   const [discounted_total_price, setDiscounted_total_price] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
   const [showInsurance, setShowInsurance] = useState(true);
+  const [body_style, set_body_style] = useState(null);
   const [showcoupon, setShowcoupon] = useState(false);
   const [useCouponPrice, setUseCouponPrice] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(0);
@@ -91,12 +92,16 @@ const Checkout_Container = ({
           ? "میلیون"
           : "هزار"
       );
+      set_body_style(order_information.body_style.id);
       setTotal_price(order_information.total_price);
       setHas_system_discount(order_information.has_system_discount);
       setWith_driver(order_information.with_driver);
       setNo_of_days(order_information.no_of_days);
       useCan_get_insurance(order_information.can_get_insurance);
-      if (!order_information.can_get_insurance) {
+      if (
+        !order_information.can_get_insurance ||
+        order_information.body_style.id === 6
+      ) {
         setShowInsurance(false);
         setInsurance_total_price(0);
       }
@@ -274,7 +279,7 @@ const Checkout_Container = ({
             </p>
           )}
         </div>
-        {can_get_insurance ? (
+        {can_get_insurance && body_style != 6 ? (
           <div className='insurance'>
             <h2>{language.insurance_for_rent}</h2>
             <Insurance
@@ -330,7 +335,7 @@ const Checkout_Container = ({
               </span>
             </p>
           )}
-          {can_get_insurance ? (
+          {can_get_insurance && body_style != 6 ? (
             <p>
               <span>{language.insurance}</span>
               <span>
