@@ -9,6 +9,8 @@
   "requests_page": {
     "no_order": "تا به حال سفارشی نداشته‌اید.",
     "show_more": "نمایش ماشین‌های بیشتر",
+    "activeOrders": "رزروهای اخیر",
+    "deactivateOrders": "رزروهای قبلی",
     "filters": {
       "show_filters": "نمایش فیلترها",
       "status_of_request": "وضعیت درخواست"

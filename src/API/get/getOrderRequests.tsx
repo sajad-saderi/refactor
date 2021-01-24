@@ -9,6 +9,12 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
   if (data.status_id) {
     query = `&status_id=${data.status_id}`;
   }
+  if (data.creation_time_from) {
+    query += `&creation_time_from=${data.creation_time_from}`;
+  }
+  if (data.creation_time_to) {
+    query += `&creation_time_to=${data.creation_time_to}`;
+  }
   return new Promise((resolve, reject) => {
     axios
       .get(
@@ -34,5 +40,7 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
 interface IgetOrderRequests {
   token: string;
   status_id?: string;
+  creation_time_from: string;
+  creation_time_to: string;
   page: number;
 }

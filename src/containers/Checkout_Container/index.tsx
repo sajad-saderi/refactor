@@ -127,13 +127,12 @@ const Checkout_Container = ({
 
   const couponHandler = async (e) => {
     e.preventDefault();
-    if (!token) {
-      const guard = guard_controller();
-      if (guard !== "auth") {
-        setLoading(false);
-        router.push(`/${guard}`);
-        return;
-      }
+
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      setLoading(false);
+      router.push(`/${guard}`);
+      return;
     }
     setCoupanLoading(true);
     // validation
@@ -172,13 +171,11 @@ const Checkout_Container = ({
 
   const GoToRequests = async () => {
     setLoading(true);
-    if (!token) {
-      const guard = guard_controller();
-      if (guard !== "auth") {
-        setLoading(false);
-        router.push(`/${guard}`);
-        return;
-      }
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      setLoading(false);
+      router.push(`/${guard}`);
+      return;
     }
     if (user.data.id == owner.id) {
       alert("شما نمیتوانید خودرو خودتان را اجاره کنید");

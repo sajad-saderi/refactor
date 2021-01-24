@@ -43,6 +43,7 @@
     "react-icons": "^3.9.0",
     "react-modern-calendar-datepicker": "^2.1.0",
     "react-star-ratings": "^2.3.0",
+    "timer-countdown": "^0.2.6",
     "validator": "^13.0.0",
     "webpack": "^4.42.0"
   },
