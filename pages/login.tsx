@@ -87,7 +87,7 @@ const LoginPage = () => {
           ) : (
             <GetUserCellPhone
               language={language.GetUserCellPhone}
-              data-test-id='GetUserCellPhone '
+              data-test-id='GetUserCellPhone'
               panelController={panelController}
             />
           )}
