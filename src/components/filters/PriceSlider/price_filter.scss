@@ -51,16 +51,22 @@
   }
   .rc-slider-handle {
     border: 3px solid $blue;
-    width: 24px;
-    height: 24px;
-    top: 0px;
+    background: $blue;
+    width: 22px;
+    height: 22px;
+    top: 1px;
+  }
+  .rc-slider-step {
+    background: $light_blue;
+    border-radius: 10px;
   }
   .rc-slider-track {
-    border: 3px solid $blue;
+    border: 2px solid $blue;
     background-color: $blue;
+    z-index: 3;
   }
   .rc-slider-rail {
-    border: 3px solid $ultimate_gray;
+    border: 2px solid $ultimate_gray;
     background-color: $ultimate_gray;
   }
   .rc-slider-disabled {
