@@ -12,6 +12,7 @@ import Checkout_Container_Loader from "../../components/cartPlaceholder/checkout
 import Toast_context from "../../context/Toast_context";
 import carImage from "../../../public/image/car-image-thumbnail.jpg";
 import { guard_controller } from "../../../utils/guard_controller";
+import jsCookie from "js-cookie";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -30,6 +31,7 @@ const Checkout_Container = ({
   const [total_price, setTotal_price] = useState(null);
   const [unit, setUnit] = useState("هراز");
   const [with_driver, setWith_driver] = useState(null);
+  const [without_driver, setWithout_driver] = useState(null);
   const [max_km_per_day, setMax_km_per_day] = useState(null);
   const [extra_km_price_name, setExtra_km_price_name] = useState(null);
   const [extra_hour_price_name, setExtra_hour_price_name] = useState(null);
@@ -59,10 +61,11 @@ const Checkout_Container = ({
   });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [token, set_token] = useState("");
   const TOAST_CONTEXT = useContext(Toast_context);
   const user = useContext(context_user);
   const router = useRouter();
+
+  const token = jsCookie.get("token");
 
   // useEffect(() => {
   //   const { search_id } = Router.router.query;
@@ -79,7 +82,6 @@ const Checkout_Container = ({
   // };
 
   useEffect(() => {
-    set_token(user.data?.token);
     if (order_information) {
       setCar(order_information.car);
       setYear(order_information.year);
@@ -96,6 +98,7 @@ const Checkout_Container = ({
       setTotal_price(order_information.total_price);
       setHas_system_discount(order_information.has_system_discount);
       setWith_driver(order_information.with_driver);
+      setWithout_driver(order_information.without_driver);
       setNo_of_days(order_information.no_of_days);
       useCan_get_insurance(order_information.can_get_insurance);
       if (
@@ -260,7 +263,11 @@ const Checkout_Container = ({
             <>
               <hr />
               <h2>{language.with_driver}</h2>
-              <span>{language.with_driver_text}</span>
+              {without_driver ? (
+                <span>{language.with_and_without_driver_text}</span>
+              ) : (
+                <span>{language.with_driver_text}</span>
+              )}
             </>
           )}
           <hr />

@@ -83,7 +83,7 @@ const CarPage = ({
   const [showBorder, setShowBorder] = useState(false);
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
-  const [no_of_days, setNo_of_days] = useState("...");
+  const [no_of_days, setNo_of_days] = useState(null);
   const [showDateText, setShowDateText] = useState(true);
   const [review, setReView] = useState(null);
 
@@ -540,7 +540,9 @@ const CarPage = ({
                             dayRange.to.month,
                             "jM"
                           ).format("jMMMM")}`}{" "}
-                          ({no_of_days} {language.Rent_date_day})
+                          {no_of_days
+                            ? `(${no_of_days} ${language.Rent_date_day})`
+                            : null}
                         </p>
                         <p
                           className='change_date_in_car_page'
@@ -821,7 +823,9 @@ const CarPage = ({
                       dayRange.to.month,
                       "jM"
                     ).format("jMMMM")}`}{" "}
-                    ({no_of_days} {language.Rent_date_day})
+                    {no_of_days
+                      ? `(${no_of_days} ${language.Rent_date_day})`
+                      : null}
                   </p>
                   <p
                     className='change_date_in_car_page'
