@@ -47,7 +47,7 @@ const PleaseLogin = ({ language }: IPleaseLogin) => {
             <h2>{language.GetUserCellPhone.log_sigh}</h2>
           </div>
         )}
-        {change ? (
+        {/* {change ? (
           <ConfirmCode
             language={language.ConfirmCode}
             panelController={panelController}
@@ -59,7 +59,7 @@ const PleaseLogin = ({ language }: IPleaseLogin) => {
             data-test-id='GetUserCellPhone'
             panelController={panelController}
           />
-        )}
+        )} */}
       </div>
     </div>
   );

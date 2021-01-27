@@ -232,6 +232,6 @@ interface IConfirmCode {
   panelController: any;
   language: any;
   customModalControl?: boolean;
-  deactivate_form?: boolean;
+  deactivate_form: boolean;
 }
 export default ConfirmCode;
