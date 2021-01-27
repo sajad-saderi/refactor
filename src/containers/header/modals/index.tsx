@@ -76,21 +76,23 @@ const Modals = (props) => {
           )}
         </div>
         {/* model section */}
-        {props.modal_type === "Login" ? (
-          // switch between get cell phone and enter confirm code
-          change ? (
-            <ConfirmCode
-              language={language.ConfirmCode}
-              panelController={panelController}
-            />
-          ) : (
-            <GetUserCellPhone
-              language={language.GetUserCellPhone}
-              data-test-id='GetUserCellPhone'
-              panelController={panelController}
-            />
-          )
-        ) : props.modal_type === "TellMe" ? (
+        {// props.modal_type === "Login" ? (
+        //   // switch between get cell phone and enter confirm code
+        //   change ? (
+        //     <ConfirmCode
+        //       language={language.ConfirmCode}
+        //       panelController={panelController}
+        //     />
+        //   ) : (
+        //     <GetUserCellPhone
+        //       language={language.GetUserCellPhone}
+        //       data-test-id='GetUserCellPhone'
+        //       panelController={panelController}
+        //     />
+        //   )
+        // )
+        // ?
+        props.modal_type === "TellMe" ? (
           <TellMe data-test-id='TellMe' />
         ) : props.modal_type === "Renter" ? (
           <Renter data-test-id='Renter' data={props.data} />
