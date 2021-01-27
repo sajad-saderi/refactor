@@ -13,6 +13,7 @@ import context_user from "../src/context/User_info";
 
 const LoginPage = () => {
   const [change, setChange] = useState(false);
+  const [deactivate_form, set_deactivate_form] = useState(false);
   const user = useContext(context_user);
   const router = useRouter();
 
@@ -29,10 +30,11 @@ const LoginPage = () => {
     });
 
     if (window["auth"]) {
-      if (window["complete_register"]) {
-        let id = user.data?.id;
-        router.push(`/user/${id}`);
-      }
+      set_deactivate_form(true);
+      // if (window["complete_register"]) {
+      //   let id = user.data?.id;
+      //   router.push(`/user/${id}`);
+      // }
     }
   }, []);
 
@@ -83,12 +85,14 @@ const LoginPage = () => {
               language={language.ConfirmCode}
               panelController={panelController}
               customModalControl={true}
+              deactivate_form={deactivate_form}
             />
           ) : (
             <GetUserCellPhone
               language={language.GetUserCellPhone}
               data-test-id='GetUserCellPhone'
               panelController={panelController}
+              deactivate_form={deactivate_form}
             />
           )}
         </div>

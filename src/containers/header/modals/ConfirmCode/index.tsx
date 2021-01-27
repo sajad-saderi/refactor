@@ -12,6 +12,7 @@ import jsCookie from "js-cookie";
 const ConfirmCode = ({
   panelController,
   language,
+  deactivate_form,
   customModalControl,
 }: IConfirmCode) => {
   const [code, setCode] = useState("");
@@ -213,7 +214,11 @@ const ConfirmCode = ({
         </div>
         <Button
           reference={buttonRef}
-          class='Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login'
+          disable={deactivate_form}
+          class={[
+            "Blue_BTN login_submit HEAP_ModalConfirmCode_Btn_Login",
+            deactivate_form ? "disable_BTN" : null,
+          ].join(" ")}
           value={language.enter}
           loading={loading}
           click={() => {}}
@@ -227,5 +232,6 @@ interface IConfirmCode {
   panelController: any;
   language: any;
   customModalControl?: boolean;
+  deactivate_form?: boolean;
 }
 export default ConfirmCode;

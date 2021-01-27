@@ -73,6 +73,7 @@ const Complete_register_container = ({
   const [rolesCheck, setRolesCheck] = useState(false);
   const [showCompanyName, setShowCompanyName] = useState(false);
   const [show, setShow] = useState(false);
+  const [deactivate_form, set_deactivate_form] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -115,8 +116,13 @@ const Complete_register_container = ({
 
   useEffect(() => {
     // if the user is not register the login modal will show up
-    if (window["complete_register"]) {
-      router.push("/");
+    if (window["auth"]) {
+      if (window["complete_register"]) {
+        set_deactivate_form(true);
+        // router.push("/");
+      }
+    } else {
+      set_deactivate_form(true);
     }
     setShow(true);
   }, []);
@@ -473,9 +479,11 @@ const Complete_register_container = ({
         <Button
           class={[
             "Blue_BTN local_BTN HEAP_CompleteRegister_Btn_Submit",
-            // , rolesCheck ? null : "disable_BTN"
+            ,
+            deactivate_form ? "disable_BTN" : null,
           ].join(" ")}
           value={language.ok}
+          disable={deactivate_form}
           click={() => {}}
           loading={loading}
         />

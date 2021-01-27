@@ -142,9 +142,11 @@
       width: 100%;
     }
     .disable_BTN {
-      color: #656565;
+      color: $light_grey;
       font-family: inherit;
-      background-color: #e6e6e6;
+      background-color: $ultimate_gray;
+      cursor: not-allowed;
+      border: 1px solid $light_grey;
     }
   }
 }

@@ -6,7 +6,11 @@ import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import Button from "../../../../components/form/Button";
 import { useRouter } from "next/router";
 
-const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
+const GetUserCellPhone = ({
+  panelController,
+  language,
+  deactivate_form,
+}: IGetUserCellPhone) => {
   const [cellPhone, setCellPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
@@ -136,7 +140,11 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
           {/* show an error message */}
           {/* <span className="error_message">{error.message}</span> */}
           <Button
-            class='Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode'
+            disable={deactivate_form}
+            class={[
+              "Blue_BTN login_submit HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode",
+              deactivate_form ? "disable_BTN" : null,
+            ].join(" ")}
             value={language.send}
             loading={loading}
             click={() => {}}
@@ -150,6 +158,7 @@ const GetUserCellPhone = ({ panelController, language }: IGetUserCellPhone) => {
 interface IGetUserCellPhone {
   panelController: any;
   language: any;
+  deactivate_form: boolean;
 }
 
 export default GetUserCellPhone;
