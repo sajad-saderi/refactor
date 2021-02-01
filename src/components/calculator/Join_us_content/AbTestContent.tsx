@@ -54,7 +54,12 @@ const Join_us_content_AB_test = ({
             }
           }}
         >
-          <Link href={authorize ? "/add-car" : "/login"}>
+          {/* <Link href={authorize ? "/add-car" : "/login"}>
+            <a className='Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar'>
+              {AbText}
+            </a>
+          </Link> */}
+          <Link href={"/add-car"}>
             <a className='Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar'>
               {AbText}
             </a>

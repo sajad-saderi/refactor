@@ -6,14 +6,18 @@ import language from "../public/languages/fa/addcar.json";
 import Router from "next/router";
 
 const AddCar = ({ edit }) => {
-  useEffect(() => { 
-    // const edit = router.
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/add-car",
-      pageTitle: edit ? language.next_seo.editTitle : language.next_seo.title,
-    });
+  useEffect(() => {
+    if (window["auth"]) {
+      // const edit = router.
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/add-car",
+        pageTitle: edit ? language.next_seo.editTitle : language.next_seo.title,
+      });
+    } else {
+      Router.push("/login");
+    }
   }, []);
   return (
     <Layout LinkControl={true}>

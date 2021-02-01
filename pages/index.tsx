@@ -83,7 +83,12 @@ const HomePage = () => {
               }
             }}
           >
-            <Link href={authorize ? "/add-car" : "/login"}>
+            {/* <Link href={authorize ? "/add-car" : "/login"}>
+              <a className='Blue_BTN add_car_custom'>
+                {language.second_container_add_car_section_a_1}
+              </a>
+            </Link> */}
+            <Link href='/add-car'>
               <a className='Blue_BTN add_car_custom'>
                 {language.second_container_add_car_section_a_1}
               </a>
