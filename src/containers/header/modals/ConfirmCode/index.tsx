@@ -87,11 +87,12 @@ const ConfirmCode = ({
             } catch (e) {
               console.log("Em...I think heap not work correctly :/");
             }
-            router.push(
-              localStorage["last_location"]
-                ? localStorage["last_location"]
-                : "/"
-            );
+            window.history.go(-1);
+            // router.push(
+            //   localStorage["last_location"]
+            //     ? localStorage["last_location"]
+            //     : "/"
+            // );
           }
           jsCookie.set("token", response.data.token, cook_option);
           jsCookie.set("user_id", data.user_profile.id, cook_option);

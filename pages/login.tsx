@@ -31,6 +31,7 @@ const LoginPage = () => {
 
     if (window["auth"]) {
       set_deactivate_form(true);
+      window.history.go(-1);
       // if (window["complete_register"]) {
       //   let id = user.data?.id;
       //   router.push(`/user/${id}`);

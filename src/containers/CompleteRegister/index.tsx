@@ -123,6 +123,7 @@ const Complete_register_container = ({
       }
     } else {
       set_deactivate_form(true);
+      window.history.go(-2);
     }
     setShow(true);
   }, []);
@@ -160,7 +161,8 @@ const Complete_register_container = ({
           name: `${state.first_name} ${state.last_name}`,
         });
         if (localStorage["last_location"]) {
-          router.push(localStorage["last_location"]);
+          window.history.go(-2);
+          // router.push(localStorage["last_location"]);
         } else {
           router.push({
             pathname: `/user/${user.data?.id}`,
