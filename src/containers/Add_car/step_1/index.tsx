@@ -103,7 +103,7 @@ let incompleteInfo = {
   extra_hour_price: null,
   max_km_per_day: null,
   days_to_get_reminded: 0,
-  deliver_at_renters_place: false,
+  deliver_at_renters_place: 1,
   is_out_of_service: false,
   min_days_to_rent: 1,
 };
