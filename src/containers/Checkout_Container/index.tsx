@@ -381,14 +381,17 @@ const Checkout_Container = ({
                     onChangeHandler={(i) => setCoupon(i)}
                     HideClearIcon={true}
                   />
-                  {coupon && (
-                    <IoMdClose
-                      className='close_icon'
-                      onClick={() => setShowcoupon(false)}
-                      color='737373'
-                      size='2rem'
-                    />
-                  )}
+                  {/* {coupon && ( */}
+                  <IoMdClose
+                    className='close_icon'
+                    onClick={() => {
+                      setCoupon("");
+                      setShowcoupon(false);
+                    }}
+                    color='737373'
+                    size='2rem'
+                  />
+                  {/* )} */}
                 </div>
                 <Button
                   value={language.submit}

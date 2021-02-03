@@ -144,6 +144,7 @@
       .coupon_Text_show {
         cursor: pointer;
         font-weight: 500;
+        color: $blue;
       }
       .Discount_color {
         color: $orange;
@@ -169,6 +170,7 @@
         }
       }
       .coupon_form {
+        margin-top: 0.8rem;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
