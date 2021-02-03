@@ -362,11 +362,11 @@ const Landing_page_container = ({
       ...staticRoute,
       page: page,
     };
-    UrlCreator({
-      query: staticRoute,
-      route: router.route,
-      cb: UrlUpdater,
-    });
+    // UrlCreator({
+    //   query: staticRoute,
+    //   route: router.route,
+    //   cb: UrlUpdater,
+    // });
     initSearch();
   };
 

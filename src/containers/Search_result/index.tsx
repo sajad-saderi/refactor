@@ -342,11 +342,11 @@ const Search_result = ({ language }: ISearch_result) => {
     loadMoreCar = true;
     setShow_spinner_loadMore(true);
     staticRoute.page = page;
-    UrlCreator({
-      query: staticRoute,
-      route: router.route,
-      cb: UrlUpdater,
-    });
+    // UrlCreator({
+    //   query: staticRoute,
+    //   route: router.route,
+    //   cb: UrlUpdater,
+    // });
     initSearch();
   };
 
