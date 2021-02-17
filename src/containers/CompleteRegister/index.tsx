@@ -133,7 +133,7 @@ const Complete_register_container = ({
     setLoading(true);
     const userReplica = { ...user.data };
     const image_url =
-      "https://core.otoli.net/static/core/default_profile_pic.png";
+      "https://core.sepris.com/static/core/default_profile_pic.png";
     // if all the validation is true
     if (validation(state)) {
       try {

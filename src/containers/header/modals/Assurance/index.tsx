@@ -6,11 +6,11 @@ const Assurance = () => {
   const MODAL_CONTEXT = useContext(Modal_context);
 
   return (
-    <div className="modal_box_div">
+    <div className='modal_box_div'>
       <h2>چه مدارک و ضمانت‌هایی بگیریم</h2>
-      <div className="modal_scroll_section">
+      <div className='modal_scroll_section'>
         <p>
-          در سایت اتولی هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش
+          در سایت سپریس هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش
           بگذارد که بسته به نوع ماشین می‌تواند متفاوت باشد، به صورت کلی
           می‌توانید مدارک و ضمانت‌های زیر را برای اجاره خودروتان از مشتری
           بگیرید، اما این نکته را در نظر داشته باشید که مدارک و ضمانت‌های زیاد
@@ -42,8 +42,8 @@ const Assurance = () => {
       </div>
       <Button
         loading={false}
-        value="بستن"
-        class="Blue_BTN local_Style"
+        value='بستن'
+        class='Blue_BTN local_Style'
         click={() => MODAL_CONTEXT.modalHandler()}
       />
     </div>

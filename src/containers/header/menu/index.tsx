@@ -76,7 +76,7 @@ const Menu = () => {
                   // show user image or chow account icon
                   src={
                     img_profile ||
-                    "https://core.otoli.net/static/core/default_profile_pic.png"
+                    "https://core.sepris.com/static/core/default_profile_pic.png"
                   }
                   alt={profile}
                 />
@@ -119,7 +119,7 @@ const Menu = () => {
         <span>{language.a_2}</span>
         <ul className='Sub_Nav_Level_2'>
           <li>
-            <Link href='/otoli'>
+            <Link href='/sepris'>
               <a>{language.a_3}</a>
             </Link>
           </li>

@@ -18,7 +18,7 @@ const Header = (props: IHeader) => {
         <section className='Logo'>
           <Link href='/'>
             <a>
-              <img src={logo} alt='اتولی لوگو' />
+              <img src={logo} alt='سپریس لوگو' />
             </a>
           </Link>
         </section>

@@ -1167,7 +1167,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     value: 1,
                   },
                   {
-                    text: "بیمه‌نامه اجاره خودر اتولی",
+                    text: "بیمه‌نامه اجاره خودر سپریس",
                     value: 2,
                   },
                   {

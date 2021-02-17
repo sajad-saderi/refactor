@@ -18,8 +18,8 @@ module.exports = withPWA(
             dest: "public",
           },
           env: {
-            SITE_URL: "https://otoli.net",
-            PRODUCTION_ENDPOINT: "https://core.otoli.net",
+            SITE_URL: "https://sepris.com",
+            PRODUCTION_ENDPOINT: "https://core.sepris.com",
             SENTRY:
               "https://5457324b508844abba775737bc14838e@sentry.io/1547488",
             GOOGLE_CAPTCHA: "6Ler8sIZAAAAAP_s64xgDM2HCm03wCuARkotJani",

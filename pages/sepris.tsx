@@ -10,7 +10,7 @@ const AboutUs = () => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,
-      pagePath: "/otoli",
+      pagePath: "/sepris",
       pageTitle: language.next_seo.title,
     });
     // logPageView();
@@ -31,11 +31,11 @@ const AboutUs = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight OTILI">
+      <section className='responsive static_pages minHeight OTILI'>
         <h1>{language.h1}</h1>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
-            <h2 className="diff_color">{language.h2_1}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
+            <h2 className='diff_color'>{language.h2_1}</h2>
             <div>
               <h3>{language.h3_1}</h3>
               <p>{language.p_1}</p>
@@ -53,7 +53,7 @@ const AboutUs = () => {
               <p>{language.p_4}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <h2>{language.h2_2}</h2>
             <div>
               <h3>{language.h3_5}</h3>
@@ -69,30 +69,30 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        <h2 className="OTOLI_MIDDLE_Dif">{language.h2_3}</h2>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
+        <h2 className='OTOLI_MIDDLE_Dif'>{language.h2_3}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
             <div>
               <h3>{language.h3_8}</h3>
               <p>{language.p_8}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <div>
               <h3>{language.h3_9}</h3>
               <p>{language.p_9}</p>
             </div>
           </div>
         </div>
-        <h2 className="OTOLI_MIDDLE_Dif">{language.h2_4}</h2>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
+        <h2 className='OTOLI_MIDDLE_Dif'>{language.h2_4}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
             <div>
               <h3>{language.h3_10}</h3>
               <p>{language.p_10}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <div>
               <h3>{language.h3_11}</h3>
               <p>{language.p_11}</p>
@@ -103,15 +103,15 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        <h2 className="OTOLI_MIDDLE_Dif">{language.h2_5}</h2>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
+        <h2 className='OTOLI_MIDDLE_Dif'>{language.h2_5}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
             <div>
               <h3>{language.h3_13}</h3>
               <p>{language.p_13}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <div>
               <h3>{language.h3_14}</h3>
               <p>{language.p_14}</p>

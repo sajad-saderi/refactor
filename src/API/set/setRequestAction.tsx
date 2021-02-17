@@ -44,7 +44,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       case "deliver":
         ACTION_URL = SET_ORDER_DELIVER;
         message =
-          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با میزبان یا اتولی تماس بگیرید.";
+          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با میزبان یا سپریس تماس بگیرید.";
         break;
       case "return":
         ACTION_URL = SET_ORDER_RETURN;
@@ -122,13 +122,13 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
 interface InewRentRequest {
   id: string;
   action:
-  | "approve"
-  | "reject"
-  | "pay"
-  | "cancel"
-  | "deliver"
-  | "return"
-  | "rate";
+    | "approve"
+    | "reject"
+    | "pay"
+    | "cancel"
+    | "deliver"
+    | "return"
+    | "rate";
   token: string;
   payload?: {
     toRate: "owner" | "renter"; // only in rate action

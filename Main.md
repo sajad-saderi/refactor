@@ -2,21 +2,22 @@
 name: Getting Started
 route: /
 ---
-![Otoli](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/apple-icon-180x180.png?raw=true)  
 
+![Sepris](https://github.com/Doctor-Strange/Otoli-Docz-mage/blob/master/apple-icon-180x180.png?raw=true)
 
 # Next.js Otoli Front-end
 
-
 ## Stack
+
 - **Next.js** for SSR
 - **TypeScript** for sake of god
-- **SCSS** for styling components 
-- **SEO & analytics**(Google Analytics,Heap , HotJar, Next SEO) 
+- **SCSS** for styling components
+- **SEO & analytics**(Google Analytics,Heap , HotJar, Next SEO)
 - **Jest & Enzyme & React-test-renderer**
 - **Docz** for documenting
 
 ## Seting up
+
 ### Installation
 
 ```sh
@@ -24,14 +25,17 @@ git clone https://gitlab.com/otoli/mvp-front
 cd mvp-front
 npm install
 ```
-####  Test
+
+#### Test
+
 ```bash
 npm run test # test
 npm run test:watch # dev mode
 npm run test:coverage # report coverage
 ```
 
-####  Docs
+#### Docs
+
 To run documentation and find out more about deployment.
 
 ```bash
@@ -39,13 +43,13 @@ npm run docz:dev # run docs web server in http://localhost:3000/
 npm run docz:build # build docs in docz
 ```
 
-
 #### Development
-For more information about development mode and Environment variables go to [Configuration Section](#configuration)
-```bash
-npm run dev # run in development mode 
-```
 
+For more information about development mode and Environment variables go to [Configuration Section](#configuration)
+
+```bash
+npm run dev # run in development mode
+```
 
 #### Serve
 
@@ -55,23 +59,28 @@ npm run build # create .next directory
 npm start # start server
 ```
 
-### Configuration 
+### Configuration
 
 Environment Variables
+
 > src/next.config.js
+
 ```bash
 # SITE_URL: "https://otoli.net"
 # PRODUCTION_ENDPOINT: "https://core.otoli.net"
 ```
 
-To run in Development mode 
+To run in Development mode
+
 > src/package.json
+
 ```bash
 # "dev": "SET NODE_ENV=development & next dev"
 ```
- 
+
 ## Usage
-This project is build on top of [Next.js](https://nextjs.org/docs). 
+
+This project is build on top of [Next.js](https://nextjs.org/docs).
 
 ## Folder Structure
 
@@ -485,5 +494,3 @@ Otoli
    └─ mocks.js
 
 ```
-
-

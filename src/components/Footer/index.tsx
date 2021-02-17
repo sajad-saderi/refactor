@@ -53,100 +53,100 @@ const Footer = (props: IFooter) => {
   };
 
   return (
-    <footer data-test-id="footer" className={hide ? "hide_footer" : null}>
+    <footer data-test-id='footer' className={hide ? "hide_footer" : null}>
       {activeToTop ? (
         <div
           className={["toTop", showTop ? "showTop" : null].join(" ")}
           onClick={toTop}
         >
-          <IoIosArrowDropup size="4rem" color="#4ba3ce" />
+          <IoIosArrowDropup size='4rem' color='#4ba3ce' />
         </div>
       ) : null}
-      <div className=" responsive plus_border">
-        <ul className="links">
+      <div className=' responsive plus_border'>
+        <ul className='links'>
           <li>
-            <Link href="/about-us">
+            <Link href='/about-us'>
               <a>{language.about_us}</a>
             </Link>
           </li>
           <li>
-            <Link href="/otoli">
+            <Link href='/sepris'>
               <a>{language.otoli}</a>
             </Link>
           </li>
           {props.LinkControl ? (
             <li>
-              <Link href="/guide-renter">
+              <Link href='/guide-renter'>
                 <a>{language.guide_renter}</a>
               </Link>
             </li>
           ) : null}
           {props.LinkControl ? (
             <li>
-              <Link href="/evaluation">
+              <Link href='/evaluation'>
                 <a>{language.evaluation}</a>
               </Link>
             </li>
           ) : null}
           <li>
-            <Link href="/faq">
+            <Link href='/faq'>
               <a>{language.faq}</a>
             </Link>
           </li>
           <li>
-            <Link href="/our-policies">
+            <Link href='/our-policies'>
               <a>{language.our_policies}</a>
             </Link>
           </li>
           <li>
-            <Link href="/insurance-policies">
+            <Link href='/insurance-policies'>
               <a>{language.insurance_policies}</a>
             </Link>
           </li>
           {props.LinkControl ? null : (
             <li>
-              <Link href="/rent">
+              <Link href='/rent'>
                 <a>{language.rent}</a>
               </Link>
             </li>
           )}
           {props.LinkControl ? null : (
             <li>
-              <Link href="/site-map">
+              <Link href='/site-map'>
                 <a>{language.site_map}</a>
               </Link>
             </li>
           )}
         </ul>
 
-        <div className="social_container_footer">
+        <div className='social_container_footer'>
           <h3>{language.social_container_footer_h3}</h3>
           <div>
-            <a target="_black" href="https://www.instagram.com/otoli_net/">
-              <IoLogoInstagram size="3rem" color="#4ba3ce" />
+            <a target='_black' href='https://www.instagram.com/otoli_net/'>
+              <IoLogoInstagram size='3rem' color='#4ba3ce' />
             </a>
-            <a target="_black" href="https://twitter.com/otoli_net">
-              <IoLogoTwitter size="3rem" color="#4ba3ce" />
+            <a target='_black' href='https://twitter.com/otoli_net'>
+              <IoLogoTwitter size='3rem' color='#4ba3ce' />
             </a>
-            <a target="_black" href="https://wa.me/message/C3U7RO7ADABWF1">
-              <FaWhatsapp size="3rem" color="#4ba3ce" />
+            <a target='_black' href='https://wa.me/message/C3U7RO7ADABWF1'>
+              <FaWhatsapp size='3rem' color='#4ba3ce' />
             </a>
           </div>
           <p>
             {" "}
             {language.social_container_footer_p}
-            <a href="tel:02188567759" className="HEAP_Footer_Link_Phone">
+            <a href='tel:02188567759' className='HEAP_Footer_Link_Phone'>
               {language.social_container_footer_a_1}
             </a>
             ,
-            <a href="tel:09391414574" className="HEAP_Footer_Link_Phone">
+            <a href='tel:09391414574' className='HEAP_Footer_Link_Phone'>
               {language.social_container_footer_a_2}
             </a>
           </p>
         </div>
       </div>
-      <div className="signature">
-        <span className="ver">2.0.0</span>
+      <div className='signature'>
+        <span className='ver'>2.0.0</span>
         <p>{language.signature}</p>
       </div>
     </footer>

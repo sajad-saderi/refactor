@@ -1,14 +1,14 @@
 {
-  "name": "Otoli",
-  "short_name": "Otoli",
+  "name": "Sepris",
+  "short_name": "Sepris",
   "theme_color": "#000",
   "background_color": "#000",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
-  "dir":"rtl",
-  "lang":"fa-IR",
+  "dir": "rtl",
+  "lang": "fa-IR",
   "icons": [
     {
       "src": "/android-icon-36x36.png",

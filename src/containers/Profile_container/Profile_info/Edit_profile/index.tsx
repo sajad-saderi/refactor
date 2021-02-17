@@ -138,7 +138,7 @@ const Edit_profile = ({
     if (triggerUpload) {
       if (
         data.thumbnail_url ===
-        "https://core.otoli.net/static/core/default_profile_pic.png"
+        "https://core.sepris.com/static/core/default_profile_pic.png"
       ) {
         file_input.current.click();
       }
@@ -285,7 +285,7 @@ const Edit_profile = ({
         src={
           state.image
             ? state.image
-            : "https://core.otoli.net/static/core/default_profile_pic.png"
+            : "https://core.sepris.com/static/core/default_profile_pic.png"
         }
         alt={state.first_name}
       />

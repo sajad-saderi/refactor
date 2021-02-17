@@ -2,12 +2,12 @@
   "thousand": "هراز",
   "million": "میلیون",
   "next_seo": {
-    "load_title": "خودرو | اتولی",
+    "load_title": "خودرو | سپریس",
     "title": {
-      "otoli": " | اتولی"
+      "otoli": " | سپریس"
     },
     "description": "همین حالا اجاره کنید",
-    "site_name": "اتولی",
+    "site_name": "سپریس",
     "handle": "@otoli_net",
     "site": "@otoli_net",
     "cardType": "summar,y_large_image"
@@ -28,7 +28,7 @@
   "without_derive": "بدون راننده",
   "with_and_without_driver1": "با راننده",
   "with_and_without_driver2": "بدون راننده",
-  "is_audited": "بازدید شده توسط اتولی",
+  "is_audited": "بازدید شده توسط سپریس",
   "distance_in_day": "محدودیت مسافت و زمان",
   "KM_in_day_limit": "محدودیت مسافت",
   "KM": " کیلومتر ",
@@ -47,16 +47,16 @@
   "facilities": "امکانات",
   "condition_and_cancellation": "شرایط اجاره و کنسلی",
   "tag": "برچسب",
-  "az":"از ",
-  "member":" عضو اتولی است.",
+  "az": "از ",
+  "member": " عضو سپریس است.",
   "mizban": "میزبان",
   "safar": " سفر",
   "bodeh": "بوده است.",
   "moshahedeh": "مشاهده",
-  "mamoolan":"و معمولا در ",
-  "hodood":"حدود",
-  "time":"دقیقه",
-  "pasokh":"پاسخگو است.",
+  "mamoolan": "و معمولا در ",
+  "hodood": "حدود",
+  "time": "دقیقه",
+  "pasokh": "پاسخگو است.",
   "extra_info": "هزینه را بعد از پذیرش درخواست توسط مالک خودرو پرداخت خواهید کرد.",
   "review": {
     "user_reviews": "نظر کاربران"

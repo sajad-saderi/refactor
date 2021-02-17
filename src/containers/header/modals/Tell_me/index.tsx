@@ -77,7 +77,7 @@ const TellMe = () => {
       <div className="modal_box_div">
         <form onSubmit={sendCellPhonenumber}>
           <p className="p1">
-            اتولی در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.
+            سپریس در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.
           </p>
           {/* <p className="p2"></p> */}
           <TextInput

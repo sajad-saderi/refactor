@@ -28,7 +28,7 @@ const HomePage = () => {
   return (
     <Layout>
       <NextSeo
-        canonical='https://otoli.net/'
+        canonical='https://sepris.com/'
         title={language.next_seo.title}
         description={language.next_seo.description}
         openGraph={{
