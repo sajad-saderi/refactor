@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState, useContext } from "react";
 import Router from "next/router";
 import Footer from "../components/Footer";
 import Header from "../containers/header";
-import logo from "../../public/android-icon-48x48.png";
+// import logo from "../../public/android-icon-48x48.png";
 
 // Main Scss file
 // All Scss files are imported to the main.scss
@@ -21,7 +21,7 @@ import toast_context from "../context/Toast_context";
 import Toast from "../components/Toast";
 
 // Google Analytics
-import { IoIosClose } from "react-icons/io";
+// import { IoIosClose } from "react-icons/io";
 
 const ShowModalReducer = (current, action) => {
   /* 
@@ -76,17 +76,17 @@ const Layout = (props: ILayout) => {
       localStorage["utm_content"] = Router.router.query.utm_content;
     }
 
-    window.addEventListener("beforeinstallprompt", (e) => {
-      // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-      if (!pwa_flag) {
-        AnalyticsEvent("pwa", "install-banner", "shown");
-        setShowPwaBanner(true);
-      }
-      return false;
-    });
+    // window.addEventListener("beforeinstallprompt", (e) => {
+    //   // Prevent the mini-infobar from appearing on mobile
+    //   e.preventDefault();
+    //   // Stash the event so it can be triggered later.
+    //   deferredPrompt = e;
+    //   if (!pwa_flag) {
+    //     AnalyticsEvent("pwa", "install-banner", "shown");
+    //     setShowPwaBanner(true);
+    //   }
+    //   return false;
+    // });
     checkToast();
   }, []);
 
@@ -146,7 +146,7 @@ const Layout = (props: ILayout) => {
         NOTE 
           context Providers wrap the Header and main section in the app to track data change in content   
       */}
-      {showPwaBanner ? (
+      {/* {showPwaBanner ? (
         <section className='pwa_invitation_banner'>
           <div
             className='pwa_content HEAP_PWA_INVITATION'
@@ -166,7 +166,7 @@ const Layout = (props: ILayout) => {
             بستن
           </p>
         </section>
-      ) : null}
+      ) : null} */}
       <toast_context.Provider
         value={{
           show_toast: toast,
