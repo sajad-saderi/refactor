@@ -121,9 +121,6 @@ class App_Otoli extends App {
   // };
 
   componentDidMount = () => {
-    if (window.location.href.search("otoli") > 0) {
-      window.location.replace("https://sepris.com/");
-    }
     const userId = jsCookie.get("user_id");
     const token = jsCookie.get("token");
     const first_name = jsCookie.get("first_name");
