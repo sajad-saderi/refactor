@@ -258,7 +258,7 @@ export default class MyDocument extends Document {
             }}
           ></script>
           {/* NOTE Heap Development code : 3071100507 and production code: 329839554 */}
-          {process.env.NODE_ENV === "development" ? (
+          {/* {process.env.NODE_ENV === "development" ? (
             <script
               defer
               dangerouslySetInnerHTML={{
@@ -274,7 +274,7 @@ export default class MyDocument extends Document {
             heap.load("329839554");`,
               }}
             ></script>
-          )}
+          )} */}
           <meta
             name='google-site-verification'
             content='gFOWi46Gsw04kYqo8vIxO1JUlm0KUJjBzDpQRA9Bnto'
