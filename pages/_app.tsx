@@ -216,7 +216,7 @@ class App_Otoli extends App {
               onClick={this.customPwaPrompt}
             >
               <img src={logo} alt='pwa logo icon' />
-              اپلیکیشن اتولی را نصب کنید.
+              اپلیکیشن سِپریس را نصب کنید.
             </div>
             <p
               className='close_pwa_invitation'

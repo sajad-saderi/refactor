@@ -378,9 +378,7 @@ const Requests_page = ({ language }: IRequests_page) => {
                       );
                     })}
                   </>
-                ) : (
-                  <p className='NoResult'>{language.no_order}</p>
-                )
+                ) : null
               ) : (
                 <>
                   <Requests_page_Loading />
