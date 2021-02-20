@@ -11,6 +11,8 @@ import * as Sentry from "@sentry/browser";
 import { REQUEST_GET_USER_INFO } from "../src/API";
 import jsCookie from "js-cookie";
 import user_context from "../src/context/User_info";
+import logo from "../public/android-icon-48x48.png";
+import { IoIosClose } from "react-icons/io";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -41,11 +43,15 @@ Router.events.on("routeChangeComplete", (url) => {
 //     });
 // });
 
+let deferredPrompt = null;
+let pwa_flag = false;
+
 class App_Otoli extends App {
   state = {
     token: null,
     BotScore: null,
     user_data: null,
+    showPwaBanner: false,
   };
   componentDidCatch(error, errorInfo) {
     if (process.env.NODE_ENV !== "development") {
@@ -137,6 +143,52 @@ class App_Otoli extends App {
       */
     localStorage["utm_landing_url"] = Router.router.pathname;
     localStorage["utm_referrer"] = document.referrer;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      if (!pwa_flag) {
+        this.AnalyticsEvent("pwa", "install-banner", "shown");
+        this.setState({
+          showPwaBanner: true,
+        });
+      }
+      return false;
+    });
+  };
+
+  AnalyticsEvent = (eventCategory, eventAction, eventLabel) => {
+    if (window["ga"]) {
+      window["ga"]("send", {
+        hitType: "event",
+        eventCategory,
+        eventAction,
+        eventLabel,
+      });
+    }
+  };
+
+  customPwaPrompt = () => {
+    if (deferredPrompt) {
+      // Show the install prompt
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+          this.AnalyticsEvent("pwa", "install-prompt", "accepted");
+        } else {
+          console.log("User dismissed the install prompt");
+          this.AnalyticsEvent("pwa", "install-prompt", "rejected");
+        }
+        pwa_flag = true;
+        deferredPrompt = null;
+        this.setState({
+          showPwaBanner: false,
+        });
+      });
+    }
   };
 
   get_user_data = async (id, token) => {
@@ -156,18 +208,43 @@ class App_Otoli extends App {
     const { Component, pageProps } = this.props;
     return (
       // <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
-      <user_context.Provider
-        value={{
-          update_user_data: (v) => {
-            this.setState({
-              user_data: v,
-            });
-          },
-          data: this.state.user_data,
-        }}
-      >
-        <Component {...pageProps} BotScore={this.state.BotScore} />
-      </user_context.Provider>
+      <>
+        {this.state.showPwaBanner ? (
+          <section className='pwa_invitation_banner'>
+            <div
+              className='pwa_content HEAP_PWA_INVITATION'
+              onClick={this.customPwaPrompt}
+            >
+              <img src={logo} alt='pwa logo icon' />
+              اپلیکیشن اتولی را نصب کنید.
+            </div>
+            <p
+              className='close_pwa_invitation'
+              onClick={() => {
+                this.AnalyticsEvent("pwa", "install-banner", "closed");
+                this.setState({
+                  showPwaBanner: false,
+                });
+              }}
+            >
+              <IoIosClose color='#fff' size='2rem' />
+              بستن
+            </p>
+          </section>
+        ) : null}
+        <user_context.Provider
+          value={{
+            update_user_data: (v) => {
+              this.setState({
+                user_data: v,
+              });
+            },
+            data: this.state.user_data,
+          }}
+        >
+          <Component {...pageProps} BotScore={this.state.BotScore} />
+        </user_context.Provider>
+      </>
 
       // <GoogleReCaptcha
       //   onVerify={(token) => {
