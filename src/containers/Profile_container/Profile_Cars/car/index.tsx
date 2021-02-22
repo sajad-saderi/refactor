@@ -21,7 +21,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [car, setCar] = useState(null);
   const [year, setYear] = useState(null);
   const [uncompletedCar, setUncompletedCar] = useState(false);
-  const [heightController, setHeightController] = useState(0);
+  const [img, set_img] = useState(null);
   const [is_out_of_service, setIs_out_of_service] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
@@ -105,8 +105,14 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
       <div className='carcard'>
         <Link href={hrefProp} as={link}>
           <a data-test-id='Link' className='HEAP_Profile_Card_Car'>
-            <figure>
-              {hasMedia ? (
+            <figure
+              style={{
+                backgroundImage: `url(${
+                  hasMedia ? media_set[0].thumbnail_url : carThumbnail
+                })`,
+              }}
+            >
+              {/* {hasMedia ? (
                 <img
                   style={{
                     position: "absolute",
@@ -131,7 +137,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                 />
               ) : (
                 <img src={carThumbnail} alt={language.default_image} />
-              )}
+              )} */}
               <div className='read_more'>
                 <span>{language.details}</span>
               </div>
