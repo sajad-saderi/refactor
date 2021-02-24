@@ -8,7 +8,7 @@ import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
 // import { logPageView } from "../../utils/analytics";
 
-const Rent_dynamic = ({ Landing_page }) => {
+const Rent_dynamic = ({ Landing_page, content }) => {
   React.useEffect(() => {
     if (!Landing_page) {
       Router.push("/404");
@@ -41,7 +41,9 @@ const Rent_dynamic = ({ Landing_page }) => {
         }}
       />
       <Landing_page_container landing_data={Landing_page} language={language} />
-      <Landing_Page_Content data={Landing_page} language={language} />
+      {content === "0" ? null : (
+        <Landing_Page_Content data={Landing_page} language={language} />
+      )}
     </Layout>
   ) : null;
 };
@@ -54,6 +56,7 @@ const Rent_dynamic = ({ Landing_page }) => {
  *  With the id we do rest of work
  */
 export async function getServerSideProps(props) {
+  let content = props.query.content;
   try {
     const landing_res: any = await REQUEST_GET_LANDING_PAGE({
       name: props.query.id,
@@ -61,12 +64,14 @@ export async function getServerSideProps(props) {
     return {
       props: {
         Landing_page: landing_res.data,
+        content: content ? content : null,
       },
     };
   } catch (error) {
     return {
       props: {
         Landing_page: false,
+        content: null,
       },
     };
   }
