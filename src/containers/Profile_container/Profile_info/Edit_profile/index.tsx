@@ -169,15 +169,15 @@ const Edit_profile = ({
       setLoading(false);
       return;
     }
-    if (!state.username && privateLink) {
-      dispatchError({
-        type: "username",
-        username: true,
-        message: language.user_name_error,
-      });
-      setLoading(false);
-      return;
-    }
+    // if (!state.username && privateLink) {
+    //   dispatchError({
+    //     type: "username",
+    //     username: true,
+    //     message: language.user_name_error,
+    //   });
+    //   setLoading(false);
+    //   return;
+    // }
     // if (!state.company_name && showCompany) {
     //   dispatchError({
     //     type: "company_name",
