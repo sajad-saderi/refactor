@@ -62,7 +62,7 @@ const ConfirmCode = ({
                 window["heap"].identify(`${cellNumber}`);
               }
             } catch (e) {
-              console.log("Em...I think heap not work correctly :/");
+              console.log("Em...I think heap is not work correctly :/");
             }
             router.push({
               pathname: "/complete-register",
@@ -85,7 +85,7 @@ const ConfirmCode = ({
                 });
               }
             } catch (e) {
-              console.log("Em...I think heap not work correctly :/");
+              console.log("Em...I think heap is not work correctly :/");
             }
             window.history.go(-1);
             // router.push(

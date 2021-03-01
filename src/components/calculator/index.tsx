@@ -185,7 +185,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                       });
                     }
                   } catch (e) {
-                    console.log("Em...I think heap not work correctly :/");
+                    console.log("Em...I think heap is not work correctly :/");
                   }
                 }}
                 placeholder={language.brand}
@@ -215,7 +215,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                       });
                     }
                   } catch (e) {
-                    console.log("Em...I think heap not work correctly :/");
+                    console.log("Em...I think heap is not work correctly :/");
                   }
                   setModel({ id: v.value, name: v.name });
                 }}

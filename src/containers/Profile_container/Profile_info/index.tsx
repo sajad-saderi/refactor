@@ -26,8 +26,12 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   }, [data]);
 
   const Exit = () => {
-    if (window["heap"]) {
-      window["heap"].resetIdentity();
+    try {
+      if (window["heap"]) {
+        window["heap"].resetIdentity();
+      }
+    } catch (error) {
+      console.log("Em...I think heap isn't work correctly :/");
     }
     user.update_user_data(null);
     window["auth"] = null;

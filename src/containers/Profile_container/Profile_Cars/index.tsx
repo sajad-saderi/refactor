@@ -70,10 +70,14 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
 
   const set_car_count_in_heap = (len) => {
     if (is_mine) {
-      if (window["heap"]) {
-        window["heap"].addUserProperties({
-          Cars_Num: len,
-        });
+      try {
+        if (window["heap"]) {
+          window["heap"].addUserProperties({
+            Cars_Num: len,
+          });
+        }
+      } catch (error) {
+        console.log("Em...I think heap isn't work correctly :/");
       }
     }
     heap = false;
