@@ -13,6 +13,7 @@ import Toast_context from "../../context/Toast_context";
 import carImage from "../../../public/image/car-image-thumbnail.jpg";
 import { guard_controller } from "../../../utils/guard_controller";
 import jsCookie from "js-cookie";
+import Link from "next/link";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -178,7 +179,6 @@ const Checkout_Container = ({
   };
 
   const GoToRequests = async () => {
-    set_error_message(null);
     setLoading(true);
     const guard = guard_controller();
     if (guard !== "auth") {
@@ -433,10 +433,16 @@ const Checkout_Container = ({
             loading={loading}
             click={GoToRequests}
           />
-          {error_message && (
-            <span className='Error_message_text'>{error_message}</span>
+          {error_message ? (
+            <Link href='/requests'>
+              <a className='error_message_link'>
+                <span className='Error_message_text'>{error_message} </span>
+                {language.track_your_order}
+              </a>
+            </Link>
+          ) : (
+            <span className='extra_info'>{language.extra_text}</span>
           )}
-          <span className='extra_info'>{language.extra_text}</span>
         </div>
       </section>
     </article>
