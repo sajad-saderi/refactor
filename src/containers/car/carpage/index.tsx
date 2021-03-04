@@ -952,7 +952,10 @@ const CarPage = ({
                       <p className='size_14 margin_top_16 margin_bottom_16'>
                         {language.mamoolan}
                         <strong>
-                          {language.hodood} {owner.owner_avg_response_time.name}{" "}
+                          {language.hodood}{" "}
+                          {owner.owner_avg_response_time.total_seconds >= 86400
+                            ? language.more_than_one_day
+                            : owner.owner_avg_response_time.name}{" "}
                         </strong>
                         {language.pasokh}
                       </p>

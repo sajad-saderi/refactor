@@ -40,7 +40,6 @@ const Checkout_Container = ({
   const [owner, setOwner] = useState(null);
   const [cancellation_policy, setCancellation_policy] = useState(null);
   const [search_id, setSearch_id] = useState(null);
-
   const [start_date, setStart_date] = useState(null);
   const [end_date, setEnd_date] = useState(null);
   const [insurance_total_price, setInsurance_total_price] = useState(null);
@@ -61,6 +60,7 @@ const Checkout_Container = ({
   });
   const [coupanLoading, setCoupanLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error_message, set_error_message] = useState(null);
   const TOAST_CONTEXT = useContext(Toast_context);
   const user = useContext(context_user);
   const router = useRouter();
@@ -178,6 +178,7 @@ const Checkout_Container = ({
   };
 
   const GoToRequests = async () => {
+    set_error_message(null);
     setLoading(true);
     const guard = guard_controller();
     if (guard !== "auth") {
@@ -212,6 +213,7 @@ const Checkout_Container = ({
       );
     } catch (error) {
       setLoading(false);
+      set_error_message(error);
       console.log("!Error", error);
     }
   };
@@ -431,6 +433,9 @@ const Checkout_Container = ({
             loading={loading}
             click={GoToRequests}
           />
+          {error_message && (
+            <span className='Error_message_text'>{error_message}</span>
+          )}
           <span className='extra_info'>{language.extra_text}</span>
         </div>
       </section>
