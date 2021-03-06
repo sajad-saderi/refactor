@@ -21,6 +21,7 @@ const HomePage = () => {
     const guard = guard_controller();
     if (guard !== "auth") {
       set_authorize(false);
+      // this is a test
     }
     // logPageView();
   }, []);
