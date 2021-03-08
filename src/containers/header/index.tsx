@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Menu from "./menu";
 import Modal from "./modals";
-import * as logo from "../../../public/logo_sticky.svg";
 // import "./header.scss";
+// import * as logo from "../../../public/logo_sticky.svg";
+import * as logo from "../../../public/logo.svg";
+import * as car from "../../../public/car_logo.svg";
 import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
 
@@ -11,16 +13,17 @@ const Header = (props: IHeader) => {
   return (
     <header className='header'>
       <article className='responsive header_container'>
-        {/* logo section */}
-        <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
-          <Menu />
-        </section>
         <section className='Logo'>
           <Link href='/'>
             <a>
-              <img src={logo} alt='سپریس لوگو' />
+              <img className='car_logo' src={car} alt='سپریس لوگو خودکار' />
+              <img className='text_logo' src={logo} alt='سپریس لوگو' />
             </a>
           </Link>
+        </section>
+        {/* logo section */}
+        <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
+          <Menu />
         </section>
         {/* <section className="header_menu_bar" onClick={() => setShowMenu(true)}>
           <IoIosMenu size="3rem" color="#fff" />

@@ -61,60 +61,6 @@ const Menu = () => {
 
   return (
     <ul>
-      {token ? (
-        spinner ? (
-          <li className='header_spinner'>
-            <p className='Gradient profile_icon_place_holder' />
-            <span className='Gradient' />
-          </li>
-        ) : (
-          <li className='first_element_li'>
-            <Link href={`/user/[id]`} as={`/user/${user_id}`}>
-              <a>
-                <img
-                  className='profile_icon'
-                  // show user image or chow account icon
-                  src={
-                    img_profile ||
-                    "https://core.sepris.com/static/core/default_profile_pic.png"
-                  }
-                  alt={profile}
-                />
-                <span className='user-name'>{profile && profile}</span>
-                {localStorage["red_dot"] === "1" && (
-                  <span className='red_dot' />
-                )}
-              </a>
-            </Link>
-          </li>
-        )
-      ) : spinner ? (
-        <li className='header_spinner'>
-          <p className='Gradient profile_icon_place_holder' />
-          <span className='Gradient' />
-        </li>
-      ) : (
-        <li
-          className='HEAP_Header_Btn_Login'
-          onClick={() => {
-            localStorage["last_location"] = router.asPath;
-          }}
-        >
-          <Link href={`/login`}>
-            <a>
-              <span className='login-out'>{language.li}</span>
-            </a>
-          </Link>
-        </li>
-      )}
-      {/* if the user had registered completely, can access to orders history */}
-      {complete_register && (
-        <li>
-          <Link href='/requests'>
-            <a className='HEAP_Header_Link_MyOrders'>{language.a_1}</a>
-          </Link>
-        </li>
-      )}
       <li className='Drop_Down'>
         <span>{language.a_2}</span>
         <ul className='Sub_Nav_Level_2'>
@@ -165,6 +111,60 @@ const Menu = () => {
           </li>
         </ul>
       </li>
+      {/* if the user had registered completely, can access to orders history */}
+      {complete_register && (
+        <li>
+          <Link href='/requests'>
+            <a className='HEAP_Header_Link_MyOrders'>{language.a_1}</a>
+          </Link>
+        </li>
+      )}
+      {token ? (
+        spinner ? (
+          <li className='header_spinner'>
+            <span className='Gradient' />
+            <p className='Gradient profile_icon_place_holder' />
+          </li>
+        ) : (
+          <li className='first_element_li'>
+            <Link href={`/user/[id]`} as={`/user/${user_id}`}>
+              <a>
+                <span className='user-name'>{profile && profile}</span>
+                {localStorage["red_dot"] === "1" && (
+                  <span className='red_dot' />
+                )}
+                <img
+                  className='profile_icon'
+                  // show user image or chow account icon
+                  src={
+                    img_profile ||
+                    "https://core.sepris.com/static/core/default_profile_pic.png"
+                  }
+                  alt={profile}
+                />
+              </a>
+            </Link>
+          </li>
+        )
+      ) : spinner ? (
+        <li className='header_spinner'>
+          <span className='Gradient' />
+          <p className='Gradient profile_icon_place_holder' />
+        </li>
+      ) : (
+        <li
+          className='HEAP_Header_Btn_Login'
+          onClick={() => {
+            localStorage["last_location"] = router.asPath;
+          }}
+        >
+          <Link href={`/login`}>
+            <a>
+              <span className='login-out'>{language.li}</span>
+            </a>
+          </Link>
+        </li>
+      )}
     </ul>
   );
 };

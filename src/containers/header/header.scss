@@ -2,8 +2,9 @@
 @import "./modals/modal.scss";
 .header {
   background-color: $black;
-  padding: 0.8rem 0;
+  padding: 1.2rem 0;
   height: 4.8rem;
+  font-family: dana_medium;
   .header_container {
     display: flex;
     align-items: center;
@@ -11,14 +12,19 @@
   }
   .Logo {
     // float: left;
+    display: block;
     // &::after {
     //   display: block;
     //   clear: both;
     //   content: "";
     // }
-    img {
-      margin-top: 0.2rem;
-      height: 2.8rem;
+    .car_logo {
+      height: 2.7rem;
+      margin-left: 1.2rem;
+    }
+    .text_logo {
+      margin-bottom: 2px;
+      height: 1.4rem;
     }
   }
 
@@ -65,7 +71,7 @@
           display: inline-block;
           vertical-align: middle;
           border-radius: 50%;
-          margin-left: 8px;
+          margin-right: 8px;
         }
         .red_dot {
           background: #c1104a;
@@ -83,7 +89,7 @@
           position: absolute;
           box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
           width: 120px;
-          right: -16px;
+          left: -16px;
           top: 28px;
           min-width: 200px;
           background: rgb(255, 255, 255);
@@ -118,12 +124,13 @@
           font-weight: 500;
           font-size: 1.4rem;
           color: $white;
-          padding-left: 1.6rem;
+          padding-right: 1.6rem;
           display: block;
         }
         .user-name {
           padding: 0;
           display: inline-block;
+          margin-bottom: -6px;
         }
         .login-out {
           padding: 0;
@@ -131,13 +138,13 @@
         }
       }
       .header_spinner {
-        margin-left: 2.4rem;
+        margin-right: 1.6rem;
         .profile_icon_place_holder {
           display: inline-block;
           width: 2.8rem;
           height: 2.8rem;
           vertical-align: middle;
-          margin-left: 8px;
+          margin-right: 8px;
           border-radius: 50%;
         }
         span {
@@ -153,7 +160,7 @@
           display: block;
           &::before {
             bottom: 100%;
-            right: 15%;
+            left: 15%;
             content: "";
             height: 0px;
             width: 0px;
@@ -171,60 +178,68 @@
   }
 }
 
-@media screen and(max-width:720px) {
-  .header {
-    // @disable the hamburger menu
+// @media screen and(max-width:720px) {
+// .header {
+// @disable the hamburger menu
 
-    // .header_menu_bar {
-    //   display: inline-block;
-    // }
-    // .Nav {
-    //   position: fixed;
-    //   width: 23rem;
-    //   height: 100%;
-    //   background: #1f1f1f;
-    //   top: 0;
-    //   right: 0;
-    //   opacity: 0;
-    //   transform: translateX(1000px);
-    //   box-shadow: -2px 0px 2px #0e0e0e;
-    //   ul {
-    //     li {
-    //       display: block;
-    //       padding-right: 1.6rem;
-    //       padding-top: 2rem;
-    //       .Sub_Nav_Level_2 {
-    //         position: static;
-    //         background-color: transparent;
-    //         &::before {
-    //           display: none;
-    //         }
-    //         li {
-    //           padding: 0rem;
-    //           a {
-    //             color: #ffffff;
-    //             border-bottom: 1px solid #000000;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    //   .first_element_li {
-    //     padding-top: 0rem;
-    //     border-bottom: 2px solid #3e3e3d;
-    //     box-shadow: 1px 1px 2px #060606;
-    //     padding-bottom: 2.3rem;
-    //     .profile_icon {
-    //       width: 5rem;
-    //       margin-left: 1.2rem;
-    //     }
-    //   }
-    // }
-  }
-}
+// .header_menu_bar {
+//   display: inline-block;
+// }
+// .Nav {
+//   position: fixed;
+//   width: 23rem;
+//   height: 100%;
+//   background: #1f1f1f;
+//   top: 0;
+//   right: 0;
+//   opacity: 0;
+//   transform: translateX(1000px);
+//   box-shadow: -2px 0px 2px #0e0e0e;
+//   ul {
+//     li {
+//       display: block;
+//       padding-right: 1.6rem;
+//       padding-top: 2rem;
+//       .Sub_Nav_Level_2 {
+//         position: static;
+//         background-color: transparent;
+//         &::before {
+//           display: none;
+//         }
+//         li {
+//           padding: 0rem;
+//           a {
+//             color: #ffffff;
+//             border-bottom: 1px solid #000000;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   .first_element_li {
+//     padding-top: 0rem;
+//     border-bottom: 2px solid #3e3e3d;
+//     box-shadow: 1px 1px 2px #060606;
+//     padding-bottom: 2.3rem;
+//     .profile_icon {
+//       width: 5rem;
+//       margin-left: 1.2rem;
+//     }
+//   }
+// }
+// }
+// }
 
 @media screen and(max-width:480px) {
   .header {
+    .Logo {
+      .car_logo {
+        display: none;
+      }
+      .text_logo {
+        margin-bottom: -7px;
+      }
+    }
     .Nav {
       ul {
         .first_element_li {
@@ -234,9 +249,17 @@
         }
         li {
           .profile_icon {
-            margin-left: 0;
+            margin-right: 0;
           }
           .user-name {
+            display: none;
+          }
+        }
+        .header_spinner {
+          .profile_icon_place_holder {
+            margin-right: 0px;
+          }
+          span {
             display: none;
           }
         }
