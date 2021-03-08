@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import insurance from "../../../../public/image/SamanInsurance.png";
 import Link from "next/link";
 import { guard_controller } from "../../../../utils/guard_controller";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import quotation from "../../../../public/image/svg/quotation.svg";
+import "./join_us_content.scss";
 
 const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
   const [authorize, set_authorize] = useState(true);
@@ -12,6 +17,18 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
       set_authorize(false);
     }
   }, []);
+
+  let settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    rtl: true,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+  };
 
   return (
     <>
@@ -67,6 +84,53 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
           </p> */}
+          <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
+          <section className='slick_container'>
+            <Slider {...settings}>
+              <div className='card_container'>
+                <img src={quotation} alt='علامت کوتیشن' />
+                <p>
+                  تا قبل از آشنایی با سپریس، ماشینم رو اجاره نداده بودم. اولش
+                  شناخت زیادی از سپریس نداشتم و بار اول اجاره دادن ماشین از نظرم
+                  ریسک بود ولی از دفعات بعد با توجه به نحوه کار و پشتیبانی‌تون
+                  اعتمادم جلب شد. چون تا حالا تو هیچ شرکتی ندیدم که مثل شما
+                  واقعا «پشتیبان» داشته باشن. هر وقت از شبانه‌روز که تماس گرفتم
+                  حضور داشتین و برای تصمیم‌گیری همراهم بودین.{" "}
+                </p>
+                <h3>میزبان</h3>
+                <p className='user_name'>رضا جلیلی</p>
+              </div>
+              <div className='card_container'>
+                <img src={quotation} alt='علامت کوتیشن' />
+                <p>
+                  وقتی تصمیم به اجاره خودروم گرفتم، از طریق جستجو در گوگل با
+                  سپریس آشنا شدم و بعد از دیدن سایت و تماس با پشتیبانی، اعتمادم
+                  جلب شد. بعدها هم هر بار با پشتیبانی تماس گرفتم، در دسترس بودن
+                  و هیچ مسئله‌ای رو از قلم نمی‌انداختن. با وجود این‌که ماشینم
+                  بیمه بدنه داره، بیمه اجاره خودرو سپریس رو مثل یک قانون در نظر
+                  گرفتم و درخواست مهمان‌هایی رو که بیمه خریداری کرده‌اند در
+                  اولویت می‌ذارم. تا حالا چند بار ماشینم رو از طریق سپریس اجاره
+                  دادم، چون خیالم راحته و قصد دارم باز هم به این کار ادامه بدم.
+                </p>
+                <h3>میزبان</h3>
+                <p className='user_name'>جواد کسایی</p>
+              </div>
+              <div className='card_container'>
+                <img src={quotation} alt='علامت کوتیشن' />
+                <p>
+                  زمانی که تصمیم گرفتم ماشینم رو اجاره بدم، چندین شرکت رو بررسی
+                  کردم اما در نهایت شرکت شما رو انتخاب کردم، چون شرایط بهتری
+                  داشتید و این امکان رو فراهم کردید که مهمان بیمه اجاره خودرو
+                  خریداری کنه و همین‌طور ما (میزبان)، مهمان را مستقیم ببینیم،
+                  رودررو با هم صحبت کنیم و شرایط رو بررسی کنیم. پشتیبانی هم
+                  همیشه در دسترس بوده و در همه مسائل به بهترین شکل ما رو
+                  راهنمایی کرده.
+                </p>
+                <h3>میزبان</h3>
+                <p className='user_name'>فرزین روحانی</p>
+              </div>
+            </Slider>
+          </section>
         </div>
       </div>
     </>
