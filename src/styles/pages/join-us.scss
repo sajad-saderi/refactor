@@ -150,6 +150,16 @@
       }
     }
   }
+  .second_container {
+    .three_columns {
+      margin-bottom: 5rem;
+    }
+    .add_car_section {
+      .add_car_custom {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 @media screen and(max-width:1024px) {
