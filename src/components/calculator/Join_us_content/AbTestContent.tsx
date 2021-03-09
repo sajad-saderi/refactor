@@ -30,7 +30,7 @@ const Join_us_content_AB_test = ({
     rtl: true,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 15000,
     arrows: false,
   };
 
@@ -88,8 +88,8 @@ const Join_us_content_AB_test = ({
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
           </p> */}
-          <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
           <section className='slick_container'>
+            <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
             <Slider {...settings}>
               <div className='card_container'>
                 <img src={quotation} alt='علامت کوتیشن' />

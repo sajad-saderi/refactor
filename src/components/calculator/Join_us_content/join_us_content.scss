@@ -2,9 +2,8 @@
 .slick_container {
   width: 680px;
   margin: auto;
-  .container {
-    padding: 40px;
-    background: #419be0;
+  h2 {
+    margin-top: 2rem;
   }
   .card_container {
     direction: rtl;
@@ -13,6 +12,7 @@
     margin: 0.5rem 0;
     width: 90% !important;
     border-radius: 10px;
+    outline: 0;
     p {
       text-align: right;
     }

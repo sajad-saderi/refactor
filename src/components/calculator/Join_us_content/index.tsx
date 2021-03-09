@@ -26,7 +26,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
     rtl: true,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 15000,
     arrows: false,
   };
 
@@ -84,8 +84,8 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
           </p> */}
-          <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
           <section className='slick_container'>
+            <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
             <Slider {...settings}>
               <div className='card_container'>
                 <img src={quotation} alt='علامت کوتیشن' />
