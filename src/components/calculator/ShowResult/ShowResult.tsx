@@ -91,8 +91,10 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
              *  The monthly value always is larger than one million
              *  Instance: 9.999.000 output is 9.9
              */
-            monthly > 10000000
-              ? monthly.toLocaleString("de-DE").slice(0, 2)
+            monthly >= 10000000
+              ? monthly < 100000000
+                ? monthly.toLocaleString("de-DE").slice(0, 2)
+                : monthly.toLocaleString("de-DE").slice(0, 3)
               : monthly.toLocaleString("de-DE").slice(0, 3)}
             <p>{language.million_toman}</p>
           </h3>
