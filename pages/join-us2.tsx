@@ -2,30 +2,30 @@ import React, { useEffect, useState } from "react";
 import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Calculator from "../src/components/calculator";
-// import Join_us_content from "../src/components/calculator/Join_us_content/AbTestContent";
-import Join_us_content from "../src/components/calculator/Join_us_content";
-
+// import Join_us_content from "../src/components/calculator/Join_us_content";
+import Join_us_content_AB_test from "../src/components/calculator/Join_us_content/AbTestContent";
 import language from "../public/languages/fa/joinus.json";
 // import { logPageView } from "../utils/analytics";
 
-const JoinUs1 = ({ BotScore }) => {
+const JoinUs = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,
-      pagePath: "/join-us4",
+      pagePath: "/join-us",
       pageTitle: language.next_seo.title,
     });
     // logPageView();
   }, []);
+
   useEffect(() => {
     if (BotScore) {
       SetScore(BotScore);
     }
   }, [BotScore]);
   return (
-    <Layout>
+    <Layout LinkControl={true}>
       <NextSeo
         title={language.next_seo.title}
         description={language.next_seo.description}
@@ -52,7 +52,7 @@ const JoinUs1 = ({ BotScore }) => {
           </div>
           <p className='temporary_score'>{Score}</p>
         </section>
-        <Join_us_content
+        <Join_us_content_AB_test
           language={language.join_us_content}
           AbText={language.join_us_content_text}
         />
@@ -61,4 +61,4 @@ const JoinUs1 = ({ BotScore }) => {
   );
 };
 
-export default JoinUs1;
+export default JoinUs;

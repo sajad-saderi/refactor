@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import insurance from "../../../../public/image/SamanInsurance.png";
 import Link from "next/link";
 import { guard_controller } from "../../../../utils/guard_controller";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import quotation from "../../../../public/image/svg/quotation.svg";
-import "./join_us_content.scss";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import quotation from "../../../../public/image/svg/quotation.svg";
+// import "./join_us_content.scss";
 
 const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
   const [authorize, set_authorize] = useState(true);
@@ -18,17 +18,17 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
     }
   }, []);
 
-  let settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    rtl: true,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 15000,
-    arrows: false,
-  };
+  // let settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   rtl: true,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 15000,
+  //   arrows: false,
+  // };
 
   return (
     <>
@@ -84,7 +84,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
           </p> */}
-          <section className='slick_container'>
+          {/* <section className='slick_container'>
             <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
             <Slider {...settings}>
               <div className='card_container'>
@@ -130,7 +130,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
                 <p className='user_name'>فرزین روحانی</p>
               </div>
             </Slider>
-          </section>
+          </section> */}
         </div>
       </div>
     </>
