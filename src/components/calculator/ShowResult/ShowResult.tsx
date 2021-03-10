@@ -95,7 +95,7 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
               ? monthly < 100000000
                 ? monthly.toLocaleString("de-DE").slice(0, 2)
                 : monthly.toLocaleString("de-DE").slice(0, 3)
-              : monthly.toLocaleString("de-DE").slice(0, 3)}
+              : (monthly + 100000).toLocaleString("de-DE").slice(0, 3)}
             <p>{language.million_toman}</p>
           </h3>
         )}

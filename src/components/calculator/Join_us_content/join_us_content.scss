@@ -2,10 +2,10 @@
 .slick_container {
   width: 680px;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 5rem !important;
   h2 {
     margin-top: 0rem;
-    line-height: 21px;
+    line-height: 26px;
   }
   .card_container {
     direction: rtl;
@@ -17,6 +17,7 @@
     outline: 0;
     p {
       text-align: right;
+      line-height: 1.8;
     }
     h3 {
       margin-bottom: 0;
@@ -28,6 +29,7 @@
   }
   .slick-dots {
     li {
+      margin: 0;
       button {
         &::before {
           font-size: 1rem;
