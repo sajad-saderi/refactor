@@ -329,7 +329,7 @@ const Filters = ({
             setwith_driver(1);
           }}
         />
-        <Checkbox
+        {/* <Checkbox
           initialValue={[without_driver]}
           data={[
             {
@@ -351,7 +351,7 @@ const Filters = ({
             });
             setwithout_driver(1);
           }}
-        />
+        /> */}
         <div className='body_style_type_wrapper'>
           <h3>{language.filter.filter_section_h3_2}</h3>
           <Checkbox

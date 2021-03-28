@@ -122,7 +122,7 @@ const Footer = (props: IFooter) => {
         <div className='social_container_footer'>
           <h3>{language.social_container_footer_h3}</h3>
           <div>
-            <a target='_black' href='https://www.instagram.com/otoli_net/'>
+            <a target='_black' href='https://www.instagram.com/sepris.rent/'>
               <IoLogoInstagram size='3rem' color='#4ba3ce' />
             </a>
             <a target='_black' href='https://twitter.com/otoli_net'>
