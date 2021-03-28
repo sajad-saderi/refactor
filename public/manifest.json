@@ -2,7 +2,7 @@
   "name": "Sepris",
   "short_name": "SP",
   "theme_color": "#000",
-  "background_color": "#000",
+  "background_color": "#021a40",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
