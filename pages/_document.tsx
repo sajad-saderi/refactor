@@ -25,8 +25,8 @@ export default class MyDocument extends Document {
             content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'
           />
           {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
-          <link rel='shortcut icon' href='/favicon.ico' />
-
+          <link rel='icon' type='image/svg+xml' href='/FaviconBlack.svg' />
+          <link rel='shortcut alternate icon' href='/favicon.ico' />
           {/* Android  */}
           <meta name='theme-color' content='#000000' />
           <meta name='mobile-web-app-capable' content='yes' />
