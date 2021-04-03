@@ -280,56 +280,57 @@ const Filters = ({
         /> */}
         <PriceSlider sliderRange={sliderRange} sliderPrice={sliderPrice} />
         {/* )} */}
-        <h3>{language.filter.filter_section_h3_1}</h3>
-        <Checkbox
-          initialValue={[deliver_at_renters_place]}
-          data={[
-            {
-              text:
-                language.filter
-                  .filter_section_check_box_deliver_at_renters_place,
-              value: deliver_at_renters_place,
-            },
-          ]}
-          name='deliver_at_renters_place'
-          clearField={(item) => {
-            FilterContext.setDataForSearch({
-              deliver_at_renters_place: { status: false, value: 0 },
-            });
-            setDeliver_at_renters_place(0);
-          }}
-          Select={(item) => {
-            // add this filter to the filter context
-            FilterContext.setDataForSearch({
-              deliver_at_renters_place: { status: true, value: 1 },
-            });
-            setDeliver_at_renters_place(1);
-          }}
-        />
-        <Checkbox
-          initialValue={[with_driver]}
-          data={[
-            {
-              text: language.filter.filter_section_check_box_with_driver,
-              value: with_driver,
-            },
-          ]}
-          name='with_driver'
-          clearField={(item) => {
-            FilterContext.setDataForSearch({
-              with_driver: { status: false, value: 0 },
-            });
-            setwith_driver(0);
-          }}
-          Select={(item) => {
-            // add this filter to the filter context
-            FilterContext.setDataForSearch({
-              with_driver: { status: true, value: 1 },
-            });
-            setwith_driver(1);
-          }}
-        />
-        {/* <Checkbox
+        <div className='rent-options'>
+          <h3>{language.filter.filter_section_h3_1}</h3>
+          <Checkbox
+            initialValue={[deliver_at_renters_place]}
+            data={[
+              {
+                text:
+                  language.filter
+                    .filter_section_check_box_deliver_at_renters_place,
+                value: deliver_at_renters_place,
+              },
+            ]}
+            name='deliver_at_renters_place'
+            clearField={(item) => {
+              FilterContext.setDataForSearch({
+                deliver_at_renters_place: { status: false, value: 0 },
+              });
+              setDeliver_at_renters_place(0);
+            }}
+            Select={(item) => {
+              // add this filter to the filter context
+              FilterContext.setDataForSearch({
+                deliver_at_renters_place: { status: true, value: 1 },
+              });
+              setDeliver_at_renters_place(1);
+            }}
+          />
+          <Checkbox
+            initialValue={[with_driver]}
+            data={[
+              {
+                text: language.filter.filter_section_check_box_with_driver,
+                value: with_driver,
+              },
+            ]}
+            name='with_driver'
+            clearField={(item) => {
+              FilterContext.setDataForSearch({
+                with_driver: { status: false, value: 0 },
+              });
+              setwith_driver(0);
+            }}
+            Select={(item) => {
+              // add this filter to the filter context
+              FilterContext.setDataForSearch({
+                with_driver: { status: true, value: 1 },
+              });
+              setwith_driver(1);
+            }}
+          />
+          {/* <Checkbox
           initialValue={[without_driver]}
           data={[
             {
@@ -352,6 +353,8 @@ const Filters = ({
             setwithout_driver(1);
           }}
         /> */}
+        </div>
+
         <div className='body_style_type_wrapper'>
           <h3>{language.filter.filter_section_h3_2}</h3>
           <Checkbox

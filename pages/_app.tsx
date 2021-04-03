@@ -178,8 +178,22 @@ class App_Otoli extends App {
         if (choiceResult.outcome === "accepted") {
           console.log("User accepted the install prompt");
           this.AnalyticsEvent("pwa", "install-prompt", "accepted");
+          window["dataLayer"].push({
+            event: "GAEvent",
+            eventCategory: "pwa",
+            eventAction: "install-prompt",
+            eventLabel: "accepted",
+            eventValue: "",
+          });
         } else {
           console.log("User dismissed the install prompt");
+          window["dataLayer"].push({
+            event: "GAEvent",
+            eventCategory: "pwa",
+            eventAction: "install-prompt",
+            eventLabel: "rejected",
+            eventValue: "",
+          });
           this.AnalyticsEvent("pwa", "install-prompt", "rejected");
         }
         pwa_flag = true;
