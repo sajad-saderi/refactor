@@ -125,7 +125,7 @@ const Footer = (props: IFooter) => {
             <a target='_black' href='https://www.instagram.com/sepris.rent/'>
               <IoLogoInstagram size='3rem' color='#4ba3ce' />
             </a>
-            <a target='_black' href='https://twitter.com/otoli_net'>
+            <a target='_black' href='https://twitter.com/Seprisrent'>
               <IoLogoTwitter size='3rem' color='#4ba3ce' />
             </a>
             <a target='_black' href='https://wa.me/message/C3U7RO7ADABWF1'>
