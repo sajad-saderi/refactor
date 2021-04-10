@@ -144,15 +144,17 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdAlarm size='2rem' color='#f7941d' />
               <span>{language.new}</span>
             </div>
-            <div className='timer'>
-              <CountdownTimer
-                timeLeft={
-                  data.time_remaining_to_take_action.total_seconds * 1000
-                }
-                completeCallback={() => CreateTheStatusForThisCard("expired")}
-              />
-              <FiClock size='2rem' color='#f7941d' />
-            </div>
+            {!renter && (
+              <div className='timer'>
+                <CountdownTimer
+                  timeLeft={
+                    data.time_remaining_to_take_action.total_seconds * 1000
+                  }
+                  completeCallback={() => CreateTheStatusForThisCard("expired")}
+                />
+                <FiClock size='2rem' color='#f7941d' />
+              </div>
+            )}
           </div>
         );
         // set the button attribute base on the role and action
@@ -184,15 +186,17 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdCreditCard size='2rem' color='#a3678b' />
               <span>{language.approved}</span>
             </div>
-            <div className='timer'>
-              <CountdownTimer
-                timeLeft={
-                  data.time_remaining_to_take_action.total_seconds * 1000
-                }
-                completeCallback={() => CreateTheStatusForThisCard("expired")}
-              />
-              <FiClock size='2rem' color='#a3678b' />
-            </div>
+            {!renter && (
+              <div className='timer'>
+                <CountdownTimer
+                  timeLeft={
+                    data.time_remaining_to_take_action.total_seconds * 1000
+                  }
+                  completeCallback={() => CreateTheStatusForThisCard("expired")}
+                />
+                <FiClock size='2rem' color='#a3678b' />
+              </div>
+            )}
           </div>
         );
         setButton_code(

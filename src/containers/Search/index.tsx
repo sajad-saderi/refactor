@@ -7,7 +7,7 @@ import moment from "moment-jalaali";
 import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_LOCATION } from "../../API/index";
 
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 // import "./search.scss";
 import Button from "../../components/form/Button";
@@ -18,6 +18,7 @@ moment.loadPersian({ dialect: "persian-modern" });
 
 const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
+  const [LocationName, setLocationName] = useState("تهران");
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
   const [dayRange, setDayRange] = React.useState<DayRange>({
@@ -38,7 +39,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   });
 
   const MODAL_CONTEXT = useContext(modal_context);
-  const router = useRouter()
+  const router = useRouter();
 
   // get a list of cities
   const get_car_location = async () => {
@@ -51,6 +52,13 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   };
 
   useEffect(() => {
+    if (localStorage["User_Location"]) {
+      let location_storage = JSON.parse(localStorage["User_Location"]);
+      if (location_storage.value == 1 || location_storage.value == 2) {
+        setLocationId(location_storage.value);
+        setLocationName(location_storage.text);
+      }
+    }
     get_car_location();
     setDateFromStorage();
   }, []);
@@ -112,7 +120,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       // if we are on dynamic page don't change the route
       if (dynamic) {
         searchSubmit({
-          location_id: 1,
+          location_id: LocationId,
           date: {
             // convert dates to standard structure
             Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
@@ -126,7 +134,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       localStorage["end"] = JSON.stringify(dayRange.to);
       setLoading(true);
       router.push(
-        `/search-result?location_id=${LocationId}&location_name=تهران&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15`
+        `/search-result?location_id=${LocationId}&location_name=${LocationName}&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15`
       );
     } else if (!dayRange.from) {
       setFromError({ status: true, message: language.search.error_start_date });
@@ -186,15 +194,18 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
-            hardValue='تهران'
+            hardValue={LocationName}
             search_place_holder={
               language.search.label_location_search_place_holder
             }
             Select={(i) => {
-              if (i.value !== 1) {
+              localStorage["User_Location"] = JSON.stringify(i);
+              if (i.value !== 1 && i.value !== 2) {
                 // setLocationId(i.key);
-                localStorage["User_Location"] = JSON.stringify(i);
                 MODAL_CONTEXT.modalHandler("TellMe");
+              } else {
+                setLocationId(i.value);
+                setLocationName(i.text);
               }
             }}
             // clearField={() => setLocationId(1)}
