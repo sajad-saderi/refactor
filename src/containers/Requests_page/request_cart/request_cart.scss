@@ -28,7 +28,7 @@
   .status_expired {
     background-color: $almost_gray;
     span {
-      color: $more_gray;
+      color: $almost_black;
     }
   }
   .status_returned,
@@ -292,7 +292,7 @@
         left: 13px;
         top: 4px;
         font-size: 1.4rem;
-        color: $more_gray;
+        color: $almost_black;
       }
       .second {
         position: absolute;
@@ -300,21 +300,21 @@
         right: 88px;
         line-height: 1.2;
         font-size: 1.4rem;
-        color: $more_gray;
+        color: $almost_black;
       }
       .third {
         position: absolute;
         top: 4px;
         right: 53px;
         font-size: 1.4rem;
-        color: $more_gray;
+        color: $almost_black;
       }
       .forth {
         position: absolute;
         top: 4px;
         right: 11px;
         font-size: 1.4rem;
-        color: $more_gray;
+        color: $almost_black;
       }
       &::after {
         content: "";

@@ -23,7 +23,7 @@
         outline: 0;
         -webkit-appearance: none;
         line-height: 1;
-        font-size: 1.4rem; 
+        font-size: 1.4rem;
         border: 1px solid rgba(34, 36, 38, 0.15);
         color: rgba(0, 0, 0, 0.87);
         border-radius: 0.4rem;
@@ -126,7 +126,7 @@
         display: inline-block;
         border-radius: 4px;
         p {
-          color: $more_gray;
+          color: $almost_black;
           font-weight: 500;
           display: inline-block;
           vertical-align: middle;
@@ -143,7 +143,7 @@
             font-size: 1.2rem;
             margin: 0 1rem 0 0;
             padding-right: 2rem;
-            color: $more_gray;
+            color: $almost_black;
             cursor: pointer;
             svg {
               width: 2rem;

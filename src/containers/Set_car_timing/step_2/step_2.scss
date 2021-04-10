@@ -51,7 +51,7 @@
             display: inline-block;
             margin: 0.3rem;
             vertical-align: middle;
-            color: $more_gray;
+            color: $almost_black;
             &:nth-last-of-type(4) {
               color: rgba(163, 103, 139, 0.3);
               font-size: 2rem;
@@ -108,7 +108,7 @@
         line-height: 1;
         font-weight: 500;
         .extra_text {
-          color: $more_gray;
+          color: $almost_black;
         }
       }
       .DropDown_container label,
@@ -239,7 +239,7 @@
         }
         label {
           margin-bottom: 0;
-          color: $more_gray;
+          color: $almost_black;
           font-size: 1.3rem;
           font-weight: 400;
         }
@@ -353,7 +353,7 @@
         size: 1.1rem;
         margin-bottom: 1rem;
         font-weight: 300;
-        color: $more_gray;
+        color: $almost_black;
       }
     }
     .local_style {

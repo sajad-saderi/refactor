@@ -200,7 +200,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             }
             Select={(i) => {
               localStorage["User_Location"] = JSON.stringify(i);
-              if (i.value !== 1 && i.value !== 2) {
+              if (i.value !== 1 && i.value !== 2 && i.value !== 1657) {
                 // setLocationId(i.key);
                 MODAL_CONTEXT.modalHandler("TellMe");
               } else {

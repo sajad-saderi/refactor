@@ -8,7 +8,7 @@ const Add_car = ({ language }: IAdd_car) => {
   const router = useRouter();
 
   useEffect(() => {
-    const guard = guard_controller(); 
+    const guard = guard_controller();
     if (guard !== "auth") {
       router.push(`/${guard}`);
       return;
