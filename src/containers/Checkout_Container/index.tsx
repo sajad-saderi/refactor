@@ -261,6 +261,7 @@ const Checkout_Container = ({
           <h2>{language.location}</h2>
           <p>{location.name.breadcrumb_fa}</p>
           {location.parent_id === 1 && <p>{language.location_text}</p>}
+          {location.id === 1657 && <p>{language.location_text_karaj}</p>}
           {with_driver && (
             <>
               <hr />

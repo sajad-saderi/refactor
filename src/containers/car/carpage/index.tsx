@@ -641,6 +641,12 @@ const CarPage = ({
                     <strong>{language.you_location}</strong>
                     {language.mishavad}
                   </p>
+                ) : location.id === 1657 && deliver_at_renters_place ? (
+                  <p className='margin_bottom_16'>
+                    {language.deliver_at_tehran_karaj}
+                    <strong>{language.you_location}</strong>
+                    {language.mishavad}
+                  </p>
                 ) : null}
               </div>
               <hr />
