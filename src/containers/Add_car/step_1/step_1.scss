@@ -36,6 +36,12 @@
     .text_input_container {
       margin: 0 0 3rem;
     }
+    .car_location_district {
+      margin: 0 0 3rem;
+      .DropDown_container {
+        margin: 0 0 0rem;
+      }
+    }
     .DropDown_container {
       .input_wrapper {
         input {
@@ -313,6 +319,12 @@
       .radio_father,
       .text_input_container {
         margin: 0 0 3rem;
+      }
+      .car_location_district {
+        margin: 0 0 3rem;
+        .DropDown_container {
+          margin: 0 0 0rem;
+        }
       }
       .Car_info_step_1 {
         display: block;

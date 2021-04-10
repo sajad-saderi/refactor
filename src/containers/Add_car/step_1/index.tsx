@@ -1210,52 +1210,53 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           <h3>{language.add_car}</h3>
         </div>
         <p className='extra_text form_title'>{language.fill_the_form}</p>
-        <DropdownSearch
-          InputDisable={true}
-          error_status={!showDistrict ? ErrorState.location_id : false}
-          label={language.where_is_the_car}
-          search_place_holder={language.what_is_the_car_location_name}
-          data={locationList}
-          defaultVal={locationName}
-          // clearField={() => {
-          //   dispatch({ type: "location_id", location_id: null });
-          //   setShowDistrict(false);
-          // }}
-          Select={(i) => {
-            if (!showDistrict && ErrorState.location_id) {
-              ErrorDispatch({
-                type: "location_id",
-                location_id: null,
-                error_message: "",
-              });
-            }
-            if (i.value === 1) {
-              if (incompleteCarMode) {
-                incompleteInfo.location.parent_id = 1;
-                incompleteInfo.location.name.fa = null;
+        <div className='car_location_district'>
+          <DropdownSearch
+            InputDisable={true}
+            error_status={!showDistrict ? ErrorState.location_id : false}
+            label={language.where_is_the_car}
+            search_place_holder={language.what_is_the_car_location_name}
+            data={locationList}
+            defaultVal={locationName}
+            // clearField={() => {
+            //   dispatch({ type: "location_id", location_id: null });
+            //   setShowDistrict(false);
+            // }}
+            Select={(i) => {
+              if (!showDistrict && ErrorState.location_id) {
+                ErrorDispatch({
+                  type: "location_id",
+                  location_id: null,
+                  error_message: "",
+                });
               }
-              setShowDistrict(true);
-            } else {
-              // if user select rather then Tehran save city name to show it in message
-              if (incompleteCarMode) {
-                incompleteInfo.location.parent_id = null;
-                incompleteInfo.location.name.fa = i.text;
+              if (i.value === 1) {
+                if (incompleteCarMode) {
+                  incompleteInfo.location.parent_id = 1;
+                  incompleteInfo.location.name.fa = null;
+                }
+                setShowDistrict(true);
+              } else {
+                // if user select rather then Tehran save city name to show it in message
+                if (incompleteCarMode) {
+                  incompleteInfo.location.parent_id = null;
+                  incompleteInfo.location.name.fa = i.text;
+                }
+                setLocationName(i.text);
+                setShowDistrict(false);
               }
-              setLocationName(i.text);
-              setShowDistrict(false);
-            }
-            dispatch({ type: "location_id", location_id: i.value });
-            if (i.value === 1) getDistricts(i.value);
-          }}
-        />
-        {state.location_id !== 1 &&
-          state.location_id !== 2 &&
-          state.location_id !== 1657 &&
-          state.location_id !== null &&
-          !showDistrict && (
-            <p className='extra_text'>{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
-          )}
-
+              dispatch({ type: "location_id", location_id: i.value });
+              if (i.value === 1) getDistricts(i.value);
+            }}
+          />
+          {state.location_id !== 1 &&
+            state.location_id !== 2 &&
+            state.location_id !== 1657 &&
+            state.location_id !== null &&
+            !showDistrict && (
+              <p className='extra_text'>{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
+            )}
+        </div>
         {showDistrict && (
           <DropdownSearch
             // if the user choose Tehran location_id error belong to district drop-down
