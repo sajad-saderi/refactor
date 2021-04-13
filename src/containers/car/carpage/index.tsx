@@ -28,6 +28,7 @@ moment.loadPersian({ dialect: "persian-modern" });
 // let initial_slider_hight = 0;
 // let initial_offsetY = 0;
 // let scrollCount = 0;
+let search_id = null;
 const CarPage = ({
   language,
   is_mine,
@@ -35,6 +36,8 @@ const CarPage = ({
   id,
   expired,
   car_Information,
+  start_date,
+  end_date,
 }: ICarPage) => {
   // set date picker date to get new price and availability
   const [dayRange, setDayRange] = React.useState<DayRange>({
@@ -70,7 +73,7 @@ const CarPage = ({
   const [cylinder, setCylinder] = useState(null);
   const [facility_set, setFacility_set] = useState(null);
   const [cancellation_policy, setCancellation_policy] = useState(null);
-  const [search_id, setSearch_id] = useState(null);
+  // const [search_id, setSearch_id] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCalender, setShowCalender] = useState(false);
   const [total_discount, setTotal_discount] = useState(false);
@@ -122,21 +125,36 @@ const CarPage = ({
       }
     } else {
       // fetchData({ search_id });
+      if (initial_search_id) {
+        search_id = initial_search_id;
+      }
       set_CarInformation(car_Information);
-      setSearch_id(initial_search_id);
-      if (localStorage["start"]) {
-        let startDate = JSON.parse(localStorage["start"]);
-        let endDate = JSON.parse(localStorage["end"]);
+      if (start_date) {
+        let startDate = start_date.split("/");
+        let endDate = end_date.split("/");
         setDayRange({
           from: {
-            year: startDate.year,
-            month: startDate.month,
-            day: startDate.day,
+            year: +startDate[0],
+            month: +startDate[1],
+            day: +startDate[2],
           },
-          to: { year: endDate.year, month: endDate.month, day: endDate.day },
+          to: { year: +endDate[0], month: +endDate[1], day: +endDate[2] },
         });
         setShowCalender(true);
       }
+      // if (localStorage["start"]) {
+      //   let startDate = JSON.parse(localStorage["start"]);
+      //   let endDate = JSON.parse(localStorage["end"]);
+      //   setDayRange({
+      //     from: {
+      //       year: startDate.year,
+      //       month: startDate.month,
+      //       day: startDate.day,
+      //     },
+      //     to: { year: endDate.year, month: endDate.month, day: endDate.day },
+      //   });
+      //   setShowCalender(true);
+      // }
     }
     // if doesn't have search id and it's not mine the user can select day range and get price and search id
     // else {
@@ -157,6 +175,7 @@ const CarPage = ({
     // window.addEventListener("scroll", scrollHandler);
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
+      search_id = null;
       // window.removeEventListener("scroll", scrollHandler);
     };
   }, []);
@@ -281,10 +300,10 @@ const CarPage = ({
     setCancellation_policy(res.cancellation_policy);
     if (res.has_media) setMedia_set(res.media_set);
     else setMedia_set([{ url: carImage }]);
-    setSearch_id(res.search_id);
+    // setSearch_id(res.search_id);
+    search_id = res.search_id;
     setTotal_discount(res.total_discount);
     setTotal_discount_percent(res.total_discount_percent);
-    setSearch_id(res.search_id);
   };
 
   const GoToCheckout = () => {
@@ -1005,5 +1024,7 @@ interface ICarPage {
   id: string | number;
   car_Information: any;
   expired: boolean;
+  start_date: string;
+  end_date: string;
 }
 export default CarPage;

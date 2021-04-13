@@ -6,6 +6,7 @@ import language from "../../public/languages/fa/carpage.json";
 // import { logPageView } from "../../utils/analytics";
 import { REQUEST_GET_RENTAL_CAR } from "../../src/API";
 import { useRouter } from "next/router";
+import { payBackInString } from "../../utils/date-range-creator";
 
 const Car = ({
   car_Information,
@@ -15,6 +16,8 @@ const Car = ({
   expired,
   owner_name,
   car_name,
+  start_date,
+  end_date,
   _404,
 }) => {
   const router = useRouter();
@@ -93,6 +96,8 @@ const Car = ({
         car_Information={car_Information}
         initial_search_id={initial_search_id}
         id={id}
+        start_date={start_date}
+        end_date={end_date}
         expired={expired}
       />
     </Layout>
@@ -102,6 +107,7 @@ const Car = ({
 export async function getServerSideProps(props) {
   let { search_id, id, owner, owner_name, car_name } = props.query;
   try {
+    const { start_date, end_date } = payBackInString(6, 3);
     if (owner_name) {
       return {
         props: {
@@ -111,6 +117,8 @@ export async function getServerSideProps(props) {
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
           expired: false,
+          start_date,
+          end_date,
           id,
         },
       };
@@ -119,7 +127,7 @@ export async function getServerSideProps(props) {
       if (search_id) {
         param = { search_id };
       } else {
-        param = { id };
+        param = { id, start_date, end_date };
       }
       const res: any = await REQUEST_GET_RENTAL_CAR(param);
       return {
@@ -127,6 +135,8 @@ export async function getServerSideProps(props) {
           car_Information: res,
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
+          start_date,
+          end_date,
           id,
         },
       };
