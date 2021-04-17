@@ -188,6 +188,7 @@ export default class MyDocument extends Document {
 
           {/* Android   */}
           <link href='icon-192x192.png' rel='icon' sizes='192x192' />
+          <link href='icon-144x144.png' rel='icon' sizes='144x144' />
           <link href='icon-128x128.png' rel='icon' sizes='128x128' />
 
           {/* UC Browser   */}
