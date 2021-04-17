@@ -57,7 +57,7 @@ const AboutUs = () => {
           </div>
           <div className='map-container'>
             <iframe
-              src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12948.97680269182!2d51.3639484!3d35.7693773!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x77421b950619d5b7!2z2LPZvtix24zYsyAoU2VwcmlzKQ!5e0!3m2!1sen!2s!4v1618646009243!5m2!1sen!2s'
+              src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12948.97680269182!2d51.3639484!3d35.7693773!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x77421b950619d5b7!2z2LPZvtix24zYsyAoU2VwcmlzKQ!5e0!3m2!1sen!2s!4v1618646009243!5m2!1sfa!2s'
               width='600'
               height='450'
               style={{ border: 0 }}
