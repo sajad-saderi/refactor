@@ -35,6 +35,8 @@ const AboutUs = () => {
         <div className='AboutUsPage'>
           <h1>{language.h1}</h1>
           <p>{language.p}</p>
+          <br />
+          <br />
           <h3>{language.h3}</h3>
           <div className='indentation'>
             <p>{language.address}</p>
