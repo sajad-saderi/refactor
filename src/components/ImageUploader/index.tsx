@@ -94,7 +94,7 @@ const ImageUploader = ({
 
   const { getRootProps, getInputProps } = useDropzone({
     // acceptable formats for upload
-    accept: ".jpeg, .jpg, .png",
+    // accept: ".jpeg, .jpg, .png",
 
     // active Drop and use custom function
     onDrop,
