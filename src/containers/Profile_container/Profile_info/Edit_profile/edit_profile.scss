@@ -4,11 +4,12 @@
   .change_image_container {
     position: relative;
     margin-bottom: 2rem;
-    p {
+    label {
       font-size: 1.4rem;
       text-align: center;
       margin: 1rem 0;
       color: $blue;
+      display: block;
       font-weight: 500;
     }
     input {

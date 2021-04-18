@@ -286,34 +286,36 @@ const Edit_profile = ({
         alt={state.first_name}
       />
       <div className='change_image_container'>
-        <p>{language.change_the_profile_image}</p>
+        {/* <p></p> */}
+        <label data-for='file'>
+          {language.change_the_profile_image}
+          <input
+            type='file'
+            id='file'
+            accept='.jpg,.jpeg,.png'
+            ref={file_input}
+            onClick={() => {
+              file_input.current.value = null;
+            }}
+            onChange={(e) => {
+              let file = e.target.files[0];
+              const types = ["image/png", "image/jpeg", "image/png"];
+              if (types.every((type) => file.type !== type)) {
+                alert(language.incorrect_picture_extension);
+                return false;
+              }
+              setNewImage(file);
+              setCroptStart(true);
+              // const objectURL = URL.createObjectURL(file);
+              // console.log("objectURL", objectURL);
+              // console.log(file);
 
-        <input
-          type='file'
-          id='file'
-          accept='.jpg,.jpeg,.png'
-          ref={file_input}
-          onClick={() => {
-            file_input.current.value = null;
-          }}
-          onChange={(e) => {
-            let file = e.target.files[0];
-            const types = ["image/png", "image/jpeg", "image/png"];
-            if (types.every((type) => file.type !== type)) {
-              alert(language.incorrect_picture_extension);
-              return false;
-            }
-            setNewImage(file);
-            setCroptStart(true);
-            // const objectURL = URL.createObjectURL(file);
-            // console.log("objectURL", objectURL);
-            // console.log(file);
-
-            // const reader = new FileReader();
-            // reader.readAsDataURL(file);
-            dispatch({ type: "image", image: URL.createObjectURL(file) });
-          }}
-        />
+              // const reader = new FileReader();
+              // reader.readAsDataURL(file);
+              dispatch({ type: "image", image: URL.createObjectURL(file) });
+            }}
+          />
+        </label>
         {croptStart && (
           <div className='crop_container'>
             <Cropper
