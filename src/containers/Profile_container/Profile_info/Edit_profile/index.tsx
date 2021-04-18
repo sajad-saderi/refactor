@@ -290,6 +290,7 @@ const Edit_profile = ({
         <label data-for='file'>
           {language.change_the_profile_image}
           <input
+            hidden
             type='file'
             id='file'
             accept='.jpg,.jpeg,.png'
