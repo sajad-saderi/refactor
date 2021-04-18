@@ -87,7 +87,12 @@ const ConfirmCode = ({
             } catch (e) {
               console.log("Em...I think heap is not work correctly :/");
             }
-            window.history.go(-1);
+            if (localStorage["last_location"] !== "/add-car")
+              window.history.go(-1);
+            else
+              router.push({
+                pathname: "/add-car",
+              });
             // router.push(
             //   localStorage["last_location"]
             //     ? localStorage["last_location"]

@@ -31,7 +31,8 @@ const LoginPage = () => {
 
     if (window["auth"]) {
       set_deactivate_form(true);
-      window.history.go(-1);
+      if (localStorage["history"] !== "/add-car") window.history.go(-1);
+      else router.push("/add-car");
       // if (window["complete_register"]) {
       //   let id = user.data?.id;
       //   router.push(`/user/${id}`);

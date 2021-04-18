@@ -123,7 +123,11 @@ const Complete_register_container = ({
       }
     } else {
       set_deactivate_form(true);
-      window.history.go(-2);
+      if (localStorage["last_location"] !== "/add-car") window.history.go(-2);
+      else
+        router.push({
+          pathname: "/add-car",
+        });
     }
     setShow(true);
   }, []);
@@ -161,7 +165,13 @@ const Complete_register_container = ({
           name: `${state.first_name} ${state.last_name}`,
         });
         if (localStorage["last_location"]) {
-          window.history.go(-2);
+          if (localStorage["last_location"] !== "/add-car")
+            window.history.go(-2);
+          else
+            router.push({
+              pathname: "/add-car",
+            });
+
           // router.push(localStorage["last_location"]);
         } else {
           router.push({
