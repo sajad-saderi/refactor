@@ -3,15 +3,22 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/insurancepolicies.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const InsurancePolicies = () => {
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/insurance-policies",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/insurance-policies",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
   }, []);
   return (
@@ -30,7 +37,7 @@ const InsurancePolicies = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{language.h1}</h1>
         <p>{language.p_1}</p>
         <p>
@@ -212,11 +219,11 @@ const InsurancePolicies = () => {
           <li>
             <strong>{language.h2_14_li_1}</strong>
           </li>
-          <p className="intends">{language.p_39}</p>
+          <p className='intends'>{language.p_39}</p>
           <li>
             <strong>{language.h2_14_li_2}</strong>
           </li>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{language.h2_14_li_2_li_1}</li>
             <li>{language.h2_14_li_2_li_2}</li>
             <li>{language.h2_14_li_2_li_3}</li>
@@ -249,7 +256,7 @@ const InsurancePolicies = () => {
             <strong>{language.h2_14_li_4}</strong>
           </li>
           <p>{language.p_45}</p>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{language.p_45_li_1}</li>
             <li>{language.p_45_li_2}</li>
           </ul>

@@ -5,17 +5,24 @@ import Link from "next/link";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "../src/API";
 import language from "../public/languages/fa/sitemap.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const Site_map = () => {
   const [UrlList, UrlSetter] = useState([]);
 
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/site-map",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/site-map",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
     fetchAPIs();
   }, []);

@@ -3,14 +3,22 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/ourpolicies.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
+
 const OtoliPolicies = () => {
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/our-policies",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/our-policies",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
   }, []);
   return (
@@ -29,7 +37,7 @@ const OtoliPolicies = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{language.h1}</h1>
         <p>
           <strong>{language.p_1}</strong>
@@ -303,11 +311,11 @@ const OtoliPolicies = () => {
           <li>
             <strong>{language.li_82}</strong>
           </li>
-          <p className="intends">{language.p_43}</p>
+          <p className='intends'>{language.p_43}</p>
           <li>
             <strong>{language.li_83} </strong>
           </li>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{language.li_84}</li>
             <li>{language.li_85}</li>
             <li>{language.li_86}</li>
@@ -340,7 +348,7 @@ const OtoliPolicies = () => {
             <strong>{language.li_94}</strong>
           </li>
           <p>{language.p_49}</p>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{language.li_95}</li>
             <li>{language.li_96}</li>
           </ul>
@@ -371,7 +379,7 @@ const OtoliPolicies = () => {
         <p>{language.p_58}</p>
         <h2>{language.h2_27}</h2>
         <p>{language.p_59}</p>
-        <ul className="intends">
+        <ul className='intends'>
           <li>{language.li_100}</li>
           <li>{language.li_101}</li>
           <li>{language.li_102}</li>

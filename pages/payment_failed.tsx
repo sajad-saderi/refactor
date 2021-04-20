@@ -1,22 +1,29 @@
 import React from "react";
 import Layout from "../src/Layout";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Button from "../src/components/form/Button";
 import "../src/styles/pages/Failed_payment.scss";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentfaild.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const Failed_payment = () => {
-  const router = useRouter()
+  const router = useRouter();
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/payment-failed",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/payment-failed",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
   }, []);
   return (
@@ -34,13 +41,13 @@ const Failed_payment = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className="responsive minHeight failed_payment">
-        <section className="alarm_container">
-          <IoIosCloseCircleOutline size="10rem" color="a3678b" />
+      <article className='responsive minHeight failed_payment'>
+        <section className='alarm_container'>
+          <IoIosCloseCircleOutline size='10rem' color='a3678b' />
           <p>{language.cancel}</p>
         </section>
         <Button
-          class="Blue_BTN local_style"
+          class='Blue_BTN local_style'
           click={() => router.push("/")}
           value={language.main_page}
           loading={false}

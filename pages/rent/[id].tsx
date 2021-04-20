@@ -7,18 +7,25 @@ import Landing_Page_Content from "../../src/containers/LandignPageContainer/land
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
 // import { logPageView } from "../../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const Rent_dynamic = ({ Landing_page, content }) => {
   React.useEffect(() => {
     if (!Landing_page) {
       Router.push("/404");
     } else {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: `/rent/${Landing_page.unique_id}`,
-        pageTitle: Landing_page.meta_title,
-      });
+      try {
+        window["dataLayer"].push({
+          event: "page_view",
+          pageURL: window.location.href,
+          pagePath: `/rent/${Landing_page.unique_id}`,
+          pageTitle: Landing_page.meta_title,
+        });
+      } catch (error) {
+        if (process.env.NODE_ENV !== "development") {
+          Sentry.captureException(error);
+        }
+      }
       // logPageView();
     }
   }, []);

@@ -3,15 +3,22 @@ import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/guidepicture.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const guidePicture = () => {
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/guide-picture",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/guide-picture",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
   }, []);
   return (

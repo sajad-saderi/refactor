@@ -4,15 +4,22 @@ import Complete_register_container from "../src/containers/CompleteRegister";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/completeregister.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const CompleteRegister = () => {
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/complete-register",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/complete-register",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
   }, []);
 

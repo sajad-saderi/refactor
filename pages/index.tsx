@@ -8,16 +8,23 @@ import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
 import { guard_controller } from "../utils/guard_controller";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const HomePage = () => {
   const [authorize, set_authorize] = useState(true);
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     const guard = guard_controller();
     if (guard !== "auth") {
       set_authorize(false);

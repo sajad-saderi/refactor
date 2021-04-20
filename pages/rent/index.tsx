@@ -10,6 +10,7 @@ import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
 // import { logPageView } from "../../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 const question_set = [
   {
@@ -28,12 +29,18 @@ const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
 
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/rent",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/rent",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
     fetchData();
   }, []);

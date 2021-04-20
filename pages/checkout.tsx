@@ -5,17 +5,24 @@ import language from "../public/languages/fa/checkout.json";
 import { NextSeo } from "next-seo";
 import { REQUEST_GET_RENTAL_CAR } from "../src/API";
 import Link from "next/link";
+import * as Sentry from "@sentry/browser";
 
 const Checkout = ({ order_information, expired }) => {
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/checkout",
-      pageTitle: order_information
-        ? `${language.next_seo.title.start}${order_information.car.brand.name.fa} ${order_information.car.name.fa}${language.next_seo.title.otoli}`
-        : "checkout",
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/checkout",
+        pageTitle: order_information
+          ? `${language.next_seo.title.start}${order_information.car.brand.name.fa} ${order_information.car.name.fa}${language.next_seo.title.otoli}`
+          : "checkout",
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
 
     // logPageView();
   }, []);

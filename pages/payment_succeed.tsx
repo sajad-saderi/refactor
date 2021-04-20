@@ -10,21 +10,28 @@ import carImage from "../public/image/car-image-thumbnail.jpg";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentsucceed.json";
 // import { logPageView } from "../utils/analytics";
+import * as Sentry from "@sentry/browser";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
 const Success_payment = () => {
   const [renter, setRenter] = useState(null);
-  const [rent_search_dump, setRent_search_dump] = useState(null); 
+  const [rent_search_dump, setRent_search_dump] = useState(null);
   const token = jsCookie.get("token");
 
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/payment-success",
-      pageTitle: language.next_seo.title,
-    });
+    try {
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/payment-success",
+        pageTitle: language.next_seo.title,
+      });
+    } catch (error) {
+      if (process.env.NODE_ENV !== "development") {
+        Sentry.captureException(error);
+      }
+    }
     // logPageView();
     fetchAPI(Router.router.query.id);
   }, []);

@@ -7,6 +7,7 @@ import language from "../../public/languages/fa/carpage.json";
 import { REQUEST_GET_RENTAL_CAR } from "../../src/API";
 import { useRouter } from "next/router";
 import { payBackInString } from "../../utils/date-range-creator";
+import * as Sentry from "@sentry/browser";
 
 const Car = ({
   car_Information,
@@ -25,21 +26,30 @@ const Car = ({
     if (_404) {
       router.push("/404");
     } else {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: `/car/${id}`,
-        pageTitle: car_Information
-          ? `${
-              car_Information.owner.company_name
-                ? car_Information.owner.company_name
-                : car_Information.owner.first_name +
-                  " " +
-                  car_Information.owner.last_name
-            } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`
-          : `${owner_name} - ${car_name}${language.next_seo.title.otoli}`,
-      });
+      try {
+        window["dataLayer"].push({
+          event: "page_view",
+          pageURL: window.location.href,
+          pagePath: `/car/${id}`,
+          pageTitle: car_Information
+            ? `${
+                car_Information.owner.company_name
+                  ? car_Information.owner.company_name
+                  : car_Information.owner.first_name +
+                    " " +
+                    car_Information.owner.last_name
+              } - ${car_Information.car.name.fa}${
+                language.next_seo.title.otoli
+              }`
+            : `${owner_name} - ${car_name}${language.next_seo.title.otoli}`,
+        });
+      } catch (error) {
+        if (process.env.NODE_ENV !== "development") {
+          Sentry.captureException(error);
+        }
+      }
     }
+
     // logPageView();
   }, []);
 
