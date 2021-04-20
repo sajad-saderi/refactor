@@ -4,26 +4,17 @@ import Add_car from "../src/containers/Add_car";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/addcar.json";
 import Router from "next/router";
-import * as Sentry from "@sentry/browser";
 
 const AddCar = ({ edit }) => {
   useEffect(() => {
     if (window["auth"]) {
-      try {
-        // const edit = router.
-        window["dataLayer"].push({
-          event: "page_view",
-          pageURL: window.location.href,
-          pagePath: "/add-car",
-          pageTitle: edit
-            ? language.next_seo.editTitle
-            : language.next_seo.title,
-        });
-      } catch (error) {
-        if (process.env.NODE_ENV !== "development") {
-          Sentry.captureException(error);
-        }
-      }
+      // const edit = router.
+      window["dataLayer"].push({
+        event: "page_view",
+        pageURL: window.location.href,
+        pagePath: "/add-car",
+        pageTitle: edit ? language.next_seo.editTitle : language.next_seo.title,
+      });
     } else {
       Router.push("/login");
     }

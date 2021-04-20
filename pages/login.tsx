@@ -10,7 +10,6 @@ import { FaArrowRight } from "react-icons/fa";
 import context_user from "../src/context/User_info";
 // import { logPageView } from "../utils/analytics";
 // import jsCookie from "js-cookie";
-import * as Sentry from "@sentry/browser";
 
 const LoginPage = () => {
   const [change, setChange] = useState(false);
@@ -23,18 +22,12 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/login",
-        pageTitle: language.next_seo.title,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/login",
+      pageTitle: language.next_seo.title,
+    });
 
     if (window["auth"]) {
       set_deactivate_form(true);

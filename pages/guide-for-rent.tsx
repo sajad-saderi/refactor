@@ -4,22 +4,15 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import language from "../public/languages/fa/guideforrent.json";
 // import { logPageView } from "../utils/analytics";
-import * as Sentry from "@sentry/browser";
 
 const guideForRent = () => {
   React.useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/guide-for-rent",
-        pageTitle: language.next_seo.title,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/guide-for-rent",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
   return (

@@ -5,23 +5,16 @@ import Calculator from "../src/components/calculator";
 import Join_us_content from "../src/components/calculator/Join_us_content";
 import language from "../public/languages/fa/joinus.json";
 // import { logPageView } from "../utils/analytics";
-import * as Sentry from "@sentry/browser";
 
 const JoinUs = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
   useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/join-us",
-        pageTitle: language.next_seo.title,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/join-us",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
   }, []);
 

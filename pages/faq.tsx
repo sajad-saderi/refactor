@@ -7,23 +7,16 @@ import "../src/styles/pages/faq.scss";
 import Spinner from "../src/components/Spinner";
 import language from "../public/languages/fa/faq.json";
 // import { logPageView } from "../utils/analytics";
-import * as Sentry from "@sentry/browser";
 
 const FAQ = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/faq",
-        pageTitle: language.next_seo.title,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/faq",
+      pageTitle: language.next_seo.title,
+    });
     // logPageView();
     fetchAPI();
   }, []);

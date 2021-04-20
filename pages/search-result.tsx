@@ -6,22 +6,15 @@ import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/searchresult.json";
 // import { logPageView } from "../utils/analytics";
 import { payBackInString } from "../utils/date-range-creator";
-import * as Sentry from "@sentry/browser";
 
 const SearchResult = ({ page_title }) => {
   React.useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/search-result",
-        pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/search-result",
+      pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
+    });
     // logPageView();
   }, []);
 

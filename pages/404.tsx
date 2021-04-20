@@ -5,22 +5,15 @@ import Link from "next/link";
 import _404 from "../public/image/404.png";
 import language from "../public/languages/fa/_404.json";
 // import { logPageView } from "../utils/analytics";
-import * as Sentry from "@sentry/browser";
 
 const page_404 = () => {
   useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/404",
-        pageTitle: language.title,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/404",
+      pageTitle: language.title,
+    });
     // logPageView();
   }, []);
   return (

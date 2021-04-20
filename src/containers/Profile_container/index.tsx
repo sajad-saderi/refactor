@@ -7,7 +7,6 @@ import { REQUEST_GET_USER_INFO } from "../../API";
 import context_user from "../../context/User_info.js";
 import { NextSeo } from "next-seo";
 import { guard_controller } from "../../../utils/guard_controller";
-import * as Sentry from "@sentry/browser";
 
 const Profile_container = ({ language }: IProfile_container) => {
   const [is_mine, setIs_mine] = useState(false);
@@ -25,23 +24,16 @@ const Profile_container = ({ language }: IProfile_container) => {
     const user_cars_info: any = await REQUEST_GET_USER_INFO({
       id: Router.router.query.id,
     });
-
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: `/user/${user_cars_info.id}`,
-        pageTitle: `${language.next_seo.title.start}${
-          user_cars_info.company_name
-            ? user_cars_info.company_name
-            : user_cars_info.name
-        }${language.next_seo.title.otoli}`,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: `/user/${user_cars_info.id}`,
+      pageTitle: `${language.next_seo.title.start}${
+        user_cars_info.company_name
+          ? user_cars_info.company_name
+          : user_cars_info.name
+      }${language.next_seo.title.otoli}`,
+    });
     if (user_id == user_cars_info.id) {
       setIs_mine(true);
       const guard = guard_controller();

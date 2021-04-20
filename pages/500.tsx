@@ -5,22 +5,15 @@ import Link from "next/link";
 import _500 from "../public/image/500.png";
 import language from "../public/languages/fa/_500.json";
 // import { logPageView } from "../utils/analytics";
-import * as Sentry from "@sentry/browser";
 
 const page_500 = () => {
   useEffect(() => {
-    try {
-      window["dataLayer"].push({
-        event: "page_view",
-        pageURL: window.location.href,
-        pagePath: "/500",
-        pageTitle: language.title,
-      });
-    } catch (error) {
-      if (process.env.NODE_ENV !== "development") {
-        Sentry.captureException(error);
-      }
-    }
+    window["dataLayer"].push({
+      event: "page_view",
+      pageURL: window.location.href,
+      pagePath: "/500",
+      pageTitle: language.title,
+    });
     // logPageView();
   }, []);
   return (
