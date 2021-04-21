@@ -125,9 +125,11 @@ class App_Otoli extends App {
     const token = jsCookie.get("token");
     const first_name = jsCookie.get("first_name");
     console.log(
+      window["google_tag_manager"],
       !window["google_tag_manager"]
         ? "خطا در ارسال دیتای GTM"
-        : "ارتباط با GTM برقرار شد"
+        : "ارتباط با GTM برقرار شد",
+      process.env.NODE_ENV
     );
     if (!window["google_tag_manager"]) {
       if (process.env.NODE_ENV !== "development") {
