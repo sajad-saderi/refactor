@@ -73,14 +73,6 @@ const Layout = (props: ILayout) => {
   useEffect(() => {
     if (gtm_check) {
       gtm_check = false;
-      console.log("is executed");
-      console.log(
-        window["google_tag_manager"],
-        !window["google_tag_manager"]
-          ? "خطا در ارسال دیتای GTM"
-          : "ارتباط با GTM برقرار شد",
-        process.env.NODE_ENV
-      );
       if (!window["google_tag_manager"]) {
         if (process.env.NODE_ENV !== "development") {
           console.log("خطا در ارسال دیتای GTM");
