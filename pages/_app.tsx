@@ -126,9 +126,11 @@ class App_Otoli extends App {
     const first_name = jsCookie.get("first_name");
     if (window["dataLayer"].push() !== true) {
       if (process.env.NODE_ENV !== "development") {
-        console.log("خطا در ارسال دیتای GTM")
+        console.log("خطا در ارسال دیتای GTM");
         Sentry.captureException("خطا در ارسال دیتای GTM");
       }
+    } else {
+      console.log("ارتباط با GTM برقرار شد");
     }
     if (userId) {
       this.get_user_data(userId, token);
