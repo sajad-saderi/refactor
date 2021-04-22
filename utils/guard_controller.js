@@ -9,7 +9,14 @@ export const guard_controller = () => {
     }
   } else {
     if (window.localStorage) {
-      localStorage["last_location"] = Router.router.asPath;
+      if (
+        Router.router.asPath !== "/login" &&
+        Router.router.asPath !== "/complete-register"
+      )
+        localStorage["last_location"] = Router.router.asPath;
+      else {
+        localStorage["last_location"] = "/";
+      }
     }
     return "login";
   }

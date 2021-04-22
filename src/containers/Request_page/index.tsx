@@ -26,7 +26,14 @@ const Request_page = ({ language }: IRequest_page) => {
           fetchAPI(router.query.id);
         }
       } else {
-        localStorage["last_location"] = router.asPath;
+        if (
+          router.asPath !== "/login" &&
+          router.asPath !== "/complete-register"
+        )
+          localStorage["last_location"] = router.asPath;
+        else {
+          localStorage["last_location"] = "/";
+        }
         router.push("/login");
       }
       setShow(true);

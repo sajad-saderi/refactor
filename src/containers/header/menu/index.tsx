@@ -155,7 +155,14 @@ const Menu = () => {
         <li
           className='HEAP_Header_Btn_Login'
           onClick={() => {
-            localStorage["last_location"] = router.asPath;
+            if (
+              router.asPath !== "/login" &&
+              router.asPath !== "/complete-register"
+            )
+              localStorage["last_location"] = router.asPath;
+            else {
+              localStorage["last_location"] = "/";
+            }
           }}
         >
           <Link href={`/login`}>

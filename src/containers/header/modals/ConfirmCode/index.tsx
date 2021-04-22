@@ -8,6 +8,7 @@ import CountDown from "../../../../components/countDown";
 import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
 import context_user from "../../../../context/User_info";
 import jsCookie from "js-cookie";
+import Error_middleware from "../../../../API/ApiUtils";
 
 const ConfirmCode = ({
   panelController,
@@ -116,6 +117,7 @@ const ConfirmCode = ({
         }
       })
       .catch((error) => {
+        Error_middleware(e);
         setLoading(false);
         set_show_count_down(true);
         console.error(

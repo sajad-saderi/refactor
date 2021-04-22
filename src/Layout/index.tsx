@@ -20,8 +20,6 @@ import toast_context from "../context/Toast_context";
 // Toast Component
 import Toast from "../components/Toast";
 
-import * as Sentry from "@sentry/browser";
-
 // Google Analytics
 // import { IoIosClose } from "react-icons/io";
 
@@ -37,7 +35,6 @@ const ShowModalReducer = (current, action) => {
 
 let deferredPrompt = null;
 let pwa_flag = false;
-let gtm_check = true;
 
 const Layout = (props: ILayout) => {
   /*
@@ -71,17 +68,6 @@ const Layout = (props: ILayout) => {
   const TOAST_CONTEXT = useContext(toast_context);
 
   useEffect(() => {
-    if (gtm_check) {
-      gtm_check = false;
-      if (!window["google_tag_manager"]) {
-        if (process.env.NODE_ENV !== "development") {
-          console.log("خطا در ارسال دیتای GTM");
-          Sentry.captureException("خطا در ارسال دیتای GTM");
-        }
-      } else {
-        console.log("ارتباط با GTM برقرار شد");
-      }
-    }
     if (Router.router.query.utm_source) {
       localStorage["utm_source"] = Router.router.query.utm_source;
       localStorage["utm_medium"] = Router.router.query.utm_medium;

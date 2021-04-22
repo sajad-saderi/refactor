@@ -5,6 +5,7 @@ import cell_Phone_context from "../../../../context/Cell_Phone_context";
 // import "./userCellphone.scss";
 import Button from "../../../../components/form/Button";
 import { useRouter } from "next/router";
+import Error_middleware from "../../../../API/ApiUtils";
 
 const GetUserCellPhone = ({
   panelController,
@@ -80,6 +81,7 @@ const GetUserCellPhone = ({
         }
       })
       .catch((error) => {
+        Error_middleware(e);
         setLoading(false);
         console.error(
           "!Error",
