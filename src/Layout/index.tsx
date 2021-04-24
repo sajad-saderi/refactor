@@ -19,6 +19,7 @@ import toast_context from "../context/Toast_context";
 
 // Toast Component
 import Toast from "../components/Toast";
+import * as Sentry from "@sentry/browser";
 
 // Google Analytics
 // import { IoIosClose } from "react-icons/io";
@@ -35,6 +36,7 @@ const ShowModalReducer = (current, action) => {
 
 let deferredPrompt = null;
 let pwa_flag = false;
+let google_tag_manager_flag = true;
 
 const Layout = (props: ILayout) => {
   /*
@@ -88,6 +90,12 @@ const Layout = (props: ILayout) => {
     //   return false;
     // });
     checkToast();
+    return () => {
+      if (!!!window["google_tag_manager"] && google_tag_manager_flag) {
+        Sentry.captureException("گوگل تگ مننجر بر روی مرورگر کاربر نبود");
+        google_tag_manager_flag = false;
+      }
+    };
   }, []);
 
   const modal_handler = (type, data) => {
