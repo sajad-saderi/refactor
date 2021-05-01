@@ -38,7 +38,7 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
 
 interface IgetCar {
   search_id?: string;
-  id?: any;
+  id?: number;
   coupon?: string;
   start_date?: string;
   end_date?: string;
