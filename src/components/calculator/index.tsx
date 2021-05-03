@@ -132,6 +132,9 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       let conToNum = Number(value);
       // Constant base for daily rent: 0.0022
       let eachDaily = conToNum * 0.0015;
+      // #FIXME
+      // Go to the set car and timing component and change the coefficient there to
+      // #REVIEW
 
       //  Round the daily value before calculating monthly and weekly income
       let Round = Math.ceil(eachDaily / 10) * 10;
