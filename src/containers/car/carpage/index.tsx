@@ -20,7 +20,7 @@ import carImage from "../../../../public/image/car-image.jpg";
 import Icon from "../../../../utils/Icon";
 import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
-const Review = dynamic(() => import("../../../components/Review"));
+import Review from "../../../components/Review";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });

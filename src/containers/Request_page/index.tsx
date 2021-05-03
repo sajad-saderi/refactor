@@ -5,9 +5,7 @@ import { useRouter } from "next/router";
 import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
 import context_user from "../../context/User_info";
 import { guard_controller } from "../../../utils/guard_controller";
-
-import dynamic from "next/dynamic";
-const Request_cart = dynamic(() => import("./request_cart"));
+import Request_cart from "./request_cart";
 
 const Request_page = ({ language }: IRequest_page) => {
   const [result, setResult] = useState([]);

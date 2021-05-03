@@ -3,8 +3,7 @@ import { NextSeo } from "next-seo";
 import Layout from "../src/Layout";
 import language from "../public/languages/fa/requestspage.json";
 // import { logPageView } from "../utils/analytics";
-import dynamic from "next/dynamic";
-const Requests_page = dynamic(() => import("../src/containers/Requests_page"));
+import Requests_page from "../src/containers/Requests_page";
 
 const Request = () => {
   React.useEffect(() => {

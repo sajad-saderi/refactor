@@ -15,10 +15,9 @@ import {
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
 import search_query_builder from "../../../utils/search-query-builder";
-import dynamic from "next/dynamic";
 
-const Filters = dynamic(() => import("../Filters"));
-const Search = dynamic(() => import("../Search"));
+import Filters from "../Filters";
+import Search from "../Search";
 
 // let Glob_route = null;
 // default location is Tehran

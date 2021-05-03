@@ -18,8 +18,7 @@ import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
 import getCroppedImg from "../../../utils/cropImage";
 import Cropper from "react-easy-crop";
-import dynamic from "next/dynamic";
-const ZoomSlider = dynamic(() => import("./ZoomSlider"));
+import ZoomSlider from "./ZoomSlider";
 const ImageUploader = ({
   Upload_image,
   delete_image,

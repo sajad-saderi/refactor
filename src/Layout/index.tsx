@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useState, useContext } from "react";
 import Router from "next/router";
-import dynamic from "next/dynamic";
 
 import Footer from "../components/Footer";
 import Header from "../containers/header";
@@ -20,7 +19,7 @@ import auth_context from "../context/Auth_context";
 import toast_context from "../context/Toast_context";
 
 // Toast Component
-const Toast = dynamic(() => import("../components/Toast"));
+import Toast from "../components/Toast";
 
 import * as Sentry from "@sentry/browser";
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Menu from "./menu";
-import dynamic from "next/dynamic";
-const Modal = dynamic(() => import("./modals"));
+import Modal from "./modals";
 // import "./header.scss";
 // import * as logo from "../../../public/logo_sticky.svg";
 import * as logo from "../../../public/logo.svg";

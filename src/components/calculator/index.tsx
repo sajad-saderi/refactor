@@ -10,9 +10,8 @@ import Button from "../form/Button";
 
 import Link from "next/link";
 import { guard_controller } from "../../../utils/guard_controller";
-import dynamic from "next/dynamic";
 
-const ShowResult = dynamic(() => import("./ShowResult/ShowResult"));
+import ShowResult from "./ShowResult/ShowResult";
 
 const Calculator = ({ AbText, language }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);

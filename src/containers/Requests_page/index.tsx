@@ -10,9 +10,7 @@ import Spinner from "../../components/Spinner";
 import { IoIosArrowDown } from "react-icons/io";
 import { guard_controller } from "../../../utils/guard_controller";
 import moment from "moment-jalaali";
-
-import dynamic from "next/dynamic";
-const Request_cart = dynamic(() => import("./request_cart"));
+import Request_cart from "./request_cart";
 
 let filter_id = [];
 let page = 1;
