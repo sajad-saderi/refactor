@@ -1,10 +1,14 @@
 import React from "react";
 import Layout from "../src/Layout";
-import Checkout_Container from "../src/containers/Checkout_Container";
 import language from "../public/languages/fa/checkout.json";
 import { NextSeo } from "next-seo";
 import { REQUEST_GET_RENTAL_CAR } from "../src/API";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const Checkout_Container = dynamic(() =>
+  import("../src/containers/Checkout_Container")
+);
 
 const Checkout = ({ order_information, expired }) => {
   React.useEffect(() => {

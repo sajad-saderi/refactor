@@ -16,10 +16,10 @@ import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
-import Cropper from "react-easy-crop";
 import getCroppedImg from "../../../utils/cropImage";
-import ZoomSlider from "./ZoomSlider";
-
+import Cropper from "react-easy-crop";
+import dynamic from "next/dynamic";
+const ZoomSlider = dynamic(() => import("./ZoomSlider"));
 const ImageUploader = ({
   Upload_image,
   delete_image,

@@ -7,9 +7,12 @@ import {
 import DropdownSearch from "../form/Dropdown";
 import TextInput from "../form/TextInput";
 import Button from "../form/Button";
-import ShowResult from "./ShowResult/ShowResult";
+
 import Link from "next/link";
 import { guard_controller } from "../../../utils/guard_controller";
+import dynamic from "next/dynamic";
+
+const ShowResult = dynamic(() => import("./ShowResult/ShowResult"));
 
 const Calculator = ({ AbText, language }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);

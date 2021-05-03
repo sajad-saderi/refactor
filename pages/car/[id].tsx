@@ -1,12 +1,15 @@
 import React from "react";
 import Layout from "../../src/Layout";
-import CarPage from "../../src/containers/car/carpage";
 import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
+
 import language from "../../public/languages/fa/carpage.json";
 // import { logPageView } from "../../utils/analytics";
 import { REQUEST_GET_RENTAL_CAR } from "../../src/API";
 import { useRouter } from "next/router";
 import { payBackInString } from "../../utils/date-range-creator";
+
+const CarPage = dynamic(() => import("../../src/containers/car/carpage"));
 
 const Car = ({
   car_Information,

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { REQUEST_GET_ORDER_REQUESTS } from "../../API";
 import { useRouter } from "next/router";
 // import "./Requests_page.scss";
-import Request_cart from "./request_cart";
 import Requests_filter from "./Requests_filter";
 import context_user from "../../../src/context/User_info";
 import PleaseLogin from "../../components/PleaseLogin";
@@ -11,6 +10,9 @@ import Spinner from "../../components/Spinner";
 import { IoIosArrowDown } from "react-icons/io";
 import { guard_controller } from "../../../utils/guard_controller";
 import moment from "moment-jalaali";
+
+import dynamic from "next/dynamic";
+const Request_cart = dynamic(() => import("./request_cart"));
 
 let filter_id = [];
 let page = 1;

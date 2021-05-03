@@ -1,9 +1,10 @@
 import React from "react";
 import { NextSeo } from "next-seo";
 import Layout from "../../src/Layout";
-import Request_page from "../../src/containers/Request_page";
 import language from "../../public/languages/fa/requestpage.json";
+import dynamic from "next/dynamic";
 // import { logPageView } from "../../utils/analytics";
+const Request_page = dynamic(() => import("../../src/containers/Request_page"));
 
 const Request = () => {
   React.useEffect(() => {

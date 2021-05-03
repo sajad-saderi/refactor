@@ -1,12 +1,17 @@
 import React from "react";
-import Landing_page_container from "../../src/containers/LandignPageContainer";
+
 import Layout from "../../src/Layout";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import { NextSeo } from "next-seo";
 import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
+import dynamic from "next/dynamic";
 // import { logPageView } from "../../utils/analytics";
+
+const Landing_page_container = dynamic(() =>
+  import("../../src/containers/LandignPageContainer")
+);
 
 const Rent_dynamic = ({ Landing_page, content }) => {
   React.useEffect(() => {

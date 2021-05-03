@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
+import dynamic from "next/dynamic";
 import {
   REQUEST_GET_CAR_REVIEW,
   REQUEST_GET_RENTAL_CAR,
@@ -19,7 +20,7 @@ import carImage from "../../../../public/image/car-image.jpg";
 import Icon from "../../../../utils/Icon";
 import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
-import Review from "../../../components/Review";
+const Review = dynamic(() => import("../../../components/Review"));
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });

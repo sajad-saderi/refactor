@@ -1,5 +1,7 @@
 import React, { useEffect, useReducer, useState, useContext } from "react";
 import Router from "next/router";
+import dynamic from "next/dynamic";
+
 import Footer from "../components/Footer";
 import Header from "../containers/header";
 // import logo from "../../public/android-icon-48x48.png";
@@ -18,7 +20,8 @@ import auth_context from "../context/Auth_context";
 import toast_context from "../context/Toast_context";
 
 // Toast Component
-import Toast from "../components/Toast";
+const Toast = dynamic(() => import("../components/Toast"));
+
 import * as Sentry from "@sentry/browser";
 
 // Google Analytics
@@ -203,7 +206,7 @@ const Layout = (props: ILayout) => {
               // data information is just needed for owner and renter modals
               data={data}
             ></Header>
-            <main>{props.children}</main>
+            <main className='minHeight'>{props.children}</main>
           </auth_context.Provider>
         </modal_context.Provider>
         {toast ? (
