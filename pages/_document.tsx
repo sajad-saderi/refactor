@@ -179,12 +179,7 @@ export default class MyDocument extends Document {
           />
 
           {/* Pinned Tab   */}
-          <link
-            href='path/to/icon.svg'
-            rel='mask-icon'
-            sizes='any'
-            color='red'
-          />
+          <link href='logo.svg' rel='mask-icon' sizes='any' color='red' />
 
           {/* Android   */}
           <link href='icon-192x192.png' rel='icon' sizes='192x192' />
@@ -193,15 +188,11 @@ export default class MyDocument extends Document {
 
           {/* UC Browser   */}
           <link
-            href='images/icon-52x52.png'
+            href='icon-52x52.png'
             rel='apple-touch-icon-precomposed'
             sizes='57x57'
           />
-          <link
-            href='images/icon-72x72.png'
-            rel='apple-touch-icon'
-            sizes='72x72'
-          />
+          <link href='icon-72x72.png' rel='apple-touch-icon' sizes='72x72' />
 
           {/* Manifest.json   */}
           <link href='/manifest.json' rel='manifest'></link>
