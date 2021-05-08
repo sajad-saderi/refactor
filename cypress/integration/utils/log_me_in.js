@@ -1,10 +1,8 @@
 const log_me_in = (cell_phone) =>
   cy
-    .intercept("/login")
-    .as("load_login")
     .get(".HEAP_Header_Btn_Login")
     .click()
-    .wait("@load_login")
+    .wait(3000)
     .then(() => {
       expect(localStorage.getItem("last_location")).to.eq("/");
       cy.get(".input_surround input")
