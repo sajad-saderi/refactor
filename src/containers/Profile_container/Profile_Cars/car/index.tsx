@@ -85,16 +85,18 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
     }
   };
 
-  const deleteTheCar = async () => {
-    try {
-      const delete_res = await REQUEST_DELETE_CAR({
-        token: user.data?.token,
-        id,
-      });
-      jsCookie.remove("new_car");
-      getListAgain();
-    } catch (error) {
-      console.log("!Error", error);
+  const deleteTheCar = async (id, model, brand) => {
+    if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
+      try {
+        const delete_res = await REQUEST_DELETE_CAR({
+          token: user.data?.token,
+          id,
+        });
+        jsCookie.remove("new_car");
+        getListAgain();
+      } catch (error) {
+        console.log("!Error", error);
+      }
     }
   };
 
@@ -229,12 +231,13 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
               </span>
               <span className='HEAP_Profile_Btn_Delete'>
                 <IoMdTrash
-                  onClick={() =>
-                    MODAL_CONTEXT.modalHandler("ConfirmDelete", {
-                      model: car.name.fa,
-                      brand: car.brand.name.fa,
-                      id: id,
-                    })
+                  onClick={
+                    () => deleteTheCar(id, car.name.fa, car.brand.name.fa)
+                    // MODAL_CONTEXT.modalHandler("ConfirmDelete", {
+                    // model: car.name.fa,
+                    // brand: car.brand.name.fa,
+                    // id: id,
+                    // })
                   }
                   color='#4ba3ce'
                   size='2rem'
