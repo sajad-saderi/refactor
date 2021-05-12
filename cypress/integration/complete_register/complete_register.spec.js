@@ -4,7 +4,7 @@ import random_number_generator from "../utils/random_number_generator";
 const core_url = "https://core.sepris.com/core";
 let home = "http://localhost:3000";
 let user_info = 0;
-let cell_phone = `093${random_number_generator(0, 10, 8)}`;
+let cell_phone = `0930000${random_number_generator(0, 10, 4)}`;
 
 describe("بررسی صفحه تکمیل ثبت نام", () => {
   it("لاگین کاربر و تکمیل ثبت نام", () => {
@@ -27,15 +27,15 @@ describe("بررسی صفحه تکمیل ثبت نام", () => {
           .type("Cypress")
           .get(".complete_register_form [name=last_name]")
           .type("io")
-          .get(".company_part")
-          .click()
-          .get(".company_part [name=company_name]")
-          .type("Cypress_co")
+          // .get(".company_part")
+          // .click()
+          // .get(".company_part [name=company_name]")
+          // .type("Cypress_co")
           .get(".Blue_BTN.local_BTN.HEAP_CompleteRegister_Btn_Submit")
           .click()
-          .get(".company_part span")
-          .click()
-          .should("not.exist")
+          // .get(".company_part span")
+          // .click()
+          // .should("not.exist")
           .get(".Blue_BTN.local_BTN.HEAP_CompleteRegister_Btn_Submit")
           .click()
           .get(".Error_message_text")
@@ -214,7 +214,45 @@ describe("بررسی صفحه تکمیل ثبت نام", () => {
       .get(".back_draw")
       .click({ force: true })
       .get(".Blue_BTN.local_style.HEAP_SetCarTiming_Btn_Submit")
+      .click()
+      .wait(5000)
+      .get(".Profile_car_container .carcard")
+      .should("have.length", 1)
+      .click()
+      .wait(3000)
+      .get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
+      .should("not.exist")
+      .get(".first_element_li")
+      .click()
+      .get(".HEAP_Profile_Btn_EditCarDetails")
+      .click()
+      .wait(3000)
+      .url()
+      .should("contain", "&mode=edit")
+      .get(".car_location_district .input_wrapper")
+      .click()
+      .get(".resultList .Items")
+      .eq(10)
+      .click()
+      .get(".Blue_BTN.local_style.HEAP_AddCar_Btn_Submit")
+      .click()
+      .wait(3000)
+      .url()
+      .should("contain", "/user")
+      .get(".HEAP_Profile_Btn_ChangeCarTiming ")
+      .click()
+      .wait(3000)
+      .url()
+      .should("contain", "/set-car-timing")
+      .get("[name=price_per_day]")
+      .type(500000)
+      .get(".Blue_BTN.local_style.HEAP_SetCarTiming_Btn_Submit")
+      .click()
+      .get(".HEAP_Profile_Btn_Delete")
       .click();
+    cy.on("window:confirm", () => true)
+      .get(".Profile_car_container .carcard")
+      .should("not.exist");
   });
 });
 

@@ -1,3 +1,4 @@
+import log_me_in from "../utils/log_me_in";
 import { set_default_date_for_search } from "../utils/set_defult_date_for_search";
 
 const date = set_default_date_for_search();
@@ -5,36 +6,38 @@ const core_url = "https://core.sepris.com/core";
 let car_information = null;
 let search_id = null;
 let car_index_in_list = 0;
+let cell_phone = "09380158835";
 
 describe("بررسی مسیر حرکت کاربر از خانه به صفجه چک اوت", () => {
   it(`شروع از صفحه خانه، کلیک بر روی اولین نتیجه برای شهر تهران در تاریخ رفت ${date.from_date_form} و برگشت ${date.to_date_form} قیمت زیاد به کم در صفحه جستجو و رسیدن به صفحه خودرو`, () => {
     cy.visit("http://localhost:3000/")
-      .intercept(
+      .get(".search_box form .search_Btn")
+      .click()
+      .wait(2000)
+      .request(
         "GET",
         core_url +
           `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
       )
-      .as("rentalCarList")
-      .get(".search_box form .search_Btn")
-      .click()
-      .wait(2000)
-      .wait("@rentalCarList")
       .then((result) => {
-        cy.url().should(
-          "contain",
-          `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
-        );
-        expect(result.response.statusCode).equal(200);
-        cy.intercept("GET", core_url + "/rental-car/search-for-rent/get")
-          .as("get_the_car")
-          .get(".carCart.HEAP_SearchResult_Card_Car")
-          .eq(car_index_in_list)
-          .click()
-          .wait(2000)
-          .wait("@get_the_car")
+        expect(result.status).equal(200);
+        cy.url()
+          .should(
+            "contain",
+            `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
+          )
+          .request(
+            "GET",
+            core_url +
+              `/rental-car/search-for-rent/get?search_id=${result.body.items[car_index_in_list].search_id}`
+          )
           .then((data) => {
-            search_id = data.response.body.search_id;
-            car_information = result.response.body.items[car_index_in_list];
+            console.log(data);
+            search_id = data.body.search_id;
+            cy.get(".carCart.HEAP_SearchResult_Card_Car")
+              .eq(car_index_in_list)
+              .click();
+            car_information = result.body.items[car_index_in_list];
             cy.url()
               .should("include", "/car/")
               .get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
@@ -87,10 +90,35 @@ describe("بررسی مسیر حرکت کاربر از خانه به صفجه چ
       .get(".close_icon")
       .click()
       .get(".coupon_form")
+      .should("not.exist")
+      .get(".coupon_Text_show.HEAP_Checkout_Btn_Coupon")
+      .click()
+      .get("[name=coupon]")
+      .type("test")
+      .get(".payment_information .coupon_form .coupan_BTN")
+      .click()
+      .wait(2000)
+      .get(".text_input")
+      .type("09380158835")
+      .get(
+        ".Blue_BTN.login_submit.HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode "
+      )
+      .click()
+      .get(".separated_places input")
+      .type(9931)
+      .get(".Blue_BTN.login_submit.HEAP_ModalConfirmCode_Btn_Login ")
+      .click()
+      .get(".coupon_Text_show.HEAP_Checkout_Btn_Coupon")
+      .click()
+      .get("[name=coupon]")
+      .type("sajad4test")
+      .get(".payment_information .coupon_form .coupan_BTN")
+      .click()
+      .get(".coupon_form")
       .should("not.exist");
   });
   it("کد جستجو منقضی شده", () => {
-    cy.visit(`http://localhost:3000/checkout?search_id=invalid`)
+    cy.visit(`http://localhost:3000/checkout?search_id=d544571f38bd4458b73b63`)
       .get(".minHeight.expired_order p")
       .contains("این سفارش منقضی شده است.")
       .get(".minHeight.expired_order ._404PageAnchor.Blue_BTN")
