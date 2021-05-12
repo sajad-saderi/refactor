@@ -98,7 +98,8 @@ const Requests_page = ({ language }: IRequests_page) => {
       if (tab === 1) {
         res_100_orders = await REQUEST_GET_ORDER_REQUESTS({
           page: 1,
-          creation_time_to: end_date,
+          // creation_time_to: end_date,
+          creation_time_to: start_date,
           token: token,
           limit: 200,
         });
