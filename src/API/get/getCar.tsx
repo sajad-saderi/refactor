@@ -23,16 +23,11 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
       queryString = queryString + `rental_car_id=${data.id}`;
     }
 
-    fetch(DOMAIN + GET_CAR + "?" + queryString, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.id) {
-          resolve(data);
+    axios
+      .get(DOMAIN + GET_CAR + "?" + queryString)
+      .then((response) => {
+        if (response.data.id) {
+          resolve(response.data);
         }
       })
       .catch((e) => {
