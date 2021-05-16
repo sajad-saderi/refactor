@@ -186,6 +186,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     let neat_order_list = [];
 
     data.forEach((element) => {
+      if (element.status.id === "new") {
+        new_array.push(element);
+      }
       if (element.status.id === "delivered") {
         delivered_array.push(element);
       }
@@ -194,9 +197,6 @@ const Requests_page = ({ language }: IRequests_page) => {
       }
       if (element.status.id === "approved") {
         approved_array.push(element);
-      }
-      if (element.status.id === "new") {
-        new_array.push(element);
       }
       if (element.status.id === "rejected") {
         rejected_array.push(element);
@@ -210,6 +210,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     });
 
     // update neat order list
+    if (get_new_array) {
+      neat_order_list = neat_order_list.concat(new_array);
+    }
     if (get_delivered_array) {
       neat_order_list = neat_order_list.concat(delivered_array);
     }
@@ -218,9 +221,6 @@ const Requests_page = ({ language }: IRequests_page) => {
     }
     if (get_approved_array) {
       neat_order_list = neat_order_list.concat(approved_array);
-    }
-    if (get_new_array) {
-      neat_order_list = neat_order_list.concat(new_array);
     }
     if (get_rejected_array) {
       neat_order_list = neat_order_list.concat(rejected_array);
@@ -253,6 +253,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     let neat_order_list = [];
 
     data.forEach((element) => {
+      if (element.status.id === "new") {
+        new_array.push(element);
+      }
       if (element.status.id === "delivered") {
         delivered_array.push(element);
       }
@@ -261,9 +264,6 @@ const Requests_page = ({ language }: IRequests_page) => {
       }
       if (element.status.id === "approved") {
         approved_array.push(element);
-      }
-      if (element.status.id === "new") {
-        new_array.push(element);
       }
       if (element.status.id === "rejected") {
         rejected_array.push(element);
@@ -277,6 +277,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     });
 
     // update neat order list
+    if (new_array.length > 0) {
+      neat_order_list = neat_order_list.concat(new_array);
+    }
     if (delivered_array.length > 0) {
       neat_order_list = neat_order_list.concat(delivered_array);
     }
@@ -285,9 +288,6 @@ const Requests_page = ({ language }: IRequests_page) => {
     }
     if (approved_array.length > 0) {
       neat_order_list = neat_order_list.concat(approved_array);
-    }
-    if (new_array.length > 0) {
-      neat_order_list = neat_order_list.concat(new_array);
     }
     if (rejected_array.length > 0) {
       neat_order_list = neat_order_list.concat(rejected_array);

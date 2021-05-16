@@ -12,7 +12,7 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz build && docz serve",
-    "cypress": "./node_modules/.bin/cypress open"
+    "cypress": "cypress run"
   },
   "repository": {
     "type": "git",
