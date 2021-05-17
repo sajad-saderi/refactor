@@ -1,9 +1,12 @@
 import React from "react";
 import Layout from "../../src/Layout";
-import Profile_container from "../../src/containers/Profile_container";
 import language from "../../public/languages/fa/user.json";
 // import { logPageView } from "../../utils/analytics";
 
+import dynamic from "next/dynamic";
+const Profile_container = dynamic(() =>
+  import("../../src/containers/Profile_container")
+);
 const Profile = () => {
   // React.useEffect(() => {
   //   window["dataLayer"].push({

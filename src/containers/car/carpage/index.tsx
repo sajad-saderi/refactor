@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
+import dynamic from "next/dynamic";
 import {
   REQUEST_GET_CAR_REVIEW,
   REQUEST_GET_RENTAL_CAR,

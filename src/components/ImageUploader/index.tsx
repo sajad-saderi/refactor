@@ -16,10 +16,9 @@ import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
 import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
-import Cropper from "react-easy-crop";
 import getCroppedImg from "../../../utils/cropImage";
+import Cropper from "react-easy-crop";
 import ZoomSlider from "./ZoomSlider";
-
 const ImageUploader = ({
   Upload_image,
   delete_image,

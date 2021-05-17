@@ -6,6 +6,7 @@ const GET_ORDER_REQUESTS = "/core/rental-car/order/list";
 
 export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
   let query = "";
+  let limit = data.limit | 14;
   if (data.status_id) {
     query = `&status_id=${data.status_id}`;
   }
@@ -18,7 +19,10 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
   return new Promise((resolve, reject) => {
     axios
       .get(
-        DOMAIN + GET_ORDER_REQUESTS + `?page=${data.page}&limit=14` + query,
+        DOMAIN +
+          GET_ORDER_REQUESTS +
+          `?page=${data.page}&limit=${limit}` +
+          query,
         {
           headers: {
             Authorization: "Bearer " + data.token,
@@ -40,7 +44,8 @@ export const REQUEST_GET_ORDER_REQUESTS = (data: IgetOrderRequests) => {
 interface IgetOrderRequests {
   token: string;
   status_id?: string;
-  creation_time_from: string;
-  creation_time_to: string;
+  creation_time_from?: string;
+  creation_time_to?: string;
   page: number;
+  limit: number;
 }

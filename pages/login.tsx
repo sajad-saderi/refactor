@@ -4,12 +4,18 @@ import { useRouter } from "next/router";
 import { IoMdPerson } from "react-icons/io";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/login.json";
-import ConfirmCode from "../src/containers/header/modals/ConfirmCode";
-import GetUserCellPhone from "../src/containers/header/modals/GetUserCellPhone";
+
 import { FaArrowRight } from "react-icons/fa";
 import context_user from "../src/context/User_info";
+import dynamic from "next/dynamic";
 // import { logPageView } from "../utils/analytics";
 // import jsCookie from "js-cookie";
+const ConfirmCode = dynamic(() =>
+  import("../src/containers/header/modals/ConfirmCode")
+);
+const GetUserCellPhone = dynamic(() =>
+  import("../src/containers/header/modals/GetUserCellPhone")
+);
 
 const LoginPage = () => {
   const [change, setChange] = useState(false);

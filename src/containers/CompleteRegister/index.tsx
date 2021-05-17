@@ -354,7 +354,7 @@ const Complete_register_container = ({
             }}
           />
         </div>
-        <div className='company_part'>
+        {/* <div className='company_part'>
           {!showCompanyName ? (
             <p onClick={() => setShowCompanyName(true)}>
               {language.add_company_name}
@@ -391,7 +391,7 @@ const Complete_register_container = ({
               </span>
             </div>
           )}
-        </div>
+        </div> */}
         {/* <label>{language.dob}</label>
         <div className='date_birth'>
           <TextInput

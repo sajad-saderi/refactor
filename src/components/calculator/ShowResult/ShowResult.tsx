@@ -13,9 +13,11 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
                  *  If it's equal or larger then 1.000.000 like 9.999.000 output is 9.9
                  */
                 weekly.toString().slice(0, 3)
-              : weekly >= 10000000
-              ? weekly.toLocaleString("de-DE").slice(0, 2)
-              : (weekly + 100000).toLocaleString("de-DE").slice(0, 3)}
+              : weekly < 100000000
+              ? weekly >= 10000000
+                ? weekly.toLocaleString("de-DE").slice(0, 2)
+                : (weekly + 100000).toLocaleString("de-DE").slice(0, 3)
+              : weekly.toLocaleString("de-DE").slice(0, 3)}
             <p>
               {weekly >= 1000000 ? language.million : language.thousand}{" "}
               {language.toman}
@@ -173,7 +175,9 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
               ? daily < 100000
                 ? daily.toString().slice(0, 2)
                 : daily.toString().slice(0, 3)
-              : daily.toLocaleString("de-DE").slice(0, 3)}
+              : daily < 10000000
+              ? daily.toLocaleString("de-DE").slice(0, 3)
+              : daily.toLocaleString("de-DE").slice(0, 2)}
             <p>
               {daily >= 1000000 ? language.million : language.thousand}{" "}
               {language.toman}

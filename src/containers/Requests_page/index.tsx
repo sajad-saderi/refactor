@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { REQUEST_GET_ORDER_REQUESTS } from "../../API";
 import { useRouter } from "next/router";
 // import "./Requests_page.scss";
-import Request_cart from "./request_cart";
 import Requests_filter from "./Requests_filter";
 import context_user from "../../../src/context/User_info";
 import PleaseLogin from "../../components/PleaseLogin";
@@ -11,6 +10,7 @@ import Spinner from "../../components/Spinner";
 import { IoIosArrowDown } from "react-icons/io";
 import { guard_controller } from "../../../utils/guard_controller";
 import moment from "moment-jalaali";
+import Request_cart from "./request_cart";
 
 let filter_id = [];
 let page = 1;
@@ -94,30 +94,144 @@ const Requests_page = ({ language }: IRequests_page) => {
         ...data,
         token: token,
       });
-      setTotalCount(res.total_count);
-      if (page > 1) {
-        setShow_spinner_loadMore(false);
-        if (tab === 1) {
-          result_regulator(res.items, true);
-        } else {
-          setDeactivate_orders((deactivate_orders) =>
-            deactivate_orders.concat(res.items)
-          );
-        }
-      } else {
-        if (tab === 1) {
-          result_regulator(res.items, false);
-        } else {
-          initial_fetch = true;
-          setDeactivate_orders(res.items);
-        }
+      let res_100_orders: any = null;
+      if (tab === 1) {
+        res_100_orders = await REQUEST_GET_ORDER_REQUESTS({
+          page: 1,
+          // creation_time_to: end_date,
+          creation_time_to: start_date,
+          token: token,
+          limit: 200,
+        });
       }
-      if (res.total_count > 14 && res.remained_count > 0) {
-        setShowMoreButton(true);
-      } else setShowMoreButton(false);
+      Promise.all([res, res_100_orders]).then((promise_response) => {
+        if (tab === 1) {
+          res.items = promise_response[0].items.concat(
+            custom_result(promise_response[1].items, {
+              get_new_array: false,
+              get_approved_array: true,
+              get_rejected_array: false,
+              get_expired_array: false,
+              get_paid_array: true,
+              get_delivered_array: true,
+              get_returned_array: false,
+            })
+          );
+        } else {
+          res.items = custom_result(promise_response[0].items, {
+            get_new_array: false,
+            get_approved_array: false,
+            get_rejected_array: true,
+            get_expired_array: true,
+            get_paid_array: false,
+            get_delivered_array: false,
+            get_returned_array: true,
+          });
+        }
+
+        setTotalCount(res.total_count);
+        if (page > 1) {
+          setShow_spinner_loadMore(false);
+          if (tab === 1) {
+            result_regulator(res.items, true);
+          } else {
+            setDeactivate_orders((deactivate_orders) =>
+              deactivate_orders.concat(res.items)
+            );
+          }
+        } else {
+          if (tab === 1) {
+            result_regulator(res.items, false);
+          } else {
+            initial_fetch = true;
+            setDeactivate_orders(res.items);
+          }
+        }
+        if (res.total_count > 14 && res.remained_count > 0) {
+          setShowMoreButton(true);
+        } else setShowMoreButton(false);
+      });
     } catch (e) {
       console.log(e);
     }
+  };
+
+  // get custom result
+  const custom_result = (
+    data,
+    {
+      get_new_array,
+      get_approved_array,
+      get_rejected_array,
+      get_expired_array,
+      get_paid_array,
+      get_delivered_array,
+      get_returned_array,
+    }
+  ) => {
+    // در انتظار تایید
+    let new_array = [];
+    // در انتظار پرداخت
+    let approved_array = [];
+    // رد شده
+    let rejected_array = [];
+    // منقضی شده
+    let expired_array = [];
+    // در انتظار تحویل
+    let paid_array = [];
+    // در حال سفر
+    let delivered_array = [];
+    // برگشت داده شده
+    let returned_array = [];
+    let neat_order_list = [];
+
+    data.forEach((element) => {
+      if (element.status.id === "new") {
+        new_array.push(element);
+      }
+      if (element.status.id === "delivered") {
+        delivered_array.push(element);
+      }
+      if (element.status.id === "paid") {
+        paid_array.push(element);
+      }
+      if (element.status.id === "approved") {
+        approved_array.push(element);
+      }
+      if (element.status.id === "rejected") {
+        rejected_array.push(element);
+      }
+      if (element.status.id === "expired") {
+        expired_array.push(element);
+      }
+      if (element.status.id === "returned") {
+        returned_array.push(element);
+      }
+    });
+
+    // update neat order list
+    if (get_new_array) {
+      neat_order_list = neat_order_list.concat(new_array);
+    }
+    if (get_delivered_array) {
+      neat_order_list = neat_order_list.concat(delivered_array);
+    }
+    if (get_paid_array) {
+      neat_order_list = neat_order_list.concat(paid_array);
+    }
+    if (get_approved_array) {
+      neat_order_list = neat_order_list.concat(approved_array);
+    }
+    if (get_rejected_array) {
+      neat_order_list = neat_order_list.concat(rejected_array);
+    }
+    if (get_expired_array) {
+      neat_order_list = neat_order_list.concat(expired_array);
+    }
+    if (get_returned_array) {
+      neat_order_list = neat_order_list.concat(returned_array);
+    }
+    return neat_order_list;
   };
 
   // VV
@@ -139,6 +253,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     let neat_order_list = [];
 
     data.forEach((element) => {
+      if (element.status.id === "new") {
+        new_array.push(element);
+      }
       if (element.status.id === "delivered") {
         delivered_array.push(element);
       }
@@ -147,9 +264,6 @@ const Requests_page = ({ language }: IRequests_page) => {
       }
       if (element.status.id === "approved") {
         approved_array.push(element);
-      }
-      if (element.status.id === "new") {
-        new_array.push(element);
       }
       if (element.status.id === "rejected") {
         rejected_array.push(element);
@@ -163,6 +277,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     });
 
     // update neat order list
+    if (new_array.length > 0) {
+      neat_order_list = neat_order_list.concat(new_array);
+    }
     if (delivered_array.length > 0) {
       neat_order_list = neat_order_list.concat(delivered_array);
     }
@@ -171,9 +288,6 @@ const Requests_page = ({ language }: IRequests_page) => {
     }
     if (approved_array.length > 0) {
       neat_order_list = neat_order_list.concat(approved_array);
-    }
-    if (new_array.length > 0) {
-      neat_order_list = neat_order_list.concat(new_array);
     }
     if (rejected_array.length > 0) {
       neat_order_list = neat_order_list.concat(rejected_array);

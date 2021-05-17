@@ -22,6 +22,7 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
     } else if (data.id) {
       queryString = queryString + `rental_car_id=${data.id}`;
     }
+
     axios
       .get(DOMAIN + GET_CAR + "?" + queryString)
       .then((response) => {
@@ -38,7 +39,7 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
 
 interface IgetCar {
   search_id?: string;
-  id?: any;
+  id?: number;
   coupon?: string;
   start_date?: string;
   end_date?: string;

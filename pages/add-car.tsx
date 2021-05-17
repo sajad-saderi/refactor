@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Layout from "../src/Layout";
-import Add_car from "../src/containers/Add_car";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/addcar.json";
 import Router from "next/router";
+import Add_car from "../src/containers/Add_car";
 
 const AddCar = ({ edit }) => {
   useEffect(() => {

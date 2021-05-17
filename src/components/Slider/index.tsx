@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
-import arrow_right from "../../../public/image/svg/arrow-right.svg";
+// import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
+// import arrow_right from "../../../public/image/svg/arrow-right.svg";
 import Icon from "../../../utils/Icon";
 // import "./slider.scss";
 import Gallery from "./Gallery";
