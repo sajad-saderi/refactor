@@ -13,14 +13,15 @@ describe("بررسی صفحه نقشه سایت", () => {
           .should("have.attr", "href")
           .and("eq", `/rent/${result.body.items[0].unique_id}`);
 
-        cy.intercept(`/rent/${result.body.items[0].unique_id}`)
-          .as("go_to_dynamic_page")
+        cy
+          // .intercept(`/rent/${result.body.items[0].unique_id}`)
+          // .as("go_to_dynamic_page")
           .get(".site_map_page ul")
           .children("li")
           .eq(0)
           .children()
           .click()
-          .wait("@go_to_dynamic_page")
+          // .wait("@go_to_dynamic_page")
           .then((intercept) => {
             cy.url().should(
               "contain",
