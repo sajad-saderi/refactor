@@ -47,10 +47,11 @@ describe("بررسی صفحه لاگین", () => {
           .url()
           .should("contain", "/login");
       });
-    cy.visit(`${home}/requests`)
-      .wait(3000)
-      .url()
-      .should("contain", "/login")
+    cy
+      // .visit(`${home}/requests`)
+      //   .wait(3000)
+      //   .url()
+      // .should("contain", "/login")
       .visit(`${home}/request/12`)
       .wait(3000)
       .url()
