@@ -1,14 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from "../../API";
 import { useRouter } from "next/router";
 // import "./checkout.scss";
 import context_user from "../../context/User_info";
-import Button from "../../components/form/Button";
+import dynamic from "next/dynamic";
+
+const Button = dynamic(() => import("../../components/form/Button"));
+const Insurance = dynamic(() => import("./insurance"));
+const TextInput = dynamic(() => import("../../components/form/TextInput"));
+const Checkout_Container_Loader = dynamic(() =>
+  import("../../components/cartPlaceholder/checkoutLoading")
+);
+// import Button from "../../components/form/Button";
 import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
 import moment from "moment-jalaali";
-import Insurance from "./insurance";
-import TextInput from "../../components/form/TextInput";
-import Checkout_Container_Loader from "../../components/cartPlaceholder/checkoutLoading";
+// import Insurance from "./insurance";
+// import TextInput from "../../components/form/TextInput";
+// import Checkout_Container_Loader from "../../components/cartPlaceholder/checkoutLoading";
 import Toast_context from "../../context/Toast_context";
 import carImage from "../../../public/image/car-image-thumbnail.jpg";
 import { guard_controller } from "../../../utils/guard_controller";

@@ -1,12 +1,16 @@
-import React from "react";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
 
-import Layout from "../../src/Layout";
+const Layout = dynamic(() => import("../../src/Layout"));
+const Landing_Page_Content = dynamic(() =>
+  import("../../src/containers/LandignPageContainer/landingPageContent")
+);
+// import Layout from "../../src/Layout";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import { NextSeo } from "next-seo";
-import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
+// import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
 import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
-import dynamic from "next/dynamic";
 // import { logPageView } from "../../utils/analytics";
 
 const Landing_page_container = dynamic(() =>
@@ -14,7 +18,7 @@ const Landing_page_container = dynamic(() =>
 );
 
 const Rent_dynamic = ({ Landing_page, content }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (!Landing_page) {
       Router.push("/404");
     } else {

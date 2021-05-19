@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Icon from "../../../utils/Icon";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Icon = dynamic(() => import("../../../utils/Icon"));
+// import Icon from "../../../utils/Icon";
 
 const StarGenerator = ({ count }: IReview) => {
   return (
-    <span className="start_generator_container">
+    <span className='start_generator_container'>
       {Array(count)
         .fill("0")
         .map((i) => {

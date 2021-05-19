@@ -1,11 +1,14 @@
-import React from "react";
+import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import language from "../public/languages/fa/gps.json";
 // import { logPageView } from "../utils/analytics";
 
 const gps = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

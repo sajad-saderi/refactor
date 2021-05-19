@@ -1,9 +1,7 @@
-import React from "react";
-
 const Spinner = (props: ISpinner) => {
   return (
     <span
-      data-test-id="span"
+      data-test-id='span'
       style={{
         /**
          * @display property is here
@@ -22,7 +20,7 @@ const Spinner = (props: ISpinner) => {
         width: props.width + "px",
         height: props.width + "px",
       }}
-      className="Loading"
+      className='Loading'
     ></span>
   );
 };

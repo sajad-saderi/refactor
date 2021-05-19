@@ -1,5 +1,3 @@
-import React from "react";
-
 const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
   return (
     <div className='CalculatorResult' id='CalculatorResult'>

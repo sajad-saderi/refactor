@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Spinner from "../../Spinner";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Spinner = dynamic(() => import("../../Spinner"));
+// import Spinner from "../../Spinner";
 
 const Checkbox = (props: ICheckbox) => {
   const [Data, setData] = useState([]);
@@ -20,15 +23,15 @@ const Checkbox = (props: ICheckbox) => {
   return (
     <>
       {Data.length === 0 ? (
-        <div className="resultList" data-test-id="resultList">
-          <Spinner display="block" width={21} color="#9E9E9E" />
+        <div className='resultList' data-test-id='resultList'>
+          <Spinner display='block' width={21} color='#9E9E9E' />
         </div>
       ) : (
         <div
           className={["check_box_container", props.custom_className].join(" ")}
         >
           {Data.map((i, index) => (
-            <label className="container" key={index} data-test-id="container">
+            <label className='container' key={index} data-test-id='container'>
               {i.text}
               {/* if you need to show some number from checkbox you can active it ny 'count' property */}
               {/* {i.count ? (
@@ -38,12 +41,12 @@ const Checkbox = (props: ICheckbox) => {
                 <span className="count">-</span>
               ) : null} */}
               <input
-                data-test-id="checkbox"
+                data-test-id='checkbox'
                 checked={initialValueList.find((item) => {
                   // check the checkboxes based on initial evaluation
                   return item === i.value ? true : false;
                 })}
-                type="checkbox"
+                type='checkbox'
                 onChange={(e) => {
                   e.persist();
                   // @e.target.checked return true or false
@@ -59,7 +62,7 @@ const Checkbox = (props: ICheckbox) => {
                 name={props.name}
               />
               {/* To create a custom checkbox*/}
-              <span className="checkmark"></span>
+              <span className='checkmark'></span>
             </label>
           ))}
         </div>

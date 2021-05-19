@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import moment from "moment-jalaali";
 import {
   IoIosCheckboxOutline,
@@ -12,7 +12,11 @@ import {
   IoMdArrowRoundBack,
   IoMdPerson,
 } from "react-icons/io";
-import Icon from "../../../../utils/Icon";
+import dynamic from "next/dynamic";
+
+const Icon = dynamic(() => import("../../../../utils/Icon"));
+
+// import Icon from "../../../../utils/Icon";
 import {
   MdAccountCircle,
   MdAlarm,
@@ -27,11 +31,13 @@ import {
   MdKeyboardReturn,
   MdVpnKey,
 } from "react-icons/md";
-import PelakView from "../../../components/pelak";
+const PelakView = dynamic(() => import("next/link"));
+const Button = dynamic(() => import("../../../components/form/Button"));
+// import PelakView from "../../../components/pelak";
 import CountdownTimer from "timer-countdown";
 // import "./request_cart.scss";
 import Link from "next/link";
-import Button from "../../../components/form/Button";
+// import Button from "../../../components/form/Button";
 import { REQUEST_REQUEST_ACTION } from "../../../API";
 import jsCookie from "js-cookie";
 import Modal_context from "../../../context/Modal_context";

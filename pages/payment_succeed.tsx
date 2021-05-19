@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Layout from "../src/Layout";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import { GET_ORDER_REQUEST } from "../src/API";
 import jsCookie from "js-cookie";
 import moment from "moment-jalaali";

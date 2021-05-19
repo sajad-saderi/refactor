@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import Layout from "../src/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import _500 from "../public/image/500.png";

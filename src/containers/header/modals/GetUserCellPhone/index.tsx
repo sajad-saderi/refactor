@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
-import TextInput from "../../../../components/form/TextInput";
+import { useState, useEffect, useContext } from "react";
+import dynamic from "next/dynamic";
+
+const TextInput = dynamic(() =>
+  import("../../../../components/form/TextInput")
+);
+const Button = dynamic(() => import("../../../../components/form/Button"));
+// import TextInput from "../../../../components/form/TextInput";
 import axios from "axios";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 // import "./userCellphone.scss";
-import Button from "../../../../components/form/Button";
+// import Button from "../../../../components/form/Button";
 import { useRouter } from "next/router";
 import Error_middleware from "../../../../API/ApiUtils";
 

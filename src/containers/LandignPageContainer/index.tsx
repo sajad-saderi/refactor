@@ -1,11 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import filterContext from "../../context/filter-context";
-import SearchResultList from "../car/search-result";
+import dynamic from "next/dynamic";
+
+const SearchResultList = dynamic(() => import("../car/search-result"));
+
+const Filters = dynamic(() => import("../Filters"));
+const Search = dynamic(() => import("../Search"));
+const Spinner = dynamic(() => import("../../components/Spinner"));
+
+// import SearchResultList from "../car/search-result";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 import { useRouter } from "next/router";
 import moment from "moment-jalaali";
 // import "./Search_result.scss";
-import Spinner from "../../components/Spinner";
+// import Spinner from "../../components/Spinner";
 import {
   IoMdClose,
   IoIosArrowUp,
@@ -16,8 +24,8 @@ import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
 import search_query_builder from "../../../utils/search-query-builder";
 
-import Filters from "../Filters";
-import Search from "../Search";
+// import Filters from "../Filters";
+// import Search from "../Search";
 
 // let Glob_route = null;
 // default location is Tehran

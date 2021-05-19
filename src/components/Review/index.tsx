@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Icon from "../../../utils/Icon";
 import moment from "moment-jalaali";
-import StarGenerator from "../StarGenerator";
+import dynamic from "next/dynamic";
+
+const StarGenerator = dynamic(() => import("../StarGenerator"));
+// import StarGenerator from "../StarGenerator";
 
 const Review = ({ review, language }: IReview) => {
   return (

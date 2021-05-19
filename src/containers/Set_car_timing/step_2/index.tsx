@@ -1,5 +1,6 @@
-import React, { useEffect, useReducer, useState, useContext } from "react";
+import { useEffect, useReducer, useState, useContext } from "react";
 import { IoIosCar, IoIosCalendar } from "react-icons/io";
+import dynamic from "next/dynamic";
 
 // import "./step_2.scss";
 import {
@@ -10,20 +11,28 @@ import {
   REQUEST_SET_CAR_DISCOUNT,
   REQUEST_SET_CAR_PARTIAL,
 } from "../../../API";
-import Radio from "../../../components/form/Radio";
+
+const Radio = dynamic(() => import("../../../components/form/Radio"));
+const Button = dynamic(() => import("../../../components/form/Button"));
+const Counter = dynamic(() => import("../../../components/Counter"));
+const DiscountBox = dynamic(() => import("../DiscountBox"));
+const DropdownSearch = dynamic(() =>
+  import("../../../components/form/Dropdown")
+);
+// import Radio from "../../../components/form/Radio";
 import TextInput from "../../../components/form/TextInput";
 import Checkbox from "../../../components/form/Checkbox";
-import Button from "../../../components/form/Button";
+// import Button from "../../../components/form/Button";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 import validator from "validator";
 import Spinner from "../../../components/Spinner";
 import Modal_context from "../../../context/Modal_context";
 import context_user from "../../../context/User_info";
-import Counter from "../../../components/Counter";
+// import Counter from "../../../components/Counter";
 import PriceBox from "../PriceBox";
-import DiscountBox from "../DiscountBox";
-import DropdownSearch from "../../../components/form/Dropdown";
+// import DiscountBox from "../DiscountBox";
+// import DropdownSearch from "../../../components/form/Dropdown";
 import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
 import Toast_context from "../../../context/Toast_context";

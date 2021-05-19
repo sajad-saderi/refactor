@@ -1,4 +1,3 @@
-import React from "react";
 import Arrow_right from "../public/image/svg/arrow-right.svg";
 import Star from "../public/image/svg/star.svg";
 import Check from "../public/image/svg/check.svg";

@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 // import "./car.scss";
+import dynamic from "next/dynamic";
+
+const Spinner = dynamic(() => import("../../../../components/Spinner"));
 import { IoMdTrash, IoMdCreate } from "react-icons/io";
 import { useRouter } from "next/router";
 import context_user from "../../../../context/User_info";
@@ -9,7 +12,7 @@ import {
   REQUEST_SET_OUT_OF_SERVICE,
   REQUEST_DELETE_CAR,
 } from "../../../../API";
-import Spinner from "../../../../components/Spinner";
+// import Spinner from "../../../../components/Spinner";
 import Toast_context from "../../../../context/Toast_context";
 import Modal_context from "../../../../context/Modal_context";
 import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";

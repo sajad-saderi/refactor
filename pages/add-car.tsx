@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
-import Layout from "../src/Layout";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+const Add_car = dynamic(() => import("../src/containers/Add_car"));
+// import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/addcar.json";
 import Router from "next/router";
-import Add_car from "../src/containers/Add_car";
+// import Add_car from "../src/containers/Add_car";
 
 const AddCar = ({ edit }) => {
   useEffect(() => {

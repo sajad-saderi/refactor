@@ -1,12 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
+// import Layout from "../src/Layout";
 import "../src/styles/pages/otoli.scss";
 import language from "../public/languages/fa/otoli.json";
 // import { logPageView } from "../utils/analytics";
 
 const AboutUs = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

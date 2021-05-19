@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import insurance from "../../../../public/image/SamanInsurance.png";
 import Link from "next/link";
 import { guard_controller } from "../../../../utils/guard_controller";

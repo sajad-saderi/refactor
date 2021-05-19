@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Radio = (props: IRadio) => {
   const [checked, setChecked] = useState(null);
@@ -25,12 +25,12 @@ const Radio = (props: IRadio) => {
         key={index}
         ref={wrapperRef}
       >
-        <label className="container">
+        <label className='container'>
           {i.label}
           {i.extra_text && <p>{i.extra_text}</p>}
           <input
-            data-test-id="radio"
-            type="radio"
+            data-test-id='radio'
+            type='radio'
             name={props.name}
             value={i.value}
             checked={checked === i.value}
@@ -40,7 +40,7 @@ const Radio = (props: IRadio) => {
             }}
           />
           {/* To create a custom radio button */}
-          <span className="checkmark"></span>
+          <span className='checkmark'></span>
         </label>
       </div>
     );

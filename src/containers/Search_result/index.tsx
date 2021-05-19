@@ -1,11 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+
+const Filters = dynamic(() => import("../Filters"));
+const SearchResultList = dynamic(() => import("../car/search-result"));
+const Spinner = dynamic(() => import("../../components/Spinner"));
+const Search = dynamic(() => import("../Search"));
 import filterContext from "../../context/filter-context";
-import Filters from "../Filters";
-import SearchResultList from "../car/search-result";
+// import Filters from "../Filters";
+// import SearchResultList from "../car/search-result";
 import { useRouter } from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
 // import "./Search_result.scss";
-import Spinner from "../../components/Spinner";
+// import Spinner from "../../components/Spinner";
 import jsCookie from "js-cookie";
 import {
   IoMdClose,
@@ -13,7 +19,7 @@ import {
   IoIosArrowUp,
   IoIosArrowDown,
 } from "react-icons/io";
-import Search from "../Search";
+// import Search from "../Search";
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
 import search_query_builder from "../../../utils/search-query-builder";

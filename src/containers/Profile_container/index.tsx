@@ -1,6 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import Profile_info from "./Profile_info";
-import Profile_Cars from "./Profile_Cars";
+import { useContext, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Profile_info = dynamic(() => import("./Profile_info"));
+const Profile_Cars = dynamic(() => import("./Profile_Cars"));
+// import Profile_info from "./Profile_info";
+// import Profile_Cars from "./Profile_Cars";
 import jsCookie from "js-cookie";
 import Router from "next/router";
 import { REQUEST_GET_USER_INFO } from "../../API";

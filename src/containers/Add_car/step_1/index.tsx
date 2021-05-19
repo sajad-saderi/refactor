@@ -1,7 +1,12 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { IoIosCar, IoIosArrowDown } from "react-icons/io";
 // import "./step_1.scss";
-import DropdownSearch from "../../../components/form/Dropdown";
+import dynamic from "next/dynamic";
+
+const DropdownSearch = dynamic(() =>
+  import("../../../components/form/Dropdown")
+);
+// import DropdownSearch from "../../../components/form/Dropdown";
 import {
   REQUEST_GET_LOCATION,
   REQUEST_GET_CAR_BRAND,
@@ -15,12 +20,20 @@ import {
   REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING,
   REQUEST_ADD_NEW_CAR,
 } from "../../../API";
-import Radio from "../../../components/form/Radio";
-import TextInput from "../../../components/form/TextInput";
+const Radio = dynamic(() => import("../../../components/form/Radio"));
+const TextInput = dynamic(() => import("../../../components/form/TextInput"));
+const Checkbox = dynamic(() => import("../../../components/form/Checkbox"));
+const ImageUploader = dynamic(() =>
+  import("../../../components/ImageUploader")
+);
+const Button = dynamic(() => import("../../../components/form/Button"));
+
+// import Radio from "../../../components/form/Radio";
+// import TextInput from "../../../components/form/TextInput";
 import pelak from "../../../../public/image/pelak.png";
-import Checkbox from "../../../components/form/Checkbox";
-import ImageUploader from "../../../components/ImageUploader";
-import Button from "../../../components/form/Button";
+// import Checkbox from "../../../components/form/Checkbox";
+// import ImageUploader from "../../../components/ImageUploader";
+// import Button from "../../../components/form/Button";
 import Router from "next/router";
 import context_user from "../../../context/User_info";
 import jsCookie from "js-cookie";

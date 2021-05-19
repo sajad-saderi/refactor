@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 // import "./profile_info.scss";
+import dynamic from "next/dynamic";
 
+const Button = dynamic(() => import("../../../components/form/Button"));
 import { FiLogOut } from "react-icons/fi";
-import Button from "../../../components/form/Button";
+// import Button from "../../../components/form/Button";
 import context_user from "../../../context/User_info";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
-import dynamic from "next/dynamic";
 const Edit_profile = dynamic(() => import("./Edit_profile"));
 
 const Profile_info = ({ is_mine, data, language }: IProfile_info) => {

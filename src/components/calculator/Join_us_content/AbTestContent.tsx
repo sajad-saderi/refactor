@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import insurance from "../../../../public/image/SamanInsurance.png";
 import Link from "next/link";
 import { guard_controller } from "../../../../utils/guard_controller";
 
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
+
+const Slider = dynamic(() => import("react-slick"));
+// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import quotation from "../../../../public/image/svg/quotation.svg";

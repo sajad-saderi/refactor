@@ -1,30 +1,29 @@
-import React, { useState } from "react";
 // import "./Counter.scss";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
 const Counter = (props: ICounter) => {
   return (
-    <div className="counter_container">
-      <label data-test-id="label">{props.label}</label>
-      <div className="counter_box">
-        <div className="counter">
+    <div className='counter_container'>
+      <label data-test-id='label'>{props.label}</label>
+      <div className='counter_box'>
+        <div className='counter'>
           <IoMdAdd
-            size="2.2rem"
-            data-test-id="add"
+            size='2.2rem'
+            data-test-id='add'
             onClick={() => {
               if (props.value < props.max) props.AddTo();
             }}
           />
-          <p data-test-id="value">{props.value}</p>
+          <p data-test-id='value'>{props.value}</p>
           <IoMdRemove
-            size="2.2rem"
-            data-test-id="remove"
+            size='2.2rem'
+            data-test-id='remove'
             onClick={() => {
               if (props.value > props.min) props.reduceTo();
             }}
           />
         </div>
-        <span className="text_tail" data-test-id="tail">
+        <span className='text_tail' data-test-id='tail'>
           {props.text}
         </span>
       </div>

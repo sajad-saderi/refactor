@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import Layout from "../src/Layout";
+import { useContext, useEffect, useState } from "react";
+
 import { useRouter } from "next/router";
 import { IoMdPerson } from "react-icons/io";
 import { NextSeo } from "next-seo";
@@ -10,6 +10,9 @@ import context_user from "../src/context/User_info";
 import dynamic from "next/dynamic";
 // import { logPageView } from "../utils/analytics";
 // import jsCookie from "js-cookie";
+// import Layout from "../src/Layout";
+
+const Layout = dynamic(() => import("../src/Layout"));
 const ConfirmCode = dynamic(() =>
   import("../src/containers/header/modals/ConfirmCode")
 );

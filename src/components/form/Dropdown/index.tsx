@@ -1,14 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoMdClose, IoIosArrowDown, IoIosSearch } from "react-icons/io";
-import Spinner from "../../Spinner";
+import dynamic from "next/dynamic";
+
+const Spinner = dynamic(() => import("../../Spinner"));
+// import Spinner from "../../Spinner";
 
 const DropdownSearch = (props: IDropDown) => {
-  const [InputValue, setInputValue] = React.useState("");
-  const [ShowController, setShowController] = React.useState(false);
-  const [Data, setData] = React.useState([]);
-  const [search_value, setSearch_value] = React.useState("");
+  const [InputValue, setInputValue] = useState("");
+  const [ShowController, setShowController] = useState(false);
+  const [Data, setData] = useState([]);
+  const [search_value, setSearch_value] = useState("");
   // this value is necessary to update the drop-down input in case of a default value
-  const [colorCode, setColorCode] = React.useState(null);
+  const [colorCode, setColorCode] = useState(null);
 
   const wrapperRef = useRef(null);
 
@@ -101,21 +104,21 @@ const DropdownSearch = (props: IDropDown) => {
     >
       {props.label && (
         <label
-          data-test-id="label"
+          data-test-id='label'
           className={props.disabled ? "Disable_color" : null}
         >
           {props.label}
         </label>
       )}
       {props.browserDropdown ? (
-        <div className="select_container">
+        <div className='select_container'>
           <IoIosArrowDown
-            color="rgb(165, 165, 165)"
-            size="2rem"
-            className="ArrowDown"
+            color='rgb(165, 165, 165)'
+            size='2rem'
+            className='ArrowDown'
           />
           <select
-            className="default_select"
+            className='default_select'
             onChange={(e) => {
               e.persist();
               let value = JSON.parse(e.target.value);
@@ -142,7 +145,7 @@ const DropdownSearch = (props: IDropDown) => {
         ].join(" ")}
       >
         <input
-          data-test-id="drop_down_input"
+          data-test-id='drop_down_input'
           className={[
             "data-hj-allow",
             props.disabled ? "Disable_color" : null,
@@ -165,9 +168,9 @@ const DropdownSearch = (props: IDropDown) => {
           (InputValue.length > 0 || props.defaultVal) &&
           !props.hideClearField ? (
             <IoMdClose
-              color="rgb(165, 165, 165)"
-              size="2rem"
-              className="clean_icon"
+              color='rgb(165, 165, 165)'
+              size='2rem'
+              className='clean_icon'
               onClick={clearField}
             />
           ) : null
@@ -175,7 +178,7 @@ const DropdownSearch = (props: IDropDown) => {
         {/* Show the selected color in color picker drop-down */}
         {props.colorPicker && InputValue && (
           <div
-            className="color_Circle"
+            className='color_Circle'
             style={{
               background: colorCode
                 ? colorCode
@@ -188,8 +191,8 @@ const DropdownSearch = (props: IDropDown) => {
         {/* Arrow down icon */}
         {!props.hideArrowDown && (
           <IoIosArrowDown
-            color="rgb(165, 165, 165)"
-            size="2rem"
+            color='rgb(165, 165, 165)'
+            size='2rem'
             className={[
               "ArrowDown",
               ShowController ? "rotate_arrow_down_icon" : null,
@@ -200,27 +203,27 @@ const DropdownSearch = (props: IDropDown) => {
       </div>
       {ShowController ? (
         <div
-          data-test-id="Locations_list_container"
-          className="Locations_list_container"
+          data-test-id='Locations_list_container'
+          className='Locations_list_container'
         >
           {Data.length === 0 ? (
-            <div className="resultList spinnerPlaceholder">
-              <Spinner display="block" width={21} color="#9E9E9E" />
+            <div className='resultList spinnerPlaceholder'>
+              <Spinner display='block' width={21} color='#9E9E9E' />
             </div>
           ) : (
-            <div className="resultList">
+            <div className='resultList'>
               {/* You can control the performance of the search input */}
               {!props.disableSearch && (
-                <div className="search_input_container">
+                <div className='search_input_container'>
                   <input
-                    data-test-id="search_input"
+                    data-test-id='search_input'
                     data-hj-allow
                     // When the drop-down is shown, the search input is ready to type
                     // autoFocus
                     placeholder={`جستجو ${props.search_place_holder} ..`}
-                    name="search"
+                    name='search'
                     // NOTE type of the input is 'text'
-                    type="text"
+                    type='text'
                     value={search_value}
                     onChange={(e) => {
                       // set the value in input
@@ -229,23 +232,23 @@ const DropdownSearch = (props: IDropDown) => {
                       searchHandler(e.target.value.trim());
                     }}
                   />
-                  {!search_value && <IoIosSearch size="2rem" color="#737373" />}
+                  {!search_value && <IoIosSearch size='2rem' color='#737373' />}
                   {search_value && (
                     <IoMdClose
                       onClick={() => {
                         setSearch_value("");
                         searchHandler("");
                       }}
-                      size="2rem"
-                      color="#737373"
+                      size='2rem'
+                      color='#737373'
                     />
                   )}
                 </div>
               )}
               {Data.map((i, index) => (
                 <p
-                  data-test-id="Items"
-                  className="Items"
+                  data-test-id='Items'
+                  className='Items'
                   onClick={() => {
                     if (i.value === -1) return;
                     // this part just work for color picker
@@ -263,7 +266,7 @@ const DropdownSearch = (props: IDropDown) => {
                   {i.code && (
                     <span
                       style={{ background: `${i.code}` }}
-                      className="Color_box"
+                      className='Color_box'
                     ></span>
                   )}
                 </p>

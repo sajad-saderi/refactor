@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 
 // set global variables at the component
 let myInterval = null;
@@ -55,7 +55,7 @@ const CountDown = (props: ITime) => {
       type: "REDUCE",
     });
   };
-  return <span data-test-id="time">{Time}</span>;
+  return <span data-test-id='time'>{Time}</span>;
 };
 
 interface ITime {

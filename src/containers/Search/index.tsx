@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
+import dynamic from "next/dynamic";
 
-import DropdownSearch from "../../components/form/Dropdown";
+const DropdownSearch = dynamic(() => import("../../components/form/Dropdown"));
+const Button = dynamic(() => import("../../components/form/Button"));
+// import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_LOCATION } from "../../API/index";
 
 import { useRouter } from "next/router";
 
 // import "./search.scss";
-import Button from "../../components/form/Button";
+// import Button from "../../components/form/Button";
 
 import modal_context from "../../context/Modal_context";
 

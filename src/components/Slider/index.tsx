@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
 // import arrow_right from "../../../public/image/svg/arrow-right.svg";
 import Icon from "../../../utils/Icon";
 // import "./slider.scss";
-import Gallery from "./Gallery";
+import dynamic from "next/dynamic";
+
+const Gallery = dynamic(() => import("./Gallery"));
+// import Gallery from "./Gallery";
 
 const Slider = (props: ISlider) => {
   const [Feed, setFeed] = useState([]);

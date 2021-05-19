@@ -1,14 +1,19 @@
-import React, { useReducer, useState, useContext, useEffect } from "react";
+import { useReducer, useState, useContext, useEffect } from "react";
 // import "./complete_register.scss";
-import DropdownSearch from "../../components/form/Dropdown";
-import TextInput from "../../components/form/TextInput";
-import Button from "../../components/form/Button";
+import dynamic from "next/dynamic";
+
+const TextInput = dynamic(() => import("../../components/form/TextInput"));
+const Button = dynamic(() => import("../../components/form/Button"));
+// import DropdownSearch from "../../components/form/Dropdown";
+// import TextInput from "../../components/form/TextInput";
+// import Button from "../../components/form/Button";
 import Modal_context from "../../context/Modal_context";
 import context_user from "../../context/User_info";
 import { IoMdPerson, IoMdPersonAdd } from "react-icons/io";
 import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
+
 const stateReducer = (current, action) => {
   switch (action.type) {
     case "first_name":

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 // import "./ImageUploader.scss";
 import jsCookie from "js-cookie";
 import carVector from "../../../public/image/car_vector.png";

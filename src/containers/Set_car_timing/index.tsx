@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Add_Car_Step_2 from "./step_2";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Add_Car_Step_2 = dynamic(() => import("./step_2"));
+// import Add_Car_Step_2 from "./step_2";
 import { useRouter } from "next/router";
 import { guard_controller } from "../../../utils/guard_controller";
 
-const Set_car_timing = ({ language }: ISet_car_timing) => { 
+const Set_car_timing = ({ language }: ISet_car_timing) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
 

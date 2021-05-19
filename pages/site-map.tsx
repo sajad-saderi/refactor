@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../src/Layout";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "../src/API";

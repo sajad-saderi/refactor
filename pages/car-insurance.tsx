@@ -1,10 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import language from "../public/languages/fa/carinsurance.json";
 // import { logPageView } from "../utils/analytics";
 const car_insurance_page = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

@@ -1,11 +1,18 @@
-import React, { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef } from "react";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import modal_context from "../../../../context/Modal_context";
 import axios from "axios";
 import { useRouter } from "next/router";
-import Button from "../../../../components/form/Button";
-import CountDown from "../../../../components/countDown";
-import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
+import dynamic from "next/dynamic";
+
+const Button = dynamic(() => import("../../../../components/form/Button"));
+const CountDown = dynamic(() => import("../../../../components/countDown"));
+const NumberSeparatedTextInput = dynamic(() =>
+  import("../../../../components/form/NumberSeparatedTextInput")
+);
+// import Button from "../../../../components/form/Button";
+// import CountDown from "../../../../components/countDown";
+// import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
 import context_user from "../../../../context/User_info";
 import jsCookie from "js-cookie";
 import Error_middleware from "../../../../API/ApiUtils";

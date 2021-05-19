@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
 import Link from "next/link";
 // import "./car.scss";

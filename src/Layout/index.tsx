@@ -1,8 +1,13 @@
-import React, { useEffect, useReducer, useState, useContext } from "react";
+import { useEffect, useReducer, useState, useContext } from "react";
 import Router from "next/router";
 
-import Footer from "../components/Footer";
-import Header from "../containers/header";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("../components/Footer"));
+const Header = dynamic(() => import("../containers/header"));
+// import Footer from "../components/Footer";
+// import Header from "../containers/header";
+
 // import logo from "../../public/android-icon-48x48.png";
 
 // Main Scss file
@@ -19,7 +24,8 @@ import auth_context from "../context/Auth_context";
 import toast_context from "../context/Toast_context";
 
 // Toast Component
-import Toast from "../components/Toast";
+const Toast = dynamic(() => import("../components/Toast"));
+// import Toast from "../components/Toast";
 
 import * as Sentry from "@sentry/browser";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import App from "next/app";
 import Router from "next/router";
 import * as Sentry from "@sentry/browser";

@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
-import Search from "../src/containers/Search";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+const Search = dynamic(() => import("../src/containers/Search"));
+// import Layout from "../src/Layout";
+// import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
 import "../src/styles/pages/index.scss";
 import Link from "next/link";
@@ -11,7 +15,7 @@ import { guard_controller } from "../utils/guard_controller";
 
 const HomePage = () => {
   const [authorize, set_authorize] = useState(true);
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

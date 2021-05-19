@@ -1,12 +1,16 @@
-import React from "react";
+import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+const Requests_page = dynamic(() => import("../src/containers/Requests_page"));
+// import Layout from "../src/Layout";
 import language from "../public/languages/fa/requestspage.json";
 // import { logPageView } from "../utils/analytics";
-import Requests_page from "../src/containers/Requests_page";
+// import Requests_page from "../src/containers/Requests_page";
 
 const Request = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

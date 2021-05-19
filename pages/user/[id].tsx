@@ -1,9 +1,10 @@
-import React from "react";
-import Layout from "../../src/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../../src/Layout"));
+// import Layout from "../../src/Layout";
 import language from "../../public/languages/fa/user.json";
 // import { logPageView } from "../../utils/analytics";
 
-import dynamic from "next/dynamic";
 const Profile_container = dynamic(() =>
   import("../../src/containers/Profile_container")
 );

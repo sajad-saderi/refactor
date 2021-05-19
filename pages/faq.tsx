@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+const Accordion = dynamic(() => import("../src/components/Accordion"));
+
+const Spinner = dynamic(() => import("../src/components/Spinner"));
+// import Layout from "../src/Layout";
 import { REQUEST_GET_FAQ } from "../src/API";
-import Accordion from "../src/components/Accordion";
+// import Accordion from "../src/components/Accordion";
 import "../src/styles/pages/faq.scss";
-import Spinner from "../src/components/Spinner";
+// import Spinner from "../src/components/Spinner";
 import language from "../public/languages/fa/faq.json";
 // import { logPageView } from "../utils/analytics";
 

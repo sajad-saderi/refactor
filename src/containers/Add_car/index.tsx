@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Add_Car_Step_1 from "./step_1";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Add_Car_Step_1 = dynamic(() => import("./step_1"));
+// import Add_Car_Step_1 from "./step_1";
 import { guard_controller } from "../../../utils/guard_controller";
 import { useRouter } from "next/router";
 

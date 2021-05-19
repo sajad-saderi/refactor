@@ -1,6 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import TextInput from "../../../components/form/TextInput";
-import DropdownSearch from "../../../components/form/Dropdown";
+import { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+
+const TextInput = dynamic(() => import("../../../components/form/TextInput"));
+const DropdownSearch = dynamic(() =>
+  import("../../../components/form/Dropdown")
+);
+// import TextInput from "../../../components/form/TextInput";
+// import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
 // import "./DiscountBox.scss";
 import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
@@ -146,11 +152,11 @@ const DiscountBox = ({
   // }, [error]);
 
   return (
-    <div className="Discount_form_container">
+    <div className='Discount_form_container'>
       <p>{language.Discount_form_container_p}</p>
       {Discountcheck === 1 ? (
-        <div className="Discount_Controller">
-          <div className="containers">
+        <div className='Discount_Controller'>
+          <div className='containers'>
             <DropdownSearch
               data={daysFarsi}
               // clearField={() => {
@@ -174,12 +180,12 @@ const DiscountBox = ({
               }}
             />
             {Error_days_limit.status && (
-              <p className="input_error_message">{Error_days_limit.message}</p>
+              <p className='input_error_message'>{Error_days_limit.message}</p>
             )}
           </div>
-          <div className="tail containers">
+          <div className='tail containers'>
             <TextInput
-              name="price"
+              name='price'
               label={language.discount_percent}
               error={{
                 status: Error_discount_percent.status || error,
@@ -211,8 +217,8 @@ const DiscountBox = ({
             />
             <span> %</span>
           </div>
-          <div className="divs button_box">
-            <p className="confirm" onClick={onConfirm}>
+          <div className='divs button_box'>
+            <p className='confirm' onClick={onConfirm}>
               {language.submit}
             </p>
             <p
@@ -237,7 +243,7 @@ const DiscountBox = ({
             </p>
             {mode.status && (
               <IoMdTrash
-                className="Trash_icon_in_price_cart"
+                className='Trash_icon_in_price_cart'
                 onClick={() => {
                   setMode({
                     status: false,
@@ -249,15 +255,15 @@ const DiscountBox = ({
                   setDiscountcheck(0);
                   setShowBox(0);
                 }}
-                color="#737373"
-                size="2rem"
+                color='#737373'
+                size='2rem'
               />
             )}
           </div>
         </div>
       ) : (
         <div
-          className="add_new_one HEAP_SetCarAndTiming_Btn_AddDiscount"
+          className='add_new_one HEAP_SetCarAndTiming_Btn_AddDiscount'
           onClick={() => {
             setShowBox(1);
             setDiscountcheck(1);
@@ -265,15 +271,15 @@ const DiscountBox = ({
         >
           <p>
             {language.add_discount}
-            <IoMdAdd size="2rem" color="#4ba3ce" />
+            <IoMdAdd size='2rem' color='#4ba3ce' />
           </p>
         </div>
       )}
-      <div className="Discount_list">
+      <div className='Discount_list'>
         {DiscountList.map((item, i) => {
           return (
-            <div key={i} className="discount_item_container">
-              <div className="discount_item">
+            <div key={i} className='discount_item_container'>
+              <div className='discount_item'>
                 <p>
                   {language.for_more_than} {item.days_limit} {language.day}{" "}
                   <br />
@@ -299,7 +305,7 @@ const DiscountBox = ({
                     removeDiscountList(i);
                   }}
                 >
-                  <IoMdCreate size="2rem" />
+                  <IoMdCreate size='2rem' />
                 </span>
                 <span
                   // className="cancel"
@@ -314,7 +320,7 @@ const DiscountBox = ({
                     setShowBox(0);
                   }}
                 >
-                  <IoMdTrash size="2rem" />
+                  <IoMdTrash size='2rem' />
                 </span>
               </div>
             </div>

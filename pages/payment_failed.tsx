@@ -1,8 +1,12 @@
-import React from "react";
-import Layout from "../src/Layout";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+const Button = dynamic(() => import("../src/components/form/Button"));
+// import Layout from "../src/Layout";
 import { useRouter } from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import Button from "../src/components/form/Button";
+// import Button from "../src/components/form/Button";
 import "../src/styles/pages/Failed_payment.scss";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentfaild.json";
@@ -10,7 +14,7 @@ import language from "../public/languages/fa/paymentfaild.json";
 
 const Failed_payment = () => {
   const router = useRouter();
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

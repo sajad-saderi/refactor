@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { REQUEST_GET_USER_CARS } from "../../../API";
 import Router from "next/router";
-import Car from "./car";
+import dynamic from "next/dynamic";
+
+const Car = dynamic(() => import("./car"));
+const CarLoading = dynamic(() =>
+  import("../../../components/cartPlaceholder/CarLoadingProfile")
+);
+const Radio = dynamic(() => import("../../../components/form/Radio"));
+// import Car from "./car";
 // import "./profile_car.scss";
-import CarLoading from "../../../components/cartPlaceholder/CarLoadingProfile";
-import Radio from "../../../components/form/Radio";
+// import CarLoading from "../../../components/cartPlaceholder/CarLoadingProfile";
+// import Radio from "../../../components/form/Radio";
 import Button from "../../../components/form/Button";
 import { IoIosArrowDown } from "react-icons/io";
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaLanguage } from "react-icons/fa";
 // import "./inputStyle.scss";
 import { IoMdClose } from "react-icons/io";

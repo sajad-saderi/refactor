@@ -1,12 +1,15 @@
-import React from "react";
-import Layout from "../src/Layout";
+import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import language from "../public/languages/fa/guideforrent.json";
 // import { logPageView } from "../utils/analytics";
 
 const guideForRent = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

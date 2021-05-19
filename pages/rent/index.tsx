@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
 
-import Layout from "../../src/Layout";
-import Search from "../../src/containers/Search";
+const Layout = dynamic(() => import("../../src/Layout"));
+const Search = dynamic(() => import("../../src/containers/Search"));
+const Accordion = dynamic(() => import("../../src/components/Accordion"));
+// import Layout from "../../src/Layout";
+// import Search from "../../src/containers/Search";
 import insurance from "../../public/image/SamanInsurance.png";
 // import "../../src/styles/pages/index.scss";
 import Link from "next/link";
 import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
-import Accordion from "../../src/components/Accordion";
+// import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
 // import { logPageView } from "../../utils/analytics";
 

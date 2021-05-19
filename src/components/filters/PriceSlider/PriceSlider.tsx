@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -6,7 +6,12 @@ import "rc-slider/assets/index.css";
 import "./price_filter.scss";
 
 import filterContext from "../../../context/filter-context";
-import Price_slider_loader from "../../loaders/PriceSliderLoader";
+import dynamic from "next/dynamic";
+
+const Price_slider_loader = dynamic(() =>
+  import("../../loaders/PriceSliderLoader")
+);
+// import Price_slider_loader from "../../loaders/PriceSliderLoader";
 
 const PriceSlider = ({ sliderRange, sliderPrice }: IPriceSlider) => {
   const [value, setValue] = useState([0, 10000000]);

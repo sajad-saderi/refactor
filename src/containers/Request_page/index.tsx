@@ -1,11 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import jsCookie from "js-cookie";
 import { GET_ORDER_REQUEST } from "../../API";
 import { useRouter } from "next/router";
-import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
+import dynamic from "next/dynamic";
+
+const Requests_page_Loading = dynamic(() =>
+  import("../../components/cartPlaceholder/requestLoading")
+);
+// import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
 import context_user from "../../context/User_info";
 import { guard_controller } from "../../../utils/guard_controller";
-import Request_cart from "./request_cart";
+const Request_cart = dynamic(() => import("./request_cart"));
+// import Request_cart from "./request_cart";
 
 const Request_page = ({ language }: IRequest_page) => {
   const [result, setResult] = useState([]);

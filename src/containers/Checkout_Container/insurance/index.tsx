@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import Radio from "../../../components/form/Radio";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const Radio = dynamic(() => import("../../../components/form/Radio"));
+// import Radio from "../../../components/form/Radio";
 
 // import "./insurance.scss";
 
@@ -7,7 +10,7 @@ const Insurance = (props: IInsurance) => {
   const [value, setValue] = useState(2);
   return (
     <Radio
-      name="has_insurance"
+      name='has_insurance'
       SelectHandler={(i) => {
         setValue(i);
         props.hasInsurance(i);

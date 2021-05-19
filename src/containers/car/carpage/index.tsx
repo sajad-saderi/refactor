@@ -1,26 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import dynamic from "next/dynamic";
+const Slider = dynamic(() => import("../../../../src/components/Slider"));
+const Button = dynamic(() => import("../../../components/form/Button"));
+const CarPageLoading = dynamic(() =>
+  import("../../../components/cartPlaceholder/carPageLoading")
+);
+const Spinner = dynamic(() => import("../../../components/Spinner"));
+const Review = dynamic(() => import("../../../components/Review"));
 import {
   REQUEST_GET_CAR_REVIEW,
   REQUEST_GET_RENTAL_CAR,
 } from "../../../../src/API";
 import { useRouter } from "next/router";
-import Slider from "../../../../src/components/Slider";
-import Button from "../../../components/form/Button";
+// import Slider from "../../../../src/components/Slider";
+// import Button from "../../../components/form/Button";
 import { IoIosLink, IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
+// import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
 import jsCookie from "js-cookie";
 import moment from "moment-jalaali";
-import Spinner from "../../../components/Spinner";
+// import Spinner from "../../../components/Spinner";
 import carImage from "../../../../public/image/car-image.jpg";
 import Icon from "../../../../utils/Icon";
 import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
-import Review from "../../../components/Review";
+// import Review from "../../../components/Review";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -41,7 +48,7 @@ const CarPage = ({
   end_date,
 }: ICarPage) => {
   // set date picker date to get new price and availability
-  const [dayRange, setDayRange] = React.useState<DayRange>({
+  const [dayRange, setDayRange] = useState<DayRange>({
     from: null,
     to: null,
   });

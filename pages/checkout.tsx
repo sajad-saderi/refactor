@@ -1,17 +1,19 @@
-import React from "react";
-import Layout from "../src/Layout";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
+// import Layout from "../src/Layout";
 import language from "../public/languages/fa/checkout.json";
 import { NextSeo } from "next-seo";
 import { REQUEST_GET_RENTAL_CAR } from "../src/API";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 
 const Checkout_Container = dynamic(() =>
   import("../src/containers/Checkout_Container")
 );
 
 const Checkout = ({ order_information, expired }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,

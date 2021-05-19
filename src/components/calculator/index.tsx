@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   REQUEST_GET_CAR_BRAND,
   REQUEST_GET_CAR_MODEL,
   REQUEST_GET_CAR_PRICE_ESTIMATION,
 } from "../../API";
-import DropdownSearch from "../form/Dropdown";
-import TextInput from "../form/TextInput";
-import Button from "../form/Button";
+import dynamic from "next/dynamic";
+
+const DropdownSearch = dynamic(() => import("../form/Dropdown"));
+const TextInput = dynamic(() => import("../form/TextInput"));
+const Button = dynamic(() => import("../form/Button"));
+const ShowResult = dynamic(() => import("./ShowResult/ShowResult"));
+// import DropdownSearch from "../form/Dropdown";
+// import TextInput from "../form/TextInput";
+// import Button from "../form/Button";
 
 import Link from "next/link";
 import { guard_controller } from "../../../utils/guard_controller";
 
-import ShowResult from "./ShowResult/ShowResult";
+// import ShowResult from "./ShowResult/ShowResult";
 
 const Calculator = ({ AbText, language }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);

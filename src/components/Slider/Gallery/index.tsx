@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IoMdClose, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 // import "./Gallery.scss";
 

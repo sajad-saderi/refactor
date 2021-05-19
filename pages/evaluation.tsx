@@ -1,11 +1,14 @@
-import React from "react";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(() => import("../src/Layout"));
 import { NextSeo } from "next-seo";
-import Layout from "../src/Layout";
+// import Layout from "../src/Layout";
 import language from "../public/languages/fa/evaluation.json";
 // import { logPageView } from "../utils/analytics";
 
 const evaluation = () => {
-  React.useEffect(() => {
+  useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,
