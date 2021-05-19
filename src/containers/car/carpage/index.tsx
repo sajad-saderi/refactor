@@ -945,6 +945,7 @@ const CarPage = ({
               <Link
                 href={`/user/[id]`}
                 as={`/user/${owner.username ? owner.username : owner.id}`}
+                prefetch={false}
               >
                 <a className='HEAP_Car_Link_Profile profile_anchor_tag_container'>
                   <figure className='owner_part'>

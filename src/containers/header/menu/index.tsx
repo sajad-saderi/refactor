@@ -65,47 +65,47 @@ const Menu = () => {
         <span>{language.a_2}</span>
         <ul className='Sub_Nav_Level_2'>
           <li>
-            <Link href='/sepris'>
+            <Link href='/sepris' prefetch={false}>
               <a>{language.a_3}</a>
             </Link>
           </li>
           <li>
-            <Link href='/faq'>
+            <Link href='/faq' prefetch={false}>
               <a>{language.a_4}</a>
             </Link>
           </li>
           <li>
-            <Link href='/guide-for-rent'>
+            <Link href='/guide-for-rent' prefetch={false}>
               <a>{language.a_5}</a>
             </Link>
           </li>
           <li>
-            <Link href='/guide-renter'>
+            <Link href='/guide-renter' prefetch={false}>
               <a>{language.a_6}</a>
             </Link>
           </li>
           <li>
-            <Link href='/car-insurance'>
+            <Link href='/car-insurance' prefetch={false}>
               <a>{language.a_7}</a>
             </Link>
           </li>
           <li>
-            <Link href='/assurance'>
+            <Link href='/assurance' prefetch={false}>
               <a>{language.a_8}</a>
             </Link>
           </li>
           <li>
-            <Link href='/evaluation'>
+            <Link href='/evaluation' prefetch={false}>
               <a>{language.a_9}</a>
             </Link>
           </li>
           <li>
-            <Link href='/guide-picture'>
+            <Link href='/guide-picture' prefetch={false}>
               <a>{language.a_10}</a>
             </Link>
           </li>
           <li>
-            <Link href='/gps'>
+            <Link href='/gps' prefetch={false}>
               <a>{language.a_11}</a>
             </Link>
           </li>
@@ -114,7 +114,7 @@ const Menu = () => {
       {/* if the user had registered completely, can access to orders history */}
       {complete_register && (
         <li>
-          <Link href='/requests'>
+          <Link href='/requests' prefetch={false}>
             <a className='HEAP_Header_Link_MyOrders'>{language.a_1}</a>
           </Link>
         </li>
@@ -127,7 +127,7 @@ const Menu = () => {
           </li>
         ) : (
           <li className='first_element_li'>
-            <Link href={`/user/[id]`} as={`/user/${user_id}`}>
+            <Link href={`/user/[id]`} as={`/user/${user_id}`} prefetch={false}>
               <a>
                 <span className='user-name'>{profile && profile}</span>
                 {localStorage["red_dot"] === "1" && (
@@ -165,7 +165,7 @@ const Menu = () => {
             }
           }}
         >
-          <Link href={`/login`}>
+          <Link href={`/login`} prefetch={false}>
             <a>
               <span className='login-out'>{language.li}</span>
             </a>

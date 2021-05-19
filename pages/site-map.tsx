@@ -57,7 +57,11 @@ const Site_map = () => {
             {UrlList.map((i) => {
               return (
                 <li style={{ margin: "5px 0" }} key={i.unique_id}>
-                  <Link href='/rent/[id]' as={`/rent/${i.unique_id}`}>
+                  <Link
+                    href='/rent/[id]'
+                    as={`/rent/${i.unique_id}`}
+                    prefetch={false}
+                  >
                     <a>{i.title}</a>
                   </Link>
                 </li>

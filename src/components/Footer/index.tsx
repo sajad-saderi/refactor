@@ -65,54 +65,54 @@ const Footer = (props: IFooter) => {
       <div className=' responsive plus_border'>
         <ul className='links'>
           <li>
-            <Link href='/about-us'>
+            <Link href='/about-us' prefetch={false}>
               <a>{language.about_us}</a>
             </Link>
           </li>
           <li>
-            <Link href='/sepris'>
+            <Link href='/sepris' prefetch={false}>
               <a>{language.otoli}</a>
             </Link>
           </li>
           {props.LinkControl ? (
             <li>
-              <Link href='/guide-renter'>
+              <Link href='/guide-renter' prefetch={false}>
                 <a>{language.guide_renter}</a>
               </Link>
             </li>
           ) : null}
           {props.LinkControl ? (
             <li>
-              <Link href='/evaluation'>
+              <Link href='/evaluation' prefetch={false}>
                 <a>{language.evaluation}</a>
               </Link>
             </li>
           ) : null}
           <li>
-            <Link href='/faq'>
+            <Link href='/faq' prefetch={false}>
               <a>{language.faq}</a>
             </Link>
           </li>
           <li>
-            <Link href='/our-policies'>
+            <Link href='/our-policies' prefetch={false}>
               <a>{language.our_policies}</a>
             </Link>
           </li>
           <li>
-            <Link href='/insurance-policies'>
+            <Link href='/insurance-policies' prefetch={false}>
               <a>{language.insurance_policies}</a>
             </Link>
           </li>
           {props.LinkControl ? null : (
             <li>
-              <Link href='/rent'>
+              <Link href='/rent' prefetch={false}>
                 <a>{language.rent}</a>
               </Link>
             </li>
           )}
           {props.LinkControl ? null : (
             <li>
-              <Link href='/site-map'>
+              <Link href='/site-map' prefetch={false}>
                 <a>{language.site_map}</a>
               </Link>
             </li>

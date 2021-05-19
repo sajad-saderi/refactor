@@ -17,7 +17,7 @@ const Landing_Page_Content = ({ data, language }: ILanding_Page_Content) => {
               return (
                 <li key={item.name}>
                   {id === "rent" ? (
-                    <Link href='/rent'>
+                    <Link href='/rent' prefetch={false}>
                       <a
                         className='HEAP_LandingPages_Link_RelatedLinks'
                         href={item.url}
@@ -34,6 +34,7 @@ const Landing_Page_Content = ({ data, language }: ILanding_Page_Content) => {
                         },
                       }}
                       as={`/rent/${id}`}
+                      prefetch={false}
                     >
                       <a className='HEAP_LandingPages_Link_RelatedLinks'>
                         {item.name}

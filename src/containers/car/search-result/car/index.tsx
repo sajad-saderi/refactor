@@ -75,6 +75,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
           },
         }}
         as={`/car/${id}?search_id=${search_id}&owner_name=${owner_name}&car_name=${title}`}
+        prefetch={false}
       >
         <a className={`CAR_CART_${title}`}>
           <div className='card_wrapper'>

@@ -114,7 +114,7 @@ const Rent = () => {
             </section>
           </div>
           <div className='add_car_section'>
-            <Link href='/add-car'>
+            <Link href='/add-car' prefetch={false}>
               <a
                 className='Blue_BTN add_car_custom'
                 data-test-id='rent_add_car'
@@ -122,7 +122,7 @@ const Rent = () => {
                 {language.second_container_add_car_section_a_1}
               </a>
             </Link>
-            <Link href='/join-us'>
+            <Link href='/join-us' prefetch={false}>
               <a>{language.second_container_add_car_section_a_2}</a>
             </Link>
           </div>
@@ -168,6 +168,7 @@ const Rent = () => {
                           },
                         }}
                         as={`/rent/${id}`}
+                        prefetch={false}
                       >
                         <a className='HEAP_LandingPages_Link_RelatedLinks'>
                           {item.name}

@@ -16,10 +16,10 @@ const TabCreator = (props: ITabCreator) => {
   const { data_arr } = props;
 
   return (
-    <div className="Tab_Accordion">
+    <div className='Tab_Accordion'>
       <div>
         <section>
-          <div className="Tab_father">
+          <div className='Tab_father'>
             {data_arr.map((item, i) => {
               return (
                 <span
@@ -29,7 +29,7 @@ const TabCreator = (props: ITabCreator) => {
                 >
                   {item.title}
                   <IoIosArrowDown
-                    size="2rem"
+                    size='2rem'
                     className={active === i ? "rotateIcon" : ""}
                   />
                 </span>
@@ -51,8 +51,8 @@ const TabCreator = (props: ITabCreator) => {
                 {item.links.map((i, index) => {
                   return (
                     <li key={index}>
-                      {/* to change the route and don't give any 404 error before push */} 
-                      <Link href="/rent/[id]" as={i.link}>
+                      {/* to change the route and don't give any 404 error before push */}
+                      <Link href='/rent/[id]' as={i.link} prefetch={false}>
                         <a>{i.title}</a>
                       </Link>
                     </li>

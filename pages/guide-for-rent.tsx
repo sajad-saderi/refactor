@@ -53,7 +53,7 @@ const guideForRent = () => {
         <ul>
           <li>
             {language.h3_3_li_1_a_1}
-            <Link href='/insurance-policies'>
+            <Link href='/insurance-policies' prefetch={false}>
               <a href=''>{language.h3_3_li_1_insurance}</a>
             </Link>
             {language.h3_3_li_1_a_2}

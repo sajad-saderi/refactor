@@ -488,7 +488,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         <div className='Role_container'>
           {role ? (
             <>
-              <Link href='/user/[id]' as={`/user/${owner_Info.id}`}>
+              <Link
+                href='/user/[id]'
+                as={`/user/${owner_Info.id}`}
+                prefetch={false}
+              >
                 <a>
                   <MdAccountCircle size='2rem' />
                   {owner_Info.name}
@@ -504,7 +508,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </>
           ) : (
             <>
-              <Link href='/user/[id]' as={`/user/${renter_info.id}`}>
+              <Link
+                href='/user/[id]'
+                as={`/user/${renter_info.id}`}
+                prefetch={false}
+              >
                 <a>
                   <MdAccountCircle size='2rem' />
                   {renter_info.name}

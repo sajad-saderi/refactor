@@ -52,7 +52,7 @@ const Checkout = ({ order_information, expired }) => {
         {expired ? (
           <article className='minHeight expired_order'>
             <p>{language.expired}</p>
-            <Link href='/'>
+            <Link href='/' prefetch={false}>
               <a className='_404PageAnchor Blue_BTN'>
                 {language.return_to_home}
               </a>

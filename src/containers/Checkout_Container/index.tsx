@@ -443,7 +443,7 @@ const Checkout_Container = ({
             click={GoToRequests}
           />
           {error_message ? (
-            <Link href='/requests'>
+            <Link href='/requests' prefetch={false}>
               <a className='error_message_link'>
                 <span className='Error_message_text'>{error_message} </span>
                 {language.track_your_order}

@@ -24,7 +24,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [LocationName, setLocationName] = useState("تهران");
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
-  const [dayRange, setDayRange] = React.useState<DayRange>({
+  const [dayRange, setDayRange] = useState<DayRange>({
     from: null,
     to: null,
   });

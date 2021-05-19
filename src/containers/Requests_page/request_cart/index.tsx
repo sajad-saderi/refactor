@@ -31,7 +31,7 @@ import {
   MdKeyboardReturn,
   MdVpnKey,
 } from "react-icons/md";
-const PelakView = dynamic(() => import("next/link"));
+const PelakView = dynamic(() => import("../../../components/pelak"));
 const Button = dynamic(() => import("../../../components/form/Button"));
 // import PelakView from "../../../components/pelak";
 import CountdownTimer from "timer-countdown";
@@ -488,7 +488,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         <div className='Role_container'>
           {role ? (
             <>
-              <Link href='/user/[id]' as={`/user/${owner_Info.id}`}>
+              <Link
+                href='/user/[id]'
+                as={`/user/${owner_Info.id}`}
+                prefetch={false}
+              >
                 <a>
                   <MdAccountCircle size='2.4rem' />
                   {owner_Info.name}
@@ -504,7 +508,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </>
           ) : (
             <>
-              <Link href='/user/[id]' as={`/user/${renter_info.id}`}>
+              <Link
+                href='/user/[id]'
+                as={`/user/${renter_info.id}`}
+                prefetch={false}
+              >
                 <a>
                   <MdAccountCircle size='2.4rem' />
                   {renter_info.name}

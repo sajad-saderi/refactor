@@ -73,7 +73,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
               {AbText}
             </a>
           </Link> */}
-          <Link href='/add-car'>
+          <Link href='/add-car' prefetch={false}>
             <a className='Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar'>
               {AbText}
             </a>

@@ -14,7 +14,7 @@ const Header = (props: IHeader) => {
     <header className='header'>
       <article className='responsive header_container'>
         <section className='Logo'>
-          <Link href='/'>
+          <Link href='/' prefetch={false}>
             <a>
               <img className='car_logo' src={car} alt='سپریس لوگو خودکار' />
               <img className='text_logo' src={logo} alt='سپریس لوگو' />

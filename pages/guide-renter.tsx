@@ -79,7 +79,7 @@ const guideRenter = () => {
         <p className='TextIndenter'>
           {language.h2_3_p_have_link_1}
           <u>
-            <Link href='/gps'>
+            <Link href='/gps' prefetch={false}>
               <a>{language.h2_3_p_have_link_a}</a>
             </Link>
           </u>
