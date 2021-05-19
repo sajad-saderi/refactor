@@ -57,7 +57,7 @@ const HomePage = () => {
         </div>
         <div className='insuranceBox'>
           <p>با همکاری</p>
-          <img src={insurance} alt='تصویر بیمه سامان' />
+          <img src={insurance} alt='تصویر بیمه سامان' width='115' height='47' />
         </div>
         <div className=' responsive second_container'>
           <div className='full_width'>
