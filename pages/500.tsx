@@ -41,7 +41,7 @@ const page_500 = () => {
         <p>
           {language.dial} <a href={`tel:${language.call}`}>{language.call}</a>
         </p>
-        <Link href='/'>
+        <Link href='/' prefetch={false}>
           <a className='_404PageAnchor Blue_BTN'>{language.return}</a>
         </Link>
       </article>

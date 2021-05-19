@@ -36,7 +36,7 @@ const page_404 = () => {
       />
       <article className='minHeight'>
         <img src={_404} alt='404' className='_404PageImage' />
-        <Link href='/'>
+        <Link href='/' prefetch={false}>
           <a className='_404PageAnchor Blue_BTN'>{language.return_to_home}</a>
         </Link>
       </article>

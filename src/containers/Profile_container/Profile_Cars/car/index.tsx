@@ -108,7 +108,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   return (
     car && (
       <div className='carcard'>
-        <Link href={hrefProp} as={link}>
+        <Link href={hrefProp} as={link} prefetch={false}>
           <a data-test-id='Link' className='HEAP_Profile_Card_Car'>
             <figure
               style={{

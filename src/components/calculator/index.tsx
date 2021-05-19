@@ -293,7 +293,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
               }
             }}
           >
-            <Link href={authorize ? "/add-car" : "/login"}>
+            <Link href={authorize ? "/add-car" : "/login"} prefetch={false}>
               <a
                 className='Blue_BTN addCar_top_joinus_a'
                 data-test-id='addCar_top_joinus_a'

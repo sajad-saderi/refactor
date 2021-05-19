@@ -92,12 +92,12 @@ const HomePage = () => {
                 {language.second_container_add_car_section_a_1}
               </a>
             </Link> */}
-            <Link href='/add-car'>
+            <Link href='/add-car' prefetch={false}>
               <a className='Blue_BTN add_car_custom'>
                 {language.second_container_add_car_section_a_1}
               </a>
             </Link>
-            <Link href='/join-us'>
+            <Link href='/join-us' prefetch={false}>
               <a>{language.second_container_add_car_section_a_2}</a>
             </Link>
           </div>
