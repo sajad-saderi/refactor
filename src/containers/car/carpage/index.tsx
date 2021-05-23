@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import dynamic from "next/dynamic";
 const Slider = dynamic(() => import("../../../../src/components/Slider"));
-const Button = dynamic(() => import("../../../components/form/Button"));
+// const Button = dynamic(() => import("../../../components/form/Button"));
 const CarPageLoading = dynamic(() =>
   import("../../../components/cartPlaceholder/carPageLoading")
 );
@@ -14,7 +14,7 @@ import {
 } from "../../../../src/API";
 import { useRouter } from "next/router";
 // import Slider from "../../../../src/components/Slider";
-// import Button from "../../../components/form/Button";
+import Button from "../../../components/form/Button";
 import { IoIosLink, IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
