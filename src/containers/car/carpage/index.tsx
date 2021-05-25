@@ -174,6 +174,7 @@ const CarPage = ({
     //   // DateSetter(id);
     //   // }
     // }
+    get_reviews();
     const handleRouteChange = (url) => {
       if (url.includes("/search-result")) {
         jsCookie.set("JumpTo", 1);
@@ -223,8 +224,6 @@ const CarPage = ({
       const res: any = await REQUEST_GET_RENTAL_CAR(localData);
       set_CarInformation(res);
       setShowPriceLoading(false);
-      const reviews: any = await REQUEST_GET_CAR_REVIEW(id);
-      setReView(reviews.items);
     } catch (error) {
       if (error === "Not found!") {
         router.push("/404");
@@ -232,6 +231,15 @@ const CarPage = ({
       if (error === "Invalid search_id.") {
         DateSetter(id);
       }
+      console.log("!Error", error);
+    }
+  };
+
+  const get_reviews = async () => {
+    try {
+      const reviews: any = await REQUEST_GET_CAR_REVIEW(id);
+      setReView(reviews.items);
+    } catch (error) {
       console.log("!Error", error);
     }
   };

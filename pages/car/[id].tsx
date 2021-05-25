@@ -2,7 +2,7 @@ import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../../src/Layout"));
-const CarPage = dynamic(() => import("../../src/containers/car/carpage"));
+// const CarPage = dynamic(() => import("../../src/containers/car/carpage"));
 // import Layout from "../../src/Layout";
 
 import language from "../../public/languages/fa/carpage.json";
@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { payBackInString } from "../../utils/date-range-creator";
 import { useEffect } from "react";
 
-// import CarPage from "../../src/containers/car/carpage";
+import CarPage from "../../src/containers/car/carpage";
 
 const Car = ({
   car_Information,

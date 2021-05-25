@@ -21,6 +21,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     avg_discounted_price_per_day,
     deliver_at_renters_place,
     with_driver,
+    without_driver,
     is_promoted,
     has_media,
     location,
@@ -147,10 +148,24 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                     </span>
                   </li>
                 )}
+                {/* {with_driver && (
+                  <li>
+                    <span className='tags'>
+                      {language.search_result_section.car.with_driver}
+                    </span>
+                  </li>
+                )} */}
                 {with_driver && (
                   <li>
                     <span className='tags'>
                       {language.search_result_section.car.with_driver}
+                    </span>
+                  </li>
+                )}
+                {without_driver && (
+                  <li>
+                    <span className='tags'>
+                      {language.search_result_section.car.without_driver}
                     </span>
                   </li>
                 )}
