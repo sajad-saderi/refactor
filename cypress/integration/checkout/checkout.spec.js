@@ -1,5 +1,5 @@
-import log_me_in from "../utils/log_me_in";
-import { set_default_date_for_search } from "../utils/set_defult_date_for_search";
+import log_me_in from "../../utils/log_me_in";
+import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
 
 const date = set_default_date_for_search();
 const core_url = "https://core.sepris.com/core";

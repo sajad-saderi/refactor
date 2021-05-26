@@ -62,7 +62,8 @@
       "show_details": "مشاهده مشخصات",
       "toman_per_day": " تومان در روز",
       "delivar_at_your_palce": "تحویل در محل",
-      "with_driver": "اجاره با راننده"
+      "with_driver": "با راننده",
+      "without_driver": "بدون راننده"
     }
   },
   "quick_access_middle_searchResult_h2": "دسترسی سریع",

@@ -1,4 +1,4 @@
-import { set_default_date_for_search } from "../utils/set_defult_date_for_search";
+import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
 
 const date = set_default_date_for_search();
 const core_url = "https://core.sepris.com/core";

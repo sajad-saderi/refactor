@@ -1,4 +1,4 @@
-import { set_default_date_for_search } from "../utils/set_defult_date_for_search";
+import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
 
 // "چک کردن تاریخ در باکس های تاریخ رفت و برگشت، شامل: مقدار تاریخ، فاصله 3 روزه بین انها و نمایش مقدار در در هردو باکس"
 const date = set_default_date_for_search();

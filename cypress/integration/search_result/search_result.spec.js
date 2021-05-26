@@ -1,5 +1,5 @@
 import { get } from "js-cookie";
-import { set_default_date_for_search } from "../utils/set_defult_date_for_search";
+import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
 
 describe("تست صفحه نتایج جستجو", () => {
   const core_url = "https://core.sepris.com/core";

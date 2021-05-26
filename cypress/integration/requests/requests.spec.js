@@ -1,5 +1,5 @@
-import log_me_in from "../utils/log_me_in";
-import random_number_generator from "../utils/random_number_generator";
+import log_me_in from "../../utils/log_me_in";
+import random_number_generator from "../../utils/random_number_generator";
 
 const core_url = "https://core.sepris.com/core";
 let home = "http://localhost:3000";
