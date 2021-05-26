@@ -52,11 +52,11 @@ const Request_page = ({ language }: IRequest_page) => {
         id,
         token,
       });
-      if (res.data.status.id !== "new") {
-        router.push("/requests");
-      } else {
-        setResult([res.data]);
-      }
+      // if (res.data.status.id !== "new") {
+      //   router.push("/requests");
+      // } else {
+      setResult([res.data]);
+      // }
     } catch (error) {
       console.log("!Error", error);
     }

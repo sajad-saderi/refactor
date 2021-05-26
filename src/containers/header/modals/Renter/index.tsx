@@ -15,6 +15,8 @@ const Renter = (props: IRenter) => {
   const [textareaValue, setTextareaValue] = useState("");
   const [carRate, setCarRate] = useState(0);
   const [ownerRate, setOwnerRate] = useState(0);
+  const [star_error_car, set_star_error_car] = useState(false);
+  const [star_error_profile, set_star_error_profile] = useState(false);
   const Modal_context = useContext(modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
 
@@ -26,6 +28,21 @@ const Renter = (props: IRenter) => {
 
   const setForRequest = async (e, data: any) => {
     e.preventDefault();
+    set_star_error_profile(false);
+    set_star_error_car(false);
+    if (!carRate && !ownerRate) {
+      set_star_error_profile(true);
+      set_star_error_car(true);
+      return;
+    }
+    if (!carRate) {
+      set_star_error_car(true);
+      return;
+    }
+    if (!ownerRate) {
+      set_star_error_profile(true);
+      return;
+    }
     setLoading(true);
     Promise.all([
       // rate the order
@@ -98,15 +115,26 @@ const Renter = (props: IRenter) => {
             </h3>
             <p>امتیاز شما به خودرو</p>
             <StarRatings
+              id='a'
               rating={carRate}
               starRatedColor='rgb(255, 204, 0)'
               starHoverColor='rgb(255, 204, 0)'
               starDimension='20px'
               starSpacing='5px'
-              changeRating={(e) => setCarRate(e)}
+              starEmptyColor={
+                star_error_car ? "rgb(255 54 122)" : "rgb(203, 211, 227)"
+              }
+              changeRating={(e) => {
+                set_star_error_car(false);
+                setCarRate(e);
+              }}
               numberOfStars={5}
               name='carRate'
             />
+            {star_error_car && (
+              <span className='Error_color'>امتیاز خود را وارد کنید</span>
+            )}
+            <br />
             {/* the owner image */}
             <img
               src={rent_search_dump.owner.thumbnail_url}
@@ -115,15 +143,25 @@ const Renter = (props: IRenter) => {
             <h3>{rent_search_dump.owner.name}</h3>
             <p>امتیاز شما به میزبان</p>
             <StarRatings
+              id='b'
               rating={ownerRate}
               starRatedColor='rgb(255, 204, 0)'
               starHoverColor='rgb(255, 204, 0)'
               starDimension='20px'
               starSpacing='5px'
-              changeRating={(e) => setOwnerRate(e)}
+              starEmptyColor={
+                star_error_profile ? "rgb(255 54 122)" : "rgb(203, 211, 227)"
+              }
+              changeRating={(e) => {
+                set_star_error_profile(false);
+                setOwnerRate(e);
+              }}
               numberOfStars={5}
               name='ownerRate'
             />
+            {star_error_profile && (
+              <span className='Error_color'>امتیاز خود را وارد کنید</span>
+            )}
             <label>توضیح:</label>
             <textarea
               value={textareaValue}

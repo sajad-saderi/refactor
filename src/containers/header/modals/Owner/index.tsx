@@ -23,6 +23,7 @@ const Owner = (props: IRenter) => {
   const [loading, setLoading] = useState(false);
   const [textareaValue, setTextareaValue] = useState("");
   const [ownerRate, setOwnerRate] = useState(0);
+  const [star_error, set_star_error] = useState(false);
   const Modal_context = useContext(modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
 
@@ -34,6 +35,11 @@ const Owner = (props: IRenter) => {
 
   const setForRequest = async (e, data: any) => {
     e.preventDefault();
+    set_star_error(false);
+    if (!ownerRate) {
+      set_star_error(true);
+      return;
+    }
     setLoading(true);
     Promise.all([
       // rate render
@@ -90,12 +96,21 @@ const Owner = (props: IRenter) => {
               rating={ownerRate}
               starRatedColor='rgb(255, 204, 0)'
               starHoverColor='rgb(255, 204, 0)'
+              starEmptyColor={
+                star_error ? "rgb(255 54 122)" : "rgb(203, 211, 227)"
+              }
               starDimension='20px'
               starSpacing='5px'
-              changeRating={(e) => setOwnerRate(e)}
+              changeRating={(e) => {
+                set_star_error(false);
+                setOwnerRate(e);
+              }}
               numberOfStars={5}
               name='ownerRate'
             />
+            {star_error && (
+              <span className='Error_color'>امتیاز خود را وارد کنید</span>
+            )}
             <label>توضیح:</label>
             <textarea
               value={textareaValue}
