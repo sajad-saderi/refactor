@@ -9,14 +9,15 @@ describe("بررسی صفحه نتایج داینامیک خودرو", () => {
     cy.visit("http://localhost:3000/site-map")
       .request("GET", `${core_url}/landing/list?limit=900`)
       .then((result) => {
-        cy.intercept(`/rent/${result.body.items[0].unique_id}`)
-          .as("go_to_dynamic_page")
+        cy
+          // .intercept(`/rent/${result.body.items[0].unique_id}`)
+          //   .as("go_to_dynamic_page")
           .get(".site_map_page ul")
           .children("li")
           .eq(0)
           .children()
           .click()
-          .wait("@go_to_dynamic_page")
+          // .wait("@go_to_dynamic_page")
           .then(() => {
             unique_id = result.body.items[0].unique_id;
             cy.url().should(

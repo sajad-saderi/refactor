@@ -5,8 +5,8 @@ const date = set_default_date_for_search();
 const core_url = "https://core.sepris.com/core";
 let home = "http://localhost:3000";
 let search_id = null;
-let car_index_in_list = 0;
-let cell_phone = "09380158835";
+let car_index_in_list = 12;
+let cell_phone = Cypress.env("CELL_A");
 
 describe("بررسی صفحه لاگین", () => {
   beforeEach(() => {
@@ -15,38 +15,46 @@ describe("بررسی صفحه لاگین", () => {
   it("دسترسی بدون لاگین", () => {
     cy.get(".HEAP_Header_Btn_Login a")
       .click()
-      .wait(3000)
-      .url()
-      .should("contain", "/login")
-      .go("back")
-      .get(".add_car_section .Blue_BTN.add_car_custom")
-      .click()
-      .wait(6000)
-      .url()
-      .should("contain", "/login")
-      .visit(home)
-      .get(".Blue_BTN.search_Btn.HEAP_Home_Btn_Search")
-      .click()
-      .wait(3000)
-      .request(
-        "GET",
-        core_url +
-          `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=1`
-      )
       .then(() => {
-        cy.get(".carCart.HEAP_SearchResult_Card_Car")
-          .eq(0)
+        cy.url()
+          .should("contain", "/login")
+          .go("back")
+          .get(".add_car_section .Blue_BTN.add_car_custom")
           .click()
-          .wait(3000)
-          .get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
-          .click()
-          .wait(3000)
-          .get(".Blue_BTN.localClass.HEAP_Checkout_Btn_Book")
-          .click()
-          .wait(3000)
           .url()
-          .should("contain", "/login");
+          .should("contain", "/login")
+          .visit(home)
+          .get(".Blue_BTN.search_Btn.HEAP_Home_Btn_Search")
+          .click()
+          .wait(3000)
+          .request(
+            "GET",
+            core_url +
+              `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
+          )
+          .then((result) => {
+            let car_data = result.body.items[car_index_in_list];
+            cy.get(".carCart.HEAP_SearchResult_Card_Car")
+              .eq(car_index_in_list)
+              .click()
+              .then(() => {
+                cy.get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
+                  .click()
+                  .request(
+                    "GET",
+                    core_url + `/rental-car/review/list?id=${car_data.id}`
+                  )
+                  .then(() => {
+                    cy.get(".Blue_BTN.localClass.HEAP_Checkout_Btn_Book")
+                      .click()
+                      .wait(3000)
+                      .url()
+                      .should("contain", "/login");
+                  });
+              });
+          });
       });
+
     cy
       // .visit(`${home}/requests`)
       //   .wait(3000)
@@ -60,7 +68,6 @@ describe("بررسی صفحه لاگین", () => {
   it("بررسی عملکرد باکس لاگین", () => {
     cy.get(".Blue_BTN.add_car_custom")
       .click()
-      .wait(2000)
       .url()
       .should("contain", "/login")
       .get(
@@ -90,7 +97,7 @@ describe("بررسی صفحه لاگین", () => {
       .type(cell_phone)
       .get("@submit_form")
       .click()
-      .wait(2000)
+      .wait(1000)
       .request({
         method: "POST",
         url: `${core_url}/device/send-code`,
@@ -122,7 +129,7 @@ describe("بررسی صفحه لاگین", () => {
       });
   });
   it("بررسی دسترسی های صفحه", () => {
-    log_me_in("9380158835").then(() => {
+    log_me_in(cell_phone).then(() => {
       cy.wait(2000)
         .get(".Nav> ul")
         .children()
@@ -158,26 +165,45 @@ describe("بررسی صفحه لاگین", () => {
                     .request(
                       "GET",
                       core_url +
-                        `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=1`
+                        `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
                     )
-                    .then(() => {
+                    .then((result) => {
+                      let car_data = result.body.items[car_index_in_list];
+                      console.log(result);
                       cy.get(".carCart.HEAP_SearchResult_Card_Car")
-                        .eq(0)
+                        .eq(car_index_in_list)
                         .click()
-                        .wait(5000)
-                        .get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
-                        .click()
-                        .wait(5000)
-                        .get(".coupon_Text_show.HEAP_Checkout_Btn_Coupon")
-                        .click()
-                        .get(".coupon_form input")
-                        .type("sajad4test")
-                        .get(
-                          ".Blue_BTN.coupan_BTN.HEAP_Checkout_Btn_CouponSubmit"
+                        .wait(3000)
+                        .request(
+                          "GET",
+                          core_url + `/rental-car/review/list?id=${car_data.id}`
                         )
-                        .click()
-                        .get(".coupon_Text_show.HEAP_Checkout_Btn_Coupon")
-                        .should("not.exist");
+                        .then(() => {
+                          cy.get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
+                            .click()
+                            .wait(1000)
+                            .request(
+                              "GET",
+                              core_url +
+                                `/rental-car/review/list?id=${car_data.id}`
+                            )
+                            .then(() => {
+                              cy.get(
+                                ".coupon_Text_show.HEAP_Checkout_Btn_Coupon"
+                              )
+                                .click()
+                                .get(".coupon_form input")
+                                .type("sajad4test")
+                                .get(
+                                  ".Blue_BTN.coupan_BTN.HEAP_Checkout_Btn_CouponSubmit"
+                                )
+                                .click()
+                                .get(
+                                  ".coupon_Text_show.HEAP_Checkout_Btn_Coupon"
+                                )
+                                .should("not.exist");
+                            });
+                        });
                     });
                 });
             });

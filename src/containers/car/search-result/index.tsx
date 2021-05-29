@@ -4,12 +4,12 @@ import offRoad from "../../../../public/image/SUV.svg";
 import dynamic from "next/dynamic";
 
 const Car = dynamic(() => import("./car"));
-const CarLoading = dynamic(() =>
-  import("../../../components/cartPlaceholder/CarLoading")
-);
+// const CarLoading = dynamic(() =>
+//   import("../../../components/cartPlaceholder/CarLoading")
+// );
 // import Car from "./car";
 // import "./search_result.scss";
-// import CarLoading from "../../../components/cartPlaceholder/CarLoading";
+import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 
 let quickAccessClick = false;
 const SearchResultList = ({

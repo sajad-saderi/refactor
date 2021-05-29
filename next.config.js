@@ -14,10 +14,10 @@ module.exports =
     withCSS(
       withSass(
         withImages({
-          pwa: {
-            disable: dev ? false : true,
-            dest: "public",
-          },
+          // pwa: {
+          //   disable: dev ? false : true,
+          //   dest: "public",
+          // },
           env: {
             SITE_URL: "https://sepris.com",
             PRODUCTION_ENDPOINT: "https://core.sepris.com",

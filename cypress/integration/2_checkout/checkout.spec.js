@@ -1,4 +1,3 @@
-import log_me_in from "../../utils/log_me_in";
 import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
 
 const date = set_default_date_for_search();
@@ -6,7 +5,6 @@ const core_url = "https://core.sepris.com/core";
 let car_information = null;
 let search_id = null;
 let car_index_in_list = 0;
-let cell_phone = "09380158835";
 
 describe("بررسی مسیر حرکت کاربر از خانه به صفجه چک اوت", () => {
   it(`شروع از صفحه خانه، کلیک بر روی اولین نتیجه برای شهر تهران در تاریخ رفت ${date.from_date_form} و برگشت ${date.to_date_form} قیمت زیاد به کم در صفحه جستجو و رسیدن به صفحه خودرو`, () => {
@@ -99,7 +97,7 @@ describe("بررسی مسیر حرکت کاربر از خانه به صفجه چ
       .click()
       .wait(2000)
       .get(".text_input")
-      .type("09380158835")
+      .type(Cypress.env("CELL_A"))
       .get(
         ".Blue_BTN.login_submit.HEAP_ModalGetUserCellPhone_Btn_RequestForConfirmCode "
       )
