@@ -143,6 +143,15 @@ class App_Otoli extends App {
     localStorage["utm_landing_url"] = Router.router.pathname;
     localStorage["utm_referrer"] = document.referrer;
 
+    sessionStorage["guid"] = window
+      .btoa(
+        Array.from(window.crypto.getRandomValues(new Uint8Array(20 * 2)))
+          .map((b) => String.fromCharCode(b))
+          .join("")
+      )
+      .replace(/[+/]/g, "")
+      .substring(0, 20);
+
     window.addEventListener("beforeinstallprompt", (e) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();

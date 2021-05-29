@@ -12,6 +12,10 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
     } else {
       searchQuery = data.searchQuery;
     }
+    if (sessionStorage["guid"]) {
+      searchQuery += "&session_id=" + sessionStorage["guid"];
+    }
+
     axios
       .get(DOMAIN + GET_SEARCH_FOR_RENT + "?" + searchQuery)
       .then((response) => {
