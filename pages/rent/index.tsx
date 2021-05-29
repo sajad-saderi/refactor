@@ -114,16 +114,16 @@ const Rent = () => {
             </section>
           </div>
           <div className='add_car_section'>
-            <Link href='/add-car' prefetch={false}>
+            <Link href='/join-us' prefetch={false}>
               <a
                 className='Blue_BTN add_car_custom'
                 data-test-id='rent_add_car'
               >
-                {language.second_container_add_car_section_a_1}
+                {language.second_container_add_car_section_a_2}
               </a>
             </Link>
-            <Link href='/join-us' prefetch={false}>
-              <a>{language.second_container_add_car_section_a_2}</a>
+            <Link href='/add-car' prefetch={false}>
+              <a>{language.second_container_add_car_section_a_1}</a>
             </Link>
           </div>
           <div className='rent_contnet'>
