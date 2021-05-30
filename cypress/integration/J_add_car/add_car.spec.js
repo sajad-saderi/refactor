@@ -1,57 +1,17 @@
 import log_me_in from "../../utils/log_me_in";
 import random_number_generator from "../../utils/random_number_generator";
-
-const core_url = "https://core.sepris.com/core";
 let home = "http://localhost:3000";
-let user_info = 0;
-let cell_phone = `0930000${random_number_generator(0, 10, 4)}`;
 
-describe("بررسی صفحه تکمیل ثبت نام", () => {
-  it("لاگین کاربر و تکمیل ثبت نام", () => {
-    cy.visit(home);
-    log_me_in(cell_phone).then(() => {
-      cy.request({
-        method: "POST",
-        url: `${core_url}/device/login`,
-        form: true,
-        body: {
-          cell: cell_phone,
-          code: "9931",
-        },
-      }).then((data) => {
-        user_info = data.body;
-        console.log(data.body);
-        cy.url()
-          .should("contain", "/complete-register")
-          .get(".complete_register_form [name=first_name]")
-          .type("Cypress")
-          .get(".complete_register_form [name=last_name]")
-          .type("io")
-          // .get(".company_part")
-          // .click()
-          // .get(".company_part [name=company_name]")
-          // .type("Cypress_co")
-          .get(".Blue_BTN.local_BTN.HEAP_CompleteRegister_Btn_Submit")
-          .click()
-          // .get(".company_part span")
-          // .click()
-          // .should("not.exist")
-          .get(".Blue_BTN.local_BTN.HEAP_CompleteRegister_Btn_Submit")
-          .click()
-          .get(".Error_message_text")
-          .should("exist")
-          .get(".check_box_container label")
-          .click()
-          .get(".Blue_BTN.local_BTN.HEAP_CompleteRegister_Btn_Submit")
-          .click();
-      });
-    });
-  });
+describe("ثبت خودرو جدید، ویرایش آن", () => {
   it("ثبت خودرو جدید", () => {
-    cy.setCookie("user_id", `${user_info?.user_profile?.id}`);
-    cy.setCookie("token", user_info?.token);
-    cy.setCookie("first_name", "Cypress_io");
-    cy.visit(`${home}/add-car`);
+    // cy.setCookie("user_id", `${user_info?.user_profile?.id}`);
+    // cy.setCookie("token", user_info?.token);
+    // cy.setCookie("first_name", "Cypress_io");
+    cy.visit(home);
+    log_me_in(Cypress.env("CELL_A"))
+      .wait(2000)
+      .get(".second_container .add_car_section a:last-child")
+      .click();
     click_on_input_and_search(".car_location_district")
       .type("اراک")
       .get(".resultList .Items")
@@ -215,16 +175,8 @@ describe("بررسی صفحه تکمیل ثبت نام", () => {
       .click({ force: true })
       .get(".Blue_BTN.local_style.HEAP_SetCarTiming_Btn_Submit")
       .click()
-      .wait(5000)
-      .get(".Profile_car_container .carcard")
-      .should("have.length", 1)
-      .click()
-      .wait(3000)
-      .get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
-      .should("not.exist")
-      .get(".first_element_li")
-      .click()
-      .get(".HEAP_Profile_Btn_EditCarDetails")
+      .wait(8000)
+      .get(".carcard:first-child .HEAP_Profile_Btn_EditCarDetails")
       .click()
       .wait(3000)
       .url()
@@ -239,7 +191,7 @@ describe("بررسی صفحه تکمیل ثبت نام", () => {
       .wait(3000)
       .url()
       .should("contain", "/user")
-      .get(".HEAP_Profile_Btn_ChangeCarTiming ")
+      .get(".carcard:first-child .HEAP_Profile_Btn_ChangeCarTiming ")
       .click()
       .wait(3000)
       .url()
@@ -247,12 +199,12 @@ describe("بررسی صفحه تکمیل ثبت نام", () => {
       .get("[name=price_per_day]")
       .type(500000)
       .get(".Blue_BTN.local_style.HEAP_SetCarTiming_Btn_Submit")
-      .click()
-      .get(".HEAP_Profile_Btn_Delete")
       .click();
-    cy.on("window:confirm", () => true)
-      .get(".Profile_car_container .carcard")
-      .should("not.exist");
+    //   .get(".HEAP_Profile_Btn_Delete")
+    //   .click();
+    // cy.on("window:confirm", () => true)
+    //   .get(".Profile_car_container .carcard")
+    //   .should("not.exist");
   });
 });
 

@@ -26,6 +26,8 @@ describe("بررسی صفحه اجاره", () => {
       .children(".QuestionPart")
       .should("have.class", "activeQA");
     cy.get("[data-test-id=rent_add_car]")
+      .should("have.attr", "href", "/join-us")
+      .get(".second_container .add_car_section a:last-child")
       .should("have.attr", "href", "/add-car")
       .click()
       // .intercept("/login")

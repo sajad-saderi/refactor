@@ -4,7 +4,7 @@ import random_number_generator from "../../utils/random_number_generator";
 const core_url = "https://core.sepris.com/core";
 let home = "http://localhost:3000";
 let user_info = 0;
-let cell_phone = `09380158835`;
+let cell_phone = Cypress.env("CELL_A");
 
 describe("بررسی صفحه پروفایل کاربری", () => {
   beforeEach(() => {
@@ -22,7 +22,8 @@ describe("بررسی صفحه پروفایل کاربری", () => {
         },
       }).then((data) => {
         user_info = data.body;
-        cy.get(".first_element_li")
+        cy.wait(2000)
+          .get(".first_element_li")
           .click()
           .get(".Profile_info_container .user_information p ")
           .click()
@@ -38,56 +39,48 @@ describe("بررسی صفحه پروفایل کاربری", () => {
           .click()
           .get(".change_image_container + .text_input_container input")
           .clear()
-          .type("sajad")
+          .type("Cypress_")
           .get(".Blue_BTN.local_class")
           .click()
           .wait(3000)
           .get(".first_element_li")
           .click()
-          .get(".Profile_car_container .carcard")
-          .eq(0)
-          .children(".edit_part")
-          .children(".icon_container")
-          .children(".HEAP_Profile_Btn_Delete")
-          .click();
-        cy.on("window:confirm", () => true)
-          .get(".Profile_car_container .carcard")
-          .should("not.exist")
           // .get(".back_draw")
           // .click({ force: true })
-          .get(".Profile_car_container .carcard")
-          .eq(0)
-          .children(".edit_part")
-          .children(".icon_container")
-          .children(".HEAP_Profile_Btn_EditCarDetails")
+          .get(".carcard:first-child .HEAP_Profile_Btn_EditCarDetails")
           .click()
           .wait(3000)
           .url()
           .should("contain", "/add-car")
           .go("back")
           .wait(2000)
-          .get(".Profile_car_container .carcard")
-          .eq(0)
-          .children(".edit_part")
-          .children(".HEAP_Profile_Btn_ChangeCarTiming ")
+          .get(".carcard:first-child .HEAP_Profile_Btn_ChangeCarTiming ")
           .click()
           .wait(3000)
           .url()
           .should("contain", "/set-car-timing")
           .go("back")
-          .get(".Profile_car_container .carcard")
-          .eq(0)
-          .children(".edit_part")
-          .children(".HEAP_Profile_Btn_OutOfService")
-          .click()
-          .get(".toast_div")
           .get(".Blue_BTN.HEAP_Profile_Btn_AddCar")
           .click()
           .wait(2000)
           .url()
           .should("contain", "/add-car")
           .go("back")
-          .wait(2000)
+          .wait(3000);
+        if (
+          !!document.querySelector(
+            ".carcard:last-child [data-test-id=OUT_OF_SERVICE]"
+          )
+        ) {
+          cy.get(".carcard:last-child [data-test-id=OUT_OF_SERVICE]")
+            .click()
+            .get(".toast_div")
+            .should("exist");
+        }
+        cy.get(".carcard:first-child .HEAP_Profile_Btn_Delete").click();
+        cy.on("window:confirm", () => true)
+          .get(".Profile_car_container .carcard")
+          .should("not.exist")
           .get(".Exit")
           .click();
       });

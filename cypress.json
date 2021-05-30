@@ -4,6 +4,6 @@
     "DEV_HOME": "http://localhost:3000/",
     "PRO_HOME": "http://sepris.com/",
     "CELL_A": "09000000000",
-    "CeELL_B": "09000000001"
+    "CELL_B": "09000000001"
   }
 }

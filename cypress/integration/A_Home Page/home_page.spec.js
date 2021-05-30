@@ -57,21 +57,21 @@ describe("تست یو-آی صفحه خانه", () => {
     // .........................
     // CONTENT SECTION
     cy.get(".second_container .add_car_section .add_car_custom").contains(
-      "ماشین‌تان را اضافه کنید"
+      "تخمین درآمد ماهیانه"
     );
     cy.get(".second_container .add_car_section a").contains(
-      "تخمین درآمد ماهیانه"
+      "ماشین‌تان را اضافه کنید"
     );
     cy.get(".second_container .add_car_section .add_car_custom")
       .should("have.css", "background-color")
       .and("contain", "rgb(192, 109, 170)");
     cy.get(".second_container .add_car_section .add_car_custom")
       .should("have.attr", "href")
-      .and("equal", "/add-car");
+      .and("equal", "/join-us");
     cy.get(".second_container .add_car_section a:last-child").should(
       "have.attr",
       "href",
-      "/join-us"
+      "/add-car"
     );
 
     // .........................
@@ -152,22 +152,20 @@ describe("تست یو-آی صفحه خانه", () => {
   // .........................
   // CLICK ON SEARCH BUTTON FUNCTIONALITY
   it(`چک کردن کلیک بر روی دکمه 'جستجو' و رفتن به صفحه نتایج برای شهر تهران در تاریخ  رفت ${date.from_date_form} و برگشت ${date.to_date_form}برای نمایش 15 تکرار، قیمت زیاد به کم`, () => {
-    cy.intercept(
-      "GET",
-      core_url +
-        `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
-    )
-      .as("rentalCarList")
-      .get(".search_box form .search_Btn")
+    cy.get(".search_box form .search_Btn")
       .click()
       .url()
       .should(
         "contain",
         `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
       )
-      .wait("@rentalCarList")
+      .request(
+        "GET",
+        core_url +
+          `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
+      )
       .then((result) => {
-        expect(result.response.statusCode).equal(200);
+        expect(result.status).equal(200);
         cy.wait(2000);
         cy.go("back");
       });

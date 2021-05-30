@@ -4,7 +4,7 @@ import random_number_generator from "../../utils/random_number_generator";
 const core_url = "https://core.sepris.com/core";
 let home = "http://localhost:3000";
 let user_info = null;
-let cell_phone = `09380158835`;
+let cell_phone = Cypress.env("CELL_A");
 
 describe("بررسی صفحه پروفایل کاربری", () => {
   beforeEach(() => {
