@@ -29,7 +29,8 @@ const Success_payment = () => {
       pageTitle: language.next_seo.title,
     });
     // logPageView();
-    fetchAPI(Router.router.query.id);
+
+    fetchAPI(window.location.search.match(/(\d+)/)[0]);
   }, []);
 
   /**
@@ -42,6 +43,22 @@ const Success_payment = () => {
       const Order_res: any = await GET_ORDER_REQUEST({ token, id });
       setRent_search_dump(Order_res.data.rent_search_dump);
       setRenter(Order_res.data.renter);
+      console.log({
+        event: "purchase",
+        transactionId: Order_res.data.id,
+        transactionTotal: Order_res.data.rent_search_dump.total_price,
+        transactionProducts: [
+          {
+            sku: Order_res.data.rent_search_dump.id,
+            name: Order_res.data.rent_search_dump.car.name.fa,
+            category:
+              Order_res.data.rent_search_dump.car.category_set[0].name.fa,
+            price: Order_res.data.rent_search_dump.avg_price_per_day,
+            quantity: Order_res.data.rent_search_dump.no_of_days,
+          },
+        ],
+      });
+
       window["dataLayer"].push({
         event: "purchase",
         transactionId: Order_res.data.id,

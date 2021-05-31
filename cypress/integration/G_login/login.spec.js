@@ -20,7 +20,10 @@ describe("بررسی صفحه لاگین", () => {
           .should("contain", "/login")
           .go("back")
           .get(".add_car_section .Blue_BTN.add_car_custom")
+          .should("have.attr", "href", "/join-us")
+          .get(".second_container .add_car_section a:last-child")
           .click()
+          .wait(2000)
           .url()
           .should("contain", "/login")
           .visit(home)
@@ -66,7 +69,7 @@ describe("بررسی صفحه لاگین", () => {
       .should("contain", "/login");
   });
   it("بررسی عملکرد باکس لاگین", () => {
-    cy.get(".Blue_BTN.add_car_custom")
+    cy.get(".second_container .add_car_section a:last-child")
       .click()
       .url()
       .should("contain", "/login")
@@ -136,7 +139,7 @@ describe("بررسی صفحه لاگین", () => {
         .should("have.length", 3)
         // .intercept("/add-car")
         // .as("go_to_add_car_after_login")
-        .get(".Blue_BTN.add_car_custom")
+        .get(".second_container .add_car_section a:last-child")
         .click()
         // .wait("@go_to_add_car_after_login")
         .then(() => {
