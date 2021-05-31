@@ -141,7 +141,10 @@ const Landing_page_container = ({
   useEffect(() => {
     // Glob_route = `/rent/${router.query.id}`;
     const { search_params } = landing_data;
+
     const url_checked = UrlChecker({ ...router.query, ...search_params });
+    staticRoute = { ...router.query, ...search_params };
+
     if (url_checked.location_id) {
       filtersChecker.Location = true;
       setCarLocationName(url_checked.location_n);
@@ -465,7 +468,6 @@ const Landing_page_container = ({
     sliderMin,
     sliderMax,
   }) => {
-    staticRoute = {};
     let min = params.min_price ? params.min_price : sliderMin;
     let max = params.max_price ? params.max_price : sliderMax;
     if (params.min_price || params.max_price) {
