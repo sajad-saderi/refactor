@@ -465,6 +465,7 @@ const Landing_page_container = ({
     sliderMin,
     sliderMax,
   }) => {
+    staticRoute = {};
     let min = params.min_price ? params.min_price : sliderMin;
     let max = params.max_price ? params.max_price : sliderMax;
     if (params.min_price || params.max_price) {
