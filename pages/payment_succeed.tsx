@@ -51,8 +51,7 @@ const Success_payment = () => {
           {
             sku: Order_res.data.rent_search_dump.id,
             name: Order_res.data.rent_search_dump.car.name.fa,
-            category:
-              Order_res.data.rent_search_dump.car.category_set[0].name.fa,
+            category: Order_res.data.rent_search_dump.car.body_style.name.fa,
             price: Order_res.data.rent_search_dump.avg_price_per_day,
             quantity: Order_res.data.rent_search_dump.no_of_days,
           },
@@ -67,8 +66,7 @@ const Success_payment = () => {
           {
             sku: Order_res.data.rent_search_dump.id,
             name: Order_res.data.rent_search_dump.car.name.fa,
-            category:
-              Order_res.data.rent_search_dump.car.category_set[0].name.fa,
+            category: Order_res.data.rent_search_dump.car.body_style.name.fa,
             price: Order_res.data.rent_search_dump.avg_price_per_day,
             quantity: Order_res.data.rent_search_dump.no_of_days,
           },

@@ -6,16 +6,16 @@ import dynamic from "next/dynamic";
 const Checkbox = dynamic(() => import("../../components/form/Checkbox"));
 const DropdownSearch = dynamic(() => import("../../components/form/Dropdown"));
 const Spinner = dynamic(() => import("../../components/Spinner"));
-const PriceSlider = dynamic(() =>
-  import("../../components/filters/PriceSlider/PriceSlider")
-);
+// const PriceSlider = dynamic(() =>
+//   import("../../components/filters/PriceSlider/PriceSlider")
+// );
 // import Checkbox from "../../components/form/Checkbox";
 import filterContext from "../../context/filter-context";
 // import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
 import { IoIosOptions, IoMdClose } from "react-icons/io";
 // import Spinner from "../../components/Spinner";
-// import PriceSlider from "../../components/filters/PriceSlider/PriceSlider";
+import PriceSlider from "../../components/filters/PriceSlider/PriceSlider";
 
 let body_style_list = [];
 
