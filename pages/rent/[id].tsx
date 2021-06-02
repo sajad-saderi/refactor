@@ -13,9 +13,10 @@ import Router from "next/router";
 import language from "../../public/languages/fa/dynamic_pages.json";
 // import { logPageView } from "../../utils/analytics";
 
-const Landing_page_container = dynamic(() =>
-  import("../../src/containers/LandignPageContainer")
-);
+// const Landing_page_container = dynamic(() =>
+// import("../../src/containers/LandignPageContainer")
+// );
+import Landing_page_container from "../../src/containers/LandignPageContainer";
 
 const Rent_dynamic = ({ Landing_page, content }) => {
   useEffect(() => {

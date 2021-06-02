@@ -60,7 +60,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       if (
         location_storage.value == 1 ||
         location_storage.value == 2 ||
-        location_storage.value == 1657
+        location_storage.value !== 3 ||
+        location_storage.value == 1657 ||
+        location_storage.value !== 1656 ||
+        location_storage.value !== 1660 ||
+        location_storage.value !== 1690 ||
+        location_storage.value !== 1655
       ) {
         setLocationId(location_storage.value);
         setLocationName(location_storage.text);
@@ -128,6 +133,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       if (dynamic) {
         searchSubmit({
           location_id: LocationId,
+          location_name: LocationName,
           date: {
             // convert dates to standard structure
             Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
@@ -207,7 +213,16 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             }
             Select={(i) => {
               localStorage["User_Location"] = JSON.stringify(i);
-              if (i.value !== 1 && i.value !== 2 && i.value !== 1657) {
+              if (
+                i.value !== 1 &&
+                i.value !== 2 &&
+                i.value !== 3 &&
+                i.value !== 1657 &&
+                i.value !== 1656 &&
+                i.value !== 1660 &&
+                i.value !== 1690 &&
+                i.value !== 1655
+              ) {
                 // setLocationId(i.key);
                 MODAL_CONTEXT.modalHandler("TellMe");
               } else {

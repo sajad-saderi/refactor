@@ -56,6 +56,7 @@ let result_key = null;
 // this object check which filter is activated
 // you can combined several filter in a single search request
 let filtersChecker = {
+  location: false,
   price: false,
   with_driver: false,
   without_driver: false,
@@ -80,6 +81,7 @@ const Search_result = ({ language }: ISearch_result) => {
   const [sliderRange, setSliderRange] = useState([]);
   const [sliderPrice, setSliderPrice] = useState([]);
   const [filterReset, setFilterReset] = useState({
+    location: false,
     price: false,
     with_driver: false,
     without_driver: false,
@@ -89,6 +91,8 @@ const Search_result = ({ language }: ISearch_result) => {
     car_id: false,
     category_id: false,
   });
+  const [carLocationName, setCarLocationName] = useState(null);
+
   const router = useRouter();
   const new_search_ref = useRef(null);
 
@@ -98,6 +102,9 @@ const Search_result = ({ language }: ISearch_result) => {
 
     if (url_checked.location_id) {
       Location = url_checked.location_id;
+      filtersChecker.location = true;
+      setCarLocationName(url_checked.location_n);
+      location_n = url_checked.location_name;
     }
     location_n = url_checked.location_name;
     Start_date = url_checked.start_date;
@@ -192,6 +199,7 @@ const Search_result = ({ language }: ISearch_result) => {
       category_id = null;
       result_key = null;
       filtersChecker = {
+        location: false,
         price: false,
         with_driver: false,
         without_driver: false,
@@ -383,6 +391,11 @@ const Search_result = ({ language }: ISearch_result) => {
 
   const clearReset = (v) => {
     switch (v) {
+      case "location":
+        setFilterReset((filterReset) => {
+          return { ...filterReset, location: false };
+        });
+        break;
       case "price":
         setFilterReset((filterReset) => {
           return { ...filterReset, price: false };
@@ -422,6 +435,7 @@ const Search_result = ({ language }: ISearch_result) => {
 
       default:
         setFilterReset({
+          location: false,
           price: false,
           with_driver: false,
           without_driver: false,
@@ -538,11 +552,14 @@ const Search_result = ({ language }: ISearch_result) => {
               }}
             >
               {!showSearch ? (
-                <p className='count_bar_count'>{`${total_count}${
-                  language.count_bar_khodro
-                }${result[0].start_date.slice(5)}${
-                  language.count_bar_ta
-                }${result[0].end_date.slice(5)}`}</p>
+                <p className='count_bar_count'>
+                  {`${total_count}${
+                    language.count_bar_khodro
+                  }${result[0].start_date.slice(5)}${
+                    language.count_bar_ta
+                  }${result[0].end_date.slice(5)}`}{" "}
+                  در {carLocationName}
+                </p>
               ) : null}
               <p className='change_search_btn'>
                 {showSearch ? (
@@ -571,6 +588,11 @@ const Search_result = ({ language }: ISearch_result) => {
               language={language}
               dynamic={true}
               searchSubmit={(v) => {
+                Location = v.location_id;
+                location_n = v.location_name;
+                staticRoute.location_name = v.location_name;
+                setCarLocationName(v.location_name);
+                staticRoute.location_id = v.location_id;
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
                 setShowSearch(false);
@@ -632,6 +654,31 @@ const Search_result = ({ language }: ISearch_result) => {
         </div>
       </section>
       <section className='responsive minimal_filters'>
+        {filtersChecker.location ? (
+          <p
+            className='minimal_filter_tags'
+            onClick={() => {
+              // setFilterReset((filterReset) => {
+              //   return { ...filterReset, location: true };
+              // });
+              loadMoreCar = false;
+              // filtersChecker.location = false;
+              staticRoute.location_id = 1;
+              Location = 1;
+              staticRoute.location_name = "تهران";
+              setCarLocationName("تهران");
+              UrlCreator({
+                query: staticRoute,
+                route: router.route,
+                cb: UrlUpdater,
+              });
+              initSearch();
+            }}
+          >
+            <IoMdClose size='1.3rem' color='#ababab' />
+            {`${language.minimal_filters_car_location}${carLocationName}`}
+          </p>
+        ) : null}
         {filtersChecker.price ? (
           <p
             className='minimal_filter_tags'

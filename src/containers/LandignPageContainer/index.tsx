@@ -581,11 +581,14 @@ const Landing_page_container = ({
               }}
             >
               {!showSearch ? (
-                <p className='count_bar_count'>{`${total_count}${
-                  language.count_bar_khodro
-                }${result[0].start_date.slice(5)}${
-                  language.count_bar_ta
-                }${result[0].end_date.slice(5)}`}</p>
+                <p className='count_bar_count'>
+                  {`${total_count}${
+                    language.count_bar_khodro
+                  }${result[0].start_date.slice(5)}${
+                    language.count_bar_ta
+                  }${result[0].end_date.slice(5)}`}
+                  {location_n ? ` در ${location_n}` : null}
+                </p>
               ) : null}
               <p className='change_search_btn HEAP_LandingPages_Btn_ChangeSearch'>
                 {showSearch ? (
@@ -618,6 +621,11 @@ const Landing_page_container = ({
                 if (v.location_id !== 1) {
                   filtersChecker.Location = true;
                 }
+                setCarLocationName(v.location_name);
+                Location = v.location_id;
+                location_n = v.location_name;
+                staticRoute.location_name = v.location_name;
+                staticRoute.location_id = v.location_id;
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
                 setShowSearch(false);

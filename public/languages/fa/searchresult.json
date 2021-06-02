@@ -27,6 +27,7 @@
     "error_end_date": "تاریخ پایان را انتخاب کنید",
     "btn": "جستجو"
   },
+  "minimal_filters_car_location": "خودروهای ",
   "price_sort_container_high_to_low": "قیمت زیاد به کم",
   "price_sort_container_low_to_high": "قیمت کم به زیاد",
   "price_sort_container_advance_search_btn": "جستجوی پیشرفته",
