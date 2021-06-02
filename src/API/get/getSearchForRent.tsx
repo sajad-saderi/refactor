@@ -52,6 +52,7 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
               results: [],
               total_count: response.data.total_count,
               count: response.data.count,
+              result_key: response.data.result_key,
               remained_count: response.data.remained_count,
               ...statsObj,
             });
@@ -60,6 +61,7 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
               results,
               total_count: response.data.total_count,
               count: response.data.count,
+              result_key: response.data.result_key,
               remained_count: response.data.remained_count,
               ...statsObj,
             });

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const SearchResultList = dynamic(() => import("../car/search-result"));
 
-const Filters = dynamic(() => import("../Filters"));
+// const Filters = dynamic(() => import("../Filters"));
 const Search = dynamic(() => import("../Search"));
 const Spinner = dynamic(() => import("../../components/Spinner"));
 
@@ -24,7 +24,7 @@ import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
 import search_query_builder from "../../../utils/search-query-builder";
 
-// import Filters from "../Filters";
+import Filters from "../Filters";
 // import Search from "../Search";
 
 // let Glob_route = null;
@@ -52,6 +52,7 @@ let brand_id = null;
 let brand_name = null;
 let car_id = null;
 let car_name = null;
+let result_key = null;
 
 // this object check which filter is activated
 // you can combined several filter in a single search request
@@ -124,6 +125,7 @@ const Landing_page_container = ({
       brand_id = null;
       brand_name = null;
       car_id = null;
+      result_key = null;
       filtersChecker = {
         Location: false,
         price: false,
@@ -249,32 +251,51 @@ const Landing_page_container = ({
     //   queryString += `&car_id=${car_id}`;
     // }
     try {
-      let searchQuery = search_query_builder({
-        location_id: Location,
-        start_date: Start_date,
-        end_date: End_date,
-        price_order: o,
-        min_price: filtersChecker.price ? (price.min ? price.min : null) : null,
-        max_price: filtersChecker.price ? (price.max ? price.max : null) : null,
-        deliver_at_renters_place: filtersChecker.deliver_at_renters_place
-          ? 1
-          : 0,
-        with_driver: filtersChecker.with_driver ? 1 : 0,
-        without_driver: filtersChecker.without_driver ? 1 : 0,
-        body_style_id: filtersChecker.body_style_id
-          ? body_style_id.join(",")
-          : null,
-        brand_id: filtersChecker.brand_id ? brand_id : null,
-        car_id: filtersChecker.car_id ? car_id : null,
-        [searchParamKey]: searchParamKey
-          ? landing_data.search_params[searchParamKey]
-          : null,
-        page,
-        limit: 15,
-      });
+      let searchQuery = null;
+      if (loadMoreCar) {
+        searchQuery = search_query_builder({
+          result_key,
+          page,
+          limit: 15,
+          price_order: o,
+        });
+      } else {
+        searchQuery = search_query_builder({
+          location_id: Location,
+          start_date: Start_date,
+          end_date: End_date,
+          price_order: o,
+          min_price: filtersChecker.price
+            ? price.min
+              ? price.min
+              : null
+            : null,
+          max_price: filtersChecker.price
+            ? price.max
+              ? price.max
+              : null
+            : null,
+          deliver_at_renters_place: filtersChecker.deliver_at_renters_place
+            ? 1
+            : 0,
+          with_driver: filtersChecker.with_driver ? 1 : 0,
+          without_driver: filtersChecker.without_driver ? 1 : 0,
+          body_style_id: filtersChecker.body_style_id
+            ? body_style_id.join(",")
+            : null,
+          brand_id: filtersChecker.brand_id ? brand_id : null,
+          car_id: filtersChecker.car_id ? car_id : null,
+          [searchParamKey]: searchParamKey
+            ? landing_data.search_params[searchParamKey]
+            : null,
+          page,
+          limit: 15,
+        });
+      }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         searchQuery,
       });
+      result_key = res.result_key;
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
       filter_checker_controller({

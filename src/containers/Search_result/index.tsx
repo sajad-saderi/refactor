@@ -51,6 +51,7 @@ let brand_name = null;
 let car_id = null;
 let car_name = null;
 let category_id = null;
+let result_key = null;
 
 // this object check which filter is activated
 // you can combined several filter in a single search request
@@ -189,6 +190,7 @@ const Search_result = ({ language }: ISearch_result) => {
       brand_name = null;
       car_id = null;
       category_id = null;
+      result_key = null;
       filtersChecker = {
         price: false,
         with_driver: false,
@@ -218,32 +220,51 @@ const Search_result = ({ language }: ISearch_result) => {
       if (JumpTo === "1") {
         limit = 15 * +jsCookie.get("page");
       }
-      let searchQuery = search_query_builder({
-        location_id: Location,
-        start_date: Start_date,
-        end_date: End_date,
-        price_order: o,
-        min_price: filtersChecker.price ? (price.min ? price.min : null) : null,
-        max_price: filtersChecker.price ? (price.max ? price.max : null) : null,
-        deliver_at_renters_place: filtersChecker.deliver_at_renters_place
-          ? 1
-          : 0,
-        with_driver: filtersChecker.with_driver ? 1 : 0,
-        without_driver: filtersChecker.without_driver ? 1 : 0,
-        body_style_id: filtersChecker.body_style_id
-          ? body_style_id.join(",")
-          : null,
-        brand_id: filtersChecker.brand_id ? brand_id : null,
-        car_id: filtersChecker.car_id ? car_id : null,
-        category_id: filtersChecker.category_id ? category_id : null,
-        page,
-        limit,
-      });
+      let searchQuery = null;
+      if (loadMoreCar) {
+        searchQuery = search_query_builder({
+          result_key,
+          price_order: o,
+          page,
+          limit,
+        });
+      } else {
+        searchQuery = search_query_builder({
+          location_id: Location,
+          start_date: Start_date,
+          end_date: End_date,
+          price_order: o,
+          min_price: filtersChecker.price
+            ? price.min
+              ? price.min
+              : null
+            : null,
+          max_price: filtersChecker.price
+            ? price.max
+              ? price.max
+              : null
+            : null,
+          deliver_at_renters_place: filtersChecker.deliver_at_renters_place
+            ? 1
+            : 0,
+          with_driver: filtersChecker.with_driver ? 1 : 0,
+          without_driver: filtersChecker.without_driver ? 1 : 0,
+          body_style_id: filtersChecker.body_style_id
+            ? body_style_id.join(",")
+            : null,
+          brand_id: filtersChecker.brand_id ? brand_id : null,
+          car_id: filtersChecker.car_id ? car_id : null,
+          category_id: filtersChecker.category_id ? category_id : null,
+          page,
+          limit,
+        });
+      }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         searchQuery,
       });
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
+      result_key = res.result_key;
       filter_checker_controller({
         params: res.extra_info.params,
         pre_loads: res.extra_info.pre_loads,
