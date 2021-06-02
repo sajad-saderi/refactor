@@ -654,7 +654,7 @@ const Search_result = ({ language }: ISearch_result) => {
         </div>
       </section>
       <section className='responsive minimal_filters'>
-        {filtersChecker.location ? (
+        {/* {filtersChecker.location ? (
           <p
             className='minimal_filter_tags'
             onClick={() => {
@@ -678,7 +678,7 @@ const Search_result = ({ language }: ISearch_result) => {
             <IoMdClose size='1.3rem' color='#ababab' />
             {`${language.minimal_filters_car_location}${carLocationName}`}
           </p>
-        ) : null}
+        ) : null} */}
         {filtersChecker.price ? (
           <p
             className='minimal_filter_tags'
