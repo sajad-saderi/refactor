@@ -78,6 +78,7 @@ describe("بررسی صفحه پروفایل کاربری", () => {
             .should("exist");
         }
         cy.get(".carcard:first-child .HEAP_Profile_Btn_Delete").click();
+        cy.get(".HEAP_Profile_Btn_OutOfService").click();
         cy.on("window:confirm", () => true)
           .get(".Profile_car_container .carcard")
           .should("not.exist")

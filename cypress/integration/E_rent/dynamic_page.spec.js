@@ -42,6 +42,8 @@ describe("بررسی صفحه نتایج داینامیک خودرو", () => {
         )
           .should("exist")
           .click()
+          .url()
+          .should("contain", "location_id=1")
           .request(
             "GET",
             core_url +
@@ -51,7 +53,7 @@ describe("بررسی صفحه نتایج داینامیک خودرو", () => {
             cy.get(".minimal_filter_tags")
               .click()
               .url()
-              .should("not.contain", "category_id=4");
+              .should("not.contain", "location_id=1");
           });
       });
   });

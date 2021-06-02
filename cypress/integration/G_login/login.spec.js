@@ -159,7 +159,8 @@ describe("بررسی صفحه لاگین", () => {
                 .click()
                 // .wait("@profile")
                 .then(() => {
-                  cy.url()
+                  cy.wait(3000)
+                    .url()
                     .should("contain", "/user")
                     .visit(home)
                     .get(".Blue_BTN.search_Btn.HEAP_Home_Btn_Search")

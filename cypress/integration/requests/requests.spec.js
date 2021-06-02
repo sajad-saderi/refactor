@@ -31,7 +31,12 @@ describe("بررسی صفحه پروفایل کاربری", () => {
           .get(".active + p")
           .click()
           .get(".orders_tabs p:first-child")
-          .should("not.have.class", "active");
+          .should("not.have.class", "active")
+          .get(".first_element_li")
+          .click()
+          .wait(3000)
+          .get(".HEAP_Profile_Btn_OutOfService")
+          .click();
       });
     });
   });
