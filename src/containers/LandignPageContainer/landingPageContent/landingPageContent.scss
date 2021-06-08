@@ -1,5 +1,24 @@
 @import "../../../styles/colors";
 
+.search_result_section {
+  .carCart {
+    width: 32%;
+    height: auto;
+    .info_box {
+      .tags_container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        height: 5.5rem;
+        li {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}
+
 .landing_dynamic_content {
   margin-top: 3rem;
   box-shadow: $box_shadow;
