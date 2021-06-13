@@ -5,6 +5,7 @@ const withCSS = require("@zeit/next-css");
 const withImages = require("next-images");
 const withFonts = require("next-fonts");
 const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
 
 const dev = process.env.NODE_ENV === "production";
 
@@ -15,8 +16,8 @@ module.exports = withPWA(
         withImages({
           pwa: {
             disable: dev ? false : true,
-            dest: "public",
             runtimeCaching,
+            dest: "public",
           },
           env: {
             SITE_URL: "https://sepris.com",
