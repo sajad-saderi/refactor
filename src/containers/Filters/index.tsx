@@ -338,29 +338,29 @@ const Filters = ({
               setwith_driver(1);
             }}
           />
-          {/* <Checkbox
-          initialValue={[without_driver]}
-          data={[
-            {
-              text: language.filter.filter_section_check_box_without_driver,
-              value: without_driver,
-            },
-          ]}
-          name='without_driver'
-          clearField={(item) => {
-            FilterContext.setDataForSearch({
-              without_driver: { status: false, value: 0 },
-            });
-            setwithout_driver(0);
-          }}
-          Select={(item) => {
-            // add this filter to the filter context
-            FilterContext.setDataForSearch({
-              without_driver: { status: true, value: 1 },
-            });
-            setwithout_driver(1);
-          }}
-        /> */}
+          <Checkbox
+            initialValue={[without_driver]}
+            data={[
+              {
+                text: language.filter.filter_section_check_box_without_driver,
+                value: without_driver,
+              },
+            ]}
+            name='without_driver'
+            clearField={(item) => {
+              FilterContext.setDataForSearch({
+                without_driver: { status: false, value: 0 },
+              });
+              setwithout_driver(0);
+            }}
+            Select={(item) => {
+              // add this filter to the filter context
+              FilterContext.setDataForSearch({
+                without_driver: { status: true, value: 1 },
+              });
+              setwithout_driver(1);
+            }}
+          />
         </div>
 
         <div className='body_style_type_wrapper'>

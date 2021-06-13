@@ -107,49 +107,58 @@ const CarPage = ({
 
   useEffect(() => {
     if (expired) {
-      DateSetter(id);
+      // DateSetter(id);
+      setShowCalender(true);
+      fetchData({ id, start_date, end_date });
     }
     if (!car_Information) {
       // if the page have search id we can get the price
       if (initial_search_id) {
         fetchData({ search_id: initial_search_id });
-        if (localStorage["start"]) {
-          let startDate = JSON.parse(localStorage["start"]);
-          let endDate = JSON.parse(localStorage["end"]);
-          setDayRange({
-            from: {
-              year: startDate.year,
-              month: startDate.month,
-              day: startDate.day,
-            },
-            to: { year: endDate.year, month: endDate.month, day: endDate.day },
-          });
-          setShowCalender(true);
-        }
+        // if (localStorage["start"]) {
+        //   let startDate = JSON.parse(localStorage["start"]);
+        //   let endDate = JSON.parse(localStorage["end"]);
+        // }
       }
       // if doesn't have search id and it's not mine the user can select day range and get price and search id
       else {
-        DateSetter(id);
+        // DateSetter(id);
+        setShowCalender(true);
+        fetchData({ id, start_date, end_date });
       }
     } else {
       // fetchData({ search_id });
       if (initial_search_id) {
         search_id = initial_search_id;
       }
+      setDayRange({
+        from: {
+          year: +start_date.split("/")[0],
+          month: +start_date.split("/")[1],
+          day: +start_date.split("/")[2],
+        },
+        to: {
+          year: +end_date.split("/")[0],
+          month: +end_date.split("/")[1],
+          day: +end_date.split("/")[2],
+        },
+      });
+      setShowCalender(true);
       set_CarInformation(car_Information);
-      if (start_date) {
-        let startDate = start_date.split("/");
-        let endDate = end_date.split("/");
-        setDayRange({
-          from: {
-            year: +startDate[0],
-            month: +startDate[1],
-            day: +startDate[2],
-          },
-          to: { year: +endDate[0], month: +endDate[1], day: +endDate[2] },
-        });
-        setShowCalender(true);
-      }
+
+      // if (start_date) {
+      //   let startDate = start_date.split("/");
+      //   let endDate = end_date.split("/");
+      //   setDayRange({
+      //     from: {
+      //       year: +startDate[0],
+      //       month: +startDate[1],
+      //       day: +startDate[2],
+      //     },
+      //     to: { year: +endDate[0], month: +endDate[1], day: +endDate[2] },
+      //   });
+      //   setShowCalender(true);
+      // }
       // if (localStorage["start"]) {
       //   let startDate = JSON.parse(localStorage["start"]);
       //   let endDate = JSON.parse(localStorage["end"]);
@@ -224,6 +233,20 @@ const CarPage = ({
       const res: any = await REQUEST_GET_RENTAL_CAR(localData);
       set_CarInformation(res);
       setShowPriceLoading(false);
+
+      setDayRange({
+        from: {
+          year: +res.start_date.split("/")[0],
+          month: +res.start_date.split("/")[1],
+          day: +res.start_date.split("/")[2],
+        },
+        to: {
+          year: +res.end_date.split("/")[0],
+          month: +res.end_date.split("/")[1],
+          day: +res.end_date.split("/")[2],
+        },
+      });
+      setShowCalender(true);
     } catch (error) {
       if (error === "Not found!") {
         router.push("/404");
@@ -245,19 +268,20 @@ const CarPage = ({
   };
 
   const DateSetter = (id) => {
-    if (localStorage["start"]) {
-      fetchData({
-        id,
-        from: JSON.parse(localStorage["start"]),
-        to: JSON.parse(localStorage["end"]),
-      });
-    } else {
-      let { from, to } = payBackInObject(6, 3);
-      // just get the main info about the car
-      // show calender if the dates are not on storage
-      setShowCalender(true);
-      fetchData({ id, from, to });
-    }
+    // if (localStorage["start"]) {
+    //   fetchData({
+    //     id,
+    //     from: JSON.parse(localStorage["start"]),
+    //     to: JSON.parse(localStorage["end"]),
+    //   });
+    // } else {
+    let { from, to } = payBackInObject(6, 3);
+    // just get the main info about the car
+    // show calender if the dates are not on storage
+    setShowCalender(true);
+    fetchData({ id, from, to });
+
+    // }
   };
 
   const set_CarInformation = (res) => {

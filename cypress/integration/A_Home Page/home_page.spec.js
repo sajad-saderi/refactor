@@ -41,7 +41,7 @@ describe("تست یو-آی صفحه خانه", () => {
     // SEARCH BOX AND BANNER
     cy.get("h1").contains("سِپریس، اجاره آسان خودرو");
     cy.get(".Homepage .banner h2").contains(
-      "ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید."
+      "ماشینی که دوست دارید را با خیال راحت اجاره کنید."
     );
     cy.get(".search_box form .search_box_div .label").contains(
       "خودرو را کجا تحویل میگیرید؟"

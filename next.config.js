@@ -4,20 +4,20 @@ const withSass = require("@zeit/next-sass");
 const withCSS = require("@zeit/next-css");
 const withImages = require("next-images");
 const withFonts = require("next-fonts");
-// const withPWA = require("next-pwa");
+const withPWA = require("next-pwa");
 
 const dev = process.env.NODE_ENV === "production";
 
-module.exports =
-  //  withPWA(
+module.exports = withPWA(
   withFonts(
     withCSS(
       withSass(
         withImages({
-          // pwa: {
-          //   disable: dev ? false : true,
-          //   dest: "public",
-          // },
+          pwa: {
+            disable: dev ? false : true,
+            dest: "public",
+            runtimeCaching,
+          },
           env: {
             SITE_URL: "https://sepris.com",
             PRODUCTION_ENDPOINT: "https://core.sepris.com",
@@ -34,5 +34,5 @@ module.exports =
         })
       )
     )
-  );
-// );
+  )
+);

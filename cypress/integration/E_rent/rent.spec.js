@@ -7,10 +7,7 @@ describe("بررسی صفحه اجاره", () => {
       .get(".banner h1")
       .should("contain", "لیست قیمت اجاره ماشین در سپریس")
       .get(".banner h2")
-      .should(
-        "contain",
-        "ماشینی که دوست دارید را پیدا کنید و با خیال راحت اجاره کنید."
-      )
+      .should("contain", "ماشینی که دوست دارید را با خیال راحت اجاره کنید.")
       .get("[data-test-id=QA_schema]")
       .should("have.attr", "itemtype", "https://schema.org/FAQPage")
       .children("div")
