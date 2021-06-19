@@ -141,8 +141,8 @@ export async function getServerSideProps(props) {
           car_Information: res,
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
-          start_date: res.start_date,
-          end_date: res.end_date,
+          start_date: res.start_date ? res.start_date : start_date,
+          end_date: res.end_date ? res.end_date : end_date,
           id,
         },
       };

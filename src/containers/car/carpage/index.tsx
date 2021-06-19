@@ -37,6 +37,7 @@ moment.loadPersian({ dialect: "persian-modern" });
 // let initial_offsetY = 0;
 // let scrollCount = 0;
 let search_id = null;
+let calenderClick = null;
 const CarPage = ({
   language,
   is_mine,
@@ -86,7 +87,7 @@ const CarPage = ({
   const [showCalender, setShowCalender] = useState(false);
   const [total_discount, setTotal_discount] = useState(false);
   const [total_discount_percent, setTotal_discount_percent] = useState(false);
-  const [calenderClick, setCalenderClick] = useState(false);
+  // const [calenderClick, setCalenderClick] = useState(false);
   const [showPriceLoading, setShowPriceLoading] = useState(false);
   const [availableCar, setAvailableCar] = useState(true);
   const [is_verified, setIs_verified] = useState(false);
@@ -193,6 +194,7 @@ const CarPage = ({
     // window.addEventListener("scroll", scrollHandler);
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
+      calenderClick = null;
       search_id = null;
       // window.removeEventListener("scroll", scrollHandler);
     };
@@ -247,6 +249,7 @@ const CarPage = ({
         },
       });
       setShowCalender(true);
+      // setCalenderClick(false);
     } catch (error) {
       if (error === "Not found!") {
         router.push("/404");
@@ -359,6 +362,8 @@ const CarPage = ({
   useEffect(() => {
     if (showCalender && calenderClick) {
       if (dayRange.from?.day && dayRange.to?.day) {
+        calenderClick = false;
+
         fetchData({ id });
         setShowDateText(true);
       }
@@ -616,7 +621,10 @@ const CarPage = ({
                     ) : (
                       <div
                         className='search_box_div'
-                        onClick={() => setCalenderClick(true)}
+                        onClick={() => {
+                          calenderClick = true;
+                          // setCalenderClick(true)
+                        }}
                       >
                         <div
                           className={[
@@ -907,7 +915,10 @@ const CarPage = ({
                 showCalender && !showDateText ? (
                   <div
                     className='search_box_div HEAP_Car_Input_Calender'
-                    onClick={() => setCalenderClick(true)}
+                    onClick={() => {
+                      calenderClick = true;
+                      // setCalenderClick(true)
+                    }}
                   >
                     <div
                       className={[
