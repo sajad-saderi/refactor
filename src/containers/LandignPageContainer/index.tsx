@@ -53,6 +53,9 @@ let brand_name = null;
 let car_id = null;
 let car_name = null;
 let result_key = null;
+let category_id = null;
+let category_name = "...";
+let inactive_the_category = null;
 
 // this object check which filter is activated
 // you can combined several filter in a single search request
@@ -65,6 +68,7 @@ let filtersChecker = {
   deliver_at_renters_place: false,
   brand_id: false,
   car_id: false,
+  category_id: false,
 };
 
 const Landing_page_container = ({
@@ -89,6 +93,7 @@ const Landing_page_container = ({
     deliver_at_renters_place: false,
     brand_id: false,
     car_id: false,
+    category_id: false,
   });
   const [carLocationName, setCarLocationName] = useState(null);
   const new_search_ref = useRef(null);
@@ -126,6 +131,9 @@ const Landing_page_container = ({
       brand_name = null;
       car_id = null;
       result_key = null;
+      category_name = null;
+      category_id = null;
+      inactive_the_category = null;
       filtersChecker = {
         Location: false,
         price: false,
@@ -135,6 +143,7 @@ const Landing_page_container = ({
         deliver_at_renters_place: false,
         brand_id: false,
         car_id: false,
+        category_id: false,
       };
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -180,6 +189,11 @@ const Landing_page_container = ({
     }
     without_driver = +url_checked.without_driver;
 
+    if (router.query.category_id) {
+      filtersChecker.category_id = true;
+    }
+    category_id = +url_checked.category_id;
+
     if (url_checked.body_style_id !== "") {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
@@ -214,7 +228,15 @@ const Landing_page_container = ({
     // set the filter name
     body_style_names = [];
     // setSliderRange([]);
-    const searchParamKey: any = Object.keys(landing_data.search_params);
+    // const searchParamKey: any = Object.keys(landing_data.search_params);
+
+    if (
+      Object.keys(landing_data.search_params)[0] === "category_id" &&
+      !inactive_the_category
+    ) {
+      filtersChecker.category_id = true;
+    }
+
     if (!loadMoreCar) {
       page = 1;
       setResult(null);
@@ -285,9 +307,10 @@ const Landing_page_container = ({
             : null,
           brand_id: filtersChecker.brand_id ? brand_id : null,
           car_id: filtersChecker.car_id ? car_id : null,
-          [searchParamKey]: searchParamKey
-            ? landing_data.search_params[searchParamKey]
-            : null,
+          category_id: filtersChecker.category_id ? category_id : null,
+          // [searchParamKey]: searchParamKey
+          //   ? landing_data.search_params[searchParamKey]
+          //   : null,
           page,
           limit: 15,
         });
@@ -304,6 +327,10 @@ const Landing_page_container = ({
         sliderMin: res.extra_info.avg_price_per_day_min,
         sliderMax: res.extra_info.avg_price_per_day_max,
       });
+
+      if (filtersChecker.category_id) {
+        category_name = res.extra_info.pre_loads.category_set[0].name.fa;
+      }
       setExtra_info(res.extra_info);
       if (loadMoreCar) {
         // add the new result to old result
@@ -317,6 +344,10 @@ const Landing_page_container = ({
       console.log("!Error", error);
     }
   }
+
+  // const pre_load_controller = (data) => {
+  //   const;
+  // };
 
   // adjust the filter object to send for search
   /**
@@ -446,6 +477,11 @@ const Landing_page_container = ({
           return { ...filterReset, car_id: false };
         });
         break;
+      case "category_id":
+        setFilterReset((filterReset) => {
+          return { ...filterReset, category_id: false };
+        });
+        break;
 
       default:
         setFilterReset({
@@ -457,6 +493,7 @@ const Landing_page_container = ({
           deliver_at_renters_place: false,
           brand_id: false,
           car_id: false,
+          category_id: false,
         });
         break;
     }
@@ -523,6 +560,11 @@ const Landing_page_container = ({
       filtersChecker.without_driver = true;
       without_driver = params.without_driver;
       staticRoute.without_driver = params.without_driver;
+    }
+    if (params.category_id) {
+      filtersChecker.category_id = true;
+      category_id = params.category_id;
+      staticRoute.category_id = params.category_id;
     }
     if (params.body_style_id) {
       filtersChecker.body_style_id = true;
@@ -757,6 +799,29 @@ const Landing_page_container = ({
           >
             <IoMdClose size='1.3rem' color='#ababab' />
             {language.minimal_filters_deliver_to_your_location}
+          </p>
+        ) : null}
+        {filtersChecker.category_id ? (
+          <p
+            className='minimal_filter_tags'
+            onClick={() => {
+              inactive_the_category = true;
+              setFilterReset((filterReset) => {
+                return { ...filterReset, category_id: true };
+              });
+              loadMoreCar = false;
+              filtersChecker.category_id = false;
+              staticRoute.category_id = 0;
+              UrlCreator({
+                query: staticRoute,
+                route: router.route,
+                cb: UrlUpdater,
+              });
+              initSearch();
+            }}
+          >
+            <IoMdClose size='1.3rem' color='#ababab' />
+            {category_name}
           </p>
         ) : null}
         {filtersChecker.with_driver ? (
