@@ -43,6 +43,7 @@ describe("بررسی صفحه لاگین", () => {
               .then(() => {
                 cy.get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
                   .click()
+                  .wait(4000)
                   .request(
                     "GET",
                     core_url + `/rental-car/review/list?id=${car_data.id}`

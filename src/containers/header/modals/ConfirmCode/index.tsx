@@ -48,10 +48,34 @@ const ConfirmCode = ({
     if (/^[9][0-9][0-9]{8,8}$/.test(cellNumber)) {
       cellNumber = "0" + Cell_Phone_context.cell_phone;
     }
+    let utm = sessionStorage["send_utm_data"]
+      ? {
+          utm_source: localStorage["utm_source"]
+            ? localStorage["utm_source"]
+            : "",
+          utm_medium: localStorage["utm_medium"]
+            ? localStorage["utm_medium"]
+            : "",
+          utm_campaign: localStorage["utm_campaign"]
+            ? localStorage["utm_campaign"]
+            : "",
+          utm_referrer: localStorage["utm_referrer"]
+            ? localStorage["utm_referrer"]
+            : "",
+          utm_term: localStorage["utm_term"] ? localStorage["utm_term"] : "",
+          utm_content: localStorage["utm_content"]
+            ? localStorage["utm_content"]
+            : "",
+          utm_landing_url: localStorage["utm_landing_url"]
+            ? localStorage["utm_landing_url"]
+            : "",
+        }
+      : {};
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellNumber,
         code: code,
+        ...utm,
       })
       .then((response) => {
         // setLoading(false);

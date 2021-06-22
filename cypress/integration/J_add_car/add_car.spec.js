@@ -1,5 +1,9 @@
 import log_me_in from "../../utils/log_me_in";
 import random_number_generator from "../../utils/random_number_generator";
+const core_url = "https://core.sepris.com/core";
+let cell_phone_A = Cypress.env("CELL_A");
+let token = null;
+let user_id = null;
 let home = "http://localhost:3000";
 
 describe("ثبت خودرو جدید، ویرایش آن", () => {
@@ -199,7 +203,45 @@ describe("ثبت خودرو جدید، ویرایش آن", () => {
       .get("[name=price_per_day]")
       .type(500000)
       .get(".Blue_BTN.local_style.HEAP_SetCarTiming_Btn_Submit")
-      .click();
+      .click()
+      .request({
+        method: "POST",
+        url: `${core_url}/device/login`,
+        form: true,
+        body: {
+          cell: cell_phone_A,
+          code: 9931,
+        },
+      })
+      .then((result) => {
+        token = result.body.token;
+        user_id = result.body.user_profile.id;
+        cy.request({
+          method: "POST",
+          url: `${core_url}/rental-car/list?limit=1&page=1`,
+          form: true,
+          body: {
+            owner_user_profile_id: user_id,
+          },
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }).then((result) => {
+          console.log(token, user_id);
+          cy.request({
+            method: "POST",
+            url: `${core_url}/rental-car/set-is-verified`,
+            form: true,
+            body: {
+              id: result.body.items[0].id,
+              value: true,
+            },
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+        });
+      });
     //   .get(".HEAP_Profile_Btn_Delete")
     //   .click();
     // cy.on("window:confirm", () => true)

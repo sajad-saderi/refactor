@@ -51,6 +51,7 @@ describe("بررسی صفحه نتایج داینامیک خودرو", () => {
           )
           .then(() => {
             cy.get(".minimal_filter_tags")
+              .eq(0)
               .click()
               .url()
               .should("not.contain", "location_id=1");

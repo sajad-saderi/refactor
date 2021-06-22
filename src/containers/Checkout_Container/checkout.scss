@@ -84,7 +84,7 @@
         margin-top: 2rem;
         margin-bottom: 2rem;
         img {
-          width: 5.4rem;
+          width: 3.2rem;
           border-radius: 50%;
           display: inline-block;
           vertical-align: middle;
@@ -309,18 +309,18 @@
     .car_info_insurance {
       .car_info {
         .car_owner_part {
-          display: block;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           h1 {
             width: 155px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
           }
-          div,
           .car_image {
-            display: inline-block;
-            width: 50%;
-            vertical-align: middle;
+            width: 13.6rem;
+            height: 9rem;
           }
         }
       }

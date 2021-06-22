@@ -322,7 +322,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                       MODAL_CONTEXT.modalHandler("Renter", data),
                   },
                 ]
-            : data.has_owner_reviewed_rent_order
+            : data.has_owner_reviewed_renter
             ? [
                 // {
                 //   value: language.repetitive_review,

@@ -36,6 +36,8 @@ describe("بررسی صفحه پروفایل کاربری", () => {
           .click()
           .wait(3000)
           .get(".HEAP_Profile_Btn_OutOfService")
+          .click()
+          .get(".carcard:first-child .HEAP_Profile_Btn_Delete")
           .click();
       });
     });

@@ -30,7 +30,7 @@ describe("بررسی صفحه اجاره", () => {
       // .intercept("/login")
       // .as("login")
       // .wait("@login")
-      .wait(2000)
+      .wait(3000)
       .then(() => {
         cy.url().should("contain", "/login");
         // .go("back")

@@ -155,7 +155,6 @@ const Landing_page_container = ({
 
     const url_checked = UrlChecker({ ...router.query, ...search_params });
     staticRoute = { ...router.query, ...search_params };
-
     if (url_checked.location_id) {
       filtersChecker.Location = true;
       setCarLocationName(url_checked.location_n);
@@ -729,7 +728,7 @@ const Landing_page_container = ({
         </div>
       </section>
       <section className='responsive minimal_filters'>
-        {filtersChecker.Location ? (
+        {/* {filtersChecker.Location ? (
           <p
             className='minimal_filter_tags'
             onClick={() => {
@@ -751,7 +750,7 @@ const Landing_page_container = ({
             <IoMdClose size='1.3rem' color='#ababab' />
             {`${language.minimal_filters_car_location}${carLocationName}`}
           </p>
-        ) : null}
+        ) : null} */}
         {filtersChecker.price ? (
           <p
             className='minimal_filter_tags'

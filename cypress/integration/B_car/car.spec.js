@@ -142,7 +142,7 @@ describe("وجود به طور مستقیم به صفحه خودرو", () => {
 
 describe("بررسی صفحه خودرو در سایز 360 پیکسل", () => {
   beforeEach(() => {
-    car_id = 459;
+    car_id = 229;
     cy.visit(`http://localhost:3000/car/${car_id}`);
     cy.viewport(360, 660);
   });

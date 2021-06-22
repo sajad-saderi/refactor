@@ -66,22 +66,19 @@ describe("بررسی صفحه پروفایل کاربری", () => {
           .url()
           .should("contain", "/add-car")
           .go("back")
-          .wait(3000);
-        if (
-          !!document.querySelector(
-            ".carcard:last-child [data-test-id=OUT_OF_SERVICE]"
-          )
-        ) {
-          cy.get(".carcard:last-child [data-test-id=OUT_OF_SERVICE]")
-            .click()
-            .get(".toast_div")
-            .should("exist");
-        }
-        cy.get(".carcard:first-child .HEAP_Profile_Btn_Delete").click();
-        cy.get(".HEAP_Profile_Btn_OutOfService").click();
-        cy.on("window:confirm", () => true)
-          .get(".Profile_car_container .carcard")
-          .should("not.exist")
+          .wait(3000)
+          .get(".carcard:last-child [data-test-id=OUT_OF_SERVICE]")
+          .click()
+          .get(".toast_div")
+          .should("exist")
+          // .get(".carcard:first-child .HEAP_Profile_Btn_Delete")
+          // .click()
+          .get(".HEAP_Profile_Btn_OutOfService")
+          .click()
+          .wait(2000)
+          // cy.on("window:confirm", () => true)
+          //   .get(".Profile_car_container .carcard")
+          //   .should("not.exist")
           .get(".Exit")
           .click();
       });
