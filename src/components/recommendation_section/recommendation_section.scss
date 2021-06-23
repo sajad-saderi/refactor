@@ -1,0 +1,30 @@
+@import "../../../src/styles/colors";
+.recommendation_section{ 
+    margin: 3rem auto  6rem auto;
+    width: 90%;
+    .slick-prev,.slick-next{
+        &::before,&:after{
+            color: $light_grey;
+        }
+    }
+    .suggestion_card{
+        figure{
+            margin: 3rem auto;
+            box-shadow: $box_shadow;
+            border-radius: 1rem;
+            width:14rem;
+            text-align: center;
+            img{
+                display: block;
+                margin: auto;
+                width:14rem;
+            }
+            p{
+                font-size: 1.4rem; 
+                line-height: 1.5;
+                padding: 16px;
+                text-align: center;
+            }
+        }
+    }
+}
