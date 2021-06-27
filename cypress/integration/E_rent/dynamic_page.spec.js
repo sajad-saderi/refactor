@@ -50,11 +50,11 @@ describe("بررسی صفحه نتایج داینامیک خودرو", () => {
               `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=1&category_id=4`
           )
           .then(() => {
-            cy.get(".minimal_filter_tags")
-              .eq(0)
-              .click()
-              .url()
-              .should("not.contain", "location_id=1");
+            // cy.get(".minimal_filter_tags")
+            //   .eq(0)
+            //   .click()
+            //   .url()
+            //   .should("not.contain", "location_id=1");
           });
       });
   });
