@@ -16,7 +16,7 @@ import "slick-carousel/slick/slick-theme.css";
 let settings = {
   dots: true,
   infinite: true,
-  speed: 100,
+  speed: 500,
   slidesToShow: 5,
   slidesToScroll: 3,
   rtl: true,
@@ -44,6 +44,7 @@ let settings = {
       settings: {
         slidesToShow: 2,
         dots: false,
+        speed: 0,
         arrows: false,
         // autoplay: false,
         slidesToScroll: 1,
