@@ -4,7 +4,9 @@ import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
 const Search = dynamic(() => import("../src/containers/Search"));
-// const Recommendation_section = dynamic(() => import("../src/components/recommendation_section/recommendation_section"));
+const Recommendation_section = dynamic(() =>
+  import("../src/components/recommendation_section/recommendation_section")
+);
 // import Layout from "../src/Layout";
 // import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
@@ -80,7 +82,7 @@ const HomePage = () => {
               <p>{language.second_container_three_columns_2_p_3}</p>
             </section>
           </div>
-          {/* <Recommendation_section/> */}
+          <Recommendation_section />
           <div
             className='add_car_section'
             onClickCapture={() => {
