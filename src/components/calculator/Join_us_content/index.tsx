@@ -6,7 +6,7 @@ import { guard_controller } from "../../../../utils/guard_controller";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 // import quotation from "../../../../public/image/svg/quotation.svg";
-// import "./join_us_content.scss";
+import "./join_us_content.scss";
 
 const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
   const [authorize, set_authorize] = useState(true);
@@ -32,10 +32,10 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
 
   return (
     <>
-      <div className='insuranceBox'>
+      {/* <div className='insuranceBox'>
         <p>{language.insuranceBox_p}</p>
         <img src={insurance} alt={language.insuranceBox_image} />
-      </div>
+      </div> */}
       <div className=' responsive second_container'>
         <div className='full_width'>
           <h2>{language.full_width_h2}</h2>

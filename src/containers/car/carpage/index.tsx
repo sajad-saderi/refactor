@@ -461,7 +461,17 @@ const CarPage = ({
                     ? owner.company_name
                     : owner.first_name + " " + owner.last_name
                 } - ${car.name.fa}${language.next_seo.title.otoli}`,
-                description: language.next_seo.description,
+                // description: language.next_seo.description,
+                images: [
+                  car_Information.media_set.map((item) => {
+                    return {
+                      url: item.thumbnail_url,
+                      width: item.thumbnail_width,
+                      height: item.thumbnail_height,
+                      alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
+                    };
+                  }),
+                ],
                 site_name: language.next_seo.site_name,
               }}
               twitter={{

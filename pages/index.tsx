@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
 const Search = dynamic(() => import("../src/containers/Search"));
-const Recommendation_section = dynamic(() => import("../src/components/recommendation_section/recommendation_section"));
+// const Recommendation_section = dynamic(() => import("../src/components/recommendation_section/recommendation_section"));
 // import Layout from "../src/Layout";
 // import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
@@ -13,7 +13,6 @@ import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
 import { guard_controller } from "../utils/guard_controller";
 // import { logPageView } from "../utils/analytics";
-
 
 const HomePage = () => {
   const [authorize, set_authorize] = useState(true);
@@ -57,10 +56,10 @@ const HomePage = () => {
             <Search language={language} />
           </div>
         </div>
-        <div className='insuranceBox'>
+        {/* <div className='insuranceBox'>
           <p>با همکاری</p>
           <img src={insurance} alt='تصویر بیمه سامان' width='115' height='47' />
-        </div>
+        </div> */}
         <div className=' responsive second_container'>
           <div className='full_width'>
             <h2>{language.second_container_full_width_h2}</h2>
@@ -81,7 +80,7 @@ const HomePage = () => {
               <p>{language.second_container_three_columns_2_p_3}</p>
             </section>
           </div>
-          <Recommendation_section/>
+          {/* <Recommendation_section/> */}
           <div
             className='add_car_section'
             onClickCapture={() => {
