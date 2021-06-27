@@ -28,6 +28,8 @@ const Car = ({
 }) => {
   const router = useRouter();
   useEffect(() => {
+    console.log(car_Information);
+
     if (_404) {
       router.push("/404");
     } else {
@@ -61,7 +63,7 @@ const Car = ({
                 " " +
                 car_Information.owner.last_name
           } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`}
-          description={language.next_seo.description}
+          // description={language.next_seo.description}
           openGraph={{
             title: `${
               car_Information.owner.company_name
@@ -72,15 +74,23 @@ const Car = ({
             } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`,
             // description: language.next_seo.description,
             images: [
-              car_Information.media_set.map((item) => {
-                return {
-                  url: item.thumbnail_url,
-                  width: item.thumbnail_width,
-                  height: item.thumbnail_height,
-                  alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
-                };
-              }),
+              {
+                url: "https://via.placeholder.com/500",
+                width: 500,
+                height: 500,
+                alt: "Og Image Alt",
+              },
             ],
+            // car_Information.media_set.length !== 0
+            //   ? [
+            //       {
+            //         url: car_Information.media_set[0].thumbnail_url,
+            //         width: car_Information.media_set[0].thumbnail_width,
+            //         height: car_Information.media_set[0].thumbnail_height,
+            //         alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
+            //       },
+            //     ]
+            //   : [],
             site_name: language.next_seo.site_name,
           }}
           twitter={{

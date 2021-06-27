@@ -453,7 +453,7 @@ const CarPage = ({
                   ? owner.company_name
                   : owner.first_name + " " + owner.last_name
               } - ${car.name.fa}${language.next_seo.title.otoli}`}
-              description={language.next_seo.description}
+              // description={language.next_seo.description}
               noindex={true}
               openGraph={{
                 title: `${
@@ -463,16 +463,24 @@ const CarPage = ({
                 } - ${car.name.fa}${language.next_seo.title.otoli}`,
                 // description: language.next_seo.description,
                 images: [
-                  car_Information.media_set.map((item) => {
-                    return {
-                      url: item.thumbnail_url,
-                      width: item.thumbnail_width,
-                      height: item.thumbnail_height,
-                      alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
-                    };
-                  }),
+                  {
+                    url: "https://via.placeholder.com/500",
+                    width: 500,
+                    height: 500,
+                    alt: "Og Image Alt",
+                  },
                 ],
-                site_name: language.next_seo.site_name,
+                //   car_Information.media_set.length !== 0
+                //     ? [
+                //         {
+                //           url: car_Information.media_set[0].thumbnail_url,
+                //           width: car_Information.media_set[0].thumbnail_width,
+                //           height: car_Information.media_set[0].thumbnail_height,
+                //           alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
+                //         },
+                //       ]
+                //     : [],
+                // site_name: language.next_seo.site_name,
               }}
               twitter={{
                 handle: language.next_seo.handle,
