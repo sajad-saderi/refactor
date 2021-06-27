@@ -1,7 +1,11 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useEffect } from "react";
-import temp_img from "../../../public/image/car-image-thumbnail.jpg";
+import suv from "../../../public/image/suv.jpeg";
+import van from "../../../public/image/van.jpeg";
+import with_driver from "../../../public/image/with_driver.jpeg";
+import affordable from "../../../public/image/affordable.jpeg";
+import for_journey from "../../../public/image/for_journey.jpeg";
 import "./recommendation_section.scss";
 import moment from "moment-jalaali";
 import Link from "next/link";
@@ -12,12 +16,13 @@ import "slick-carousel/slick/slick-theme.css";
 let settings = {
   dots: true,
   infinite: true,
-  speed: 250,
+  speed: 100,
   slidesToShow: 5,
   slidesToScroll: 3,
   rtl: true,
-  autoplay: true,
-  autoplaySpeed: 15000,
+  draggable: true,
+  // autoplay: true,
+  // autoplaySpeed: 15000,
   responsive: [
     {
       breakpoint: 1024,
@@ -40,7 +45,7 @@ let settings = {
         slidesToShow: 2,
         dots: false,
         arrows: false,
-        autoplay: false,
+        // autoplay: false,
         slidesToScroll: 1,
       },
     },
@@ -78,7 +83,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={temp_img} />
+                <img src={affordable} />
                 <p>اقتصادی </p>
               </figure>
             </a>
@@ -91,7 +96,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={temp_img} />
+                <img src={with_driver} />
                 <p>با راننده</p>
               </figure>
             </a>
@@ -104,7 +109,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={temp_img} />
+                <img src={for_journey} />
                 <p>مناسب سفر </p>
               </figure>
             </a>
@@ -117,7 +122,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={temp_img} />
+                <img src={van} />
                 <p>ون</p>
               </figure>
             </a>
@@ -130,7 +135,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={temp_img} />
+                <img src={suv} />
                 <p>شاسی بلند </p>
               </figure>
             </a>
