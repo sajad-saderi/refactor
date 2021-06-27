@@ -83,6 +83,21 @@ const HomePage = () => {
             </section>
           </div>
           <Recommendation_section />
+          <h2>{language.second_container_h2_1}</h2>
+          <div className='three_columns'>
+            <section>
+              <h3>{language.second_container_three_columns_h3_1}</h3>
+              <p>{language.second_container_three_columns_p_1}</p>
+            </section>
+            <section>
+              <h3>{language.second_container_three_columns_h3_2}</h3>
+              <p>{language.second_container_three_columns_p_2}</p>
+            </section>
+            <section>
+              <h3>{language.second_container_three_columns_h3_3}</h3>
+              <p>{language.second_container_three_columns_p_3}</p>
+            </section>
+          </div>
           <div
             className='add_car_section'
             onClickCapture={() => {
@@ -104,21 +119,6 @@ const HomePage = () => {
             <Link href='/add-car' prefetch={false}>
               <a>{language.second_container_add_car_section_a_1}</a>
             </Link>
-          </div>
-          <h2>{language.second_container_h2_1}</h2>
-          <div className='three_columns'>
-            <section>
-              <h3>{language.second_container_three_columns_h3_1}</h3>
-              <p>{language.second_container_three_columns_p_1}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_h3_2}</h3>
-              <p>{language.second_container_three_columns_p_2}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_h3_3}</h3>
-              <p>{language.second_container_three_columns_p_3}</p>
-            </section>
           </div>
         </div>
       </article>

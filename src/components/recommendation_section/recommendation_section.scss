@@ -1,6 +1,6 @@
 @import "../../../src/styles/colors";
 .recommendation_section {
-  margin: 3rem auto 6rem auto;
+  margin: 3rem auto 3rem auto;
   width: 100%;
   .slick-prev,
   .slick-next {
@@ -20,6 +20,7 @@
         display: block;
         margin: auto;
         width: 14rem;
+        border-radius: 10px 10px 0 0;
       }
       p {
         font-size: 1.4rem;

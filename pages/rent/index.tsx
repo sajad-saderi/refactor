@@ -14,6 +14,9 @@ import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 // import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
 // import { logPageView } from "../../utils/analytics";
+const Recommendation_section = dynamic(() =>
+  import("../../src/components/recommendation_section/recommendation_section")
+);
 
 const question_set = [
   {
@@ -98,6 +101,7 @@ const Rent = () => {
               <p>{language.second_container_three_columns_2_p_3}</p>
             </section>
           </div>
+          <Recommendation_section />
           <h2>{language.second_container_h2_1}</h2>
           <div className='three_columns'>
             <section>
