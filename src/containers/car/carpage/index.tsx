@@ -462,25 +462,18 @@ const CarPage = ({
                     : owner.first_name + " " + owner.last_name
                 } - ${car.name.fa}${language.next_seo.title.otoli}`,
                 // description: language.next_seo.description,
-                images: [
-                  {
-                    url: "https://via.placeholder.com/500",
-                    width: 500,
-                    height: 500,
-                    alt: "Og Image Alt",
-                  },
-                ],
-                //   car_Information.media_set.length !== 0
-                //     ? [
-                //         {
-                //           url: car_Information.media_set[0].thumbnail_url,
-                //           width: car_Information.media_set[0].thumbnail_width,
-                //           height: car_Information.media_set[0].thumbnail_height,
-                //           alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
-                //         },
-                //       ]
-                //     : [],
-                // site_name: language.next_seo.site_name,
+                images:
+                  car_Information.media_set.length !== 0
+                    ? [
+                        {
+                          url: car_Information.media_set[0].thumbnail_url,
+                          width: car_Information.media_set[0].thumbnail_width,
+                          height: car_Information.media_set[0].thumbnail_height,
+                          alt: `تصویر خودرو ${car_Information.car.slug.fa}`,
+                        },
+                      ]
+                    : [],
+                site_name: language.next_seo.site_name,
               }}
               twitter={{
                 handle: language.next_seo.handle,
