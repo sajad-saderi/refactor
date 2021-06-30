@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 
-const Filters = dynamic(() => import("../Filters"));
+// const Filters = dynamic(() => import("../Filters"));
 const SearchResultList = dynamic(() => import("../car/search-result"));
 const Spinner = dynamic(() => import("../../components/Spinner"));
 const Search = dynamic(() => import("../Search"));
 import filterContext from "../../context/filter-context";
-// import Filters from "../Filters";
+import Filters from "../Filters";
 // import SearchResultList from "../car/search-result";
 import { useRouter } from "next/router";
 import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";

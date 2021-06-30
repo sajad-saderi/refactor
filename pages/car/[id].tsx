@@ -28,8 +28,6 @@ const Car = ({
 }) => {
   const router = useRouter();
   useEffect(() => {
-    console.log(car_Information);
-
     if (_404) {
       router.push("/404");
     } else {

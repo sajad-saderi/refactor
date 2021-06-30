@@ -5,31 +5,185 @@
   align-self: center;
   flex-direction: column;
   .payment_cart {
-    svg {
-      width: 10rem;
+    .title {
+      text-align: center;
+      img {
+        width: 2rem;
+        margin-left: 0.8rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      h4 {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.6rem;
+        color: $green;
+        line-height: 1.6rem;
+        margin: 0;
+      }
+      margin-bottom: 1.2rem;
     }
-    h4 {
-      font-size: 1.4rem;
-      color: #73af55;
-    }
-    h3 {
-      font-size: 1.4rem;
-    }
-    p {
-      font-size: 1.4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      line-height: 3;
-      span {
-        font-weight: 500;
+    .bank_track_id {
+      text-align: center;
+      p {
+        display: block;
+        color: $dark_gray;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
       }
     }
-    text-align: center;
-    border-radius: 4px;
-    background: #fff;
-    padding: 1.6rem;
-    box-shadow: $box-shadow;
+    .reserve_information {
+      text-align: right;
+      .section_title {
+        margin-top: 4.8rem;
+        img {
+          margin-left: 1.2rem;
+          vertical-align: middle;
+        }
+        p {
+          display: inline-block;
+          color: $almost_black;
+          font-family: "dana_medium";
+          font-size: 14px;
+          line-height: 14px;
+        }
+      }
+      .car_info {
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2.4rem;
+          p,
+          span {
+            font-size: 14px;
+            line-height: 14px;
+            color: $almost_black;
+          }
+        }
+      }
+    }
+    .paid_price {
+      text-align: center;
+      border-bottom: 1px solid $ultimate_gray;
+      padding-bottom: 2.4rem;
+      p {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 14px;
+      }
+      h3 {
+        display: inline-block;
+        font-size: 20px;
+        margin-right: 1.6rem;
+        line-height: 22px;
+      }
+      span {
+        margin-right: 0.4rem;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+    .delivery_section {
+      text-align: right;
+      .section_title {
+        margin-top: 4.8rem;
+        img {
+          margin-left: 1.2rem;
+          vertical-align: middle;
+        }
+        p {
+          display: inline-block;
+          color: $almost_black;
+          font-family: "dana_medium";
+          font-size: 14px;
+          line-height: 14px;
+        }
+      }
+      .delivery_condition {
+        p {
+          font-size: 14px;
+          line-height: 14px;
+          padding-right: 2.4rem;
+        }
+      }
+    }
+    .return_section {
+      text-align: right;
+      .section_title {
+        margin-top: 4.8rem;
+        img {
+          margin-left: 1.2rem;
+          vertical-align: middle;
+        }
+        p {
+          display: inline-block;
+          color: $almost_black;
+          font-family: "dana_medium";
+          font-size: 14px;
+          line-height: 14px;
+        }
+      }
+      .return_condition {
+        p {
+          font-size: 14px;
+          line-height: 28px;
+          padding-right: 2.4rem;
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .contract_section {
+      margin-bottom: 2.4rem;
+      text-align: right;
+      .section_title {
+        margin-top: 4.8rem;
+        img {
+          margin-left: 1.2rem;
+          vertical-align: middle;
+        }
+        p {
+          display: inline-block;
+          color: $almost_black;
+          font-family: "dana_medium";
+          font-size: 14px;
+          line-height: 14px;
+        }
+      }
+      .return_condition {
+        p {
+          font-size: 14px;
+          line-height: 28px;
+          padding-right: 2.4rem;
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    // h3 {
+    //   font-size: 1.4rem;
+    // }
+    // p {
+    //   font-size: 1.4rem;
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   line-height: 3;
+    //   span {
+    //     font-weight: 500;
+    //   }
+    // }
+    // text-align: center;
+    // border-radius: 4px;
+    // background: #fff;
+    // padding: 1.6rem;
+    // box-shadow: $box-shadow;
   }
   .loading_text {
     text-align: center;

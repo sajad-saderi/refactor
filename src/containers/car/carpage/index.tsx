@@ -27,6 +27,7 @@ import carImage from "../../../../public/image/car-image.jpg";
 import Icon from "../../../../utils/Icon";
 import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
+import UrlCreator from "../../../../utils/UrlCreator";
 // import Review from "../../../components/Review";
 
 // use شنبه،یک شنبه و ....
@@ -113,19 +114,27 @@ const CarPage = ({
       fetchData({ id, start_date, end_date });
     }
     if (!car_Information) {
-      // if the page have search id we can get the price
-      if (initial_search_id) {
-        fetchData({ search_id: initial_search_id });
-        // if (localStorage["start"]) {
-        //   let startDate = JSON.parse(localStorage["start"]);
-        //   let endDate = JSON.parse(localStorage["end"]);
-        // }
-      }
-      // if doesn't have search id and it's not mine the user can select day range and get price and search id
-      else {
-        // DateSetter(id);
-        setShowCalender(true);
-        fetchData({ id, start_date, end_date });
+      if (router.asPath.includes("start_date")) {
+        fetchData({
+          id,
+          from: convert_string_date_to_object(router.query.start_date),
+          to: convert_string_date_to_object(router.query.end_date),
+        });
+      } else {
+        // if the page have search id we can get the price
+        if (initial_search_id) {
+          fetchData({ search_id: initial_search_id });
+          // if (localStorage["start"]) {
+          //   let startDate = JSON.parse(localStorage["start"]);
+          //   let endDate = JSON.parse(localStorage["end"]);
+          // }
+        }
+        // if doesn't have search id and it's not mine the user can select day range and get price and search id
+        else {
+          // DateSetter(id);
+          setShowCalender(true);
+          fetchData({ id, start_date, end_date });
+        }
       }
     } else {
       // fetchData({ search_id });
@@ -235,7 +244,6 @@ const CarPage = ({
       const res: any = await REQUEST_GET_RENTAL_CAR(localData);
       set_CarInformation(res);
       setShowPriceLoading(false);
-
       setDayRange({
         from: {
           year: +res.start_date.split("/")[0],
@@ -363,7 +371,7 @@ const CarPage = ({
     if (showCalender && calenderClick) {
       if (dayRange.from?.day && dayRange.to?.day) {
         calenderClick = false;
-
+        add_date_to_url();
         fetchData({ id });
         setShowDateText(true);
       }
@@ -382,11 +390,53 @@ const CarPage = ({
     }
   }, [dayRange]);
 
+  const add_date_to_url = () => {
+    let start = convert_date_to_string_with_slash(dayRange.from);
+    let end = convert_date_to_string_with_slash(dayRange.to);
+    router.query = { ...router.query, start_date: start, end_date: end };
+    // console.log(router);
+    if (router.asPath.includes("start_date")) {
+      UrlCreator({
+        query: router.query,
+        route: router.asPath,
+        cb: (result) => {
+          console.log(decodeURI(result.pathname));
+          router.push(decodeURI(result.queryString), undefined, {
+            shallow: true,
+          });
+        },
+      });
+    } else {
+      router.push(
+        `${router.asPath}&start_date=${start}&end_date=${end}`,
+        undefined,
+        {
+          shallow: true,
+        }
+      );
+    }
+  };
+
   const convertDate = (v) => {
     let value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
       "dddd jDD jMMMM"
     );
     return value;
+  };
+
+  const convert_date_to_string_with_slash = (v) => {
+    let value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
+      "jDD/jMM/jYYYY"
+    );
+    return value;
+  };
+
+  const convert_string_date_to_object = (str: any) => {
+    return {
+      day: str.split("/")[0],
+      month: str.split("/")[1],
+      year: str.split("/")[2],
+    };
   };
 
   // useEffect(() => {

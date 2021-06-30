@@ -131,7 +131,7 @@ const Recommendation_section = (props) => {
         </div>
         <div className='suggestion_card'>
           <Link
-            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=1000000`}
+            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
             prefetch={false}
           >
             <a>
