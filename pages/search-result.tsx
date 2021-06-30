@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
-const Search_result = dynamic(() => import("../src/containers/Search_result"));
+// const Search_result = dynamic(() => import("../src/containers/Search_result"));
 // import Layout from "../src/Layout";
 import "../src/styles/pages/search_result.scss";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/searchresult.json";
 // import { logPageView } from "../utils/analytics";
 import { payBackInString } from "../utils/date-range-creator";
-// import Search_result from "../src/containers/Search_result";
+import Search_result from "../src/containers/Search_result";
 
 const SearchResult = ({ page_title }) => {
   useEffect(() => {

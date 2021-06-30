@@ -14,9 +14,7 @@ import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 // import Accordion from "../../src/components/Accordion";
 import language from "../../public/languages/fa/rent.json";
 // import { logPageView } from "../../utils/analytics";
-const Recommendation_section = dynamic(() =>
-  import("../../src/components/recommendation_section/recommendation_section")
-);
+import Recommendation_section from "../../src/components/recommendation_section/recommendation_section";
 
 const question_set = [
   {

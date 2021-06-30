@@ -78,10 +78,7 @@ const Recommendation_section = (props) => {
     <div className='recommendation_section'>
       <Slider {...settings}>
         <div className='suggestion_card'>
-          <Link
-            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15`}
-            prefetch={false}
-          >
+          <Link href={`/rent/car-rental-for-travel`} prefetch={false}>
             <a>
               <figure>
                 <img src={for_journey} />

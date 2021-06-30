@@ -4,9 +4,7 @@ import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
 const Search = dynamic(() => import("../src/containers/Search"));
-const Recommendation_section = dynamic(() =>
-  import("../src/components/recommendation_section/recommendation_section")
-);
+import Recommendation_section from "../src/components/recommendation_section/recommendation_section";
 // import Layout from "../src/Layout";
 // import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
