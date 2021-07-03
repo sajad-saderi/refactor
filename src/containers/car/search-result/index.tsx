@@ -3,11 +3,11 @@ import economic from "../../../../public/image/affordable.svg";
 import offRoad from "../../../../public/image/SUV.svg";
 import dynamic from "next/dynamic";
 
-const Car = dynamic(() => import("./car"));
+// const Car = dynamic(() => import("./car"));
 // const CarLoading = dynamic(() =>
 //   import("../../../components/cartPlaceholder/CarLoading")
 // );
-// import Car from "./car";
+import Car from "./car";
 // import "./search_result.scss";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 
@@ -85,7 +85,7 @@ const SearchResultList = ({
                         setFilterForSearch({
                           o: "-price",
                           price: {
-                            value: ["0.00", "1000000.00"],
+                            value: ["0.00", "500000.00"],
                             status: true,
                           },
                         });
