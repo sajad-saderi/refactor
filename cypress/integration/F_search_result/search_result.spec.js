@@ -492,7 +492,7 @@ describe("تست صفحه نتایج جستجو", () => {
             )
             .then((result) => {
               cy.url()
-                .should("contain", "&max_price=1000000")
+                .should("contain", "&max_price=500000")
                 .get(".minimal_filter_tags")
                 .click();
             });

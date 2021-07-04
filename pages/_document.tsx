@@ -24,6 +24,7 @@ export default class MyDocument extends Document {
             name='viewport'
             content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'
           />
+          <meta name='thumbnail' content='../public/image/for_journey.jpeg' />
           {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
           <link rel='icon' type='image/svg+xml' href='/FaviconBlack.svg' />
           <link rel='shortcut alternate icon' href='/favicon.ico' />

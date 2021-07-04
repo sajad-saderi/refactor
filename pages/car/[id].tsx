@@ -122,9 +122,19 @@ const Car = ({
 };
 
 export async function getServerSideProps(props) {
-  let { search_id, id, owner, owner_name, car_name } = props.query;
+  let {
+    search_id,
+    id,
+    owner,
+    owner_name,
+    car_name,
+    start_date,
+    end_date,
+  } = props.query;
   try {
-    const { start_date, end_date } = payBackInString(6, 3);
+    const generated_start_date = payBackInString(6, 3).start_date;
+    const generated_end_date = payBackInString(6, 3).end_date;
+
     if (owner_name) {
       return {
         props: {
@@ -134,8 +144,8 @@ export async function getServerSideProps(props) {
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
           expired: false,
-          start_date,
-          end_date,
+          start_date: start_date ? start_date : generated_start_date,
+          end_date: end_date ? end_date : generated_end_date,
           id,
         },
       };
@@ -144,16 +154,30 @@ export async function getServerSideProps(props) {
       if (search_id) {
         param = { search_id };
       } else {
-        param = { id, start_date, end_date };
+        if (start_date) {
+          param = { id, start_date, end_date };
+        } else {
+          param = { id, generated_start_date, generated_end_date };
+        }
       }
+      console.log(start_date, end_date);
+
       const res: any = await REQUEST_GET_RENTAL_CAR(param);
       return {
         props: {
           car_Information: res,
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
-          start_date: res.start_date ? res.start_date : start_date,
-          end_date: res.end_date ? res.end_date : end_date,
+          start_date: res.start_date
+            ? res.start_date
+            : start_date
+            ? start_date
+            : generated_start_date,
+          end_date: res.end_date
+            ? res.end_date
+            : end_date
+            ? end_date
+            : generated_end_date,
           id,
         },
       };

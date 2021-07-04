@@ -391,8 +391,15 @@ const CarPage = ({
   }, [dayRange]);
 
   const add_date_to_url = () => {
-    let start = convert_date_to_string_with_slash(dayRange.from);
-    let end = convert_date_to_string_with_slash(dayRange.to);
+    let start = null;
+    let end = null;
+    if (router.query.search_id) {
+      start = convert_date_to_string_with_slash(dayRange.from, false);
+      end = convert_date_to_string_with_slash(dayRange.to, false);
+    } else {
+      start = convert_date_to_string_with_slash(dayRange.from, true);
+      end = convert_date_to_string_with_slash(dayRange.to, true);
+    }
     router.query = { ...router.query, start_date: start, end_date: end };
     // console.log(router);
     if (router.asPath.includes("start_date")) {
@@ -400,20 +407,29 @@ const CarPage = ({
         query: router.query,
         route: router.asPath,
         cb: (result) => {
-          console.log(decodeURI(result.pathname));
           router.push(decodeURI(result.queryString), undefined, {
             shallow: true,
           });
         },
       });
     } else {
-      router.push(
-        `${router.asPath}&start_date=${start}&end_date=${end}`,
-        undefined,
-        {
-          shallow: true,
-        }
-      );
+      if (router.query.search_id) {
+        router.push(
+          `${router.asPath}&start_date=${start}&end_date=${end}`,
+          undefined,
+          {
+            shallow: true,
+          }
+        );
+      } else {
+        router.push(
+          `${router.asPath}?start_date=${start}&end_date=${end}`,
+          undefined,
+          {
+            shallow: true,
+          }
+        );
+      }
     }
   };
 
@@ -424,10 +440,17 @@ const CarPage = ({
     return value;
   };
 
-  const convert_date_to_string_with_slash = (v) => {
-    let value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
-      "jDD/jMM/jYYYY"
-    );
+  const convert_date_to_string_with_slash = (v, change_format) => {
+    let value = null;
+    if (!change_format) {
+      value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
+        "jDD/jMM/jYYYY"
+      );
+    } else {
+      value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
+        "jYYYY/jMM/jDD"
+      );
+    }
     return value;
   };
 
