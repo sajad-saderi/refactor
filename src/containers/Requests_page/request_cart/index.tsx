@@ -525,6 +525,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   <MdCall size='1.6rem' color='#4ba3ce' />
                 </a>
               ) : null}
+              <Link href={`/contract?id=${data.id}`} prefetch={false}>
+                <a>قرارداد اجاره</a>
+              </Link>
             </>
           )}
         </div>
