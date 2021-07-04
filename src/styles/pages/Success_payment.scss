@@ -5,6 +5,8 @@
   align-self: center;
   flex-direction: column;
   .payment_cart {
+    max-width: 68rem;
+    margin: auto;
     margin-top: 50px;
     .title {
       text-align: center;
@@ -270,6 +272,7 @@
         }
         .delivery_condition {
           p {
+            line-height: 28px;
             font-size: 14px;
           }
         }
