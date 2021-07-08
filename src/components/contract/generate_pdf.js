@@ -110,7 +110,7 @@ const GeneratePdf = ({ html }) => {
   };
   return (
     <div className='button-container'>
-      <button onClick={generateImage}>Get PDF using image</button>
+      <button onClick={generateImage}>دانلود قرارداد</button>
     </div>
   );
 };

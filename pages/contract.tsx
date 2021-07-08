@@ -80,6 +80,7 @@ const Contract_page = () => {
 
   return result ? (
     <div>
+      <Generate_pdf html={html_ref} />
       <div className='content' ref={html_ref}>
         <h1> قرارداد اجاره خودرو</h1>
         <h2>
@@ -552,7 +553,6 @@ const Contract_page = () => {
           <p id='witness_2'>نام و امضاء شاهد دو</p>
         </p>
       </div>
-      <Generate_pdf html={html_ref} />
     </div>
   ) : null;
 };
