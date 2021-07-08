@@ -218,6 +218,8 @@
       color: $blue;
       font-weight: normal;
       font-size: 1.6rem;
+      margin-right: -3px;
+
       .extra_Text {
         display: inline-block;
         vertical-align: middle;
@@ -243,6 +245,20 @@
         height: 1.6rem;
         margin: 0;
       }
+    }
+  }
+  .contract_download {
+    margin-top: 2rem;
+    img {
+      display: inline-block;
+      margin-left: 0.8rem;
+      vertical-align: middle;
+    }
+    span {
+      color: $blue;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 1.6rem;
     }
   }
   .Button_container {

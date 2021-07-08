@@ -20,7 +20,6 @@
     "Heroku": "https://github.com/Doctor-Strange/Refactor"
   },
   "dependencies": {
-    "@react-pdf/renderer": "^2.0.15",
     "@sentry/browser": "^5.17.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
@@ -28,6 +27,7 @@
     "cypress": "^7.2.0",
     "docz": "^2.3.1",
     "js-cookie": "^2.2.1",
+    "jspdf": "^2.3.1",
     "moment-jalaali": "^0.9.1",
     "next": "^10.2.0",
     "next-fonts": "^1.0.3",
