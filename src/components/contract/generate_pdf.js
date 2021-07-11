@@ -1,6 +1,7 @@
 import React from "react";
 import { jsPDF } from "jspdf";
 import irans from "../../../public/fonts/ttf/IRANSansWeb_Medium.ttf";
+import dana from "../../../public/fonts/dana/ttf/Dana-FaNum-Medium.ttf";
 
 const GeneratePdf = ({ html }) => {
   const generateImage = async () => {
@@ -10,8 +11,10 @@ const GeneratePdf = ({ html }) => {
       format: [297, 210],
       lineHeight: 2,
     });
+
+    doc.addFont(dana, "dana", "normal");
     doc.addFont(irans, "iransans", "normal");
-    doc.setFont("iransans");
+    doc.setFont("dana");
     doc.setFontSize(14);
     doc.text(document.querySelector(".content > h1").innerHTML, 105, 15, {
       align: "center",
@@ -23,6 +26,7 @@ const GeneratePdf = ({ html }) => {
     doc.text(document.getElementById("contract_date").innerText, 9, 35, {
       align: "left",
     });
+    doc.setFont("iransans");
     doc.text(document.getElementById("contract_number").innerText, 9, 43, {
       align: "left",
     });

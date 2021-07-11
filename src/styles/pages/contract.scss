@@ -1,0 +1,86 @@
+@import "../colors";
+.contract_container {
+  max-width: 68rem;
+  margin: auto;
+  padding-top: 35px;
+  padding-bottom: 95px;
+  .download_section {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    background-color: $white;
+    box-shadow: $box_shadow;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    right: 0;
+    left: 0;
+    padding: 8px 16px;
+    button {
+      color: #fff;
+      font-family: inherit;
+      background-color: $blue;
+      line-height: 1.6;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 4px;
+      border: none;
+      padding: 0.8rem 2.1rem;
+      border: 1px solid $blue;
+      transition: 0.25s all;
+      cursor: pointer;
+      &:hover {
+        background-color: $link_hover;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .content {
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0;
+    }
+    h2 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+    #contract_date {
+      margin-top: 2rem;
+    }
+    #contract_date,
+    #contract_number {
+      text-align: left;
+    }
+    #contract_number {
+      margin-bottom: 2rem;
+    }
+    p {
+      line-height: 2;
+      font-size: 1.4rem;
+    }
+    .signature {
+      padding: 3rem 0;
+      span {
+        &:first-child {
+          text-align: center;
+          display: inline-block;
+          width: 50%;
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+        &:last-child {
+          text-align: center;
+          display: inline-block;
+          width: 50%;
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
