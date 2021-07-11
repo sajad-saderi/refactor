@@ -57,6 +57,7 @@ const Filters = ({
 
   useEffect(() => {
     getBrandCarList();
+    filter_ref.current.addEventListener("scroll", checktheposition);
     return () => {
       document.body.style.overflow = "unset";
       body_style_list = [];
@@ -90,6 +91,7 @@ const Filters = ({
   useEffect(() => {
     if (show_filter_prop) {
       setShow_filter(true);
+      set_scroll_icon_to_hide(false);
       document.body.style.overflow = "hidden";
     }
   }, [show_filter_prop]);
@@ -249,6 +251,14 @@ const Filters = ({
   const scroll_handler = () => {
     filter_ref.current.scrollTo({ behavior: "smooth", top: 100 });
     set_scroll_icon_to_hide(true);
+  };
+
+  const checktheposition = () => {
+    if (
+      filter_ref.current.scrollTop + 150 >
+      filter_ref.current.scrollHeight / 2 - 100
+    )
+      set_scroll_icon_to_hide(true);
   };
 
   return (
