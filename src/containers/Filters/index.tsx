@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 // import PriceSlider from "../../components/filters/PriceSlider";
 // import "./Filter.scss";
 import dynamic from "next/dynamic";
@@ -13,7 +13,7 @@ const Spinner = dynamic(() => import("../../components/Spinner"));
 import filterContext from "../../context/filter-context";
 // import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
-import { IoIosOptions, IoMdClose } from "react-icons/io";
+import { IoIosArrowDown, IoIosOptions, IoMdClose } from "react-icons/io";
 // import Spinner from "../../components/Spinner";
 import PriceSlider from "../../components/filters/PriceSlider/PriceSlider";
 
@@ -47,15 +47,17 @@ const Filters = ({
   const [car_id_name, setCar_id_name] = useState("");
   const [car_Name_ComponentReset, setCar_Name_ComponentReset] = useState(false);
   const [show_filter, setShow_filter] = useState(false);
+  const [scroll_icon_to_hide, set_scroll_icon_to_hide] = useState(false);
   // const [hidePrice, setHidePrice] = useState(false);
 
   // const [initialValueMin, setInitialValueMin] = useState(0);
   // const [initialValueMax, setInitialValueMax] = useState(10000000);
-
+  const filter_ref = useRef(null);
   const FilterContext = useContext(filterContext);
 
   useEffect(() => {
     getBrandCarList();
+    filter_ref.current.addEventListener("scroll", checktheposition);
     return () => {
       document.body.style.overflow = "unset";
       body_style_list = [];
@@ -89,6 +91,7 @@ const Filters = ({
   useEffect(() => {
     if (show_filter_prop) {
       setShow_filter(true);
+      set_scroll_icon_to_hide(false);
       document.body.style.overflow = "hidden";
     }
   }, [show_filter_prop]);
@@ -245,6 +248,19 @@ const Filters = ({
     }
   }, [initialFilterValues]);
 
+  const scroll_handler = () => {
+    filter_ref.current.scrollTo({ behavior: "smooth", top: 100 });
+    set_scroll_icon_to_hide(true);
+  };
+
+  const checktheposition = () => {
+    if (
+      filter_ref.current.scrollTop + 150 >
+      filter_ref.current.scrollHeight / 2 - 100
+    )
+      set_scroll_icon_to_hide(true);
+  };
+
   return (
     <>
       {show_filter && (
@@ -262,6 +278,7 @@ const Filters = ({
           "filter_section",
           show_filter ? "show_Filter_section" : null,
         ].join(" ")}
+        ref={filter_ref}
       >
         <div className='closeBtnWrapper'>
           <span className='bar'></span>
@@ -441,6 +458,13 @@ const Filters = ({
         />
         {show_filter ? (
           <div className='result_count_wrapper'>
+            {!scroll_icon_to_hide ? (
+              <IoIosArrowDown
+                size='2rem'
+                color='#909090'
+                onClick={scroll_handler}
+              />
+            ) : null}
             <h2
               className='ResultCount'
               onClick={() => {

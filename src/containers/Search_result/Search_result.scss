@@ -77,7 +77,7 @@
     span {
       cursor: pointer;
       letter-spacing: -0.05rem;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid $lighter_grey;
       color: rgba(0, 0, 0, 0.5);
       border-right-color: transparent;
       font-size: 1.2rem;
@@ -85,7 +85,11 @@
       padding: 0.8rem 1rem;
       display: inline-block;
       &:first-child {
+        border-radius: 0 5px 5px 0;
         border-right-color: rgba(0, 0, 0, 0.08);
+      }
+      &:nth-of-type(2) {
+        border-radius: 5px 0 0 5px;
       }
       &.active {
         color: rgba(0, 0, 0, 0.9);
@@ -93,7 +97,8 @@
     }
     .show_filter {
       color: #656565;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid $lighter_grey;
+      border-radius: 5px;
       display: none;
       font-size: 1.2rem;
       padding: 0.4rem 1rem;
