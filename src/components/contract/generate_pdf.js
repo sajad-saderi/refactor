@@ -1,6 +1,7 @@
 import React from "react";
 import { jsPDF } from "jspdf";
 import irans from "../../../public/fonts/ttf/IRANSansWeb_Medium.ttf";
+import irans_bold from "../../../public/fonts/ttf/IRANSansWeb_Bold.ttf";
 import dana from "../../../public/fonts/dana/ttf/Dana-FaNum-Medium.ttf";
 
 const GeneratePdf = ({ html }) => {
@@ -14,6 +15,7 @@ const GeneratePdf = ({ html }) => {
 
     doc.addFont(dana, "dana", "normal");
     doc.addFont(irans, "iransans", "normal");
+    doc.addFont(irans_bold, "iransans_bold", "normal");
     doc.setFont("dana");
     doc.setFontSize(14);
     doc.text(document.querySelector(".content > h1").innerHTML, 105, 15, {
@@ -35,6 +37,7 @@ const GeneratePdf = ({ html }) => {
       210
     );
     doc.text(split, 200, 55, { align: "right" });
+    doc.setFont("iransans_bold");
     doc.text(
       document.getElementById("signature_1_renter").innerText,
       180,
@@ -49,11 +52,13 @@ const GeneratePdf = ({ html }) => {
 
     // page 2
     doc.addPage();
+    doc.setFont("iransans");
     let second_page_content = doc.splitTextToSize(
       document.getElementById("page_2").innerText,
       210
     );
     doc.text(second_page_content, 200, 15, { align: "right" });
+    doc.setFont("iransans_bold");
     doc.text(
       document.getElementById("signature_2_renter").innerText,
       180,
@@ -68,11 +73,13 @@ const GeneratePdf = ({ html }) => {
 
     // page 3
     doc.addPage();
+    doc.setFont("iransans");
     let third_page_content = doc.splitTextToSize(
       document.getElementById("page_3").innerText,
       210
     );
     doc.text(third_page_content, 200, 15, { align: "right" });
+    doc.setFont("iransans_bold");
     doc.text(
       document.getElementById("signature_3_renter").innerText,
       180,
@@ -87,11 +94,13 @@ const GeneratePdf = ({ html }) => {
 
     // page 4
     doc.addPage();
+    doc.setFont("iransans");
     let fourth_page_content = doc.splitTextToSize(
       document.getElementById("page_4").innerText,
       210
     );
     doc.text(fourth_page_content, 200, 15, { align: "right" });
+    doc.setFont("iransans_bold");
     doc.text(
       document.getElementById("signature_4_renter").innerText,
       180,
