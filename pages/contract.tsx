@@ -293,7 +293,7 @@ const Contract_page = () => {
               result.rent_search_dump.extra_km_price * 10
             ).toLocaleString()} `}
             ریال معادل
-            {`${result.rent_search_dump.extra_km_price_name} `}
+            {` ${result.rent_search_dump.extra_km_price_name} `}
             پرداخت کند&#46;&#1794;
           </p>
           <p>
