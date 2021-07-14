@@ -1270,6 +1270,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             state.location_id !== 1660 &&
             state.location_id !== 1690 &&
             state.location_id !== 1655 &&
+            state.location_id !== 1685 &&
             state.location_id !== null &&
             !showDistrict && (
               <p className='extra_text'>{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
