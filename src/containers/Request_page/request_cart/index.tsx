@@ -529,7 +529,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </>
           )}
         </div>
-        {!role && data.show_contract && (
+        {!role && data.show_contract && status_id === "paid" && (
           <div className='contract_download'>
             <Link href={`/contract?id=${data.id}`} prefetch={false}>
               <a>

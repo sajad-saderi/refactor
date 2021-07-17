@@ -100,8 +100,9 @@ const Contract_page = () => {
           شماره:{` ${result.id} - ${moment().format(" jMM - jYY")}`}
         </p>
         <div id='page_1'>
-          <p className='paragraph_title'>ماده یک: مشخصات طرفین قرارداد</p>
-          <p>
+          <p className='paragraph_title'>
+            ماده یک: مشخصات طرفین قرارداد
+            <br />
             موجر: آقا/خانم
             {` ${
               result.rent_search_dump.owner.official_name
@@ -190,8 +191,9 @@ const Contract_page = () => {
                 : dots
             } `}
           </p>
-          <p>ماده دو: مشخصات مورد اجاره</p>
           <p>
+            ماده دو: مشخصات مورد اجاره
+            <br />
             یک دستگاه اتومبیل‌ سواری
             {` ${
               result.rent_search_dump.car.name.fa
@@ -264,8 +266,9 @@ const Contract_page = () => {
             })} `}
             تومان است&#46;&#1794;
           </p>
-          <p>ماده سه: مدت اجاره و مسافت</p>
           <p>
+            ماده سه: مدت اجاره و مسافت
+            <br />
             مورد اجاره در تاریخ
             {` ${result.rent_search_dump.start_date} `}
             به مدت
