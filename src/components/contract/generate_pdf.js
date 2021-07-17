@@ -28,10 +28,10 @@ const GeneratePdf = ({ html }) => {
     doc.text(document.getElementById("contract_date").innerText, 9, 35, {
       align: "left",
     });
-    doc.setFont("iransans");
     doc.text(document.getElementById("contract_number").innerText, 9, 43, {
       align: "left",
     });
+    doc.setFont("iransans");
     let split = doc.splitTextToSize(
       document.getElementById("page_1").innerText,
       210

@@ -123,13 +123,13 @@ const Contract_page = () => {
                 ? result.rent_search_dump.owner.national_id
                 : dots
             } `}
-            شماره تماس ثابت
+            شماره تماس ثابت &#1794;
             {`${
               result.rent_search_dump.owner.fixed_phone
                 ? result.rent_search_dump.owner.fixed_phone
                 : dots
             } `}
-            شماره همراه
+            شماره همراه &#1794;
             {`${
               result.rent_search_dump.owner.cell
                 ? "0" + result.rent_search_dump.owner.cell
@@ -157,25 +157,25 @@ const Contract_page = () => {
             {` ${
               result.renter.national_id ? result.renter.national_id : dots
             } `}
-            شماره تماس ثابت
+            شماره تماس ثابت &#1794;
             {`${result.renter.fixed_phone ? result.renter.fixed_phone : dots} `}
-            شماره همراه
+            شماره همراه &#1794;
             {`${result.renter.cell ? "0" + result.renter.cell : dots} `}
             نشانی اقامتگاه
             {` ${result.renter.address ? result.renter.address : dots} `}
-            شماره گواهینامه رانندگی
+            شماره گواهینامه رانندگی &#1794;
             {`${
               result.renter.driving_license
                 ? result.renter.driving_license
                 : dots
             } `}
-            تاریخ صدور
+            تاریخ صدور &#1794;
             {`${
               result.renter.driving_license_issue_date.name.fa
                 ? result.renter.driving_license_issue_date.name.fa.split("،")[0]
                 : dots
             } `}
-            تاریخ اعتبار
+            تاریخ اعتبار &#1794;
             {`${
               result.renter.driving_license_expiration_date.name.fa
                 ? result.renter.driving_license_expiration_date.name.fa.split(
@@ -237,28 +237,28 @@ const Contract_page = () => {
                 ? result.rent_search_dump.color.name.fa
                 : dots
             }، `}
-            و به شماره پلاک
+            و به شماره پلاک &#1794;
             {result.rent_search_dump.registration_plate_forth_part
               ? `${result.rent_search_dump.registration_plate_forth_part} | ${result.rent_search_dump.registration_plate_third_part} ${result.rent_search_dump.registration_plate_second_part} ${result.rent_search_dump.registration_plate_first_part} `
               : dots}
-            بیمه‌نامه ثالث به شماره
+            بیمه‌نامه ثالث به شماره &#1794;
             {`${
               result.rent_search_dump.third_party_insurance_id
                 ? result.rent_search_dump.third_party_insurance_id
                 : dots
             } `}
             و <br />
-            تاریخ اعتبار
-            {` ${
+            تاریخ اعتبار &#1794;
+            {`${
               result.rent_search_dump.third_party_insurance_expiration_date
                 ? result.rent_search_dump.third_party_insurance_expiration_date.name.fa.split(
                     "،"
                   )[0]
                 : dots
             } `}
-            ارزش مورد اجاره )‌قیمت کل ماشین(‌
+            ارزش مورد اجاره )‌قیمت کل ماشین(‌ &#1794;
             {`${(result.rent_search_dump.value * 10).toLocaleString()} `}
-            ریال معادل
+            ریال معادل &#1794;
             {`${NumbersAndCurrencyUnit({
               value: result.rent_search_dump.value,
             })} `}
@@ -277,23 +277,24 @@ const Contract_page = () => {
             در نشانی
             {` ${result.delivery_address ? result.delivery_address : dots} `}
             به مستأجر تحویل شد. مستأجر متعهد گردید مورد اجاره را در تاریخ
-            {`${result.rent_search_dump.end_date} `}و در ساعت
+            &#1794;
+            {`${result.rent_search_dump.end_date} `}و در ساعت &#1794;
             {`${
               result.return_time.name.fa ? result.return_time.name.fa : dots
             } `}
             در نشانی فوق به موجر عودت دهد. مستأجر متعهد گردید از مورد اجاره
-            شخصاً و فقط برای سواری و با تعداد سرنشین
+            شخصاً و فقط برای سواری و با تعداد سرنشین &#1794;
             {`${result.rent_search_dump.capacity} `}
             نفر و در شهر/شهرهای
             {` ${result.destinations ? result.destinations : dots} `}و با مسافت
-            حداکثر روزانه
+            حداکثر روزانه &#1794;
             {`${result.rent_search_dump.max_km_per_day} `}
-            کیلومتر استفاده کند و به ازای هر کیلومتر اضافه مبلغ
+            کیلومتر استفاده کند و به ازای هر کیلومتر اضافه مبلغ &#1794;
             {`${(
               result.rent_search_dump.extra_km_price * 10
             ).toLocaleString()} `}
-            ریال معادل
-            {` ${result.rent_search_dump.extra_km_price_name} `}
+            ریال معادل &#1794;
+            {`${result.rent_search_dump.extra_km_price_name} `}
             پرداخت کند&#46;&#1794;
           </p>
           <p>
@@ -323,9 +324,9 @@ const Contract_page = () => {
             {` ${result.rent_search_dump.avg_price_per_day_name} `}
             برای
             {` ${result.rent_search_dump.no_of_days} `}
-            روز جمعاً به مبلغ
+            روز جمعاً به مبلغ &#1794;
             {`${(result.rent_search_dump.total_price * 10).toLocaleString()} `}
-            ریال معادل&#1794;
+            ریال معادل &#1794;
             {`${result.rent_search_dump.total_price_name} `}
             است که مستأجر آن را در وب‌سایت سپریس)‌اجاره آنلاین خودرو(‌ پرداخت
             کرده است&#46;&#1794;
@@ -346,11 +347,11 @@ const Contract_page = () => {
           ) : null}
           <p>
             تبصره دو: در صورت دیرکرد مستأجر در عودت خودرو بایستی به ازای هر ساعت
-            تأخیر در تحویل مبلغ
+            تأخیر در تحویل مبلغ &#1794;
             {`${(
               result.rent_search_dump.extra_hour_price * 10
             ).toLocaleString()} `}
-            ریال معادل&#1794;
+            ریال معادل &#1794;
             {`${result.rent_search_dump.extra_hour_price_name} `}
             بابت خسارت تأخیر در تحویل&#1794;، نقداً علاوه بر اجاره بهاء مازاد به
             موجر پرداخت نماید و تأخیر بیشتر از ۶ ساعت معادل یک روز اجاره در نظر
@@ -385,18 +386,18 @@ const Contract_page = () => {
             تومان بابت تضمین جرائم احتمالی راهنمایی و رانندگی و سایر هزینه‌ها
             مانند اضافه کیلومتر، بنزین و خسارات احتمالی خودرو که در مدت اجاره
             توسط مستأجر یا ثالث به وجود آمده‌، هم‌زمان با امضای قرارداد اجاره به
-            شماره کارت
+            شماره کارت &#1794;
             {`${result.rent_search_dump.owner.bank_account_id} `}
             بانک
             {` ${result.rent_search_dump.owner.bank_name} `}
             به نام
-            {` ${result.rent_search_dump.owner.official_name} `} و مبلغ
+            {` ${result.rent_search_dump.owner.official_name} `} و مبلغ &#1794;
             {`${(result.deposit.name.fa * 10).toLocaleString()} `}
-            ریال معادل&#1794;
+            ریال معادل &#1794;
             {`${NumbersAndCurrencyUnit({
               value: result.deposit.name.fa,
             })} `}
-            تومان به شماره کارت&#1794;
+            تومان به شماره کارت &#1794;
             {`${
               result.system_representative_bacnk_account_id
                 ? result.system_representative_bacnk_account_id
@@ -414,27 +415,27 @@ const Contract_page = () => {
             } `}
             )&#1794;نزد شرکت سپریس(&#1794; واریز نماید.
             {/* </p> */}
-            {/* <p > */} مبلغ
+            {/* <p > */} مبلغ &#1794;
             {`${(
               (result.cash_deposit - result.deposit.name.fa) *
               10
             ).toLocaleString()} `}
-            معادل&#1794;
+            معادل &#1794;
             {`${NumbersAndCurrencyUnit({
               value: result.cash_deposit - result.deposit.name.fa,
             })} `}
             تومان بعد از تحویل خودرو پس از کسر جرائم مشخص‌شده به مستأجر مسترد
-            خواهد شد و مبلغ
+            خواهد شد و مبلغ &#1794;
             {`${(result.deposit.name.fa * 10).toLocaleString()} `}
-            ریال معادل
+            ریال معادل &#1794;
             {`${NumbersAndCurrencyUnit({
               value: result.deposit.name.fa,
             })} `}
             تومان باقیمانده پس از اخذ خلافی خودرو توسط موجر و پس از کسر جرائم
             راهنمایی و رانندگی در مدت اجاره و سایر هزینه‌های مربوط به آن و پس از
-            ۲۰ روز کاری - مورخه&#1794;
+            ۲۰ روز کاری - مورخه &#1794;
             {`${result.deposit_return_date.name.fa.split("،")[0]} `} به شماره
-            کارت
+            کارت &#1794;
             {`${result.renter.bank_account_id} `} بانک
             {` ${result.renter.bank_name} `}
             به نام
@@ -458,9 +459,9 @@ const Contract_page = () => {
             {` ${
               result.deposit_person_name ? result.deposit_person_name : dots
             } `}
-            به مبلغ
+            به مبلغ &#1794;
             {`${(result.rent_search_dump.value * 10).toLocaleString()} `}
-            ریال معادل
+            ریال معادل &#1794;
             {`${NumbersAndCurrencyUnit({
               value: result.rent_search_dump.value,
             })} `}
