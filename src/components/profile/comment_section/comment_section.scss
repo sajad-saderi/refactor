@@ -1,0 +1,29 @@
+@import "../../../styles/colors";
+.comment_section {
+  margin-top: 2.4rem;
+  width: 100%;
+  text-align: right;
+  direction: rtl;
+  .tab_section {
+    border-bottom: 1px solid $light_grey;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    div {
+      font-size: 1.4rem;
+      color: $almost_black;
+      line-height: 4rem;
+      padding-left: 1rem;
+      cursor: pointer;
+      &:last-child {
+        padding-right: 1rem;
+      }
+    }
+    .active {
+      border-bottom: 1px solid $dark_gray;
+      font-weight: 600;
+    }
+  }
+  .review_section {
+  }
+}

@@ -3,6 +3,7 @@
 .Profile_car_container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
   width: 100%;

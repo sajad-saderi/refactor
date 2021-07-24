@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { REQUEST_GET_USER_CARS } from "../../../API";
 import Router from "next/router";
 import dynamic from "next/dynamic";
+import Comment_section from "../../../components/profile/comment_section/comment_section";
 
 const Car = dynamic(() => import("./car"));
 const CarLoading = dynamic(() =>
@@ -140,26 +141,29 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
         : null}
       {result ? (
         result.length > 0 ? (
-          result.map((item, i) => {
-            // car section
-            return is_mine ? (
-              <Car
-                language={language.car}
-                key={i}
-                data={item}
-                is_mine={true}
-                getListAgain={() => fetchApi(1)}
-              />
-            ) : !item.is_out_of_service ? (
-              <Car
-                language={language.car}
-                key={i}
-                data={item}
-                is_mine={false}
-                getListAgain={() => fetchApi(1)}
-              />
-            ) : null;
-          })
+          <>
+            {result.map((item, i) => {
+              // car section
+              return is_mine ? (
+                <Car
+                  language={language.car}
+                  key={i}
+                  data={item}
+                  is_mine={true}
+                  getListAgain={() => fetchApi(1)}
+                />
+              ) : !item.is_out_of_service ? (
+                <Car
+                  language={language.car}
+                  key={i}
+                  data={item}
+                  is_mine={false}
+                  getListAgain={() => fetchApi(1)}
+                />
+              ) : null;
+            })}
+            <Comment_section user_id={profile_Id} />
+          </>
         ) : null
       ) : (
         // (
