@@ -209,7 +209,7 @@ const Checkout_Container = ({
       const new_rent_req_res: any = await REQUEST_SET_RENT_REQUEST(data);
       TOAST_CONTEXT.toast_option({
         message: language.toast_message,
-        time: 10,
+        time: 15,
         autoClose: true,
       });
       router.push(

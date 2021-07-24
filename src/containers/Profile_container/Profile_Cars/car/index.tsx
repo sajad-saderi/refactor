@@ -78,7 +78,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
         message: service_res
           ? `${language.khodro} ${car.name.fa} ${language.nemishe}`
           : `${language.khodro} ${car.name.fa} ${language.mishe}`,
-        time: 10,
+        time: 15,
         autoClose: true,
       });
       // hide the spinner
