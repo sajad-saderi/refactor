@@ -349,7 +349,7 @@ const Contract_page = () => {
             </p>
           ) : null}
           <p>
-            تبصره دو: در صورت دیرکرد مستأجر در عودت خودرو بایستی به ازای هر ساعت
+            تبصره یک: در صورت دیرکرد مستأجر در عودت خودرو بایستی به ازای هر ساعت
             تأخیر در تحویل مبلغ &#1794;
             {`${(
               result.rent_search_dump.extra_hour_price * 10
@@ -363,14 +363,15 @@ const Contract_page = () => {
           <p>
             در صورت عدم پرداخت‌، موجر می‌تواند از مبلغ ضمانت بدون هیچ‌گونه قیدی
             مبلغ خسارت دیرکرد، اجاره بهاء مازاد و سایر هزینه‌ها را کسر نماید و
-            در صورت عدم تکافوی مبلغ فوق‌، موجر حق دارد چک ضمانت را نقد نموده و
-            پس از کسر خسارت دیرکرد، مازاد اجاره بهاء سایر هزینه‌ها باقیمانده را
-            به مستأجر مسترد نماید و مستأجر حق هیچ‌گونه اعتراضی را نخواهد
-            داشت&#46;&#1794;
+            در صورت عدم تکافوی مبلغ فوق‌، موجر حق دارد
+            {result.deposit_is_handed_over ? " سفته " : " چک "} ضمانت را نقد
+            نموده و پس از کسر خسارت دیرکرد، مازاد اجاره بهاء سایر هزینه‌ها
+            باقیمانده را به مستأجر مسترد نماید و مستأجر حق هیچ‌گونه اعتراضی را
+            نخواهد داشت&#46;&#1794;
           </p>
 
           <p>
-            تبصره سه: در صورت درخواست مستأجر برای تمدید مدت اجاره بایستی حداقل
+            تبصره دو: در صورت درخواست مستأجر برای تمدید مدت اجاره بایستی حداقل
             ۱۲ ساعت قبل از اتمام مدت اجاره به موجر اطلاع داده و در صورت موافقت
             موجر با تمدید، کل مبلغ مدت تمدیدی را در سایت سپریس واریز نماید. در
             صورت عدم موافقت موجر با تمدید یا در صورت موافقت و عدم واریز مبلغ مدت
@@ -380,21 +381,36 @@ const Contract_page = () => {
 
           <p>ماده پنج: تضامین مستأجر</p>
           <p>
-            &#1794;۱- مستأجر متعهد گردید که علاوه بر اجاره بهاء مبلغ
-            {` ${(result.cash_deposit * 10).toLocaleString()} `}
-            ریال معادل
-            {` ${NumbersAndCurrencyUnit({
-              value: result.cash_deposit,
-            })} `}
-            تومان بابت تضمین جرائم احتمالی راهنمایی و رانندگی و سایر هزینه‌ها
-            مانند اضافه کیلومتر، بنزین و خسارات احتمالی خودرو که در مدت اجاره
-            توسط مستأجر یا ثالث به وجود آمده‌، هم‌زمان با امضای قرارداد اجاره به
-            شماره کارت &#1794;
-            {`${result.rent_search_dump.owner.bank_account_id} `}
-            بانک
-            {` ${result.rent_search_dump.owner.bank_name} `}
-            به نام
-            {` ${result.rent_search_dump.owner.official_name} `} و مبلغ &#1794;
+            &#1794;۱-{" "}
+            {result.deposit_type ? (
+              result.description
+            ) : (
+              <span>
+                مستأجر متعهد گردید که علاوه بر اجاره بهاء مبلغ
+                {` ${(result.cash_deposit * 10).toLocaleString()} `}
+                ریال معادل
+                {` ${NumbersAndCurrencyUnit({
+                  value: result.cash_deposit,
+                })} `}
+                تومان{" "}
+              </span>
+            )}
+            بابت تضمین جرائم احتمالی راهنمایی و رانندگی و سایر هزینه‌ها مانند
+            اضافه کیلومتر، بنزین و خسارات احتمالی خودرو که در مدت اجاره توسط
+            مستأجر یا ثالث به وجود آمده‌، هم‌زمان با امضای قرارداد اجاره به{" "}
+            {result.deposit_type ? (
+              result.rent_search_dump.owner.official_name + " "
+            ) : (
+              <span>
+                شماره کارت &#1794;
+                {`${result.rent_search_dump.owner.bank_account_id} `}
+                بانک
+                {` ${result.rent_search_dump.owner.bank_name} `}
+                به نام
+                {` ${result.rent_search_dump.owner.official_name} `}
+              </span>
+            )}
+            و مبلغ &#1794;
             {`${(result.deposit.name.fa * 10).toLocaleString()} `}
             ریال معادل &#1794;
             {`${NumbersAndCurrencyUnit({
@@ -417,18 +433,24 @@ const Contract_page = () => {
                 : dots
             } `}
             )&#1794;نزد شرکت سپریس(&#1794; واریز نماید.
-            {/* </p> */}
-            {/* <p > */} مبلغ &#1794;
-            {`${(
-              (result.cash_deposit - result.deposit.name.fa) *
-              10
-            ).toLocaleString()} `}
-            معادل &#1794;
-            {`${NumbersAndCurrencyUnit({
-              value: result.cash_deposit - result.deposit.name.fa,
-            })} `}
-            تومان بعد از تحویل خودرو پس از کسر جرائم مشخص‌شده به مستأجر مسترد
-            خواهد شد و مبلغ &#1794;
+            {result.deposit_type ? (
+              " " + result.deposit_type + " "
+            ) : (
+              <span>
+                مبلغ &#1794;
+                {`${(
+                  (result.cash_deposit - result.deposit.name.fa) *
+                  10
+                ).toLocaleString()} `}
+                معادل &#1794;
+                {`${NumbersAndCurrencyUnit({
+                  value: result.cash_deposit - result.deposit.name.fa,
+                })} `}
+                تومان{" "}
+              </span>
+            )}
+            بعد از تحویل خودرو پس از کسر جرائم مشخص‌شده به مستأجر مسترد خواهد شد
+            و مبلغ &#1794;
             {`${(result.deposit.name.fa * 10).toLocaleString()} `}
             ریال معادل &#1794;
             {`${NumbersAndCurrencyUnit({
@@ -452,31 +474,49 @@ const Contract_page = () => {
         </div>
         <div id='page_3'>
           <p>
-            &#1794;۲- چک به شماره
-            {` ${
-              result.deposit_document_id ? result.deposit_document_id : dots
-            } `}
-            بانک
-            {` ${result.deposit_bank ? result.deposit_bank : dots} `}
-            به ‌نام
-            {` ${
-              result.deposit_person_name ? result.deposit_person_name : dots
-            } `}
-            به مبلغ &#1794;
-            {`${(result.rent_search_dump.value * 10).toLocaleString()} `}
-            ریال معادل &#1794;
-            {`${NumbersAndCurrencyUnit({
-              value: result.rent_search_dump.value,
-            })} `}
-            تومان بابت تضمین خسارات وارده به خودرو، مازاد اجاره بهاء، جرائم
-            رانندگی ، تعمیرات و سایر هزینه‌ها و تخلفات و جرائم توسط مستأجر در
-            هنگام امضای قرارداد به موجر تحویل شد. مستأجر ضمن این قرارداد به موجر
-            اذن داد در صورت هرگونه تخلف از این قرارداد نسبت به نقد کردن چک فوق و
-            کسر هزینه‌ها و جرائم و تخلفات ایجادشده در مدت اجاره&#1794;، باقی
-            مبلغ را به مستأجر مسترد نماید&#46;&#1794;
+            &#1794;۲-{" "}
+            {result.deposit_type ? (
+              result.deposit_type
+            ) : (
+              <span>
+                {result.deposit_is_handed_over ? " سفته " : " چک "} به شماره
+                {` ${
+                  result.deposit_document_id ? result.deposit_document_id : dots
+                } `}
+                بانک
+                {` ${result.deposit_bank ? result.deposit_bank : dots} `}
+                به ‌نام
+                {` ${
+                  result.deposit_person_name ? result.deposit_person_name : dots
+                } `}
+                به مبلغ &#1794;
+                {`${(result.rent_search_dump.value * 10).toLocaleString()} `}
+                ریال معادل &#1794;
+                {`${NumbersAndCurrencyUnit({
+                  value: result.rent_search_dump.value,
+                })} `}
+                تومان{" "}
+              </span>
+            )}
+            بابت تضمین خسارات وارده به خودرو، مازاد اجاره بهاء، جرائم رانندگی ،
+            تعمیرات و سایر هزینه‌ها و تخلفات و جرائم توسط مستأجر در هنگام امضای
+            قرارداد به موجر تحویل شد. مستأجر ضمن این قرارداد به موجر اذن داد در
+            صورت هرگونه تخلف از این قرارداد نسبت به نقد کردن
+            {result.deposit_type
+              ? " " + result.deposit_type + " "
+              : result.deposit_is_handed_over
+              ? " سفته "
+              : " چک "}
+            فوق و کسر هزینه‌ها و جرائم و تخلفات ایجادشده در مدت اجاره&#1794;،
+            باقی مبلغ را به مستأجر مسترد نماید&#46;&#1794;
             <br />
-            در صورت عدم تخلف و عدم بروز اختلاف بین موجر و مستأجر، چک فوق در روز
-            تحویل )&#1794;برگشت(&#1794; خودرو به مستأجر عودت خواهد
+            در صورت عدم تخلف و عدم بروز اختلاف بین موجر و مستأجر،
+            {result.deposit_type
+              ? " " + result.deposit_type + " "
+              : result.deposit_is_handed_over
+              ? " سفته "
+              : " چک "}{" "}
+            فوق در روز تحویل )&#1794;برگشت(&#1794; خودرو به مستأجر عودت خواهد
             شد&#46;&#1794;
           </p>
           <p>ماده شش: تعهدات موجر</p>
