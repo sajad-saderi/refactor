@@ -75,6 +75,39 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
               />
               <div>
                 <h3>{company_name ? company_name : name}</h3>
+                {!is_mine ? (
+                  <div className='user_info'>
+                    <p className='since_from'>
+                      {language.az}
+                      <strong>
+                        {data.join_date.name.fa.split("،")[0].slice(2)}
+                      </strong>
+                      {language.member}
+                    </p>
+                    {data.no_of_successfully_rented_cars_as_owner > 0 ? (
+                      <span>
+                        {language.mizban}{" "}
+                        <strong>
+                          {data.no_of_successfully_rented_cars_as_owner}
+                          {language.safar}
+                        </strong>{" "}
+                        {language.bodeh}
+                      </span>
+                    ) : null}
+                    {data.owner_avg_response_time ? (
+                      <p className='size_14 margin_top_16 margin_bottom_16'>
+                        {language.mamoolan}
+                        <strong>
+                          {language.hodood}{" "}
+                          {data.owner_avg_response_time.total_seconds >= 86400
+                            ? language.more_than_one_day
+                            : data.owner_avg_response_time.name}{" "}
+                        </strong>
+                        {language.pasokh}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : null}
                 {is_mine && (
                   <p onClick={() => setEdit(true)}>
                     {language.edit_the_profile_info}
