@@ -157,10 +157,13 @@ export async function getServerSideProps(props) {
         if (start_date) {
           param = { id, start_date, end_date };
         } else {
-          param = { id, generated_start_date, generated_end_date };
+          param = {
+            id,
+            start_date: generated_start_date,
+            end_date: generated_end_date,
+          };
         }
       }
-      console.log(start_date, end_date);
 
       const res: any = await REQUEST_GET_RENTAL_CAR(param);
       return {
