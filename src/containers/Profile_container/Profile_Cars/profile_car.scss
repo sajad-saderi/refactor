@@ -38,6 +38,14 @@
       }
     }
   }
+
+  .cars_container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
   .noCar_added {
     margin-top: 2rem;
     text-align: center;
@@ -47,6 +55,13 @@
       font-size: 1.4rem;
       margin-bottom: 1.4rem;
     }
+  }
+  .place_holder_div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
   }
   .Load_more_car_container {
     width: 100%;

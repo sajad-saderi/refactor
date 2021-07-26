@@ -85,7 +85,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                       {language.member}
                     </p>
                     {data.no_of_successfully_rented_cars_as_owner > 0 ? (
-                      <span>
+                      <span className='margin_top_16 inline_block_container'>
                         {language.mizban}{" "}
                         <strong>
                           {data.no_of_successfully_rented_cars_as_owner}

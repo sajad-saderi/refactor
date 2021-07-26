@@ -80,6 +80,7 @@ const Profile_container = ({ language }: IProfile_container) => {
             is_mine={is_mine}
             profile_Id={profile_Id}
             language={language.profile_cars}
+            user_data={data}
           />
         </>
       ) : (

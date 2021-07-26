@@ -21,7 +21,12 @@ let filterNumber = 0;
 let page = 1;
 let heap = false;
 
-const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
+const Profile_Cars = ({
+  is_mine,
+  profile_Id,
+  user_data,
+  language,
+}: IProfile_Cars) => {
   const [result, setResult] = useState(null);
   const [active, setActive] = useState(1);
   const [showMoreButton, setShowMoreButton] = useState(false);
@@ -110,7 +115,7 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
 
   return (
     <article className='Profile_car_container'>
-      {is_mine && result
+      {/* {is_mine && result
         ? result.length > 3 && (
             <div className='service_filer'>
               <Radio
@@ -138,31 +143,33 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
               />
             </div>
           )
-        : null}
+        : null} */}
       {result ? (
         result.length > 0 ? (
           <>
-            {result.map((item, i) => {
-              // car section
-              return is_mine ? (
-                <Car
-                  language={language.car}
-                  key={i}
-                  data={item}
-                  is_mine={true}
-                  getListAgain={() => fetchApi(1)}
-                />
-              ) : !item.is_out_of_service ? (
-                <Car
-                  language={language.car}
-                  key={i}
-                  data={item}
-                  is_mine={false}
-                  getListAgain={() => fetchApi(1)}
-                />
-              ) : null;
-            })}
-            <Comment_section user_id={profile_Id} />
+            <div className='cars_container'>
+              {result.map((item, i) => {
+                // car section
+                return is_mine ? (
+                  <Car
+                    language={language.car}
+                    key={i}
+                    data={item}
+                    is_mine={true}
+                    getListAgain={() => fetchApi(1)}
+                  />
+                ) : !item.is_out_of_service ? (
+                  <Car
+                    language={language.car}
+                    key={i}
+                    data={item}
+                    is_mine={false}
+                    getListAgain={() => fetchApi(1)}
+                  />
+                ) : null;
+              })}
+            </div>
+            <Comment_section user_id={profile_Id} user_data={user_data} />
           </>
         ) : null
       ) : (
@@ -179,12 +186,12 @@ const Profile_Cars = ({ is_mine, profile_Id, language }: IProfile_Cars) => {
         //     />
         //   </div>
         // )
-        <>
+        <div className='place_holder_div'>
           <CarLoading />
           <CarLoading />
           <CarLoading />
           <CarLoading />
-        </>
+        </div>
       )}
       {showMoreButton ? (
         <div className='Load_more_car_container'>
@@ -208,6 +215,7 @@ interface IProfile_Cars {
   is_mine: boolean;
   profile_Id: number;
   language: any;
+  user_data: any;
 }
 
 export default Profile_Cars;

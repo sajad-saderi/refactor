@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { REQUEST_GET_CAR_REVIEW } from "../../../API";
 import Review from "../../Review";
 import "./comment_section.scss";
-const Comment_section = ({ user_id }) => {
+import Icon from "../../../../utils/Icon";
+
+const Comment_section = ({ user_id, user_data }: IComment_section) => {
   const [active_tab, set_active_tab] = useState(true);
   const [review_renter, setReViewRenter] = useState([]);
   const [review_owner, setReViewOwner] = useState([]);
 
   useEffect(() => {
-    console.log(user_id);
+    console.log(user_data);
     get_reviews();
   }, []);
 
@@ -46,9 +48,33 @@ const Comment_section = ({ user_id }) => {
         </div>
       </div>
       <div className='review_section'>
+        {active_tab ? (
+          user_data.rate?.no_of_received_rates_as_owner ? (
+            <div className='rate_container'>
+              <Icon name='star' />
+              <span>
+                {user_data.rate.avg_rate_as_owner}{" "}
+                <span className='sum_rent'>
+                  ({user_data.rate.no_of_received_rates_as_owner} نظر)
+                </span>
+              </span>
+            </div>
+          ) : null
+        ) : user_data.rate?.no_of_received_rates_as_renter ? (
+          <div className='rate_container'>
+            <Icon name='star' />
+            <span>
+              {user_data.rate.avg_rate_as_renter}{" "}
+              <span className='sum_rent'>
+                ({user_data.rate.no_of_received_rates_as_renter} نظر)
+              </span>
+            </span>
+          </div>
+        ) : null}
         <Review
-          review={active_tab ? review_renter : review_owner}
+          review={!active_tab ? review_renter : review_owner}
           without_title={true}
+          profile={true}
         />
       </div>
     </section>
@@ -57,6 +83,7 @@ const Comment_section = ({ user_id }) => {
 
 interface IComment_section {
   user_id: number;
+  user_data: any;
 }
 
 export default Comment_section;

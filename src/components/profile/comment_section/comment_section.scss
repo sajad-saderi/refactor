@@ -1,6 +1,7 @@
 @import "../../../styles/colors";
 .comment_section {
   margin-top: 2.4rem;
+  margin-bottom: 4rem;
   width: 100%;
   text-align: right;
   direction: rtl;
@@ -25,5 +26,39 @@
     }
   }
   .review_section {
+    .rate_container {
+      margin-top: 2.4rem;
+      img {
+        display: inline-block;
+        margin-left: 0.4rem;
+        margin-bottom: -2px;
+      }
+      span {
+        display: inline-block;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        font-weight: 500;
+        color: $dark_blue;
+        .sum_rent {
+          color: $dark_gray;
+          font-weight: normal;
+        }
+      }
+    }
+    .review_article {
+      padding: 0%;
+      .review_container_car_page {
+        padding: 0;
+        width: 100%;
+        margin-top: 2.4rem;
+        box-shadow: none;
+        div {
+          margin-right: 0;
+        }
+        .nothing-to-show {
+          margin: 0;
+        }
+      }
+    }
   }
 }

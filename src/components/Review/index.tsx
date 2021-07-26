@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const StarGenerator = dynamic(() => import("../StarGenerator"));
 // import StarGenerator from "../StarGenerator";
 
-const Review = ({ review, language, without_title }: IReview) => {
+const Review = ({ review, language, without_title, profile }: IReview) => {
   return (
     <article className='review_article responsive'>
       <section className='review_container_car_page'>
@@ -27,15 +27,17 @@ const Review = ({ review, language, without_title }: IReview) => {
                   <StarGenerator count={item.rate} />
                   {moment.unix(item.creation_time.timestamp).format("jD jMMMM")}
                 </p>
-                <p className='margin_top_12 size_14 review_content'>
+                <pre className='margin_top_12 size_14 review_content'>
                   {item.review}
-                </p>
+                </pre>
               </div>
             );
           })
         ) : (
-          <p className='margin_right_24 size_14'>
-            تا کنون نظری برای این خودرو ثبت نشده است.
+          <p className='margin_right_24 size_14 nothing-to-show'>
+            {profile
+              ? "تا کنون نظری برای این کاربر ثبت نشده است."
+              : "تا کنون نظری برای این خودرو ثبت نشده است."}
           </p>
         )}
       </section>
@@ -47,6 +49,7 @@ interface IReview {
   review: any;
   language?: any;
   without_title?: boolean;
+  profile?: boolean;
 }
 
 export default Review;
