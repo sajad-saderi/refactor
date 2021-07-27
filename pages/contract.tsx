@@ -470,8 +470,10 @@ const Contract_page = () => {
             تومان باقیمانده پس از اخذ خلافی خودرو توسط موجر و پس از کسر جرائم
             راهنمایی و رانندگی در مدت اجاره و سایر هزینه‌های مربوط به آن و پس از
             ۲۰ روز کاری - مورخه &#1794;
-            {`${result.deposit_return_date.name.fa.split("،")[0]} `} به شماره
-            کارت &#1794;
+            {`${result.deposit_return_date.name.fa
+              .split("،")[0]
+              .replace(/ /gi, "/")} `}{" "}
+            به شماره کارت &#1794;
             {`${result.renter.bank_account_id} `} بانک
             {` ${result.renter.bank_name} `}
             به نام
