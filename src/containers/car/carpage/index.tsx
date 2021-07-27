@@ -580,7 +580,7 @@ const CarPage = ({
                       <span>
                         {rate.avg_rate}{" "}
                         <span className='sum_rent'>
-                          ({rate.no_of_received_rates} نظر)
+                          ({rate.no_of_received_rates})
                         </span>
                       </span>
                     </div>

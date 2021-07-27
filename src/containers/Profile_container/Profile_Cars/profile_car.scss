@@ -8,6 +8,10 @@
   align-items: flex-end;
   width: 100%;
   direction: ltr;
+  margin-right: 2rem;
+  @media screen and(max-width:960px) {
+    margin-right: 0rem;
+  }
   .service_filer {
     width: 100%;
     text-align: left;

@@ -55,7 +55,7 @@ const Comment_section = ({ user_id, user_data }: IComment_section) => {
               <span>
                 {user_data.rate.avg_rate_as_owner}{" "}
                 <span className='sum_rent'>
-                  ({user_data.rate.no_of_received_rates_as_owner} نظر)
+                  ({user_data.rate.no_of_received_rates_as_owner})
                 </span>
               </span>
             </div>
@@ -66,7 +66,7 @@ const Comment_section = ({ user_id, user_data }: IComment_section) => {
             <span>
               {user_data.rate.avg_rate_as_renter}{" "}
               <span className='sum_rent'>
-                ({user_data.rate.no_of_received_rates_as_renter} نظر)
+                ({user_data.rate.no_of_received_rates_as_renter})
               </span>
             </span>
           </div>
