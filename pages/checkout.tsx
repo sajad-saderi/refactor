@@ -80,7 +80,7 @@ export async function getServerSideProps(props) {
     const data = {
       order_information: null,
     };
-    if (error === "Invalid search_id.") {
+    if (error === "INVALID_SEARCH_ID") {
       data["expired"] = true;
     }
     return {

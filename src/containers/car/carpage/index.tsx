@@ -262,7 +262,7 @@ const CarPage = ({
       if (error === "Not found!") {
         router.push("/404");
       }
-      if (error === "Invalid search_id.") {
+      if (error === "INVALID_SEARCH_ID") {
         DateSetter(id);
       }
       console.log("!Error", error);

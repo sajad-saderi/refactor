@@ -196,7 +196,7 @@ export async function getServerSideProps(props) {
       init_props["expired"] = true;
       init_props["_404"] = true;
     }
-    if (error === "Invalid search_id.") {
+    if (error === "INVALID_SEARCH_ID") {
       init_props["expired"] = true;
     }
     return {
