@@ -20,7 +20,7 @@ const Review = ({ review, language, without_title, profile }: IReview) => {
           review.map((item) => {
             return (
               <div className='margin_right_24 margin_bottom_24' key={item.id}>
-                <p className='margin_bottom_8 size_14'>
+                <p className='margin_bottom_8 size_14 weight_500'>
                   {item.reviewer_user_profile.name}
                 </p>
                 <p className='size_12 dark_gray'>

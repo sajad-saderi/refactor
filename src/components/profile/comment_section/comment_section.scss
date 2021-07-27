@@ -2,9 +2,12 @@
 .comment_section {
   margin-top: 2.4rem;
   margin-bottom: 4rem;
-  width: 100%;
+  width: 50%;
   text-align: right;
   direction: rtl;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
   .tab_section {
     border-bottom: 1px solid $light_grey;
     display: flex;
@@ -21,22 +24,24 @@
       }
     }
     .active {
-      border-bottom: 1px solid $dark_gray;
+      border-bottom: 2px solid $dark_gray;
       font-weight: 600;
+      margin-bottom: -1px;
     }
   }
   .review_section {
     .rate_container {
-      margin-top: 2.4rem;
+      margin-top: 1.6rem;
       img {
         display: inline-block;
         margin-left: 0.4rem;
         margin-bottom: -2px;
+        width: 16px;
       }
       span {
         display: inline-block;
-        font-size: 1.2rem;
-        line-height: 1.2rem;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
         font-weight: 500;
         color: $dark_blue;
         .sum_rent {
