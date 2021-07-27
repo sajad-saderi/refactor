@@ -5,9 +5,10 @@ const Layout = dynamic(() => import("../../src/Layout"));
 import language from "../../public/languages/fa/user.json";
 // import { logPageView } from "../../utils/analytics";
 
-const Profile_container = dynamic(() =>
-  import("../../src/containers/Profile_container")
-);
+// const Profile_container = dynamic(() =>
+//   import("../../src/containers/Profile_container")
+// );
+import Profile_container from "../../src/containers/Profile_container";
 const Profile = () => {
   // React.useEffect(() => {
   //   window["dataLayer"].push({
