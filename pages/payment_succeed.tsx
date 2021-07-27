@@ -24,6 +24,7 @@ const Success_payment = () => {
   const [renter, setRenter] = useState(null);
   const [rent_search_dump, setRent_search_dump] = useState(null);
   const [bank_id_track, set_bank_id_track] = useState(null);
+  const [has_insurance, set_has_insurance] = useState(false);
   const token = jsCookie.get("token");
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const Success_payment = () => {
       setRent_search_dump(Order_res.data.rent_search_dump);
       setRenter(Order_res.data.renter);
       set_bank_id_track(Order_res.data.id);
+      set_has_insurance(Order_res.data.has_insurance);
       // console.log({
       //   event: "purchase",
       //   transactionId: Order_res.data.id,
@@ -155,6 +157,12 @@ const Success_payment = () => {
                         {rent_search_dump.no_of_days} {language.day}
                       </span>
                     </div>
+                    {has_insurance && (
+                      <div>
+                        <p>بیمه اجاره خودرو:</p>
+                        <span>دارد</span>
+                      </div>
+                    )}
                     <div>
                       <p>محدودیت مسافت:</p>
                       <span className='float-left'>
@@ -166,7 +174,17 @@ const Success_payment = () => {
                 <div className='paid_price '>
                   <p>{language.span_1}</p>
                   <div>
-                    <h3>{rent_search_dump.total_price.toLocaleString()}</h3>
+                    <h3>
+                      {(
+                        rent_search_dump.total_price -
+                        (rent_search_dump.coupon
+                          ? rent_search_dump.coupon.discounted_price
+                          : 0) +
+                        (has_insurance
+                          ? rent_search_dump.insurance_total_price
+                          : 0)
+                      ).toLocaleString()}
+                    </h3>
                     <span className='toman'> تومان</span>
                   </div>
                 </div>

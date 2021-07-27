@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import language from "../../../public/languages/fa/footer.json";
-
+import * as car from "../../../public/car_logo_black.svg";
 // import "./footer.scss";
 import {
   IoIosArrowDropup,
@@ -142,6 +142,12 @@ const Footer = (props: IFooter) => {
             <a href='tel:09391414574' className='HEAP_Footer_Link_Phone'>
               {language.social_container_footer_a_2}
             </a>
+          </p>
+          <br />
+          <br />
+          <p className='brand_description'>
+            <img src={car} alt='logo image' />
+            سِپریس نامی ایرانی و به معنی «میدان اسب‌دوانی» است.
           </p>
         </div>
       </div>

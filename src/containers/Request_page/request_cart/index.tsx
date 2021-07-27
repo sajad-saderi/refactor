@@ -94,7 +94,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       } else {
         TOAST_CONTEXT.toast_option({
           message: request_res.message,
-          time: 10,
+          time: 15,
           autoClose: true,
         });
         // getDataAgain();

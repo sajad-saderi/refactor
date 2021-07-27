@@ -262,7 +262,7 @@ const CarPage = ({
       if (error === "Not found!") {
         router.push("/404");
       }
-      if (error === "Invalid search_id.") {
+      if (error === "INVALID_SEARCH_ID") {
         DateSetter(id);
       }
       console.log("!Error", error);
@@ -587,6 +587,38 @@ const CarPage = ({
                   ) : null}
                 </h1>
                 <div className='separate_info'>
+                  <div className='driver_and_verified'>
+                    {with_driver && without_driver ? (
+                      <div className='driver_container'>
+                        <span className='tag_class'>
+                          {language.with_and_without_driver1}
+                        </span>
+                        <span className='tag_class margin_right_8'>
+                          {language.with_and_without_driver2}
+                        </span>
+                      </div>
+                    ) : with_driver ? (
+                      <div className='driver_container'>
+                        <span className='tag_class'>
+                          {language.just_with_drive}
+                        </span>
+                      </div>
+                    ) : without_driver ? (
+                      <div className='driver_container'>
+                        <span className='tag_class'>
+                          {language.without_derive}
+                        </span>
+                      </div>
+                    ) : null}
+                    {is_audited && (
+                      <div className='isverified_container tag_class'>
+                        <span>
+                          <Icon name='check' />
+                          {language.is_audited}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                   {showPriceLoading ? (
                     <div className='price_place_holder'>
                       <Spinner color='#737373' display='block' width={20} />
@@ -626,38 +658,6 @@ const CarPage = ({
                       </div>
                     )
                   )}
-                  <div className='driver_and_verified'>
-                    {with_driver && without_driver ? (
-                      <div className='driver_container'>
-                        <span className='tag_class'>
-                          {language.with_and_without_driver1}
-                        </span>
-                        <span className='tag_class margin_right_8'>
-                          {language.with_and_without_driver2}
-                        </span>
-                      </div>
-                    ) : with_driver ? (
-                      <div className='driver_container'>
-                        <span className='tag_class'>
-                          {language.just_with_drive}
-                        </span>
-                      </div>
-                    ) : without_driver ? (
-                      <div className='driver_container'>
-                        <span className='tag_class'>
-                          {language.without_derive}
-                        </span>
-                      </div>
-                    ) : null}
-                    {is_audited && (
-                      <div className='isverified_container tag_class'>
-                        <span>
-                          <Icon name='check' />
-                          {language.is_audited}
-                        </span>
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>
               {!is_mine ? (

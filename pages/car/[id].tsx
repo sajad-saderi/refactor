@@ -157,10 +157,13 @@ export async function getServerSideProps(props) {
         if (start_date) {
           param = { id, start_date, end_date };
         } else {
-          param = { id, generated_start_date, generated_end_date };
+          param = {
+            id,
+            start_date: generated_start_date,
+            end_date: generated_end_date,
+          };
         }
       }
-      console.log(start_date, end_date);
 
       const res: any = await REQUEST_GET_RENTAL_CAR(param);
       return {
@@ -193,7 +196,7 @@ export async function getServerSideProps(props) {
       init_props["expired"] = true;
       init_props["_404"] = true;
     }
-    if (error === "Invalid search_id.") {
+    if (error === "INVALID_SEARCH_ID") {
       init_props["expired"] = true;
     }
     return {
