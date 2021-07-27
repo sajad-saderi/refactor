@@ -146,31 +146,28 @@ const Profile_Cars = ({
         : null} */}
       {result ? (
         result.length > 0 ? (
-          <>
-            <div className='cars_container'>
-              {result.map((item, i) => {
-                // car section
-                return is_mine ? (
-                  <Car
-                    language={language.car}
-                    key={i}
-                    data={item}
-                    is_mine={true}
-                    getListAgain={() => fetchApi(1)}
-                  />
-                ) : !item.is_out_of_service ? (
-                  <Car
-                    language={language.car}
-                    key={i}
-                    data={item}
-                    is_mine={false}
-                    getListAgain={() => fetchApi(1)}
-                  />
-                ) : null;
-              })}
-            </div>
-            <Comment_section user_id={profile_Id} user_data={user_data} />
-          </>
+          <div className='cars_container'>
+            {result.map((item, i) => {
+              // car section
+              return is_mine ? (
+                <Car
+                  language={language.car}
+                  key={i}
+                  data={item}
+                  is_mine={true}
+                  getListAgain={() => fetchApi(1)}
+                />
+              ) : !item.is_out_of_service ? (
+                <Car
+                  language={language.car}
+                  key={i}
+                  data={item}
+                  is_mine={false}
+                  getListAgain={() => fetchApi(1)}
+                />
+              ) : null;
+            })}
+          </div>
         ) : null
       ) : (
         // (
@@ -207,6 +204,7 @@ const Profile_Cars = ({
           </span>
         </div>
       ) : null}
+      <Comment_section user_id={profile_Id} user_data={user_data} />
     </article>
   );
 };
