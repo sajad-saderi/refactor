@@ -9,6 +9,9 @@ import context_user from "../../../context/User_info";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 const Edit_profile = dynamic(() => import("./Edit_profile"));
+const NameAvatar = dynamic(() =>
+  import("../../../components/name_avatar/avatar-name")
+);
 
 const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   const [name, setName] = useState(null);
@@ -72,6 +75,14 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                     setEdit(true), setTriggerUpload(true);
                   }
                 }}
+              />
+              <NameAvatar
+                name={company_name ? company_name : name}
+                css_display='block'
+                css_with={70}
+                css_background_color='#b2b2b2'
+                css_radius={50}
+                css_text_color='#ffffff'
               />
               <div>
                 <h3>{company_name ? company_name : name}</h3>
