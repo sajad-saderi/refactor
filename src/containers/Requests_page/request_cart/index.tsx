@@ -92,15 +92,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       setRejectButtonLoader(false);
       if (data.action === "pay") {
         window.location.href = `${request_res.redirect_to}`;
-      } else if (data.action === "cancel") {
-        router.back();
       } else {
         TOAST_CONTEXT.toast_option({
           message: request_res.message,
           time: 15,
           autoClose: true,
         });
-        // getDataAgain();
         switch (data.action) {
           case "approve":
             CreateTheStatusForThisCard("approved");
@@ -120,6 +117,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
           default:
             break;
         }
+      }
+      if (data.action === "cancel") {
+        getDataAgain();
       }
     } catch (error) {
       console.log("!Error", error);
@@ -194,7 +194,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   class:
                     "Blue_BTN request_car_reject HEAP_Request_Btn_Cancel CANCELLED_INCOMING_REQUEST",
                   click: () => setForRequest({ action: "cancel", id: data.id }),
-                }
+                },
               ]
         );
         break;

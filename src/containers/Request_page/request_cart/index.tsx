@@ -88,13 +88,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         token,
         id: data.id,
         action: data.action,
-      });      
+      });
       setButtonLoader(false);
       setRejectButtonLoader(false);
       if (data.action === "pay") {
         window.location.href = `${request_res.redirect_to}`;
-      } else if (data.action === "cancel") {
-        router.back();
       } else {
         TOAST_CONTEXT.toast_option({
           message: request_res.message,
@@ -121,6 +119,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
           default:
             break;
         }
+      }
+      if (data.action === "cancel") {
+        getDataAgain(data.id);
       }
     } catch (error) {
       console.log("!Error", error);
