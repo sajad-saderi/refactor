@@ -7,7 +7,6 @@ const Button = dynamic(() => import("../src/components/form/Button"));
 import { useRouter } from "next/router";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 // import Button from "../src/components/form/Button";
-import "../src/styles/pages/Failed_payment.scss";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentfaild.json";
 // import { logPageView } from "../utils/analytics";
