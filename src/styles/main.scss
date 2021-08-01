@@ -669,6 +669,7 @@ input {
 @import "./pages/search_result.module.scss";
 @import "./pages/static_pages.module.scss";
 @import "./pages/Success_payment.module.scss";
+@import "./pages/contract.module.scss";
 
 // Components
 // Form
@@ -746,10 +747,8 @@ input {
 @import "../containers/Set_car_timing/PriceBox/PriceBox.module.scss";
 @import "../containers/Set_car_timing/DiscountBox/DiscountBox.module.scss";
 
-
 @import "../components/recommendation_section/recommendation_section.module.scss";
 @import "../components/filters/PriceSlider/price_filter.module.scss";
 @import "../components/profile/comment_section/comment_section.module.scss";
 @import "../components/ImageUploader/ZoomSlider/ZoomSlider.module.scss";
 @import "../components/calculator/Join_us_content/join_us_content.module.scss";
-

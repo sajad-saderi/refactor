@@ -5,7 +5,6 @@ const Generate_pdf = dynamic(
   () => import("../src/components/contract/generate_pdf"),
   { ssr: false }
 );
-import "../src/styles/pages/contract.scss";
 import language from "../public/languages/fa/contract.json";
 import jsCookie from "js-cookie";
 import { useRouter } from "next/router";
@@ -81,26 +80,26 @@ const Contract_page = () => {
   };
 
   return result ? (
-    <div className='contract_container'>
-      <div className='download_section'>
+    <div className="contract_container">
+      <div className="download_section">
         <Generate_pdf html={html_ref} />
       </div>
-      <div className='content' ref={html_ref}>
+      <div className="content" ref={html_ref}>
         <h1> قرارداد اجاره خودرو</h1>
         <h2>
           {result.rent_search_dump.with_driver
             ? "(بدون راننده)"
             : "(با راننده)"}
         </h2>
-        <p id='contract_date'>
+        <p id="contract_date">
           تاریخ:{` `}
           {moment().format("jYYYY/jMM/jDD")}
         </p>
-        <p id='contract_number'>
+        <p id="contract_number">
           شماره:{` ${result.id} - ${moment().format(" jMM - jYY")}`}
         </p>
-        <div id='page_1'>
-          <p className='paragraph_title'>
+        <div id="page_1">
+          <p className="paragraph_title">
             ماده یک: مشخصات طرفین قرارداد
             <br />
             موجر: آقا/خانم
@@ -172,13 +171,13 @@ const Contract_page = () => {
             } `}
             تاریخ صدور &#1794;
             {`${
-              result.renter.driving_license_issue_date.name.fa
+              result.renter.driving_license_issue_date
                 ? result.renter.driving_license_issue_date.name.fa.split("،")[0]
                 : dots
             } `}
             تاریخ اعتبار &#1794;
             {`${
-              result.renter.driving_license_expiration_date.name.fa
+              result.renter.driving_license_expiration_date
                 ? result.renter.driving_license_expiration_date.name.fa.split(
                     "،"
                   )[0]
@@ -186,7 +185,7 @@ const Contract_page = () => {
             } `}
             نوع گواهینامه
             {` ${
-              result.renter.driving_license_type.name.fa
+              result.renter.driving_license_type
                 ? result.renter.driving_license_type.name.fa
                 : dots
             } `}
@@ -196,7 +195,7 @@ const Contract_page = () => {
             <br />
             یک دستگاه اتومبیل‌ سواری
             {` ${
-              result.rent_search_dump.car.name.fa
+              result.rent_search_dump.car
                 ? result.rent_search_dump.car.brand.name.fa +
                   " " +
                   result.rent_search_dump.car.name.fa
@@ -204,7 +203,7 @@ const Contract_page = () => {
             } `}
             سال ساخت
             {` ${
-              result.rent_search_dump.year.name.fa
+              result.rent_search_dump.year
                 ? result.rent_search_dump.year.name.fa
                 : dots
             } `}
@@ -216,7 +215,7 @@ const Contract_page = () => {
             } `}
             دارای
             {` ${
-              result.rent_search_dump.cylinder.name.fa
+              result.rent_search_dump.cylinder
                 ? result.rent_search_dump.cylinder.name.fa
                 : dots
             } `}
@@ -235,7 +234,7 @@ const Contract_page = () => {
             <br />
             رنگ
             {` ${
-              result.rent_search_dump.color.name.fa
+              result.rent_search_dump.color
                 ? result.rent_search_dump.color.name.fa
                 : dots
             }، `}
@@ -274,24 +273,28 @@ const Contract_page = () => {
             به مدت
             {` ${result.rent_search_dump.no_of_days} `}
             روز و در ساعت
-            {` ${
-              result.delivery_time.name.fa ? result.delivery_time.name.fa : dots
-            } `}
+            {` ${result.delivery_time ? result.delivery_time.name.fa : dots} `}
             در نشانی
             {` ${result.delivery_address ? result.delivery_address : dots} `}
             به مستأجر تحویل شد. مستأجر متعهد گردید مورد اجاره را در تاریخ
             &#1794;
             {`${result.rent_search_dump.end_date} `}و در ساعت &#1794;
-            {`${
-              result.return_time.name.fa ? result.return_time.name.fa : dots
-            } `}
+            {`${result.return_time ? result.return_time.name.fa : dots} `}
             در نشانی فوق به موجر عودت دهد. مستأجر متعهد گردید از مورد اجاره
             شخصاً و فقط برای سواری و با تعداد سرنشین &#1794;
-            {`${result.rent_search_dump.capacity} `}
+            {`${
+              result.rent_search_dump.capacity
+                ? result.rent_search_dump.capacity
+                : "........"
+            } `}
             نفر و در شهر/شهرهای
             {` ${result.destinations ? result.destinations : dots} `}و با مسافت
             حداکثر روزانه &#1794;
-            {`${result.rent_search_dump.max_km_per_day} `}
+            {`${
+              result.rent_search_dump.max_km_per_day
+                ? result.rent_search_dump.max_km_per_day
+                : dots
+            } `}
             کیلومتر استفاده کند و به ازای هر کیلومتر اضافه مبلغ &#1794;
             {`${(
               result.rent_search_dump.extra_km_price * 10
@@ -305,11 +308,11 @@ const Contract_page = () => {
             کیلومتر
           </p>
         </div>
-        <div className='signature'>
-          <span id='signature_1_renter'>نام و امضای مستأجر</span>
-          <span id='signature_1_owner'>نام و امضای موجر</span>
+        <div className="signature">
+          <span id="signature_1_renter">نام و امضای مستأجر</span>
+          <span id="signature_1_owner">نام و امضای موجر</span>
         </div>
-        <div id='page_2'>
+        <div id="page_2">
           {/* <p>
             تبصره یک:در صورت تمایل مستأجر به اقاله -فسخ- قرارداد پیش از اتمام
             مدت اجاره بایستی حداقل ۱۲ ساعت قبل از اتمام مدت قرارداد به موجر
@@ -422,11 +425,19 @@ const Contract_page = () => {
               </span>
             )}
             و مبلغ &#1794;
-            {`${(result.deposit.name.fa * 10).toLocaleString()} `}
+            {`${
+              result.deposit
+                ? (result.deposit.name.fa * 10).toLocaleString()
+                : dots
+            } `}
             ریال معادل &#1794;
-            {`${NumbersAndCurrencyUnit({
-              value: result.deposit.name.fa,
-            })} `}
+            {`${
+              result.deposit
+                ? NumbersAndCurrencyUnit({
+                    value: result.deposit.name.fa,
+                  })
+                : dots
+            } `}
             تومان به شماره کارت &#1794;
             {`${
               result.system_representative_bacnk_account_id
@@ -449,43 +460,68 @@ const Contract_page = () => {
             ) : (
               <span>
                 مبلغ &#1794;
-                {`${(
-                  (result.cash_deposit - result.deposit.name.fa) *
-                  10
-                ).toLocaleString()} `}
+                {`${
+                  result.cash_deposit
+                    ? (
+                        (result.cash_deposit - result.deposit.name.fa) *
+                        10
+                      ).toLocaleString()
+                    : dots
+                } `}
                 معادل &#1794;
-                {`${NumbersAndCurrencyUnit({
-                  value: result.cash_deposit - result.deposit.name.fa,
-                })} `}
+                {`${
+                  result.cash_deposit
+                    ? NumbersAndCurrencyUnit({
+                        value: result.cash_deposit - result.deposit.name.fa,
+                      })
+                    : dots
+                } `}
                 تومان{" "}
               </span>
             )}
             بعد از تحویل خودرو پس از کسر جرائم مشخص‌شده به مستأجر مسترد خواهد شد
             و مبلغ &#1794;
-            {`${(result.deposit.name.fa * 10).toLocaleString()} `}
+            {`${
+              result.deposit
+                ? (result.deposit.name.fa * 10).toLocaleString()
+                : dots
+            } `}
             ریال معادل &#1794;
-            {`${NumbersAndCurrencyUnit({
-              value: result.deposit.name.fa,
-            })} `}
+            {`${
+              result.deposit
+                ? NumbersAndCurrencyUnit({
+                    value: result.deposit.name.fa,
+                  })
+                : dots
+            } `}
             تومان باقیمانده پس از اخذ خلافی خودرو توسط موجر و پس از کسر جرائم
             راهنمایی و رانندگی در مدت اجاره و سایر هزینه‌های مربوط به آن و پس از
             ۲۰ روز کاری - مورخه &#1794;
-            {`${result.deposit_return_date.name.fa
-              .split("،")[0]
-              .replace(/ /gi, "/")} `}{" "}
+            {`${
+              result.deposit_return_date
+                ? result.deposit_return_date.name.fa
+                    .split("،")[0]
+                    .replace(/ /gi, "/")
+                : dots
+            } `}{" "}
             به شماره کارت &#1794;
-            {`${result.renter.bank_account_id} `} بانک
-            {` ${result.renter.bank_name} `}
+            {`${
+              result.renter.bank_account_id
+                ? result.renter.bank_account_id
+                : dots
+            } `}{" "}
+            بانک
+            {` ${result.renter.bank_name ? result.renter.bank_name : dots} `}
             به نام
             {` ${result.renter.official_name} `}
             واریز خواهد شد&#46;&#1794;
           </p>
         </div>
-        <div className='signature'>
-          <span id='signature_2_renter'>نام و امضای مستأجر</span>
-          <span id='signature_2_owner'>نام و امضای موجر</span>
+        <div className="signature">
+          <span id="signature_2_renter">نام و امضای مستأجر</span>
+          <span id="signature_2_owner">نام و امضای موجر</span>
         </div>
-        <div id='page_3'>
+        <div id="page_3">
           <p>
             &#1794;۲-{" "}
             {result.deposit_type ? (
@@ -585,11 +621,11 @@ const Contract_page = () => {
             مسئولیت تام و بی‌قیدوشرط خواهد داشت&#46;&#1794;
           </p>
         </div>
-        <div className='signature'>
-          <span id='signature_3_renter'>نام و امضای مستأجر</span>
-          <span id='signature_3_owner'>نام و امضای موجر</span>
+        <div className="signature">
+          <span id="signature_3_renter">نام و امضای مستأجر</span>
+          <span id="signature_3_owner">نام و امضای موجر</span>
         </div>
-        <div id='page_4'>
+        <div id="page_4">
           <p>
             &#1794;۹- مستأجر متعهد گردید که خود شخصاً با خودرو رانندگی نماید
             <br />
@@ -635,14 +671,14 @@ const Contract_page = () => {
             موجر،&#1794; خودرو را از ایشان صحیح و سالم تحویل گرفتم&#46;&#1794;
           </p>
         </div>
-        <div className='signature'>
-          <span id='signature_4_renter'>نام و امضای مستأجر</span>
-          <span id='signature_4_owner'>نام و امضای موجر</span>
+        <div className="signature">
+          <span id="signature_4_renter">نام و امضای مستأجر</span>
+          <span id="signature_4_owner">نام و امضای موجر</span>
         </div>
-        <div className='signature'>
+        <div className="signature">
           <p>
-            <span id='witness_1'>نام و امضاء شاهد یک </span>
-            <span id='witness_2'>نام و امضاء شاهد دو</span>
+            <span id="witness_1">نام و امضاء شاهد یک </span>
+            <span id="witness_2">نام و امضاء شاهد دو</span>
           </p>
         </div>
       </div>
