@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 // Had to import noUiSlider and filter style file modular, to work correctly
-import "./price_filter.scss";
+
 
 import filterContext from "../../../context/filter-context";
 import dynamic from "next/dynamic";

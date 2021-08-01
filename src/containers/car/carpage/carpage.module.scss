@@ -101,7 +101,7 @@
           font-weight: 500;
           color: $dark_blue;
           .sum_rent {
-            color: $dark_gray;
+            color: $gray;
             font-weight: normal;
           }
         }
@@ -387,7 +387,7 @@
     }
     .facilities_container {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       flex-wrap: wrap;
       p {
@@ -745,9 +745,6 @@
           }
         }
       }
-      .separate_info {
-        direction: ltr;
-      }
       .price_place_holder {
         display: block;
       }
@@ -808,7 +805,7 @@
       }
       // .facilities_container {
       //   display: flex;
-      //   justify-content: start;
+      //   justify-content: flex-start;
       //   align-items: center;
       //   flex-wrap: wrap;
       //   p {

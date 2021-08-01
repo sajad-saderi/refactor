@@ -65,7 +65,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         location_storage.value !== 1656 ||
         location_storage.value !== 1660 ||
         location_storage.value !== 1690 ||
-        location_storage.value !== 1655
+        location_storage.value !== 1655 ||
+        location_storage.value !== 1685
       ) {
         setLocationId(location_storage.value);
         setLocationName(location_storage.text);
@@ -221,7 +222,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                 i.value !== 1656 &&
                 i.value !== 1660 &&
                 i.value !== 1690 &&
-                i.value !== 1655
+                i.value !== 1655 &&
+                i.value !== 1685
               ) {
                 // setLocationId(i.key);
                 MODAL_CONTEXT.modalHandler("TellMe");

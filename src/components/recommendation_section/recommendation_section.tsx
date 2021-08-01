@@ -6,7 +6,6 @@ import van from "../../../public/image/van.jpeg";
 import with_driver from "../../../public/image/with_driver.jpeg";
 import affordable from "../../../public/image/affordable.jpeg";
 import for_journey from "../../../public/image/for_journey.jpeg";
-import "./recommendation_section.scss";
 import moment from "moment-jalaali";
 import Link from "next/link";
 

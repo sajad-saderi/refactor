@@ -522,7 +522,7 @@ const Search_result = ({ language }: ISearch_result) => {
 
   const UrlUpdater = (data) => {
     const { pathname, query } = data;
-    router.push(
+    router.replace(
       {
         pathname: pathname,
         query: query,
@@ -595,7 +595,15 @@ const Search_result = ({ language }: ISearch_result) => {
                 staticRoute.location_id = v.location_id;
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
+                staticRoute.start_date = v.date.Start_date;
+                staticRoute.end_date = v.date.End_date;
                 setShowSearch(false);
+                loadMoreCar = false;
+                UrlCreator({
+                  query: staticRoute,
+                  route: router.route,
+                  cb: UrlUpdater,
+                });
                 initSearch();
               }}
             />

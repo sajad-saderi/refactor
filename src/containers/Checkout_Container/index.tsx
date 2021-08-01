@@ -209,7 +209,7 @@ const Checkout_Container = ({
       const new_rent_req_res: any = await REQUEST_SET_RENT_REQUEST(data);
       TOAST_CONTEXT.toast_option({
         message: language.toast_message,
-        time: 10,
+        time: 15,
         autoClose: true,
       });
       router.push(
@@ -264,7 +264,7 @@ const Checkout_Container = ({
           </div>
           <hr />
           <h2>{language.condition_and_cancellation}</h2>
-          <p>{cancellation_policy}</p>
+          <pre>{cancellation_policy}</pre>
           <hr />
           <h2>{language.location}</h2>
           <p>{location.name.breadcrumb_fa}</p>
@@ -284,16 +284,21 @@ const Checkout_Container = ({
           <hr />
           <h2>{language.destination_limit}</h2>
           <p>
-            {max_km_per_day} {language.km_per_day}
+            {language.KM_in_day_limit}:{" "}
+            <strong>
+              {max_km_per_day}
+              {language.km_per_day}
+            </strong>
+            {language.KM_in_day}
           </p>
           <p>
-            {language.extra_price_per_km}
-            {extra_km_price_name}
+            {language.extra_price_per_km}:{" "}
+            <strong>{extra_km_price_name}</strong>
           </p>
           {extra_hour_price_name && (
             <p>
-              {language.extra_hour_price_name}
-              {extra_hour_price_name}
+              {language.extra_hour_price_name}:{" "}
+              <strong>{extra_hour_price_name}</strong>
             </p>
           )}
         </div>

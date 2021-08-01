@@ -503,7 +503,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         if (router.query?.newcaradded === "true") {
           TOAST_CONTEXT.toast_option({
             message: `${language.toast_1} ${CarModelName} ${language.toast_2}`,
-            time: 10,
+            time: 15,
             autoClose: true,
           });
           router.push(

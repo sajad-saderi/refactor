@@ -9,7 +9,6 @@ const Spinner = dynamic(() => import("../src/components/Spinner"));
 // import Layout from "../src/Layout";
 import { REQUEST_GET_FAQ } from "../src/API";
 // import Accordion from "../src/components/Accordion";
-import "../src/styles/pages/faq.scss";
 // import Spinner from "../src/components/Spinner";
 import language from "../public/languages/fa/faq.json";
 // import { logPageView } from "../utils/analytics";

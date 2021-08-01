@@ -595,7 +595,7 @@ const Landing_page_container = ({
   const UrlUpdater = (data) => {
     const { pathname, queryString, asPath, query } = data;
 
-    router.push(
+    router.replace(
       {
         pathname: pathname,
         query: query,
@@ -669,6 +669,14 @@ const Landing_page_container = ({
                 staticRoute.location_id = v.location_id;
                 Start_date = v.date.Start_date;
                 End_date = v.date.End_date;
+                staticRoute.start_date = v.date.Start_date;
+                staticRoute.end_date = v.date.End_date;
+                loadMoreCar = false;
+                UrlCreator({
+                  query: staticRoute,
+                  route: router.route,
+                  cb: UrlUpdater,
+                });
                 setShowSearch(false);
                 initSearch();
               }}
