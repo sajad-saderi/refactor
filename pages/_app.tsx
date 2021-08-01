@@ -12,6 +12,7 @@ import jsCookie from "js-cookie";
 import user_context from "../src/context/User_info";
 import logo from "../public/android-icon-48x48.png";
 import { IoIosClose } from "react-icons/io";
+import "../src/styles/main.scss";
 
 Sentry.init({
   dsn: process.env.SENTRY,

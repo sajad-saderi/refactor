@@ -12,7 +12,6 @@ import React, { useContext, useEffect, useState } from "react";
  */
 import Nouislider from "nouislider-react";
 // Had to import noUiSlider and filter style file modular, to work correctly
-import "./ZoomSlider.scss";
 import "nouislider/distribute/nouislider.css";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 

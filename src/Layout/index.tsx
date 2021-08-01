@@ -12,7 +12,6 @@ const Header = dynamic(() => import("../containers/header"));
 
 // Main Scss file
 // All Scss files are imported to the main.scss
-import "../styles/main.scss";
 
 // Modal Context
 import modal_context from "../context/Modal_context";

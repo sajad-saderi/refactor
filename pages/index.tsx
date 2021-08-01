@@ -8,7 +8,6 @@ import Recommendation_section from "../src/components/recommendation_section/rec
 // import Layout from "../src/Layout";
 // import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
-import "../src/styles/pages/index.scss";
 import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
 import { guard_controller } from "../utils/guard_controller";
@@ -56,10 +55,10 @@ const HomePage = () => {
             <Search language={language} />
           </div>
         </div>
-        {/* <div className='insuranceBox'>
-          <p>با همکاری</p>
+        <div className='insuranceBox'>
+          <p>با همکاری بیمه‌های اتومبیل سامان</p>
           <img src={insurance} alt='تصویر بیمه سامان' width='115' height='47' />
-        </div> */}
+        </div>
         <div className=' responsive second_container'>
           <div className='full_width'>
             <h2>{language.second_container_full_width_h2}</h2>
