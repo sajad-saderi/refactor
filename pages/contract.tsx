@@ -81,7 +81,12 @@ const Contract_page = () => {
   };
 
   return result ? (
-    <div className="contract_container">
+    <div
+      className="contract_container"
+      style={{
+        padding: "10px",
+      }}
+    >
       <div className="download_section">
         <Generate_pdf html={html_ref} />
       </div>
