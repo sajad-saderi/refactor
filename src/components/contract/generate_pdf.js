@@ -14,7 +14,7 @@ const GeneratePdf = ({ html }) => {
     doc.setTextColor("#3300ff");
     doc.setFontSize(14);
     doc.html(html.current, {
-      x: 10,
+      x: 20,
       y: 0,
       callback: function(documnet) {
         documnet.save();
