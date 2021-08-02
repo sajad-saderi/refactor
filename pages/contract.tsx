@@ -19,9 +19,8 @@ let global_font_size_p = "0.4rem";
 let global_line_height = 2;
 const Contract_page = () => {
   const [show_download, set_show_download] = useState(false);
-  const [dots, set_dots] = useState(
-    "............................................"
-  );
+  const [dots, set_dots] = useState("........................");
+  const [small_dots, set__smalldots] = useState("........");
   const [result, setResult] = useState(null);
 
   const user_info = useContext(context_user);
@@ -163,14 +162,14 @@ const Contract_page = () => {
                 ? result.rent_search_dump.owner.national_id
                 : dots
             } `}
-            شماره تماس ثابت{" "}
-            {`${
+            شماره تماس ثابت
+            {` ${
               result.rent_search_dump.owner.fixed_phone
                 ? result.rent_search_dump.owner.fixed_phone
                 : dots
             } `}
-            شماره همراه{" "}
-            {`${
+            شماره همراه
+            {` ${
               result.rent_search_dump.owner.cell
                 ? "0" + result.rent_search_dump.owner.cell
                 : dots
@@ -234,7 +233,7 @@ const Contract_page = () => {
             {` ${
               result.renter.driving_license_type
                 ? result.renter.driving_license_type.name.fa
-                : dots
+                : small_dots
             } `}
           </p>
           <p
@@ -266,19 +265,19 @@ const Contract_page = () => {
             {` ${
               result.rent_search_dump.year
                 ? result.rent_search_dump.year.name.fa
-                : dots
+                : small_dots
             } `}
             سیستم سوخت
             {` ${
               result.rent_search_dump.fuel
                 ? result.rent_search_dump.fuel.name.fa
-                : dots
+                : small_dots
             } `}
             دارای
             {` ${
               result.rent_search_dump.cylinder
                 ? result.rent_search_dump.cylinder.name.fa
-                : dots
+                : small_dots
             } `}
             به شماره شاسی
             {` ${
@@ -294,7 +293,7 @@ const Contract_page = () => {
             {` ${
               result.rent_search_dump.color
                 ? result.rent_search_dump.color.name.fa
-                : dots
+                : small_dots
             } `}
             و به شماره پلاک
             {result.rent_search_dump.registration_plate_forth_part
@@ -345,21 +344,23 @@ const Contract_page = () => {
             {` ${result.rent_search_dump.no_of_days} `}
             روز و در ساعت
             {` ${
-              result.delivery_time
-                ? result.delivery_time.name.fa
-                : "............."
+              result.delivery_time ? result.delivery_time.name.fa : small_dots
             } `}
             در نشانی
-            {` ${result.delivery_address ? result.delivery_address : dots} `}
+            {` ${
+              result.delivery_address ? result.delivery_address : dots + dots
+            } `}
             به مستأجر تحویل .شد مستأجر متعهد گردید مورد اجاره را در تاریخ
             {` ${result.rent_search_dump.end_date} `}و در ساعت
-            {` ${result.return_time ? result.return_time.name.fa : dots} `}
+            {` ${
+              result.return_time ? result.return_time.name.fa : small_dots
+            } `}
             در نشانی فوق به موجر عودت .دهد مستأجر متعهد گردید از مورد اجاره
             شخصاً و فقط برای سواری و با تعداد سرنشین
             {` ${
               result.rent_search_dump.capacity
                 ? result.rent_search_dump.capacity
-                : "........"
+                : small_dots
             } `}
             نفر و در شهر/شهرهای
             {` ${result.destinations ? result.destinations : dots} `}و با مسافت
@@ -367,7 +368,7 @@ const Contract_page = () => {
             {` ${
               result.rent_search_dump.max_km_per_day
                 ? result.rent_search_dump.max_km_per_day
-                : dots
+                : small_dots
             } `}
             کیلومتر استفاده کند و به ازای هر کیلومتر اضافه مبلغ
             {` ${(
@@ -435,7 +436,7 @@ const Contract_page = () => {
             style={{
               fontSize: global_font_size_p,
               marginTop: "5px",
-              marginBottom: "3px",
+              marginBottom: "2px",
               lineHeight: global_line_height,
             }}
           >
@@ -563,11 +564,19 @@ const Contract_page = () => {
             ) : (
               <span>
                 مستأجر متعهد گردید که علاوه بر اجاره بهاء مبلغ
-                {` ${(result.cash_deposit * 10).toLocaleString()} `}
+                {` ${
+                  result.cash_deposit
+                    ? (result.cash_deposit * 10).toLocaleString()
+                    : dots
+                } `}
                 ریال معادل
-                {` ${NumbersAndCurrencyUnit({
-                  value: result.cash_deposit,
-                })} `}
+                {` ${
+                  result.cash_deposit
+                    ? NumbersAndCurrencyUnit({
+                        value: result.cash_deposit,
+                      })
+                    : dots
+                } `}
                 تومان{" "}
               </span>
             )}
@@ -740,12 +749,14 @@ const Contract_page = () => {
                   <span>
                     بانک
                     {` ${result.deposit_bank ? result.deposit_bank : dots} `}
+                    به ‌نام
+                    {` ${
+                      result.deposit_person_name
+                        ? result.deposit_person_name
+                        : dots
+                    } `}
                   </span>
                 )}
-                به ‌نام
-                {` ${
-                  result.deposit_person_name ? result.deposit_person_name : dots
-                } `}
                 به مبلغ
                 {` ${(result.rent_search_dump.value * 10).toLocaleString()} `}
                 ریال معادل

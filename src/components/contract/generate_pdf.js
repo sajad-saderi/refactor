@@ -23,7 +23,7 @@ const GeneratePdf = ({ html }) => {
   };
   return (
     <div className="button-container">
-      <button onClick={generatePdf}>Get PDF as text</button>
+      <button onClick={generatePdf}>دانلود قرارداد</button>
     </div>
   );
 };
