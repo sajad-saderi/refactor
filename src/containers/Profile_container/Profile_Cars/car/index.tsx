@@ -27,6 +27,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [img, set_img] = useState(null);
   const [is_out_of_service, setIs_out_of_service] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [click_on_trash, set_click_on_trash] = useState(false);
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
     false
   );
@@ -88,28 +89,44 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
     }
   };
 
-  const deleteTheCar = async (id, model, brand) => {
-    if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
-      try {
-        const delete_res = await REQUEST_DELETE_CAR({
-          token: user.data?.token,
-          id,
-        });
-        jsCookie.remove("new_car");
-        getListAgain();
-      } catch (error) {
-        console.log("!Error", error);
-      }
+  const deleteTheCar = () => {
+    MODAL_CONTEXT.modalHandler("ConfirmDelete", {
+      brand: data.car.brand.name.fa,
+      model: data.car.name.fa,
+      id: data.id,
+      type: "delete_car",
+    });
+    // if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
+    //
+    // }
+  };
+
+  const request_to_delete_the_car = async (id) => {
+    try {
+      const delete_res = await REQUEST_DELETE_CAR({
+        token: user.data?.token,
+        id,
+      });
+      jsCookie.remove("new_car");
+      getListAgain();
+    } catch (error) {
+      console.log("!Error", error);
     }
   };
+
+  useEffect(() => {
+    if (MODAL_CONTEXT.id === id && click_on_trash) {
+      request_to_delete_the_car(MODAL_CONTEXT.id);
+    }
+  }, [MODAL_CONTEXT.id]);
 
   let link = is_mine ? `/car/${id}?owner=true` : `/car/${id}`;
   let hrefProp = is_mine ? `/car/[id]?owner=true` : `/car/[id]`;
   return (
     car && (
-      <div className='carcard'>
+      <div className="carcard">
         <Link href={hrefProp} as={link} prefetch={false}>
-          <a data-test-id='Link' className='HEAP_Profile_Card_Car'>
+          <a data-test-id="Link" className="HEAP_Profile_Card_Car">
             <figure
               style={{
                 backgroundImage: `url(${
@@ -143,11 +160,11 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
               ) : (
                 <img src={carThumbnail} alt={language.default_image} />
               )} */}
-              <div className='read_more'>
+              <div className="read_more">
                 <span>{language.details}</span>
               </div>
               {uncompletedCar && is_mine ? (
-                <div className='alert_for_car'>
+                <div className="alert_for_car">
                   <p
                     onClick={(e) => {
                       e.preventDefault();
@@ -167,21 +184,21 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                 </div>
               ) : null}
               {!isVerified && !uncompletedCar && is_mine ? (
-                <div className='alert_for_car'>
+                <div className="alert_for_car">
                   <p>{language.awaiting_for_verified}</p>
                 </div>
               ) : null}
             </figure>
-            <div className='info_box'>
-              <div className='car_brand'>
-                <h3 data-test-id='car_brand_h3'>{`${car.brand.name.fa} ${car.name.fa}`}</h3>
+            <div className="info_box">
+              <div className="car_brand">
+                <h3 data-test-id="car_brand_h3">{`${car.brand.name.fa} ${car.name.fa}`}</h3>
                 <p>{year.name.fa}</p>
               </div>
             </div>
           </a>
         </Link>
         {is_mine && (
-          <div className='edit_part'>
+          <div className="edit_part">
             <p
               onClick={() => {
                 router.push({
@@ -203,11 +220,11 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
             </p>
             {uncompletedCar ? null : isVerified ? (
               is_out_of_service_loading ? (
-                <Spinner display='inline-block' width={20} color='#4ba3ce' />
+                <Spinner display="inline-block" width={20} color="#4ba3ce" />
               ) : (
                 <p
-                  data-test-id='OUT_OF_SERVICE'
-                  className='HEAP_Profile_Btn_OutOfService'
+                  data-test-id="OUT_OF_SERVICE"
+                  className="HEAP_Profile_Btn_OutOfService"
                   onClick={setServiceStatus}
                 >
                   {is_out_of_service
@@ -216,11 +233,11 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                 </p>
               )
             ) : null}
-            <div className='icon_container'>
-              <span className='HEAP_Profile_Btn_EditCarDetails'>
+            <div className="icon_container">
+              <span className="HEAP_Profile_Btn_EditCarDetails">
                 <IoMdCreate
-                  color='#4ba3ce'
-                  size='2rem'
+                  color="#4ba3ce"
+                  size="2rem"
                   onClick={() => {
                     router.push({
                       pathname: "/add-car",
@@ -232,18 +249,19 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                   }}
                 />
               </span>
-              <span className='HEAP_Profile_Btn_Delete'>
+              <span className="HEAP_Profile_Btn_Delete">
                 <IoMdTrash
-                  onClick={
-                    () => deleteTheCar(id, car.name.fa, car.brand.name.fa)
+                  onClick={() => {
+                    set_click_on_trash(true);
+                    deleteTheCar();
                     // MODAL_CONTEXT.modalHandler("ConfirmDelete", {
                     // model: car.name.fa,
                     // brand: car.brand.name.fa,
                     // id: id,
                     // })
-                  }
-                  color='#4ba3ce'
-                  size='2rem'
+                  }}
+                  color="#4ba3ce"
+                  size="2rem"
                 />
               </span>
             </div>

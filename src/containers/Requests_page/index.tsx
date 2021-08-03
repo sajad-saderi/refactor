@@ -475,7 +475,7 @@ const Requests_page = ({ language }: IRequests_page) => {
                               page = 1;
                               fetchAPI({
                                 page: 1,
-                                status_id: filter_id.join(","),
+                                creation_time_from: start_date,
                               });
                             }}
                           />
@@ -510,7 +510,8 @@ const Requests_page = ({ language }: IRequests_page) => {
                               page = 1;
                               fetchAPI({
                                 page: 1,
-                                status_id: filter_id.join(","),
+                                creation_time_from: start_date,
+                                // status_id: filter_id.join(","),
                               });
                             }}
                           />

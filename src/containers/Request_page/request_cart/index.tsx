@@ -69,6 +69,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [has_Insurance, set_has_insurance] = useState(false);
   const [coupon, setCoupon] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
+  const [click_on_cancel, set_click_on_cancel] = useState(false);
+
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
   const [imageHeight, setImageHeight] = useState(0);
@@ -136,6 +138,18 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     }
   }, [data]);
 
+  const cancel_request = (id) => {
+    set_click_on_cancel(true);
+    MODAL_CONTEXT.modalHandler("ConfirmDelete", { id });
+  };
+
+  useEffect(() => {
+    if (MODAL_CONTEXT.id === data.id && click_on_cancel) {
+      setForRequest({ action: "cancel", id: data.id });
+      MODAL_CONTEXT.confirm_id(null);
+    }
+  }, [MODAL_CONTEXT.id]);
+
   const CreateTheStatusForThisCard = (status = null) => {
     /**
      * @renter
@@ -194,8 +208,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 {
                   value: language.cancel,
                   class:
-                    "Blue_BTN request_car_reject HEAP_Request_Btn_Cancel CANCELLED_INCOMING_REQUEST",
-                  click: () => setForRequest({ action: "cancel", id: data.id }),
+                    "Blue_BTN request_car_cancel HEAP_Request_Btn_Cancel CANCELLED_INCOMING_REQUEST",
+                  click: () => cancel_request(data.id),
                 },
               ]
         );
@@ -254,7 +268,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "cancelled":
         RentStatus = (
           <div className="rent_status status_expired">
-            <IoIosEyeOff size="1.4rem" color="#656565" />
+            <Icon name="cancel" />
+            {/* <IoIosEyeOff size="1.4rem" color="#656565" /> */}
             <span>{language.cancelled}</span>
           </div>
         );
