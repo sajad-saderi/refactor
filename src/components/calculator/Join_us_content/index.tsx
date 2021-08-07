@@ -30,8 +30,8 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
   // };
 
   return (
-    <>
-      <div className='insuranceBox'>
+    <div className="responsive second_part_container">
+      <div className="insuranceBox">
         <p>{language.insuranceBox_p}</p>
         <img src={insurance} alt={language.insuranceBox_image} />
       </div>
@@ -132,7 +132,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
           </section> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
