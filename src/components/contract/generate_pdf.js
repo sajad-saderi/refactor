@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import Spinner from "../Spinner";
 import { jsPDF } from "jspdf";
 
 import irans from "../../../public/fonts/ttf/IRANSansWeb_Medium.ttf";
 import iransans_b from "../../../public/fonts/ttf/IRANSansWeb_Bold.ttf";
+import Button from "../form/Button";
 
-const GeneratePdf = ({ html }) => {
+const GeneratePdf = ({ html, width }) => {
+  const [loading, set_loading] = useState(false);
   const generatePdf = () => {
+    set_loading(true);
     const doc = new jsPDF();
     doc.addFont(irans, "iransans", "normal");
     doc.addFont(iransans_b, "iransans_b", "normal");
@@ -14,16 +18,22 @@ const GeneratePdf = ({ html }) => {
     doc.setTextColor("#3300ff");
     doc.setFontSize(14);
     doc.html(html.current, {
-      x: 20,
+      x: width > 720 ? 0 : 20,
       y: 0,
       callback: function(documnet) {
         documnet.save();
+        set_loading(false);
       },
     });
   };
   return (
     <div className="button-container">
-      <button onClick={generatePdf}>دانلود قرارداد</button>
+      <Button
+        class="Blue_BTN download_contract"
+        value="دانلود قرارداد"
+        loading={loading}
+        click={generatePdf}
+      />
     </div>
   );
 };
