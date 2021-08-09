@@ -13,6 +13,7 @@ import Fullscreen from "../public/image/svg/fullscreen.svg";
 import Balloon from "../public/image/svg/balloon.svg";
 import Active_shield from "../public/image/svg/active_shield.svg";
 import Deactivate_shield from "../public/image/svg/deactivated_shield.svg";
+import cancel from "../public/image/svg/cancel.svg";
 
 const Icon = ({ name }: IIcon) => {
   let icon = null;
@@ -62,13 +63,16 @@ const Icon = ({ name }: IIcon) => {
     case "deactivate_shield":
       icon = Deactivate_shield;
       break;
+    case "cancel":
+      icon = cancel;
+      break;
     default:
       // eslint-disable-next-line no-console
       console.warn("Incorrect icon name specified");
       return null;
   }
 
-  return <img src={icon} className='iconContainer' />;
+  return <img src={icon} className="iconContainer" />;
 };
 
 interface IIcon {
@@ -87,7 +91,8 @@ interface IIcon {
     | "balloon"
     | "active_shield"
     | "deactivate_shield"
-    | "opposite_arrows";
+    | "opposite_arrows"
+    | "cancel";
 }
 
 export default Icon;

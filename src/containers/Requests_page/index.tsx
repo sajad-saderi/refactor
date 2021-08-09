@@ -118,6 +118,7 @@ const Requests_page = ({ language }: IRequests_page) => {
               get_new_array: false,
               get_approved_array: true,
               get_rejected_array: false,
+              get_cancelled_array: false,
               get_expired_array: false,
               get_paid_array: true,
               get_delivered_array: true,
@@ -129,6 +130,7 @@ const Requests_page = ({ language }: IRequests_page) => {
             get_new_array: false,
             get_approved_array: false,
             get_rejected_array: true,
+            get_cancelled_array: true,
             get_expired_array: true,
             get_paid_array: false,
             get_delivered_array: false,
@@ -169,6 +171,7 @@ const Requests_page = ({ language }: IRequests_page) => {
     {
       get_new_array,
       get_approved_array,
+      get_cancelled_array,
       get_rejected_array,
       get_expired_array,
       get_paid_array,
@@ -180,6 +183,8 @@ const Requests_page = ({ language }: IRequests_page) => {
     let new_array = [];
     // در انتظار پرداخت
     let approved_array = [];
+    // کنسل شده
+    let cancelled_array = [];
     // رد شده
     let rejected_array = [];
     // منقضی شده
@@ -201,6 +206,9 @@ const Requests_page = ({ language }: IRequests_page) => {
       }
       if (element.status.id === "paid") {
         paid_array.push(element);
+      }
+      if (element.status.id === "cancelled") {
+        cancelled_array.push(element);
       }
       if (element.status.id === "approved") {
         approved_array.push(element);
@@ -232,6 +240,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     if (get_rejected_array) {
       neat_order_list = neat_order_list.concat(rejected_array);
     }
+    if (get_cancelled_array) {
+      neat_order_list = neat_order_list.concat(cancelled_array);
+    }
     if (get_expired_array) {
       neat_order_list = neat_order_list.concat(expired_array);
     }
@@ -247,6 +258,8 @@ const Requests_page = ({ language }: IRequests_page) => {
     let new_array = [];
     // در انتظار پرداخت
     let approved_array = [];
+    // کنسل شده
+    let cancelled_array = [];
     // رد شده
     let rejected_array = [];
     // منقضی شده
@@ -271,6 +284,9 @@ const Requests_page = ({ language }: IRequests_page) => {
       }
       if (element.status.id === "approved") {
         approved_array.push(element);
+      }
+      if (element.status.id === "cancelled") {
+        cancelled_array.push(element);
       }
       if (element.status.id === "rejected") {
         rejected_array.push(element);
@@ -298,6 +314,9 @@ const Requests_page = ({ language }: IRequests_page) => {
     }
     if (rejected_array.length > 0) {
       neat_order_list = neat_order_list.concat(rejected_array);
+    }
+    if (cancelled_array.length > 0) {
+      neat_order_list = neat_order_list.concat(cancelled_array);
     }
     if (expired_array.length > 0) {
       neat_order_list = neat_order_list.concat(expired_array);
@@ -402,7 +421,7 @@ const Requests_page = ({ language }: IRequests_page) => {
 
   return show ? (
     <article>
-      <section className='requests_page_container'>
+      <section className="requests_page_container">
         {/* <Requests_filter
           language={language.filters}
           filter_list={filterHandler}
@@ -416,7 +435,7 @@ const Requests_page = ({ language }: IRequests_page) => {
             totalCount === 0 ? "blockSection" : null,
           ].join(" ")}
         >
-          <div className='orders_tabs'>
+          <div className="orders_tabs">
             <p
               onClick={() => {
                 page = 1;
@@ -442,13 +461,13 @@ const Requests_page = ({ language }: IRequests_page) => {
             </p>
           </div>
           {activeTab === 1 ? (
-            <div className='active_tab_container'>
+            <div className="active_tab_container">
               {active_orders ? (
                 active_orders.length > 0 ? (
                   <>
                     {active_orders.map((item, i) => {
                       return (
-                        <div className='Request_car' key={i}>
+                        <div className="Request_car" key={i}>
                           <Request_cart
                             language={language.request_cart}
                             data={item}
@@ -456,7 +475,7 @@ const Requests_page = ({ language }: IRequests_page) => {
                               page = 1;
                               fetchAPI({
                                 page: 1,
-                                status_id: filter_id.join(","),
+                                creation_time_from: start_date,
                               });
                             }}
                           />
@@ -465,7 +484,7 @@ const Requests_page = ({ language }: IRequests_page) => {
                     })}
                   </>
                 ) : (
-                  <p className='NoResult'>{language.no_order}</p>
+                  <p className="NoResult">{language.no_order}</p>
                 )
               ) : (
                 <>
@@ -477,13 +496,13 @@ const Requests_page = ({ language }: IRequests_page) => {
               )}
             </div>
           ) : (
-            <div className='active_tab_container'>
+            <div className="active_tab_container">
               {deactivate_orders ? (
                 deactivate_orders.length > 0 ? (
                   <>
                     {deactivate_orders.map((item, i) => {
                       return (
-                        <div className='Request_car' key={i}>
+                        <div className="Request_car" key={i}>
                           <Request_cart
                             language={language.request_cart}
                             data={item}
@@ -491,7 +510,8 @@ const Requests_page = ({ language }: IRequests_page) => {
                               page = 1;
                               fetchAPI({
                                 page: 1,
-                                status_id: filter_id.join(","),
+                                creation_time_from: start_date,
+                                // status_id: filter_id.join(","),
                               });
                             }}
                           />
@@ -521,10 +541,10 @@ const Requests_page = ({ language }: IRequests_page) => {
           onClick={nextPage}
         >
           {show_spinner_loadMore ? (
-            <Spinner display='block' width={20} color='#9E9E9E' />
+            <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
             <>
-              <IoIosArrowDown color='#202020' size='1.8rem' />
+              <IoIosArrowDown color="#202020" size="1.8rem" />
               {language.show_more}
             </>
           )}
@@ -532,7 +552,7 @@ const Requests_page = ({ language }: IRequests_page) => {
       ) : null}
     </article>
   ) : (
-    <article className='minHeight'></article>
+    <article className="minHeight"></article>
   );
 };
 

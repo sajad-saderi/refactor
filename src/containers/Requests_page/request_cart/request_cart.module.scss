@@ -15,7 +15,8 @@
     padding: 0.2rem 0.8rem;
     font-size: 1.4rem;
     display: inline-block;
-    svg {
+    svg,
+    img {
       display: inline-block;
       margin-left: 0.4rem;
       vertical-align: middle;
@@ -281,6 +282,16 @@
     .request_car_reject {
       margin-top: 2rem;
       width: 48%;
+      background-color: transparent;
+      border: 1px solid $light_grey;
+      color: $gray;
+      .Loading {
+        border-right-color: $light_grey;
+      }
+    }
+    .request_car_cancel {
+      width: 14.5rem;
+      margin-top: 2rem;
       background-color: transparent;
       border: 1px solid $light_grey;
       color: $gray;

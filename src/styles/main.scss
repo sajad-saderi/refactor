@@ -269,87 +269,89 @@ input {
   font-size: 1.2rem;
 }
 
-// SHARE STYLE
-.insuranceBox {
-  p {
-    font-weight: 500;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  width: 25rem;
-  margin: auto;
-  display: block;
-  padding: 1rem;
-  margin-top: -3rem;
-  background: #fff;
-  text-align: center;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  position: relative;
-  z-index: 2;
-  margin-top: -9.8rem;
-}
-.second_container {
+.second_part_container {
   box-shadow: $box_shadow;
-  background-color: #fff;
-  // margin-top: -6.3rem;
-  padding-top: 3rem;
-  padding-bottom: 1.5rem;
-  position: relative;
-  h2 {
-    font-size: 2rem;
-  }
-  h3 {
-    font-size: 1.6rem;
-  }
-  p {
-    font-size: 1.4rem;
-    text-align: right;
-  }
-  .full_width {
-    text-align: right;
-    margin-bottom: 2.4rem;
-  }
-  .three_columns {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 2.4rem;
-    section {
-      width: 30%;
-      text-align: justify;
-    }
-  }
-  .add_car_section {
-    margin-bottom: 2.4rem;
-    text-align: center;
-    a {
-      color: $blue;
-      font-size: 1.4rem;
-      display: block;
-    }
-    .add_car_custom {
-      display: inline-block;
-      padding: 1.1rem 3.1rem;
-      color: #fff;
-      margin-bottom: 1rem;
-      background: $purple;
-      border: 1px solid $purple;
-    }
-    .call_us {
-      text-align: center;
+  // SHARE STYLE
+  .insuranceBox {
+    p {
       font-weight: 500;
-      .TellPhone {
-        display: inline-block;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: $almost_black;
+    }
+    width: 23rem;
+    margin: auto;
+    display: block;
+    padding: 1rem;
+    margin-top: -3rem;
+    background: #fff;
+    text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: relative;
+    z-index: 2;
+  }
+  .second_container {
+    background-color: #fff;
+    // margin-top: -6.3rem;
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+    position: relative;
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.6rem;
+    }
+    p {
+      font-size: 1.4rem;
+      text-align: right;
+    }
+    .full_width {
+      text-align: right;
+      margin-bottom: 2.4rem;
+    }
+    .three_columns {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.4rem;
+      section {
+        width: 30%;
+        text-align: justify;
       }
     }
-  }
-  @media (max-width: 720px) {
-    .three_columns {
-      display: block;
-      section {
-        width: 100%;
+    .add_car_section {
+      margin-bottom: 2.4rem;
+      text-align: center;
+      a {
+        color: $blue;
+        font-size: 1.4rem;
+        display: block;
+      }
+      .add_car_custom {
+        display: inline-block;
+        padding: 1.1rem 3.1rem;
+        color: #fff;
+        margin-bottom: 1rem;
+        background: $purple;
+        border: 1px solid $purple;
+      }
+      .call_us {
+        text-align: center;
+        font-weight: 500;
+        .TellPhone {
+          display: inline-block;
+        }
+      }
+    }
+    @media (max-width: 720px) {
+      .three_columns {
+        display: block;
+        section {
+          width: 100%;
+        }
       }
     }
   }

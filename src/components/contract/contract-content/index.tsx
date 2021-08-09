@@ -18,7 +18,7 @@ const Contract_content = ({ result }: IContract) => {
     >
       <div className="download_section">
         <Generate_pdf html={html_ref} width={window.innerWidth} />
-        <div className="show_contract_checkbox">
+        <div className="show_contract_checkbox" style={{ marginRight: "20px" }}>
           <Checkbox
             initialValue={[show_contract]}
             data={[
