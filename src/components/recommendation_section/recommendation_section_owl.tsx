@@ -33,14 +33,40 @@ const Recommendation_section = (props) => {
 
   return (
     <div className="slider-wrapper">
-      <div className="recommendation_section">
-        <ScrollContainer className="inner-container">
+      <ScrollContainer className="recommendation_section">
+        <div className="inner-container">
+          <div className="suggestion_card">
+            <Link
+              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
+              prefetch={false}
+            >
+              <a>
+                <figure>
+                  <img src={affordable} />
+                  <p>اقتصادی </p>
+                </figure>
+              </a>
+            </Link>
+          </div>
           <div className="suggestion_card">
             <Link href={`/rent/car-rental-for-travel`} prefetch={false}>
               <a>
                 <figure>
                   <img src={for_journey} />
                   <p>مناسب سفر </p>
+                </figure>
+              </a>
+            </Link>
+          </div>
+          <div className="suggestion_card">
+            <Link
+              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
+              prefetch={false}
+            >
+              <a>
+                <figure>
+                  <img src={suv} />
+                  <p>شاسی بلند </p>
                 </figure>
               </a>
             </Link>
@@ -71,34 +97,8 @@ const Recommendation_section = (props) => {
               </a>
             </Link>
           </div>
-          <div className="suggestion_card">
-            <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
-              prefetch={false}
-            >
-              <a>
-                <figure>
-                  <img src={suv} />
-                  <p>شاسی بلند </p>
-                </figure>
-              </a>
-            </Link>
-          </div>
-          <div className="suggestion_card">
-            <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
-              prefetch={false}
-            >
-              <a>
-                <figure>
-                  <img src={affordable} />
-                  <p>اقتصادی </p>
-                </figure>
-              </a>
-            </Link>
-          </div>
-        </ScrollContainer>
-      </div>
+        </div>
+      </ScrollContainer>
       {/* <div className="conseal-section"></div> */}
     </div>
   );
