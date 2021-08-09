@@ -27,6 +27,7 @@ import {
   MdVpnKey,
 } from "react-icons/md";
 import dynamic from "next/dynamic";
+import download from "../../../../public/image/download.png";
 
 const PelakView = dynamic(() => import("../../../components/pelak"));
 const Icon = dynamic(() => import("../../../../utils/Icon"));
@@ -559,6 +560,16 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </>
           )}
         </div>
+        {data.show_contract && status_id === "paid" && (
+          <div className="contract_download">
+            <Link href={`/contract?id=${data.id}`} prefetch={false}>
+              <a>
+                <img src={download} alt="آیکون دانلود" />
+                <span>دانلود نمونه قرارداد</span>
+              </a>
+            </Link>
+          </div>
+        )}
         <div className="Button_container">
           {/* {button_code} */}
           {button_code.length > 0 &&

@@ -12,6 +12,7 @@ import {
   IoMdArrowRoundBack,
   IoMdPerson,
 } from "react-icons/io";
+import download from "../../../../public/image/download.png";
 import dynamic from "next/dynamic";
 
 const Icon = dynamic(() => import("../../../../utils/Icon"));
@@ -423,6 +424,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         data.rent_search_dump.registration_plate_forth_part,
     });
   };
+
   return (
     media_set && (
       <>
@@ -514,7 +516,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             )}
           </span>
         </p>
-        <div className="Role_container">
+        <div className="Role_container ">
           {role ? (
             <>
               <Link
@@ -557,6 +559,16 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </>
           )}
         </div>
+        {data.show_contract && status_id === "paid" && (
+          <div className="contract_download">
+            <Link href={`/contract?id=${data.id}`} prefetch={false}>
+              <a>
+                <img src={download} alt="آیکون دانلود" />
+                <span>دانلود نمونه قرارداد</span>
+              </a>
+            </Link>
+          </div>
+        )}
         <div className="Button_container">
           {/* {button_code} */}
           {button_code.length > 0 &&
@@ -601,5 +613,4 @@ interface IRequest_cart {
   getDataAgain?: any;
   language: any;
 }
-
 export default Request_cart;
