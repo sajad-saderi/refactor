@@ -6,7 +6,7 @@ import irans from "../../../public/fonts/ttf/IRANSansWeb_Medium.ttf";
 import iransans_b from "../../../public/fonts/ttf/IRANSansWeb_Bold.ttf";
 import Button from "../form/Button";
 
-const GeneratePdf = ({ html, width }) => {
+const GeneratePdf = ({ html, width, contractNumber }) => {
   const [loading, set_loading] = useState(false);
   const generatePdf = () => {
     set_loading(true);
@@ -21,7 +21,7 @@ const GeneratePdf = ({ html, width }) => {
       x: width > 720 ? 0 : 20,
       y: 0,
       callback: function(documnet) {
-        documnet.save();
+        documnet.save(`SeprisContract${contractNumber}.pdf`);
         set_loading(false);
       },
     });

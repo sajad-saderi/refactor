@@ -70,7 +70,11 @@ const Contract = ({ unique_id }: IContract) => {
   return result ? (
     <div className="contract_container" style={{ padding: "10px" }}>
       <div className="download_section">
-        <Generate_pdf html={html_ref} width={window.innerWidth} />
+        <Generate_pdf
+          html={html_ref}
+          width={window.innerWidth}
+          contractNumber={result.id}
+        />
       </div>
       <Contract_text inline_style={true} html_ref={html_ref} result={result} />
     </div>

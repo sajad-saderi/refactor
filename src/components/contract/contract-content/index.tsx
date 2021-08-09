@@ -17,7 +17,11 @@ const Contract_content = ({ result }: IContract) => {
       style={show_contract ? null : { padding: "10px" }}
     >
       <div className="download_section">
-        <Generate_pdf html={html_ref} width={window.innerWidth} />
+        <Generate_pdf
+          html={html_ref}
+          width={window.innerWidth}
+          contractNumber={result.id}
+        />
         <div className="show_contract_checkbox" style={{ marginRight: "20px" }}>
           <Checkbox
             initialValue={[show_contract]}
