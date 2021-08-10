@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useEffect } from "react";
 import suv from "../../../public/image/suv.jpeg";
@@ -60,6 +59,19 @@ const Recommendation_section = (props) => {
           </div>
           <div className="suggestion_card">
             <Link
+              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&with_driver=1`}
+              prefetch={false}
+            >
+              <a>
+                <figure>
+                  <img src={with_driver} />
+                  <p>با راننده</p>
+                </figure>
+              </a>
+            </Link>
+          </div>
+          <div className="suggestion_card">
+            <Link
               href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
               prefetch={false}
             >
@@ -80,19 +92,6 @@ const Recommendation_section = (props) => {
                 <figure>
                   <img src={van} />
                   <p>ون</p>
-                </figure>
-              </a>
-            </Link>
-          </div>
-          <div className="suggestion_card">
-            <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&with_driver=1`}
-              prefetch={false}
-            >
-              <a>
-                <figure>
-                  <img src={with_driver} />
-                  <p>با راننده</p>
                 </figure>
               </a>
             </Link>

@@ -64,12 +64,15 @@
 @media screen and(max-width:480px) {
   .slider-wrapper {
     .recommendation_section {
-      width: 120%;
-      .suggestion_card {
-        figure {
-          width: 18rem;
-          img {
+      .inner-container {
+        width: 1200px;
+        .suggestion_card {
+          margin: 0 20px 0 20px;
+          figure {
             width: 18rem;
+            img {
+              width: 18rem;
+            }
           }
         }
       }
