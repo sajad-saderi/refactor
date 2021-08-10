@@ -28,6 +28,7 @@ import Icon from "../../../../utils/Icon";
 import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
 import UrlCreator from "../../../../utils/UrlCreator";
+import NameAvatar from "../../../components/name_avatar/avatar-name";
 // import Review from "../../../components/Review";
 
 // use شنبه،یک شنبه و ....
@@ -567,68 +568,68 @@ const CarPage = ({
           />
           {/* </section> */}
           {/* car info section */}
-          <article className='responsive Car_page_container'>
-            <section className='carInfo_container'>
-              <div className='first_section_carpage'>
+          <article className="responsive Car_page_container">
+            <section className="carInfo_container">
+              <div className="first_section_carpage">
                 <h1>
                   {car.brand.name.fa} {car.name.fa}
-                  <p className='size_14 year_of_build'>({year.name.fa})</p>
+                  <p className="size_14 year_of_build">({year.name.fa})</p>
                   {/* <p className='owner_name_carinfo'>{owner.name}</p> */}
                   {rate?.no_of_received_rates ? (
-                    <div className='rate_container'>
-                      <Icon name='star' />
+                    <div className="rate_container">
+                      <Icon name="star" />
                       <span>
                         {rate.avg_rate}{" "}
-                        <span className='sum_rent'>
+                        <span className="sum_rent">
                           ({rate.no_of_received_rates})
                         </span>
                       </span>
                     </div>
                   ) : null}
                 </h1>
-                <div className='separate_info'>
-                  <div className='driver_and_verified'>
+                <div className="separate_info">
+                  <div className="driver_and_verified">
                     {with_driver && without_driver ? (
-                      <div className='driver_container'>
-                        <span className='tag_class'>
+                      <div className="driver_container">
+                        <span className="tag_class">
                           {language.with_and_without_driver1}
                         </span>
-                        <span className='tag_class margin_right_8'>
+                        <span className="tag_class margin_right_8">
                           {language.with_and_without_driver2}
                         </span>
                       </div>
                     ) : with_driver ? (
-                      <div className='driver_container'>
-                        <span className='tag_class'>
+                      <div className="driver_container">
+                        <span className="tag_class">
                           {language.just_with_drive}
                         </span>
                       </div>
                     ) : without_driver ? (
-                      <div className='driver_container'>
-                        <span className='tag_class'>
+                      <div className="driver_container">
+                        <span className="tag_class">
                           {language.without_derive}
                         </span>
                       </div>
                     ) : null}
                     {is_audited && (
-                      <div className='isverified_container tag_class'>
+                      <div className="isverified_container tag_class">
                         <span>
-                          <Icon name='check' />
+                          <Icon name="check" />
                           {language.is_audited}
                         </span>
                       </div>
                     )}
                   </div>
                   {showPriceLoading ? (
-                    <div className='price_place_holder'>
-                      <Spinner color='#737373' display='block' width={20} />
+                    <div className="price_place_holder">
+                      <Spinner color="#737373" display="block" width={20} />
                     </div>
                   ) : (
                     availableCar && (
-                      <div className='avg_discounted_price_per_day'>
-                        <div className='discount_part'>
+                      <div className="avg_discounted_price_per_day">
+                        <div className="discount_part">
                           {total_discount_percent ? (
-                            <span className='percentage'>
+                            <span className="percentage">
                               {total_discount_percent}%
                             </span>
                           ) : null}
@@ -651,7 +652,7 @@ const CarPage = ({
                         ) : null}
                         {/* <span className="unit_name">{unit} تومان</span> */}
                         {avg_price_per_day && (
-                          <span className='unit_name'>
+                          <span className="unit_name">
                             {language.toman_per_day}
                           </span>
                         )}
@@ -662,16 +663,16 @@ const CarPage = ({
               </div>
               {!is_mine ? (
                 showCalender ? (
-                  <div className='calender_section_mobile_view'>
+                  <div className="calender_section_mobile_view">
                     <hr />
                     <h2>
-                      <Icon name='calendar' />
+                      <Icon name="calendar" />
                       <span>{language.calender_section_mobile_view_h2}</span>
                     </h2>
                     {showDateText && dayRange.from ? (
-                      <div className='Rent_date'>
+                      <div className="Rent_date">
                         <p>
-                          <span className='day_name'>{`${moment(
+                          <span className="day_name">{`${moment(
                             `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
                             "jYYYY/jM/jD"
                           ).format("dddd")}،`}</span>
@@ -679,8 +680,8 @@ const CarPage = ({
                             dayRange.from.month,
                             "jM"
                           ).format("jMMMM")}`}
-                          <IoIosArrowRoundBack size='2rem' color='#202020' />
-                          <span className='day_name'>{`${moment(
+                          <IoIosArrowRoundBack size="2rem" color="#202020" />
+                          <span className="day_name">{`${moment(
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                             "jYYYY/jM/jD"
                           ).format("dddd")}،`}</span>
@@ -693,7 +694,7 @@ const CarPage = ({
                             : null}
                         </p>
                         <p
-                          className='change_date_in_car_page'
+                          className="change_date_in_car_page"
                           onClick={() => {
                             setShowDateText(false);
                             setShowCalender(true);
@@ -704,7 +705,7 @@ const CarPage = ({
                       </div>
                     ) : (
                       <div
-                        className='search_box_div'
+                        className="search_box_div"
                         onClick={() => {
                           calenderClick = true;
                           // setCalenderClick(true)
@@ -726,12 +727,12 @@ const CarPage = ({
                             onChange={setDayRange}
                             shouldHighlightWeekends
                             minimumDate={utils("fa").getToday()}
-                            locale='fa'
-                            colorPrimary='#4ba3ce'
+                            locale="fa"
+                            colorPrimary="#4ba3ce"
                             // disabledDays={[utils("fa").getToday()]}
                           />
-                          <div className='input_container'>
-                            <p className='label'>
+                          <div className="input_container">
+                            <p className="label">
                               {language.input_container_label_start_date}
                             </p>
                             <input
@@ -749,8 +750,8 @@ const CarPage = ({
                               value={fromDay ? fromDay : ""}
                             />
                           </div>
-                          <div className='input_container'>
-                            <p className='label'>
+                          <div className="input_container">
+                            <p className="label">
                               {language.input_container_label_end_date}
                             </p>
                             <input
@@ -779,21 +780,21 @@ const CarPage = ({
               ) : null}
               <hr />
               <h2>
-                <Icon name='pin' />
+                <Icon name="pin" />
                 <span>{language.location_for_deliver}</span>
               </h2>
-              <div className='car_delivery padding_right_24'>
-                <p className='margin_bottom_16'>
+              <div className="car_delivery padding_right_24">
+                <p className="margin_bottom_16">
                   {location.name.breadcrumb_fa}
                 </p>
                 {location.parent_id === 1 && deliver_at_renters_place ? (
-                  <p className='margin_bottom_16'>
+                  <p className="margin_bottom_16">
                     {language.deliver_at_tehran}
                     <strong>{language.you_location}</strong>
                     {language.mishavad}
                   </p>
                 ) : location.id === 1657 && deliver_at_renters_place ? (
-                  <p className='margin_bottom_16'>
+                  <p className="margin_bottom_16">
                     {language.deliver_at_tehran_karaj}
                     <strong>{language.you_location}</strong>
                     {language.mishavad}
@@ -802,10 +803,10 @@ const CarPage = ({
               </div>
               <hr />
               <h2>
-                <Icon name='document' />
+                <Icon name="document" />
                 <span>{language.condition_and_cancellation}</span>
               </h2>
-              <pre className='padding_right_24'>{cancellation_policy}</pre>
+              <pre className="padding_right_24">{cancellation_policy}</pre>
               {/* {with_driver && (
                 <>
                   <hr />
@@ -815,10 +816,10 @@ const CarPage = ({
               )} */}
               <hr />
               <h2>
-                <Icon name='opposite_arrows' />
+                <Icon name="opposite_arrows" />
                 <span>{language.distance_in_day}</span>
               </h2>
-              <p className='distance_limitation margin_bottom_16 padding_right_24'>
+              <p className="distance_limitation margin_bottom_16 padding_right_24">
                 {language.KM_in_day_limit}:{" "}
                 <strong>
                   {max_km_per_day}
@@ -826,12 +827,12 @@ const CarPage = ({
                 </strong>
                 {language.KM_in_day}
               </p>
-              <p className='distance_limitation_penalty margin_bottom_16 padding_right_24'>
+              <p className="distance_limitation_penalty margin_bottom_16 padding_right_24">
                 {language.extra_price_limit}:{" "}
                 <strong>{extra_km_price_name}</strong>
               </p>
               {extra_hour_price_name && (
-                <p className='margin_bottom_16 hour_limitation_penalty padding_right_24'>
+                <p className="margin_bottom_16 hour_limitation_penalty padding_right_24">
                   {language.extra_hour_limit}:{" "}
                   <strong>{extra_hour_price_name}</strong>
                 </p>
@@ -840,22 +841,22 @@ const CarPage = ({
                 <>
                   <hr />
                   <h2>
-                    <Icon name='car' />
+                    <Icon name="car" />
                     <span>{language.about_car}</span>
                   </h2>
-                  <pre className='padding_right_24'>{description}</pre>
+                  <pre className="padding_right_24">{description}</pre>
                 </>
               )}
               {facility_set.length > 0 && (
                 <>
                   <hr />
                   <h2>
-                    <Icon name='boxes' />
+                    <Icon name="boxes" />
                     <span>{language.facilities}</span>
                   </h2>
-                  <div className='facilities_container padding_right_24'>
+                  <div className="facilities_container padding_right_24">
                     {facility_set.map((item) => (
-                      <p className='tag_class' key={item.id}>
+                      <p className="tag_class" key={item.id}>
                         {item.name.fa}
                       </p>
                     ))}
@@ -864,33 +865,33 @@ const CarPage = ({
               )}
               <hr />
               <h2>
-                <Icon name='gear' />
+                <Icon name="gear" />
                 <span>{language.features}</span>
               </h2>
-              <div className='info_container margin_right_24 margin_bottom_24'>
-                <p className='alignThem'>
-                  <span className='info_name'>{language.body_style}</span>{" "}
-                  <span className='info_value'>{body_style.name.fa}</span>
+              <div className="info_container margin_right_24 margin_bottom_24">
+                <p className="alignThem">
+                  <span className="info_name">{language.body_style}</span>{" "}
+                  <span className="info_value">{body_style.name.fa}</span>
                 </p>
-                <p className='alignThem'>
-                  <span className='info_name'>{language.gear_box}</span>{" "}
-                  <span className='info_value'>
+                <p className="alignThem">
+                  <span className="info_name">{language.gear_box}</span>{" "}
+                  <span className="info_value">
                     {transmission_type.name.fa}
                   </span>
                 </p>
                 {cylinder ? (
-                  <p className='alignThem'>
-                    <span className='info_name'>{language.cylinder}</span>{" "}
-                    <span className='info_value'>{cylinder.name.fa}</span>
+                  <p className="alignThem">
+                    <span className="info_name">{language.cylinder}</span>{" "}
+                    <span className="info_value">{cylinder.name.fa}</span>
                   </p>
                 ) : null}
-                <p className='alignThem'>
-                  <span className='info_name'>{language.mile_age}</span>{" "}
-                  <span className='info_value'>{mileage_range.name.fa}</span>
+                <p className="alignThem">
+                  <span className="info_name">{language.mile_age}</span>{" "}
+                  <span className="info_value">{mileage_range.name.fa}</span>
                 </p>
-                <p className='alignThem'>
-                  <span className='info_name'>{language.capacity}</span>{" "}
-                  <span className='info_value'>
+                <p className="alignThem">
+                  <span className="info_name">{language.capacity}</span>{" "}
+                  <span className="info_value">
                     {capacity} {language.person}
                   </span>
                 </p>
@@ -918,15 +919,15 @@ const CarPage = ({
               )} */}
             </section>
             {/* user info section */}
-            <section className='onwnerInfo_container margin_bottom_24'>
+            <section className="onwnerInfo_container margin_bottom_24">
               {showPriceLoading ? (
-                <div className='price_place_holder'>
-                  <Spinner color='#737373' display='block' width={20} />
+                <div className="price_place_holder">
+                  <Spinner color="#737373" display="block" width={20} />
                 </div>
               ) : (
                 availableCar && (
-                  <div className='avg_discounted_price_per_day'>
-                    <div className='discount_part'>
+                  <div className="avg_discounted_price_per_day">
+                    <div className="discount_part">
                       <span
                         className={
                           total_discount ? "discount_price" : "normal_price"
@@ -937,7 +938,7 @@ const CarPage = ({
                           : null}
                       </span>
                       {total_discount_percent ? (
-                        <span className='percentage'>
+                        <span className="percentage">
                           {total_discount_percent}%
                         </span>
                       ) : null}
@@ -951,7 +952,7 @@ const CarPage = ({
                     ) : null}
                     {/* <span className="unit_name">{unit} تومان</span> */}
                     {avg_price_per_day && (
-                      <span className='unit_name'>
+                      <span className="unit_name">
                         {language.toman_per_day}
                       </span>
                     )}
@@ -959,9 +960,9 @@ const CarPage = ({
                 )
               )}
               {showDateText && !is_mine && dayRange.from ? (
-                <div className='Rent_date'>
+                <div className="Rent_date">
                   <p>
-                    <span className='day_name'>
+                    <span className="day_name">
                       {`${moment(
                         `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
                         "jYYYY/jM/jD"
@@ -971,8 +972,8 @@ const CarPage = ({
                       dayRange.from.month,
                       "jM"
                     ).format("jMMMM")}`}
-                    <IoIosArrowRoundBack size='2rem' color='#202020' />
-                    <span className='day_name'>{`${moment(
+                    <IoIosArrowRoundBack size="2rem" color="#202020" />
+                    <span className="day_name">{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                       "jYYYY/jM/jD"
                     ).format("dddd")}،`}</span>
@@ -985,7 +986,7 @@ const CarPage = ({
                       : null}
                   </p>
                   <p
-                    className='change_date_in_car_page'
+                    className="change_date_in_car_page"
                     onClick={() => {
                       setShowDateText(false);
                       setShowCalender(true);
@@ -998,7 +999,7 @@ const CarPage = ({
               {!is_mine ? (
                 showCalender && !showDateText ? (
                   <div
-                    className='search_box_div HEAP_Car_Input_Calender'
+                    className="search_box_div HEAP_Car_Input_Calender"
                     onClick={() => {
                       calenderClick = true;
                       // setCalenderClick(true)
@@ -1020,12 +1021,12 @@ const CarPage = ({
                         onChange={setDayRange}
                         shouldHighlightWeekends
                         minimumDate={utils("fa").getToday()}
-                        locale='fa'
-                        colorPrimary='#4ba3ce'
+                        locale="fa"
+                        colorPrimary="#4ba3ce"
                         // disabledDays={[utils("fa").getToday()]}
                       />
-                      <div className='input_container'>
-                        <p className='label'>
+                      <div className="input_container">
+                        <p className="label">
                           {language.input_container_label_start_date}
                         </p>
                         <input
@@ -1043,8 +1044,8 @@ const CarPage = ({
                           value={fromDay ? fromDay : ""}
                         />
                       </div>
-                      <div className='input_container'>
-                        <p className='label'>
+                      <div className="input_container">
+                        <p className="label">
                           {language.input_container_label_end_date}
                         </p>
                         <input
@@ -1074,25 +1075,35 @@ const CarPage = ({
                 as={`/user/${owner.username ? owner.username : owner.id}`}
                 prefetch={false}
               >
-                <a className='HEAP_Car_Link_Profile profile_anchor_tag_container'>
-                  <figure className='owner_part'>
-                    <div className='owner_part_avatar_container'>
-                      <img
-                        className='user_avatar'
-                        src={owner.thumbnail_url}
-                        alt={owner.name}
-                      />
+                <a className="HEAP_Car_Link_Profile profile_anchor_tag_container">
+                  <figure className="owner_part">
+                    <div className="owner_part_avatar_container">
+                      {owner.thumbnail_url.search("default") === -1 ? (
+                        <img
+                          className="user_avatar"
+                          src={owner.thumbnail_url}
+                          alt={owner.name}
+                        />
+                      ) : (
+                        <NameAvatar
+                          name={owner.name}
+                          css_display="inline-block"
+                          css_with={48}
+                          css_radius={50}
+                          css_text_color="#ffffff"
+                        />
+                      )}
                       {owner.rate.avg_rate_as_owner ? (
                         <p>
-                          <Icon name='star' />
+                          <Icon name="star" />
                           {owner.rate.avg_rate_as_owner}
                         </p>
                       ) : null}
                     </div>
                   </figure>
-                  <div className='owner_info'>
-                    <p className='owner_name'>{owner.name}</p>
-                    <p className='since_from'>
+                  <div className="owner_info">
+                    <p className="owner_name">{owner.name}</p>
+                    <p className="since_from">
                       {language.az}
                       <strong>
                         {owner.join_date.name.fa.split("،")[0].slice(2)}
@@ -1110,7 +1121,7 @@ const CarPage = ({
                       </span>
                     ) : null}
                     {owner.owner_avg_response_time ? (
-                      <p className='size_14 margin_top_16 margin_bottom_16'>
+                      <p className="size_14 margin_top_16 margin_bottom_16">
                         {language.mamoolan}
                         <strong>
                           {language.hodood}{" "}
@@ -1122,20 +1133,20 @@ const CarPage = ({
                       </p>
                     ) : null}
                   </div>
-                  <div className='go_to_profile'>
+                  <div className="go_to_profile">
                     <p>{language.moshahedeh}</p>
                   </div>
                 </a>
               </Link>
               {availableCar && !is_mine ? (
-                <div className='continue_to_checkout'>
+                <div className="continue_to_checkout">
                   <Button
-                    value='ادامه'
-                    class='Blue_BTN localClass HEAP_Car_Btn_Continue'
+                    value="ادامه"
+                    class="Blue_BTN localClass HEAP_Car_Btn_Continue"
                     loading={loading}
                     click={GoToCheckout}
                   />
-                  <span className='extra_info'>{language.extra_info}</span>
+                  <span className="extra_info">{language.extra_info}</span>
                 </div>
               ) : null}
             </section>

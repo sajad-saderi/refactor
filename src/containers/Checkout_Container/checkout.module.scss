@@ -83,6 +83,12 @@
       .owner_part {
         margin-top: 2rem;
         margin-bottom: 2rem;
+        .name_avatar__container {
+          vertical-align: middle;
+          span {
+            display: flex;
+          }
+        }
         img {
           width: 3.2rem;
           border-radius: 50%;

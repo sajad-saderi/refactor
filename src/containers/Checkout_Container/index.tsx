@@ -22,6 +22,7 @@ import carImage from "../../../public/image/car-image-thumbnail.jpg";
 import { guard_controller } from "../../../utils/guard_controller";
 import jsCookie from "js-cookie";
 import Link from "next/link";
+import NameAvatar from "../../components/name_avatar/avatar-name";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -227,9 +228,9 @@ const Checkout_Container = ({
   };
 
   return media_set.length > 0 ? (
-    <article className='responsive Checkout_container'>
-      <section className='car_info_insurance'>
-        <div className='Date_container'>
+    <article className="responsive Checkout_container">
+      <section className="car_info_insurance">
+        <div className="Date_container">
           <p>
             {/* convert date to days name */}
             {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
@@ -237,7 +238,7 @@ const Checkout_Container = ({
             {/* show the day date and month name */}
             {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
           </p>
-          <IoMdArrowRoundBack size='3rem' color='#707070' />
+          <IoMdArrowRoundBack size="3rem" color="#707070" />
           <p>
             {/* convert date to days name */}
             {moment(end_date, "jYYYY/jMM/jDD").format("dddd")}
@@ -246,19 +247,29 @@ const Checkout_Container = ({
             {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
           </p>
         </div>
-        <div className='car_info'>
-          <div className='car_owner_part'>
+        <div className="car_info">
+          <div className="car_owner_part">
             <div>
               <h1>
                 {car.brand.name.fa} {car.name.fa}
               </h1>
               <h4>{year.name.fa}</h4>
-              <figure className='owner_part'>
-                <img src={owner.thumbnail_url} alt={owner.name} />
+              <figure className="owner_part">
+                {owner.thumbnail_url.search("default") === -1 ? (
+                  <img src={owner.thumbnail_url} alt={owner.name} />
+                ) : (
+                  <NameAvatar
+                    name={owner.name}
+                    css_display="inline-block"
+                    css_with={32}
+                    css_radius={50}
+                    css_text_color="#ffffff"
+                  />
+                )}
                 <p>{owner.name}</p>
               </figure>
             </div>
-            <figure className='car_image'>
+            <figure className="car_image">
               <img src={media_set[0].thumbnail_url} alt={owner.name} />
             </figure>
           </div>
@@ -303,7 +314,7 @@ const Checkout_Container = ({
           )}
         </div>
         {can_get_insurance && body_style != 6 ? (
-          <div className='insurance'>
+          <div className="insurance">
             <h2>{language.insurance_for_rent}</h2>
             <Insurance
               insurance_price={insurance_total_price}
@@ -312,8 +323,8 @@ const Checkout_Container = ({
           </div>
         ) : null}
       </section>
-      <section className='payment_info_container'>
-        <div className='Date_container'>
+      <section className="payment_info_container">
+        <div className="Date_container">
           <p>
             {/* convert date to days name */}
             {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
@@ -321,15 +332,15 @@ const Checkout_Container = ({
             {/* show the day date and month name */}
             {moment(start_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
           </p>
-          <IoMdArrowRoundBack size='3rem' color='#707070' />
+          <IoMdArrowRoundBack size="3rem" color="#707070" />
           <p>
             {moment(end_date, "jYYYY/jMM/jDD").format("dddd")}
             <br />
             {moment(end_date, "jYYYY/jMM/jDD").format("jDD jMMMM")}
           </p>
         </div>
-        <p className='number_of_days'>{`${language.time_for_rent}${no_of_days} ${language.day}`}</p>
-        <div className='payment_information'>
+        <p className="number_of_days">{`${language.time_for_rent}${no_of_days} ${language.day}`}</p>
+        <div className="payment_information">
           {/* <p>
               <span>قیمت روزانه</span>
               <span>
@@ -342,11 +353,11 @@ const Checkout_Container = ({
             <span>{`${language.rent}${no_of_days} ${language.day}`}</span>
             <span>
               {total_price.toLocaleString()}{" "}
-              <span className='Toman'>{language.toman}</span>{" "}
+              <span className="Toman">{language.toman}</span>{" "}
             </span>
           </p>
           {total_discount > 0 && (
-            <p className='Discount_color'>
+            <p className="Discount_color">
               <span>
                 {!has_system_discount
                   ? `${language.discount_for} ${no_of_days} ${language.day}`
@@ -354,7 +365,7 @@ const Checkout_Container = ({
               </span>
               <span>
                 {total_discount.toLocaleString()}-{" "}
-                <span className='Toman'>{language.toman}</span>
+                <span className="Toman">{language.toman}</span>
               </span>
             </p>
           )}
@@ -365,7 +376,7 @@ const Checkout_Container = ({
                 {showInsurance ? (
                   <>
                     {`${insurance_total_price.toLocaleString()} `}
-                    <span className='Toman'>{language.toman}</span>
+                    <span className="Toman">{language.toman}</span>
                   </>
                 ) : (
                   language.nothing
@@ -376,16 +387,16 @@ const Checkout_Container = ({
           {!useCouponPrice ? (
             !showcoupon ? (
               <p
-                className='coupon_Text_show HEAP_Checkout_Btn_Coupon'
+                className="coupon_Text_show HEAP_Checkout_Btn_Coupon"
                 onClick={() => setShowcoupon(true)}
               >
                 {language.have_discount}
               </p>
             ) : (
-              <form className='coupon_form' onSubmit={couponHandler}>
-                <div className='coupon_container'>
+              <form className="coupon_form" onSubmit={couponHandler}>
+                <div className="coupon_container">
                   <TextInput
-                    name='coupon'
+                    name="coupon"
                     autoFocus={true}
                     clearField={() => setCoupon("")}
                     error={{
@@ -399,63 +410,63 @@ const Checkout_Container = ({
                   />
                   {/* {coupon && ( */}
                   <IoMdClose
-                    className='close_icon'
+                    className="close_icon"
                     onClick={() => {
                       setCoupon("");
                       setShowcoupon(false);
                     }}
-                    color='737373'
-                    size='2rem'
+                    color="737373"
+                    size="2rem"
                   />
                   {/* )} */}
                 </div>
                 <Button
                   value={language.submit}
-                  class='Blue_BTN coupan_BTN HEAP_Checkout_Btn_CouponSubmit'
+                  class="Blue_BTN coupan_BTN HEAP_Checkout_Btn_CouponSubmit"
                   loading={coupanLoading}
                   click={() => {}}
-                  loadingColor='#4ba3ce'
+                  loadingColor="#4ba3ce"
                 />
               </form>
             )
           ) : (
             <p>
               <span>{language.coupon_code}</span>
-              <span className='total_price_number'>
+              <span className="total_price_number">
                 {couponDiscount.toLocaleString()}-
-                <span className='Toman'>{language.toman_1}</span>
+                <span className="Toman">{language.toman_1}</span>
               </span>
             </p>
           )}
-          <p className='total_price'>
-            <span className='total_price_text'>{language.sum}</span>
-            <span className='total_price_number'>
+          <p className="total_price">
+            <span className="total_price_text">{language.sum}</span>
+            <span className="total_price_number">
               {showInsurance
                 ? (
                     discounted_total_price + insurance_total_price
                   ).toLocaleString()
                 : discounted_total_price.toLocaleString()}{" "}
-              <span className='Toman'>تومان</span>
+              <span className="Toman">تومان</span>
             </span>
           </p>
         </div>
-        <div className='continue_to_pay'>
+        <div className="continue_to_pay">
           <Button
             value={language.book}
-            class='Blue_BTN localClass HEAP_Checkout_Btn_Book'
+            class="Blue_BTN localClass HEAP_Checkout_Btn_Book"
             disable={loading}
             loading={loading}
             click={GoToRequests}
           />
           {error_message ? (
-            <Link href='/requests' prefetch={false}>
-              <a className='error_message_link'>
-                <span className='Error_message_text'>{error_message} </span>
+            <Link href="/requests" prefetch={false}>
+              <a className="error_message_link">
+                <span className="Error_message_text">{error_message} </span>
                 {language.track_your_order}
               </a>
             </Link>
           ) : (
-            <span className='extra_info'>{language.extra_text}</span>
+            <span className="extra_info">{language.extra_text}</span>
           )}
         </div>
       </section>

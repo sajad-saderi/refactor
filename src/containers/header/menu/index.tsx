@@ -4,6 +4,7 @@ import language from "../../../../public/languages/fa/header.json";
 import context_user from "../../../context/User_info";
 import Spinner from "../../../components/Spinner";
 import { useRouter } from "next/router";
+import NameAvatar from "../../../components/name_avatar/avatar-name";
 
 let token = null;
 let complete_register = null;
@@ -61,51 +62,51 @@ const Menu = () => {
 
   return (
     <ul>
-      <li className='Drop_Down'>
+      <li className="Drop_Down">
         <span>{language.a_2}</span>
-        <ul className='Sub_Nav_Level_2'>
+        <ul className="Sub_Nav_Level_2">
           <li>
-            <Link href='/sepris' prefetch={false}>
+            <Link href="/sepris" prefetch={false}>
               <a>{language.a_3}</a>
             </Link>
           </li>
           <li>
-            <Link href='/faq' prefetch={false}>
+            <Link href="/faq" prefetch={false}>
               <a>{language.a_4}</a>
             </Link>
           </li>
           <li>
-            <Link href='/guide-for-rent' prefetch={false}>
+            <Link href="/guide-for-rent" prefetch={false}>
               <a>{language.a_5}</a>
             </Link>
           </li>
           <li>
-            <Link href='/guide-renter' prefetch={false}>
+            <Link href="/guide-renter" prefetch={false}>
               <a>{language.a_6}</a>
             </Link>
           </li>
           <li>
-            <Link href='/car-insurance' prefetch={false}>
+            <Link href="/car-insurance" prefetch={false}>
               <a>{language.a_7}</a>
             </Link>
           </li>
           <li>
-            <Link href='/assurance' prefetch={false}>
+            <Link href="/assurance" prefetch={false}>
               <a>{language.a_8}</a>
             </Link>
           </li>
           <li>
-            <Link href='/evaluation' prefetch={false}>
+            <Link href="/evaluation" prefetch={false}>
               <a>{language.a_9}</a>
             </Link>
           </li>
           <li>
-            <Link href='/guide-picture' prefetch={false}>
+            <Link href="/guide-picture" prefetch={false}>
               <a>{language.a_10}</a>
             </Link>
           </li>
           <li>
-            <Link href='/gps' prefetch={false}>
+            <Link href="/gps" prefetch={false}>
               <a>{language.a_11}</a>
             </Link>
           </li>
@@ -114,46 +115,56 @@ const Menu = () => {
       {/* if the user had registered completely, can access to orders history */}
       {complete_register && (
         <li>
-          <Link href='/requests' prefetch={false}>
-            <a className='HEAP_Header_Link_MyOrders'>{language.a_1}</a>
+          <Link href="/requests" prefetch={false}>
+            <a className="HEAP_Header_Link_MyOrders">{language.a_1}</a>
           </Link>
         </li>
       )}
       {token ? (
         spinner ? (
-          <li className='header_spinner'>
-            <span className='Gradient' />
-            <p className='Gradient profile_icon_place_holder' />
+          <li className="header_spinner">
+            <span className="Gradient" />
+            <p className="Gradient profile_icon_place_holder" />
           </li>
         ) : (
-          <li className='first_element_li'>
+          <li className="first_element_li">
             <Link href={`/user/[id]`} as={`/user/${user_id}`} prefetch={false}>
               <a>
-                <span className='user-name'>{profile && profile}</span>
+                <span className="user-name">{profile && profile}</span>
                 {localStorage["red_dot"] === "1" && (
-                  <span className='red_dot' />
+                  <span className="red_dot" />
                 )}
-                <img
-                  className='profile_icon'
-                  // show user image or chow account icon
-                  src={
-                    img_profile ||
-                    "https://core.sepris.com/static/core/default_profile_pic.png"
-                  }
-                  alt={profile}
-                />
+                {img_profile.search("default") === -1 ? (
+                  <img
+                    className="profile_icon"
+                    // show user image or chow account icon
+                    src={
+                      img_profile ||
+                      "https://core.sepris.com/static/core/default_profile_pic.png"
+                    }
+                    alt={profile}
+                  />
+                ) : (
+                  <NameAvatar
+                    name={profile}
+                    css_display="inline-block"
+                    css_with={32}
+                    css_radius={50}
+                    css_text_color="#ffffff"
+                  />
+                )}
               </a>
             </Link>
           </li>
         )
       ) : spinner ? (
-        <li className='header_spinner'>
-          <span className='Gradient' />
-          <p className='Gradient profile_icon_place_holder' />
+        <li className="header_spinner">
+          <span className="Gradient" />
+          <p className="Gradient profile_icon_place_holder" />
         </li>
       ) : (
         <li
-          className='HEAP_Header_Btn_Login'
+          className="HEAP_Header_Btn_Login"
           onClick={() => {
             if (
               router.asPath !== "/login" &&
@@ -167,7 +178,7 @@ const Menu = () => {
         >
           <Link href={`/login`} prefetch={false}>
             <a>
-              <span className='login-out'>{language.li}</span>
+              <span className="login-out">{language.li}</span>
             </a>
           </Link>
         </li>

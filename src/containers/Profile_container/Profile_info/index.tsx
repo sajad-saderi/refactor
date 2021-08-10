@@ -62,33 +62,40 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   };
 
   return (
-    <article className='Profile_info_container'>
+    <article className="Profile_info_container">
       {name ? (
         !edit ? (
           <>
-            <div className='user_information'>
-              <img
-                src={image}
-                alt={name}
-                onClick={() => {
-                  if (is_mine) {
-                    setEdit(true), setTriggerUpload(true);
-                  }
-                }}
-              />
-              <NameAvatar
-                name={company_name ? company_name : name}
-                css_display='block'
-                css_with={70}
-                css_background_color='#b2b2b2'
-                css_radius={50}
-                css_text_color='#ffffff'
-              />
+            <div className="user_information">
+              {image.search("default") === -1 ? (
+                <img
+                  src={image}
+                  alt={name}
+                  onClick={() => {
+                    if (is_mine) {
+                      setEdit(true), setTriggerUpload(true);
+                    }
+                  }}
+                />
+              ) : (
+                <NameAvatar
+                  name={company_name ? company_name : name}
+                  css_display="inline-block"
+                  css_with={70}
+                  css_radius={50}
+                  css_text_color="#ffffff"
+                  clickOnElement={() => {
+                    if (is_mine) {
+                      setEdit(true), setTriggerUpload(true);
+                    }
+                  }}
+                />
+              )}
               <div>
                 <h3>{company_name ? company_name : name}</h3>
                 {!is_mine ? (
-                  <div className='user_info'>
-                    <p className='since_from'>
+                  <div className="user_info">
+                    <p className="since_from">
                       {language.az}
                       <strong>
                         {data.join_date.name.fa.split("،")[0].slice(2)}
@@ -96,7 +103,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                       {language.member}
                     </p>
                     {data.no_of_successfully_rented_cars_as_owner > 0 ? (
-                      <span className='margin_top_16 inline_block_container'>
+                      <span className="margin_top_16 inline_block_container">
                         {language.mizban}{" "}
                         <strong>
                           {data.no_of_successfully_rented_cars_as_owner}
@@ -106,7 +113,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                       </span>
                     ) : null}
                     {data.owner_avg_response_time ? (
-                      <p className='size_14 margin_top_16 margin_bottom_16'>
+                      <p className="size_14 margin_top_16 margin_bottom_16">
                         {language.mamoolan}
                         <strong>
                           {language.hodood}{" "}
@@ -127,14 +134,14 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
               </div>
             </div>
             {is_mine && (
-              <div className='profile_controls'>
-                <div className='Exit' onClick={Exit}>
-                  <FiLogOut size='2rem' color='#4ba3ce' />
+              <div className="profile_controls">
+                <div className="Exit" onClick={Exit}>
+                  <FiLogOut size="2rem" color="#4ba3ce" />
                   <p>{language.exit}</p>
                 </div>
                 <Button
                   value={language.add}
-                  class='Blue_BTN HEAP_Profile_Btn_AddCar'
+                  class="Blue_BTN HEAP_Profile_Btn_AddCar"
                   click={() => {
                     router.push("/add-car");
                   }}

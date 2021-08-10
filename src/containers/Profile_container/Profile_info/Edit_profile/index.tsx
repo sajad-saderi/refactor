@@ -20,6 +20,7 @@ import jsCookie from "js-cookie";
 import context_user from "../../../../context/User_info";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../../../../utils/cropImage";
+import NameAvatar from "../../../../components/name_avatar/avatar-name";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -276,20 +277,30 @@ const Edit_profile = ({
   }, [croppedAreaPixels]);
 
   return (
-    <form className='edit_profile_form' onSubmit={EditFormSubmit}>
-      <img
-        src={
-          state.image
-            ? state.image
-            : "https://core.sepris.com/static/core/default_profile_pic.png"
-        }
-        alt={state.first_name}
-      />
-      <div className='change_image_container'>
+    <form className="edit_profile_form" onSubmit={EditFormSubmit}>
+      {state.image.search("default") === -1 ? (
+        <img
+          src={
+            state.image
+              ? state.image
+              : "https://core.sepris.com/static/core/default_profile_pic.png"
+          }
+          alt={state.first_name}
+        />
+      ) : (
+        <NameAvatar
+          name={state.first_name}
+          css_display="block"
+          css_with={150}
+          css_radius={50}
+          css_text_color="#ffffff"
+        />
+      )}
+      <div className="change_image_container">
         <p>{language.change_the_profile_image}</p>
         <input
-          type='file'
-          id='file'
+          type="file"
+          id="file"
           // accept='.jpg,.jpeg,.png'
           ref={file_input}
           onClick={() => {
@@ -314,7 +325,7 @@ const Edit_profile = ({
           }}
         />
         {croptStart && (
-          <div className='crop_container'>
+          <div className="crop_container">
             <Cropper
               image={state.image}
               crop={crop}
@@ -325,14 +336,14 @@ const Edit_profile = ({
               onCropChange={setCrop}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
-              cropShape='round'
+              cropShape="round"
             />
-            <div className='Crop_BTN_container'>
-              <span className='Blue_BTN local_class' onClick={showCroppedImage}>
+            <div className="Crop_BTN_container">
+              <span className="Blue_BTN local_class" onClick={showCroppedImage}>
                 تایید
               </span>
               <span
-                className='Blue_BTN cancel_class'
+                className="Blue_BTN cancel_class"
                 onClick={() => {
                   setNewImage(null);
                   setCroptStart(false);
@@ -349,7 +360,7 @@ const Edit_profile = ({
         )}
       </div>
       <TextInput
-        name='first_name'
+        name="first_name"
         number={false}
         onChangeHandler={(e) => {
           dispatch({ type: "first_name", first_name: e });
@@ -366,7 +377,7 @@ const Edit_profile = ({
         label={language.name}
       />
       <TextInput
-        name='last_name'
+        name="last_name"
         number={false}
         onChangeHandler={(e) => {
           dispatch({ type: "last_name", last_name: e });
@@ -383,12 +394,12 @@ const Edit_profile = ({
         label={language.last_name}
       />
       {!showCompany ? (
-        <p className='link_text' onClick={() => setShowCompany(true)}>
+        <p className="link_text" onClick={() => setShowCompany(true)}>
           {language.company_name}
         </p>
       ) : (
         <TextInput
-          name='company_name'
+          name="company_name"
           number={false}
           onChangeHandler={(e) => {
             dispatch({ type: "company_name", company_name: e });
@@ -408,12 +419,12 @@ const Edit_profile = ({
         />
       )}
       {!privateLink ? (
-        <p className='link_text' onClick={() => setPrivateLink(true)}>
+        <p className="link_text" onClick={() => setPrivateLink(true)}>
           {language.create_personal_link}
         </p>
       ) : (
         <TextInput
-          name='username'
+          name="username"
           number={false}
           onChangeHandler={(e) => {
             dispatch({ type: "username", username: e });
@@ -430,22 +441,22 @@ const Edit_profile = ({
           label={language.personal_link}
         />
       )}
-      <div className='BTN_container'>
+      <div className="BTN_container">
         <Button
-          class='Blue_BTN local_class'
+          class="Blue_BTN local_class"
           value={language.ok}
           click={() => {}}
           loading={loading}
         />
         <Button
-          class='Blue_BTN cancel_class'
+          class="Blue_BTN cancel_class"
           value={language.cancel}
           click={() => setEdit(false)}
           loading={false}
         />
       </div>
       {ErrorState.message ? (
-        <p className='Error_message_text'>{ErrorState.message}</p>
+        <p className="Error_message_text">{ErrorState.message}</p>
       ) : null}
     </form>
   );
