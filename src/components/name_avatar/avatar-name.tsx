@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { letter_control } from "../../../utils/letter_control";
 import { invert_hex } from "../../../utils/invert_hex";
 import { random_hex_color } from "../../../utils/random_hex_color";
@@ -13,7 +13,6 @@ const NameAvatar = ({
   random_background,
   css_radius,
   css_text_color,
-  background_color_array,
   clickOnElement,
 }: INameAvatar) => {
   const [textColor, setTextColor] = useState(
