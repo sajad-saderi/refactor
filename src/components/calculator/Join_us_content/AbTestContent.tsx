@@ -10,7 +10,6 @@ const Slider = dynamic(() => import("react-slick"));
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import quotation from "../../../../public/image/svg/quotation.svg";
-import "./join_us_content.scss";
 
 const Join_us_content_AB_test = ({
   AbText,
@@ -38,18 +37,18 @@ const Join_us_content_AB_test = ({
   };
 
   return (
-    <>
-      {/* <div className='insuranceBox'>
+    <div className="responsive second_part_container">
+      <div className="insuranceBox">
         <p>{language.insuranceBox_p}</p>
         <img src={insurance} alt={language.insuranceBox_image} />
-      </div> */}
-      <div className=' responsive second_container'>
-        <div className='full_width'>
+      </div>
+      <div className=" responsive second_container">
+        <div className="full_width">
           <h2>{language.full_width_h2}</h2>
           <p>{language.full_width_p}</p>
         </div>
         <h2>{language.second_container_h2}</h2>
-        <div className='three_columns'>
+        <div className="three_columns">
           <section>
             <h3>{language.three_columns_h3_1}</h3>
             <p>{language.three_columns_p_1}</p>
@@ -68,7 +67,7 @@ const Join_us_content_AB_test = ({
           </section>
         </div>
         <div
-          className='add_car_section'
+          className="add_car_section"
           onClickCapture={() => {
             if (!authorize) {
               localStorage["last_location"] = "/add-car";
@@ -81,7 +80,7 @@ const Join_us_content_AB_test = ({
             </a>
           </Link> */}
           <Link href={"/add-car"} prefetch={false}>
-            <a className='Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar'>
+            <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">
               {AbText}
             </a>
           </Link>
@@ -91,11 +90,11 @@ const Join_us_content_AB_test = ({
               ۰۲۱۸۸۵۶۷۷۵۹{" "}
             </a>
           </p> */}
-          <section className='slick_container'>
+          <section className="slick_container">
             <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
             <Slider {...settings}>
-              <div className='card_container'>
-                <img src={quotation} alt='علامت کوتیشن' />
+              <div className="card_container">
+                <img src={quotation} alt="علامت کوتیشن" />
                 <p>
                   وقتی تصمیم به اجاره خودروم گرفتم، از طریق جستجو در گوگل با
                   سپریس آشنا شدم و بعد از دیدن سایت و تماس با پشتیبانی، اعتمادم
@@ -107,10 +106,10 @@ const Join_us_content_AB_test = ({
                   چون خیالم راحته و قصد دارم باز هم به این کار ادامه بدم.
                 </p>
                 <h3>میزبان</h3>
-                <p className='user_name'>جواد کسائی</p>
+                <p className="user_name">جواد کسائی</p>
               </div>
-              <div className='card_container'>
-                <img src={quotation} alt='علامت کوتیشن' />
+              <div className="card_container">
+                <img src={quotation} alt="علامت کوتیشن" />
                 <p>
                   زمانی که تصمیم گرفتم ماشینم رو اجاره بدم، چند تا از شرکت‌های
                   سنتی و غیراستارت‌آپی اجاره خودرو در تهران رو بررسی کردم اما در
@@ -123,10 +122,10 @@ const Join_us_content_AB_test = ({
                   داده و راهنمایی کرده.
                 </p>
                 <h3>میزبان</h3>
-                <p className='user_name'>فرزین روحانی</p>
+                <p className="user_name">فرزین روحانی</p>
               </div>
-              <div className='card_container'>
-                <img src={quotation} alt='علامت کوتیشن' />
+              <div className="card_container">
+                <img src={quotation} alt="علامت کوتیشن" />
                 <p>
                   تا قبل از آشنایی با سپریس، ماشینم رو اجاره نداده بودم . اما در
                   آلمان تجربه اجاره‌کردن خودرو را داشتم. اولش شناخت زیادی از
@@ -139,13 +138,13 @@ const Join_us_content_AB_test = ({
                   منعطف‌تر شدم و سخت‌گیری‌های اولیه را ندارم.
                 </p>
                 <h3>میزبان</h3>
-                <p className='user_name'>رضا جلیلی</p>
+                <p className="user_name">رضا جلیلی</p>
               </div>
             </Slider>
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

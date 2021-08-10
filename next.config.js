@@ -1,7 +1,5 @@
 // next.config.js
 
-const withSass = require("@zeit/next-sass");
-const withCSS = require("@zeit/next-css");
 const withImages = require("next-images");
 const withFonts = require("next-fonts");
 const withPWA = require("next-pwa");
@@ -10,9 +8,7 @@ const runtimeCaching = require("next-pwa/cache");
 const dev = process.env.NODE_ENV === "production";
 
 module.exports = withPWA(
-  withFonts(
-    withCSS(
-      withSass(
+  withFonts( 
         withImages({
           pwa: {
             disable: dev ? false : true,
@@ -32,8 +28,6 @@ module.exports = withPWA(
             return config;
           },
           crossOrigin: "anonymous",
-        })
-      )
-    )
-  )
+        }) 
+    ) 
 );

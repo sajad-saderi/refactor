@@ -53,7 +53,7 @@ const Rent = () => {
   return (
     <Layout>
       <NextSeo
-        canonical='https://sepris.com/rent'
+        canonical="https://sepris.com/rent"
         title={language.next_seo.title}
         description={language.next_seo.description}
         openGraph={{
@@ -67,96 +67,98 @@ const Rent = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className='Homepage'>
-        <div className='banner'>
+      <article className="Homepage">
+        <div className="banner">
           <h1>{language.banner_h1}</h1>
           <h2>{language.banner_h2}</h2>
-          <div className='search_container responsive'>
+          <div className="search_container responsive">
             <Search language={language} />
           </div>
         </div>
-        {/* <div className='insuranceBox'>
-          <p>{language.insuranceBox_p}</p>
-          <img src={insurance} alt='تصویر بیمه سامان' />
-        </div> */}
-        <div className=' responsive second_container'>
-          <div className='full_width'>
-            <h2>{language.second_container_full_width_h2}</h2>
-            <p>{language.second_container_full_width_p}</p>
+        <div className="responsive second_part_container">
+          <div className="insuranceBox">
+            <p>{language.insuranceBox_p}</p>
+            <img src={insurance} alt="تصویر بیمه سامان" />
           </div>
-          <h2>{language.second_container_h2_2}</h2>
-          <div className='three_columns'>
-            <section>
-              <h3>{language.second_container_three_columns_2_h3_1}</h3>
-              <p>{language.second_container_three_columns_2_p_1}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_2_h3_2}</h3>
-              <p>{language.second_container_three_columns_2_p_2}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_2_h3_3}</h3>
-              <p>{language.second_container_three_columns_2_p_3}</p>
-            </section>
+          <div className="second_container">
+            <div className="full_width">
+              <h2>{language.second_container_full_width_h2}</h2>
+              <p>{language.second_container_full_width_p}</p>
+            </div>
+            <h2>{language.second_container_h2_2}</h2>
+            <div className="three_columns">
+              <section>
+                <h3>{language.second_container_three_columns_2_h3_1}</h3>
+                <p>{language.second_container_three_columns_2_p_1}</p>
+              </section>
+              <section>
+                <h3>{language.second_container_three_columns_2_h3_2}</h3>
+                <p>{language.second_container_three_columns_2_p_2}</p>
+              </section>
+              <section>
+                <h3>{language.second_container_three_columns_2_h3_3}</h3>
+                <p>{language.second_container_three_columns_2_p_3}</p>
+              </section>
+            </div>
+            <Recommendation_section />
+            <h2>{language.second_container_h2_1}</h2>
+            <div className="three_columns">
+              <section>
+                <h3>{language.second_container_three_columns_h3_1}</h3>
+                <p>{language.second_container_three_columns_p_1}</p>
+              </section>
+              <section>
+                <h3>{language.second_container_three_columns_h3_2}</h3>
+                <p>{language.second_container_three_columns_p_2}</p>
+              </section>
+              <section>
+                <h3>{language.second_container_three_columns_h3_3}</h3>
+                <p>{language.second_container_three_columns_p_3} </p>
+              </section>
+            </div>
+            <div className="add_car_section">
+              <Link href="/join-us" prefetch={false}>
+                <a
+                  className="Blue_BTN add_car_custom"
+                  data-test-id="rent_add_car"
+                >
+                  {language.second_container_add_car_section_a_2}
+                </a>
+              </Link>
+              <Link href="/add-car" prefetch={false}>
+                <a>{language.second_container_add_car_section_a_1}</a>
+              </Link>
+            </div>
+            <div className="rent_contnet">
+              <h2>{language.rent_content_h2}</h2>
+              <p>{language.rent_content_p_1}</p>
+              <p>{language.rent_content_p_2}</p>
+              <p>{language.rent_content_p_3}</p>
+              <p>
+                <strong>{language.rent_content_p_4}</strong>
+              </p>
+              <p>{language.rent_content_p_5}</p>
+              <p>{language.rent_content_p_6}</p>
+              <p>{language.rent_content_p_7}</p>
+              <p>{language.rent_content_p_8}</p>
+              <p>{language.rent_content_p_9}</p>
+              <p>{language.rent_content_p_10}</p>
+            </div>
+            {/* Creating tab menu */}
+            {/* <TabCreator data_arr={data} /> */}
           </div>
-          <Recommendation_section />
-          <h2>{language.second_container_h2_1}</h2>
-          <div className='three_columns'>
-            <section>
-              <h3>{language.second_container_three_columns_h3_1}</h3>
-              <p>{language.second_container_three_columns_p_1}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_h3_2}</h3>
-              <p>{language.second_container_three_columns_p_2}</p>
-            </section>
-            <section>
-              <h3>{language.second_container_three_columns_h3_3}</h3>
-              <p>{language.second_container_three_columns_p_3} </p>
-            </section>
-          </div>
-          <div className='add_car_section'>
-            <Link href='/join-us' prefetch={false}>
-              <a
-                className='Blue_BTN add_car_custom'
-                data-test-id='rent_add_car'
-              >
-                {language.second_container_add_car_section_a_2}
-              </a>
-            </Link>
-            <Link href='/add-car' prefetch={false}>
-              <a>{language.second_container_add_car_section_a_1}</a>
-            </Link>
-          </div>
-          <div className='rent_contnet'>
-            <h2>{language.rent_content_h2}</h2>
-            <p>{language.rent_content_p_1}</p>
-            <p>{language.rent_content_p_2}</p>
-            <p>{language.rent_content_p_3}</p>
-            <p>
-              <strong>{language.rent_content_p_4}</strong>
-            </p>
-            <p>{language.rent_content_p_5}</p>
-            <p>{language.rent_content_p_6}</p>
-            <p>{language.rent_content_p_7}</p>
-            <p>{language.rent_content_p_8}</p>
-            <p>{language.rent_content_p_9}</p>
-            <p>{language.rent_content_p_10}</p>
-          </div>
-          {/* Creating tab menu */}
-          {/* <TabCreator data_arr={data} /> */}
         </div>
         <div
           itemScope
-          itemType='https://schema.org/FAQPage'
-          className='responsive'
-          data-test-id='QA_schema'
+          itemType="https://schema.org/FAQPage"
+          className="responsive"
+          data-test-id="QA_schema"
         >
           <Accordion question_set={question_set} />
         </div>
-        <section className='responsive third_container'>
+        <section className="responsive third_container">
           {dynamicLinks ? (
-            <div className='RentPage_Dynamic_links'>
+            <div className="RentPage_Dynamic_links">
               <ul>
                 {dynamicLinks.map((item) => {
                   let id = item.url.split("/").pop();
@@ -172,7 +174,7 @@ const Rent = () => {
                         as={`/rent/${id}`}
                         prefetch={false}
                       >
-                        <a className='HEAP_LandingPages_Link_RelatedLinks'>
+                        <a className="HEAP_LandingPages_Link_RelatedLinks">
                           {item.name}
                         </a>
                       </Link>

@@ -1,0 +1,66 @@
+@import "../colors";
+.contract_container {
+  width: 190px;
+  .download_section {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    background-color: $white;
+    box-shadow: $box_shadow;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    right: 0;
+    left: 0;
+    padding: 8px 16px;
+    .download_contract {
+      width: 126px;
+    }
+  }
+  .content {
+    h1 {
+      text-align: center;
+      font-size: 1rem;
+      margin: 0;
+    }
+    h2 {
+      text-align: center;
+      font-size: 0.7rem;
+      margin: 0;
+    }
+    #contract_date {
+      margin-top: 2rem;
+    }
+    #contract_date,
+    #contract_number {
+      text-align: left;
+    }
+    #contract_number {
+      margin-bottom: 2rem;
+    }
+    p {
+      line-height: 2;
+      font-size: 1.4rem;
+    }
+    .signature {
+      padding: 3rem 0;
+      span {
+        &:first-child {
+          text-align: center;
+          display: inline-block;
+          width: 50%;
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+        &:last-child {
+          text-align: center;
+          display: inline-block;
+          width: 50%;
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { REQUEST_GET_CAR_REVIEW } from "../../../API";
 import Review from "../../Review";
-import "./comment_section.scss";
 import Icon from "../../../../utils/Icon";
 
 const Comment_section = ({ user_id, user_data }: IComment_section) => {

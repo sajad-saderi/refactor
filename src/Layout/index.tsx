@@ -12,7 +12,6 @@ const Header = dynamic(() => import("../containers/header"));
 
 // Main Scss file
 // All Scss files are imported to the main.scss
-import "../styles/main.scss";
 
 // Modal Context
 import modal_context from "../context/Modal_context";
@@ -74,6 +73,7 @@ const Layout = (props: ILayout) => {
 
   // Reducers
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
+  const [confirm_id, use_confirm_id] = useState(null);
 
   const TOAST_CONTEXT = useContext(toast_context);
 
@@ -194,8 +194,12 @@ const Layout = (props: ILayout) => {
         <modal_context.Provider
           value={{
             show_modal: Show_Modal,
+            id: confirm_id,
             modalHandler: (type, data) => {
               modal_handler(type, data);
+            },
+            confirm_id: (status) => {
+              use_confirm_id(status);
             },
           }}
         >
@@ -211,7 +215,7 @@ const Layout = (props: ILayout) => {
               // data information is just needed for owner and renter modals
               data={data}
             ></Header>
-            <main className='minHeight'>{props.children}</main>
+            <main className="minHeight">{props.children}</main>
           </auth_context.Provider>
         </modal_context.Provider>
         {toast ? (

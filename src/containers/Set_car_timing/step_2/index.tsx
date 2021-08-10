@@ -35,6 +35,7 @@ import PriceBox from "../PriceBox";
 // import DropdownSearch from "../../../components/form/Dropdown";
 import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
+import roundup from "../../../../utils/roundup";
 import Toast_context from "../../../context/Toast_context";
 
 const stateReducer = (current, action) => {
@@ -725,23 +726,23 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   };
 
   return (
-    <article className='responsive step_2_form_container'>
-      <div className='step_2_main_container'>
-        <div className='pageTitle'>
+    <article className="responsive step_2_form_container">
+      <div className="step_2_main_container">
+        <div className="pageTitle">
           {/* <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
           <h3>{language.pageTitle_h3}</h3>
 
-          <div className='pelak_container'>
-            <p className='car_name_brand'>
-              <IoIosCar className='car_icon' size='2.3rem' color='#313131' />
+          <div className="pelak_container">
+            <p className="car_name_brand">
+              <IoIosCar className="car_icon" size="2.3rem" color="#313131" />
               {Brand_Name ? (
                 `${Brand_Name} - ${CarModelName}`
               ) : (
-                <span className='carName_placeHoler Gradient'></span>
+                <span className="carName_placeHoler Gradient"></span>
               )}
             </p>
             {/* {year && <p>{year}</p>} */}
-            <div className='licence_number'>
+            <div className="licence_number">
               <p>{state.registration_plate_first_part}</p>
               <p>|</p>
               <p>{state.registration_plate_third_part}</p>
@@ -751,13 +752,13 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           </div>
         </div>
         <form onSubmit={(e) => submitHandler(e, state)}>
-          <div className='add_car_form_step_2'>
-            <h4 className='extra_text'>
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">
               {language.extra_text_1_h4}
               <span> {language.extra_text_1_span}</span>
             </h4>
             <div
-              className='Set_Price_date_options'
+              className="Set_Price_date_options"
               //   className={[
               //     "transition_type_Label",
               //     ErrorState.transmission_type_id ? "Error_color" : null
@@ -791,9 +792,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             </div>
             {/* {DateAndPrice === 1 ? ( */}
             {/* <> */}
-            <div className='custom_input_container_step_2 daily_price_container'>
+            <div className="custom_input_container_step_2 daily_price_container">
               <TextInput
-                name='price_per_day'
+                name="price_per_day"
                 number={true}
                 onChangeHandler={(e) => {
                   if (ErrorState.price_per_day) {
@@ -807,25 +808,25 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     type: "price_per_day",
                     price_per_day: e,
                   });
-                  let each_hour = Math.floor(+e / 24);
+                  let each_hour = roundup(e / 24);
                   if (each_hour > 100) {
-                    let firstTwo: string | number = `${each_hour}`.slice(0, 2);
-                    let restOfIt = `${each_hour}`.slice(2, 3);
-                    if (+restOfIt > 5) {
-                      firstTwo = +firstTwo + 1;
-                    }
-                    let hour_price = `${firstTwo}${"0".repeat(
-                      `${each_hour}`.length - 2
-                    )}`;
+                    // let firstTwo: string | number = `${each_hour}`.slice(0, 2);
+                    // let restOfIt = `${each_hour}`.slice(2, 3);
+                    // if (+restOfIt > 5) {
+                    //   firstTwo = +firstTwo + 1;
+                    // }
+                    // let hour_price = `${firstTwo}${"0".repeat(
+                    //   `${each_hour}`.length - 2
+                    // )}`;
                     dispatch({
                       type: "extra_hour_price",
-                      extra_hour_price: hour_price,
+                      extra_hour_price: each_hour,
                     });
                   }
                   if (state.max_km_per_day) {
                     dispatch({
                       type: "extra_km_price",
-                      extra_km_price: Math.floor(+e / state.max_km_per_day),
+                      extra_km_price: roundup(+e / state.max_km_per_day),
                     });
                   }
                 }}
@@ -859,14 +860,14 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 }}
               />
               {recommendationPrice ? (
-                <p className='our_recommendation'>
+                <p className="our_recommendation">
                   {`${
                     language.our_recommendation
                   } ${recommendationPrice.toLocaleString()}`}{" "}
                   {language.toman_per_day}
                 </p>
               ) : (
-                <p className='our_recommendation_placeHoler Gradient'></p>
+                <p className="our_recommendation_placeHoler Gradient"></p>
               )}
             </div>
             {/* {state.price_per_day.length > 3 && (
@@ -887,7 +888,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           )} */}
             {/* <h4 className="extra_text">شرایط اجاره</h4> */}
 
-            <div className='custom_input_container_step_2 DropDown_extra_km'>
+            <div className="custom_input_container_step_2 DropDown_extra_km">
               <DropdownSearch
                 label={language.distance_limit}
                 InputDisable={true}
@@ -926,11 +927,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   }
                 }}
               />
-              <span className='tail_text'>{language.km_per_day}</span>
+              <span className="tail_text">{language.km_per_day}</span>
             </div>
-            <div className='custom_input_container_step_2 extra_km_price_container'>
+            <div className="custom_input_container_step_2 extra_km_price_container">
               <TextInput
-                name='extra_km_price'
+                name="extra_km_price"
                 number={true}
                 autoFocus={false}
                 onChangeHandler={(e) => {
@@ -976,9 +977,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 }}
               />
             </div>
-            <div className='custom_input_container_step_2 extra_km_price_container'>
+            <div className="custom_input_container_step_2 extra_km_price_container">
               <TextInput
-                name='extra_hour_price'
+                name="extra_hour_price"
                 number={true}
                 autoFocus={false}
                 onChangeHandler={(e) => {
@@ -1042,11 +1043,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               text={language.day}
               value={state.min_days_to_rent}
             />
-            <div className='driver_satus'>
+            <div className="driver_satus">
               <label>{language.mikhay_mashin_ba_rannade}</label>
               <p>{language.most_cases}</p>
               <Radio
-                name='driver_status'
+                name="driver_status"
                 error_status={ErrorState.driver_status}
                 SelectHandler={(i) => {
                   // setDriver_status(+i);
@@ -1081,7 +1082,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   value: state.deliver_at_renters_place,
                 },
               ]}
-              name='deliver_at_renters_place'
+              name="deliver_at_renters_place"
               clearField={() =>
                 dispatch({
                   type: "deliver_at_renters_place",
@@ -1118,8 +1119,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               }}
             /> */}
           </div>
-          <div className='add_car_form_step_2'>
-            <h4 className='extra_text'>{language.extra_text_2_h4}</h4>
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">{language.extra_text_2_h4}</h4>
             {/* DiscountBox component  */}
             <DiscountBox
               language={language.discount_box}
@@ -1132,9 +1133,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               error={ErrorState.discount_error}
             />
           </div>
-          <div className='add_car_form_step_2'>
-            <h4 className='extra_text'>{language.extra_text_3_h4}</h4>
-            <div className='cancelation_items_container'>
+          <div className="add_car_form_step_2">
+            <h4 className="extra_text">{language.extra_text_3_h4}</h4>
+            <div className="cancelation_items_container">
               {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
               <TextInput
@@ -1191,7 +1192,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     value: 4,
                   },
                 ]}
-                name='deliver_at_renters_place'
+                name="deliver_at_renters_place"
                 clearField={(item) => {
                   let checkListInstance = null;
                   setCheckbox_list((checkbox_list) => {
@@ -1257,7 +1258,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             <label>
               <span
                 onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
-                className='anchorTagInStep2'
+                className="anchorTagInStep2"
               >
                 {language.what_we_should_get}
               </span>
@@ -1266,11 +1267,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               value={language.submit_step_2}
               loading={Loading}
               disable={Loading}
-              class='Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit'
+              class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
               click={() => {}}
             />
             {ErrorState.error_message ? (
-              <p className='Error_message_text'>{ErrorState.error_message}</p>
+              <p className="Error_message_text">{ErrorState.error_message}</p>
             ) : null}
           </div>
         </form>

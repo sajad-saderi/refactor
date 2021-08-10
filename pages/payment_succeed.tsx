@@ -12,7 +12,6 @@ import paper_check from "../public/image/paper_check.png";
 import return_icon from "../public/image/return.png";
 import key from "../public/image/key.png";
 import paper from "../public/image/paper.png";
-import "../src/styles/pages/Success_payment.scss";
 import carImage from "../public/image/car-image-thumbnail.jpg";
 import { NextSeo } from "next-seo";
 import language from "../public/languages/fa/paymentsucceed.json";
@@ -101,33 +100,33 @@ const Success_payment = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className='responsive minHeight local_payment'>
+      <article className="responsive minHeight local_payment">
         {renter ? (
-          <section className='payment_cart'>
-            <div className='title  '>
-              <img src={check_icon} alt='پرداخت موفق' />
+          <section className="payment_cart">
+            <div className="title  ">
+              <img src={check_icon} alt="پرداخت موفق" />
               <h4>{language.h4}</h4>
             </div>
-            <div className='bank_track_id '>
+            <div className="bank_track_id ">
               <p>شماره پیگیری: {bank_id_track}</p>
             </div>
-            <div className='details_section'>
+            <div className="details_section">
               <div>
-                <div className='reserve_information '>
-                  <div className='section_title margin_bottom_24'>
-                    <img src={paper_check} className='مشخصات خودرو' />
+                <div className="reserve_information ">
+                  <div className="section_title margin_bottom_24">
+                    <img src={paper_check} className="مشخصات خودرو" />
                     <p>مشخصات رزرو</p>
                   </div>
-                  <div className='car_info padding_right_24'>
+                  <div className="car_info padding_right_24">
                     <div>
                       <p>خودرو:</p>
-                      <span className='center'>
+                      <span className="center">
                         {rent_search_dump.car.name.fa}
                       </span>
                     </div>
                     <div>
                       <p>میزبان:</p>
-                      <span className='center'>
+                      <span className="center">
                         {rent_search_dump.owner.company_name
                           ? rent_search_dump.owner.company_name
                           : rent_search_dump.owner.name}
@@ -165,18 +164,19 @@ const Success_payment = () => {
                     )}
                     <div>
                       <p>محدودیت مسافت:</p>
-                      <span className='float-left'>
+                      <span className="float-left">
                         {rent_search_dump.max_km_per_day} {language.kilometer}
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className='paid_price '>
+                <div className="paid_price ">
                   <p>{language.span_1}</p>
                   <div>
                     <h3>
                       {(
                         rent_search_dump.total_price -
+                        rent_search_dump.total_discount -
                         (rent_search_dump.coupon
                           ? rent_search_dump.coupon.discounted_price
                           : 0) +
@@ -185,11 +185,11 @@ const Success_payment = () => {
                           : 0)
                       ).toLocaleString()}
                     </h3>
-                    <span className='toman'> تومان</span>
+                    <span className="toman"> تومان</span>
                   </div>
                 </div>
               </div>
-              <div className='figure_section'>
+              <div className="figure_section">
                 <img
                   alt={language.car_image}
                   src={
@@ -200,14 +200,14 @@ const Success_payment = () => {
                 />
               </div>
             </div>
-            <div className='delivery_section margin_top_24'>
-              <div className='section_title margin_bottom_16'>
-                <img src={key} className='تحویل خودرو' />
+            <div className="delivery_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={key} className="تحویل خودرو" />
                 <p>تحویل خودرو:</p>
               </div>
-              <div className='delivery_condition'>
+              <div className="delivery_condition">
                 {rent_search_dump.deliver_at_renters_place ? (
-                  <p className='margin_bottom_16'>
+                  <p className="margin_bottom_16">
                     {language.span_3}
                     {/* {rent_search_dump.location.name.fa} */}
                   </p>
@@ -218,13 +218,13 @@ const Success_payment = () => {
                 </p>
               </div>
             </div>
-            <div className='return_section margin_top_24'>
-              <div className='section_title margin_bottom_16'>
-                <img src={return_icon} className='بازگشت خودرو' />
+            <div className="return_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={return_icon} className="بازگشت خودرو" />
                 <p>بازگشت خودرو:</p>
               </div>
-              <div className='return_condition'>
-                <p className='margin_bottom_8'>
+              <div className="return_condition">
+                <p className="margin_bottom_8">
                   شروع مدت اجاره از ساعت تحویل خودرو آغاز می‌شود لذا لازم است در
                   روز بازگشت در همان ساعت خودرو را بازتحویل دهید. در صورت
                   دیرکرد، برای این خودرو به ازای{" "}
@@ -247,13 +247,13 @@ const Success_payment = () => {
                 </p>
               </div>
             </div>
-            <div className='contract_section margin_top_24'>
-              <div className='section_title margin_bottom_16'>
-                <img src={paper} className='قرارداد اجاره' />
+            <div className="contract_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={paper} className="قرارداد اجاره" />
                 <p>قرارداد اجاره:</p>
               </div>
-              <div className='return_condition'>
-                <p className='margin_bottom_16'>
+              <div className="return_condition">
+                <p className="margin_bottom_16">
                   سپریس نمونه قراردادی برای طرفین آماده کرده است. میزبان در روز
                   تحویل خودرو این قرارداد را در دو نسخه تهیه می‌کند و به امضای
                   دو طرف می‌رسد.
@@ -262,7 +262,7 @@ const Success_payment = () => {
             </div>
           </section>
         ) : (
-          <p className='loading_text'>{language.loading}</p>
+          <p className="loading_text">{language.loading}</p>
         )}
       </article>
     </Layout>

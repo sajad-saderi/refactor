@@ -6,7 +6,6 @@ import { guard_controller } from "../../../../utils/guard_controller";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 // import quotation from "../../../../public/image/svg/quotation.svg";
-import "./join_us_content.scss";
 
 const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
   const [authorize, set_authorize] = useState(true);
@@ -31,18 +30,18 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
   // };
 
   return (
-    <>
-      {/* <div className='insuranceBox'>
+    <div className="responsive second_part_container">
+      <div className="insuranceBox">
         <p>{language.insuranceBox_p}</p>
         <img src={insurance} alt={language.insuranceBox_image} />
-      </div> */}
-      <div className=' responsive second_container'>
-        <div className='full_width'>
+      </div>
+      <div className=" responsive second_container">
+        <div className="full_width">
           <h2>{language.full_width_h2}</h2>
           <p>{language.full_width_p}</p>
         </div>
         <h2>{language.second_container_h2}</h2>
-        <div className='three_columns'>
+        <div className="three_columns">
           <section>
             <h3>{language.three_columns_h3_1}</h3>
             <p>{language.three_columns_p_1}</p>
@@ -61,7 +60,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
           </section>
         </div>
         <div
-          className='add_car_section'
+          className="add_car_section"
           onClickCapture={() => {
             if (!authorize) {
               localStorage["last_location"] = "/add-car";
@@ -73,8 +72,8 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
               {AbText}
             </a>
           </Link> */}
-          <Link href='/add-car' prefetch={false}>
-            <a className='Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar'>
+          <Link href="/add-car" prefetch={false}>
+            <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">
               {AbText}
             </a>
           </Link>
@@ -133,7 +132,7 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
           </section> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

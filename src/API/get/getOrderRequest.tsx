@@ -6,17 +6,14 @@ const GET_ORDER_REQUEST_URL = "/core/rental-car/order/get";
 
 export const GET_ORDER_REQUEST = (data: IgetOrderRequest) => {
   return new Promise((resolve, reject) => {
-    const { token, id } = data;
+    const { token, id, unique_id } = data;
+    let query = id ? { id: id } : unique_id ? { unique_id: unique_id } : null;
     axios
-      .post(
-        DOMAIN + GET_ORDER_REQUEST_URL,
-        { id },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
+      .post(DOMAIN + GET_ORDER_REQUEST_URL, query, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           resolve(response.data);
@@ -31,5 +28,6 @@ export const GET_ORDER_REQUEST = (data: IgetOrderRequest) => {
 
 interface IgetOrderRequest {
   token: string;
-  id: string | string[];
+  id?: string | string[];
+  unique_id?: string;
 }

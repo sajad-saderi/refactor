@@ -27,6 +27,7 @@ import {
   MdVpnKey,
 } from "react-icons/md";
 import dynamic from "next/dynamic";
+import download from "../../../../public/image/download.png";
 
 const PelakView = dynamic(() => import("../../../components/pelak"));
 const Icon = dynamic(() => import("../../../../utils/Icon"));
@@ -44,6 +45,7 @@ import Modal_context from "../../../context/Modal_context";
 import Toast_context from "../../../context/Toast_context";
 import carImage from "../../../../public/image/car-image-thumbnail.jpg";
 import { FiClock } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -68,10 +70,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [has_Insurance, set_has_insurance] = useState(false);
   const [coupon, setCoupon] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
+  const [click_on_cancel, set_click_on_cancel] = useState(false);
+
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
   const [imageHeight, setImageHeight] = useState(0);
   const [heightController, setheightController] = useState(0);
+  const router = useRouter();
 
   const token = jsCookie.get("token");
 
@@ -102,6 +107,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
           case "approve":
             CreateTheStatusForThisCard("approved");
             break;
+          case "cancelled":
+            CreateTheStatusForThisCard("cancelled");
+            break;
           case "reject":
             CreateTheStatusForThisCard("rejected");
             break;
@@ -115,6 +123,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             break;
         }
       }
+      if (data.action === "cancel") {
+        getDataAgain(data.id);
+      }
     } catch (error) {
       console.log("!Error", error);
       setButtonLoader(false);
@@ -127,6 +138,18 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       CreateTheStatusForThisCard();
     }
   }, [data]);
+
+  const cancel_request = (id) => {
+    set_click_on_cancel(true);
+    MODAL_CONTEXT.modalHandler("ConfirmDelete", { id });
+  };
+
+  useEffect(() => {
+    if (MODAL_CONTEXT.id === data.id && click_on_cancel) {
+      setForRequest({ action: "cancel", id: data.id });
+      MODAL_CONTEXT.confirm_id(null);
+    }
+  }, [MODAL_CONTEXT.id]);
 
   const CreateTheStatusForThisCard = (status = null) => {
     /**
@@ -145,20 +168,20 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     switch (status ? status : data.status.id) {
       case "new":
         RentStatus = (
-          <div className='rent_status status_new'>
-            <div className='card_status'>
-              <MdAlarm size='2rem' color='#f7941d' />
+          <div className="rent_status status_new">
+            <div className="card_status">
+              <MdAlarm size="2rem" color="#f7941d" />
               <span>{language.new}</span>
             </div>
             {!renter && (
-              <div className='timer'>
+              <div className="timer">
                 <CountdownTimer
                   timeLeft={
                     data.time_remaining_to_take_action.total_seconds * 1000
                   }
                   completeCallback={() => CreateTheStatusForThisCard("expired")}
                 />
-                <FiClock size='2rem' color='#f7941d' />
+                <FiClock size="2rem" color="#f7941d" />
               </div>
             )}
           </div>
@@ -182,25 +205,32 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   click: () => setForRequest({ action: "reject", id: data.id }),
                 },
               ]
-            : []
+            : [
+                {
+                  value: language.cancel,
+                  class:
+                    "Blue_BTN request_car_cancel HEAP_Request_Btn_Cancel CANCELLED_INCOMING_REQUEST",
+                  click: () => cancel_request(data.id),
+                },
+              ]
         );
         break;
       case "approved":
         RentStatus = (
-          <div className='rent_status status_approved'>
-            <div className='card_status'>
-              <MdCreditCard size='2rem' color='#a3678b' />
+          <div className="rent_status status_approved">
+            <div className="card_status">
+              <MdCreditCard size="2rem" color="#a3678b" />
               <span>{language.approved}</span>
             </div>
             {!renter && (
-              <div className='timer'>
+              <div className="timer">
                 <CountdownTimer
                   timeLeft={
                     data.time_remaining_to_take_action.total_seconds * 1000
                   }
                   completeCallback={() => CreateTheStatusForThisCard("expired")}
                 />
-                <FiClock size='2rem' color='#a3678b' />
+                <FiClock size="2rem" color="#a3678b" />
               </div>
             )}
           </div>
@@ -220,8 +250,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "rejected":
         RentStatus = (
-          <div className='rent_status status_expired'>
-            <MdCallMissedOutgoing size='2rem' color='#707070' />
+          <div className="rent_status status_expired">
+            <MdCallMissedOutgoing size="2rem" color="#707070" />
             <span>{language.rejected}</span>
           </div>
         );
@@ -229,8 +259,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "expired":
         RentStatus = (
-          <div className='rent_status status_expired'>
-            <MdAlarmOff size='2rem' color='#707070' />
+          <div className="rent_status status_expired">
+            <MdAlarmOff size="2rem" color="#707070" />
             <span>{language.expired}</span>
           </div>
         );
@@ -238,16 +268,18 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "cancelled":
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosEyeOff size='1.4rem' color='#656565' />
+          <div className="rent_status status_expired">
+            <Icon name="cancel" />
+            {/* <IoIosEyeOff size="1.4rem" color="#656565" /> */}
             <span>{language.cancelled}</span>
           </div>
         );
+        setButton_code([]);
         break;
       case "paid":
         RentStatus = (
-          <div className='rent_status status_paid'>
-            <MdVpnKey size='2rem' color='#2cbbc2' />
+          <div className="rent_status status_paid">
+            <MdVpnKey size="2rem" color="#2cbbc2" />
             <span>{language.paid}</span>
           </div>
         );
@@ -267,16 +299,16 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "not_delivered":
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosHand size='1.4rem' color='#656565' />
+          <div className="rent_status">
+            <IoIosHand size="1.4rem" color="#656565" />
             <span>{data.status.name}</span>
           </div>
         );
         break;
       case "delivered":
         RentStatus = (
-          <div className='rent_status status_on_trip'>
-            <MdDriveEta size='2rem' color='#2cbbc2' />
+          <div className="rent_status status_on_trip">
+            <MdDriveEta size="2rem" color="#2cbbc2" />
             <span>{language.delivered}</span>
           </div>
         );
@@ -297,8 +329,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "returned":
         RentStatus = (
-          <div className='rent_status status_returned'>
-            <MdKeyboardReturn size='2rem' color='#2cbbc2' />
+          <div className="rent_status status_returned">
+            <MdKeyboardReturn size="2rem" color="#2cbbc2" />
             <span>{language.returned_label}</span>
           </div>
         );
@@ -344,8 +376,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       default:
         RentStatus = (
-          <div className='rent_status'>
-            <IoIosDownload size='1.4rem' color='#656565' />
+          <div className="rent_status">
+            <IoIosDownload size="1.4rem" color="#656565" />
             <span>{data.status.name}</span>
           </div>
         );
@@ -398,13 +430,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     media_set && (
       <>
         {rentStatus}
-        <div className='cart'>
-          <div className='rent_info'>
+        <div className="cart">
+          <div className="rent_info">
             <h2>
               {car.brand.name.fa} {car.name.fa}
             </h2>
             {/* <div className="rent_duration"> */}
-            <p className='date_duration'>
+            <p className="date_duration">
               <span>
                 {/* e.g, 99 01 23 */}
                 {moment(start_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
@@ -413,14 +445,14 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   {moment(start_date, "jYYYY/jMM/jDD").format("dddd")}
                 </span>
               </span>
-              <MdKeyboardBackspace size='2rem' color='#dcdcdc' />
+              <MdKeyboardBackspace size="2rem" color="#dcdcdc" />
               <span>
                 {moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
                 <span>{moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>
               </span>
             </p>
           </div>
-          <div className='image_pelak'>
+          <div className="image_pelak">
             <figure
               style={{
                 backgroundImage: `url(${media_set.thumbnail_url})`,
@@ -447,7 +479,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
           </div>
         </div>
         {/* </div> */}
-        <p className='invoice_and_insurance'>
+        <p className="invoice_and_insurance">
           {role ? (
             <>
               <span>
@@ -469,66 +501,76 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {language.toman} ({language.for} {no_of_days} {language.day})
             </>
           )}
-          <span className='insurance_badge'>
+          <span className="insurance_badge">
             {has_Insurance ? (
               <>
-                <Icon name='active_shield' />
+                <Icon name="active_shield" />
                 {/* <MdDone size='1.4rem' color='#2cbbc2' /> */}
                 {language.with_insurance}
               </>
             ) : (
               <>
-                <Icon name='deactivate_shield' />
+                <Icon name="deactivate_shield" />
                 {/* <MdClear size='1.4rem' color='#707070' /> */}
                 {language.without_insurance}
               </>
             )}
           </span>
         </p>
-        <div className='Role_container'>
+        <div className="Role_container">
           {role ? (
             <>
               <Link
-                href='/user/[id]'
+                href="/user/[id]"
                 as={`/user/${owner_Info.id}`}
                 prefetch={false}
               >
                 <a>
-                  <MdAccountCircle size='2rem' />
+                  <MdAccountCircle size="2rem" />
                   {owner_Info.name}
                 </a>
               </Link>
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
-                <a className='renter_Cell' href={`tel:0${owner_Info.cell}`}>
-                  <span className='extra_Text'>0{owner_Info.cell}</span>
-                  <MdCall size='2rem' color='#4ba3ce' />
+                <a className="renter_Cell" href={`tel:0${owner_Info.cell}`}>
+                  <span className="extra_Text">0{owner_Info.cell}</span>
+                  <MdCall size="2rem" color="#4ba3ce" />
                 </a>
               ) : null}
             </>
           ) : (
             <>
               <Link
-                href='/user/[id]'
+                href="/user/[id]"
                 as={`/user/${renter_info.id}`}
                 prefetch={false}
               >
                 <a>
-                  <MdAccountCircle size='2rem' />
+                  <MdAccountCircle size="2rem" />
                   {renter_info.name}
                 </a>
               </Link>
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
-                <a className='renter_Cell' href={`tel:0${renter_info.cell}`}>
-                  <span className='extra_Text'>0{renter_info.cell}</span>
-                  <MdCall size='2rem' color='#4ba3ce' />
+                <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
+                  <span className="extra_Text">0{renter_info.cell}</span>
+                  <MdCall size="2rem" color="#4ba3ce" />
                 </a>
               ) : null}
             </>
           )}
         </div>
-        <div className='Button_container'>
+        {data.show_contract && status_id === "paid" && (
+          <div className="contract_download">
+            <Link href={`/contract?id=${data.id}`} prefetch={false}>
+              <a>
+                <img src={download} alt="آیکون دانلود" />
+                <span>دانلود نمونه قرارداد</span>
+              </a>
+            </Link>
+          </div>
+        )}
+        <div className="Button_container">
           {/* {button_code} */}
           {button_code.length > 0 &&
             button_code.map((item, i) => (
