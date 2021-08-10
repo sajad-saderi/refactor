@@ -278,24 +278,26 @@ const Edit_profile = ({
 
   return (
     <form className="edit_profile_form" onSubmit={EditFormSubmit}>
-      {state.image.search("default") === -1 ? (
-        <img
-          src={
-            state.image
-              ? state.image
-              : "https://core.sepris.com/static/core/default_profile_pic.png"
-          }
-          alt={state.first_name}
-        />
-      ) : (
-        <NameAvatar
-          name={state.first_name}
-          css_display="block"
-          css_with={150}
-          css_radius={50}
-          css_text_color="#ffffff"
-        />
-      )}
+      {state.image ? (
+        state.image.search("default") === -1 ? (
+          <img
+            src={
+              state.image
+                ? state.image
+                : "https://core.sepris.com/static/core/default_profile_pic.png"
+            }
+            alt={state.first_name}
+          />
+        ) : (
+          <NameAvatar
+            name={state.first_name}
+            css_display="block"
+            css_with={150}
+            css_radius={50}
+            css_text_color="#ffffff"
+          />
+        )
+      ) : null}
       <div className="change_image_container">
         <p>{language.change_the_profile_image}</p>
         <input
