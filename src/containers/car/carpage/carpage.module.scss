@@ -83,6 +83,7 @@
       // }
       .year_of_build {
         color: $dark_gray;
+        font-size: 1.6rem;
         margin-right: 0.4rem;
         display: inline-block;
         vertical-align: middle;
@@ -311,14 +312,14 @@
     }
     .car_delivery {
       p {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         line-height: 1.4rem;
       }
     }
     .distance_limitation,
     .distance_limitation_penalty,
     .hour_limitation_penalty {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       line-height: 1.4rem;
     }
     h2 {
@@ -333,7 +334,7 @@
       span {
         display: inline-block;
         font-family: danabold;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         line-height: 1.4rem;
       }
     }
@@ -345,7 +346,7 @@
     }
     pre {
       white-space: pre-line;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       line-height: normal;
     }
     hr {
@@ -372,13 +373,13 @@
           font-weight: 500;
           width: 9rem;
           line-height: 1.4rem;
-          font-size: 1.4rem;
+          font-size: 1.6rem;
           display: inline-block;
           vertical-align: middle;
         }
         .info_value {
           line-height: 1.4rem;
-          font-size: 1.4rem;
+          font-size: 1.6rem;
           display: inline-block;
           padding-right: 1rem;
           vertical-align: middle;
@@ -453,9 +454,9 @@
         }
         .normal_price {
           font-weight: 500;
-          font-size: 2rem;
+          font-size: 3rem;
           color: $almost_black;
-          line-height: 1.6rem;
+          line-height: 2.6rem;
           text-align: center;
           margin-bottom: 0.6rem;
         }
@@ -468,7 +469,7 @@
         margin-bottom: 0.6rem;
       }
       span.unit_name {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
       span {
         font-size: 1.4rem;
@@ -628,11 +629,15 @@
         p {
           margin-top: 0.8rem;
           text-align: center;
-          font-size: 1.2rem;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          font-size: 1.4rem;
           img {
             display: inline-block;
             vertical-align: top;
             margin-left: 0.4rem;
+            width: 1.5rem;
           }
         }
       }
@@ -691,6 +696,7 @@
       margin-bottom: 1.6rem;
     }
     .extra_info {
+      font-size: 1.2rem;
       line-height: 1.5;
       text-align: center;
       display: block;
@@ -738,6 +744,9 @@
       border-radius: 0;
       box-shadow: 0px 2px 2px -1px rgba(0, 0, 0, 0.1);
       h1 {
+        .year_of_build {
+          font-size: 1.4rem;
+        }
         .rate_container {
           span {
             font-size: 1.2rem;
@@ -745,8 +754,36 @@
           }
         }
       }
+      .driver_container {
+        span {
+          font-size: 1.4rem;
+        }
+      }
       .price_place_holder {
         display: block;
+      }
+      h2 {
+        span {
+          font-size: 1.4rem;
+        }
+      }
+      .car_delivery {
+        p {
+          font-size: 1.4rem;
+        }
+      }
+      pre {
+        font-size: 1.4rem;
+      }
+      .distance_limitation,
+      .distance_limitation_penalty,
+      .hour_limitation_penalty {
+        font-size: 1.4rem;
+      }
+      .facilities_container {
+        p {
+          font-size: 1.4rem;
+        }
       }
       .calender_section_mobile_view {
         display: block;
@@ -800,6 +837,10 @@
         .alignThem {
           .info_value {
             width: 14rem;
+            font-size: 1.4rem;
+          }
+          .info_name {
+            font-size: 1.4rem;
           }
         }
       }
