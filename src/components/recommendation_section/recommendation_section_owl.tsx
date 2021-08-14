@@ -8,6 +8,7 @@ import for_journey from "../../../public/image/for_journey.jpeg";
 import moment from "moment-jalaali";
 import Link from "next/link";
 import ScrollContainer from "react-indiana-drag-scroll";
+import Icon from "../../../utils/Icon";
 
 const Recommendation_section = (props) => {
   const [start_date, set_start_date] = useState(null);
@@ -32,6 +33,9 @@ const Recommendation_section = (props) => {
 
   return (
     <div className="slider-wrapper">
+      {/* <div className="recomendation-arrow_left">
+        <Icon name="arrow_right" />
+      </div> */}
       <ScrollContainer className="recommendation_section">
         <div className="inner-container">
           <div className="suggestion_card">
