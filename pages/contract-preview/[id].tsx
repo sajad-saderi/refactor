@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 let token = jsCookie.get("token");
 const Contract_Page = () => {
   const [result, setResult] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
   const user_info = useContext(context_user);
   const router = useRouter();
 
@@ -49,6 +50,7 @@ const Contract_Page = () => {
       });
       setResult(res.data);
     } catch (error) {
+      setFetchError(true);
       console.log("!Error", error);
     }
   };
@@ -63,7 +65,11 @@ const Contract_Page = () => {
           description: "صفحه دانلود قرارداد",
         }}
       />
-      <Contract_content result={result} />
+      {fetchError ? (
+        <p>خطایی رخ داده است!</p>
+      ) : (
+        <Contract_content result={result} />
+      )}
     </>
   );
 };
