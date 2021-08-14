@@ -455,7 +455,7 @@ describe("تست صفحه نتایج جستجو", () => {
       .get(".show_filter")
       .click()
       .get(".with_drawer")
-      .click()
+      .click({ force: true })
       .get(".filter_section")
       .should("not.have.class", "filter_section show_Filter_section");
   });
