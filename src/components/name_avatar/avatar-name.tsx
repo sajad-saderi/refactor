@@ -33,9 +33,6 @@ const NameAvatar = ({
     : random_background
     ? `#${random_hex_color()}`
     : userContext.avatartBackgroundColor;
-
-  console.log(backGroundColor);
-
   if (!isNaN(name)) {
     name = "??";
   }
@@ -58,7 +55,7 @@ const NameAvatar = ({
           color: textColor,
         }}
       >
-        {letter_control(name)}
+        <img src={letter_control(name).src} alt="حرف اول نام کاربری" />
       </span>
     </div>
   );

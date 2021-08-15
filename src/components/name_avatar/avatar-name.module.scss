@@ -1,10 +1,16 @@
-.name_avatar__container span {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  font-family: "danabold";
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  font-weight: bold;
+.name_avatar__container {
+  vertical-align: middle;
+  span {
+    text-align: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+    width: 100%;
+    img {
+      max-width: 60%;
+      max-height: 40%;
+      margin: auto;
+    }
+  }
 }
