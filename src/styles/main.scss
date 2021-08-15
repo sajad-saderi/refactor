@@ -271,6 +271,7 @@ input {
 
 .second_part_container {
   box-shadow: $box_shadow;
+  padding: 0 !important;
   // SHARE STYLE
   .insuranceBox {
     p {
@@ -291,6 +292,8 @@ input {
     border-top-right-radius: 30px;
     position: relative;
     z-index: 2;
+    padding-right: 1.6rem;
+    padding-left: 1.6rem;
   }
   .second_container {
     background-color: #fff;
@@ -300,6 +303,8 @@ input {
     position: relative;
     h2 {
       font-size: 2rem;
+      padding-right: 1.6rem;
+      padding-left: 1.6rem;
     }
     h3 {
       font-size: 1.6rem;
@@ -311,12 +316,16 @@ input {
     .full_width {
       text-align: right;
       margin-bottom: 2.4rem;
+      padding-right: 1.6rem;
+      padding-left: 1.6rem;
     }
     .three_columns {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 2.4rem;
+      padding-right: 1.6rem;
+      padding-left: 1.6rem;
       section {
         width: 30%;
         text-align: justify;
@@ -345,6 +354,10 @@ input {
           display: inline-block;
         }
       }
+    }
+    .rent_contnet {
+      padding-right: 1.6rem;
+      padding-left: 1.6rem;
     }
     @media (max-width: 720px) {
       .three_columns {

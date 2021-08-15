@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
 const Search = dynamic(() => import("../src/containers/Search"));
-import Recommendation_section from "../src/components/recommendation_section/recommendation_section";
+import Recommendation_section_owl from "../src/components/recommendation_section/recommendation_section_owl";
 // import Layout from "../src/Layout";
 // import Search from "../src/containers/Search";
 import insurance from "../public/image/SamanInsurance.png";
@@ -85,7 +85,7 @@ const HomePage = () => {
                 <p>{language.second_container_three_columns_2_p_3}</p>
               </section>
             </div>
-            <Recommendation_section />
+            <Recommendation_section_owl />
             <h2>{language.second_container_h2_1}</h2>
             <div className="three_columns">
               <section>

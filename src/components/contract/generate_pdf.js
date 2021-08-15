@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Spinner from "../Spinner";
 import { jsPDF } from "jspdf";
 
 import irans from "../../../public/fonts/ttf/IRANSansWeb_Medium.ttf";

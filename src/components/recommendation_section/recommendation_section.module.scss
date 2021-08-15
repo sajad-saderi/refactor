@@ -1,50 +1,94 @@
 @import "../../../src/styles/colors";
-.recommendation_section {
-  margin: 3rem auto 3rem auto;
-  width: 100%;
-  .slick-prev,
-  .slick-next {
-    &::before,
-    &:after {
-      color: $light_grey;
-    }
-  }
-  .suggestion_card {
-    figure {
-      margin: 3rem auto;
-      box-shadow: $box_shadow;
-      border-radius: 1rem;
-      width: 14rem;
-      text-align: center;
-      img {
-        display: block;
-        margin: auto;
-        width: 14rem;
-        border-radius: 10px 10px 0 0;
-      }
-      p {
-        font-size: 1.4rem;
-        line-height: 1.5;
-        padding: 16px;
-        text-align: center;
+.slider-wrapper {
+  position: relative;
+  // .recomendation-arrow_left {
+  //   position: absolute;
+  //   left: 0px;
+  //   width: 3rem;
+  //   height: 3rem;
+  //   background-color: $light_grey;
+  //   transform: rotate(180deg);
+  //   top: 45%;
+  //   border-radius: 50%;
+  //   img {
+  //     display: block;
+  //     margin: auto;
+  //   }
+  // }
+  .recommendation_section {
+    margin: 3rem auto 3rem auto;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    .inner-container {
+      width: 1100px;
+      .suggestion_card {
+        margin: 0 40px;
+        display: inline-block;
+        vertical-align: middle;
+        figure {
+          margin: 3rem auto;
+          box-shadow: $box_shadow;
+          border-radius: 1rem;
+          width: 14rem;
+          text-align: center;
+          img {
+            display: block;
+            margin: auto;
+            width: 14rem;
+            border-radius: 10px 10px 0 0;
+          }
+          p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            padding: 16px;
+            text-align: center;
+          }
+        }
       }
     }
   }
 }
 
+@media screen and(max-width:1200px) {
+  .slider-wrapper {
+    .recommendation_section {
+      .inner-container {
+        width: 100%;
+        .suggestion_card {
+          margin: 0 20px 0 20px;
+        }
+      }
+    }
+  }
+}
 @media screen and(max-width:1024px) {
-  .recommendation_section {
-    width: 90%;
+  .slider-wrapper {
+    .recommendation_section {
+      width: 100%;
+      .inner-container {
+        width: 1000px;
+        .suggestion_card {
+          margin: 0 30px 0 30px;
+        }
+      }
+    }
   }
 }
 @media screen and(max-width:480px) {
-  .recommendation_section {
-    width: 120%;
-    .suggestion_card {
-      figure {
-        width: 18rem;
-        img {
-          width: 18rem;
+  .slider-wrapper {
+    padding-right: 1.6rem;
+    .recommendation_section {
+      .inner-container {
+        width: 980px;
+        .suggestion_card {
+          margin: 0 0px 0 14px;
+          figure {
+            width: 17rem;
+            img {
+              width: 17rem;
+            }
+          }
         }
       }
     }

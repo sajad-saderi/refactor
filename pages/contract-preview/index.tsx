@@ -46,16 +46,20 @@ const Contract_preview_page = () => {
   }, [user_info]);
 
   const fetchAPI = async (unique_id) => {
+    set_error({
+      status: false,
+      message: "",
+    });
     token = jsCookie.get("token");
     try {
       const res: any = await GET_ORDER_REQUEST({
         unique_id,
         token,
       });
-      set_loading(false);
       router.push(`/contract-preview/${unique_id}`);
     } catch (error) {
       set_loading(false);
+      set_error({ status: true, message: error });
       console.log("!Error", error);
     }
   };

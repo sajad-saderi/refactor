@@ -112,6 +112,16 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                         {language.bodeh}
                       </span>
                     ) : null}
+                    {data.no_of_trips_gone > 0 ? (
+                      <span className="margin_top_16 inline_block_container">
+                        <strong>
+                          {data.no_of_trips_gone}
+                          {language.safar}
+                        </strong>{" "}
+                        با سپریس داشته است.
+                      </span>
+                    ) : null}
+
                     {data.owner_avg_response_time ? (
                       <p className="size_14 margin_top_16 margin_bottom_16">
                         {language.mamoolan}

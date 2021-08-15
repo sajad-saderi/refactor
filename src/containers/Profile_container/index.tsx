@@ -26,7 +26,7 @@ const Profile_container = ({ language }: IProfile_container) => {
     const user_id = jsCookie.get("user_id");
 
     const user_cars_info: any = await REQUEST_GET_USER_INFO({
-      id: Router.router.query.id,
+      id: Router.router.query.id ? Router.router.query.id : user_id,
     });
     window["dataLayer"].push({
       event: "page_view",
@@ -51,7 +51,7 @@ const Profile_container = ({ language }: IProfile_container) => {
   };
 
   return (
-    <article className='responsive minHeight profile_container'>
+    <article className="responsive minHeight profile_container">
       {data ? (
         <>
           <NextSeo

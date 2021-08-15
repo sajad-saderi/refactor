@@ -1180,7 +1180,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     value: 1,
                   },
                   {
-                    text: "بیمه‌نامه اجاره خودر سپریس",
+                    text: "بیمه‌نامه اجاره خودرو سپریس",
                     value: 2,
                   },
                   {
