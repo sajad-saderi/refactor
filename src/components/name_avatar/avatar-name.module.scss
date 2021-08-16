@@ -8,8 +8,8 @@
     height: 100%;
     width: 100%;
     img {
-      max-width: 60%;
-      max-height: 40%;
+      max-width: calc(100% / 2.5);
+      max-height: calc(100% / 3);
       margin: auto;
     }
   }
