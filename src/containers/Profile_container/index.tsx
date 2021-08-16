@@ -26,7 +26,9 @@ const Profile_container = ({ language }: IProfile_container) => {
     const user_id = jsCookie.get("user_id");
 
     const user_cars_info: any = await REQUEST_GET_USER_INFO({
-      id: Router.router.query.id ? Router.router.query.id : user_id,
+      id: Router.router.query.id
+        ? Router.router.query.id
+        : location.pathname.split("/")[2],
     });
     window["dataLayer"].push({
       event: "page_view",
