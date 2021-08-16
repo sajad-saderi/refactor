@@ -44,17 +44,20 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
        */
       setId(data.id);
       setIsVerified(data.is_verified);
-      if (data.cancellation_policy) {
-        // set the data
-        setIs_out_of_service(data.is_out_of_service);
-      } else if (!data.is_out_of_service) {
-        setUncompletedCar(true);
-        setIs_out_of_service(false);
-        setServiceStatus(data.id);
-      } else {
-        setUncompletedCar(true);
-        setIs_out_of_service(false);
+      if (is_mine) {
+        if (data.cancellation_policy) {
+          // set the data
+          setIs_out_of_service(data.is_out_of_service);
+        } else if (!data.is_out_of_service) {
+          setUncompletedCar(true);
+          setIs_out_of_service(false);
+          setServiceStatus(data.id);
+        } else {
+          setUncompletedCar(true);
+          setIs_out_of_service(false);
+        }
       }
+
       setYear(data.year);
       if (data.has_media) {
         setMedia_set(data.media_set);
