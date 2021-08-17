@@ -1091,6 +1091,7 @@ const CarPage = ({
                           css_with={48}
                           css_radius={50}
                           css_text_color="#ffffff"
+                          arrayIndex={owner.id % 10}
                         />
                       )}
                       {owner.rate.avg_rate_as_owner ? (

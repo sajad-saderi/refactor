@@ -4,7 +4,14 @@ import { invert_hex } from "../../../utils/invert_hex";
 import { random_hex_color } from "../../../utils/random_hex_color";
 
 import User_info from "../../context/User_info";
-
+const colorArray = [
+  "#EC7F00",
+  "#14808E",
+  "#7A3B69",
+  "#2A562A",
+  "#116B98",
+  "#116B98",
+];
 const NameAvatar = ({
   name,
   css_display = "block",
@@ -14,6 +21,7 @@ const NameAvatar = ({
   css_radius,
   css_text_color,
   clickOnElement,
+  arrayIndex,
 }: INameAvatar) => {
   const [textColor, setTextColor] = useState(
     css_text_color
@@ -32,6 +40,8 @@ const NameAvatar = ({
     ? css_background_color
     : random_background
     ? `#${random_hex_color()}`
+    : arrayIndex
+    ? colorArray[Math.abs(arrayIndex - 5)]
     : userContext.avatartBackgroundColor;
   if (!isNaN(name)) {
     name = "??";
@@ -71,6 +81,7 @@ interface INameAvatar {
   css_radius?: number;
   css_text_color?: string;
   clickOnElement?: any;
+  arrayIndex?: number;
 }
 
 export default NameAvatar;

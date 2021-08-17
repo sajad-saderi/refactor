@@ -84,6 +84,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                   css_with={48}
                   css_radius={50}
                   css_text_color="#ffffff"
+                  arrayIndex={!is_mine ? data.id % 10 : null}
                   clickOnElement={() => {
                     if (is_mine) {
                       setEdit(true), setTriggerUpload(true);

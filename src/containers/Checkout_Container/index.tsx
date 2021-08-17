@@ -264,6 +264,7 @@ const Checkout_Container = ({
                     css_with={32}
                     css_radius={50}
                     css_text_color="#ffffff"
+                    arrayIndex={owner.id % 10}
                   />
                 )}
                 <p>{owner.name}</p>
