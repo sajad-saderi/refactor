@@ -81,7 +81,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                 <NameAvatar
                   name={company_name ? company_name : name}
                   css_display="inline-block"
-                  css_with={70}
+                  css_with={48}
                   css_radius={50}
                   css_text_color="#ffffff"
                   clickOnElement={() => {
