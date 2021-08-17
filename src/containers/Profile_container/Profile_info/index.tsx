@@ -69,6 +69,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
             <div className="user_information">
               {image.search("default") === -1 ? (
                 <img
+                  className="avatar_image"
                   src={image}
                   alt={name}
                   onClick={() => {

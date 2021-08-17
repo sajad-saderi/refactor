@@ -43,7 +43,10 @@
       }
     }
   }
-  img,
+  .avatar_image {
+    border-radius: 50%;
+  }
+  .avatar_image,
   .name_avatar__container {
     height: 15rem;
     width: 15rem;

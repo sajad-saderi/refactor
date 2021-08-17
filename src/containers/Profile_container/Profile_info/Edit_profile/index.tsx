@@ -281,6 +281,7 @@ const Edit_profile = ({
       {state.image ? (
         state.image.search("default") === -1 ? (
           <img
+            className="avatar_image"
             src={
               state.image
                 ? state.image

@@ -256,7 +256,11 @@ const Checkout_Container = ({
               <h4>{year.name.fa}</h4>
               <figure className="owner_part">
                 {owner.thumbnail_url.search("default") === -1 ? (
-                  <img src={owner.thumbnail_url} alt={owner.name} />
+                  <img
+                    className="avatar_image"
+                    src={owner.thumbnail_url}
+                    alt={owner.name}
+                  />
                 ) : (
                   <NameAvatar
                     name={owner.name}
