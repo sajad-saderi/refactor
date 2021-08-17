@@ -44,7 +44,7 @@ const NameAvatar = ({
     ? colorArray[Math.abs(arrayIndex - 5)]
     : userContext.avatartBackgroundColor;
   if (!isNaN(name)) {
-    name = "??";
+    name = false;
   }
 
   return (
@@ -65,7 +65,9 @@ const NameAvatar = ({
           color: textColor,
         }}
       >
-        <img src={letter_control(name).src} alt="حرف اول نام کاربری" />
+        {name ? (
+          <img src={letter_control(name).src} alt="حرف اول نام کاربری" />
+        ) : null}
       </span>
     </div>
   );
