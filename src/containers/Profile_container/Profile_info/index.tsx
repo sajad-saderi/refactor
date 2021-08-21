@@ -6,6 +6,7 @@ const Button = dynamic(() => import("../../../components/form/Button"));
 import { FiLogOut } from "react-icons/fi";
 // import Button from "../../../components/form/Button";
 import context_user from "../../../context/User_info";
+import modalContext from "../../../context/Modal_context";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 const Edit_profile = dynamic(() => import("./Edit_profile"));
@@ -21,6 +22,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   const [user_info, setUser_info] = useState(null);
   const [triggerUpload, setTriggerUpload] = useState(false);
   const user = useContext(context_user);
+  const modalCTX = useContext(modalContext);
   const router = useRouter();
   useEffect(() => {
     if (data) {
@@ -75,6 +77,10 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                   onClick={() => {
                     if (is_mine) {
                       setEdit(true), setTriggerUpload(true);
+                    } else {
+                      modalCTX.modalHandler("ImageModal", {
+                        imageUrl: data.image_url,
+                      });
                     }
                   }}
                 />
