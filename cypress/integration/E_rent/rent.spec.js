@@ -1,7 +1,7 @@
 describe("بررسی صفحه اجاره", () => {
   //   beforeEach("http://localhost:3000/rent");
   it("بررسی بخش های مختلف صفحه", () => {
-    cy.visit("http://localhost:3000/rent")
+    cy.visit(`${Cypress.env("DEV_HOME")}rent`)
       .title()
       .should("eq", "اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | سپریس")
       .get(".banner h1")

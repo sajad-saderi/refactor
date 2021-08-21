@@ -1,7 +1,7 @@
 describe("تست های صفحه به ما بپیوندید", () => {
   const core_url = "https://core.sepris.com/core";
   beforeEach(() => {
-    cy.visit("http://localhost:3000/join-us");
+    cy.visit(`${Cypress.env("DEV_HOME")}join-us`);
   });
 
   it("بررسی متن های صفحه", () => {

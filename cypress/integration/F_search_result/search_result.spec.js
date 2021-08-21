@@ -6,7 +6,11 @@ describe("تست صفحه نتایج جستجو", () => {
   let filter_label_value = null;
   beforeEach(() => {
     cy.visit(
-      `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
+      `${Cypress.env(
+        "DEV_HOME"
+      )}search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${
+        date.from_date_form
+      }&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
     );
   });
   it("تست های نتیجه درخواست های لیست برندها، لیست شهر ها، نتیجه جستجو", () => {
@@ -63,7 +67,7 @@ describe("تست صفحه نتایج جستجو", () => {
       .url()
       .should(
         "contain",
-        `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
+        `${Cypress.env("DEV_HOME")}search-result?location_id=1`
       )
       .request(
         "GET",
@@ -88,7 +92,7 @@ describe("تست صفحه نتایج جستجو", () => {
           `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=price&page=1&limit=15`
       )
       .then(() => {
-        cy.url().should("contain", `&price_order=price&page=1&limit=15`);
+        cy.url().should("contain", `&limit=15&price_order=price&page=1`);
       });
 
     cy.get(".rent-options .check_box_container")

@@ -6,7 +6,7 @@ let unique_id = null;
 
 describe("بررسی صفحه نتایج داینامیک خودرو", () => {
   it("بررسی بخش های مختلف صفحه", () => {
-    cy.visit("http://localhost:3000/site-map")
+    cy.visit(`${Cypress.env("DEV_HOME")}site-map`)
       .request("GET", `${core_url}/landing/list?limit=900`)
       .then((result) => {
         cy
@@ -28,7 +28,7 @@ describe("بررسی صفحه نتایج داینامیک خودرو", () => {
       });
   });
   it("بررسی عملکرد صفحه داینامیک", () => {
-    cy.visit(`http://localhost:3000/rent/${unique_id | 206}`)
+    cy.visit(`${Cypress.env("DEV_HOME")}rent/${unique_id | 206}`)
       .get(".landing_dynamic_content")
       .should("exist")
       .request(

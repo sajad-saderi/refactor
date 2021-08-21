@@ -2,14 +2,13 @@ import log_me_in from "../../utils/log_me_in";
 import random_number_generator from "../../utils/random_number_generator";
 
 const core_url = "https://core.sepris.com/core";
-let home = "http://localhost:3000";
 let user_info = 0;
 let cell_phone_A = Cypress.env("CELL_A");
 let cell_phone_B = Cypress.env("CELL_B");
 
 describe("بررسی صفحه تکمیل ثبت نام", () => {
   it("ثبت نام کاربر 09000000000", () => {
-    cy.visit(home);
+    cy.visit(Cypress.env("DEV_HOME"));
     log_me_in(cell_phone_A).then(() => {
       cy.request({
         method: "POST",
@@ -49,7 +48,7 @@ describe("بررسی صفحه تکمیل ثبت نام", () => {
     });
   });
   it("ثبت نام کاربر 09000000001", () => {
-    cy.visit(home);
+    cy.visit(Cypress.env("DEV_HOME"));
     log_me_in(cell_phone_B).then(() => {
       cy.request({
         method: "POST",

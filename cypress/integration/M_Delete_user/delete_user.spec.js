@@ -1,5 +1,5 @@
 const core_url = "https://core.sepris.com/core";
-let home = "http://localhost:3000";
+let home = Cypress.env("DEV_HOME");
 let user_info = null;
 let token = null;
 let user_id = null;

@@ -7,7 +7,7 @@ let car_information = null;
 
 describe("تست صفحه خودرو", () => {
   it(`شروع از صفحه خانه، کلیک بر روی اولین نتیجه برای شهر تهران در تاریخ رفت ${date.from_date_form} و برگشت ${date.to_date_form} قیمت زیاد به کم در صفحه جستجو و رسیدن به صفحه خودرو`, () => {
-    cy.visit("http://localhost:3000/")
+    cy.visit(Cypress.env("DEV_HOME"))
       .get(".search_box form .search_Btn")
       .click()
       .wait(2000)
@@ -19,7 +19,11 @@ describe("تست صفحه خودرو", () => {
       .then((result) => {
         cy.url().should(
           "contain",
-          `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
+          `${Cypress.env(
+            "DEV_HOME"
+          )}search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${
+            date.from_date_form
+          }&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
         );
         expect(result.status).equal(200);
         cy.intercept("GET")
@@ -43,7 +47,7 @@ describe("تست صفحه خودرو", () => {
 });
 describe("وجود به طور مستقیم به صفحه خودرو", () => {
   beforeEach(() => {
-    cy.visit(`http://localhost:3000/car/${car_id}`);
+    cy.visit(`${Cypress.env("DEV_HOME")}car/${car_id}`);
   });
 
   it("بررسی متن های مهم در صفحه خودرو", () => {
@@ -142,7 +146,7 @@ describe("وجود به طور مستقیم به صفحه خودرو", () => {
 
 describe("بررسی صفحه خودرو در سایز 360 پیکسل", () => {
   beforeEach(() => {
-    cy.visit(`http://localhost:3000/car/${car_id}`);
+    cy.visit(`${Cypress.env("DEV_HOME")}car/${car_id}`);
     cy.viewport(360, 660);
   });
   it("بررسی اجزا صفحه در ریسپانسیو", () => {

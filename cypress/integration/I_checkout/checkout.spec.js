@@ -8,7 +8,7 @@ let car_index_in_list = 0;
 
 describe("بررسی مسیر حرکت کاربر از خانه به صفجه چک اوت", () => {
   it(`شروع از صفحه خانه، کلیک بر روی اولین نتیجه برای شهر تهران در تاریخ رفت ${date.from_date_form} و برگشت ${date.to_date_form} قیمت زیاد به کم در صفحه جستجو و رسیدن به صفحه خودرو`, () => {
-    cy.visit("http://localhost:3000/")
+    cy.visit(Cypress.env("DEV_HOME"))
       .get(".search_box form .search_Btn")
       .click()
       .wait(2000)
@@ -22,7 +22,11 @@ describe("بررسی مسیر حرکت کاربر از خانه به صفجه چ
         cy.url()
           .should(
             "contain",
-            `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
+            `${Cypress.env(
+              "DEV_HOME"
+            )}search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${
+              date.from_date_form
+            }&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
           )
           .request(
             "GET",
@@ -68,7 +72,7 @@ describe("بررسی مسیر حرکت کاربر از خانه به صفجه چ
   });
   it("بررسی محتوا صفحه در صفحه چک اوت", () => {
     cy.viewport(360, 660);
-    cy.visit(`http://localhost:3000/checkout?search_id=${search_id}`);
+    cy.visit(`${Cypress.env("DEV_HOME")}checkout?search_id=${search_id}`);
 
     if (!car_information.can_get_insurance) {
       cy.get(".insurance").should("not.exist");
@@ -116,13 +120,13 @@ describe("بررسی مسیر حرکت کاربر از خانه به صفجه چ
       .should("not.exist");
   });
   it("کد جستجو منقضی شده", () => {
-    cy.visit(`http://localhost:3000/checkout?search_id=d544571f38bd4458b73b63`)
+    cy.visit(
+      `${Cypress.env("DEV_HOME")}checkout?search_id=d544571f38bd4458b73b63`
+    )
       .get(".minHeight.expired_order p")
       .contains("این سفارش منقضی شده است.")
       .get(".minHeight.expired_order ._404PageAnchor.Blue_BTN")
       .should("have.attr", "href", "/")
-      .click()
-      .url()
-      .should("match", /http\:\/\/localhost\:3000\//);
+      .click();
   });
 });

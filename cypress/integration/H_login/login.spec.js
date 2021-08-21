@@ -10,7 +10,7 @@ let cell_phone = Cypress.env("CELL_A");
 
 describe("بررسی صفحه لاگین", () => {
   beforeEach(() => {
-    cy.visit(home);
+    cy.visit(Cypress.env("DEV_HOME"));
   });
   it("دسترسی بدون لاگین", () => {
     cy.get(".HEAP_Header_Btn_Login a")
@@ -26,7 +26,7 @@ describe("بررسی صفحه لاگین", () => {
           .wait(2000)
           .url()
           .should("contain", "/login")
-          .visit(home)
+          .visit(Cypress.env("DEV_HOME"))
           .get(".Blue_BTN.search_Btn.HEAP_Home_Btn_Search")
           .click()
           .wait(3000)
@@ -64,7 +64,7 @@ describe("بررسی صفحه لاگین", () => {
       //   .wait(3000)
       //   .url()
       // .should("contain", "/login")
-      .visit(`${home}/request/12`)
+      .visit(`${Cypress.env("DEV_HOME")}/request/12`)
       .wait(3000)
       .url()
       .should("contain", "/login");
@@ -133,86 +133,79 @@ describe("بررسی صفحه لاگین", () => {
       });
   });
   it("بررسی دسترسی های صفحه", () => {
-    log_me_in(cell_phone).then(() => {
-      cy.wait(2000)
-        .get(".Nav> ul")
-        .children()
-        .should("have.length", 3)
-        // .intercept("/add-car")
-        // .as("go_to_add_car_after_login")
-        .get(".second_container .add_car_section a:last-child")
-        .click()
-        // .wait("@go_to_add_car_after_login")
-        .then(() => {
-          cy.url()
-            .should("contain", "/add-car")
-            // .intercept("/requests")
-            // .as("request-page")
-            .get(".Nav .HEAP_Header_Link_MyOrders")
-            .click()
-            // .wait("@request-page")
-            .then(() => {
-              cy.url()
-                .should("contain", "/requests")
-                // .intercept("/user/")
-                // .as("profile")
-                .get(".first_element_li")
-                .click()
-                // .wait("@profile")
-                .then(() => {
-                  cy.wait(3000)
-                    .url()
-                    .should("contain", "/user")
-                    .visit(home)
-                    .get(".Blue_BTN.search_Btn.HEAP_Home_Btn_Search")
-                    .click()
-                    .wait(6000)
-                    .request(
-                      "GET",
-                      core_url +
-                        `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
-                    )
-                    .then((result) => {
-                      let car_data = result.body.items[car_index_in_list];
-                      console.log(result);
-                      cy.get(".carCart.HEAP_SearchResult_Card_Car")
-                        .eq(car_index_in_list)
-                        .click()
-                        .wait(3000)
-                        .request(
-                          "GET",
-                          core_url + `/rental-car/review/list?id=${car_data.id}`
-                        )
-                        .then(() => {
-                          cy.get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
-                            .click()
-                            .wait(1000)
-                            .request(
-                              "GET",
-                              core_url +
-                                `/rental-car/review/list?id=${car_data.id}`
-                            )
-                            .then(() => {
-                              cy.get(
-                                ".coupon_Text_show.HEAP_Checkout_Btn_Coupon"
+    cy.get(".Nav> ul")
+      .children()
+      .should("have.length", 3)
+      // .intercept("/add-car")
+      // .as("go_to_add_car_after_login")
+      .get(".second_container .add_car_section a:last-child")
+      .click()
+      // .wait("@go_to_add_car_after_login")
+      .then(() => {
+        cy.url()
+          .should("contain", "/add-car")
+          // .intercept("/requests")
+          // .as("request-page")
+          .get(".Nav .HEAP_Header_Link_MyOrders")
+          .click()
+          // .wait("@request-page")
+          .then(() => {
+            cy.url()
+              .should("contain", "/requests")
+              // .intercept("/user/")
+              // .as("profile")
+              .get(".first_element_li")
+              .click()
+              // .wait("@profile")
+              .then(() => {
+                cy.wait(3000)
+                  .url()
+                  .should("contain", "/user")
+                  .visit(Cypress.env("DEV_HOME"))
+                  .get(".Blue_BTN.search_Btn.HEAP_Home_Btn_Search")
+                  .click()
+                  .wait(6000)
+                  .request(
+                    "GET",
+                    core_url +
+                      `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
+                  )
+                  .then((result) => {
+                    let car_data = result.body.items[car_index_in_list];
+                    console.log(result);
+                    cy.get(".carCart.HEAP_SearchResult_Card_Car")
+                      .eq(car_index_in_list)
+                      .click()
+                      .wait(3000)
+                      .request(
+                        "GET",
+                        core_url + `/rental-car/review/list?id=${car_data.id}`
+                      )
+                      .then(() => {
+                        cy.get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
+                          .click()
+                          .wait(1000)
+                          .request(
+                            "GET",
+                            core_url +
+                              `/rental-car/review/list?id=${car_data.id}`
+                          )
+                          .then(() => {
+                            cy.get(".coupon_Text_show.HEAP_Checkout_Btn_Coupon")
+                              .click()
+                              .get(".coupon_form input")
+                              .type("sajad4test")
+                              .get(
+                                ".Blue_BTN.coupan_BTN.HEAP_Checkout_Btn_CouponSubmit"
                               )
-                                .click()
-                                .get(".coupon_form input")
-                                .type("sajad4test")
-                                .get(
-                                  ".Blue_BTN.coupan_BTN.HEAP_Checkout_Btn_CouponSubmit"
-                                )
-                                .click()
-                                .get(
-                                  ".coupon_Text_show.HEAP_Checkout_Btn_Coupon"
-                                )
-                                .should("not.exist");
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    });
+                              .click()
+                              .get(".coupon_Text_show.HEAP_Checkout_Btn_Coupon")
+                              .should("not.exist");
+                          });
+                      });
+                  });
+              });
+          });
+      });
   });
 });

@@ -2,7 +2,7 @@ import log_me_in from "../../utils/log_me_in";
 import random_number_generator from "../../utils/random_number_generator";
 
 const core_url = "https://core.sepris.com/core";
-let home = "http://localhost:3000";
+let home = Cypress.env("DEV_HOME");
 let user_info = 0;
 let cell_phone = Cypress.env("CELL_A");
 

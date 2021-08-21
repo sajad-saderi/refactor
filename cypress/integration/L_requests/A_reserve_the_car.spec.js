@@ -2,7 +2,7 @@ import log_me_in from "../../utils/log_me_in";
 import random_number_generator from "../../utils/random_number_generator";
 
 const core_url = "https://core.sepris.com/core";
-let home = "http://localhost:3000";
+let home = Cypress.env("DEV_HOME");
 let user_info = null;
 let token = null;
 let order_id = null;
@@ -30,7 +30,7 @@ describe("بررسی صفحه پروفایل کاربری", () => {
       });
   });
   it("لاگین یورز و ورود به صفحه سفارش ها", () => {
-    cy.visit(`${home}/car/${car_id}`)
+    cy.visit(`${home}car/${car_id}`)
       .wait(2000)
       .get(".Blue_BTN.localClass.HEAP_Car_Btn_Continue")
       .click()

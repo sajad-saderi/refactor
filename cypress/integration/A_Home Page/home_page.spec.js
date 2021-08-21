@@ -6,7 +6,7 @@ const date = set_default_date_for_search();
 describe("تست یو-آی صفحه خانه", () => {
   const core_url = "https://core.sepris.com/core";
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit(Cypress.env("DEV_HOME"));
   });
 
   it("چک کردن متن های مهم صفحه و دو شماره تلفن فوتر", () => {
@@ -157,7 +157,11 @@ describe("تست یو-آی صفحه خانه", () => {
       .url()
       .should(
         "contain",
-        `http://localhost:3000/search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${date.from_date_form}&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
+        `${Cypress.env(
+          "DEV_HOME"
+        )}search-result?location_id=1&location_name=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&start_date=${
+          date.from_date_form
+        }&end_date=${date.to_date_form}&price_order=-price&page=1&limit=15`
       )
       .request(
         "GET",
@@ -176,7 +180,7 @@ describe("تست یو-آی صفحه خانه", () => {
 describe("چک کردن سایت در حالت رسپانسیو", () => {
   const core_url = "https://core.sepris.com/core";
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit(Cypress.env("DEV_HOME"));
     cy.viewport("iphone-6");
   });
   it("سایز صفحه 375 پیکسل در 667 پیکسل", () => {

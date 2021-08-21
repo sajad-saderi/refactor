@@ -2,7 +2,7 @@ const core_url = "https://core.sepris.com/core";
 
 describe("بررسی صفحه نقشه سایت", () => {
   it("بررسی کلیک روی لینک موجود در صفحه و سالم بودن لینک ها", () => {
-    cy.visit("http://localhost:3000/site-map")
+    cy.visit(`${Cypress.env("DEV_HOME")}site-map`)
       .request("GET", `${core_url}/landing/list?limit=900`)
       .then((result) => {
         cy.get(".site_map_page ul")

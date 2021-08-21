@@ -4,7 +4,7 @@ const core_url = "https://core.sepris.com/core";
 let cell_phone_A = Cypress.env("CELL_A");
 let token = null;
 let user_id = null;
-let home = "http://localhost:3000";
+let home = Cypress.env("DEV_HOME");
 
 describe("ثبت خودرو جدید، ویرایش آن", () => {
   it("ثبت خودرو جدید", () => {
