@@ -10,7 +10,14 @@ const Contract_text = ({ result }: IContract_text) => {
     <div className="content">
       <h1>قرارداد اجاره خودرو</h1>
       <h2>
-        {result.rent_search_dump.with_driver ? "(بدون راننده)" : "(با راننده)"}
+        {result.rent_search_dump.with_driver &&
+        result.rent_search_dump.without_driver
+          ? ""
+          : result.rent_search_dump.with_driver
+          ? "(با راننده)"
+          : result.rent_search_dump.without_driver
+          ? "(بدون راننده)"
+          : null}
       </h2>
       <p id="contract_date">
         تاریخ:{` `}
@@ -200,7 +207,7 @@ const Contract_text = ({ result }: IContract_text) => {
               ? result.rent_search_dump.capacity
               : small_dots
           } `}
-          نفر و در شهر/شهرهای
+          نفر و در شهر یا شهرهای
           {` ${result.destinations ? result.destinations : dots} `}و با مسافت
           حداکثر روزانه
           {` ${

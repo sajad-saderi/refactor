@@ -4,7 +4,7 @@ const imageModal = ({ imageUrl }: IImageModal) => {
   return (
     <>
       <div className="modal_box_div">
-        <img src={imageUrl} alt="user profile" />
+        <img className="imageInsideModal" src={imageUrl} alt="user profile" />
       </div>
     </>
   );

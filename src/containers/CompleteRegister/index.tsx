@@ -126,14 +126,16 @@ const Complete_register_container = ({
         set_deactivate_form(true);
         // router.push("/");
       }
-    } else {
-      set_deactivate_form(true);
-      if (localStorage["last_location"] !== "/add-car") window.history.go(-2);
-      else
-        router.push({
-          pathname: "/add-car",
-        });
     }
+
+    // else {
+    //   set_deactivate_form(true);
+    //   if (localStorage["last_location"] !== "/add-car") window.history.go(-2);
+    //   else
+    //     router.push({
+    //       pathname: "/add-car",
+    //     });
+    // }
     setShow(true);
   }, []);
 
@@ -300,22 +302,22 @@ const Complete_register_container = ({
   }, [rolesCheck]);
 
   return show ? (
-    <article className='responsive  complete_register_container'>
+    <article className="responsive  complete_register_container">
       {/* <div className='pageTitle'>
         <IoMdPersonAdd className='Person_icon' size='6rem' color='#4ba3ce' />
         <h3>{language.complete_register}</h3>
       </div> */}
       <form
-        className='complete_register_form'
+        className="complete_register_form"
         onSubmit={(e) => submitHandler(e, state)}
       >
-        <div className='login_modal_title'>
-          <IoMdPerson size='2rem' color='#fff' className='login_person_icon' />
+        <div className="login_modal_title">
+          <IoMdPerson size="2rem" color="#fff" className="login_person_icon" />
           <h2>{language.complete_register}</h2>
         </div>
-        <div className='name_container'>
+        <div className="name_container">
           <TextInput
-            name='first_name'
+            name="first_name"
             label={language.name}
             // min={2}
             max={50}
@@ -337,7 +339,7 @@ const Complete_register_container = ({
             }}
           />
           <TextInput
-            name='last_name'
+            name="last_name"
             // min={2}
             label={language.last_name}
             max={50}
@@ -457,8 +459,8 @@ const Complete_register_container = ({
             }}
           />
         </div> */}
-        <div className='check_box_container'>
-          <label className='container'>
+        <div className="check_box_container">
+          <label className="container">
             <span
               onClick={() => MODAL_CONTEXT.modalHandler("Law")}
               style={{
@@ -474,7 +476,7 @@ const Complete_register_container = ({
             </span>
             <span onClick={() => setRolesCheck(true)}> {language.i_agree}</span>
             <input
-              type='checkbox'
+              type="checkbox"
               onChange={(e) => {
                 e.persist();
                 if (e.target.checked) {
@@ -483,7 +485,7 @@ const Complete_register_container = ({
                   setRolesCheck(false);
                 }
               }}
-              name='roles'
+              name="roles"
             />
             <span
               className={[
@@ -505,12 +507,12 @@ const Complete_register_container = ({
           loading={loading}
         />
         {stateError.message ? (
-          <p className='Error_message_text'> {stateError.message}</p>
+          <p className="Error_message_text"> {stateError.message}</p>
         ) : null}
       </form>
     </article>
   ) : (
-    <article className='minHeight'></article>
+    <article className="minHeight"></article>
   );
 };
 

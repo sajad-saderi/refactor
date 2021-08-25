@@ -40,12 +40,14 @@ const LoginPage = () => {
 
     if (window["auth"]) {
       set_deactivate_form(true);
-      if (localStorage["history"] !== "/add-car") window.history.go(-1);
-      else router.push("/add-car");
+      // if (localStorage["history"] !== "/add-car") window.history.go(-1);
+      // else router.push("/add-car");
       // if (window["complete_register"]) {
       //   let id = user.data?.id;
       //   router.push(`/user/${id}`);
       // }
+    } else {
+      set_deactivate_form(false);
     }
   }, []);
 
@@ -64,7 +66,7 @@ const LoginPage = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <div className='Please_login_container minHeight'>
+      <div className="Please_login_container minHeight">
         <div
           className={[
             "modal_box",
@@ -72,21 +74,21 @@ const LoginPage = () => {
           ].join(" ")}
         >
           {change ? (
-            <div className='login_modal_title_confirm_code'>
+            <div className="login_modal_title_confirm_code">
               <FaArrowRight
                 onClick={panelController}
-                size='2rem'
-                color='#4ba3ce'
-                className='login_person_icon'
+                size="2rem"
+                color="#4ba3ce"
+                className="login_person_icon"
               />
               <h2>{language.ConfirmCode.confirm_code_title}</h2>
             </div>
           ) : (
-            <div className='login_modal_title'>
+            <div className="login_modal_title">
               <IoMdPerson
-                size='2rem'
-                color='#fff'
-                className='login_person_icon'
+                size="2rem"
+                color="#fff"
+                className="login_person_icon"
               />
               <h2>{language.GetUserCellPhone.log_sigh}</h2>
             </div>
@@ -101,7 +103,7 @@ const LoginPage = () => {
           ) : (
             <GetUserCellPhone
               language={language.GetUserCellPhone}
-              data-test-id='GetUserCellPhone'
+              data-test-id="GetUserCellPhone"
               panelController={panelController}
               deactivate_form={deactivate_form}
             />
