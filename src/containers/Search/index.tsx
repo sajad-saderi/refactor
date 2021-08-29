@@ -57,7 +57,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         message: error.response
           ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "خطا در دریافت لبست شهر‌ها",
+              _400Message: "خطا در دریافت لیست شهر‌ها",
             })
           : error,
         color: "#d83030",

@@ -231,6 +231,7 @@ class App_Otoli extends App {
         });
       this.setState({ user_data: { ...response, token } });
     } catch (error) {
+      alert("خطا در دریافت اطلاعات حساب کاربری");
       console.log(error);
     }
   };

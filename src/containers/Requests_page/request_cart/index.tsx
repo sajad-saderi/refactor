@@ -133,7 +133,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         message: error.response
           ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "خطایی در سفارش رخ داده است.",
+              _400Message: "خطا در انجام عملیات بر روی سفارش اجاره",
             })
           : error,
         color: "#d83030",

@@ -28,6 +28,7 @@ const Toast = dynamic(() => import("../components/Toast"));
 
 import * as Sentry from "@sentry/browser";
 import ErrorBounderies from "../../utils/error_bounderies";
+import InternetConnection from "../components/InternetConnection";
 
 // Google Analytics
 // import { IoIosClose } from "react-icons/io";
@@ -71,6 +72,7 @@ const Layout = (props: ILayout) => {
   */
   const [toast, setToast] = useState(false);
   const [toastData, setToastData] = useState(null);
+  const [showReconnectingBox, setShowReconnectingBox] = useState(false);
 
   // Reducers
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
@@ -79,6 +81,11 @@ const Layout = (props: ILayout) => {
   const TOAST_CONTEXT = useContext(toast_context);
 
   useEffect(() => {
+    // checking internet connection
+    if (!window.navigator.onLine) {
+      setShowReconnectingBox(true);
+    }
+
     if (Router.router.query.utm_source) {
       localStorage["utm_source"] = Router.router.query.utm_source;
       localStorage["utm_medium"] = Router.router.query.utm_medium;
@@ -223,6 +230,7 @@ const Layout = (props: ILayout) => {
             </ErrorBounderies>
           </auth_context.Provider>
         </modal_context.Provider>
+        {showReconnectingBox && <InternetConnection />}
         {toast ? (
           <Toast
             message={toastData.message}
