@@ -49,7 +49,13 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e : e.message);
+        reject(
+          e.response
+            ? e
+            : e.message === "Network Error"
+            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            : e.message
+        );
       });
   });
 };

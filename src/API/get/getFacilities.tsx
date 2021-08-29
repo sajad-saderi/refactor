@@ -20,7 +20,13 @@ export const REQUEST_GET_CAR_FACILITIES = () => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.message : e.message);
+        reject(
+          e.response
+            ? e.response.data.message
+            : e.message === "Network Error"
+            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            : e.message
+        );
       });
   });
 };

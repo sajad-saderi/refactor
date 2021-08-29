@@ -16,7 +16,13 @@ export const REQUEST_GET_USER_INFO = (data: IGetUser) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e : e.message);
+        reject(
+          e.response
+            ? e
+            : e.message === "Network Error"
+            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            : e.message
+        );
       });
   });
 };
