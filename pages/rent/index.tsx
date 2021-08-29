@@ -44,10 +44,12 @@ const Rent = () => {
   }, []);
 
   const fetchData = async () => {
-    const landing_res: any = await REQUEST_GET_LANDING_PAGE({
-      name: "rent",
-    });
-    setDynamicLinks(landing_res.data.link_set);
+    try {
+      const landing_res: any = await REQUEST_GET_LANDING_PAGE({
+        name: "rent",
+      });
+      setDynamicLinks(landing_res.data.link_set);
+    } catch (error) {}
   };
 
   return (

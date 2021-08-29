@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 
 const DropdownSearch = dynamic(() => import("../../components/form/Dropdown"));
 const Button = dynamic(() => import("../../components/form/Button"));
+import toast_context from "../../context/Toast_context";
 // import DropdownSearch from "../../components/form/Dropdown";
 import { REQUEST_GET_LOCATION } from "../../API/index";
 
@@ -16,6 +17,7 @@ import { useRouter } from "next/router";
 // import Button from "../../components/form/Button";
 
 import modal_context from "../../context/Modal_context";
+import ErrorHelper from "../../../utils/error_helper";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -42,6 +44,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   });
 
   const MODAL_CONTEXT = useContext(modal_context);
+  const toastCTX = useContext(toast_context);
   const router = useRouter();
 
   // get a list of cities
@@ -50,7 +53,17 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       const res: any = await REQUEST_GET_LOCATION();
       setLocationsList(res.data);
     } catch (error) {
-      console.log("!Error", error);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطا در دریافت لبست شهر‌ها",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 
@@ -198,13 +211,13 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   };
 
   return (
-    <section className='search_box'>
+    <section className="search_box">
       <form
-        data-test-id='GotoSearchResult'
+        data-test-id="GotoSearchResult"
         onSubmit={(e) => GotoSearchResult(e)}
       >
-        <div className='search_box_div'>
-          <p className='label'>{language.search.label_location}</p>
+        <div className="search_box_div">
+          <p className="label">{language.search.label_location}</p>
           <DropdownSearch
             data={locationsList}
             InputDisable={true}
@@ -235,7 +248,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             // clearField={() => setLocationId(1)}
           />
         </div>
-        <div className='Date_picker_container'>
+        <div className="Date_picker_container">
           <div
             className={[
               "date_Input_Container",
@@ -252,12 +265,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               onChange={setDayRange}
               shouldHighlightWeekends
               minimumDate={utils("fa").getToday()}
-              locale='fa'
-              colorPrimary='#4ba3ce'
+              locale="fa"
+              colorPrimary="#4ba3ce"
               // disabledDays={[utils("fa").getToday()]}
             />
-            <div className='input_container'>
-              <p className='label'>{language.search.label_start_date}</p>
+            <div className="input_container">
+              <p className="label">{language.search.label_start_date}</p>
               <input
                 data-hj-allow
                 className={
@@ -277,8 +290,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               {/* appear the error for the start date here */}
               <span>{fromError.message}</span>
             </div>
-            <div className='input_container'>
-              <p className='label'>{language.search.label_end_date}</p>
+            <div className="input_container">
+              <p className="label">{language.search.label_end_date}</p>
               <input
                 data-hj-allow
                 className={[
@@ -303,11 +316,11 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             </div>
           </div>
         </div>
-        <div className='search_box_div'>
-          <p className='Search_Text_transparent'>search</p>
+        <div className="search_box_div">
+          <p className="Search_Text_transparent">search</p>
           <Button
             value={language.search.btn}
-            class='Blue_BTN search_Btn HEAP_Home_Btn_Search'
+            class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
             loading={loading}
             click={() => {}}
           />

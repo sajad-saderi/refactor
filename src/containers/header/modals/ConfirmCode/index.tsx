@@ -1,6 +1,7 @@
 import { useState, useContext, useRef } from "react";
 import cell_Phone_context from "../../../../context/Cell_Phone_context";
 import modal_context from "../../../../context/Modal_context";
+import toast_context from "../../../../context/Toast_context";
 import axios from "axios";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -16,6 +17,7 @@ const NumberSeparatedTextInput = dynamic(() =>
 import context_user from "../../../../context/User_info";
 import jsCookie from "js-cookie";
 import Error_middleware from "../../../../API/ApiUtils";
+import ErrorHelper from "../../../../../utils/error_helper";
 
 const ConfirmCode = ({
   panelController,
@@ -35,6 +37,7 @@ const ConfirmCode = ({
   const Modal_context = useContext(modal_context);
   const router = useRouter();
   const user = useContext(context_user);
+  const toastCTX = useContext(toast_context);
   const buttonRef = useRef(null);
   const sendConfirmCode = (e) => {
     e.preventDefault();
@@ -151,14 +154,26 @@ const ConfirmCode = ({
         Error_middleware(e);
         setLoading(false);
         set_show_count_down(true);
-        console.error(
-          "!Error",
-          error.response ? error.response.data.message : error.message
-        );
-        setError({
-          status: true,
-          message: error.response.data.message,
-        });
+        if (
+          error.response.data.error === "INVALID_CODE" ||
+          error.response.data.error === "EXPIRED_CODE"
+        ) {
+          setError({
+            status: true,
+            message: error.response.data.message,
+          });
+        } else
+          toastCTX.toast_option({
+            message: error.response
+              ? ErrorHelper({
+                  errorObj: error.response,
+                  _400Message: "خطایی در تایید کد ورود رخ داده است.",
+                })
+              : error,
+            color: "#d83030",
+            time: 0,
+            autoClose: false,
+          });
       });
   };
 
@@ -172,11 +187,11 @@ const ConfirmCode = ({
   };
 
   return (
-    <div className='modal_box_div confirm_code'>
+    <div className="modal_box_div confirm_code">
       <form onSubmit={sendConfirmCode}>
         <NumberSeparatedTextInput
           error={error}
-          name='code'
+          name="code"
           onChangeHandler={(e) => {
             setCode(e);
           }}
@@ -240,11 +255,11 @@ const ConfirmCode = ({
         >
           {/* <p className="Edit_number">{language.edit_the_number}</p> */}
           {ActiveAgain ? (
-            <p onClick={() => panelController()} className='send_again'>
+            <p onClick={() => panelController()} className="send_again">
               {language.send_again}
             </p>
           ) : (
-            <div className='Count_Down_text'>
+            <div className="Count_Down_text">
               <span>{language.send_again}</span>{" "}
               <CountDown time={20} Done={Done} />{" "}
               <span>{language.seconds}</span>

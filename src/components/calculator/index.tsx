@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   REQUEST_GET_CAR_BRAND,
   REQUEST_GET_CAR_MODEL,
@@ -16,6 +16,8 @@ const ShowResult = dynamic(() => import("./ShowResult/ShowResult"));
 
 import Link from "next/link";
 import { guard_controller } from "../../../utils/guard_controller";
+import toast_context from "../../context/Toast_context";
+import ErrorHelper from "../../../utils/error_helper";
 
 // import ShowResult from "./ShowResult/ShowResult";
 
@@ -45,7 +47,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
     value: null,
   });
   const [authorize, set_authorize] = useState(true);
-
+  const toastCTX = useContext(toast_context);
   useEffect(() => {
     const guard = guard_controller();
     if (guard !== "auth") {
@@ -78,7 +80,17 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       const brand_list_res: any = await REQUEST_GET_CAR_BRAND();
       setBrandList(brand_list_res.carBrands);
     } catch (error) {
-      console.log("!Error", error);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطایی در دریافت لیست برند خودرو رخ داده است.",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 
@@ -92,7 +104,17 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       const model_list_res: any = await REQUEST_GET_CAR_MODEL(brand_id);
       setModelList(model_list_res.data);
     } catch (error) {
-      console.log("!Error", error);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطایی در دریافت لیست مدل خودرو رخ داده است.",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 
@@ -166,11 +188,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       {showCalculateBox ? (
         <>
           <h2>{language.h2}</h2>
-          <p className='title'>{language.p_title}</p>
-          <form data-test-id='form' onSubmit={calculator}>
-            <div className='calculator_dropDown'>
+          <p className="title">{language.p_title}</p>
+          <form data-test-id="form" onSubmit={calculator}>
+            <div className="calculator_dropDown">
               <DropdownSearch
-                data-test-id='brand'
+                data-test-id="brand"
                 search_place_holder={language.brand_place_holder}
                 defaultVal={brand.name}
                 data={brandList}
@@ -203,9 +225,9 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 InputDisable={true}
                 error_status={brandError.status}
               />
-              <span className='error_Field'>{brandError.message}</span>
+              <span className="error_Field">{brandError.message}</span>
             </div>
-            <div className='calculator_dropDown'>
+            <div className="calculator_dropDown">
               <DropdownSearch
                 defaultVal={model.name}
                 data={modelList}
@@ -233,11 +255,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 placeholder={language.model}
                 error_status={modelError.status}
               />
-              <span className='error_Field'>{modelError.message}</span>
+              <span className="error_Field">{modelError.message}</span>
             </div>
-            <div className='value_container'>
+            <div className="value_container">
               <TextInput
-                name='value'
+                name="value"
                 number={true}
                 onChangeHandler={(e) => {
                   setSaveCarInfo((saveCarInfo) => {
@@ -268,11 +290,11 @@ const Calculator = ({ AbText, language }: ICalculator) => {
               <span>{language.toman}</span>
             </div>
             <Button
-              data-test-id='local_Button_joinUs'
+              data-test-id="local_Button_joinUs"
               // onClick on this button nothing happened, the event listening to submitting the form
               value={language.estimate}
               click={() => {}}
-              class='Blue_BTN local_Button_joinUs'
+              class="Blue_BTN local_Button_joinUs"
               loading={loading}
             />
           </form>
@@ -286,7 +308,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
             monthly={monthly}
           />
           <div
-            className='addCarnowInlanding'
+            className="addCarnowInlanding"
             onClickCapture={() => {
               if (!authorize) {
                 localStorage["last_location"] = "/add-car";
@@ -295,8 +317,8 @@ const Calculator = ({ AbText, language }: ICalculator) => {
           >
             <Link href={authorize ? "/add-car" : "/login"} prefetch={false}>
               <a
-                className='Blue_BTN addCar_top_joinus_a'
-                data-test-id='addCar_top_joinus_a'
+                className="Blue_BTN addCar_top_joinus_a"
+                data-test-id="addCar_top_joinus_a"
               >
                 {AbText ? AbText : language.add_your_car}
               </a>
@@ -304,7 +326,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
           </div>
           {/* show the calculation box */}
           <p
-            className='tryAgainCalc'
+            className="tryAgainCalc"
             onClick={() => {
               window.scrollTo(0, 0);
               // Reset the car value

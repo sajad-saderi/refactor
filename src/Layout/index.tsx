@@ -27,6 +27,7 @@ const Toast = dynamic(() => import("../components/Toast"));
 // import Toast from "../components/Toast";
 
 import * as Sentry from "@sentry/browser";
+import ErrorBounderies from "../../utils/error_bounderies";
 
 // Google Analytics
 // import { IoIosClose } from "react-icons/io";
@@ -209,13 +210,17 @@ const Layout = (props: ILayout) => {
               Auth_Manager: (v) => setAuth(v),
             }}
           >
-            <Header
-              modalType={modalType}
-              Show_Modal={Show_Modal}
-              // data information is just needed for owner and renter modals
-              data={data}
-            ></Header>
-            <main className="minHeight">{props.children}</main>
+            <ErrorBounderies>
+              <Header
+                modalType={modalType}
+                Show_Modal={Show_Modal}
+                // data information is just needed for owner and renter modals
+                data={data}
+              ></Header>
+            </ErrorBounderies>
+            <ErrorBounderies>
+              <main className="minHeight">{props.children}</main>
+            </ErrorBounderies>
           </auth_context.Provider>
         </modal_context.Provider>
         {toast ? (
@@ -226,6 +231,7 @@ const Layout = (props: ILayout) => {
               setToast(false);
             }}
             time={toastData.time}
+            color={toastData.color}
             autoClose={toastData.autoClose}
           />
         ) : null}
@@ -235,11 +241,13 @@ const Layout = (props: ILayout) => {
           IF you need to hide the footer at the page just pass {true} for "hide".
           you can set the "hide" property anywhere you imported the "layout" component
       */}
-      <Footer
-        hide={props.hide}
-        showToTop={props.showToTop}
-        LinkControl={props.LinkControl}
-      />
+      <ErrorBounderies>
+        <Footer
+          hide={props.hide}
+          showToTop={props.showToTop}
+          LinkControl={props.LinkControl}
+        />
+      </ErrorBounderies>
     </>
   );
 };

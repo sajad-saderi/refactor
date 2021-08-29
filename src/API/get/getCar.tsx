@@ -32,7 +32,7 @@ export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.error : e.message);
+        reject(e.response ? e : e.message);
       });
   });
 };

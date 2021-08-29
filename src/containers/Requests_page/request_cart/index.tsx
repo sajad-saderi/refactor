@@ -14,7 +14,7 @@ import {
 } from "react-icons/io";
 import download from "../../../../public/image/download.png";
 import dynamic from "next/dynamic";
-
+import toast_context from "../../../context/Toast_context";
 const Icon = dynamic(() => import("../../../../utils/Icon"));
 
 // import Icon from "../../../../utils/Icon";
@@ -46,6 +46,7 @@ import Toast_context from "../../../context/Toast_context";
 import carImage from "../../../../public/image/car-image-thumbnail.jpg";
 import { FiClock } from "react-icons/fi";
 import { useRouter } from "next/router";
+import ErrorHelper from "../../../../utils/error_helper";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -78,6 +79,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [heightController, setheightController] = useState(0);
   const router = useRouter();
   const token = jsCookie.get("token");
+  const toastCTX = useContext(toast_context);
 
   const setForRequest = async (data: any) => {
     if (data.action === "reject") {
@@ -125,9 +127,19 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         getDataAgain();
       }
     } catch (error) {
-      console.log("!Error", error);
       setButtonLoader(false);
       setRejectButtonLoader(false);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطایی در سفارش رخ داده است.",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 

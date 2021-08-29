@@ -8,11 +8,13 @@ const Button = dynamic(() => import("../../components/form/Button"));
 // import TextInput from "../../components/form/TextInput";
 // import Button from "../../components/form/Button";
 import Modal_context from "../../context/Modal_context";
+import toast_context from "../../context/Toast_context";
 import context_user from "../../context/User_info";
 import { IoMdPerson, IoMdPersonAdd } from "react-icons/io";
 import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
+import ErrorHelper from "../../../utils/error_helper";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -117,6 +119,7 @@ const Complete_register_container = ({
     { key: "12", value: "12", text: "اسفند" },
   ];
   const MODAL_CONTEXT = useContext(Modal_context);
+  const toastCTX = useContext(toast_context);
   const user = useContext(context_user);
 
   useEffect(() => {
@@ -187,7 +190,17 @@ const Complete_register_container = ({
         }
       } catch (error) {
         setLoading(false);
-        console.log("!Error", error);
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطایی در ثبت اطلاعات کاربر جدید رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
       }
     } else {
       setLoading(false);

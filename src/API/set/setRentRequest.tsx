@@ -31,7 +31,7 @@ export const REQUEST_SET_RENT_REQUEST = (data: IRentRequest) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.message : e.message);
+        reject(e.response ? e : e.message);
       });
   });
 };

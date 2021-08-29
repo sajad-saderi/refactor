@@ -20,7 +20,7 @@ export const REQUEST_GET_CAR_MODEL = (carModel: ICarModel) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.message : e.message);
+        reject(e.response ? e : e.message);
       });
   });
 };

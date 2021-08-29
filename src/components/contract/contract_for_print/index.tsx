@@ -6,8 +6,10 @@ import language from "../../../../public/languages/fa/contract.json";
 import jsCookie from "js-cookie";
 import { useRouter } from "next/router";
 import context_user from "../../../context/User_info";
+import Toast_context from "../../../context/Toast_context";
 import { guard_controller } from "../../../../utils/guard_controller";
 import Contract_text from "../contract_text";
+import ErrorHelper from "../../../../utils/error_helper";
 
 let token = jsCookie.get("token");
 const Contract = ({ unique_id }: IContract) => {
@@ -15,6 +17,7 @@ const Contract = ({ unique_id }: IContract) => {
   const [result, setResult] = useState(null);
 
   const user_info = useContext(context_user);
+  const toastCTX = useContext(Toast_context);
   const router = useRouter();
   const html_ref = useRef(null);
 
@@ -63,7 +66,17 @@ const Contract = ({ unique_id }: IContract) => {
       });
       setResult(res.data);
     } catch (error) {
-      console.log("!Error", error);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطایی در دریافت اطلاعات قرارداد رخ داده است",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 

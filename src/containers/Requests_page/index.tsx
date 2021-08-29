@@ -17,6 +17,8 @@ const Request_cart = dynamic(() => import("./request_cart"));
 import { IoIosArrowDown } from "react-icons/io";
 import { guard_controller } from "../../../utils/guard_controller";
 import moment from "moment-jalaali";
+import toast_context from "../../context/Toast_context";
+import ErrorHelper from "../../../utils/error_helper";
 // import Request_cart from "./request_cart";
 
 let filter_id = [];
@@ -39,6 +41,7 @@ const Requests_page = ({ language }: IRequests_page) => {
   const [activeTab, setActiveTab] = useState(1);
 
   const user = useContext(context_user);
+  const toastCTX = useContext(toast_context);
   const token = user.data?.token;
   const router = useRouter();
 
@@ -160,8 +163,18 @@ const Requests_page = ({ language }: IRequests_page) => {
           setShowMoreButton(true);
         } else setShowMoreButton(false);
       });
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "در دریافت لیست سفارش‌ها خطایی رخ داده است.",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 

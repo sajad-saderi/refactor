@@ -59,8 +59,9 @@ const Contract_preview_page = () => {
       router.push(`/contract-preview/${unique_id}`);
     } catch (error) {
       set_loading(false);
-      set_error({ status: true, message: error });
-      console.log("!Error", error);
+      if (error.response) {
+        set_error({ status: true, message: error.response.data.message });
+      } else set_error({ status: true, message: error });
     }
   };
 

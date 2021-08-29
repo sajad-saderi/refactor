@@ -49,7 +49,7 @@ export const REQUEST_SET_CAR_PARTIAL = (data: ISetCarPartial) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.message : e.message);
+        reject(e.response ? e : e.message);
       });
   });
 };

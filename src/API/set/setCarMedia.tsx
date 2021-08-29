@@ -26,7 +26,7 @@ export const REQUEST_NEW_CAR_MEDIA = (data: INewCarMedia) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.message : e.message);
+        reject(e.response ? e : e.message);
       });
   });
 };

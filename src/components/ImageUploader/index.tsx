@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, useRef } from "react";
+import { useCallback, useState, useContext, useEffect, useRef } from "react";
 // import "./ImageUploader.scss";
 import jsCookie from "js-cookie";
 import carVector from "../../../public/image/car_vector.png";
@@ -19,6 +19,8 @@ import Spinner from "../Spinner";
 import getCroppedImg from "../../../utils/cropImage";
 import Cropper from "react-easy-crop";
 import ZoomSlider from "./ZoomSlider";
+import ErrorHelper from "../../../utils/error_helper";
+import toast_context from "../../context/Toast_context";
 const ImageUploader = ({
   Upload_image,
   delete_image,
@@ -34,7 +36,7 @@ const ImageUploader = ({
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-
+  const toastCTX = useContext(toast_context);
   const wrapperRef = useRef(null);
   const token = jsCookie.get("token");
 
@@ -75,20 +77,34 @@ const ImageUploader = ({
   const sendTheImage = async (file, result) => {
     setloading(true);
     // get the image by id from API
-    const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
-      token: token,
-      file: file,
-    });
-    setloading(false);
-    // add the given image to preview list
-    setPicturesPreview((picturesPreview) =>
-      picturesPreview.concat({
-        img: result,
-        id: image_upload_res.id,
-      })
-    );
-    // sent the image id to parent component
-    Upload_image(image_upload_res.id);
+    try {
+      const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
+        token: token,
+        file: file,
+      });
+      setloading(false);
+      // add the given image to preview list
+      setPicturesPreview((picturesPreview) =>
+        picturesPreview.concat({
+          img: result,
+          id: image_upload_res.id,
+        })
+      );
+      // sent the image id to parent component
+      Upload_image(image_upload_res.id);
+    } catch (error) {
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطایی در آپلود تصویر رخ داده است.",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
+    }
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -122,12 +138,12 @@ const ImageUploader = ({
   return (
     <div ref={wrapperRef}>
       <label>{language.car_picture}</label>
-      <p className='image_upload_under_label'>
+      <p className="image_upload_under_label">
         {language.text_1}
         {language.text_2}
       </p>
       {croptStart && (
-        <div className='crop_container'>
+        <div className="crop_container">
           <Cropper
             image={currentImage}
             crop={crop}
@@ -136,15 +152,15 @@ const ImageUploader = ({
             onCropChange={setCrop}
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
-            cropShape='rect'
+            cropShape="rect"
           />
           <ZoomSlider zoomChange={setZoom} zoom={zoom} />
-          <div className='Crop_BTN_container'>
-            <span className='Blue_BTN local_class' onClick={showCroppedImage}>
+          <div className="Crop_BTN_container">
+            <span className="Blue_BTN local_class" onClick={showCroppedImage}>
               تایید
             </span>
             <span
-              className='Blue_BTN cancel_class'
+              className="Blue_BTN cancel_class"
               onClick={() => {
                 setCurrentImage(null);
                 setCroptStart(false);
@@ -159,9 +175,9 @@ const ImageUploader = ({
           </div>
         </div>
       )}
-      <div className='drop_zone' {...getRootProps()}>
+      <div className="drop_zone" {...getRootProps()}>
         <input {...getInputProps()} multiple={false} />
-        <p className='uploadText'>{language.text_3}</p>
+        <p className="uploadText">{language.text_3}</p>
         {picturesPreview.length > 0 ? (
           <div
             // if the image is uploading the drop-zone will be unreachable
@@ -173,7 +189,7 @@ const ImageUploader = ({
             {picturesPreview.map((i, index) => {
               return (
                 <div
-                  className='Each_image'
+                  className="Each_image"
                   key={index}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -181,25 +197,25 @@ const ImageUploader = ({
                   }}
                 >
                   {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                  <IoIosClose size='2rem' color='#ea2d2d' />
+                  <IoIosClose size="2rem" color="#ea2d2d" />
                   <img src={i.img} alt={i.id} />
                 </div>
               );
             })}
             {loading ? (
-              <Spinner display='inline-block' width={20} color='#b5b5b5' />
+              <Spinner display="inline-block" width={20} color="#b5b5b5" />
             ) : null}
           </div>
         ) : loading ? (
-          <Spinner display='block' width={20} color='#b5b5b5' />
+          <Spinner display="block" width={20} color="#b5b5b5" />
         ) : (
           <img
-            className='vector_car_upload'
+            className="vector_car_upload"
             src={carVector}
-            alt='car vector image'
+            alt="car vector image"
           />
         )}
-        <p className='gallery_button'>{language.choose_from_gallery}</p>
+        <p className="gallery_button">{language.choose_from_gallery}</p>
       </div>
     </div>
   );

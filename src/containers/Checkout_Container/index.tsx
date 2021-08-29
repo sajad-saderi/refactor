@@ -23,6 +23,7 @@ import { guard_controller } from "../../../utils/guard_controller";
 import jsCookie from "js-cookie";
 import Link from "next/link";
 import NameAvatar from "../../components/name_avatar/avatar-name";
+import ErrorHelper from "../../../utils/error_helper";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -180,10 +181,22 @@ const Checkout_Container = ({
       setDiscounted_total_price(coupon_res.coupon.total_price);
     } catch (error) {
       setCoupanLoading(false);
-      setCouponError({
-        status: true,
-        message: error,
-      });
+      if (error.response?.data.error === "INVALID_COUPON")
+        setCouponError({
+          status: true,
+          message: error.response.data.message,
+        });
+      else
+        TOAST_CONTEXT.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 
@@ -222,8 +235,17 @@ const Checkout_Container = ({
       );
     } catch (error) {
       setLoading(false);
-      set_error_message(error);
-      console.log("!Error", error);
+      if (error.response) set_error_message(error.response.data.message);
+      TOAST_CONTEXT.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 

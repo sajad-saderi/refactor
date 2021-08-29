@@ -12,6 +12,8 @@ import cell_Phone_context from "../../../../context/Cell_Phone_context";
 // import Button from "../../../../components/form/Button";
 import { useRouter } from "next/router";
 import Error_middleware from "../../../../API/ApiUtils";
+import toast_context from "../../../../context/Toast_context";
+import ErrorHelper from "../../../../../utils/error_helper";
 
 const GetUserCellPhone = ({
   panelController,
@@ -25,6 +27,7 @@ const GetUserCellPhone = ({
     message: "",
   });
   const Cell_Phone_context = useContext(cell_Phone_context);
+  const toastCTX = useContext(toast_context);
   const router = useRouter();
   // useEffect(() => {
   //   if (window["ga"]) {
@@ -91,14 +94,24 @@ const GetUserCellPhone = ({
       .catch((error) => {
         Error_middleware(e);
         setLoading(false);
-        console.error(
-          "!Error",
-          error.response ? error.response.data.message : error.message
-        );
-        setError({
-          status: true,
-          message: error.response.data.message,
-        });
+        if (error.response.data.error === "INVALID_CELL") {
+          setError({
+            status: true,
+            message: error.response.data.message,
+          });
+        } else {
+          toastCTX.toast_option({
+            message: error.response
+              ? ErrorHelper({
+                  errorObj: error.response,
+                  _400Message: "در ورود با شماره همراه خطایی رخ داده است.",
+                })
+              : error,
+            color: "#d83030",
+            time: 0,
+            autoClose: false,
+          });
+        }
       });
   };
 
@@ -108,12 +121,12 @@ const GetUserCellPhone = ({
 
   return (
     <>
-      <div className='modal_box_div'>
+      <div className="modal_box_div">
         <form onSubmit={sendConfirmCode}>
           <TextInput
-            type='number'
+            type="number"
             error={error}
-            name='cell Phone'
+            name="cell Phone"
             onChangeHandler={(e) => {
               if (error.status) {
                 setError({

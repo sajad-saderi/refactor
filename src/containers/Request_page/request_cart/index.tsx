@@ -46,6 +46,7 @@ import Toast_context from "../../../context/Toast_context";
 import carImage from "../../../../public/image/car-image-thumbnail.jpg";
 import { FiClock } from "react-icons/fi";
 import { useRouter } from "next/router";
+import ErrorHelper from "../../../../utils/error_helper";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -127,9 +128,19 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         getDataAgain(data.id);
       }
     } catch (error) {
-      console.log("!Error", error);
       setButtonLoader(false);
       setRejectButtonLoader(false);
+      TOAST_CONTEXT.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطایی در دریافت اطلاعات رخ داده است.",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { REQUEST_GET_USER_CARS } from "../../../API";
 import Router from "next/router";
 import dynamic from "next/dynamic";
 import Comment_section from "../../../components/profile/comment_section/comment_section";
-
+import toast_context from "../../../context/Toast_context";
 const Car = dynamic(() => import("./car"));
 const CarLoading = dynamic(() =>
   import("../../../components/cartPlaceholder/CarLoadingProfile")
@@ -15,6 +15,7 @@ const Radio = dynamic(() => import("../../../components/form/Radio"));
 // import Radio from "../../../components/form/Radio";
 import Button from "../../../components/form/Button";
 import { IoIosArrowDown } from "react-icons/io";
+import ErrorHelper from "../../../../utils/error_helper";
 
 let useFilter = false;
 let filterNumber = 0;
@@ -30,7 +31,7 @@ const Profile_Cars = ({
   const [result, setResult] = useState(null);
   const [active, setActive] = useState(1);
   const [showMoreButton, setShowMoreButton] = useState(false);
-
+  const toastCTX = useContext(toast_context);
   useEffect(() => {
     heap = true;
     fetchApi();
@@ -77,7 +78,17 @@ const Profile_Cars = ({
         setShowMoreButton(true);
       } else setShowMoreButton(false);
     } catch (error) {
-      console.log("!Error", error);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطا در دریافت لیست خودروهای کاربر",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 
@@ -114,7 +125,7 @@ const Profile_Cars = ({
   };
 
   return (
-    <article className='Profile_car_container'>
+    <article className="Profile_car_container">
       {/* {is_mine && result
         ? result.length > 3 && (
             <div className='service_filer'>
@@ -146,7 +157,7 @@ const Profile_Cars = ({
         : null} */}
       {result ? (
         result.length > 0 ? (
-          <div className='cars_container'>
+          <div className="cars_container">
             {result.map((item, i) => {
               // car section
               return is_mine ? (
@@ -183,7 +194,7 @@ const Profile_Cars = ({
         //     />
         //   </div>
         // )
-        <div className='place_holder_div'>
+        <div className="place_holder_div">
           <CarLoading />
           <CarLoading />
           <CarLoading />
@@ -191,15 +202,15 @@ const Profile_Cars = ({
         </div>
       )}
       {showMoreButton ? (
-        <div className='Load_more_car_container'>
+        <div className="Load_more_car_container">
           <span
-            className='Load_more_car HEAP_Profile_Btn_ShowMore'
+            className="Load_more_car HEAP_Profile_Btn_ShowMore"
             onClick={() => {
               page = 1 + page;
               fetchApi(page);
             }}
           >
-            <IoIosArrowDown color='#202020' size='1.8rem' />
+            <IoIosArrowDown color="#202020" size="1.8rem" />
             {language.show_more_cars}
           </span>
         </div>

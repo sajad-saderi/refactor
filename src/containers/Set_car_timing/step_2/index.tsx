@@ -37,6 +37,7 @@ import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
 import roundup from "../../../../utils/roundup";
 import Toast_context from "../../../context/Toast_context";
+import ErrorHelper from "../../../../utils/error_helper";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -516,7 +517,17 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         }
       } catch (error) {
         setLoading(false);
-        console.log("!Error", error);
+        TOAST_CONTEXT.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "در ثبت اطلاعات خودرو خطایی رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
       }
     } else setLoading(false);
   };

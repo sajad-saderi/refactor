@@ -114,7 +114,7 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
       })
       .catch((e) => {
         Error_middleware(e);
-        reject(e.response ? e.response.data.message : e.message);
+        reject(e.response ? e : e.message);
       });
   });
 };

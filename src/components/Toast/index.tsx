@@ -20,7 +20,12 @@ const Toast = (props: IToast) => {
 
   return (
     <div className="toast_container">
-      <div className="toast_div">
+      <div
+        className="toast_div"
+        style={{
+          backgroundColor: props.color ? props.color : "#03a596",
+        }}
+      >
         {/* close icon */}
         <IoMdClose
           size="2rem"
@@ -30,12 +35,14 @@ const Toast = (props: IToast) => {
         {/* message section */}
         <p className="message">{props.message}</p>
         {/* time bar */}
-        <span
-          style={{
-            animationDuration: `${props.time}s`,
-          }}
-          className="time_bar"
-        ></span>
+        {props.time > 0 && (
+          <span
+            style={{
+              animationDuration: `${props.time}s`,
+            }}
+            className="time_bar"
+          ></span>
+        )}
       </div>
     </div>
   );
@@ -62,6 +69,7 @@ interface IToast {
    * should component disappear after a while or not
    */
   autoClose?: boolean;
+  color?: string;
 }
 
 export default Toast;

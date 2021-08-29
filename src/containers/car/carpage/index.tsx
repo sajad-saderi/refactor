@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 
 import dynamic from "next/dynamic";
 const Slider = dynamic(() => import("../../../../src/components/Slider"));
@@ -29,6 +29,8 @@ import { payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
 import UrlCreator from "../../../../utils/UrlCreator";
 import NameAvatar from "../../../components/name_avatar/avatar-name";
+import toast_context from "../../../context/Toast_context";
+import ErrorHelper from "../../../../utils/error_helper";
 // import Review from "../../../components/Review";
 
 // use شنبه،یک شنبه و ....
@@ -107,6 +109,7 @@ const CarPage = ({
   // const carousel_section = useRef(null);
   // const context_section = useRef(null);
   const router = useRouter();
+  const toastCTX = useContext(toast_context);
 
   useEffect(() => {
     if (expired) {
@@ -156,6 +159,7 @@ const CarPage = ({
       });
       setShowCalender(true);
       set_CarInformation(car_Information);
+      get_reviews();
 
       // if (start_date) {
       //   let startDate = start_date.split("/");
@@ -194,7 +198,6 @@ const CarPage = ({
     //   // DateSetter(id);
     //   // }
     // }
-    get_reviews();
     const handleRouteChange = (url) => {
       if (url.includes("/search-result")) {
         jsCookie.set("JumpTo", 1);
@@ -258,15 +261,28 @@ const CarPage = ({
         },
       });
       setShowCalender(true);
+      get_reviews();
+
       // setCalenderClick(false);
     } catch (error) {
-      if (error === "Not found!") {
-        router.push("/404");
-      }
-      if (error === "INVALID_SEARCH_ID") {
-        DateSetter(id);
-      }
-      console.log("!Error", error);
+      let errorMessage = null;
+      let color = "#ec7f00";
+      if (error.response) {
+        if (error.response.data.error === "INVALID_SEARCH_ID") {
+          DateSetter(id);
+          errorMessage = "پارامتر جستجو منقضی شده است. تاریخ جستجو تغییر کرد.";
+        } else if (error.response.status === 400) {
+          router.push("/404");
+          errorMessage = "خودروی مورد نظر یافت نشد.";
+          color = "#d83030";
+        }
+      } else errorMessage = error;
+      toastCTX.toast_option({
+        message: errorMessage,
+        color: color,
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 
@@ -275,7 +291,17 @@ const CarPage = ({
       const reviews: any = await REQUEST_GET_CAR_REVIEW(id);
       setReView(reviews.items);
     } catch (error) {
-      console.log("!Error", error);
+      toastCTX.toast_option({
+        message: error.response
+          ? ErrorHelper({
+              errorObj: error.response,
+              _400Message: "خطا در دریافت لیست نظرات",
+            })
+          : error,
+        color: "#d83030",
+        time: 0,
+        autoClose: false,
+      });
     }
   };
 

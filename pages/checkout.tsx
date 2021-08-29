@@ -50,10 +50,10 @@ const Checkout = ({ order_information, expired }) => {
       )}
       <Layout hide={true}>
         {expired ? (
-          <article className='minHeight expired_order'>
+          <article className="minHeight expired_order">
             <p>{language.expired}</p>
-            <Link href='/' prefetch={false}>
-              <a className='_404PageAnchor Blue_BTN'>
+            <Link href="/" prefetch={false}>
+              <a className="_404PageAnchor Blue_BTN">
                 {language.return_to_home}
               </a>
             </Link>
@@ -80,7 +80,10 @@ export async function getServerSideProps(props) {
     const data = {
       order_information: null,
     };
-    if (error === "INVALID_SEARCH_ID") {
+    if (
+      error.response.data?.error === "INVALID_SEARCH_ID" ||
+      error.response.data?.error === "INVALID_SEARCH_ID"
+    ) {
       data["expired"] = true;
     }
     return {
