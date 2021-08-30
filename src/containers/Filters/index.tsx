@@ -16,6 +16,7 @@ import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
 import { IoIosArrowDown, IoIosOptions, IoMdClose } from "react-icons/io";
 // import Spinner from "../../components/Spinner";
 import PriceSlider from "../../components/filters/PriceSlider/PriceSlider";
+import net_CTX from "../../context/internetConnectionCTX";
 
 let body_style_list = [];
 
@@ -54,6 +55,7 @@ const Filters = ({
   // const [initialValueMax, setInitialValueMax] = useState(10000000);
   const filter_ref = useRef(null);
   const FilterContext = useContext(filterContext);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     getBrandCarList();
@@ -69,7 +71,9 @@ const Filters = ({
       const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
       setBrandList(car_brand_Res.carBrands);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -78,7 +82,9 @@ const Filters = ({
       const car_model_res: any = await REQUEST_GET_CAR_MODEL(i);
       setModelList(car_model_res.data);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -270,7 +276,7 @@ const Filters = ({
             document.body.style.overflow = "unset";
             show_filter_prop_reset();
           }}
-          className='with_drawer'
+          className="with_drawer"
         ></div>
       )}
       <section
@@ -280,10 +286,10 @@ const Filters = ({
         ].join(" ")}
         ref={filter_ref}
       >
-        <div className='closeBtnWrapper'>
-          <span className='bar'></span>
+        <div className="closeBtnWrapper">
+          <span className="bar"></span>
           <div
-            className='Close_filter'
+            className="Close_filter"
             onClick={() => {
               setShow_filter(false);
               show_filter_prop_reset();
@@ -291,7 +297,7 @@ const Filters = ({
             }}
           >
             {/* <p>بستن</p> */}
-            <IoMdClose size='3rem' color='#909090' />
+            <IoMdClose size="3rem" color="#909090" />
           </div>
         </div>
         {/* {hidePrice ? (
@@ -305,7 +311,7 @@ const Filters = ({
         /> */}
         <PriceSlider sliderRange={sliderRange} sliderPrice={sliderPrice} />
         {/* )} */}
-        <div className='rent-options'>
+        <div className="rent-options">
           <h3>{language.filter.filter_section_h3_1}</h3>
           <Checkbox
             initialValue={[deliver_at_renters_place]}
@@ -317,7 +323,7 @@ const Filters = ({
                 value: deliver_at_renters_place,
               },
             ]}
-            name='deliver_at_renters_place'
+            name="deliver_at_renters_place"
             clearField={(item) => {
               FilterContext.setDataForSearch({
                 deliver_at_renters_place: { status: false, value: 0 },
@@ -340,7 +346,7 @@ const Filters = ({
                 value: with_driver,
               },
             ]}
-            name='with_driver'
+            name="with_driver"
             clearField={(item) => {
               FilterContext.setDataForSearch({
                 with_driver: { status: false, value: 0 },
@@ -363,7 +369,7 @@ const Filters = ({
                 value: without_driver,
               },
             ]}
-            name='without_driver'
+            name="without_driver"
             clearField={(item) => {
               FilterContext.setDataForSearch({
                 without_driver: { status: false, value: 0 },
@@ -380,12 +386,12 @@ const Filters = ({
           />
         </div>
 
-        <div className='body_style_type_wrapper'>
+        <div className="body_style_type_wrapper">
           <h3>{language.filter.filter_section_h3_2}</h3>
           <Checkbox
             initialValue={body_style_list}
             data={body_style_set}
-            name='body_style_set'
+            name="body_style_set"
             clearField={(item) => {
               body_style_remove(item);
             }}
@@ -457,16 +463,16 @@ const Filters = ({
           browserDropdown={true}
         />
         {show_filter ? (
-          <div className='result_count_wrapper'>
+          <div className="result_count_wrapper">
             {!scroll_icon_to_hide ? (
               <IoIosArrowDown
-                size='2rem'
-                color='#909090'
+                size="2rem"
+                color="#909090"
                 onClick={scroll_handler}
               />
             ) : null}
             <h2
-              className='ResultCount'
+              className="ResultCount"
               onClick={() => {
                 document.body.style.overflow = "unset";
                 setShow_filter(false);
@@ -474,7 +480,7 @@ const Filters = ({
               }}
             >
               {extra_info.length === 0 ? (
-                <Spinner display='block' color='#fff' width={28} />
+                <Spinner display="block" color="#fff" width={28} />
               ) : ResultCount.total_count > 0 ? (
                 `${language.filter.filter_section_result_count_wrapper_namayesh}${ResultCount.total_count}${language.filter.filter_section_result_count_wrapper_khodro}`
               ) : (

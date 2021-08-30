@@ -8,6 +8,7 @@ import jsCookie from "js-cookie";
 import { GET_ORDER_REQUEST } from "../../src/API";
 import Layout from "../../src/Layout";
 import { NextSeo } from "next-seo";
+import net_CTX from "../../src/context/internetConnectionCTX";
 
 let token = jsCookie.get("token");
 
@@ -19,6 +20,7 @@ const Contract_preview_page = () => {
     message: "",
   });
   const user_info = useContext(context_user);
+  const netCTX = useContext(net_CTX);
   const router = useRouter();
 
   useEffect(() => {
@@ -59,6 +61,9 @@ const Contract_preview_page = () => {
       router.push(`/contract-preview/${unique_id}`);
     } catch (error) {
       set_loading(false);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
       if (error.response) {
         set_error({ status: true, message: error.response.data.message });
       } else set_error({ status: true, message: error });

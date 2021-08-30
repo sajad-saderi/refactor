@@ -26,7 +26,7 @@ export const REQUEST_REMOVE_CAR_MEDIA = (data: IRemoveCarMedia) => {
           e.response
             ? e.response.data.message
             : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            ? 111
             : e.message
         );
       });

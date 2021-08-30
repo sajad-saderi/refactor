@@ -6,6 +6,7 @@ import jsCookie from "js-cookie";
 import context_user from "../../src/context/User_info";
 import { guard_controller } from "../../utils/guard_controller";
 import { useRouter } from "next/router";
+import net_CTX from "../../src/context/internetConnectionCTX";
 
 let token = jsCookie.get("token");
 const Contract_Page = () => {
@@ -13,6 +14,7 @@ const Contract_Page = () => {
   const [fetchError, setFetchError] = useState(null);
   const user_info = useContext(context_user);
   const router = useRouter();
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     const guard = guard_controller();
@@ -50,8 +52,10 @@ const Contract_Page = () => {
       });
       setResult(res.data);
     } catch (error) {
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
       setFetchError(true);
-      console.log("!Error", error);
     }
   };
 

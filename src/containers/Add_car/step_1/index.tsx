@@ -2,6 +2,7 @@ import { useContext, useEffect, useReducer, useState } from "react";
 import { IoIosCar, IoIosArrowDown } from "react-icons/io";
 // import "./step_1.scss";
 import dynamic from "next/dynamic";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 const DropdownSearch = dynamic(() =>
   import("../../../components/form/Dropdown")
@@ -550,6 +551,8 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
     min_days_to_rent: 1,
   });
   const user = useContext(context_user);
+  const netCTX = useContext(net_CTX);
+
   const toastCTX = useContext(context_toast);
   const user_id = user.data?.id;
   const token = user.data?.token;
@@ -636,7 +639,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
       });
       SetCar(car_info_res);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -857,7 +862,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         getModelList(autoFillStorageData.brand.value);
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -892,7 +899,11 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           );
         }
       } catch (error) {
-        if (error.response?.data.error === "DUPLICATE_REGISTRATION_PLATE") {
+        if (error === 111) {
+          netCTX.toggleTheContainer(true);
+        } else if (
+          error.response?.data.error === "DUPLICATE_REGISTRATION_PLATE"
+        ) {
           Dispatcher({
             type: "duplicate_plate",
             error_message: language.duplicate_plate,
@@ -1116,7 +1127,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         dispatch({ type: "car_id", car_id: autoFillStorageData.model.value });
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -1125,7 +1138,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
       const car_districts_res: any = await REQUEST_GET_LOCATION(parent_id);
       setDistrictList(car_districts_res.data);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -1222,7 +1237,9 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         setShowBodyStyle(true);
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 

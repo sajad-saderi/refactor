@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 
@@ -15,6 +15,7 @@ import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
 import language from "../../public/languages/fa/rent.json";
 // import { logPageView } from "../../utils/analytics";
 import Recommendation_section_owl from "../../src/components/recommendation_section/recommendation_section_owl";
+import net_CTX from "../../src/context/internetConnectionCTX";
 
 const question_set = [
   {
@@ -31,6 +32,7 @@ const question_set = [
 
 const Rent = () => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     window["dataLayer"].push({
@@ -49,7 +51,11 @@ const Rent = () => {
         name: "rent",
       });
       setDynamicLinks(landing_res.data.link_set);
-    } catch (error) {}
+    } catch (error) {
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
+    }
   };
 
   return (

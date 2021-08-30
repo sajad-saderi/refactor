@@ -15,6 +15,7 @@ import {
 // import Spinner from "../../../../components/Spinner";
 import Toast_context from "../../../../context/Toast_context";
 import Modal_context from "../../../../context/Modal_context";
+import net_CTX from "../../../../context/internetConnectionCTX";
 import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
 
 const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
@@ -33,6 +34,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   );
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
+  const netCTX = useContext(net_CTX);
   const user = useContext(context_user);
   const router = useRouter();
   useEffect(() => {
@@ -88,7 +90,9 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
       // hide the spinner
       setIs_out_of_service_loading(false);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -113,7 +117,9 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
       jsCookie.remove("new_car");
       getListAgain();
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 

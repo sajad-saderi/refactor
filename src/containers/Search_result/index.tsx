@@ -25,6 +25,7 @@ import UrlChecker from "../../../utils/UrlChecker";
 import search_query_builder from "../../../utils/search-query-builder";
 import toast_context from "../../context/Toast_context";
 import ErrorHelper from "../../../utils/error_helper";
+import net_CTX from "../../context/internetConnectionCTX";
 
 let JumpTo = null;
 
@@ -97,6 +98,7 @@ const Search_result = ({ language }: ISearch_result) => {
   const toastCTX = useContext(toast_context);
   const router = useRouter();
   const new_search_ref = useRef(null);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     staticRoute = { ...router.query };
@@ -295,17 +297,20 @@ const Search_result = ({ language }: ISearch_result) => {
         page = +jsCookie.get("page");
       }
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "در دریافت نتایج جستجو خطایی رخ داده است.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "در دریافت نتایج جستجو خطایی رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   }
 

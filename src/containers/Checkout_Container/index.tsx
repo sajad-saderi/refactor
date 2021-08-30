@@ -24,6 +24,7 @@ import jsCookie from "js-cookie";
 import Link from "next/link";
 import NameAvatar from "../../components/name_avatar/avatar-name";
 import ErrorHelper from "../../../utils/error_helper";
+import net_CTX from "../../context/internetConnectionCTX";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -75,6 +76,7 @@ const Checkout_Container = ({
   const TOAST_CONTEXT = useContext(Toast_context);
   const user = useContext(context_user);
   const router = useRouter();
+  const netCTX = useContext(net_CTX);
 
   const token = jsCookie.get("token");
 
@@ -181,7 +183,9 @@ const Checkout_Container = ({
       setDiscounted_total_price(coupon_res.coupon.total_price);
     } catch (error) {
       setCoupanLoading(false);
-      if (error.response?.data.error === "INVALID_COUPON")
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else if (error.response?.data.error === "INVALID_COUPON")
         setCouponError({
           status: true,
           message: error.response.data.message,
@@ -236,16 +240,19 @@ const Checkout_Container = ({
     } catch (error) {
       setLoading(false);
       if (error.response) set_error_message(error.response.data.message);
-      TOAST_CONTEXT.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        TOAST_CONTEXT.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

@@ -3,6 +3,7 @@ import jsCookie from "js-cookie";
 import { GET_ORDER_REQUEST } from "../../API";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import net_CTX from "../../context/internetConnectionCTX";
 
 const Requests_page_Loading = dynamic(() =>
   import("../../components/cartPlaceholder/requestLoading")
@@ -22,6 +23,8 @@ const Request_page = ({ language }: IRequest_page) => {
   const token = jsCookie.get("token");
   const user_info = useContext(context_user);
   const toastCTX = useContext(toast_context);
+  const netCTX = useContext(net_CTX);
+
   useEffect(() => {
     const guard = guard_controller();
     if (guard !== "auth") {
@@ -60,14 +63,17 @@ const Request_page = ({ language }: IRequest_page) => {
       setResult([res.data]);
       // }
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({ errorObj: error.response })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({ errorObj: error.response })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
       // console.log("!Error", error);
     }
   };

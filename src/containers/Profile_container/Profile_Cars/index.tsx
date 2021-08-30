@@ -16,6 +16,7 @@ const Radio = dynamic(() => import("../../../components/form/Radio"));
 import Button from "../../../components/form/Button";
 import { IoIosArrowDown } from "react-icons/io";
 import ErrorHelper from "../../../../utils/error_helper";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 let useFilter = false;
 let filterNumber = 0;
@@ -32,6 +33,8 @@ const Profile_Cars = ({
   const [active, setActive] = useState(1);
   const [showMoreButton, setShowMoreButton] = useState(false);
   const toastCTX = useContext(toast_context);
+  const netCTX = useContext(net_CTX);
+
   useEffect(() => {
     heap = true;
     fetchApi();
@@ -78,17 +81,20 @@ const Profile_Cars = ({
         setShowMoreButton(true);
       } else setShowMoreButton(false);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطا در دریافت لیست خودروهای کاربر",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطا در دریافت لیست خودروهای کاربر",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

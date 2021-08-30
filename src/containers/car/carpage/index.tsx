@@ -32,6 +32,7 @@ import NameAvatar from "../../../components/name_avatar/avatar-name";
 import toast_context from "../../../context/Toast_context";
 import ErrorHelper from "../../../../utils/error_helper";
 // import Review from "../../../components/Review";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -110,6 +111,7 @@ const CarPage = ({
   // const context_section = useRef(null);
   const router = useRouter();
   const toastCTX = useContext(toast_context);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     if (expired) {
@@ -265,6 +267,9 @@ const CarPage = ({
 
       // setCalenderClick(false);
     } catch (error) {
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
       let errorMessage = null;
       let color = "#ec7f00";
       if (error.response) {
@@ -291,17 +296,20 @@ const CarPage = ({
       const reviews: any = await REQUEST_GET_CAR_REVIEW(id);
       setReView(reviews.items);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطا در دریافت لیست نظرات",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطا در دریافت لیست نظرات",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import net_CTX from "../src/context/internetConnectionCTX";
 
 const Layout = dynamic(() => import("../src/Layout"));
 // import Layout from "../src/Layout";
@@ -11,6 +12,7 @@ import language from "../public/languages/fa/sitemap.json";
 
 const Site_map = () => {
   const [UrlList, UrlSetter] = useState([]);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     window["dataLayer"].push({
@@ -31,7 +33,9 @@ const Site_map = () => {
       const res: any = await REQUEST_GET_URLS_FOR_SITE_MAP();
       UrlSetter(res.items);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -51,14 +55,14 @@ const Site_map = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <article className='responsive static_pages minHeight site_map_page'>
+      <article className="responsive static_pages minHeight site_map_page">
         {UrlList.length > 0 && (
           <ul>
             {UrlList.map((i) => {
               return (
                 <li style={{ margin: "5px 0" }} key={i.unique_id}>
                   <Link
-                    href='/rent/[id]'
+                    href="/rent/[id]"
                     as={`/rent/${i.unique_id}`}
                     prefetch={false}
                   >

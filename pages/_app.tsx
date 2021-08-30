@@ -13,6 +13,7 @@ import user_context from "../src/context/User_info";
 import logo from "../public/android-icon-48x48.png";
 import { IoIosClose } from "react-icons/io";
 import "../src/styles/main.scss";
+import { InternetConnectionContextProvider } from "../src/context/internetConnectionCTX";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -63,6 +64,9 @@ class App_Otoli extends App {
         });
 
         Sentry.captureException(error);
+        window["ga"]("send", "exception", {
+          exDescription: error.message,
+        });
       });
       super.componentDidCatch(error, errorInfo);
     }
@@ -231,8 +235,11 @@ class App_Otoli extends App {
         });
       this.setState({ user_data: { ...response, token } });
     } catch (error) {
-      alert("خطا در دریافت اطلاعات حساب کاربری");
-      console.log(error);
+      if (error === 111) {
+        alert(
+          "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+        );
+      } else alert("خطا در دریافت اطلاعات حساب کاربری");
     }
   };
 
@@ -264,19 +271,21 @@ class App_Otoli extends App {
             </p>
           </section>
         ) : null}
-        <user_context.Provider
-          value={{
-            update_user_data: (v) => {
-              this.setState({
-                user_data: v,
-              });
-            },
-            data: this.state.user_data,
-            avatartBackgroundColor: this.state.backgroundColor,
-          }}
-        >
-          <Component {...pageProps} BotScore={this.state.BotScore} />
-        </user_context.Provider>
+        <InternetConnectionContextProvider>
+          <user_context.Provider
+            value={{
+              update_user_data: (v) => {
+                this.setState({
+                  user_data: v,
+                });
+              },
+              data: this.state.user_data,
+              avatartBackgroundColor: this.state.backgroundColor,
+            }}
+          >
+            <Component {...pageProps} BotScore={this.state.BotScore} />
+          </user_context.Provider>
+        </InternetConnectionContextProvider>
       </>
 
       // <GoogleReCaptcha

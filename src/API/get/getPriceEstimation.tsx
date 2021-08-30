@@ -20,7 +20,7 @@ export const REQUEST_GET_CAR_PRICE_ESTIMATION = (data: IEstimation) => {
           e.response
             ? e.response.data.message
             : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            ? 111
             : e.message
         );
       });

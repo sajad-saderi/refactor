@@ -31,7 +31,7 @@ export const REQUEST_SET_CAR_DISCOUNT = (inputData: ISetCarDiscount) => {
           e.response
             ? e.response.data.message
             : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            ? 111
             : e.message
         );
       });

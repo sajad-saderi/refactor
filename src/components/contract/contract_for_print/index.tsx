@@ -10,6 +10,7 @@ import Toast_context from "../../../context/Toast_context";
 import { guard_controller } from "../../../../utils/guard_controller";
 import Contract_text from "../contract_text";
 import ErrorHelper from "../../../../utils/error_helper";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 let token = jsCookie.get("token");
 const Contract = ({ unique_id }: IContract) => {
@@ -18,6 +19,8 @@ const Contract = ({ unique_id }: IContract) => {
 
   const user_info = useContext(context_user);
   const toastCTX = useContext(Toast_context);
+  const netCTX = useContext(net_CTX);
+
   const router = useRouter();
   const html_ref = useRef(null);
 
@@ -66,17 +69,20 @@ const Contract = ({ unique_id }: IContract) => {
       });
       setResult(res.data);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطایی در دریافت اطلاعات قرارداد رخ داده است",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطایی در دریافت اطلاعات قرارداد رخ داده است",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

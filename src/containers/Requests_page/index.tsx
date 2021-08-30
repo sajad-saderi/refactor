@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import context_user from "../../../src/context/User_info";
 // import PleaseLogin from "../../components/PleaseLogin";
 import dynamic from "next/dynamic";
+import net_CTX from "../../context/internetConnectionCTX";
 
 const Requests_page_Loading = dynamic(() =>
   import("../../components/cartPlaceholder/requestLoading")
@@ -44,6 +45,7 @@ const Requests_page = ({ language }: IRequests_page) => {
   const toastCTX = useContext(toast_context);
   const token = user.data?.token;
   const router = useRouter();
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     const guard = guard_controller();
@@ -164,17 +166,20 @@ const Requests_page = ({ language }: IRequests_page) => {
         } else setShowMoreButton(false);
       });
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "در دریافت لیست سفارش‌ها خطایی رخ داده است.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "در دریافت لیست سفارش‌ها خطایی رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

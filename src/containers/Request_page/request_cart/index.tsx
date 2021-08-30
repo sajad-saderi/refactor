@@ -28,6 +28,7 @@ import {
 } from "react-icons/md";
 import dynamic from "next/dynamic";
 import download from "../../../../public/image/download.png";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 const PelakView = dynamic(() => import("../../../components/pelak"));
 const Icon = dynamic(() => import("../../../../utils/Icon"));
@@ -78,6 +79,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [imageHeight, setImageHeight] = useState(0);
   const [heightController, setheightController] = useState(0);
   const router = useRouter();
+  const netCTX = useContext(net_CTX);
 
   const token = jsCookie.get("token");
 
@@ -130,17 +132,20 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     } catch (error) {
       setButtonLoader(false);
       setRejectButtonLoader(false);
-      TOAST_CONTEXT.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطا در انجام عملیات بر روی سفارش اجاره",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        TOAST_CONTEXT.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطا در انجام عملیات بر روی سفارش اجاره",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

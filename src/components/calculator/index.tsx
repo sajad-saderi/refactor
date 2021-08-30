@@ -18,6 +18,7 @@ import Link from "next/link";
 import { guard_controller } from "../../../utils/guard_controller";
 import toast_context from "../../context/Toast_context";
 import ErrorHelper from "../../../utils/error_helper";
+import net_CTX from "../../context/internetConnectionCTX";
 
 // import ShowResult from "./ShowResult/ShowResult";
 
@@ -48,6 +49,8 @@ const Calculator = ({ AbText, language }: ICalculator) => {
   });
   const [authorize, set_authorize] = useState(true);
   const toastCTX = useContext(toast_context);
+  const netCTX = useContext(net_CTX);
+
   useEffect(() => {
     const guard = guard_controller();
     if (guard !== "auth") {
@@ -80,17 +83,20 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       const brand_list_res: any = await REQUEST_GET_CAR_BRAND();
       setBrandList(brand_list_res.carBrands);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطایی در دریافت لیست برند خودرو رخ داده است.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطایی در دریافت لیست برند خودرو رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 
@@ -104,17 +110,20 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       const model_list_res: any = await REQUEST_GET_CAR_MODEL(brand_id);
       setModelList(model_list_res.data);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطایی در دریافت لیست مدل خودرو رخ داده است.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطایی در دریافت لیست مدل خودرو رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 
@@ -179,7 +188,9 @@ const Calculator = ({ AbText, language }: ICalculator) => {
       setWeekly(eachWeek);
       setMonthly(eachMonth);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 

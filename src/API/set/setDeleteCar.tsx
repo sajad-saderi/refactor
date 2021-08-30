@@ -27,7 +27,7 @@ export const REQUEST_DELETE_CAR = (data: IDeleteCar) => {
           e.response
             ? e.response.data.message
             : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            ? 111
             : e.message
         );
       });

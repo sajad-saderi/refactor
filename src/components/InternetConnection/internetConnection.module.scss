@@ -1,0 +1,36 @@
+@import "../../styles/colors";
+.internet-connection {
+  z-index: 9999;
+  position: fixed;
+  background-color: $dark_orange;
+  width: 100%;
+  right: 0;
+  bottom: 0%;
+  padding: 1rem 1rem 1rem 4rem;
+  p {
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1.4rem;
+    span {
+      color: #fff;
+    }
+    svg {
+      width: 2rem;
+      margin-left: 0.6rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .retry {
+    color: $almost_black;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+// @media screen and(max-width:480px) {
+//   .internet-connection {
+//     width: 100%;
+//     padding: 1.4rem;
+//   }
+// }

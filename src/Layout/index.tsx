@@ -21,6 +21,7 @@ import auth_context from "../context/Auth_context";
 
 // Toast Context
 import toast_context from "../context/Toast_context";
+import net_CTX from "../context/internetConnectionCTX";
 
 // Toast Component
 const Toast = dynamic(() => import("../components/Toast"));
@@ -72,18 +73,18 @@ const Layout = (props: ILayout) => {
   */
   const [toast, setToast] = useState(false);
   const [toastData, setToastData] = useState(null);
-  const [showReconnectingBox, setShowReconnectingBox] = useState(false);
 
   // Reducers
   const [Show_Modal, dispatch] = useReducer(ShowModalReducer, false);
   const [confirm_id, use_confirm_id] = useState(null);
 
   const TOAST_CONTEXT = useContext(toast_context);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     // checking internet connection
     if (!window.navigator.onLine) {
-      setShowReconnectingBox(true);
+      netCTX.toggleTheContainer(true);
     }
 
     if (Router.router.query.utm_source) {
@@ -121,9 +122,14 @@ const Layout = (props: ILayout) => {
   };
 
   const toast_handler = (data) => {
-    setToastData(data);
-    setToast(true);
-    localStorage["TOAST"] = JSON.stringify({ ...data });
+    if (data.message === "Network Error") {
+      setToast(false);
+      netCTX.toggleTheContainer(true);
+    } else {
+      setToastData(data);
+      setToast(true);
+      localStorage["TOAST"] = JSON.stringify({ ...data });
+    }
   };
 
   const checkToast = () => {
@@ -230,7 +236,7 @@ const Layout = (props: ILayout) => {
             </ErrorBounderies>
           </auth_context.Provider>
         </modal_context.Provider>
-        {showReconnectingBox && <InternetConnection />}
+        {netCTX.showInternetConnectionNotification && <InternetConnection />}
         {toast ? (
           <Toast
             message={toastData.message}

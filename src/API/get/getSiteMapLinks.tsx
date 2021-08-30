@@ -19,7 +19,7 @@ export const REQUEST_GET_URLS_FOR_SITE_MAP = () => {
           e.response
             ? e.response.data.message
             : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            ? 111
             : e.message
         );
       });

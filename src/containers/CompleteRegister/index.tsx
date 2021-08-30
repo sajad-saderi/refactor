@@ -15,6 +15,7 @@ import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 import ErrorHelper from "../../../utils/error_helper";
+import net_CTX from "../../context/internetConnectionCTX";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -121,6 +122,7 @@ const Complete_register_container = ({
   const MODAL_CONTEXT = useContext(Modal_context);
   const toastCTX = useContext(toast_context);
   const user = useContext(context_user);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     // if the user is not register the login modal will show up
@@ -190,17 +192,20 @@ const Complete_register_container = ({
         }
       } catch (error) {
         setLoading(false);
-        toastCTX.toast_option({
-          message: error.response
-            ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: "خطایی در ثبت اطلاعات کاربر جدید رخ داده است.",
-              })
-            : error,
-          color: "#d83030",
-          time: 0,
-          autoClose: false,
-        });
+        if (error === 111) {
+          netCTX.toggleTheContainer(true);
+        } else
+          toastCTX.toast_option({
+            message: error.response
+              ? ErrorHelper({
+                  errorObj: error.response,
+                  _400Message: "خطایی در ثبت اطلاعات کاربر جدید رخ داده است.",
+                })
+              : error,
+            color: "#d83030",
+            time: 0,
+            autoClose: false,
+          });
       }
     } else {
       setLoading(false);

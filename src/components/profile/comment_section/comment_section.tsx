@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { REQUEST_GET_CAR_REVIEW } from "../../../API";
 import Review from "../../Review";
 import Icon from "../../../../utils/Icon";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 const Comment_section = ({ user_id, user_data }: IComment_section) => {
   const [active_tab, set_active_tab] = useState(true);
   const [review_renter, setReViewRenter] = useState([]);
   const [review_owner, setReViewOwner] = useState([]);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     console.log(user_data);
@@ -27,12 +29,14 @@ const Comment_section = ({ user_id, user_data }: IComment_section) => {
       setReViewOwner(reviews_owner.items);
       console.log(reviews_owner.items);
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
   return (
-    <section className='comment_section'>
-      <div className='tab_section'>
+    <section className="comment_section">
+      <div className="tab_section">
         <div
           className={active_tab ? "active" : ""}
           onClick={() => set_active_tab(true)}
@@ -46,25 +50,25 @@ const Comment_section = ({ user_id, user_data }: IComment_section) => {
           نظرات میزبان‌ها
         </div>
       </div>
-      <div className='review_section'>
+      <div className="review_section">
         {active_tab ? (
           user_data.rate?.no_of_received_rates_as_owner ? (
-            <div className='rate_container'>
-              <Icon name='star' />
+            <div className="rate_container">
+              <Icon name="star" />
               <span>
                 {user_data.rate.avg_rate_as_owner}{" "}
-                <span className='sum_rent'>
+                <span className="sum_rent">
                   ({user_data.rate.no_of_received_rates_as_owner})
                 </span>
               </span>
             </div>
           ) : null
         ) : user_data.rate?.no_of_received_rates_as_renter ? (
-          <div className='rate_container'>
-            <Icon name='star' />
+          <div className="rate_container">
+            <Icon name="star" />
             <span>
               {user_data.rate.avg_rate_as_renter}{" "}
-              <span className='sum_rent'>
+              <span className="sum_rent">
                 ({user_data.rate.no_of_received_rates_as_renter})
               </span>
             </span>

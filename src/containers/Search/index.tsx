@@ -4,6 +4,7 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
 import dynamic from "next/dynamic";
+import net_CTX from "../../context/internetConnectionCTX";
 
 const DropdownSearch = dynamic(() => import("../../components/form/Dropdown"));
 const Button = dynamic(() => import("../../components/form/Button"));
@@ -46,6 +47,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const MODAL_CONTEXT = useContext(modal_context);
   const toastCTX = useContext(toast_context);
   const router = useRouter();
+  const netCTX = useContext(net_CTX);
 
   // get a list of cities
   const get_car_location = async () => {
@@ -53,17 +55,20 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       const res: any = await REQUEST_GET_LOCATION();
       setLocationsList(res.data);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطا در دریافت لیست شهر‌ها",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطا در دریافت لیست شهر‌ها",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

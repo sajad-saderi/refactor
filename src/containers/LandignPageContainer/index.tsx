@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import filterContext from "../../context/filter-context";
 import dynamic from "next/dynamic";
 
@@ -23,6 +23,7 @@ import {
 import UrlCreator from "../../../utils/UrlCreator";
 import UrlChecker from "../../../utils/UrlChecker";
 import search_query_builder from "../../../utils/search-query-builder";
+import net_CTX from "../../context/internetConnectionCTX";
 
 import Filters from "../Filters";
 // import Search from "../Search";
@@ -98,6 +99,7 @@ const Landing_page_container = ({
   const [carLocationName, setCarLocationName] = useState(null);
   const new_search_ref = useRef(null);
   const router = useRouter();
+  const netCTX = useContext(net_CTX);
 
   const handleClickOutside = (e) => {
     // If the click is outside of the drop-down box the drop-down section will be close
@@ -340,7 +342,9 @@ const Landing_page_container = ({
         setResult(res.results);
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   }
 
@@ -607,13 +611,13 @@ const Landing_page_container = ({
   };
 
   return (
-    <article className='search_result_page_container'>
+    <article className="search_result_page_container">
       {/* result count section */}
-      <div className='count_bar_container' ref={new_search_ref}>
+      <div className="count_bar_container" ref={new_search_ref}>
         {result ? (
           result.length > 0 && (
             <div
-              className='count_bar responsive'
+              className="count_bar responsive"
               onClick={() => {
                 setShowSearch(!showSearch);
               }}
@@ -622,7 +626,7 @@ const Landing_page_container = ({
               }}
             >
               {!showSearch ? (
-                <p className='count_bar_count'>
+                <p className="count_bar_count">
                   {`${total_count}${
                     language.count_bar_khodro
                   }${result[0].start_date.slice(5)}${
@@ -631,11 +635,11 @@ const Landing_page_container = ({
                   {location_n ? ` در ${location_n}` : null}
                 </p>
               ) : null}
-              <p className='change_search_btn HEAP_LandingPages_Btn_ChangeSearch'>
+              <p className="change_search_btn HEAP_LandingPages_Btn_ChangeSearch">
                 {showSearch ? (
-                  <span className='close_text_btn'>
+                  <span className="close_text_btn">
                     {language.count_bar_change_search_btn_close}
-                    <IoMdClose size='2rem' color='#dcdcdc' />
+                    <IoMdClose size="2rem" color="#dcdcdc" />
                   </span>
                 ) : (
                   language.count_bar_change_search_btn_p
@@ -644,7 +648,7 @@ const Landing_page_container = ({
             </div>
           )
         ) : (
-          <p className='count_bar_count_empty'></p>
+          <p className="count_bar_count_empty"></p>
         )}
         {/* search box */}
         <section
@@ -653,7 +657,7 @@ const Landing_page_container = ({
             showSearch ? "show_search_section" : null,
           ].join(" ")}
         >
-          <div className='responsive'>
+          <div className="responsive">
             <Search
               language={language}
               dynamic={true}
@@ -685,17 +689,17 @@ const Landing_page_container = ({
         </section>
         {showSearch ? (
           <IoIosArrowUp
-            className='Arrow_up_change_search'
-            color='#dcdcdc'
-            size='2rem'
+            className="Arrow_up_change_search"
+            color="#dcdcdc"
+            size="2rem"
             onClick={() => setShowSearch(false)}
           />
         ) : null}
       </div>
-      <h1 className='responsive'>{landing_data.short_description}</h1>
+      <h1 className="responsive">{landing_data.short_description}</h1>
       {/* price sort part */}
-      <section className='responsive'>
-        <div className='price_sort_container'>
+      <section className="responsive">
+        <div className="price_sort_container">
           <span
             className={o === "-price" ? "active" : null}
             onClick={() => {
@@ -729,13 +733,13 @@ const Landing_page_container = ({
             {language.price_sort_container_low_to_high}
           </span>
           {/* Trigger icon in mobile view */}
-          <p className='show_filter' onClick={() => setShow_filter(true)}>
+          <p className="show_filter" onClick={() => setShow_filter(true)}>
             {language.price_sort_container_advance_search_btn}
-            <IoIosOptions size='1.4rem' color='#656565' />
+            <IoIosOptions size="1.4rem" color="#656565" />
           </p>
         </div>
       </section>
-      <section className='responsive minimal_filters'>
+      <section className="responsive minimal_filters">
         {/* {filtersChecker.Location ? (
           <p
             className='minimal_filter_tags'
@@ -761,7 +765,7 @@ const Landing_page_container = ({
         ) : null} */}
         {filtersChecker.price ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, price: true };
@@ -779,7 +783,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size="1.3rem" color="#ababab" />
             {language.minimal_filters_price_from}
             {Number(price.min).toLocaleString()}
             {language.minimal_filters_ta}
@@ -788,7 +792,7 @@ const Landing_page_container = ({
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, deliver_at_renters_place: true };
@@ -804,13 +808,13 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size="1.3rem" color="#ababab" />
             {language.minimal_filters_deliver_to_your_location}
           </p>
         ) : null}
         {filtersChecker.category_id ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               inactive_the_category = true;
               setFilterReset((filterReset) => {
@@ -827,13 +831,13 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size="1.3rem" color="#ababab" />
             {category_name}
           </p>
         ) : null}
         {filtersChecker.with_driver ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, with_driver: true };
@@ -849,13 +853,13 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size="1.3rem" color="#ababab" />
             {language.minimal_filters_with_deriver}
           </p>
         ) : null}
         {filtersChecker.without_driver ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, without_driver: true };
@@ -871,7 +875,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#8c8c8c' />
+            <IoMdClose size="1.3rem" color="#8c8c8c" />
             {language.minimal_filters_without_driver}
           </p>
         ) : null}
@@ -880,7 +884,7 @@ const Landing_page_container = ({
               return (
                 <p
                   key={i}
-                  className='minimal_filter_tags'
+                  className="minimal_filter_tags"
                   onClick={() => {
                     if (body_style_names.length === 1) {
                       setFilterReset((filterReset) => {
@@ -903,7 +907,7 @@ const Landing_page_container = ({
                     initSearch();
                   }}
                 >
-                  <IoMdClose size='1.3rem' color='#8c8c8c' />
+                  <IoMdClose size="1.3rem" color="#8c8c8c" />
                   {/* {language.minimal_filters_body_style} */}
                   {item}
                 </p>
@@ -912,7 +916,7 @@ const Landing_page_container = ({
           : null}
         {!car_name && brand_name ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, brand_id: true };
@@ -930,14 +934,14 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size="1.3rem" color="#ababab" />
             {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
         ) : null}
         {car_name ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, car_id: true };
@@ -954,14 +958,14 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size="1.3rem" color="#ababab" />
             {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
         ) : null}
       </section>
       {/* filters and result section */}
-      <section className=' responsive content_container'>
+      <section className=" responsive content_container">
         <filterContext.Provider
           value={{
             setDataForSearch: (v) => {
@@ -1007,10 +1011,10 @@ const Landing_page_container = ({
           onClick={() => loadMore()}
         >
           {show_spinner_loadMore ? (
-            <Spinner display='block' width={20} color='#9E9E9E' />
+            <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
             <>
-              <IoIosArrowDown color='#202020' size='1.8rem' />
+              <IoIosArrowDown color="#202020" size="1.8rem" />
               {language.Load_more_car}
             </>
           )}

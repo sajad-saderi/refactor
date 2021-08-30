@@ -11,6 +11,7 @@ import {
   REQUEST_SET_CAR_DISCOUNT,
   REQUEST_SET_CAR_PARTIAL,
 } from "../../../API";
+import net_CTX from "../../../context/internetConnectionCTX";
 
 const Radio = dynamic(() => import("../../../components/form/Radio"));
 const Button = dynamic(() => import("../../../components/form/Button"));
@@ -261,6 +262,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const user = useContext(context_user);
   const token = user.data?.token;
   const [checkbox_list, setCheckbox_list] = useState([]);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     scrollTo(0, 0);
@@ -298,7 +300,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         setInitialDiscountList(car_discount_res);
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   };
 
@@ -517,17 +521,20 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         }
       } catch (error) {
         setLoading(false);
-        TOAST_CONTEXT.toast_option({
-          message: error.response
-            ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: "در ثبت اطلاعات خودرو خطایی رخ داده است.",
-              })
-            : error,
-          color: "#d83030",
-          time: 0,
-          autoClose: false,
-        });
+        if (error === 111) {
+          netCTX.toggleTheContainer(true);
+        } else
+          TOAST_CONTEXT.toast_option({
+            message: error.response
+              ? ErrorHelper({
+                  errorObj: error.response,
+                  _400Message: "در ثبت اطلاعات خودرو خطایی رخ داده است.",
+                })
+              : error,
+            color: "#d83030",
+            time: 0,
+            autoClose: false,
+          });
       }
     } else setLoading(false);
   };

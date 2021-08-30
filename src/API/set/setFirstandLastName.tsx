@@ -30,7 +30,7 @@ export const REQUEST_SET_FIRST_LAST_NAME = (data: INewRentRequest) => {
           e.response
             ? e.response.data.message
             : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
+            ? 111
             : e.message
         );
       });

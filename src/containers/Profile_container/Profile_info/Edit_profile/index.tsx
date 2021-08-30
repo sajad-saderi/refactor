@@ -21,6 +21,7 @@ import context_user from "../../../../context/User_info";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../../../../utils/cropImage";
 import NameAvatar from "../../../../components/name_avatar/avatar-name";
+import net_CTX from "../../../../context/internetConnectionCTX";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -111,6 +112,7 @@ const Edit_profile = ({
   const file_input = useRef(null);
   const canvas_ref = useRef(null);
   const user = useContext(context_user);
+  const netCTX = useContext(net_CTX);
 
   // const token = jsCookie.get("token");
 
@@ -197,7 +199,9 @@ const Edit_profile = ({
         });
         user.update_user_data({ ...res, token });
       } catch (error) {
-        console.log("!Error", error);
+        if (error === 111) {
+          netCTX.toggleTheContainer(true);
+        }
       }
     }
 
@@ -211,7 +215,9 @@ const Edit_profile = ({
         window.history.replaceState(null, "", `/user/${state.username}`);
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
       dispatchError({
         type: "username",
         username: true,
@@ -234,7 +240,9 @@ const Edit_profile = ({
         user.update_user_data({ ...res, token });
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
       dispatchError({
         type: "first_name",
         first_name: true,
@@ -253,7 +261,9 @@ const Edit_profile = ({
         user.update_user_data({ ...res, token });
       }
     } catch (error) {
-      console.log("!Error", error);
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
       setLoading(false);
       return;
     }
@@ -271,8 +281,10 @@ const Edit_profile = ({
       dispatch({ type: "image", image: URL.createObjectURL(image) });
       setNewImage(image);
       setCroptStart(false);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   }, [croppedAreaPixels]);
 

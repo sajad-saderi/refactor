@@ -13,6 +13,7 @@ import context_toast from "../../context/Toast_context";
 import { NextSeo } from "next-seo";
 import { guard_controller } from "../../../utils/guard_controller";
 import ErrorHelper from "../../../utils/error_helper";
+import net_CTX from "../../context/internetConnectionCTX";
 
 const Profile_container = ({ language }: IProfile_container) => {
   const [is_mine, setIs_mine] = useState(false);
@@ -20,6 +21,7 @@ const Profile_container = ({ language }: IProfile_container) => {
   const [data, setData] = useState(null);
   const user = useContext(context_user);
   const toastCTX = useContext(context_toast);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     fetchApi();
@@ -54,17 +56,20 @@ const Profile_container = ({ language }: IProfile_container) => {
       setProfile_Id(user_cars_info.id);
       setData(user_cars_info);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطا در دریافت اطلاعات کاربری.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطا در دریافت اطلاعات کاربری.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 

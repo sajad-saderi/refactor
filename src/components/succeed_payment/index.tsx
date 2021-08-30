@@ -10,6 +10,8 @@ import paper from "../../../public/image/paper.png";
 import carImage from "../../../public/image/car-image-thumbnail.jpg";
 import toast_context from "../../context/Toast_context";
 import ErrorHelper from "../../../utils/error_helper";
+import net_CTX from "../../context/internetConnectionCTX";
+
 moment.loadPersian({ dialect: "persian-modern" });
 
 const SucceedPayment = ({ language }) => {
@@ -20,6 +22,7 @@ const SucceedPayment = ({ language }) => {
   const [hasError, setHasError] = useState(false);
   const token = jsCookie.get("token");
   const toastCTX = useContext(toast_context);
+  const netCTX = useContext(net_CTX);
 
   useEffect(() => {
     window["dataLayer"].push({
@@ -78,17 +81,20 @@ const SucceedPayment = ({ language }) => {
         ],
       });
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطایی در دریافت اطلاعات پرداخت رخ داده است.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطایی در دریافت اطلاعات پرداخت رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
       setHasError(true);
     }
   };

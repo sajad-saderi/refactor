@@ -21,6 +21,8 @@ import Cropper from "react-easy-crop";
 import ZoomSlider from "./ZoomSlider";
 import ErrorHelper from "../../../utils/error_helper";
 import toast_context from "../../context/Toast_context";
+import net_CTX from "../../context/internetConnectionCTX";
+
 const ImageUploader = ({
   Upload_image,
   delete_image,
@@ -39,6 +41,7 @@ const ImageUploader = ({
   const toastCTX = useContext(toast_context);
   const wrapperRef = useRef(null);
   const token = jsCookie.get("token");
+  const netCTX = useContext(net_CTX);
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -93,17 +96,20 @@ const ImageUploader = ({
       // sent the image id to parent component
       Upload_image(image_upload_res.id);
     } catch (error) {
-      toastCTX.toast_option({
-        message: error.response
-          ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: "خطایی در آپلود تصویر رخ داده است.",
-            })
-          : error,
-        color: "#d83030",
-        time: 0,
-        autoClose: false,
-      });
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      } else
+        toastCTX.toast_option({
+          message: error.response
+            ? ErrorHelper({
+                errorObj: error.response,
+                _400Message: "خطایی در آپلود تصویر رخ داده است.",
+              })
+            : error,
+          color: "#d83030",
+          time: 0,
+          autoClose: false,
+        });
     }
   };
 
@@ -130,8 +136,10 @@ const ImageUploader = ({
       const image = await getCroppedImg(currentImage, croppedAreaPixels, true);
       sendTheImage(image, URL.createObjectURL(image));
       setCroptStart(false);
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      if (error === 111) {
+        netCTX.toggleTheContainer(true);
+      }
     }
   }, [croppedAreaPixels]);
 

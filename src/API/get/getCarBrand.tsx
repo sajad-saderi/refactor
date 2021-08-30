@@ -21,11 +21,7 @@ export const REQUEST_GET_CAR_BRAND = () => {
       .catch((e) => {
         Error_middleware(e);
         reject(
-          e.response
-            ? e
-            : e.message === "Network Error"
-            ? "خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید."
-            : e.message
+          e.response ? e : e.message === "Network Error" ? 111 : e.message
         );
       });
   });
