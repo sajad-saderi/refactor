@@ -106,7 +106,7 @@ const ImageUploader = ({
                 _400Message: "خطایی در آپلود تصویر رخ داده است.",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

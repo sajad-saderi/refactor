@@ -93,7 +93,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 _400Message: "خطایی در دریافت لیست برند خودرو رخ داده است.",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });
@@ -120,7 +120,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 _400Message: "خطایی در دریافت لیست مدل خودرو رخ داده است.",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

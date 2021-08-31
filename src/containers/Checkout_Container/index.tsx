@@ -197,7 +197,7 @@ const Checkout_Container = ({
                 errorObj: error.response,
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });
@@ -249,7 +249,7 @@ const Checkout_Container = ({
                 errorObj: error.response,
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

@@ -531,7 +531,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   _400Message: "در ثبت اطلاعات خودرو خطایی رخ داده است.",
                 })
               : error,
-            color: "#d83030",
+            color: "#ed9026",
             time: 0,
             autoClose: false,
           });

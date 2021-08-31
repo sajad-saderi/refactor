@@ -202,7 +202,7 @@ const Complete_register_container = ({
                   _400Message: "خطایی در ثبت اطلاعات کاربر جدید رخ داده است.",
                 })
               : error,
-            color: "#d83030",
+            color: "#ed9026",
             time: 0,
             autoClose: false,
           });

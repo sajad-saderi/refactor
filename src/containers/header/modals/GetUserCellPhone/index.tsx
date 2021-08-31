@@ -107,7 +107,7 @@ const GetUserCellPhone = ({
                   _400Message: "در ورود با شماره همراه خطایی رخ داده است.",
                 })
               : error,
-            color: "#d83030",
+            color: "#ed9026",
             time: 0,
             autoClose: false,
           });

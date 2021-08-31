@@ -66,7 +66,7 @@ const Profile_container = ({ language }: IProfile_container) => {
                 _400Message: "خطا در دریافت اطلاعات کاربری.",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

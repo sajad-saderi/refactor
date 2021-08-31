@@ -91,7 +91,7 @@ const SucceedPayment = ({ language }) => {
                 _400Message: "خطایی در دریافت اطلاعات پرداخت رخ داده است.",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

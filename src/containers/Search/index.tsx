@@ -65,7 +65,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                 _400Message: "خطا در دریافت لیست شهر‌ها",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

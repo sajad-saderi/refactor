@@ -176,7 +176,7 @@ const Requests_page = ({ language }: IRequests_page) => {
                 _400Message: "در دریافت لیست سفارش‌ها خطایی رخ داده است.",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

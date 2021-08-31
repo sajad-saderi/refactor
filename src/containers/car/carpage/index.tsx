@@ -279,7 +279,7 @@ const CarPage = ({
         } else if (error.response.status === 400) {
           router.push("/404");
           errorMessage = "خودروی مورد نظر یافت نشد.";
-          color = "#d83030";
+          color = "#ed9026";
         }
       } else errorMessage = error;
       toastCTX.toast_option({
@@ -306,7 +306,7 @@ const CarPage = ({
                 _400Message: "خطا در دریافت لیست نظرات",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

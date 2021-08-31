@@ -142,7 +142,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 _400Message: "خطا در انجام عملیات بر روی سفارش اجاره",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

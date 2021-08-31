@@ -79,7 +79,7 @@ const Contract = ({ unique_id }: IContract) => {
                 _400Message: "خطایی در دریافت اطلاعات قرارداد رخ داده است",
               })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });

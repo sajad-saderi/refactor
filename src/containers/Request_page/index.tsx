@@ -70,7 +70,7 @@ const Request_page = ({ language }: IRequest_page) => {
           message: error.response
             ? ErrorHelper({ errorObj: error.response })
             : error,
-          color: "#d83030",
+          color: "#ed9026",
           time: 0,
           autoClose: false,
         });
