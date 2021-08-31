@@ -1155,6 +1155,16 @@ const CarPage = ({
                         {language.bodeh}
                       </span>
                     ) : null}
+                    {owner.owner_response_rate > 0 ? (
+                      <p className="size_14 margin_top_16 margin_bottom_16">
+                        به
+                        <strong>
+                          {" "}
+                          {owner.owner_response_rate}% درخواست‌ها{" "}
+                        </strong>
+                        پاسخ داده است.
+                      </p>
+                    ) : null}
                     {owner.owner_avg_response_time ? (
                       <p className="size_14 margin_top_16 margin_bottom_16">
                         {language.mamoolan}

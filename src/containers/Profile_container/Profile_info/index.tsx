@@ -130,6 +130,16 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                       </span>
                     ) : null}
 
+                    {data.owner_response_rate > 0 ? (
+                      <p className="size_14 margin_top_16 margin_bottom_16">
+                        به
+                        <strong>
+                          {" "}
+                          {data.owner_response_rate}% درخواست‌ها{" "}
+                        </strong>
+                        پاسخ داده است.
+                      </p>
+                    ) : null}
                     {data.owner_avg_response_time ? (
                       <p className="size_14 margin_top_16 margin_bottom_16">
                         {language.mamoolan}
