@@ -34,10 +34,10 @@ const guidePicture = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className='responsive static_pages minHeight'>
+      <section className="responsive static_pages minHeight">
         <h1>{language.h1}</h1>
         <p>{language.p}</p>
-        <h2>{language.h2_1}</h2>
+        <h2 id="guidePictureHowTakePicture">{language.h2_1}</h2>
         <ul>
           <li>{language.li_1}</li>
           <li>{language.li_2}</li>
@@ -48,7 +48,7 @@ const guidePicture = () => {
           <li>{language.li_7}</li>
           <li>{language.li_8}</li>
         </ul>
-        <h2>{language.h2_2}</h2>
+        <h2 id="guidePictureDontMakeMistake">{language.h2_2}</h2>
         <ul>
           <li>{language.li_9}</li>
           <li>{language.li_10}</li>

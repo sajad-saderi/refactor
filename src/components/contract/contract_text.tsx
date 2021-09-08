@@ -42,14 +42,15 @@ const Contract_text = ({ inline_style, html_ref, result }: IContract_text) => {
             : null
         }
       >
-        {result.rent_search_dump.with_driver &&
+        بدون راننده
+        {/* {result.rent_search_dump.with_driver &&
         result.rent_search_dump.without_driver
           ? ""
           : result.rent_search_dump.with_driver
           ? "با راننده"
           : result.rent_search_dump.without_driver
           ? "بدون راننده"
-          : null}
+          : null} */}
       </h2>
       <p
         id="contract_date"

@@ -1,0 +1,44 @@
+@import "../colors";
+@import "../units";
+
+.help_center {
+  text-align: justify;
+  margin-top: $padding_top;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 4px;
+  h1 {
+    font-size: 2.6rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+  h4 {
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+  p {
+    font-size: 1.4rem;
+    line-height: 2;
+  }
+  ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-right: 10px;
+    li {
+      font-size: 1.4rem;
+      line-height: 2;
+      margin-bottom: 8px;
+    }
+  }
+  a {
+    color: $blue;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 2;
+  }
+}

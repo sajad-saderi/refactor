@@ -34,9 +34,9 @@ const guideForRent = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className='responsive static_pages minHeight'>
+      <section className="responsive static_pages minHeight">
         <h1>{language.h1}</h1>
-        <h2>{language.h2_1}</h2>
+        <h2 id="guideForRentReserve">{language.h2_1}</h2>
         <h3>{language.h3_1}</h3>
         <ul>
           <li>{language.h3_1_li_1}</li>
@@ -53,8 +53,8 @@ const guideForRent = () => {
         <ul>
           <li>
             {language.h3_3_li_1_a_1}
-            <Link href='/insurance-policies' prefetch={false}>
-              <a href=''>{language.h3_3_li_1_insurance}</a>
+            <Link href="/insurance-policies" prefetch={false}>
+              <a>{language.h3_3_li_1_insurance}</a>
             </Link>
             {language.h3_3_li_1_a_2}
           </li>
@@ -75,7 +75,7 @@ const guideForRent = () => {
           <li>{language.h3_5_li_2}</li>
           <li>{language.h3_5_li_3}</li>
         </ul>
-        <h2>{language.h2_2}</h2>
+        <h2 id="guideForRentCarDelivery">{language.h2_2}</h2>
         <h3>{language.h3_6}</h3>
         <ul>
           <li>{language.h3_6_li_1}</li>
@@ -95,7 +95,7 @@ const guideForRent = () => {
           <li>{language.h3_7_li_4}</li>
           <li>{language.h3_7_li_5}</li>
         </ul>
-        <h2>{language.h2_3}</h2>
+        <h2 id="guideForRentTimeTravel">{language.h2_3}</h2>
         <h3>{language.h3_8}</h3>
         <ul>
           <li>{language.h3_8_li_1}</li>
@@ -104,7 +104,7 @@ const guideForRent = () => {
           <li>{language.h3_8_li_4}</li>
           <li>{language.h3_8_li_5}</li>
         </ul>
-        <h2>{language.h2_4}</h2>
+        <h2 id="guideForRentEndOfJourney">{language.h2_4}</h2>
         <h3>{language.h3_9}</h3>
         <ul>
           <li>{language.h3_9_li_1}</li>

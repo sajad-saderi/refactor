@@ -34,16 +34,16 @@ const guideRenter = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className='responsive static_pages minHeight'>
+      <section className="responsive static_pages minHeight">
         <h1>{language.h1}</h1>
-        <h2>{language.h2_1}</h2>
+        <h2 id="guideForHostBeforeRent">{language.h2_1}</h2>
         <ul>
           <li>{language.h2_1_li_1}</li>
           <li>{language.h2_1_li_2}</li>
           <li>{language.h2_1_li_3}</li>
           <li>{language.h2_1_li_4}</li>
         </ul>
-        <h2>{language.h2_2}</h2>
+        <h2 id="guideForHostAddCar">{language.h2_2}</h2>
         <ul>
           <li>{language.h2_2_li_1}</li>
           <li>{language.h2_2_li_2}</li>
@@ -71,21 +71,21 @@ const guideRenter = () => {
           <li>{language.h2_2_li_11}</li>
           <li>{language.h2_2_li_12}</li>
         </ul>
-        <h2>{language.h2_3}</h2>
-        <p className='TextIndenter'>{language.h2_3_p_1}</p>
-        <p className='TextIndenter'>{language.h2_3_p_2}</p>
-        <p className='TextIndenter'>{language.h2_3_p_3}</p>
-        <p className='TextIndenter'>{language.h2_3_p_4}</p>
-        <p className='TextIndenter'>
+        <h2 id="guideForHostCancelationPolicies">{language.h2_3}</h2>
+        <p className="TextIndenter">{language.h2_3_p_1}</p>
+        <p className="TextIndenter">{language.h2_3_p_2}</p>
+        <p className="TextIndenter">{language.h2_3_p_3}</p>
+        <p className="TextIndenter">{language.h2_3_p_4}</p>
+        <p className="TextIndenter">
           {language.h2_3_p_have_link_1}
           <u>
-            <Link href='/gps' prefetch={false}>
+            <Link href="/gps" prefetch={false}>
               <a>{language.h2_3_p_have_link_a}</a>
             </Link>
           </u>
           {language.h2_3_p_have_link_2}
         </p>
-        <h2>{language.h2_4}</h2>
+        <h2 id="guideForHostRequestManagment">{language.h2_4}</h2>
         <ul>
           <li>{language.h2_4_li_1}</li>
           <li>{language.h2_4_li_2}</li>
@@ -96,7 +96,7 @@ const guideRenter = () => {
           <li>{language.h2_4_li_7}</li>
           <li>{language.h2_4_li_8}</li>
         </ul>
-        <h2>{language.h2_5}</h2>
+        <h2 id="guideForHostDeliverCar">{language.h2_5}</h2>
         <ul>
           <li>{language.h2_5_li_1}</li>
           <li>{language.h2_5_li_2}</li>
@@ -105,7 +105,7 @@ const guideRenter = () => {
           <li>{language.h2_5_li_5}</li>
           <li>{language.h2_5_li_6}</li>
         </ul>
-        <h2>{language.h2_6}</h2>
+        <h2 id="guideForHostReturnCar">{language.h2_6}</h2>
         <ul>
           <li>{language.h2_6_li_1}</li>
           <li>{language.h2_6_li_2}</li>
