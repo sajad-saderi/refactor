@@ -2,6 +2,8 @@ import moment from "moment-jalaali";
 import { payBackInString } from "./date-range-creator";
 moment.loadPersian({ dialect: "persian-modern" });
 
+let startDate = null;
+let endDate = null;
 const UrlChecker = (props) => {
   let data = null;
   const {
@@ -20,15 +22,28 @@ const UrlChecker = (props) => {
     car_id,
     category_id,
   } = props;
-
+  if (localStorage["start"]) {
+    const storageStartDate = JSON.parse(localStorage["start"]);
+    const storageEndDate = JSON.parse(localStorage["end"]);
+    startDate = `${storageStartDate.year}/${storageStartDate.month}/${storageStartDate.day}`;
+    endDate = `${storageEndDate.year}/${storageEndDate.month}/${storageEndDate.day}`;
+  }
   data = {
     location_id: location_id ? +location_id : null,
-    location_n: location_name ? location_name : "tehran",
+    location_n: location_name
+      ? location_name
+      : location_id == 1
+      ? "tehran"
+      : "",
     start_date: start_date
       ? (start_date as string).replace(/-/g, "/")
+      : startDate
+      ? startDate
       : generate_dates().generate_start,
     end_date: end_date
       ? (end_date as string).replace(/-/g, "/")
+      : endDate
+      ? endDate
       : generate_dates().generate_end,
     price_order: price_order ? (price_order as string) : "-price",
     page: page ? +page : 1,

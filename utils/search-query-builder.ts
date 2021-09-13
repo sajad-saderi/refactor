@@ -22,7 +22,7 @@ const search_query_builder = ({
   if (result_key) {
     query = `result_key=${result_key}`;
   } else {
-    query = `location_id=${location_id ? location_id : 1}`;
+    query = `location_id=${location_id ? location_id : ""}`;
 
     if (start_date) {
       query += `&start_date=${start_date}&end_date=${end_date}`;

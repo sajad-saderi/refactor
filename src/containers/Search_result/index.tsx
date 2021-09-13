@@ -31,7 +31,7 @@ let JumpTo = null;
 
 let staticRoute = null;
 // default location is Tehran
-let Location: any = 1;
+let Location: any = null;
 let location_n = null;
 let Start_date = null;
 let End_date = null;
@@ -73,7 +73,7 @@ let filtersChecker = {
 // Set position
 let position = 0;
 
-const Search_result = ({ language }: ISearch_result) => {
+const Search_result = ({ language, revealRsearchbBox }: ISearch_result) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
@@ -110,7 +110,9 @@ const Search_result = ({ language }: ISearch_result) => {
       setCarLocationName(url_checked.location_n);
       location_n = url_checked.location_name;
     }
-    location_n = url_checked.location_name;
+    if (url_checked.location_name) {
+      location_n = url_checked.location_name;
+    }
     Start_date = url_checked.start_date;
     End_date = url_checked.end_date;
     o = url_checked.price_order;
@@ -175,14 +177,16 @@ const Search_result = ({ language }: ISearch_result) => {
         jsCookie.remove("JumpTo");
       }
     };
-
+    if (revealRsearchbBox) {
+      setShowSearch(true);
+    }
     // reset the data
     router.events.on("routeChangeStart", handleRouteChange);
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
       staticRoute = null;
       location_n = null;
-      Location = 1;
+      Location = null;
       Start_date = null;
       End_date = null;
       page = 1;
@@ -242,7 +246,7 @@ const Search_result = ({ language }: ISearch_result) => {
         });
       } else {
         searchQuery = search_query_builder({
-          location_id: Location,
+          location_id: Location ? Location : null,
           start_date: Start_date,
           end_date: End_date,
           price_order: o,
@@ -942,6 +946,7 @@ const Search_result = ({ language }: ISearch_result) => {
 
 interface ISearch_result {
   language: any;
+  revealRsearchbBox?: boolean;
 }
 
 export default Search_result;
