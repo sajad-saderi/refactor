@@ -103,7 +103,7 @@ const TellMe = () => {
           />
           {/* show error message */}
           {/* <span className="error_message">{error.message}</span> */}
-          <p className="p3">{`وقتی در ${locationName} فعال شدیم خبرتان می‌کنیم.`}</p>
+          <p className="p3">{`سپریس هنوز در ${locationName} فعال نشده است.`}</p>
           <Button
             class="Blue_BTN login_submit HEAP_ModalInformMeMyCity_Btn_Submit"
             value="ارسال کد ورود"

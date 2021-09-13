@@ -73,7 +73,11 @@ let filtersChecker = {
 // Set position
 let position = 0;
 
-const Search_result = ({ language, revealRsearchbBox }: ISearch_result) => {
+const Search_result = ({
+  language,
+  revealRsearchbBox,
+  showLocationTag,
+}: ISearch_result) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
   const [total_count, setTotal_count] = useState(0);
@@ -554,6 +558,27 @@ const Search_result = ({ language, revealRsearchbBox }: ISearch_result) => {
     // router.push(url, undefined, { shallow: true });
   };
 
+  const searchIgniteByClickOnCardTags = (tag) => {
+    if (tag.type === "location") {
+      setCarLocationName(tag.name);
+      clearReset("");
+      loadMoreCar = false;
+      filtersChecker.location = true;
+      Location = tag.value;
+      staticRoute = {
+        ...staticRoute,
+        location_id: tag.value,
+        location_name: tag.name,
+      };
+      UrlCreator({
+        query: staticRoute,
+        route: router.route,
+        cb: UrlUpdater,
+      });
+      initSearch();
+    }
+  };
+
   return (
     <article
       className="search_result_page_container"
@@ -912,6 +937,8 @@ const Search_result = ({ language, revealRsearchbBox }: ISearch_result) => {
         </filterContext.Provider>
         <SearchResultList
           result={result}
+          tagClick={searchIgniteByClickOnCardTags}
+          showLocation={showLocationTag}
           language={language}
           setFilterForSearch={(v) => {
             if (v.o) {
@@ -947,6 +974,7 @@ const Search_result = ({ language, revealRsearchbBox }: ISearch_result) => {
 interface ISearch_result {
   language: any;
   revealRsearchbBox?: boolean;
+  showLocationTag?: boolean;
 }
 
 export default Search_result;

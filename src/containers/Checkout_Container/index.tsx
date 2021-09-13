@@ -313,8 +313,13 @@ const Checkout_Container = ({
           <hr />
           <h2>{language.location}</h2>
           <p>{location.name.breadcrumb_fa}</p>
-          {location.parent_id === 1 && <p>{language.location_text}</p>}
-          {location.id === 1657 && <p>{language.location_text_karaj}</p>}
+          {location.parent_id === 1 ? (
+            <p>{language.location_text}</p>
+          ) : location.id === 1657 ? (
+            <p>{language.location_text_karaj}</p>
+          ) : (
+            "محل تحویل با هماهنگی شما و میزبان تعیین می‌شود."
+          )}
           {with_driver && (
             <>
               <hr />

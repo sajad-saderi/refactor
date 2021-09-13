@@ -833,7 +833,9 @@ const CarPage = ({
                     <strong>{language.you_location}</strong>
                     {language.mishavad}
                   </p>
-                ) : null}
+                ) : (
+                  "محل تحویل با هماهنگی شما و میزبان تعیین می‌شود."
+                )}
               </div>
               <hr />
               <h2>

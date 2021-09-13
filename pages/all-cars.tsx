@@ -37,7 +37,11 @@ const AllCars = ({ page_title }) => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <Search_result language={language} revealRsearchbBox={true} />
+      <Search_result
+        language={language}
+        revealRsearchbBox={true}
+        showLocationTag={true}
+      />
     </Layout>
   );
 };
