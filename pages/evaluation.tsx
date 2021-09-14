@@ -14,6 +14,9 @@ const evaluation = () => {
       pageURL: window.location.href,
       pagePath: "/evaluation",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);
@@ -33,7 +36,7 @@ const evaluation = () => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <article className='responsive static_pages minHeight'>
+      <article className="responsive static_pages minHeight">
         <h1>{language.h1}</h1>
         <p>{language.p_1}</p>
         <p>{language.p_2}</p>

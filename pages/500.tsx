@@ -16,6 +16,9 @@ const page_500 = () => {
       pageURL: window.location.href,
       pagePath: "/500",
       pageTitle: language.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);
@@ -34,15 +37,15 @@ const page_500 = () => {
           cardType: language.cardType,
         }}
       />
-      <article className='minHeight _500container'>
-        <img src={_500} alt='500' className='_404PageImage' />
+      <article className="minHeight _500container">
+        <img src={_500} alt="500" className="_404PageImage" />
         <span>{language.span}</span>
         <p>{language.p_1}</p>
         <p>
           {language.dial} <a href={`tel:${language.call}`}>{language.call}</a>
         </p>
-        <Link href='/' prefetch={false}>
-          <a className='_404PageAnchor Blue_BTN'>{language.return}</a>
+        <Link href="/" prefetch={false}>
+          <a className="_404PageAnchor Blue_BTN">{language.return}</a>
         </Link>
       </article>
     </Layout>

@@ -44,6 +44,9 @@ const Profile_container = ({ language }: IProfile_container) => {
             ? user_cars_info.company_name
             : user_cars_info.name
         }${language.next_seo.title.otoli}`,
+        userLocationInformation: JSON.parse(
+          localStorage["userLocationInformation"]
+        ),
       });
       if (user_id == user_cars_info.id) {
         setIs_mine(true);

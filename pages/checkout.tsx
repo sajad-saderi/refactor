@@ -21,6 +21,9 @@ const Checkout = ({ order_information, expired }) => {
       pageTitle: order_information
         ? `${language.next_seo.title.start}${order_information.car.brand.name.fa} ${order_information.car.name.fa}${language.next_seo.title.otoli}`
         : "checkout",
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
 
     // logPageView();

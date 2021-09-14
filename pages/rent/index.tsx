@@ -40,6 +40,9 @@ const Rent = () => {
       pageURL: window.location.href,
       pagePath: "/rent",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
     fetchData();

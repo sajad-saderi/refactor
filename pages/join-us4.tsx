@@ -23,6 +23,9 @@ const JoinUs1 = ({ BotScore }) => {
       pageURL: window.location.href,
       pagePath: "/join-us4",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);
@@ -46,18 +49,18 @@ const JoinUs1 = ({ BotScore }) => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className='join_us'>
-        <section className='banner'>
+      <article className="join_us">
+        <section className="banner">
           <h1>{language.h1}</h1>
           <h2>{language.h2} </h2>
-          <div className='responsive calculator_container'>
+          <div className="responsive calculator_container">
             {/* You can set the Button text when you call the Calculator component */}
             <Calculator
               language={language.calculator}
               AbText={language.calculator_text}
             />
           </div>
-          <p className='temporary_score'>{Score}</p>
+          <p className="temporary_score">{Score}</p>
         </section>
         <Join_us_content
           language={language.join_us_content}

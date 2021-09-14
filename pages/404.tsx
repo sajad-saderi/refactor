@@ -16,6 +16,9 @@ const page_404 = () => {
       pageURL: window.location.href,
       pagePath: "/404",
       pageTitle: language.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);
@@ -34,10 +37,10 @@ const page_404 = () => {
           cardType: language.cardType,
         }}
       />
-      <article className='minHeight'>
-        <img src={_404} alt='404' className='_404PageImage' />
-        <Link href='/' prefetch={false}>
-          <a className='_404PageAnchor Blue_BTN'>{language.return_to_home}</a>
+      <article className="minHeight">
+        <img src={_404} alt="404" className="_404PageImage" />
+        <Link href="/" prefetch={false}>
+          <a className="_404PageAnchor Blue_BTN">{language.return_to_home}</a>
         </Link>
       </article>
     </Layout>

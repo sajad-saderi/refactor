@@ -15,6 +15,9 @@ const guideForRent = () => {
       pageURL: window.location.href,
       pagePath: "/guide-for-rent",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);

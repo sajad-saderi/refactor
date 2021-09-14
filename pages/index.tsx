@@ -21,6 +21,9 @@ const HomePage = () => {
       pageURL: window.location.href,
       pagePath: "/",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     const guard = guard_controller();
     if (guard !== "auth") {

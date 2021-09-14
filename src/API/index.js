@@ -25,6 +25,7 @@ import { REQUEST_GET_FAQ } from "./get/getFaq";
 import { REQUEST_GET_URLS_FOR_SITE_MAP } from "./get/getSiteMapLinks";
 import { REQUEST_GET_LANDING_PAGE } from "./get/getLanding";
 import { REQUEST_GET_CAR_PRICE_ESTIMATION } from "./get/getPriceEstimation";
+import { GET_USER_IP } from "./get/getUserIp";
 
 // SET
 import { REQUEST_REMOVE_CAR_MEDIA } from "./set/removeCarMedia";
@@ -82,4 +83,5 @@ export {
   REQUEST_SET_CAR_AVAILABILITY,
   REQUEST_SET_CAR_PARTIAL,
   REQUEST_GET_CAR_REVIEW,
+  GET_USER_IP,
 };

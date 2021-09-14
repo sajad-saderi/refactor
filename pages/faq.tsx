@@ -22,6 +22,9 @@ const FAQ = () => {
       pageURL: window.location.href,
       pagePath: "/faq",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
     fetchAPI();

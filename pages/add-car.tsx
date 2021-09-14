@@ -18,6 +18,9 @@ const AddCar = ({ edit }) => {
         pageURL: window.location.href,
         pagePath: "/add-car",
         pageTitle: edit ? language.next_seo.editTitle : language.next_seo.title,
+        userLocationInformation: JSON.parse(
+          localStorage["userLocationInformation"]
+        ),
       });
     } else {
       Router.push("/login");

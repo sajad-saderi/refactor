@@ -7,13 +7,14 @@ import * as Sentry from "@sentry/browser";
 // } from "react-google-recaptcha-v3";
 // import Axios from "axios";
 // import { initGA } from "../utils/analytics";
-import { REQUEST_GET_USER_INFO } from "../src/API";
+import { REQUEST_GET_USER_INFO, GET_USER_IP } from "../src/API";
 import jsCookie from "js-cookie";
 import user_context from "../src/context/User_info";
 import logo from "../public/android-icon-48x48.png";
 import { IoIosClose } from "react-icons/io";
 import "../src/styles/main.scss";
 import { InternetConnectionContextProvider } from "../src/context/internetConnectionCTX";
+import axios from "axios";
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -173,6 +174,8 @@ class App_Otoli extends App {
       return false;
     });
 
+    this.getUserIP();
+
     this.setState({
       backgroundColor: this.state.colorArray[
         Math.floor(Math.random() * this.state.colorArray.length)
@@ -188,6 +191,20 @@ class App_Otoli extends App {
         eventAction,
         eventLabel,
       });
+    }
+  };
+
+  getUserIP = async () => {
+    try {
+      let userIp: any = await GET_USER_IP();
+      const userLocation = await axios.get(
+        `http://ip-api.com/json/${userIp.IPv4}`
+      );
+      localStorage["userLocationInformation"] = JSON.stringify(
+        userLocation.data
+      );
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -207,7 +224,6 @@ class App_Otoli extends App {
             eventValue: "",
           });
         } else {
-          console.log("User dismissed the install prompt");
           window["dataLayer"].push({
             event: "GAEvent",
             eventCategory: "pwa",

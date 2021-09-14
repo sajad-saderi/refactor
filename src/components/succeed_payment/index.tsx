@@ -30,6 +30,9 @@ const SucceedPayment = ({ language }) => {
       pageURL: window.location.href,
       pagePath: "/payment-success",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
 

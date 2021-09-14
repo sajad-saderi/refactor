@@ -18,6 +18,9 @@ const SetTimeAndPrice = () => {
       pageURL: window.location.href,
       pagePath: "/set-car-timing",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);

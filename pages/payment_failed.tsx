@@ -19,6 +19,9 @@ const Failed_payment = () => {
       pageURL: window.location.href,
       pagePath: "/payment-failed",
       pageTitle: language.next_seo.title,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);
@@ -37,13 +40,13 @@ const Failed_payment = () => {
           cardType: language.next_seo.cardType,
         }}
       />
-      <article className='responsive minHeight failed_payment'>
-        <section className='alarm_container'>
-          <IoIosCloseCircleOutline size='10rem' color='a3678b' />
+      <article className="responsive minHeight failed_payment">
+        <section className="alarm_container">
+          <IoIosCloseCircleOutline size="10rem" color="a3678b" />
           <p>{language.cancel}</p>
         </section>
         <Button
-          class='Blue_BTN local_style'
+          class="Blue_BTN local_style"
           click={() => router.push("/")}
           value={language.main_page}
           loading={false}

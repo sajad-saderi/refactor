@@ -17,6 +17,9 @@ const SearchResult = ({ page_title }) => {
       pageURL: window.location.href,
       pagePath: "/search-result",
       pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
+      userLocationInformation: JSON.parse(
+        localStorage["userLocationInformation"]
+      ),
     });
     // logPageView();
   }, []);
