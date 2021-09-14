@@ -13,9 +13,6 @@ const car_insurance_page = () => {
       pageURL: window.location.href,
       pagePath: "/car-insurance",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

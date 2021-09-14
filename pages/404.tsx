@@ -16,9 +16,6 @@ const page_404 = () => {
       pageURL: window.location.href,
       pagePath: "/404",
       pageTitle: language.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

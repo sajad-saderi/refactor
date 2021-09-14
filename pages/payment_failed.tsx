@@ -19,9 +19,6 @@ const Failed_payment = () => {
       pageURL: window.location.href,
       pagePath: "/payment-failed",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

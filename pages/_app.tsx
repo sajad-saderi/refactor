@@ -200,9 +200,11 @@ class App_Otoli extends App {
       const userLocation = await axios.get(
         `http://ip-api.com/json/${userIp.IPv4}`
       );
-      localStorage["userLocationInformation"] = JSON.stringify(
-        userLocation.data
-      );
+
+      window["dataLayer"].push({
+        event: "UserLocation",
+        ...userLocation.data,
+      });
     } catch (error) {
       console.log(error);
     }

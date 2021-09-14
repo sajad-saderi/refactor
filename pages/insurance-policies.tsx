@@ -14,9 +14,6 @@ const InsurancePolicies = () => {
       pageURL: window.location.href,
       pagePath: "/insurance-policies",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

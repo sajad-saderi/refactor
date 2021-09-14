@@ -16,9 +16,6 @@ const page_500 = () => {
       pageURL: window.location.href,
       pagePath: "/500",
       pageTitle: language.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

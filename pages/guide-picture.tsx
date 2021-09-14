@@ -15,9 +15,6 @@ const guidePicture = () => {
       pageURL: window.location.href,
       pagePath: "/guide-picture",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

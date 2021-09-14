@@ -16,9 +16,6 @@ const Request = () => {
       pageURL: window.location.href,
       pagePath: "/request",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

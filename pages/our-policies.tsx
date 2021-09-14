@@ -13,9 +13,6 @@ const OtoliPolicies = () => {
       pageURL: window.location.href,
       pagePath: "/our-policies",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

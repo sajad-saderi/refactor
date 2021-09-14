@@ -28,9 +28,6 @@ const Rent_dynamic = ({ Landing_page, content }) => {
         pageURL: window.location.href,
         pagePath: `/rent/${Landing_page.unique_id}`,
         pageTitle: Landing_page.meta_title,
-        userLocationInformation: JSON.parse(
-          localStorage["userLocationInformation"]
-        ),
       });
       // logPageView();
     }

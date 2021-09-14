@@ -14,9 +14,6 @@ const assurance = () => {
       pageURL: window.location.href,
       pagePath: "/assurance",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

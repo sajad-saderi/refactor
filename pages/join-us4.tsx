@@ -23,9 +23,6 @@ const JoinUs1 = ({ BotScore }) => {
       pageURL: window.location.href,
       pagePath: "/join-us4",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

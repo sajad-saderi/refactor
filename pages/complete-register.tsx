@@ -18,9 +18,6 @@ const CompleteRegister = () => {
       pageURL: window.location.href,
       pagePath: "/complete-register",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

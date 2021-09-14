@@ -20,9 +20,6 @@ const Site_map = () => {
       pageURL: window.location.href,
       pagePath: "/site-map",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
     fetchAPIs();

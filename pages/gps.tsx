@@ -14,9 +14,6 @@ const gps = () => {
       pageURL: window.location.href,
       pagePath: "/gps",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

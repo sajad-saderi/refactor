@@ -14,9 +14,6 @@ const AboutUs = () => {
       pageURL: window.location.href,
       pagePath: "/sepris",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

@@ -36,9 +36,6 @@ const LoginPage = () => {
       pageURL: window.location.href,
       pagePath: "/login",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
 
     if (window["auth"]) {

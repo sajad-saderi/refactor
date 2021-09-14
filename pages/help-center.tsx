@@ -16,9 +16,6 @@ const HelpCenter = () => {
       pageURL: window.location.href,
       pagePath: "/help-center",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);

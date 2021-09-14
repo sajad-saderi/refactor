@@ -14,9 +14,6 @@ const evaluation = () => {
       pageURL: window.location.href,
       pagePath: "/evaluation",
       pageTitle: language.next_seo.title,
-      userLocationInformation: JSON.parse(
-        localStorage["userLocationInformation"]
-      ),
     });
     // logPageView();
   }, []);
