@@ -2,7 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import ReactDOM from "react-dom";
 import CountDown from "../countDown";
-import { IoIosWarning, IoMdRefresh } from "react-icons/io";
+import { IoMdRefresh } from "react-icons/io";
+import Icon from "../../../utils/Icon";
 import toast_context from "../../context/Toast_context";
 
 const InternetConnection = () => {
@@ -38,22 +39,22 @@ const InternetConnection = () => {
 
   return ReactDOM.createPortal(
     <div className="internet-connection">
-      <p>
-        <IoIosWarning size="2rem" color="" />
-        دستگاه شما به اینترنت متصل نیست.
+      <Icon name="warning" />
+      <div>
+        <p>دستگاه شما به اینترنت متصل نیست.</p>
+        {startTimer ? (
+          <p className="automatic-retry">
+            بررسی خودکار اتصال به شبکه تا{" "}
+            {<CountDown time={time} Done={checkTheConnection} />} ثانیه دیگر.
+          </p>
+        ) : (
+          <p className="automatic-retry">بررسی اتصال دستگاه به اینترنت...</p>
+        )}
+      </div>
+      <p className="retry" onClick={checkTheConnection}>
+        <IoMdRefresh size="2rem" color="" />
+        بررسی مجدد
       </p>
-      {startTimer ? (
-        <p className="automatic-retry">
-          بررسی خودکار اتصال به شبکه تا{" "}
-          {<CountDown time={time} Done={checkTheConnection} />} ثانیه دیگر{" "}
-        </p>
-      ) : null}
-      {time > 5 && (
-        <p className="retry" onClick={checkTheConnection}>
-          <IoMdRefresh size="2rem" color="" />
-          بررسی مجدد
-        </p>
-      )}
     </div>,
     document.getElementById("portal_notification")
   );
