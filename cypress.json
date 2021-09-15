@@ -1,7 +1,7 @@
 {
   "env": {
+    "DEV_HOME": "https://refactor-l5x6qvxjs-doctor-strange.vercel.app/",
     "CORE": "https://core.sepris.com/core/",
-    "DEV_HOME": "https://refactor-qv1fq8j88-doctor-strange.vercel.app/",
     "PRO_HOME": "http://sepris.com/",
     "CELL_A": "09000000000",
     "CELL_B": "09000000001"

@@ -44,18 +44,18 @@ const SearchResult = ({ page_title }) => {
 
 export async function getServerSideProps(props) {
   const page_title = {
-    param_location_name: null,
+    // param_location_name: null,
     param_start_date: null,
     param_end_date: null,
   };
-  if (Object.keys(props.query).length !== 0) {
+  if (Object.keys(props.query).length !== 0 && page_title.param_start_date) {
     const { location_name, start_date, end_date } = props.query;
-    page_title.param_location_name = location_name;
+    // page_title.param_location_name = location_name;
     page_title.param_start_date = start_date;
     page_title.param_end_date = end_date;
   } else {
     const { start_date, end_date } = payBackInString(6, 3);
-    page_title.param_location_name = "تهران";
+    // page_title.param_location_name = "تهران";
     page_title.param_start_date = start_date;
     page_title.param_end_date = end_date;
   }

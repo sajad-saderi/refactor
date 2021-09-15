@@ -133,7 +133,7 @@
             .text_input {
               margin: 0rem auto;
               &::placeholder {
-                color: $gray;
+                color: $light_grey;
               }
               &:focus {
                 &::placeholder {
@@ -302,7 +302,7 @@
                 margin: 0;
                 padding: 0.7rem;
                 &::placeholder {
-                  color: $gray;
+                  color: $light_grey;
                 }
                 &:focus {
                   &::placeholder {
@@ -332,7 +332,7 @@
         box-shadow: 0 0 0 0 transparent inset;
         box-sizing: border-box;
         &::placeholder {
-          color: $gray;
+          color: $light_grey;
         }
         &:focus {
           background: #fff;

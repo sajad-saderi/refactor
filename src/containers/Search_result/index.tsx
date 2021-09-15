@@ -113,6 +113,8 @@ const Search_result = ({
       filtersChecker.location = true;
       setCarLocationName(url_checked.location_n);
       location_n = url_checked.location_name;
+    } else {
+      setShowSearch(true);
     }
     if (url_checked.location_name) {
       location_n = url_checked.location_name;
@@ -604,7 +606,7 @@ const Search_result = ({
                   }${result[0].start_date.slice(5)}${
                     language.count_bar_ta
                   }${result[0].end_date.slice(5)}`}{" "}
-                  در {carLocationName}
+                  {carLocationName && `در ${carLocationName}`}
                 </p>
               ) : null}
               <p className="change_search_btn">
@@ -938,7 +940,9 @@ const Search_result = ({
         <SearchResultList
           result={result}
           tagClick={searchIgniteByClickOnCardTags}
-          showLocation={showLocationTag}
+          showLocation={
+            showLocationTag ? showLocationTag : Location ? false : true
+          }
           language={language}
           setFilterForSearch={(v) => {
             if (v.o) {
