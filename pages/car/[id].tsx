@@ -44,6 +44,9 @@ const Car = ({
                   car_Information.owner.last_name
             } - ${car_Information.car.name.fa}${language.next_seo.title.otoli}`
           : `${owner_name} - ${car_name}${language.next_seo.title.otoli}`,
+        searchedLocation: localStorage["searchedLocation"]
+          ? localStorage["searchedLocation"]
+          : "",
       });
     }
     // logPageView();

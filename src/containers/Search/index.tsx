@@ -49,6 +49,28 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const router = useRouter();
   const netCTX = useContext(net_CTX);
 
+  useEffect(() => {
+    if (localStorage["User_Location"]) {
+      let location_storage = JSON.parse(localStorage["User_Location"]);
+      if (
+        location_storage.value == 1 ||
+        location_storage.value == 2 ||
+        location_storage.value !== 3 ||
+        location_storage.value == 1657 ||
+        location_storage.value !== 1656 ||
+        location_storage.value !== 1660 ||
+        location_storage.value !== 1690 ||
+        location_storage.value !== 1655 ||
+        location_storage.value !== 1685
+      ) {
+        setLocationId(location_storage.value);
+        setLocationName(location_storage.text);
+      }
+    }
+    get_car_location();
+    setDateFromStorage();
+  }, []);
+
   // get a list of cities
   const get_car_location = async () => {
     try {
@@ -71,28 +93,6 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         });
     }
   };
-
-  useEffect(() => {
-    if (localStorage["User_Location"]) {
-      let location_storage = JSON.parse(localStorage["User_Location"]);
-      if (
-        location_storage.value == 1 ||
-        location_storage.value == 2 ||
-        location_storage.value !== 3 ||
-        location_storage.value == 1657 ||
-        location_storage.value !== 1656 ||
-        location_storage.value !== 1660 ||
-        location_storage.value !== 1690 ||
-        location_storage.value !== 1655 ||
-        location_storage.value !== 1685
-      ) {
-        setLocationId(location_storage.value);
-        setLocationName(location_storage.text);
-      }
-    }
-    get_car_location();
-    setDateFromStorage();
-  }, []);
 
   // set the start and end date from storage if there are there
   const setDateFromStorage = () => {
@@ -149,6 +149,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     e.preventDefault();
     if (dayRange.from && dayRange.to) {
       // if we are on dynamic page don't change the route
+      localStorage["searchedLocation"] = LocationName;
       if (dynamic) {
         searchSubmit({
           location_id: LocationId,
