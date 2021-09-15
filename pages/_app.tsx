@@ -174,7 +174,7 @@ class App_Otoli extends App {
       return false;
     });
 
-    this.getUserIP();
+    // this.getUserIP();
 
     this.setState({
       backgroundColor: this.state.colorArray[
@@ -194,21 +194,21 @@ class App_Otoli extends App {
     }
   };
 
-  getUserIP = async () => {
-    try {
-      let userIp: any = await GET_USER_IP();
-      const userLocation = await axios.get(
-        `http://ip-api.com/json/${userIp.IPv4}`
-      );
+  // getUserIP = async () => {
+  //   try {
+  //     let userIp: any = await GET_USER_IP();
+  //     const userLocation = await axios.get(
+  //       `http://ip-api.com/json/${userIp.IPv4}`
+  //     );
 
-      window["dataLayer"].push({
-        event: "UserLocation",
-        ...userLocation.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     window["dataLayer"].push({
+  //       event: "UserLocation",
+  //       ...userLocation.data,
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   customPwaPrompt = () => {
     if (deferredPrompt) {
