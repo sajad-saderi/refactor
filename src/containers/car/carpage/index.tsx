@@ -250,19 +250,21 @@ const CarPage = ({
       const res: any = await REQUEST_GET_RENTAL_CAR(localData);
       set_CarInformation(res);
       setShowPriceLoading(false);
-      setDayRange({
-        from: {
-          year: +res.start_date.split("/")[0],
-          month: +res.start_date.split("/")[1],
-          day: +res.start_date.split("/")[2],
-        },
-        to: {
-          year: +res.end_date.split("/")[0],
-          month: +res.end_date.split("/")[1],
-          day: +res.end_date.split("/")[2],
-        },
-      });
-      setShowCalender(true);
+      if (res.start_date) {
+        setDayRange({
+          from: {
+            year: +res.start_date.split("/")[0],
+            month: +res.start_date.split("/")[1],
+            day: +res.start_date.split("/")[2],
+          },
+          to: {
+            year: +res.end_date.split("/")[0],
+            month: +res.end_date.split("/")[1],
+            day: +res.end_date.split("/")[2],
+          },
+        });
+        setShowCalender(true);
+      }
       get_reviews();
 
       // setCalenderClick(false);
