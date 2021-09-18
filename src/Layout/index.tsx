@@ -128,14 +128,14 @@ const Layout = (props: ILayout) => {
     } else {
       setToastData(data);
       setToast(true);
-      localStorage["TOAST"] = JSON.stringify({ ...data });
+      sessionStorage["TOAST"] = JSON.stringify({ ...data });
     }
   };
 
   const checkToast = () => {
-    if (localStorage["TOAST"]) {
+    if (sessionStorage["TOAST"]) {
       setToast(true);
-      let data = JSON.parse(localStorage["TOAST"]);
+      let data = JSON.parse(sessionStorage["TOAST"]);
       setToastData(data);
     }
   };
@@ -241,7 +241,7 @@ const Layout = (props: ILayout) => {
           <Toast
             message={toastData.message}
             closeHandler={() => {
-              if (localStorage["TOAST"]) localStorage.removeItem("TOAST");
+              if (sessionStorage["TOAST"]) sessionStorage.removeItem("TOAST");
               setToast(false);
             }}
             time={toastData.time}

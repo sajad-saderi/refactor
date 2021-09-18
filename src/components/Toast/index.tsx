@@ -33,7 +33,11 @@ const Toast = (props: IToast) => {
           onClick={() => props.closeHandler()}
         />
         {/* message section */}
-        <p className="message">{props.message}</p>
+        <p className="message">
+          {typeof props.message !== "object"
+            ? props.message
+            : "خطایی رخ داده است."}
+        </p>
         {/* time bar */}
         {props.time > 0 && (
           <span

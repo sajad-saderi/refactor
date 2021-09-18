@@ -247,6 +247,10 @@ const Checkout_Container = ({
           message: error.response
             ? ErrorHelper({
                 errorObj: error.response,
+                _400Message:
+                  error.response.data.error === "DUPLICATE_RENT_ORDER"
+                    ? error.response.data.message
+                    : null,
               })
             : error,
           color: "#ed9026",
