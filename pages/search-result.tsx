@@ -9,17 +9,23 @@ import language from "../public/languages/fa/searchresult.json";
 // import { logPageView } from "../utils/analytics";
 import { payBackInString } from "../utils/date-range-creator";
 import Search_result from "../src/containers/Search_result";
+import { useRouter } from "next/router";
 
 const SearchResult = ({ page_title }) => {
+  const router = useRouter();
   useEffect(() => {
+    const searchedLocation = localStorage["searchedLocation"]
+      ? localStorage["searchedLocation"]
+      : router.query
+      ? router.query.location_name
+      : "";
+
     window["dataLayer"].push({
       event: "page_view",
       pageURL: window.location.href,
       pagePath: "/search-result",
       pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
-      searchedLocation: localStorage["searchedLocation"]
-        ? localStorage["searchedLocation"]
-        : "",
+      searchedLocation,
     });
     // logPageView();
   }, []);
