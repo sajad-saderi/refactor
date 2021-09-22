@@ -16,9 +16,9 @@ const SearchResult = ({ page_title }) => {
   useEffect(() => {
     const searchedLocation = localStorage["searchedLocation"]
       ? localStorage["searchedLocation"]
-      : router.query
+      : router.query?.location_name
       ? router.query.location_name
-      : "";
+      : "all";
 
     window["dataLayer"].push({
       event: "page_view",
