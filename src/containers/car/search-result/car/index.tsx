@@ -26,6 +26,8 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     has_media,
     location,
     owner,
+    start_date,
+    end_date,
   } = data;
 
   let img = has_media ? media_set[0].thumbnail_url : carImage;
@@ -64,7 +66,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
       setH3Width(twoThirdsOfTheContainerWidth);
   }, []);
   return (
-    <div className='carCart HEAP_SearchResult_Card_Car' ref={cardRef}>
+    <div className="carCart HEAP_SearchResult_Card_Car" ref={cardRef}>
       <Link
         href={{
           pathname: "/car/[id]",
@@ -73,26 +75,28 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
             search_id: search_id,
             owner_name,
             car_name: title,
+            start_date,
+            end_date,
           },
         }}
-        as={`/car/${id}?search_id=${search_id}&owner_name=${owner_name}&car_name=${title}`}
+        as={`/car/${id}?search_id=${search_id}&owner_name=${owner_name}&car_name=${title}&start_date=${start_date}&end_date=${end_date}`}
         prefetch={false}
       >
         <a className={`CAR_CART_${title}`}>
-          <div className='card_wrapper'>
+          <div className="card_wrapper">
             <figure
               style={{
                 backgroundImage: `url(${img})`,
               }}
             >
               {total_discount_percent > 0 && (
-                <span className='discount_badge'>
+                <span className="discount_badge">
                   {total_discount_percent}
                   {language.search_result_section.car.discount}
                 </span>
               )}
               {is_promoted && (
-                <span className='Special'>
+                <span className="Special">
                   {language.search_result_section.car.special}
                 </span>
               )}
@@ -120,12 +124,12 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
               alt={language.search_result_section.car.default_image}
             />
           )} */}
-              <div className='read_more'>
+              <div className="read_more">
                 <span>{language.search_result_section.car.show_details}</span>
               </div>
             </figure>
-            <div className='info_box'>
-              <div className='car_brand'>
+            <div className="info_box">
+              <div className="car_brand">
                 <h3
                   ref={h3Ref}
                   style={{
@@ -136,14 +140,14 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                 </h3>
                 <p>{year.name.fa}</p>
               </div>
-              <div className='price'>
-                <p className='Price_number'>{price}</p>
+              <div className="price">
+                <p className="Price_number">{price}</p>
                 <p>{`${unit}${language.search_result_section.car.toman_per_day}`}</p>
               </div>
-              <ul className='tags_container'>
+              <ul className="tags_container">
                 {deliver_at_renters_place && (
                   <li>
-                    <span className='tags'>
+                    <span className="tags">
                       {language.search_result_section.car.delivar_at_your_palce}
                     </span>
                   </li>
@@ -157,14 +161,14 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                 )} */}
                 {with_driver && (
                   <li>
-                    <span className='tags'>
+                    <span className="tags">
                       {language.search_result_section.car.with_driver}
                     </span>
                   </li>
                 )}
                 {without_driver && (
                   <li>
-                    <span className='tags'>
+                    <span className="tags">
                       {language.search_result_section.car.without_driver}
                     </span>
                   </li>
@@ -181,7 +185,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                       });
                     }}
                   >
-                    <span className='tags location_tag'>
+                    <span className="tags location_tag">
                       {location.parent_id === 1 ? "تهران" : location.name.fa}
                     </span>
                   </li>
