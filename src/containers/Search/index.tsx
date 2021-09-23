@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 
 import modal_context from "../../context/Modal_context";
 import ErrorHelper from "../../../utils/error_helper";
+import { activeCities } from "../../helpers/activeCities";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -233,18 +234,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             }
             Select={(i) => {
               localStorage["User_Location"] = JSON.stringify(i);
-              if (
-                i.value !== 1 &&
-                i.value !== 2 &&
-                i.value !== 3 &&
-                i.value !== 1657 &&
-                i.value !== 1656 &&
-                i.value !== 1660 &&
-                i.value !== 1690 &&
-                i.value !== 1655 &&
-                i.value !== 1685
-              ) {
-                // setLocationId(i.key);
+              if (activeCities(i.value)) {
                 MODAL_CONTEXT.modalHandler("TellMe");
               } else {
                 setLocationId(i.value);
