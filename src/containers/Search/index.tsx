@@ -167,7 +167,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       localStorage["end"] = JSON.stringify(dayRange.to);
       setLoading(true);
       router.push(
-        `/search-result?location_id=${LocationId}&location_name=${LocationName}&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15`
+        `/search-result?location_id=${LocationId}&location_name=${LocationName}&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15&without_driver=1`
       );
     } else if (!dayRange.from) {
       setFromError({ status: true, message: language.search.error_start_date });

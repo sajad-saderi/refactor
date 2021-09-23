@@ -180,12 +180,15 @@ const Landing_page_container = ({
       filtersChecker.deliver_at_renters_place = true;
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
-    if (router.query.with_driver === "1") {
+    if (router.query.with_driver == "1") {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
 
-    if (router.query.without_driver === "1") {
+    if (
+      router.query.without_driver == "1" ||
+      url_checked.without_driver == "1"
+    ) {
       filtersChecker.without_driver = true;
     }
     without_driver = +url_checked.without_driver;
@@ -230,11 +233,8 @@ const Landing_page_container = ({
     body_style_names = [];
     // setSliderRange([]);
     // const searchParamKey: any = Object.keys(landing_data.search_params);
-
-    if (
-      Object.keys(landing_data.search_params)[0] === "category_id" &&
-      !inactive_the_category
-    ) {
+    let activeParamsArray = Object.keys(landing_data.search_params);
+    if (activeParamsArray.includes("category_id") && !inactive_the_category) {
       filtersChecker.category_id = true;
     }
 

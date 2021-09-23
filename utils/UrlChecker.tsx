@@ -17,6 +17,7 @@ const UrlChecker = (props) => {
     max_price,
     deliver_at_renters_place,
     with_driver,
+    without_driver,
     body_style_id,
     brand_id,
     car_id,
@@ -53,6 +54,7 @@ const UrlChecker = (props) => {
       ? deliver_at_renters_place
       : "0",
     with_driver: with_driver ? with_driver : "0",
+    without_driver: without_driver ? without_driver : "0",
     category_id: category_id ? category_id : "",
     body_style_id:
       body_style_id && body_style_id !== "all" ? body_style_id : "",

@@ -28,6 +28,9 @@ const Rent_dynamic = ({ Landing_page, content }) => {
         pageURL: window.location.href,
         pagePath: `/rent/${Landing_page.unique_id}`,
         pageTitle: Landing_page.meta_title,
+        searchedLocation: Landing_page.search_params?.location_name
+          ? Landing_page.search_params?.location_name
+          : "all",
       });
       // logPageView();
     }
