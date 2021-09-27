@@ -4,13 +4,11 @@ import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
 const Search = dynamic(() => import("../src/containers/Search"));
-import Recommendation_section_owl from "../src/components/recommendation_section/recommendation_section_owl";
 // import Layout from "../src/Layout";
 // import Search from "../src/containers/Search";
-import insurance from "../public/image/SamanInsurance.png";
-import Link from "next/link";
 import language from "../public/languages/fa/homepage.json";
 import { guard_controller } from "../utils/guard_controller";
+import ContentHomePage from "../src/components/contentHomePage";
 // import { logPageView } from "../utils/analytics";
 
 const HomePage = () => {
@@ -55,76 +53,7 @@ const HomePage = () => {
             <Search language={language} />
           </div>
         </div>
-        <div className="responsive second_part_container">
-          <div className="insuranceBox">
-            <p>با همکاری بیمه‌های اتومبیل سامان</p>
-            <img
-              src={insurance}
-              alt="تصویر بیمه سامان"
-              width="115"
-              height="47"
-            />
-          </div>
-          <div className="second_container">
-            <div className="full_width">
-              <h2>{language.second_container_full_width_h2}</h2>
-              <p>{language.second_container_full_width_p}</p>
-            </div>
-            <h2>{language.second_container_h2_2}</h2>
-            <div className="three_columns">
-              <section>
-                <h3>{language.second_container_three_columns_2_h3_1}</h3>
-                <p>{language.second_container_three_columns_2_p_1}</p>
-              </section>
-              <section>
-                <h3>{language.second_container_three_columns_2_h3_2}</h3>
-                <p>{language.second_container_three_columns_2_p_2}</p>
-              </section>
-              <section>
-                <h3>{language.second_container_three_columns_2_h3_3}</h3>
-                <p>{language.second_container_three_columns_2_p_3}</p>
-              </section>
-            </div>
-            <Recommendation_section_owl />
-            <h2>{language.second_container_h2_1}</h2>
-            <div className="three_columns">
-              <section>
-                <h3>{language.second_container_three_columns_h3_1}</h3>
-                <p>{language.second_container_three_columns_p_1}</p>
-              </section>
-              <section>
-                <h3>{language.second_container_three_columns_h3_2}</h3>
-                <p>{language.second_container_three_columns_p_2}</p>
-              </section>
-              <section>
-                <h3>{language.second_container_three_columns_h3_3}</h3>
-                <p>{language.second_container_three_columns_p_3}</p>
-              </section>
-            </div>
-            <div
-              className="add_car_section"
-              onClickCapture={() => {
-                if (!authorize) {
-                  localStorage["last_location"] = "/add-car";
-                }
-              }}
-            >
-              {/* <Link href={authorize ? "/add-car" : "/login"}>
-              <a className='Blue_BTN add_car_custom'>
-                {language.second_container_add_car_section_a_1}
-              </a>
-            </Link> */}
-              <Link href="/join-us" prefetch={false}>
-                <a className="Blue_BTN add_car_custom">
-                  {language.second_container_add_car_section_a_2}
-                </a>
-              </Link>
-              <Link href="/add-car" prefetch={false}>
-                <a>{language.second_container_add_car_section_a_1}</a>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <ContentHomePage auth={authorize} />
       </article>
     </Layout>
   );

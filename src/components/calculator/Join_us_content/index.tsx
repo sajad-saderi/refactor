@@ -36,8 +36,8 @@ const Join_us_content = ({ AbText, language }: IJoin_us_content) => {
         <img src={insurance} alt={language.insuranceBox_image} />
       </div>
       <div className=" responsive second_container">
+        <h2>{language.full_width_h2}</h2>
         <div className="full_width">
-          <h2>{language.full_width_h2}</h2>
           <p>{language.full_width_p}</p>
         </div>
         <h2>{language.second_container_h2}</h2>

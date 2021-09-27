@@ -273,6 +273,9 @@ input {
   box-shadow: $box_shadow;
   padding: 0 !important;
   // SHARE STYLE
+  .marginFromTop {
+    margin-top: 4rem !important;
+  }
   .insuranceBox {
     p {
       font-weight: 500;
@@ -305,6 +308,7 @@ input {
       font-size: 2rem;
       padding-right: 1.6rem;
       padding-left: 1.6rem;
+      text-align: right;
     }
     h3 {
       font-size: 1.6rem;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../../src/Layout"));
@@ -17,8 +17,12 @@ import language from "../../public/languages/fa/dynamic_pages.json";
 // import("../../src/containers/LandignPageContainer")
 // );
 import Landing_page_container from "../../src/containers/LandignPageContainer";
+import { guard_controller } from "../../utils/guard_controller";
+import ContentHomePage from "../../src/components/contentHomePage";
 
 const Rent_dynamic = ({ Landing_page, content }) => {
+  const [authorize, set_authorize] = useState(true);
+
   useEffect(() => {
     if (!Landing_page) {
       Router.push("/404");
@@ -33,6 +37,10 @@ const Rent_dynamic = ({ Landing_page, content }) => {
           : "all",
       });
       // logPageView();
+    }
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      set_authorize(false);
     }
   }, []);
 
@@ -54,7 +62,9 @@ const Rent_dynamic = ({ Landing_page, content }) => {
         }}
       />
       <Landing_page_container landing_data={Landing_page} language={language} />
-      {content === "0" ? null : (
+      {content === "0" ? (
+        <ContentHomePage auth={authorize} differentStyle={true} />
+      ) : (
         <Landing_Page_Content data={Landing_page} language={language} />
       )}
     </Layout>
