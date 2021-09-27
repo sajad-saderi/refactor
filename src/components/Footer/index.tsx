@@ -53,106 +53,112 @@ const Footer = (props: IFooter) => {
   };
 
   return (
-    <footer data-test-id='footer' className={hide ? "hide_footer" : null}>
+    <footer data-test-id="footer" className={hide ? "hide_footer" : null}>
       {activeToTop ? (
         <div
           className={["toTop", showTop ? "showTop" : null].join(" ")}
           onClick={toTop}
         >
-          <IoIosArrowDropup size='4rem' color='#4ba3ce' />
+          <IoIosArrowDropup size="4rem" color="#4ba3ce" />
         </div>
       ) : null}
-      <div className=' responsive plus_border'>
-        <ul className='links'>
+      <div className=" responsive plus_border">
+        <ul className="links">
           <li>
-            <Link href='/about-us' prefetch={false}>
+            <Link href="/about-us" prefetch={false}>
               <a>{language.about_us}</a>
             </Link>
           </li>
           <li>
-            <Link href='/sepris' prefetch={false}>
+            <Link href="/sepris" prefetch={false}>
               <a>{language.otoli}</a>
             </Link>
           </li>
           {props.LinkControl ? (
             <li>
-              <Link href='/guide-renter' prefetch={false}>
+              <Link href="/guide-renter" prefetch={false}>
                 <a>{language.guide_renter}</a>
               </Link>
             </li>
           ) : null}
           {props.LinkControl ? (
             <li>
-              <Link href='/evaluation' prefetch={false}>
+              <Link href="/evaluation" prefetch={false}>
                 <a>{language.evaluation}</a>
               </Link>
             </li>
           ) : null}
           <li>
-            <Link href='/faq' prefetch={false}>
+            <Link href="/faq" prefetch={false}>
               <a>{language.faq}</a>
             </Link>
           </li>
           <li>
-            <Link href='/our-policies' prefetch={false}>
+            <Link href="/our-policies" prefetch={false}>
               <a>{language.our_policies}</a>
             </Link>
           </li>
           <li>
-            <Link href='/insurance-policies' prefetch={false}>
+            <Link href="/insurance-policies" prefetch={false}>
               <a>{language.insurance_policies}</a>
             </Link>
           </li>
           {props.LinkControl ? null : (
             <li>
-              <Link href='/rent' prefetch={false}>
+              <Link href="/rent" prefetch={false}>
                 <a>{language.rent}</a>
               </Link>
             </li>
           )}
           {props.LinkControl ? null : (
             <li>
-              <Link href='/site-map' prefetch={false}>
+              <Link href="/site-map" prefetch={false}>
                 <a>{language.site_map}</a>
               </Link>
             </li>
           )}
         </ul>
 
-        <div className='social_container_footer'>
+        <div className="social_container_footer">
           <h3>{language.social_container_footer_h3}</h3>
           <div>
-            <a target='_black' href='https://www.instagram.com/sepris.rent/'>
-              <IoLogoInstagram size='3rem' color='#4ba3ce' />
+            <a target="_black" href="https://www.instagram.com/sepris.rent/">
+              <IoLogoInstagram size="3rem" color="#4ba3ce" />
             </a>
-            <a target='_black' href='https://twitter.com/Seprisrent'>
-              <IoLogoTwitter size='3rem' color='#4ba3ce' />
+            <a target="_black" href="https://twitter.com/Seprisrent">
+              <IoLogoTwitter size="3rem" color="#4ba3ce" />
             </a>
-            <a target='_black' href='https://wa.me/message/C3U7RO7ADABWF1'>
-              <FaWhatsapp size='3rem' color='#4ba3ce' />
+            <a target="_black" href="https://wa.me/message/C3U7RO7ADABWF1">
+              <FaWhatsapp size="3rem" color="#4ba3ce" />
             </a>
           </div>
           <p>
             {" "}
             {language.social_container_footer_p}
-            <a href='tel:02188567759' className='HEAP_Footer_Link_Phone'>
+            <a
+              href={`tel:${language.social_container_footer_a_1}`}
+              className="HEAP_Footer_Link_Phone"
+            >
               {language.social_container_footer_a_1}
             </a>
             ,
-            <a href='tel:09391414574' className='HEAP_Footer_Link_Phone'>
+            <a
+              href={`tel:${language.social_container_footer_a_2}`}
+              className="HEAP_Footer_Link_Phone"
+            >
               {language.social_container_footer_a_2}
             </a>
           </p>
           <br />
           <br />
-          <p className='brand_description'>
-            <img src={car} alt='logo image' />
+          <p className="brand_description">
+            <img src={car} alt="logo image" />
             سِپریس نامی ایرانی و به معنی «میدان اسب‌دوانی» است.
           </p>
         </div>
       </div>
-      <div className='signature'>
-        <span className='ver'>2.0.0</span>
+      <div className="signature">
+        <span className="ver">2.0.0</span>
         <p>{language.signature}</p>
       </div>
     </footer>
