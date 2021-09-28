@@ -272,6 +272,9 @@ input {
 .second_part_container {
   box-shadow: $box_shadow;
   padding: 0 !important;
+  @media screen and(max-width:1007px) {
+    box-shadow: none;
+  }
   // SHARE STYLE
   .marginFromTop {
     margin-top: 4rem !important;

@@ -30,7 +30,7 @@ const ContentHomePage = ({
           <p>{language.second_container_three_columns_2_p_1}</p>
         </section>
         <section>
-          {abTest ? (
+          {!abTest ? (
             <>
               <h3>قیمت مناسب </h3>
               <p>
