@@ -507,6 +507,12 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         });
         localStorage.removeItem("red_dot");
         if (router.query?.newcaradded === "true") {
+          window["dataLayer"].push({
+            event: "newCar",
+            pageURL: window.location.href,
+            pagePath: "/set-car-timing",
+            pageTitle: "تعیین شرایط اجاره | سپریس",
+          });
           TOAST_CONTEXT.toast_option({
             message: `${language.toast_1} ${CarModelName} ${language.toast_2}`,
             time: 20,
