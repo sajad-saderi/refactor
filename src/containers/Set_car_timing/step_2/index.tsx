@@ -44,6 +44,8 @@ const stateReducer = (current, action) => {
   switch (action.type) {
     case "id":
       return { ...current, id: action.id };
+    case "location":
+      return { ...current, location: action.location };
     case "owner_id":
       return { ...current, owner_id: action.owner_id };
     case "days_to_get_reminded":
@@ -239,6 +241,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
   const [state, dispatch] = useReducer(stateReducer, {
     id: null,
+    location: null,
     owner_id: null,
     registration_plate_first_part: "",
     registration_plate_second_part: null,
@@ -326,6 +329,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     // SET CAR ID
     dispatch({ type: "id", id: car.id });
 
+    dispatch({ type: "location", location: car.location.name.fa });
+
     // SET OWNER ID
     dispatch({ type: "owner_id", owner_id: car.owner.id });
 
@@ -377,7 +382,6 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     setYear(car.year.name.fa);
 
     // SET CAR WITH DRIVER
-    console.log(car.with_driver, car.without_driver);
 
     if (car.with_driver && car.without_driver) {
       dispatch({
@@ -508,10 +512,12 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         localStorage.removeItem("red_dot");
         if (router.query?.newcaradded === "true") {
           window["dataLayer"].push({
-            event: "newCar",
-            pageURL: window.location.href,
+            event: "conversions",
+            action: "new_car",
             pagePath: "/set-car-timing",
-            pageTitle: "تعیین شرایط اجاره | سپریس",
+            pageURL: window.location.href,
+            car_id: state.id,
+            label: state.location,
           });
           TOAST_CONTEXT.toast_option({
             message: `${language.toast_1} ${CarModelName} ${language.toast_2}`,

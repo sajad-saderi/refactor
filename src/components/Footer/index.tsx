@@ -136,24 +136,24 @@ const Footer = (props: IFooter) => {
             {" "}
             {language.social_container_footer_p}
             <a
-              href={`tel:${language.social_container_footer_a_3}`}
+              href={`tel:${language.social_container_footer_a_1}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {language.social_container_footer_a_3}
+              {language.social_container_footer_a_1}
             </a>
-            ,
+            -
             <a
               href={`tel:${language.social_container_footer_a_2}`}
               className="HEAP_Footer_Link_Phone"
             >
               {language.social_container_footer_a_2}
             </a>
-            ,
+            -
             <a
-              href={`tel:${language.social_container_footer_a_1}`}
+              href={`tel:${language.social_container_footer_a_3}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {language.social_container_footer_a_1}
+              {language.social_container_footer_a_3}
             </a>
           </p>
           <br />

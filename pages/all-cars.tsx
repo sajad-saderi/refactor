@@ -51,7 +51,7 @@ const AllCars = ({ content }) => {
         showLocationTag={true}
       />
       {content == "0" ? null : (
-        <ContentHomePage auth={authorize} differentStyle={true} abTest={true} />
+        <ContentHomePage auth={authorize} differentStyle={true} />
       )}
     </Layout>
   );
