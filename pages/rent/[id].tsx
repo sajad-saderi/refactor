@@ -18,7 +18,7 @@ import language from "../../public/languages/fa/dynamic_pages.json";
 // );
 import Landing_page_container from "../../src/containers/LandignPageContainer";
 import { guard_controller } from "../../utils/guard_controller";
-import ContentHomePage from "../../src/components/contentHomePage";
+// import ContentHomePage from "../../src/components/contentHomePage";
 
 const Rent_dynamic = ({ Landing_page, content }) => {
   const [authorize, set_authorize] = useState(true);
@@ -62,9 +62,7 @@ const Rent_dynamic = ({ Landing_page, content }) => {
         }}
       />
       <Landing_page_container landing_data={Landing_page} language={language} />
-      {content === "0" ? (
-        <ContentHomePage auth={authorize} differentStyle={true} />
-      ) : (
+      {content === "0" ? null : (
         <Landing_Page_Content data={Landing_page} language={language} />
       )}
     </Layout>

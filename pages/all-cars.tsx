@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const Layout = dynamic(() => import("../src/Layout"));
@@ -9,8 +9,12 @@ import language from "../public/languages/fa/searchresult.json";
 // import { logPageView } from "../utils/analytics";
 import { payBackInString } from "../utils/date-range-creator";
 import Search_result from "../src/containers/Search_result";
+import { guard_controller } from "../utils/guard_controller";
+import ContentHomePage from "../src/components/contentHomePage";
 
-const AllCars = ({ page_title }) => {
+const AllCars = ({ content }) => {
+  const [authorize, set_authorize] = useState(true);
+
   useEffect(() => {
     window["dataLayer"].push({
       event: "page_view",
@@ -18,6 +22,10 @@ const AllCars = ({ page_title }) => {
       pagePath: "/all-cars",
       pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,
     });
+    const guard = guard_controller();
+    if (guard !== "auth") {
+      set_authorize(false);
+    }
     // logPageView();
   }, []);
 
@@ -42,30 +50,17 @@ const AllCars = ({ page_title }) => {
         revealRsearchbBox={true}
         showLocationTag={true}
       />
+      {content == "0" ? null : (
+        <ContentHomePage auth={authorize} differentStyle={true} abTest={true} />
+      )}
     </Layout>
   );
 };
 
-// export async function getServerSideProps(props) {
-//   const page_title = {
-//     // param_location_name: null,
-//     param_start_date: null,
-//     param_end_date: null,
-//   };
-//   if (Object.keys(props.query).length !== 0) {
-//     const { location_name, start_date, end_date } = props.query;
-//     // page_title.param_location_name = location_name;
-//     page_title.param_start_date = start_date;
-//     page_title.param_end_date = end_date;
-//   } else {
-//     const { start_date, end_date } = payBackInString(6, 3);
-//     // page_title.param_location_name = "تهران";
-//     page_title.param_start_date = start_date;
-//     page_title.param_end_date = end_date;
-//   }
-//   return {
-//     props: { page_title },
-//   };
-// }
+export async function getServerSideProps(props) {
+  let content = props.query.content;
+
+  return { props: { content: content ? content : null } };
+}
 
 export default AllCars;

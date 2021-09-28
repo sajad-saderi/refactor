@@ -7,6 +7,7 @@ const ContentHomePage = ({
   auth,
   differentStyle,
   extraContent,
+  abTest,
 }: IContentHomePage) => (
   <div className="responsive second_part_container">
     <div
@@ -29,8 +30,20 @@ const ContentHomePage = ({
           <p>{language.second_container_three_columns_2_p_1}</p>
         </section>
         <section>
-          <h3>{language.second_container_three_columns_2_h3_2}</h3>
-          <p>{language.second_container_three_columns_2_p_2}</p>
+          {abTest ? (
+            <>
+              <h3>قیمت مناسب </h3>
+              <p>
+                در سپریس خودرو را مستقیم از مالک اجاره می‌کنید. به همین دلیل
+                قیمت مناسب‌تر و شرایط اجاره آسان‌تری را تجربه می‌کنید.
+              </p>
+            </>
+          ) : (
+            <>
+              <h3>{language.second_container_three_columns_2_h3_2}</h3>
+              <p>{language.second_container_three_columns_2_p_2}</p>
+            </>
+          )}
         </section>
         <section>
           <h3>{language.second_container_three_columns_2_h3_3}</h3>
@@ -84,6 +97,7 @@ interface IContentHomePage {
   auth: boolean;
   differentStyle?: boolean;
   extraContent?: any;
+  abTest?: boolean;
 }
 
 export default ContentHomePage;
