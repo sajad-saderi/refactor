@@ -204,7 +204,7 @@ export default class MyDocument extends Document {
 
           {/* HotJar tag */}
           {/* ANCHOR  Add Seo and Behavior tracker tags just in production mode */}
-          {process.env.NODE_ENV === "development" ? null : (
+          {/* {process.env.NODE_ENV === "development" ? null : (
             <script
               defer
               dangerouslySetInnerHTML={{
@@ -220,7 +220,7 @@ export default class MyDocument extends Document {
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
               }}
             ></script>
-          )}
+          )} */}
           {/* Google Analytics */}
           {/* {process.env.NODE_ENV === "development" ? null : (
             <script

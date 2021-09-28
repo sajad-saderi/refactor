@@ -58,12 +58,12 @@ footer {
       justify-content: flex-start;
       align-items: center;
       h3 {
-        width: 230px;
+        width: 300px;
         color: #929292;
         font-size: 1.4rem;
       }
       div {
-        width: 230px;
+        width: 300px;
         svg {
           margin-left: 1rem;
           width: 3rem;
@@ -76,7 +76,7 @@ footer {
       }
       p {
         font-size: 1.4rem;
-        width: 230px;
+        width: 300px;
         color: #929292;
         margin-top: 1.6rem;
         font-weight: 500;
@@ -128,7 +128,7 @@ footer {
     }
   }
 }
-@media (max-width: 575px) {
+@media (max-width: 680px) {
   footer {
     .plus_border {
       display: block;
