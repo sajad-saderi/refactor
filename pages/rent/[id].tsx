@@ -28,7 +28,7 @@ const Rent_dynamic = ({ Landing_page, content }) => {
       Router.push("/404");
     } else {
       window["dataLayer"].push({
-        event: "page_view",
+        event: "page_view_virtual",
         pageURL: window.location.href,
         pagePath: `/rent/${Landing_page.unique_id}`,
         pageTitle: Landing_page.meta_title,

@@ -12,7 +12,7 @@ import Profile_container from "../../src/containers/Profile_container";
 const Profile = () => {
   // React.useEffect(() => {
   //   window["dataLayer"].push({
-  //     event: "page_view",
+  //     event: "page_view_virtual",
   //     pageURL: window.location.href,
   //     pagePath: "/user",
   //     pageTitle: language.next_seo.title,

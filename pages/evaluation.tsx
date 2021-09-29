@@ -10,7 +10,7 @@ import language from "../public/languages/fa/evaluation.json";
 const evaluation = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/evaluation",
       pageTitle: language.next_seo.title,

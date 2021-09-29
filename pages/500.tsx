@@ -12,7 +12,7 @@ import language from "../public/languages/fa/_500.json";
 const page_500 = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/500",
       pageTitle: language.title,

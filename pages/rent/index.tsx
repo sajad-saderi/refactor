@@ -58,7 +58,7 @@ const Rent = () => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/rent",
       pageTitle: language.next_seo.title,

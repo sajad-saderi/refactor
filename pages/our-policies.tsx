@@ -9,7 +9,7 @@ import language from "../public/languages/fa/ourpolicies.json";
 const OtoliPolicies = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/our-policies",
       pageTitle: language.next_seo.title,

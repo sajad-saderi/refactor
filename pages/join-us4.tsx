@@ -19,7 +19,7 @@ const JoinUs1 = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
   React.useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/join-us4",
       pageTitle: language.next_seo.title,

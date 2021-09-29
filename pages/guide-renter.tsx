@@ -11,7 +11,7 @@ import language from "../public/languages/fa/guiderenter.json";
 const guideRenter = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/guide-renter",
       pageTitle: language.next_seo.title,

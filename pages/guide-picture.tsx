@@ -11,7 +11,7 @@ import language from "../public/languages/fa/guidepicture.json";
 const guidePicture = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/guide-picture",
       pageTitle: language.next_seo.title,

@@ -15,7 +15,7 @@ const Checkout_Container = dynamic(() =>
 const Checkout = ({ order_information, expired }) => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/checkout",
       pageTitle: order_information

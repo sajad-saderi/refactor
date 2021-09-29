@@ -17,7 +17,7 @@ const AllCars = ({ content }) => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/all-cars",
       pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,

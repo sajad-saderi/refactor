@@ -12,7 +12,7 @@ import language from "../public/languages/fa/requestspage.json";
 const Request = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/requests",
       pageTitle: language.next_seo.title,

@@ -16,7 +16,7 @@ const Site_map = () => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view",
+      event: "page_view_virtual",
       pageURL: window.location.href,
       pagePath: "/site-map",
       pageTitle: language.next_seo.title,
