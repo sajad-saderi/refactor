@@ -32,7 +32,7 @@ const Car = ({
       router.push("/404");
     } else {
       window["dataLayer"].push({
-        event: "page_view_virtual",
+        event: "page_view",
         pageURL: window.location.href,
         pagePath: `/car/${id}`,
         pageTitle: car_Information

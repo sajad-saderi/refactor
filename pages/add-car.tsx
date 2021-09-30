@@ -14,7 +14,7 @@ const AddCar = ({ edit }) => {
     if (window["auth"]) {
       // const edit = router.
       window["dataLayer"].push({
-        event: "page_view_virtual",
+        event: "page_view",
         pageURL: window.location.href,
         pagePath: "/add-car",
         pageTitle: edit ? language.next_seo.editTitle : language.next_seo.title,

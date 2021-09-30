@@ -14,7 +14,7 @@ import language from "../public/languages/fa/completeregister.json";
 const CompleteRegister = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/complete-register",
       pageTitle: language.next_seo.title,

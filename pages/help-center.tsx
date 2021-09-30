@@ -12,7 +12,7 @@ const HelpCenter = () => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/help-center",
       pageTitle: language.next_seo.title,

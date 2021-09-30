@@ -9,7 +9,7 @@ import language from "../public/languages/fa/carinsurance.json";
 const car_insurance_page = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/car-insurance",
       pageTitle: language.next_seo.title,

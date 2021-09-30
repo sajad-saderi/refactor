@@ -10,7 +10,7 @@ import language from "../public/languages/fa/otoli.json";
 const AboutUs = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/sepris",
       pageTitle: language.next_seo.title,

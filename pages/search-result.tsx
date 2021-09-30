@@ -21,7 +21,7 @@ const SearchResult = ({ page_title }) => {
       : "all";
 
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/search-result",
       pageTitle: `${language.next_seo.title.start}${language.next_seo.title.otoli}`,

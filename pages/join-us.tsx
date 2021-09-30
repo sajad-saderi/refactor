@@ -17,7 +17,7 @@ const JoinUs = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/join-us",
       pageTitle: language.next_seo.title,

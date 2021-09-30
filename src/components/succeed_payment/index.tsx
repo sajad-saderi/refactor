@@ -26,7 +26,7 @@ const SucceedPayment = ({ language }) => {
 
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/payment-success",
       pageTitle: language.next_seo.title,

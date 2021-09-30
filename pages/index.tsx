@@ -15,7 +15,7 @@ const HomePage = () => {
   const [authorize, set_authorize] = useState(true);
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/",
       pageTitle: language.next_seo.title,

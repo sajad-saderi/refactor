@@ -4,7 +4,7 @@ import Contract from "../src/components/contract/contract_for_print";
 const Contract_Page = () => {
   // useEffect(() => {
   //   window["dataLayer"].push({
-  //     event: "page_view_virtual",
+  //     event: "page_view",
   //     pageURL: window.location.href,
   //     pagePath: "/faq",
   //     pageTitle: language.next_seo.title,

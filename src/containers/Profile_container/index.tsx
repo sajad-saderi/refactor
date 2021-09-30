@@ -36,7 +36,7 @@ const Profile_container = ({ language }: IProfile_container) => {
           : location.pathname.split("/")[2],
       });
       window["dataLayer"].push({
-        event: "page_view_virtual",
+        event: "page_view",
         pageURL: window.location.href,
         pagePath: `/user/${user_cars_info.id}`,
         pageTitle: `${language.next_seo.title.start}${

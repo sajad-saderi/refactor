@@ -18,7 +18,7 @@ const FAQ = () => {
   const netCTX = useContext(net_CTX);
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/faq",
       pageTitle: language.next_seo.title,

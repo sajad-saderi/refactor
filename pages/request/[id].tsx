@@ -12,7 +12,7 @@ import Request_page from "../../src/containers/Request_page";
 const Request = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/request",
       pageTitle: language.next_seo.title,

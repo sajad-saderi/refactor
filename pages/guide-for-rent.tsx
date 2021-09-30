@@ -11,7 +11,7 @@ import language from "../public/languages/fa/guideforrent.json";
 const guideForRent = () => {
   useEffect(() => {
     window["dataLayer"].push({
-      event: "page_view_virtual",
+      event: "page_view",
       pageURL: window.location.href,
       pagePath: "/guide-for-rent",
       pageTitle: language.next_seo.title,
