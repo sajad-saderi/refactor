@@ -1,22 +1,22 @@
-import { useState, useEffect, useContext } from "react";
-import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
+import { useState, useEffect, useContext } from 'react';
+import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 
-const Layout = dynamic(() => import("../../src/Layout"));
-const Search = dynamic(() => import("../../src/containers/Search"));
-const Accordion = dynamic(() => import("../../src/components/Accordion"));
+const Layout = dynamic(() => import('../../src/Layout'));
+const Search = dynamic(() => import('../../src/containers/Search'));
+const Accordion = dynamic(() => import('../../src/components/Accordion'));
 // import Layout from "../../src/Layout";
 // import Search from "../../src/containers/Search";
-import insurance from "../../public/image/SamanInsurance.png";
+import insurance from '../../public/image/SamanInsurance.png';
 // import "../../src/styles/pages/index.scss";
-import Link from "next/link";
-import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
+import Link from 'next/link';
+import { REQUEST_GET_LANDING_PAGE } from '../../src/API';
 // import Accordion from "../../src/components/Accordion";
-import language from "../../public/languages/fa/rent.json";
+import language from '../../public/languages/fa/rent.json';
 // import { logPageView } from "../../utils/analytics";
-import net_CTX from "../../src/context/internetConnectionCTX";
-import { guard_controller } from "../../utils/guard_controller";
-import ContentHomePage from "../../src/components/contentHomePage";
+import net_CTX from '../../src/context/internetConnectionCTX';
+import { guard_controller } from '../../utils/guard_controller';
+import ContentHomePage from '../../src/components/contentHomePage';
 
 const extraContentRentPage = (
   <>
@@ -57,14 +57,14 @@ const Rent = () => {
   const [authorize, set_authorize] = useState(true);
 
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    window['dataLayer'].push({
+      event: 'page_view',
       pageURL: window.location.href,
-      pagePath: "/rent",
+      pagePath: '/rent',
       pageTitle: language.next_seo.title,
     });
     const guard = guard_controller();
-    if (guard !== "auth") {
+    if (guard !== 'auth') {
       set_authorize(false);
     }
     // logPageView();
@@ -74,7 +74,7 @@ const Rent = () => {
   const fetchData = async () => {
     try {
       const landing_res: any = await REQUEST_GET_LANDING_PAGE({
-        name: "rent",
+        name: 'rent',
       });
       setDynamicLinks(landing_res.data.link_set);
     } catch (error) {
@@ -123,12 +123,12 @@ const Rent = () => {
             <div className="RentPage_Dynamic_links">
               <ul>
                 {dynamicLinks.map((item) => {
-                  let id = item.url.split("/").pop();
+                  let id = item.url.split('/').pop();
                   return (
                     <li key={item.name}>
                       <Link
                         href={{
-                          pathname: "/rent/[id]",
+                          pathname: '/rent/[id]',
                           query: {
                             id: id,
                           },

@@ -1,7 +1,7 @@
-import language from "../../../public/languages/fa/homepage.json";
-import insurance from "../../../public/image/SamanInsurance.png";
-import Recommendation_section_owl from "../recommendation_section/recommendation_section_owl";
-import Link from "next/link";
+import language from '../../../public/languages/fa/homepage.json';
+import insurance from '../../../public/image/SamanInsurance.png';
+import Recommendation_section_owl from '../recommendation_section/recommendation_section_owl';
+import Link from 'next/link';
 
 const ContentHomePage = ({
   auth,
@@ -11,8 +11,8 @@ const ContentHomePage = ({
 }: IContentHomePage) => (
   <div className="responsive second_part_container">
     <div
-      className={["insuranceBox", differentStyle ? "marginFromTop" : ""].join(
-        " "
+      className={['insuranceBox', differentStyle ? 'marginFromTop' : ''].join(
+        ' ',
       )}
     >
       <p>با همکاری بیمه‌های اتومبیل سامان</p>
@@ -62,7 +62,7 @@ const ContentHomePage = ({
         className="add_car_section"
         onClickCapture={() => {
           if (!auth) {
-            localStorage["last_location"] = "/add-car";
+            localStorage['last_location'] = '/add-car';
           }
         }}
       >

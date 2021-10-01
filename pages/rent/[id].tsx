@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-const Layout = dynamic(() => import("../../src/Layout"));
+const Layout = dynamic(() => import('../../src/Layout'));
 const Landing_Page_Content = dynamic(() =>
-  import("../../src/containers/LandignPageContainer/landingPageContent")
+  import('../../src/containers/LandignPageContainer/landingPageContent'),
 );
 // import Layout from "../../src/Layout";
-import { REQUEST_GET_LANDING_PAGE } from "../../src/API";
-import { NextSeo } from "next-seo";
+import { REQUEST_GET_LANDING_PAGE } from '../../src/API';
+import { NextSeo } from 'next-seo';
 // import Landing_Page_Content from "../../src/containers/LandignPageContainer/landingPageContent";
-import Router from "next/router";
-import language from "../../public/languages/fa/dynamic_pages.json";
+import Router from 'next/router';
+import language from '../../public/languages/fa/dynamic_pages.json';
 // import { logPageView } from "../../utils/analytics";
 
 // const Landing_page_container = dynamic(() =>
 // import("../../src/containers/LandignPageContainer")
 // );
-import Landing_page_container from "../../src/containers/LandignPageContainer";
-import { guard_controller } from "../../utils/guard_controller";
+import Landing_page_container from '../../src/containers/LandignPageContainer';
+import { guard_controller } from '../../utils/guard_controller';
 // import ContentHomePage from "../../src/components/contentHomePage";
 
 const Rent_dynamic = ({ Landing_page, content }) => {
@@ -25,21 +25,21 @@ const Rent_dynamic = ({ Landing_page, content }) => {
 
   useEffect(() => {
     if (!Landing_page) {
-      Router.push("/404");
+      Router.push('/404');
     } else {
-      window["dataLayer"].push({
-        event: "page_view",
+      window['dataLayer'].push({
+        event: 'page_view',
         pageURL: window.location.href,
         pagePath: `/rent/${Landing_page.unique_id}`,
         pageTitle: Landing_page.meta_title,
         searchedLocation: Landing_page.search_params?.location_name
           ? Landing_page.search_params?.location_name
-          : "all",
+          : 'all',
       });
       // logPageView();
     }
     const guard = guard_controller();
-    if (guard !== "auth") {
+    if (guard !== 'auth') {
       set_authorize(false);
     }
   }, []);
@@ -62,7 +62,7 @@ const Rent_dynamic = ({ Landing_page, content }) => {
         }}
       />
       <Landing_page_container landing_data={Landing_page} language={language} />
-      {content === "0" ? null : (
+      {content === '0' ? null : (
         <Landing_Page_Content data={Landing_page} language={language} />
       )}
     </Layout>

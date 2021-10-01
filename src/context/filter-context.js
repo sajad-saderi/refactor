@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const filterContext = React.createContext({
-  setDataForSearch: (v) => {}
+  setDataForSearch: (v) => {},
 });
 
 export default filterContext;
