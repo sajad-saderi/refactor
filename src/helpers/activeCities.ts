@@ -9,6 +9,7 @@ export const activeCities = (cityCode: number): boolean => {
     cityCode !== 1657 &&
     cityCode !== 1656 &&
     cityCode !== 1660 &&
+    cityCode !== 1658 &&
     cityCode !== 1690 &&
     cityCode !== 1655 &&
     cityCode !== 1685 &&

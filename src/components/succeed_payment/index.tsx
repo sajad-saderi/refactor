@@ -1,18 +1,18 @@
-import { useState, useEffect, useContext } from "react";
-import { GET_ORDER_REQUEST } from "../../API";
-import jsCookie from "js-cookie";
-import moment from "moment-jalaali";
-import check_icon from "../../../public/image/check.png";
-import paper_check from "../../../public/image/paper_check.png";
-import return_icon from "../../../public/image/return.png";
-import key from "../../../public/image/key.png";
-import paper from "../../../public/image/paper.png";
-import carImage from "../../../public/image/car-image-thumbnail.jpg";
-import toast_context from "../../context/Toast_context";
-import ErrorHelper from "../../../utils/error_helper";
-import net_CTX from "../../context/internetConnectionCTX";
+import { useState, useEffect, useContext } from 'react';
+import { GET_ORDER_REQUEST } from '../../API';
+import jsCookie from 'js-cookie';
+import moment from 'moment-jalaali';
+import check_icon from '../../../public/image/check.png';
+import paper_check from '../../../public/image/paper_check.png';
+import return_icon from '../../../public/image/return.png';
+import key from '../../../public/image/key.png';
+import paper from '../../../public/image/paper.png';
+import carImage from '../../../public/image/car-image-thumbnail.jpg';
+import toast_context from '../../context/Toast_context';
+import ErrorHelper from '../../../utils/error_helper';
+import net_CTX from '../../context/internetConnectionCTX';
 
-moment.loadPersian({ dialect: "persian-modern" });
+moment.loadPersian({ dialect: 'persian-modern' });
 
 const SucceedPayment = ({ language }) => {
   const [renter, setRenter] = useState(null);
@@ -20,15 +20,15 @@ const SucceedPayment = ({ language }) => {
   const [bank_id_track, set_bank_id_track] = useState(null);
   const [has_insurance, set_has_insurance] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const token = jsCookie.get("token");
+  const token = jsCookie.get('token');
   const toastCTX = useContext(toast_context);
   const netCTX = useContext(net_CTX);
 
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    window['dataLayer'].push({
+      event: 'page_view',
       pageURL: window.location.href,
-      pagePath: "/payment-success",
+      pagePath: '/payment-success',
       pageTitle: language.next_seo.title,
     });
     // logPageView();
@@ -66,8 +66,8 @@ const SucceedPayment = ({ language }) => {
       //   ],
       // });
 
-      window["dataLayer"].push({
-        event: "purchase",
+      window['dataLayer'].push({
+        event: 'purchase',
         transactionId: Order_res.data.id,
         transactionTotal: Order_res.data.rent_search_dump.total_price,
         transactionProducts: [
@@ -88,10 +88,10 @@ const SucceedPayment = ({ language }) => {
           message: error.response
             ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: "خطایی در دریافت اطلاعات پرداخت رخ داده است.",
+                _400Message: 'خطایی در دریافت اطلاعات پرداخت رخ داده است.',
               })
             : error,
-          color: "#ed9026",
+          color: '#ed9026',
           time: 0,
           autoClose: false,
         });
@@ -137,8 +137,8 @@ const SucceedPayment = ({ language }) => {
                     <span>
                       {moment(
                         rent_search_dump.start_date,
-                        "jYYYY/jMM/jDD"
-                      ).format("jYYYY/jMM/jD")}
+                        'jYYYY/jMM/jDD',
+                      ).format('jYYYY/jMM/jD')}
                     </span>
                   </div>
                   <div>
@@ -146,8 +146,8 @@ const SucceedPayment = ({ language }) => {
                     <span>
                       {moment(
                         rent_search_dump.end_date,
-                        "jYYYY/jMM/jDD"
-                      ).format("jYYYY/jMM/jD")}
+                        'jYYYY/jMM/jDD',
+                      ).format('jYYYY/jMM/jD')}
                     </span>
                   </div>
                   <div>
@@ -208,7 +208,11 @@ const SucceedPayment = ({ language }) => {
             <div className="delivery_condition">
               {rent_search_dump.deliver_at_renters_place ? (
                 <p className="margin_bottom_16">
-                  {language.span_3}
+                  {rent_search_dump.location.parent_id === 1
+                    ? language.span_3
+                    : rent_search_dump.location.id === 1657
+                    ? language.span_4
+                    : null}
                   {/* {rent_search_dump.location.name.fa} */}
                 </p>
               ) : null}
@@ -226,19 +230,19 @@ const SucceedPayment = ({ language }) => {
               <p className="margin_bottom_8">
                 شروع مدت اجاره از ساعت تحویل خودرو آغاز می‌شود لذا لازم است در
                 روز بازگشت در همان ساعت خودرو را بازتحویل دهید. در صورت دیرکرد،
-                برای این خودرو به ازای{" "}
+                برای این خودرو به ازای{' '}
                 <span>
-                  هر ساعت {rent_search_dump.extra_hour_price_name} هزینه دیرکرد{" "}
+                  هر ساعت {rent_search_dump.extra_hour_price_name} هزینه دیرکرد{' '}
                 </span>
                 محاسبه خواهد شد.
               </p>
               <p>
-                محدودیت مسافت در نظر گرفته شده برای این خودرو{" "}
+                محدودیت مسافت در نظر گرفته شده برای این خودرو{' '}
                 {rent_search_dump.max_km_per_day} {language.kilometer} است. برای
                 <span>
-                  {" "}
+                  {' '}
                   هر کیلومتر بیشتر {rent_search_dump.extra_km_price_name} هزینه
-                  اضافه{" "}
+                  اضافه{' '}
                 </span>
                 محاسبه خواهد شد.
               </p>
