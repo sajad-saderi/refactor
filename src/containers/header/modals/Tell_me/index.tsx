@@ -107,7 +107,7 @@ const TellMe = () => {
           <p className="p3">{`وقتی در  ${locationName} فعال شدیم خبرتان می‌کنیم.`}</p>
           <Button
             class="Blue_BTN login_submit HEAP_ModalInformMeMyCity_Btn_Submit"
-            value="ارسال کد ورود"
+            value="تایید"
             loading={loading}
             click={() => {}}
           />
