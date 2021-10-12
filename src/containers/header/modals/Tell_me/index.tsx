@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
-import TextInput from "../../../../components/form/TextInput";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from 'react';
+import TextInput from '../../../../components/form/TextInput';
+import axios from 'axios';
 // import "./Tell_me.scss";
-import Button from "../../../../components/form/Button";
-import modal_context from "../../../../context/Modal_context";
+import Button from '../../../../components/form/Button';
+import modal_context from '../../../../context/Modal_context';
 
 let location_id = null;
 
 const TellMe = () => {
-  const [cellPhone, setCellPhone] = useState("");
-  const [locationName, setLocationName] = useState("");
+  const [cellPhone, setCellPhone] = useState('');
+  const [locationName, setLocationName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
-    message: "",
+    message: '',
   });
   const Modal_context = useContext(modal_context);
 
@@ -23,14 +23,14 @@ const TellMe = () => {
     if (cellPhone.length < 11) {
       setError({
         status: true,
-        message: "شماره باید 11 رقم باشد.",
+        message: 'شماره باید 11 رقم باشد.',
       });
       return;
     }
     setLoading(true);
 
     const DOMAIN = process.env.PRODUCTION_ENDPOINT;
-    const SEND_CONFIRM_CODE = "/core/service-request/new";
+    const SEND_CONFIRM_CODE = '/core/service-request/new';
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellPhone,
@@ -38,15 +38,15 @@ const TellMe = () => {
       })
       .then((response) => {
         if (response.data.success) {
-          Modal_context.modalHandler("SET");
+          Modal_context.modalHandler('SET');
           setLoading(false);
         }
       })
       .catch((error) => {
         setLoading(false);
         console.error(
-          "!Error",
-          error.response ? error.response.data.message : error.message
+          '!Error',
+          error.response ? error.response.data.message : error.message,
         );
         if (error.response) {
           if (error.response.data) {
@@ -60,11 +60,11 @@ const TellMe = () => {
   };
 
   const clearField = () => {
-    setCellPhone("");
+    setCellPhone('');
   };
 
   useEffect(() => {
-    const Location = JSON.parse(localStorage["User_Location"]);
+    const Location = JSON.parse(localStorage['User_Location']);
     location_id = Location.value;
     setLocationName(Location.text);
     return () => {
@@ -76,9 +76,10 @@ const TellMe = () => {
     <>
       <div className="modal_box_div">
         <form onSubmit={sendCellPhonenumber}>
-          <p className="p1">
+          {/* <p className="p1">
             سپریس در حال حاضر فقط اجاره‌های با مبدا تهران را پوشش می‌دهد.
-          </p>
+          </p> */}
+          <p className="p1">{`سپریس هنوز در ${locationName} فعال نشده است.`}</p>
           {/* <p className="p2"></p> */}
           <TextInput
             error={{ status: error.status, message: error.message }}
@@ -97,13 +98,13 @@ const TellMe = () => {
             validation={{
               required: true,
               messages: {
-                required: "لطفا تلفن همراه را وارد کنید",
+                required: 'لطفا تلفن همراه را وارد کنید',
               },
             }}
           />
           {/* show error message */}
           {/* <span className="error_message">{error.message}</span> */}
-          <p className="p3">{`سپریس هنوز در ${locationName} فعال نشده است.`}</p>
+          <p className="p3">{`وقتی در  ${locationName} فعال شدیم خبرتان می‌کنیم.`}</p>
           <Button
             class="Blue_BTN login_submit HEAP_ModalInformMeMyCity_Btn_Submit"
             value="ارسال کد ورود"
