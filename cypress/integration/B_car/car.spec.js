@@ -28,7 +28,7 @@ describe("تست صفحه خودرو", () => {
         expect(result.status).equal(200);
         cy.intercept("GET")
           .get(".carCart.HEAP_SearchResult_Card_Car")
-          .eq(1)
+          .eq(6)
           .click()
           .url()
           .should("include", "/car/");

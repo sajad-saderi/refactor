@@ -109,7 +109,7 @@ describe('تست یو-آی صفحه خانه', () => {
           .get('.Modal')
           .should('be.visible')
           .get('.modal_box_div .p3')
-          .contains('سپریس هنوز در سنندج فعال نشده است.')
+          .contains('وقتی در سنندج فعال شدیم خبرتان می‌کنیم.')
           .get('.text_input_container .input_surround .text_input')
           .type('09380158835')
           .intercept('POST', core_url + '/service-request/new')
