@@ -1,31 +1,31 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import dynamic from "next/dynamic";
+import { useState, useEffect, useRef, useContext } from 'react';
+import dynamic from 'next/dynamic';
 
 // const Filters = dynamic(() => import("../Filters"));
 // const SearchResultList = dynamic(() => import("../car/search-result"));
-const Spinner = dynamic(() => import("../../components/Spinner"));
-const Search = dynamic(() => import("../Search"));
-import filterContext from "../../context/filter-context";
-import Filters from "../Filters";
-import SearchResultList from "../car/search-result";
-import { useRouter } from "next/router";
-import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
+const Spinner = dynamic(() => import('../../components/Spinner'));
+const Search = dynamic(() => import('../Search'));
+import filterContext from '../../context/filter-context';
+import Filters from '../Filters';
+import SearchResultList from '../car/search-result';
+import { useRouter } from 'next/router';
+import { REQUEST_GET_SEARCH_FOR_RENT } from '../../API';
 // import "./Search_result.scss";
 // import Spinner from "../../components/Spinner";
-import jsCookie from "js-cookie";
+import jsCookie from 'js-cookie';
 import {
   IoMdClose,
   IoIosOptions,
   IoIosArrowUp,
   IoIosArrowDown,
-} from "react-icons/io";
+} from 'react-icons/io';
 // import Search from "../Search";
-import UrlCreator from "../../../utils/UrlCreator";
-import UrlChecker from "../../../utils/UrlChecker";
-import search_query_builder from "../../../utils/search-query-builder";
-import toast_context from "../../context/Toast_context";
-import ErrorHelper from "../../../utils/error_helper";
-import net_CTX from "../../context/internetConnectionCTX";
+import UrlCreator from '../../../utils/UrlCreator';
+import UrlChecker from '../../../utils/UrlChecker';
+import search_query_builder from '../../../utils/search-query-builder';
+import toast_context from '../../context/Toast_context';
+import ErrorHelper from '../../../utils/error_helper';
+import net_CTX from '../../context/internetConnectionCTX';
 
 let JumpTo = null;
 
@@ -42,7 +42,7 @@ let price = {
   max: null,
 };
 // default price sort is form highest to lowest price  -> descending
-let o = "-price";
+let o = '-price';
 let loadMoreCar = false;
 let deliver_at_renters_place = 0;
 let with_driver = 0;
@@ -124,8 +124,8 @@ const Search_result = ({
     o = url_checked.price_order;
     if (url_checked.page > 1) {
       page = url_checked.page;
-      jsCookie.set("JumpTo", 1);
-      jsCookie.set("page", url_checked.page);
+      jsCookie.set('JumpTo', 1);
+      jsCookie.set('page', url_checked.page);
     }
     if (url_checked.min_price > 0 || url_checked.max_price < 10000000) {
       price.min = url_checked.min_price;
@@ -136,34 +136,34 @@ const Search_result = ({
         max: url_checked.max_price,
       };
     }
-    if (router.query.deliver_at_renters_place === "1") {
+    if (router.query.deliver_at_renters_place === '1') {
       filtersChecker.deliver_at_renters_place = true;
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
-    if (router.query.with_driver === "1") {
+    if (router.query.with_driver === '1') {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
 
-    if (router.query.without_driver === "1") {
+    if (router.query.without_driver === '1') {
       filtersChecker.without_driver = true;
     }
     without_driver = +url_checked.without_driver;
 
     if (
-      url_checked.body_style_id !== "" &&
-      url_checked.body_style_id !== "all"
+      url_checked.body_style_id !== '' &&
+      url_checked.body_style_id !== 'all'
     ) {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
         ? [url_checked.body_style_id]
         : [];
     }
-    if (url_checked.brand_id !== "" && url_checked.brand_id !== "all") {
+    if (url_checked.brand_id !== '' && url_checked.brand_id !== 'all') {
       brand_id = +url_checked.brand_id;
       filtersChecker.brand_id = true;
     }
-    if (url_checked.car_id !== "" && url_checked.car_id !== "all") {
+    if (url_checked.car_id !== '' && url_checked.car_id !== 'all') {
       car_id = +url_checked.car_id;
       filtersChecker.car_id = true;
     }
@@ -176,20 +176,20 @@ const Search_result = ({
     initSearch();
 
     const handleRouteChange = (url) => {
-      if (url.includes("/car/")) {
-        jsCookie.set("page", page);
+      if (url.includes('/car/')) {
+        jsCookie.set('page', page);
       } else {
         let JumpTo = null;
-        jsCookie.remove("JumpTo");
+        jsCookie.remove('JumpTo');
       }
     };
     if (revealRsearchbBox) {
       setShowSearch(true);
     }
     // reset the data
-    router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on('routeChangeStart', handleRouteChange);
     return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off('routeChangeStart', handleRouteChange);
       staticRoute = null;
       location_n = null;
       Location = null;
@@ -200,7 +200,7 @@ const Search_result = ({
         min: null,
         max: null,
       };
-      o = "-price";
+      o = '-price';
       loadMoreCar = false;
       deliver_at_renters_place = 0;
       with_driver = 0;
@@ -227,7 +227,7 @@ const Search_result = ({
   }, []);
 
   async function initSearch() {
-    JumpTo = jsCookie.get("JumpTo");
+    JumpTo = jsCookie.get('JumpTo');
     body_style_names = [];
     // setSliderRange([]);
     // reset the data
@@ -239,8 +239,8 @@ const Search_result = ({
     setExtra_info([]);
     try {
       let limit = 15;
-      if (JumpTo === "1") {
-        limit = 15 * +jsCookie.get("page");
+      if (JumpTo === '1') {
+        limit = 15 * +jsCookie.get('page');
       }
       let searchQuery = null;
       if (loadMoreCar) {
@@ -272,7 +272,7 @@ const Search_result = ({
           with_driver: filtersChecker.with_driver ? 1 : 0,
           without_driver: filtersChecker.without_driver ? 1 : 0,
           body_style_id: filtersChecker.body_style_id
-            ? body_style_id.join(",")
+            ? body_style_id.join(',')
             : null,
           brand_id: filtersChecker.brand_id ? brand_id : null,
           car_id: filtersChecker.car_id ? car_id : null,
@@ -301,10 +301,10 @@ const Search_result = ({
       } else {
         setResult(res.results);
       }
-      if (JumpTo === "1") {
+      if (JumpTo === '1') {
         window.scrollTo(0, position);
-        jsCookie.remove("JumpTo");
-        page = +jsCookie.get("page");
+        jsCookie.remove('JumpTo');
+        page = +jsCookie.get('page');
       }
     } catch (error) {
       if (error === 111) {
@@ -314,10 +314,10 @@ const Search_result = ({
           message: error.response
             ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: "در دریافت نتایج جستجو خطایی رخ داده است.",
+                _400Message: 'در دریافت نتایج جستجو خطایی رخ داده است.',
               })
             : error,
-          color: "#ed9026",
+          color: '#ed9026',
           time: 0,
           autoClose: false,
         });
@@ -365,26 +365,26 @@ const Search_result = ({
       body_style_id = v.body_style_id.value;
       staticRoute.body_style_id =
         v.body_style_id.value.length === 0
-          ? ""
-          : v.body_style_id.value.join(",");
+          ? ''
+          : v.body_style_id.value.join(',');
     }
     if (v.brand_id) {
       brand_name = null;
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
       staticRoute.brand_name = v.brand_id.value
-        ? v.brand_id.name.replace(/ +/g, "-")
-        : "";
-      staticRoute.brand_id = v.brand_id.value ? v.brand_id.value : "";
+        ? v.brand_id.name.replace(/ +/g, '-')
+        : '';
+      staticRoute.brand_id = v.brand_id.value ? v.brand_id.value : '';
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_name = null;
       car_id = v.car_id.value;
       staticRoute.car_name = v.car_id.value
-        ? v.car_id.name.replace(/ +/g, "-")
-        : "";
-      staticRoute.car_id = v.car_id.value ? v.car_id.value : "";
+        ? v.car_id.name.replace(/ +/g, '-')
+        : '';
+      staticRoute.car_id = v.car_id.value ? v.car_id.value : '';
     }
     if (v.category_id) {
       filtersChecker.category_id = v.category_id.status;
@@ -418,43 +418,43 @@ const Search_result = ({
 
   const clearReset = (v) => {
     switch (v) {
-      case "location":
+      case 'location':
         setFilterReset((filterReset) => {
           return { ...filterReset, location: false };
         });
         break;
-      case "price":
+      case 'price':
         setFilterReset((filterReset) => {
           return { ...filterReset, price: false };
         });
         break;
-      case "with_driver":
+      case 'with_driver':
         setFilterReset((filterReset) => {
           return { ...filterReset, with_driver: false };
         });
         break;
-      case "without_driver":
+      case 'without_driver':
         setFilterReset((filterReset) => {
           return { ...filterReset, without_driver: false };
         });
         break;
-      case "body_style_id":
+      case 'body_style_id':
         setFilterReset((filterReset) => {
           return { ...filterReset, body_style_id: false };
         });
         break;
 
-      case "deliver_at_renters_place":
+      case 'deliver_at_renters_place':
         setFilterReset((filterReset) => {
           return { ...filterReset, deliver_at_renters_place: false };
         });
         break;
-      case "brand_id":
+      case 'brand_id':
         setFilterReset((filterReset) => {
           return { ...filterReset, brand_id: false, car_id: false };
         });
         break;
-      case "car_id":
+      case 'car_id':
         setFilterReset((filterReset) => {
           return { ...filterReset, car_id: false };
         });
@@ -519,11 +519,11 @@ const Search_result = ({
     }
     if (params.body_style_id) {
       filtersChecker.body_style_id = true;
-      body_style_id = params.body_style_id.split(",");
+      body_style_id = params.body_style_id.split(',');
       body_style_names = body_style_names.concat(
         pre_loads.body_style_set.map((item) => {
           return { name: item.name.fa, id: item.id };
-        })
+        }),
       );
       staticRoute.body_style_id = params.body_style_id;
     }
@@ -555,15 +555,15 @@ const Search_result = ({
         query: query,
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
     // router.push(url, undefined, { shallow: true });
   };
 
   const searchIgniteByClickOnCardTags = (tag) => {
-    if (tag.type === "location") {
+    if (tag.type === 'location') {
       setCarLocationName(tag.name);
-      clearReset("");
+      clearReset('');
       loadMoreCar = false;
       filtersChecker.location = true;
       Location = tag.value;
@@ -588,48 +588,44 @@ const Search_result = ({
     >
       {/* result count section */}
       <div className="count_bar_container" ref={new_search_ref}>
-        {result ? (
-          result.length > 0 && (
-            <div
-              className="count_bar responsive"
-              onClick={() => {
-                setShowSearch(!showSearch);
-              }}
-              style={{
-                height: showSearch ? "auto" : "42px",
-              }}
-            >
-              {!showSearch ? (
-                <p className="count_bar_count">
-                  {`${total_count}${
-                    language.count_bar_khodro
-                  }${result[0].start_date.slice(5)}${
-                    language.count_bar_ta
-                  }${result[0].end_date.slice(5)}`}{" "}
-                  {carLocationName && `در ${carLocationName}`}
-                </p>
-              ) : null}
-              <p className="change_search_btn">
-                {showSearch ? (
-                  <span className="close_text_btn">
-                    {language.count_bar_change_search_btn_close}
-                    <IoMdClose size="2rem" color="#dcdcdc" />
-                  </span>
-                ) : (
-                  language.count_bar_change_search_btn_p
-                )}
+        <div
+          className="count_bar responsive"
+          onClick={() => {
+            setShowSearch(!showSearch);
+          }}
+          style={{
+            height: showSearch ? 'auto' : '42px',
+          }}
+        >
+          {result ? (
+            result.length > 0 && !showSearch ? (
+              <p className="count_bar_count">
+                {`${total_count}${
+                  language.count_bar_khodro
+                }${result[0].start_date.slice(5)}${
+                  language.count_bar_ta
+                }${result[0].end_date.slice(5)}`}{' '}
+                {carLocationName && `در ${carLocationName}`}
               </p>
-            </div>
-          )
-        ) : (
-          <p className="count_bar_count_empty"></p>
-        )}
+            ) : null
+          ) : null}
+          <p className="change_search_btn">
+            {showSearch ? (
+              <span className="close_text_btn">
+                {language.count_bar_change_search_btn_close}
+                <IoMdClose size="2rem" color="#dcdcdc" />
+              </span>
+            ) : (
+              language.count_bar_change_search_btn_p
+            )}
+          </p>
+        </div>
         {/* search box */}
         <section
           className={[
-            "new_search_in_landing",
-            showSearch ? "show_search_section" : null,
-          ].join(" ")}
+            'new_search_in_landing',
+            showSearch ? 'show_search_section' : null,
+          ].join(' ')}
         >
           <div className="responsive">
             <Search
@@ -671,11 +667,11 @@ const Search_result = ({
         {/* price sort part */}
         <div className="price_sort_container">
           <span
-            className={o === "-price" ? "active" : null}
+            className={o === '-price' ? 'active' : null}
             onClick={() => {
-              o = "-price";
+              o = '-price';
               loadMoreCar = false;
-              staticRoute.price_order = "-price";
+              staticRoute.price_order = '-price';
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -687,11 +683,11 @@ const Search_result = ({
             {language.price_sort_container_high_to_low}
           </span>
           <span
-            className={o === "price" ? "active" : null}
+            className={o === 'price' ? 'active' : null}
             onClick={() => {
-              o = "price";
+              o = 'price';
               loadMoreCar = false;
-              staticRoute.price_order = "price";
+              staticRoute.price_order = 'price';
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -745,8 +741,8 @@ const Search_result = ({
               setSliderPrice([]);
               loadMoreCar = false;
               filtersChecker.price = false;
-              staticRoute.min_price = "0";
-              staticRoute.max_price = "0";
+              staticRoute.min_price = '0';
+              staticRoute.max_price = '0';
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -840,12 +836,12 @@ const Search_result = ({
                         return { ...filterReset, body_style_id: true };
                       });
                       filtersChecker.body_style_id = false;
-                      staticRoute.body_style_id = "";
+                      staticRoute.body_style_id = '';
                     } else {
                       body_style_id = body_style_id.filter(
-                        (item) => +item !== id
+                        (item) => +item !== id,
                       );
-                      staticRoute.body_style_id = body_style_id.join(",");
+                      staticRoute.body_style_id = body_style_id.join(',');
                     }
                     loadMoreCar = false;
                     UrlCreator({
@@ -874,7 +870,7 @@ const Search_result = ({
               filtersChecker.brand_id = false;
               brand_name = null;
               filtersChecker.car_id = false;
-              staticRoute.brand_id = "";
+              staticRoute.brand_id = '';
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -898,7 +894,7 @@ const Search_result = ({
               car_name = null;
               loadMoreCar = false;
               filtersChecker.car_id = false;
-              staticRoute.car_id = "";
+              staticRoute.car_id = '';
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -946,7 +942,7 @@ const Search_result = ({
           language={language}
           setFilterForSearch={(v) => {
             if (v.o) {
-              o = "price";
+              o = 'price';
             }
             filterResults(v);
           }}
@@ -956,9 +952,9 @@ const Search_result = ({
       {remained_count > 0 && (
         <span
           className={[
-            "Load_more_car HEAP_SearchResult_Btn_ShowMore",
-            show_spinner_loadMore ? "no_padding" : null,
-          ].join(" ")}
+            'Load_more_car HEAP_SearchResult_Btn_ShowMore',
+            show_spinner_loadMore ? 'no_padding' : null,
+          ].join(' ')}
           onClick={() => loadMore()}
         >
           {show_spinner_loadMore ? (

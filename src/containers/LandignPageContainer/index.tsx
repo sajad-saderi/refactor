@@ -75,6 +75,7 @@ let filtersChecker = {
 const Landing_page_container = ({
   landing_data,
   language,
+  content
 }: ILanding_page_container) => {
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState([]);
@@ -696,7 +697,7 @@ const Landing_page_container = ({
           />
         ) : null}
       </div>
-      <h1 className="responsive">{landing_data.short_description}</h1>
+      {content && <h1 className="responsive">{landing_data.short_description}</h1>}
       {/* price sort part */}
       <section className="responsive">
         <div className="price_sort_container">
@@ -1028,6 +1029,7 @@ interface ILanding_page_container {
   // dynamic page data
   landing_data: any;
   language: any;
+  content:boolean
 }
 
 export default Landing_page_container;

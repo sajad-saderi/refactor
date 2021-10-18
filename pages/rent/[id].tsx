@@ -62,8 +62,14 @@ const Rent_dynamic = ({ Landing_page, content }) => {
           cardType: language.cardType,
         }}
       />
-      <Landing_page_container landing_data={Landing_page} language={language} />
-      {content === '0' ? <ContentHomePage auth={authorize} differentStyle={true}/> : (
+      <Landing_page_container
+        landing_data={Landing_page}
+        language={language}
+        content={content === '0' ? false : true}
+      />
+      {content === '0' ? (
+        <ContentHomePage auth={authorize} differentStyle={true} />
+      ) : (
         <Landing_Page_Content data={Landing_page} language={language} />
       )}
     </Layout>

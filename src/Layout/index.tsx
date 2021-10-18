@@ -1,10 +1,10 @@
-import { useEffect, useReducer, useState, useContext } from "react";
-import Router from "next/router";
+import { useEffect, useReducer, useState, useContext } from 'react';
+import Router from 'next/router';
 
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
-const Footer = dynamic(() => import("../components/Footer"));
-const Header = dynamic(() => import("../containers/header"));
+const Footer = dynamic(() => import('../components/Footer'));
+const Header = dynamic(() => import('../containers/header'));
 // import Footer from "../components/Footer";
 // import Header from "../containers/header";
 
@@ -14,22 +14,22 @@ const Header = dynamic(() => import("../containers/header"));
 // All Scss files are imported to the main.scss
 
 // Modal Context
-import modal_context from "../context/Modal_context";
+import modal_context from '../context/Modal_context';
 
 // Auth Context
-import auth_context from "../context/Auth_context";
+import auth_context from '../context/Auth_context';
 
 // Toast Context
-import toast_context from "../context/Toast_context";
-import net_CTX from "../context/internetConnectionCTX";
+import toast_context from '../context/Toast_context';
+import net_CTX from '../context/internetConnectionCTX';
 
 // Toast Component
-const Toast = dynamic(() => import("../components/Toast"));
+const Toast = dynamic(() => import('../components/Toast'));
 // import Toast from "../components/Toast";
 
-import * as Sentry from "@sentry/browser";
-import ErrorBounderies from "../../utils/error_bounderies";
-import InternetConnection from "../components/InternetConnection";
+import * as Sentry from '@sentry/browser';
+import ErrorBounderies from '../../utils/error_bounderies';
+import InternetConnection from '../components/InternetConnection';
 
 // Google Analytics
 // import { IoIosClose } from "react-icons/io";
@@ -41,7 +41,7 @@ const ShowModalReducer = (current, action) => {
         true : show 
         false : will not render at the page
         */
-  if (action.type === "SET") return !current;
+  if (action.type === 'SET') return !current;
 };
 
 let deferredPrompt = null;
@@ -60,7 +60,7 @@ const Layout = (props: ILayout) => {
       Owner: Owner can rate client rate and review
       Law: show the rules and policies to new user
   */
-  const [modalType, setModalType] = useState("Login");
+  const [modalType, setModalType] = useState('Login');
   const [data, setData] = useState(null);
   const [showPwaBanner, setShowPwaBanner] = useState(false);
 
@@ -88,11 +88,11 @@ const Layout = (props: ILayout) => {
     }
 
     if (Router.router.query.utm_source) {
-      localStorage["utm_source"] = Router.router.query.utm_source;
-      localStorage["utm_medium"] = Router.router.query.utm_medium;
-      localStorage["utm_campaign"] = Router.router.query.utm_campaign;
-      localStorage["utm_term"] = Router.router.query.utm_term;
-      localStorage["utm_content"] = Router.router.query.utm_content;
+      localStorage['utm_source'] = Router.router.query.utm_source;
+      localStorage['utm_medium'] = Router.router.query.utm_medium;
+      localStorage['utm_campaign'] = Router.router.query.utm_campaign;
+      localStorage['utm_term'] = Router.router.query.utm_term;
+      localStorage['utm_content'] = Router.router.query.utm_content;
     }
 
     // window.addEventListener("beforeinstallprompt", (e) => {
@@ -108,42 +108,46 @@ const Layout = (props: ILayout) => {
     // });
     checkToast();
     return () => {
-      if (!!!window["google_tag_manager"] && google_tag_manager_flag) {
-        Sentry.captureException("گوگل تگ مننجر بر روی مرورگر کاربر نبود");
+      if (!!!window['google_tag_manager'] && google_tag_manager_flag) {
+        Sentry.captureException('گوگل تگ مننجر بر روی مرورگر کاربر نبود');
         google_tag_manager_flag = false;
       }
     };
   }, []);
 
   const modal_handler = (type, data) => {
-    dispatch({ type: "SET" });
+    dispatch({ type: 'SET' });
     setModalType(type);
     setData(data);
   };
 
   const toast_handler = (data) => {
-    if (data.message === "Network Error") {
+    if (data.message === 'Network Error') {
       setToast(false);
       netCTX.toggleTheContainer(true);
     } else {
       setToastData(data);
       setToast(true);
-      sessionStorage["TOAST"] = JSON.stringify({ ...data });
+      sessionStorage['TOAST'] = JSON.stringify({ ...data });
     }
   };
 
   const checkToast = () => {
-    if (sessionStorage["TOAST"]) {
-      setToast(true);
-      let data = JSON.parse(sessionStorage["TOAST"]);
-      setToastData(data);
+    if (sessionStorage['TOAST']) {
+      let data = JSON.parse(sessionStorage['TOAST']);
+      if (data?.color === '#ed9026') {
+        sessionStorage.removeItem('TOAST');
+      } else {
+        setToast(true);
+        setToastData(data);
+      }
     }
   };
 
   const AnalyticsEvent = (eventCategory, eventAction, eventLabel) => {
-    if (window["ga"]) {
-      window["ga"]("send", {
-        hitType: "event",
+    if (window['ga']) {
+      window['ga']('send', {
+        hitType: 'event',
         eventCategory,
         eventAction,
         eventLabel,
@@ -156,12 +160,12 @@ const Layout = (props: ILayout) => {
       // Show the install prompt
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the install prompt");
-          AnalyticsEvent("pwa", "install-prompt", "accepted");
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+          AnalyticsEvent('pwa', 'install-prompt', 'accepted');
         } else {
-          console.log("User dismissed the install prompt");
-          AnalyticsEvent("pwa", "install-prompt", "rejected");
+          console.log('User dismissed the install prompt');
+          AnalyticsEvent('pwa', 'install-prompt', 'rejected');
         }
         pwa_flag = true;
         deferredPrompt = null;
@@ -241,7 +245,7 @@ const Layout = (props: ILayout) => {
           <Toast
             message={toastData.message}
             closeHandler={() => {
-              if (sessionStorage["TOAST"]) sessionStorage.removeItem("TOAST");
+              if (sessionStorage['TOAST']) sessionStorage.removeItem('TOAST');
               setToast(false);
             }}
             time={toastData.time}
