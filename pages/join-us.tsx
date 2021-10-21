@@ -14,7 +14,7 @@ import language from '../public/languages/fa/joinus.json';
 // import { logPageView } from "../utils/analytics";
 
 const JoinUs = ({ BotScore }) => {
-  const [shouldHideCommnets, setShouldHideCommnets] = useState(false);
+  const [shouldHideCommnets, setShouldHideCommnets] = useState(true);
   const [Score, SetScore] = useState(null);
   useEffect(() => {
     window['dataLayer'].push({
@@ -27,7 +27,7 @@ const JoinUs = ({ BotScore }) => {
   }, []);
   useEffect(() => {
     setShouldHideCommnets(
-      window.location.search.includes('no_comment') ? true : false,
+      window.location.search.includes('show_comment') ? false : true,
     );
 
     if (BotScore) {
