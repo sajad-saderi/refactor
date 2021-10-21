@@ -181,7 +181,8 @@ const Landing_page_container = ({
       filtersChecker.deliver_at_renters_place = true;
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
-    if (router.query.with_driver == '1') {
+    if (router.query.with_driver == '1' ||
+    url_checked.with_driver == '1') {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
