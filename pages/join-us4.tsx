@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-const Layout = dynamic(() => import("../src/Layout"));
-const Calculator = dynamic(() => import("../src/components/calculator"));
+const Layout = dynamic(() => import('../src/Layout'));
+const Calculator = dynamic(() => import('../src/components/calculator'));
 const Join_us_content = dynamic(() =>
-  import("../src/components/calculator/Join_us_content")
+  import('../src/components/calculator/Join_us_content'),
 );
 // import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo';
 // import Calculator from "../src/components/calculator";
 // import Join_us_content from "../src/components/calculator/Join_us_content/AbTestContent";
 // import Join_us_content from "../src/components/calculator/Join_us_content";
 
-import language from "../public/languages/fa/joinus.json";
+import language from '../public/languages/fa/joinus.json';
 // import { logPageView } from "../utils/analytics";
 
 const JoinUs1 = ({ BotScore }) => {
   const [Score, SetScore] = useState(null);
   React.useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    window['dataLayer'].push({
+      event: 'page_view',
       pageURL: window.location.href,
-      pagePath: "/join-us4",
+      pagePath: '/join-us4',
       pageTitle: language.next_seo.title,
     });
     // logPageView();
@@ -60,6 +60,7 @@ const JoinUs1 = ({ BotScore }) => {
           <p className="temporary_score">{Score}</p>
         </section>
         <Join_us_content
+          shouldHideCommnets={true}
           language={language.join_us_content}
           AbText={language.join_us_content_text}
         />

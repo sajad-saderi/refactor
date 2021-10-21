@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import dynamic from "next/dynamic";
+import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
-const Layout = dynamic(() => import("../src/Layout"));
+const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
-import language from "../public/languages/fa/aboutus.json";
+import { NextSeo } from 'next-seo';
+import language from '../public/languages/fa/aboutus.json';
 // import { logPageView } from "../utils/analytics";
 
 const AboutUs = () => {
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    window['dataLayer'].push({
+      event: 'page_view',
       pageURL: window.location.href,
-      pagePath: "/about-us",
+      pagePath: '/about-us',
       pageTitle: language.next_seo.title,
     });
     // logPageView();
@@ -46,19 +46,33 @@ const AboutUs = () => {
           </div>
           <h3>{language.call_numbers}</h3>
           <div className="indentation">
-            <a
+            {/* <a
               href="tel:02188567759"
               className="HEAP_Aboutus_Link_Phone call_numbers"
             >
               {language.number_1}
             </a>
+            , */}
+            <a
+              href="tel:02191091431"
+              className="HEAP_Aboutus_Link_Phone call_numbers"
+            >
+              {language.number_3}
+            </a>{' '}
+            ,
+            <a
+              href="tel:02191091432"
+              className="HEAP_Aboutus_Link_Phone call_numbers"
+            >
+              {language.number_4}
+            </a>{' '}
             ,
             <a
               href="tel:09391414574"
               className="HEAP_Aboutus_Link_Phone call_numbers"
             >
               {language.number_2}
-            </a>{" "}
+            </a>{' '}
           </div>
           <div className="map-container">
             <iframe

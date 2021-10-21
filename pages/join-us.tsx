@@ -1,31 +1,35 @@
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-
-const Layout = dynamic(() => import("../src/Layout"));
-const Calculator = dynamic(() => import("../src/components/calculator"));
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+const Layout = dynamic(() => import('../src/Layout'));
+const Calculator = dynamic(() => import('../src/components/calculator'));
 const Join_us_content = dynamic(() =>
-  import("../src/components/calculator/Join_us_content")
+  import('../src/components/calculator/Join_us_content'),
 );
 // import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo';
 // import Calculator from "../src/components/calculator";
 // import Join_us_content from "../src/components/calculator/Join_us_content";
-import language from "../public/languages/fa/joinus.json";
+import language from '../public/languages/fa/joinus.json';
 // import { logPageView } from "../utils/analytics";
 
 const JoinUs = ({ BotScore }) => {
+  const [shouldHideCommnets, setShouldHideCommnets] = useState(false);
   const [Score, SetScore] = useState(null);
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    window['dataLayer'].push({
+      event: 'page_view',
       pageURL: window.location.href,
-      pagePath: "/join-us",
+      pagePath: '/join-us',
       pageTitle: language.next_seo.title,
     });
     // logPageView();
   }, []);
-
   useEffect(() => {
+    setShouldHideCommnets(
+      window.location.search.includes('no_comment') ? true : false,
+    );
+
     if (BotScore) {
       SetScore(BotScore);
     }
@@ -59,6 +63,7 @@ const JoinUs = ({ BotScore }) => {
           <p className="temporary_score">{Score}</p>
         </section>
         <Join_us_content
+          shouldHideCommnets={shouldHideCommnets}
           language={language.join_us_content}
           AbText={language.join_us_content_text}
         />
