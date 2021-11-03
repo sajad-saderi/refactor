@@ -53,6 +53,7 @@ import validator from "validator";
 import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
 import ErrorHelper from "../../../../utils/error_helper";
+import { activeCities } from '../../../helpers/activeCities';
 // import { logPageView } from "../../../../utils/analytics";
 
 /**
@@ -1293,16 +1294,8 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
               if (i.value === 1) getDistricts(i.value);
             }}
           />
-          {state.location_id !== 1 &&
-            state.location_id !== 2 &&
-            state.location_id !== 3 &&
-            state.location_id !== 1657 &&
-            state.location_id !== 1656 &&
-            state.location_id !== 1660 &&
-            state.location_id !== 1690 &&
-            state.location_id !== 1655 &&
-            state.location_id !== 1685 &&
-            state.location_id !== null &&
+          {!activeCities(state.location_id) 
+          || state.location_id !== null &&
             !showDistrict && (
               <p className="extra_text">{`${language.showDistrict_text_1}${locationName}${language.showDistrict_text_2}`}</p>
             )}

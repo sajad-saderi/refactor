@@ -28,6 +28,7 @@ const Join_us_content = ({
   AbText,
   language,
   shouldHideCommnets,
+  showVideo,
 }: IJoin_us_content) => {
   const [authorize, set_authorize] = useState(true);
 
@@ -159,6 +160,19 @@ const Join_us_content = ({
               </Slider>
             </section>
           )}
+          {showVideo ? (
+            <section className="slick_container">
+              <div id="34065193900"><script type="text/JavaScript" src={`https://www.aparat.com/embed/RgpKI?data[rnddiv]=34065193900&data[responsive]=yes`}></script></div>
+              {/* <style>.h_iframe-aparat_embed_frame{position:relative;}.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto;}.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;}</style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div> */}
+              <video controls>
+                <source
+                  src='https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame?isamp'
+                  type="video/mp4"
+                />
+                مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
+              </video>
+            </section>
+          ) : null}
         </div>
       </div>
     </div>
@@ -169,5 +183,6 @@ interface IJoin_us_content {
   AbText: string;
   language: any;
   shouldHideCommnets: boolean;
+  showVideo: boolean;
 }
 export default Join_us_content;

@@ -8,7 +8,7 @@
   },
   "requests_page": {
     "no_order": "اخیرا سفارشی نداشته‌اید.",
-    "show_more": "نمایش ماشین‌های بیشتر",
+    "show_more": "رزروهای بیشتر",
     "activeOrders": "رزروهای اخیر",
     "deactivateOrders": "رزروهای قبلی",
     "filters": {

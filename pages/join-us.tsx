@@ -15,6 +15,7 @@ import language from '../public/languages/fa/joinus.json';
 
 const JoinUs = ({ BotScore }) => {
   const [shouldHideCommnets, setShouldHideCommnets] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
   const [Score, SetScore] = useState(null);
   useEffect(() => {
     window['dataLayer'].push({
@@ -29,6 +30,7 @@ const JoinUs = ({ BotScore }) => {
     setShouldHideCommnets(
       window.location.search.includes('show_comment') ? false : true,
     );
+    setShowVideo(window.location.search.includes('show_video') ? true : false);
 
     if (BotScore) {
       SetScore(BotScore);
@@ -64,6 +66,7 @@ const JoinUs = ({ BotScore }) => {
         </section>
         <Join_us_content
           shouldHideCommnets={shouldHideCommnets}
+          showVideo={showVideo}
           language={language.join_us_content}
           AbText={language.join_us_content_text}
         />
