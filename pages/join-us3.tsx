@@ -59,6 +59,7 @@ const JoinUs1 = ({ BotScore }) => {
         </section>
         <Join_us_content
           shouldHideCommnets={true}
+          showVideo={false}
           language={language.join_us_content}
           AbText={language.join_us_content_text}
         />
