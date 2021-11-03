@@ -166,7 +166,7 @@ const Join_us_content = ({
               {/* <style>.h_iframe-aparat_embed_frame{position:relative;}.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto;}.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;}</style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div> */}
               <video controls>
                 <source
-                  src='https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame?isamp'
+                  src='https://core.sepris.com/media/host_comments_joinus.mp4'
                   type="video/mp4"
                 />
                 مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
