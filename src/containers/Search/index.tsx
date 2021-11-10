@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 // import Button from "../../components/form/Button";
 
 import modal_context from '../../context/Modal_context';
+import AppStore from '../../context/app';
 import ErrorHelper from '../../../utils/error_helper';
 import { activeCities } from '../../helpers/activeCities';
 
@@ -46,6 +47,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   });
 
   const MODAL_CONTEXT = useContext(modal_context);
+  const store = useContext(AppStore);
   const toastCTX = useContext(toast_context);
   const router = useRouter();
   const netCTX = useContext(net_CTX);
@@ -85,9 +87,9 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: 'خطا در دریافت لیست شهر‌ها',
-              })
+              errorObj: error.response,
+              _400Message: 'خطا در دریافت لیست شهر‌ها',
+            })
             : error,
           color: '#ed9026',
           time: 0,
@@ -238,11 +240,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               if (activeCities(i.value)) {
                 MODAL_CONTEXT.modalHandler('TellMe');
               } else {
+                store.setLocation(i.value)
                 setLocationId(i.value);
                 setLocationName(i.text);
               }
             }}
-            // clearField={() => setLocationId(1)}
+          // clearField={() => setLocationId(1)}
           />
         </div>
         <div className="Date_picker_container">
@@ -264,7 +267,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               minimumDate={utils('fa').getToday()}
               locale="fa"
               colorPrimary="#4ba3ce"
-              // disabledDays={[utils("fa").getToday()]}
+            // disabledDays={[utils("fa").getToday()]}
             />
             <div className="input_container">
               <p className="label">{language.search.label_start_date}</p>
@@ -274,12 +277,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                   fromError.status
                     ? 'input_Error'
                     : showBorder
-                    ? dayRange.from
-                      ? dayRange.to
-                        ? 'activeBorder'
-                        : null
-                      : 'activeBorder'
-                    : null
+                      ? dayRange.from
+                        ? dayRange.to
+                          ? 'activeBorder'
+                          : null
+                        : 'activeBorder'
+                      : null
                 }
                 readOnly={true}
                 value={fromDay ? fromDay : ''}
@@ -296,14 +299,14 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                   toError.status
                     ? 'input_Error'
                     : showBorder
-                    ? dayRange.to
-                      ? dayRange.from
-                        ? null
-                        : null
-                      : dayRange.from
-                      ? 'activeBorder'
-                      : null
-                    : null,
+                      ? dayRange.to
+                        ? dayRange.from
+                          ? null
+                          : null
+                        : dayRange.from
+                          ? 'activeBorder'
+                          : null
+                      : null,
                 ].join(' ')}
                 readOnly={true}
                 value={toDay ? toDay : ''}
@@ -319,7 +322,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             value={language.search.btn}
             class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
             loading={loading}
-            click={() => {}}
+            click={() => { }}
           />
         </div>
       </form>

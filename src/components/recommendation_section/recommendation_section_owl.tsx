@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import suv from "../../../public/image/suv.jpeg";
 import van from "../../../public/image/van.jpeg";
@@ -8,11 +8,13 @@ import for_journey from "../../../public/image/for_journey.jpeg";
 import moment from "moment-jalaali";
 import Link from "next/link";
 import ScrollContainer from "react-indiana-drag-scroll";
+import AppStore from '../../context/app'
 import Icon from "../../../utils/Icon";
 
 const Recommendation_section = (props) => {
   const [start_date, set_start_date] = useState(null);
   const [end_date, set_end_date] = useState(null);
+  const store = useContext(AppStore)
   useEffect(() => {
     set_default_date_for_search();
   }, []);
@@ -40,7 +42,7 @@ const Recommendation_section = (props) => {
         <div className="inner-container">
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
+              href={`/search-result?location_id=${store.location}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
               prefetch={false}
             >
               <a>
@@ -63,7 +65,7 @@ const Recommendation_section = (props) => {
           </div>
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&with_driver=1`}
+              href={`/search-result?location_id=${store.location}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&with_driver=1`}
               prefetch={false}
             >
               <a>
@@ -76,7 +78,7 @@ const Recommendation_section = (props) => {
           </div>
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
+              href={`/search-result?location_id=${store.location}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
               prefetch={false}
             >
               <a>
@@ -89,7 +91,7 @@ const Recommendation_section = (props) => {
           </div>
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=5`}
+              href={`/search-result?location_id=${store.location}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=5`}
               prefetch={false}
             >
               <a>

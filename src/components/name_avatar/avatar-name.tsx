@@ -1,20 +1,20 @@
-import { useState, useContext } from "react";
-import { letter_control } from "../../../utils/letter_control";
-import { invert_hex } from "../../../utils/invert_hex";
-import { random_hex_color } from "../../../utils/random_hex_color";
+import { useState, useContext, useEffect } from 'react';
+import { letter_control } from '../../../utils/letter_control';
+import { invert_hex } from '../../../utils/invert_hex';
+import { random_hex_color } from '../../../utils/random_hex_color';
 
-import User_info from "../../context/User_info";
+import User_info from '../../context/User_info';
 const colorArray = [
-  "#EC7F00",
-  "#14808E",
-  "#7A3B69",
-  "#2A562A",
-  "#116B98",
-  "#116B98",
+  '#EC7F00',
+  '#14808E',
+  '#7A3B69',
+  '#2A562A',
+  '#116B98',
+  '#116B98',
 ];
 const NameAvatar = ({
   name,
-  css_display = "block",
+  css_display = 'block',
   css_with,
   css_background_color,
   random_background,
@@ -23,14 +23,15 @@ const NameAvatar = ({
   clickOnElement,
   arrayIndex,
 }: INameAvatar) => {
+  const [letter, setLetter] = useState('');
   const [textColor, setTextColor] = useState(
     css_text_color
       ? css_text_color
       : css_background_color || random_background
       ? `#${invert_hex(
-          css_background_color ? css_background_color : random_hex_color()
+          css_background_color ? css_background_color : random_hex_color(),
         )}`
-      : "initial"
+      : 'initial',
   );
   const fontSize = `${css_with / 2.5}px`;
 
@@ -46,6 +47,13 @@ const NameAvatar = ({
   if (!isNaN(name)) {
     name = false;
   }
+
+  useEffect(() => {
+    if (name) {
+      console.log(`svgAlphabet/${letter_control(name).src}.svg`);
+      setLetter(letter_control(name).src);
+    }
+  }, [name]);
 
   return (
     <div
@@ -66,7 +74,14 @@ const NameAvatar = ({
         }}
       >
         {name ? (
-          <img src={letter_control(name).src} alt="حرف اول نام کاربری" />
+          <img
+            src={
+              letter
+                ? `/fonts/svgAlphabet/${letter}.svg`
+                : null
+            }
+            alt="حرف اول نام کاربری"
+          />
         ) : null}
       </span>
     </div>
@@ -75,7 +90,7 @@ const NameAvatar = ({
 
 interface INameAvatar {
   name: any;
-  css_display?: "block" | "inline-block" | "flex" | "grid";
+  css_display?: 'block' | 'inline-block' | 'flex' | 'grid';
   css_with?: number;
   css_background_color?: string;
   background_color_array?: Array<string>;

@@ -10,6 +10,7 @@ import * as Sentry from "@sentry/browser";
 import { REQUEST_GET_USER_INFO, GET_USER_IP } from "../src/API";
 import jsCookie from "js-cookie";
 import user_context from "../src/context/User_info";
+import { AppStoreWrapper } from "../src/context/app";
 import logo from "../public/android-icon-48x48.png";
 import { IoIosClose } from "react-icons/io";
 import "../src/styles/main.scss";
@@ -290,19 +291,21 @@ class App_Otoli extends App {
           </section>
         ) : null}
         <InternetConnectionContextProvider>
-          <user_context.Provider
-            value={{
-              update_user_data: (v) => {
-                this.setState({
-                  user_data: v,
-                });
-              },
-              data: this.state.user_data,
-              avatartBackgroundColor: this.state.backgroundColor,
-            }}
-          >
-            <Component {...pageProps} BotScore={this.state.BotScore} />
-          </user_context.Provider>
+          <AppStoreWrapper>
+            <user_context.Provider
+              value={{
+                update_user_data: (v) => {
+                  this.setState({
+                    user_data: v,
+                  });
+                },
+                data: this.state.user_data,
+                avatartBackgroundColor: this.state.backgroundColor,
+              }}
+            >
+              <Component {...pageProps} BotScore={this.state.BotScore} />
+            </user_context.Provider>
+          </AppStoreWrapper>
         </InternetConnectionContextProvider>
       </>
 
