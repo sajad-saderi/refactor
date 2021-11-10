@@ -18,6 +18,7 @@ export const REQUEST_GET_LOCATION = (parent_id: IGetLocation = null) => {
             key: value.id,
             text: value.name.fa,
             value: +value.id,
+            en: value.name.en
           }));
           resolve({ data });
         }

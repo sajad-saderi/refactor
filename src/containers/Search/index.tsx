@@ -240,7 +240,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               if (activeCities(i.value)) {
                 MODAL_CONTEXT.modalHandler('TellMe');
               } else {
-                store.setLocation(i.value)
+                store.setLocation(i)
                 setLocationId(i.value);
                 setLocationName(i.text);
               }

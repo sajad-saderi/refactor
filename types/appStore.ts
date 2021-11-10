@@ -1,0 +1,1 @@
+export interface IAppStore { location: { id: number, fa: string, en: string } }

@@ -1,18 +1,20 @@
 import { useState, createContext } from 'react'
+import { IAppStore } from '../../../types'
 
 const AppStore = createContext({
-    location: 1,
-    setLocation: (id) => { },
+    store: { location: { id: 1, fa: 'تهران', en: 'tehran' } },
+    setLocation: (data) => { },
 })
 
 export const AppStoreWrapper = ({ children }) => {
 
-    const [location, setLocation] = useState<number>(1)
+    const [store, setStore] = useState<IAppStore>({ location: { id: 1, fa: 'تهران', en: 'tehran' } })
 
     const context = {
-        location,
-        setLocation: (id) => setLocation(id),
+        store: store,
+        setLocation: ({ value, text, en }) => setStore((store) => ({ ...store, location: { id: value, fa: text, en: en } }))
     }
+
     return (
         <AppStore.Provider value={context}>
             {children}

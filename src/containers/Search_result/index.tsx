@@ -24,6 +24,7 @@ import UrlCreator from '../../../utils/UrlCreator';
 import UrlChecker from '../../../utils/UrlChecker';
 import search_query_builder from '../../../utils/search-query-builder';
 import toast_context from '../../context/Toast_context';
+import AppStore from '../../context/app';
 import ErrorHelper from '../../../utils/error_helper';
 import net_CTX from '../../context/internetConnectionCTX';
 
@@ -100,6 +101,7 @@ const Search_result = ({
   });
   const [carLocationName, setCarLocationName] = useState(null);
   const toastCTX = useContext(toast_context);
+  const appStore = useContext(AppStore);
   const router = useRouter();
   const new_search_ref = useRef(null);
   const netCTX = useContext(net_CTX);
@@ -226,6 +228,11 @@ const Search_result = ({
     };
   }, []);
 
+  useEffect(() => {
+    setCarLocationName(appStore.store.location.fa)
+    Location = appStore.store.location.id
+  }, [appStore.store.location.id])
+
   async function initSearch() {
     JumpTo = jsCookie.get('JumpTo');
     body_style_names = [];
@@ -313,9 +320,9 @@ const Search_result = ({
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: 'در دریافت نتایج جستجو خطایی رخ داده است.',
-              })
+              errorObj: error.response,
+              _400Message: 'در دریافت نتایج جستجو خطایی رخ داده است.',
+            })
             : error,
           color: '#ed9026',
           time: 0,
@@ -600,11 +607,9 @@ const Search_result = ({
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
-                {`${total_count}${
-                  language.count_bar_khodro
-                }${result[0].start_date.slice(5)}${
-                  language.count_bar_ta
-                }${result[0].end_date.slice(5)}`}{' '}
+                {`${total_count}${language.count_bar_khodro
+                  }${result[0].start_date.slice(5)}${language.count_bar_ta
+                  }${result[0].end_date.slice(5)}`}{' '}
                 {carLocationName && `در ${carLocationName}`}
               </p>
             ) : null
@@ -826,38 +831,38 @@ const Search_result = ({
         ) : null}
         {body_style_names.length > 0
           ? body_style_names.map(({ name, id }) => {
-              return (
-                <p
-                  key={id}
-                  className="minimal_filter_tags"
-                  onClick={() => {
-                    if (body_style_names.length === 1) {
-                      setFilterReset((filterReset) => {
-                        return { ...filterReset, body_style_id: true };
-                      });
-                      filtersChecker.body_style_id = false;
-                      staticRoute.body_style_id = '';
-                    } else {
-                      body_style_id = body_style_id.filter(
-                        (item) => +item !== id,
-                      );
-                      staticRoute.body_style_id = body_style_id.join(',');
-                    }
-                    loadMoreCar = false;
-                    UrlCreator({
-                      query: staticRoute,
-                      route: router.route,
-                      cb: UrlUpdater,
+            return (
+              <p
+                key={id}
+                className="minimal_filter_tags"
+                onClick={() => {
+                  if (body_style_names.length === 1) {
+                    setFilterReset((filterReset) => {
+                      return { ...filterReset, body_style_id: true };
                     });
-                    initSearch();
-                  }}
-                >
-                  <IoMdClose size="1.3rem" color="#8c8c8c" />
-                  {/* {language.minimal_filters_body_style} */}
-                  {name}
-                </p>
-              );
-            })
+                    filtersChecker.body_style_id = false;
+                    staticRoute.body_style_id = '';
+                  } else {
+                    body_style_id = body_style_id.filter(
+                      (item) => +item !== id,
+                    );
+                    staticRoute.body_style_id = body_style_id.join(',');
+                  }
+                  loadMoreCar = false;
+                  UrlCreator({
+                    query: staticRoute,
+                    route: router.route,
+                    cb: UrlUpdater,
+                  });
+                  initSearch();
+                }}
+              >
+                <IoMdClose size="1.3rem" color="#8c8c8c" />
+                {/* {language.minimal_filters_body_style} */}
+                {name}
+              </p>
+            );
+          })
           : null}
         {!car_name && brand_name ? (
           <p
