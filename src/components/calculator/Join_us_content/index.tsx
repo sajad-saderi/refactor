@@ -12,6 +12,9 @@ import 'slick-carousel/slick/slick-theme.css';
 const Slider = dynamic(() => import('react-slick'));
 import quotation from '../../../../public/image/svg/quotation.svg';
 
+let percentageOfplayedVideo = 0
+let videoNumber = 1
+
 let settings = {
   dots: true,
   infinite: true,
@@ -37,19 +40,30 @@ const Join_us_content = ({
     if (guard !== 'auth') {
       set_authorize(false);
     }
+    return () => {
+      if (percentageOfplayedVideo)
+        window["dataLayer"].push({
+          event: "conversions",
+          action: `join_us_video_play_${videoNumber}`,
+          label: `${percentageOfplayedVideo}%`,
+        });
+    }
   }, []);
 
-  // let settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   rtl: true,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 15000,
-  //   arrows: false,
-  // };
+  const videoPlayed = (e, number) => {
+    e.persist()
+    const { target } = e
+    videoNumber = number
+    percentageOfplayedVideo = +target.currentTime.toFixed(0)
+    console.log(percentageOfplayedVideo);
+
+    if (percentageOfplayedVideo <= 10) percentageOfplayedVideo = 10
+    else if (percentageOfplayedVideo <= 25) percentageOfplayedVideo = 25
+    else if (percentageOfplayedVideo <= 50) percentageOfplayedVideo = 50
+    else if (percentageOfplayedVideo <= 75) percentageOfplayedVideo = 75
+    else if (percentageOfplayedVideo <= 90) percentageOfplayedVideo = 90
+    else percentageOfplayedVideo = 100
+  }
 
   return (
     <div className="responsive second_part_container">
@@ -162,15 +176,23 @@ const Join_us_content = ({
           )}
           {showVideo ? (
             <section className="slick_container">
-              <div id="34065193900"><script type="text/JavaScript" src={`https://www.aparat.com/embed/RgpKI?data[rnddiv]=34065193900&data[responsive]=yes`}></script></div>
-              {/* <style>.h_iframe-aparat_embed_frame{position:relative;}.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto;}.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;}</style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div> */}
-              <video controls>
-                <source
-                  src='https://core.sepris.com/media/host_comments_joinus.mp4'
-                  type="video/mp4"
-                />
-                مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
-              </video>
+              <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2> {/* <style>.h_iframe-aparat_embed_frame{position:relative;}.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto;}.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;}</style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div> */}
+              <Slider {...settings}>
+                <video controls onClick={e => videoPlayed(e, 1)}>
+                  <source
+                    src='https://core.sepris.com/media/join_us_user_review_1.mp4'
+                    type="video/mp4"
+                  />
+                  مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
+                </video>
+                <video controls onClick={e => videoPlayed(e, 2)}>
+                  <source
+                    src='https://core.sepris.com/media/join_us_user_review_2.mp4'
+                    type="video/mp4"
+                  />
+                  مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
+                </video>
+              </Slider>
             </section>
           ) : null}
         </div>

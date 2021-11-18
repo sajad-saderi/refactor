@@ -267,50 +267,50 @@ class App_Otoli extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      // <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
-      <>
-        {this.state.showPwaBanner ? (
-          <section className="pwa_invitation_banner">
-            <div
-              className="pwa_content HEAP_PWA_INVITATION"
-              onClick={this.customPwaPrompt}
-            >
-              <img src={logo} alt="pwa logo icon" />
-              اپلیکیشن سِپریس را نصب کنید.
-            </div>
-            <p
-              className="close_pwa_invitation"
-              onClick={() => {
-                this.AnalyticsEvent("pwa", "install-banner", "closed");
-                this.setState({
-                  showPwaBanner: false,
-                });
-              }}
-            >
-              <IoIosClose color="#fff" size="2rem" />
-              بستن
-            </p>
-          </section>
-        ) : null}
-        <InternetConnectionContextProvider>
-          <AppStoreWrapper>
-            <user_context.Provider
-              value={{
-                update_user_data: (v) => {
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
+        <>
+          {this.state.showPwaBanner ? (
+            <section className="pwa_invitation_banner">
+              <div
+                className="pwa_content HEAP_PWA_INVITATION"
+                onClick={this.customPwaPrompt}
+              >
+                <img src={logo} alt="pwa logo icon" />
+                اپلیکیشن سِپریس را نصب کنید.
+              </div>
+              <p
+                className="close_pwa_invitation"
+                onClick={() => {
+                  this.AnalyticsEvent("pwa", "install-banner", "closed");
                   this.setState({
-                    user_data: v,
+                    showPwaBanner: false,
                   });
-                },
-                data: this.state.user_data,
-                avatartBackgroundColor: this.state.backgroundColor,
-              }}
-            >
-              <Component {...pageProps} BotScore={this.state.BotScore} />
-            </user_context.Provider>
-          </AppStoreWrapper>
-        </InternetConnectionContextProvider>
-      </>
-      //  </GoogleReCaptchaProvider > 
+                }}
+              >
+                <IoIosClose color="#fff" size="2rem" />
+                بستن
+              </p>
+            </section>
+          ) : null}
+          <InternetConnectionContextProvider>
+            <AppStoreWrapper>
+              <user_context.Provider
+                value={{
+                  update_user_data: (v) => {
+                    this.setState({
+                      user_data: v,
+                    });
+                  },
+                  data: this.state.user_data,
+                  avatartBackgroundColor: this.state.backgroundColor,
+                }}
+              >
+                <Component {...pageProps} BotScore={this.state.BotScore} />
+              </user_context.Provider>
+            </AppStoreWrapper>
+          </InternetConnectionContextProvider>
+        </>
+      </GoogleReCaptchaProvider >
     );
   }
 }

@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 export const captcha = (token) => {
-    console.log(token);
-
     let scoreData = null;
     try {
         window["__recaptchaCallback"] = () => {
@@ -30,16 +28,6 @@ export const captcha = (token) => {
                                     action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
                                     hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
                                 })
-                                    .then((res) => {
-                                        if (window["heap"]) {
-                                            window["heap"].addUserProperties({
-                                                RecaptchaScore: scoreData.data.recaptcha.score,
-                                            });
-                                        }
-                                    })
-                                    .catch((e) => {
-                                        console.log(e);
-                                    });
                             })
                             .catch((e) => {
                                 console.log(e);
