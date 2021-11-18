@@ -1,4 +1,4 @@
-import { IAppStore } from './AppStore'
+import { IAppStore } from './appStore'
 
 export type {
     IAppStore
