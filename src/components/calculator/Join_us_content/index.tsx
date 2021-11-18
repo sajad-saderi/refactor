@@ -55,8 +55,6 @@ const Join_us_content = ({
     const { target } = e
     videoNumber = number
     percentageOfplayedVideo = +target.currentTime.toFixed(0)
-    console.log(percentageOfplayedVideo);
-
     if (percentageOfplayedVideo <= 10) percentageOfplayedVideo = 10
     else if (percentageOfplayedVideo <= 25) percentageOfplayedVideo = 25
     else if (percentageOfplayedVideo <= 50) percentageOfplayedVideo = 50
@@ -176,23 +174,14 @@ const Join_us_content = ({
           )}
           {showVideo ? (
             <section className="slick_container">
-              <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2> {/* <style>.h_iframe-aparat_embed_frame{position:relative;}.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto;}.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;}</style><div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/RgpKI/vt/frame" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe></div> */}
-              <Slider {...settings}>
-                <video controls onClick={e => videoPlayed(e, 1)}>
-                  <source
-                    src='https://core.sepris.com/media/join_us_user_review_1.mp4'
-                    type="video/mp4"
-                  />
-                  مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
-                </video>
-                <video controls onClick={e => videoPlayed(e, 2)}>
-                  <source
-                    src='https://core.sepris.com/media/join_us_user_review_2.mp4'
-                    type="video/mp4"
-                  />
-                  مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
-                </video>
-              </Slider>
+              <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
+              <video controls onClick={e => videoPlayed(e, 2)}>
+                <source
+                  src='https://core.sepris.com/media/join_us_user_review_2.mp4'
+                  type="video/mp4"
+                />
+                مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
+              </video>
             </section>
           ) : null}
         </div>

@@ -30,7 +30,6 @@ const JoinUs = ({ BotScore }) => {
       window.location.search.includes('show_comment') ? false : true,
     );
     setShowVideo(window.location.search.includes('show_video') ? true : false);
-    console.log(BotScore);
     // logPageView();
   }, []);
 
