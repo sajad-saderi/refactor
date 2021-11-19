@@ -40,14 +40,6 @@ const Join_us_content = ({
     if (guard !== 'auth') {
       set_authorize(false);
     }
-    return () => {
-      if (percentageOfplayedVideo)
-        window["dataLayer"].push({
-          event: "conversions",
-          action: `join_us_video_play_${videoNumber}`,
-          label: `${percentageOfplayedVideo}%`,
-        });
-    }
   }, []);
 
   const videoPlayed = (e, number) => {
@@ -61,6 +53,12 @@ const Join_us_content = ({
     else if (percentageOfplayedVideo <= 75) percentageOfplayedVideo = 75
     else if (percentageOfplayedVideo <= 90) percentageOfplayedVideo = 90
     else percentageOfplayedVideo = 100
+    if (percentageOfplayedVideo)
+      window["dataLayer"].push({
+        event: "conversions",
+        action: `join_us_video_play_${number}`,
+        label: `${percentageOfplayedVideo}%`,
+      });
   }
 
   return (
