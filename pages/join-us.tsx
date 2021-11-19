@@ -11,14 +11,14 @@ import { NextSeo } from 'next-seo';
 // import Calculator from "../src/components/calculator";
 // import Join_us_content from "../src/components/calculator/Join_us_content";
 import language from '../public/languages/fa/joinus.json';
-import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { GoogleReCaptcha, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { captcha } from '../src/helpers/capchaHelper';
 // import { logPageView } from "../utils/analytics";
-
+let isSent = false
 const JoinUs = ({ BotScore }) => {
   const [shouldHideCommnets, setShouldHideCommnets] = useState(true);
+  const [token, setToken] = useState(null);
   const [showVideo, setShowVideo] = useState(false);
-  const [Score, SetScore] = useState(null);
   useEffect(() => {
     window['dataLayer'].push({
       event: 'page_view',
@@ -30,8 +30,15 @@ const JoinUs = ({ BotScore }) => {
       window.location.search.includes('show_comment') ? false : true,
     );
     setShowVideo(window.location.search.includes('show_video') ? true : false);
-    // logPageView();
+    // logPageView(); 
   }, []);
+
+  useEffect(() => {
+    if (token && !isSent) {
+      captcha(token)
+      isSent = true
+    }
+  })
 
   return (
     <Layout LinkControl={true}>
@@ -49,8 +56,9 @@ const JoinUs = ({ BotScore }) => {
         }}
       />
       <GoogleReCaptcha
-        onVerify={token => {
-          captcha(token);
+        onVerify={googletoken => {
+          if (!token)
+            setToken(googletoken);
         }}
       />
       <article className="join_us">
@@ -64,7 +72,6 @@ const JoinUs = ({ BotScore }) => {
               AbText={language.calculator_text}
             />
           </div>
-          <p className="temporary_score">{Score}</p>
         </section>
         <Join_us_content
           shouldHideCommnets={shouldHideCommnets}
