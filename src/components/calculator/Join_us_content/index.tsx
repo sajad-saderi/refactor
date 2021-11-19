@@ -177,7 +177,7 @@ const Join_us_content = ({
               <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
               <video controls onClick={e => videoPlayed(e, 2)}>
                 <source
-                  src='https://core.sepris.com/media/join_us_user_review_2.mp4'
+                  src='https://core.sepris.com/media/join_us_user_review_1.mp4'
                   type="video/mp4"
                 />
                 مرورگر شما پخش فایل ویدیویی را پشتیبانی نمی‌کند.
