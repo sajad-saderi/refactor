@@ -30,7 +30,7 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
     window['dataLayer'].push({
       event: 'page_view',
       pageURL: window.location.href,
-      pagePath: '/payment-success',
+      pagePath: extension ? '/extension-payment' : '/payment-success',
       pageTitle: language.next_seo.title,
     });
     // logPageView();

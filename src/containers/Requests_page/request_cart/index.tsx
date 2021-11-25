@@ -73,6 +73,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [coupon, setCoupon] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
   const [extensionInfo, setExtensionInfo] = useState(null);
+  const [extensionSum, setExtensionSum] = useState(null);
   const [click_on_cancel, set_click_on_cancel] = useState(false);
 
   const MODAL_CONTEXT = useContext(Modal_context);
@@ -177,8 +178,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
      */
     let renter = data.role === "renter" ? true : false;
     let has_insurance = data.has_insurance ? true : false;
+    let extensionSum: any = 0
     let extensionInfo = data.extend_request_set ? data.extend_request_set.length > 0 ? data.extend_request_set[0] : null : null
-
+    if (extensionInfo) {
+      extensionSum = data.extend_request_set.reduce((previous, current) => { return { status: { id: 'paid' }, price: (previous.status.id === 'paid' ? previous.price : 0) + (current.status.id === 'paid' ? current.price : 0) } }, { price: 0, status: { id: "" } })
+      setExtensionSum(extensionSum)
+    }
     setExtensionInfo(extensionInfo)
     // small portion at the top right on the request cart
     let RentStatus = null;
@@ -186,10 +191,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     switch (status ? status : data.status.id) {
       case "new":
         RentStatus = (
-          <div className="rent_status status_new">
-            <div className="card_status">
-              <MdAlarm size="2rem" color="#f7941d" />
-              <span>{language.new}</span>
+          <div className="rent_status">
+            <div className="status_new">
+              <div className="card_status">
+                <MdAlarm size="2rem" color="#f7941d" />
+                <span>{language.new}</span>
+              </div>
+              {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
             </div>
             {!renter && (
               <div className="timer">
@@ -235,10 +243,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "approved":
         RentStatus = (
-          <div className="rent_status status_approved">
-            <div className="card_status">
-              <MdCreditCard size="2rem" color="#a3678b" />
-              <span>{language.approved}</span>
+          <div className="rent_status">
+            <div className='status_approved'>
+              <div className="card_status">
+                <MdCreditCard size="2rem" color="#a3678b" />
+                <span>{language.approved}</span>
+              </div>
+              {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
             </div>
             {!renter && (
               <div className="timer">
@@ -296,9 +307,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "paid":
         RentStatus = (
-          <div className="rent_status status_paid">
-            <MdVpnKey size="2rem" color="#2cbbc2" />
-            <span>{language.paid}</span>
+          <div className="rent_status">
+            <div className="status_paid">
+              <MdVpnKey size="2rem" color="#2cbbc2" />
+              <span>{language.paid}</span>
+            </div>
+            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         setButton_code(
@@ -318,8 +332,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "not_delivered":
         RentStatus = (
           <div className="rent_status">
-            <IoIosHand size="1.4rem" color="#656565" />
-            <span>{data.status.name}</span>
+            <div className="inlineDisplay">
+              <IoIosHand size="1.4rem" color="#656565" />
+              <span>{data.status.name}</span>
+            </div>
+            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         break;
@@ -421,10 +438,10 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     } else setMedia_set({ thumbnail_url: carImage });
     setDiscounted_total_price(
       renter
-        ? data.rent_search_dump.discounted_total_price
+        ? data.rent_search_dump.discounted_total_price + (extensionSum ? extensionSum.price : 0)
         : data.rent_search_dump.owner_price
-          ? data.rent_search_dump.owner_price
-          : data.rent_search_dump.discounted_total_price
+          ? data.rent_search_dump.owner_price + (extensionSum ? extensionSum.price : 0)
+          : data.rent_search_dump.discounted_total_price + (extensionSum ? extensionSum.price : 0)
     );
     setInsurance_total_price(
       has_insurance ? data.rent_search_dump.insurance_total_price : 0
@@ -432,7 +449,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     set_has_insurance(has_insurance);
     setCoupon(
       data.rent_search_dump.coupon
-        ? data.rent_search_dump.coupon.total_price
+        ? data.rent_search_dump.coupon.total_price + (extensionSum ? extensionSum.price : 0)
         : null
     );
     setTotal_discount(data.rent_search_dump.total_discount);
@@ -520,11 +537,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   ? coupon
                     ? (coupon + insurance_total_price).toLocaleString()
                     : (
-                      discounted_total_price + insurance_total_price
+                      discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_total_price
                     ).toLocaleString()
                   : coupon
                     ? coupon.toLocaleString()
-                    : discounted_total_price.toLocaleString()}{" "}
+                    : (discounted_total_price + (extensionSum ? extensionSum.price : 0)).toLocaleString()}{" "}
               </span>
               {language.toman} ({language.for} {no_of_days} {language.day})
             </>
