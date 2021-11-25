@@ -14,11 +14,13 @@ import net_CTX from '../../context/internetConnectionCTX';
 
 moment.loadPersian({ dialect: 'persian-modern' });
 
-const SucceedPayment = ({ language }) => {
+const SucceedPayment = ({ language, extension }: SuccessPayment) => {
   const [renter, setRenter] = useState(null);
   const [rent_search_dump, setRent_search_dump] = useState(null);
   const [bank_id_track, set_bank_id_track] = useState(null);
+  const [extensionStartDate, setExtensionStartDate] = useState(null);
   const [has_insurance, set_has_insurance] = useState(false);
+  const [extensionInfo, setExtensionInfo] = useState(null);
   const [hasError, setHasError] = useState(false);
   const token = jsCookie.get('token');
   const toastCTX = useContext(toast_context);
@@ -46,7 +48,16 @@ const SucceedPayment = ({ language }) => {
 
     try {
       const Order_res: any = await GET_ORDER_REQUEST({ token, id });
+      let lastExtension = null
+      if (Order_res.data?.extend_request_set) {
+        lastExtension = Order_res.data.extend_request_set[0]
+        setExtensionInfo(lastExtension)
+        if (Order_res.data?.extend_request_set.length > 0) {
+          let startDate = Order_res.data?.extend_request_set[1].end_date.jalali
+          setExtensionStartDate(`${startDate.y}/${startDate.m}/${startDate.d}`)
 
+        }
+      }
       setRent_search_dump(Order_res.data.rent_search_dump);
       setRenter(Order_res.data.renter);
       set_bank_id_track(Order_res.data.id);
@@ -67,9 +78,9 @@ const SucceedPayment = ({ language }) => {
       // });
 
       window['dataLayer'].push({
-        event: 'purchase',
+        event: extension ? 'extension' : 'purchase',
         transactionId: Order_res.data.id,
-        transactionTotal: Order_res.data.rent_search_dump.total_price,
+        transactionTotal: extension ? lastExtension.price : Order_res.data.rent_search_dump.total_price,
         transactionProducts: [
           {
             sku: Order_res.data.rent_search_dump.id,
@@ -87,9 +98,9 @@ const SucceedPayment = ({ language }) => {
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: 'خطایی در دریافت اطلاعات پرداخت رخ داده است.',
-              })
+              errorObj: error.response,
+              _400Message: 'خطایی در دریافت اطلاعات پرداخت رخ داده است.',
+            })
             : error,
           color: '#ed9026',
           time: 0,
@@ -105,7 +116,7 @@ const SucceedPayment = ({ language }) => {
         <section className="payment_cart">
           <div className="title  ">
             <img src={check_icon} alt="پرداخت موفق" />
-            <h4>{language.h4}</h4>
+            <h4>{extension ? "تمدید با موفقیت انجام شد" : language.h4}</h4>
           </div>
           <div className="bank_track_id ">
             <p>شماره پیگیری: {bank_id_track}</p>
@@ -133,25 +144,35 @@ const SucceedPayment = ({ language }) => {
                     </span>
                   </div>
                   <div>
-                    <p>تاریخ تحویل:</p>
+                    <p>{extension ? 'تمدید از' : 'تاریخ تحویل'}:</p>
                     <span>
-                      {moment(
-                        rent_search_dump.start_date,
-                        'jYYYY/jMM/jDD',
-                      ).format('jYYYY/jMM/jD')}
+                      {extension ?
+                        moment(
+                          extensionStartDate ? extensionStartDate : rent_search_dump.end_date,
+                          'jYYYY/jMM/jDD',
+                        ).format('jYYYY/jMM/jD')
+                        : moment(
+                          rent_search_dump.start_date,
+                          'jYYYY/jMM/jDD',
+                        ).format('jYYYY/jMM/jD')}
                     </span>
                   </div>
                   <div>
                     <p>تاریخ بازگشت:</p>
                     <span>
-                      {moment(
-                        rent_search_dump.end_date,
-                        'jYYYY/jMM/jDD',
-                      ).format('jYYYY/jMM/jD')}
+                      {extension ?
+                        moment(
+                          `${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`,
+                          'jYYYY/jM/jD',
+                        ).format('jYYYY/jMM/jD')
+                        : moment(
+                          rent_search_dump.end_date,
+                          'jYYYY/jMM/jDD',
+                        ).format('jYYYY/jMM/jD')}
                     </span>
                   </div>
                   <div>
-                    <p>مدت اجاره:</p>
+                    <p>{`${extension ? 'تمدید به مدت' : 'مدت اجاره'}`}:</p>
                     <span>
                       {rent_search_dump.no_of_days} {language.day}
                     </span>
@@ -174,7 +195,7 @@ const SucceedPayment = ({ language }) => {
                 <p>{language.span_1}</p>
                 <div>
                   <h3>
-                    {(
+                    {extension ? (extensionInfo.price).toLocaleString() : (
                       rent_search_dump.total_price -
                       rent_search_dump.total_discount -
                       (rent_search_dump.coupon
@@ -211,8 +232,8 @@ const SucceedPayment = ({ language }) => {
                   {rent_search_dump.location.parent_id === 1
                     ? language.span_3
                     : rent_search_dump.location.id === 1657
-                    ? language.span_4
-                    : null}
+                      ? language.span_4
+                      : null}
                   {/* {rent_search_dump.location.name.fa} */}
                 </p>
               ) : null}
@@ -270,5 +291,10 @@ const SucceedPayment = ({ language }) => {
     </article>
   );
 };
+
+interface SuccessPayment {
+  language: any,
+  extension?: boolean
+}
 
 export default SucceedPayment;

@@ -73,6 +73,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [coupon, setCoupon] = useState(null);
   const [total_discount, setTotal_discount] = useState(null);
   const [click_on_cancel, set_click_on_cancel] = useState(false);
+  const [extensionInfo, setExtensionInfo] = useState(null);
 
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
@@ -138,9 +139,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         TOAST_CONTEXT.toast_option({
           message: error.response
             ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: "خطا در انجام عملیات بر روی سفارش اجاره",
-              })
+              errorObj: error.response,
+              _400Message: "خطا در انجام عملیات بر روی سفارش اجاره",
+            })
             : error,
           color: "#ed9026",
           time: 0,
@@ -177,7 +178,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
      */
     let renter = data.role === "renter" ? true : false;
     let has_insurance = data.has_insurance ? true : false;
+    let extensionInfo = data.extend_request_set ? data.extend_request_set.length > 0 ? data.extend_request_set[0] : null : null
 
+    setExtensionInfo(extensionInfo)
     // small portion at the top right on the request cart
     let RentStatus = null;
     setStatus_id(status ? status : data.status.id);
@@ -206,29 +209,29 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         setButton_code(
           !renter
             ? [
-                {
-                  value: language.accept,
-                  class:
-                    "Blue_BTN request_car_accept HEAP_Request_Btn_Accept ACCEPTED_INCOMING_REQUEST",
-                  click: () =>
-                    setForRequest({ action: "approve", id: data.id }),
-                },
-                {
-                  value: language.reject,
-                  class:
-                    "Blue_BTN request_car_reject HEAP_Request_Btn_Reject REJECT_INCOMING_REQUEST",
-                  loading: ButtonLoader,
-                  click: () => setForRequest({ action: "reject", id: data.id }),
-                },
-              ]
+              {
+                value: language.accept,
+                class:
+                  "Blue_BTN request_car_accept HEAP_Request_Btn_Accept ACCEPTED_INCOMING_REQUEST",
+                click: () =>
+                  setForRequest({ action: "approve", id: data.id }),
+              },
+              {
+                value: language.reject,
+                class:
+                  "Blue_BTN request_car_reject HEAP_Request_Btn_Reject REJECT_INCOMING_REQUEST",
+                loading: ButtonLoader,
+                click: () => setForRequest({ action: "reject", id: data.id }),
+              },
+            ]
             : [
-                {
-                  value: language.cancel,
-                  class:
-                    "Blue_BTN request_car_cancel HEAP_Request_Btn_Cancel CANCELLED_INCOMING_REQUEST",
-                  click: () => cancel_request(data.id),
-                },
-              ]
+              {
+                value: language.cancel,
+                class:
+                  "Blue_BTN request_car_cancel HEAP_Request_Btn_Cancel CANCELLED_INCOMING_REQUEST",
+                click: () => cancel_request(data.id),
+              },
+            ]
         );
         break;
       case "approved":
@@ -254,13 +257,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         setButton_code(
           renter
             ? [
-                {
-                  value: language.pay,
-                  class:
-                    "Blue_BTN request_car_pay GO_TO_BANK HEAP_Request_Btn_GotoBank",
-                  click: () => setForRequest({ action: "pay", id: data.id }),
-                },
-              ]
+              {
+                value: language.pay,
+                class:
+                  "Blue_BTN request_car_pay GO_TO_BANK HEAP_Request_Btn_GotoBank",
+                click: () => setForRequest({ action: "pay", id: data.id }),
+              },
+            ]
             : []
         );
         break;
@@ -302,14 +305,14 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         setButton_code(
           renter
             ? [
-                {
-                  value: language.deliver,
-                  class:
-                    "Blue_BTN request_car_pay CAR_DELIVERED HEAP_Request_Btn_CarDelivered",
-                  click: () =>
-                    setForRequest({ action: "deliver", id: data.id }),
-                },
-              ]
+              {
+                value: language.deliver,
+                class:
+                  "Blue_BTN request_car_pay CAR_DELIVERED HEAP_Request_Btn_CarDelivered",
+                click: () =>
+                  setForRequest({ action: "deliver", id: data.id }),
+              },
+            ]
             : []
         );
         break;
@@ -323,55 +326,43 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "delivered":
         RentStatus = (
-          <div className="rent_status status_on_trip">
-            <MdDriveEta size="2rem" color="#2cbbc2" />
-            <span>{language.delivered}</span>
+          <div >
+            <div className="rent_status status_on_trip">
+              <MdDriveEta size="2rem" color="#2cbbc2" />
+              <span>{language.delivered}</span>
+            </div>
+            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         setButton_code(
           !renter
             ? [
-                {
-                  value: language.returned,
-                  class:
-                    "Blue_BTN request_car_pay HEAP_Request_Btn_CarReturned",
-                  click: () => {
-                    setForRequest({ action: "return", id: data.id });
-                  },
+              {
+                value: language.returned,
+                class:
+                  "Blue_BTN request_car_pay HEAP_Request_Btn_CarReturned",
+                click: () => {
+                  setForRequest({ action: "return", id: data.id });
                 },
-              ]
+              },
+            ]
             : []
         );
         break;
       case "returned":
         RentStatus = (
-          <div className="rent_status status_returned">
-            <MdKeyboardReturn size="2rem" color="#2cbbc2" />
-            <span>{language.returned_label}</span>
+          <div >
+            <div className="rent_status status_returned">
+              <MdKeyboardReturn size="2rem" color="#2cbbc2" />
+              <span>{language.returned_label}</span>
+            </div>
+            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         setButton_code(
           renter
             ? data.has_renter_reviewed_rent_order
               ? [
-                  // {
-                  //   value: language.repetitive_review,
-                  //   disable: true,
-                  //   class: "Blue_BTN request_car_pay disable_rate_btn",
-                  //   click: () => {},
-                  // },
-                ]
-              : [
-                  {
-                    value: language.review,
-                    class: "Blue_BTN request_car_pay",
-                    click: () =>
-                      // send this data to modal
-                      MODAL_CONTEXT.modalHandler("Renter", data),
-                  },
-                ]
-            : data.has_owner_reviewed_renter
-            ? [
                 // {
                 //   value: language.repetitive_review,
                 //   disable: true,
@@ -379,7 +370,25 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 //   click: () => {},
                 // },
               ]
-            : [
+              : [
+                {
+                  value: language.review,
+                  class: "Blue_BTN request_car_pay",
+                  click: () =>
+                    // send this data to modal
+                    MODAL_CONTEXT.modalHandler("Renter", data),
+                },
+              ]
+            : data.has_owner_reviewed_renter
+              ? [
+                // {
+                //   value: language.repetitive_review,
+                //   disable: true,
+                //   class: "Blue_BTN request_car_pay disable_rate_btn",
+                //   click: () => {},
+                // },
+              ]
+              : [
                 {
                   value: language.review,
                   class: "Blue_BTN request_car_pay",
@@ -415,8 +424,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       renter
         ? data.rent_search_dump.discounted_total_price
         : data.rent_search_dump.owner_price
-        ? data.rent_search_dump.owner_price
-        : data.rent_search_dump.discounted_total_price
+          ? data.rent_search_dump.owner_price
+          : data.rent_search_dump.discounted_total_price
     );
     setInsurance_total_price(
       has_insurance ? data.rent_search_dump.insurance_total_price : 0
@@ -463,8 +472,15 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               </span>
               <MdKeyboardBackspace size="2rem" color="#dcdcdc" />
               <span>
-                {moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
-                <span>{moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>
+                {extensionInfo ?
+                  moment(`${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`
+                    , "jYYYY/jM/jD").format("jD jMMMM")
+                  : moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
+                <span>{
+                  extensionInfo ?
+                    moment(`${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`
+                      , "jYYYY/jM/jD").format("dddd")
+                    : moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>
               </span>
             </p>
           </div>
@@ -483,13 +499,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 // }}
                 src={media_set.thumbnail_url}
                 alt={`${car.brand.name.fa} ${car.name.fa}`}
-                // onLoadCapture={(e) => {
-                //   e.persist();
-                //   // adjust the image at the center of division container
-                //   if (imageHeight / 84 > 2.2) {
-                //     setheightController(84 / 4);
-                //   }
-                // }}
+              // onLoadCapture={(e) => {
+              //   e.persist();
+              //   // adjust the image at the center of division container
+              //   if (imageHeight / 84 > 2.2) {
+              //     setheightController(84 / 4);
+              //   }
+              // }}
               />
             </figure>
           </div>
@@ -503,11 +519,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   ? coupon
                     ? (coupon + insurance_total_price).toLocaleString()
                     : (
-                        discounted_total_price + insurance_total_price
-                      ).toLocaleString()
+                      discounted_total_price + insurance_total_price
+                    ).toLocaleString()
                   : coupon
-                  ? coupon.toLocaleString()
-                  : discounted_total_price.toLocaleString()}{" "}
+                    ? coupon.toLocaleString()
+                    : discounted_total_price.toLocaleString()}{" "}
               </span>
               {language.toman} ({language.for} {no_of_days} {language.day})
             </>

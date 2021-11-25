@@ -1,4 +1,4 @@
-@import "../../../styles/colors";
+@import '../../../styles/colors';
 
 .Request_car {
   border-radius: 4px;
@@ -27,6 +27,19 @@
       display: inline-block;
     }
   }
+  .extensionBadge {
+    background-color: $almost_gray;
+    border-radius: 4px;
+    text-align: center;
+    padding: 0.2rem 0.8rem;
+    font-size: 1.4rem;
+    margin-right: 8px;
+    height: 2.3rem;
+    display: inline-flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+  }
   .status_expired {
     background-color: $almost_gray;
     span {
@@ -36,6 +49,7 @@
   .status_returned,
   .status_paid,
   .status_on_trip {
+    display: inline-block;
     background-color: $almost_teal;
     span {
       color: $teal;
@@ -345,7 +359,7 @@
         color: $almost_black;
       }
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 50%;
         left: 97.5%;
@@ -359,7 +373,7 @@
         transform: rotate(45deg);
       }
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 72%;
         width: 0;
