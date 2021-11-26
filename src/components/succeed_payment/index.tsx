@@ -52,8 +52,8 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
       if (Order_res.data?.extend_request_set) {
         lastExtension = Order_res.data.extend_request_set[0]
         setExtensionInfo(lastExtension)
-        if (Order_res.data?.extend_request_set.length > 0) {
-          let startDate = Order_res.data?.extend_request_set[1].end_date.jalali
+        if (Order_res.data?.extend_request_set.length > 1) {
+          let startDate = Order_res.data.extend_request_set[1].end_date.jalali
           setExtensionStartDate(`${startDate.y}/${startDate.m}/${startDate.d}`)
 
         }

@@ -342,7 +342,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "delivered":
         RentStatus = (
-          <div >
+          <div>
             <div className="rent_status status_on_trip">
               <MdDriveEta size="2rem" color="#2cbbc2" />
               <span>{language.delivered}</span>

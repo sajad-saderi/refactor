@@ -14,7 +14,9 @@
     text-align: center;
     padding: 0.2rem 0.8rem;
     font-size: 1.4rem;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     svg,
     img {
       display: inline-block;
@@ -41,10 +43,15 @@
     align-items: center;
   }
   .status_expired {
+    display: inline-block;
     background-color: $almost_gray;
     span {
       color: $almost_black;
     }
+  }
+  .status_paid {
+    border-radius: 4px;
+    padding: 0.2rem 0.8rem;
   }
   .status_returned,
   .status_paid,
@@ -56,7 +63,7 @@
     }
   }
   .status_approved {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     padding: 0;
     justify-content: space-between;
@@ -85,7 +92,7 @@
     }
   }
   .status_new {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     padding: 0;
     justify-content: space-between;
@@ -97,20 +104,20 @@
         color: $orange;
       }
     }
-    .timer {
-      display: flex;
-      justify-content: left;
-      align-items: center;
-      div {
-        width: auto !important;
-        font-size: 1.4rem !important;
-        color: $orange;
-        font-weight: 500;
-      }
-      svg {
-        margin-left: 0;
-        margin-right: 0.4rem;
-      }
+  }
+  .timer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    div {
+      width: auto !important;
+      font-size: 1.4rem !important;
+      color: $orange;
+      font-weight: 500;
+    }
+    svg {
+      margin-left: 0;
+      margin-right: 0.4rem;
     }
   }
   .cart {
