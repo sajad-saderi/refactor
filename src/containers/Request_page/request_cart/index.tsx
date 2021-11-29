@@ -312,11 +312,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "paid":
         RentStatus = (
           <div className="rent_status ">
-            <div className="status_paid">
-              <MdVpnKey size="2rem" color="#2cbbc2" />
-              <span>{language.paid}</span>
+            <div>
+              <div className="status_paid">
+                <MdVpnKey size="2rem" color="#2cbbc2" />
+                <span>{language.paid}</span>
+              </div>
+              {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
             </div>
-            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         setButton_code(
