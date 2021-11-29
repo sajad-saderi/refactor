@@ -13,7 +13,7 @@ const Slider = dynamic(() => import('react-slick'));
 import quotation from '../../../../public/image/svg/quotation.svg';
 
 let percentageOfplayedVideo = 0
-let videoNumber = 1
+let pushControler = 1
 
 let settings = {
   dots: true,
@@ -42,10 +42,9 @@ const Join_us_content = ({
     }
   }, []);
 
-  const videoPlayed = (e, number) => {
+  const videoPlayed = (e) => {
     e.persist()
     const { target } = e
-    videoNumber = number
     percentageOfplayedVideo = +target.currentTime.toFixed(0)
     if (percentageOfplayedVideo <= 10) percentageOfplayedVideo = 10
     else if (percentageOfplayedVideo <= 25) percentageOfplayedVideo = 25
@@ -53,13 +52,26 @@ const Join_us_content = ({
     else if (percentageOfplayedVideo <= 75) percentageOfplayedVideo = 75
     else if (percentageOfplayedVideo <= 90) percentageOfplayedVideo = 90
     else percentageOfplayedVideo = 100
-    if (percentageOfplayedVideo)
+
+    if (percentageOfplayedVideo >= pushControler) {
+      pushControler =
+        percentageOfplayedVideo === 10 ? 25
+          : percentageOfplayedVideo === 25 ? 50
+            : percentageOfplayedVideo === 50 ? 75
+              : percentageOfplayedVideo === 75 ? 90
+                : percentageOfplayedVideo === 90 ? 100
+                  : percentageOfplayedVideo === 100 ? 101 : 200
+
+      console.log(percentageOfplayedVideo, pushControler);
       window["dataLayer"].push({
-        event: "conversions",
-        action: `join_us_video_play_${number}`,
+        event: "micro_conversions",
+        action: `join_us_video_play`,
         label: `${percentageOfplayedVideo}%`,
       });
+    }
   }
+
+
 
   return (
     <div className="responsive second_part_container">
@@ -173,7 +185,7 @@ const Join_us_content = ({
           {showVideo ? (
             <section className="slick_container">
               <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
-              <video controls onClick={e => videoPlayed(e, 2)}>
+              <video controls onTimeUpdate={e => videoPlayed(e)}  >
                 <source
                   src='https://core.sepris.com/media/join_us_user_review_1.mp4'
                   type="video/mp4"
