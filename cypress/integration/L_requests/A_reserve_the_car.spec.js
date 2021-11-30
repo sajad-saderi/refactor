@@ -165,7 +165,7 @@ describe("بررسی صفحه پروفایل کاربری", () => {
                   .should("exist")
                   .get(".Request_car:first-child  .Role_container .renter_Cell")
                   .should("exist")
-                  .get(".rent_status.status_paid span")
+                  .get(".rent_status .status_paid")
                   .contains("در انتظار تحویل")
                   .get(
                     ".Request_car:first-child .Blue_BTN.request_car_pay.CAR_DELIVERED.HEAP_Request_Btn_CarDelivered"

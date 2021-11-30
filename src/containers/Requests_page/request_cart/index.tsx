@@ -181,7 +181,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     let extensionSum: any = 0
     let extensionInfo = data.extend_request_set ? data.extend_request_set.length > 0 ? data.extend_request_set[0] : null : null
     if (extensionInfo) {
-      extensionSum = data.extend_request_set.reduce((previous, current) => { return { status: { id: 'extended' }, price: (previous.status.id === 'extended' ? previous.price : 0) + (current.status.id === 'extended' ? current.price : 0) } }, { price: 0, status: { id: "" } })
+      extensionSum = data.extend_request_set.reduce((previous, current) => {
+        return {
+          status: { id: 'extended' },
+          price: (previous.status.id === 'extended' ? previous.price : 0) + (current.status.id === 'extended' ? current.price : 0),
+          insurance_price: (previous.status.id === 'extended' ? previous.insurance_price : 0) + (current.status.id === 'extended' ? current.insurance_price : 0)
+        }
+      }, { price: 0, insurance_price: 0, status: { id: "" } })
       setExtensionSum(extensionSum)
     }
     setExtensionInfo(extensionInfo)
@@ -451,7 +457,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     set_has_insurance(has_insurance);
     setCoupon(
       data.rent_search_dump.coupon
-        ? data.rent_search_dump.coupon.total_price + (extensionSum ? extensionSum.price : 0)
+        ? data.rent_search_dump.coupon.total_price + (extensionSum ? (extensionSum.price + extensionSum.insurance_price) : 0)
         : null
     );
     setTotal_discount(data.rent_search_dump.total_discount);
