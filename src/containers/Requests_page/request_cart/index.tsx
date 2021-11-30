@@ -181,7 +181,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     let extensionSum: any = 0
     let extensionInfo = data.extend_request_set ? data.extend_request_set.length > 0 ? data.extend_request_set[0] : null : null
     if (extensionInfo) {
-      extensionSum = data.extend_request_set.reduce((previous, current) => { return { status: { id: 'paid' }, price: (previous.status.id === 'paid' ? previous.price : 0) + (current.status.id === 'paid' ? current.price : 0) } }, { price: 0, status: { id: "" } })
+      extensionSum = data.extend_request_set.reduce((previous, current) => { return { status: { id: 'extended' }, price: (previous.status.id === 'extended' ? previous.price : 0) + (current.status.id === 'extended' ? current.price : 0) } }, { price: 0, status: { id: "" } })
       setExtensionSum(extensionSum)
     }
     setExtensionInfo(extensionInfo)

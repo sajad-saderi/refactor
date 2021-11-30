@@ -195,7 +195,7 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
                 <p>{language.span_1}</p>
                 <div>
                   <h3>
-                    {extension ? (extensionInfo.price).toLocaleString() : (
+                    {extension ? (extensionInfo.price + extensionInfo.insurance_price).toLocaleString() : (
                       rent_search_dump.total_price -
                       rent_search_dump.total_discount -
                       (rent_search_dump.coupon
