@@ -11,6 +11,7 @@ import carImage from '../../../public/image/car-image-thumbnail.jpg';
 import toast_context from '../../context/Toast_context';
 import ErrorHelper from '../../../utils/error_helper';
 import net_CTX from '../../context/internetConnectionCTX';
+import Router from "next/router";
 
 moment.loadPersian({ dialect: 'persian-modern' });
 
@@ -27,15 +28,18 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
   const netCTX = useContext(net_CTX);
 
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: extension ? '/extension-payment' : '/payment-success',
-      pageTitle: language.next_seo.title,
-    });
-    // logPageView();
-
-    fetchAPI(window.location.search.match(/(\d+)/)[0]);
+    if (window["auth"]) {
+      window['dataLayer'].push({
+        event: 'page_view',
+        pageURL: window.location.href,
+        pagePath: extension ? '/extension-payment' : '/payment-success',
+        pageTitle: language.next_seo.title,
+      });
+      // logPageView();
+      fetchAPI(window.location.search.match(/(\d+)/)[0]);
+    } else {
+      Router.push("/login");
+    }
   }, []);
 
   /**
