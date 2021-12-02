@@ -320,7 +320,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           <p className="Search_Text_transparent">search</p>
           <Button
             value={language.search.btn}
-            class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
+            class={["Blue_BTN search_Btn HEAP_Home_Btn_Search", dynamic ? "quickSearch" : ""].join(' ')}
             loading={loading}
             click={() => { }}
           />

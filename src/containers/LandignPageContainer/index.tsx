@@ -182,7 +182,7 @@ const Landing_page_container = ({
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
     if (router.query.with_driver == '1' ||
-    url_checked.with_driver == '1') {
+      url_checked.with_driver == '1') {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
@@ -628,11 +628,9 @@ const Landing_page_container = ({
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
-                {`${total_count}${
-                  language.count_bar_khodro
-                }${result[0].start_date.slice(5)}${
-                  language.count_bar_ta
-                }${result[0].end_date.slice(5)}`}
+                {`${total_count}${language.count_bar_khodro
+                  }${result[0].start_date.slice(5)}${language.count_bar_ta
+                  }${result[0].end_date.slice(5)}`}
                 {location_n ? ` در ${location_n}` : null}
               </p>
             ) : null
@@ -783,7 +781,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.minimal_filters_price_from}
             {Number(price.min).toLocaleString()}
             {language.minimal_filters_ta}
@@ -808,7 +806,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.minimal_filters_deliver_to_your_location}
           </p>
         ) : null}
@@ -831,7 +829,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {category_name}
           </p>
         ) : null}
@@ -853,7 +851,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.minimal_filters_with_deriver}
           </p>
         ) : null}
@@ -875,44 +873,44 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.minimal_filters_without_driver}
           </p>
         ) : null}
         {body_style_names.length > 0
           ? body_style_names.map((item, i) => {
-              return (
-                <p
-                  key={i}
-                  className="minimal_filter_tags"
-                  onClick={() => {
-                    if (body_style_names.length === 1) {
-                      setFilterReset((filterReset) => {
-                        return { ...filterReset, body_style_id: true };
-                      });
-                      filtersChecker.body_style_id = false;
-                      staticRoute.body_style_id = '';
-                    } else {
-                      body_style_id = body_style_id.filter(
-                        (_, index) => index !== i,
-                      );
-                      staticRoute.body_style_id = body_style_id.join(',');
-                    }
-                    loadMoreCar = false;
-                    UrlCreator({
-                      query: staticRoute,
-                      route: router.route,
-                      cb: UrlUpdater,
+            return (
+              <p
+                key={i}
+                className="minimal_filter_tags"
+                onClick={() => {
+                  if (body_style_names.length === 1) {
+                    setFilterReset((filterReset) => {
+                      return { ...filterReset, body_style_id: true };
                     });
-                    initSearch();
-                  }}
-                >
-                  <IoMdClose size="1.3rem" color="#8c8c8c" />
-                  {/* {language.minimal_filters_body_style} */}
-                  {item}
-                </p>
-              );
-            })
+                    filtersChecker.body_style_id = false;
+                    staticRoute.body_style_id = '';
+                  } else {
+                    body_style_id = body_style_id.filter(
+                      (_, index) => index !== i,
+                    );
+                    staticRoute.body_style_id = body_style_id.join(',');
+                  }
+                  loadMoreCar = false;
+                  UrlCreator({
+                    query: staticRoute,
+                    route: router.route,
+                    cb: UrlUpdater,
+                  });
+                  initSearch();
+                }}
+              >
+                <IoMdClose size="1.3rem" color="#3fa6da" />
+                {/* {language.minimal_filters_body_style} */}
+                {item}
+              </p>
+            );
+          })
           : null}
         {!car_name && brand_name ? (
           <p

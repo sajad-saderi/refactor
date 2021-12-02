@@ -183,7 +183,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     if (extensionInfo) {
       extensionSum = data.extend_request_set.reduce((previous, current) => {
         return {
-          status: { id: 'extended' },
+          status: { id: current.status.id === 'extended' ? 'extended' : previous.status.id },
           price: (previous.status.id === 'extended' ? previous.price : 0) + (current.status.id === 'extended' ? current.price : 0),
           insurance_price: (previous.status.id === 'extended' ? previous.insurance_price : 0) + (current.status.id === 'extended' ? current.insurance_price : 0)
         }
@@ -203,7 +203,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 <MdAlarm size="2rem" color="#f7941d" />
                 <span>{language.new}</span>
               </div>
-              {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
+              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
             </div>
             {!renter && (
               <div className="timer">
@@ -255,7 +255,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 <MdCreditCard size="2rem" color="#a3678b" />
                 <span>{language.approved}</span>
               </div>
-              {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
+              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
             </div>
             {!renter && (
               <div className="timer">
@@ -319,7 +319,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 <MdVpnKey size="2rem" color="#2cbbc2" />
                 <span>{language.paid}</span>
               </div>
-              {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
+              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
             </div>
           </div>
         );
@@ -344,7 +344,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <IoIosHand size="1.4rem" color="#656565" />
               <span>{data.status.name}</span>
             </div>
-            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
+            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         break;
@@ -355,7 +355,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdDriveEta size="2rem" color="#2cbbc2" />
               <span>{language.delivered}</span>
             </div>
-            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
+            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         setButton_code(
@@ -380,7 +380,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdKeyboardReturn size="2rem" color="#2cbbc2" />
               <span>{language.returned_label}</span>
             </div>
-            {extensionInfo && <span className="extensionBadge">تمدید شده</span>}
+            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
           </div>
         );
         setButton_code(
@@ -498,11 +498,11 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdKeyboardBackspace size="2.4rem" color="#dcdcdc" />
               <span>
                 {
-                  extensionInfo ?
+                  (extensionInfo && extensionSum.status.id === "extended") ?
                     moment(`${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`
                       , "jYYYY/jM/jD").format("jD jMMMM")
                     : moment(end_date, "jYYYY/jMM/jDD").format("jD jMMMM")}
-                <span>{extensionInfo ?
+                <span>{(extensionInfo && extensionSum.status.id === "extended") ?
                   moment(`${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`
                     , "jYYYY/jM/jD").format("dddd")
                   : moment(end_date, "jYYYY/jMM/jDD").format("dddd")}</span>

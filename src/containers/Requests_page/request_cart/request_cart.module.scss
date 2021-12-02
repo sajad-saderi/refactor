@@ -12,7 +12,7 @@
     width: auto;
     border-radius: 4px;
     text-align: center;
-    padding: 0.2rem 0.8rem;
+    padding: 0.2rem 0rem;
     font-size: 1.4rem;
     display: flex;
     align-items: center;
@@ -45,6 +45,7 @@
   .status_expired {
     display: inline-block;
     background-color: $almost_gray;
+    padding: 0.2rem 0.8rem;
     span {
       color: $almost_black;
     }
@@ -56,6 +57,7 @@
   .status_returned,
   .status_paid,
   .status_on_trip {
+    padding: 0.2rem 0.8rem;
     display: inline-block;
     background-color: $almost_teal;
     span {
