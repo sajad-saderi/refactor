@@ -1,0 +1,99 @@
+@import '../../../styles/colors';
+.comment_section {
+  margin-bottom: 4rem;
+  width: 50%;
+  text-align: right;
+  direction: rtl;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  .tab_section {
+    border-bottom: 1px solid $light_grey;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    div {
+      font-size: 1.4rem;
+      color: $almost_black;
+      line-height: 4rem;
+      padding-left: 1rem;
+      cursor: pointer;
+      &:last-child {
+        padding-right: 1rem;
+      }
+    }
+    .active {
+      border-bottom: 2px solid $dark_gray;
+      font-weight: 600;
+      margin-bottom: -1px;
+    }
+  }
+  .review_section {
+    .rate_container {
+      margin-top: 1.6rem;
+      img {
+        display: inline-block;
+        margin-left: 0.4rem;
+        margin-bottom: -2px;
+        width: 16px;
+      }
+      span {
+        display: inline-block;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+        font-weight: 500;
+        color: $dark_blue;
+        .sum_rent {
+          color: $gray;
+          font-weight: normal;
+        }
+      }
+    }
+    .review_article {
+      padding: 0%;
+      .review_container_car_page {
+        padding: 0;
+        width: 100%;
+        margin-top: 2.4rem;
+        box-shadow: none;
+        div {
+          margin-right: 0;
+        }
+        .nothing-to-show {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.comment_section[dir='ltr'] {
+  text-align: left;
+  direction: ltr;
+  .tab_section {
+    div {
+      padding-left: 0;
+      padding-right: 1rem;
+      &:last-child {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+    }
+  }
+  .review_section {
+    .rate_container {
+      img {
+        margin-left: 0;
+        margin-right: 0.4rem;
+      }
+    }
+    .review_article {
+      .review_container_car_page {
+        div {
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,297 @@
+@import '../../styles/colors';
+@import './modals/modal.module.scss';
+.header {
+  background-color: $black;
+  padding: 1.2rem 0;
+  height: 4.8rem;
+  font-family: dana_medium;
+  .header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Logo {
+    // float: left;
+    margin-top: -1px;
+    display: block;
+    a {
+      display: block;
+    }
+    // &::after {
+    //   display: block;
+    //   clear: both;
+    //   content: "";
+    // }
+    .car_logo {
+      height: 2.7rem;
+      margin-left: 1.2rem;
+    }
+    .text_logo {
+      margin-bottom: 2px;
+      height: 1.4rem;
+    }
+  }
+
+  // @disable the hamburger menu
+
+  // .header_menu_bar {
+  //   padding-bottom: 1rem;
+  //   cursor: pointer;
+  //   display: none;
+  // }
+  // .show_menu_drawer {
+  //   top: 0;
+  //   display: block;
+  //   position: fixed;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: rgba(0, 0, 0, 0.376);
+  //   right: 0;
+  //   z-index: 30;
+  // }
+  // .hide_menu_drawer {
+  //   display: none;
+  // }
+  // .showMenu {
+  //   transform: translateX(0px) !important;
+  //   opacity: 1 !important;
+  //   z-index: 31;
+  //   padding-top: 2.5rem;
+  // }
+
+  .Nav {
+    transition: 0.25s all;
+    margin-top: -3px;
+    ul {
+      li {
+        display: inline-block;
+        color: $white;
+        font-size: 1.4rem;
+        position: relative;
+        line-height: 2;
+        font-weight: 500;
+        cursor: pointer;
+        .profile_icon {
+          width: 3.2rem;
+          display: inline-block;
+          vertical-align: middle;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+        .name_avatar__container {
+          margin-right: 8px;
+          span {
+            padding: 0 !important;
+          }
+        }
+        .red_dot {
+          background: #c1104a;
+          width: 1rem;
+          height: 1rem;
+          border-radius: 50%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          padding: 0;
+        }
+        .Sub_Nav_Level_2 {
+          display: none;
+          position: absolute;
+          box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
+          width: 120px;
+          left: -16px;
+          top: 28px;
+          min-width: 200px;
+          background: rgb(255, 255, 255);
+          border-radius: 3px;
+          z-index: 20;
+          li {
+            padding-bottom: 0rem;
+            display: block;
+            &:hover {
+              background-color: rgb(250, 250, 250);
+              border-radius: 0.4rem;
+              a {
+                color: rgb(75, 163, 206);
+              }
+              padding-left: 15px;
+            }
+            a {
+              font-size: 1.1rem;
+              color: $almost_black;
+              display: block;
+              line-height: 1;
+              border-bottom: 1px solid rgb(254, 254, 254);
+              padding: 15px 10px;
+            }
+          }
+        }
+        span {
+          vertical-align: middle;
+        }
+        a,
+        span {
+          font-weight: 500;
+          font-size: 1.4rem;
+          color: $white;
+          padding-right: 1.6rem;
+          display: block;
+        }
+        .user-name {
+          padding: 0 !important;
+          display: inline-block;
+          margin-bottom: -4px;
+        }
+        .login-out {
+          padding: 0;
+          display: inline-block;
+          margin-top: 2px;
+        }
+      }
+      .header_spinner {
+        margin-right: 1.6rem;
+        .profile_icon_place_holder {
+          display: inline-block;
+          width: 2.8rem;
+          height: 2.8rem;
+          vertical-align: middle;
+          margin-right: 8px;
+          border-radius: 50%;
+        }
+        span {
+          padding: 0;
+          width: 6rem;
+          display: inline-block;
+          height: 1.2rem;
+          border-radius: 8px;
+        }
+      }
+      .Drop_Down {
+        &:hover .Sub_Nav_Level_2 {
+          display: block;
+          &::before {
+            bottom: 100%;
+            left: 15%;
+            content: '';
+            height: 0px;
+            width: 0px;
+            position: absolute;
+            pointer-events: none;
+            margin-left: -7px;
+            border-style: solid;
+            border-color: transparent transparent rgb(255, 255, 255);
+            border-image: initial;
+            border-width: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.header[dir='ltr'] {
+  .Logo {
+    .car_logo {
+      height: 2.7rem;
+      margin-left: 0rem;
+      margin-right: 1.2rem;
+    }
+  }
+  .Nav {
+    ul {
+      li {
+        .profile_icon {
+          margin-right: 0px;
+          margin-left: 8px;
+        }
+        .login-out {
+          padding: 0;
+        }
+        .name_avatar__container {
+          margin-right: 0px;
+          margin-left: 8px;
+        }
+        .red_dot {
+          left: auto;
+          right: 0;
+        }
+        .Sub_Nav_Level_2 {
+          left: auto;
+          right: -16px;
+          li {
+            &:hover {
+              padding-left: px;
+              padding-right: 15px;
+            }
+          }
+        }
+        a,
+        span {
+          padding-right: 0rem;
+          padding-left: 1.6rem;
+        }
+      }
+      .header_spinner {
+        margin-right: 0rem;
+        margin-left: 1.6rem;
+        .profile_icon_place_holder {
+          margin-right: 0px;
+          margin-left: 8px;
+        }
+      }
+      .Drop_Down {
+        &:hover .Sub_Nav_Level_2 {
+          display: block;
+          &::before {
+            left: auto;
+            right: 15%;
+
+            margin-left: 0px;
+            margin-right: -7px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and(max-width:480px) {
+  .header {
+    .Logo {
+      margin-top: -3px;
+      .car_logo {
+        display: none;
+      }
+      .text_logo {
+        margin-bottom: -7px;
+      }
+    }
+    .Nav {
+      margin-top: -2px;
+      ul {
+        .first_element_li {
+          span {
+            display: none;
+          }
+        }
+        li {
+          .profile_icon {
+            margin-right: 0;
+          }
+          .user-name {
+            display: none;
+          }
+        }
+        .header_spinner {
+          .profile_icon_place_holder {
+            margin-right: 0px;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

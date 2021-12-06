@@ -1,0 +1,16 @@
+.name_avatar__container {
+  vertical-align: middle;
+  span {
+    text-align: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+    width: 100%;
+    img {
+      max-width: calc(100% / 2.2);
+      max-height: calc(100% / 3);
+      margin: auto;
+    }
+  }
+}

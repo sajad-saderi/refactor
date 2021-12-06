@@ -1,0 +1,163 @@
+@import "../../../styles/colors";
+
+.Modal {
+  display: flex;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  .darkerBack {
+    background: rgba(0, 0, 0, 0.85) !important;
+  }
+  .back_draw {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .login_modal {
+    width: 45%;
+    min-width: 30rem;
+    height: auto;
+    max-width: 40rem;
+    .text_input_container {
+      padding-bottom: 4rem;
+      position: relative;
+      .input_error_message {
+        position: absolute;
+        bottom: 5px;
+      }
+    }
+    .login_submit {
+      margin: 0;
+    }
+  }
+  .confirm_modal {
+    width: 45%;
+    min-width: 30rem;
+    height: auto;
+    max-width: 40rem;
+    .text_input_container {
+      padding-bottom: 3.2rem;
+      position: relative;
+      .input_error_message {
+        position: absolute;
+        bottom: -16px;
+      }
+    }
+  }
+  .Tell_me {
+    width: 45%;
+    min-width: 30rem;
+    height: auto;
+    max-width: 55rem;
+  }
+  .Renter,
+  .Owner,
+  .Law,
+  .Assurance {
+    width: 65%;
+    min-width: 30rem;
+    max-width: 50rem;
+  }
+  .transparentBackground {
+    background-color: transparent !important;
+  }
+  .modal_box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    background: #fff;
+    padding: 1.6rem;
+    margin: 0px auto;
+    border-radius: 4px;
+    text-align: right;
+    flex-direction: column;
+    .send_again {
+      cursor: pointer;
+      color: $blue;
+      // text-align: right;
+    }
+    .modal_box_div {
+      .close_btn {
+        width: 2rem;
+      }
+      .login_modal_title,
+      .login_modal_title_confirm_code {
+        position: relative;
+        text-align: center;
+        margin-bottom: 2.4rem;
+        .login_person_icon {
+          position: absolute;
+          right: 0;
+          width: 2rem;
+          top: 0;
+          color: rgb(255, 255, 255);
+          background: $blue;
+          border: 3px solid $blue;
+          border-radius: 50%;
+        }
+        h2 {
+          line-height: 23px;
+          width: auto;
+          display: inline-block;
+          font-size: 1.4rem;
+          font-weight: 500;
+          margin: 0;
+          text-align: center;
+        }
+      }
+      .login_modal_title_confirm_code {
+        .login_person_icon {
+          color: $blue;
+          background: transparent;
+          border: none;
+        }
+      }
+    }
+    .go_back {
+      display: none;
+      width: auto;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 1.1rem;
+      float: left;
+      margin-bottom: 8px;
+      // &:nth-of-type(2) {
+      //   text-align: left;
+      // }
+      // .Edit_number {
+      //   text-align: left;
+      //   cursor: pointer;
+      // }
+      // .Count_Down_text {
+      //   cursor: not-allowed;
+      //   text-align: right;
+      // }
+    }
+    .show_the_go_back_button {
+      display: inline-block;
+    }
+    svg {
+      cursor: pointer;
+    }
+    .imageInsideModal {
+      width: 80%;
+    }
+  }
+}
+
+@media screen and(max-width:720px) {
+  .Modal {
+    .Tell_me {
+      width: 80%;
+    }
+    .Assurance {
+      width: 90%;
+    }
+  }
+}

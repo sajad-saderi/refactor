@@ -1,0 +1,50 @@
+@import "../../styles/colors";
+.internet-connection {
+  z-index: 9999;
+  position: fixed;
+  background-color: $ultimate_orange;
+  width: 100%;
+  right: 0;
+  bottom: 0%;
+  padding: 1.6rem;
+  img {
+    display: inline-block;
+    vertical-align: super;
+    width: 2rem;
+    margin-left: 8px;
+  }
+  div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  p {
+    margin-top: 1rem;
+    color: $dark_orange;
+    font-size: 1.4rem;
+    font-weight: 500;
+    span {
+      color: $dark_orange;
+      font-weight: 500;
+    }
+    svg {
+      width: 2rem;
+      margin-left: 0.6rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .retry {
+    color: $blue;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 1.6rem;
+  }
+}
+
+// @media screen and(max-width:480px) {
+//   .internet-connection {
+//     width: 100%;
+//     padding: 1.4rem;
+//   }
+// }

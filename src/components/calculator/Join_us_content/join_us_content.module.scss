@@ -1,0 +1,59 @@
+@import '../../../styles/colors';
+.slick_container {
+  width: 680px;
+  margin: auto;
+  margin-top: 5rem !important;
+  video {
+    width: 100%;
+  }
+  h2 {
+    margin-top: 0rem;
+    line-height: 26px;
+  }
+  .card_container {
+    direction: rtl;
+    box-shadow: $box_shadow;
+    padding: 1.6rem;
+    margin: 0.5rem 0;
+    width: 90% !important;
+    border-radius: 10px;
+    outline: 0;
+    p {
+      text-align: right;
+      line-height: 1.8;
+    }
+    h3 {
+      margin-bottom: 0;
+      margin-top: 1.6rem;
+    }
+    h3,
+    .user_name {
+      text-align: left;
+    }
+  }
+  .slick-dots {
+    li {
+      margin: 0;
+      button {
+        &::before {
+          font-size: 1rem;
+        }
+      }
+    }
+    .slick-active {
+      button {
+        &::before {
+          opacity: 1;
+          color: $dark_blue !important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .slick_container {
+    width: 100%;
+    margin: auto;
+  }
+}
