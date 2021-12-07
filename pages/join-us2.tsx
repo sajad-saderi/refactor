@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const Layout = dynamic(() => import('../src/Layout'));
@@ -12,9 +12,10 @@ import { NextSeo } from 'next-seo';
 // import Join_us_content from "../src/components/calculator/Join_us_content";
 // import Join_us_content_AB_test from "../src/components/calculator/Join_us_content/AbTestContent";
 // import { logPageView } from "../utils/analytics";
-
+import languageCTX from '../src/context/languageCTX'
 const JoinUs = ({ BotScore, locale }) => {
   const [Score, SetScore] = useState(null);
+  const { activeLanguage } = useContext(languageCTX)
   useEffect(() => {
     window['dataLayer'].push({
       event: 'page_view',
@@ -46,7 +47,7 @@ const JoinUs = ({ BotScore, locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <article className="join_us">
+      <article className="join_us" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
         <section className="banner">
           <h1>{locale.JOIN_US_PAGE.banner}</h1>
           <h2>{locale.JOIN_US_PAGE.note} </h2>

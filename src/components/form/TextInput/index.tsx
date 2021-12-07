@@ -163,7 +163,7 @@ const TextInput = (props: ItextInput) => {
 
   return (
     <div className={`text_input_container ${activeLanguage === 'fa' ? '' : 'ltrInput'}`} ref={TextInput}>
-      <label
+      {props.label && <label
         /**
          * @LabelColor
          *  lives here
@@ -174,7 +174,7 @@ const TextInput = (props: ItextInput) => {
         className="text_input_label"
       >
         {props.label}
-      </label>
+      </label>}
       <div className="input_surround">
         <input
           type={props?.type ? props.type : 'text'}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 const Layout = dynamic(() => import('../src/Layout'));
@@ -13,12 +13,13 @@ import { NextSeo } from 'next-seo';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { captcha } from '../src/helpers/capchaHelper';
 // import { logPageView } from "../utils/analytics";
-
+import languageCTX from '../src/context/languageCTX'
 
 const JoinUs = ({ BotScore, locale }) => {
   const [shouldHideCommnets, setShouldHideCommnets] = useState(true);
   const [showVideo, setShowVideo] = useState(false);
   const [Score, SetScore] = useState(null);
+  const { activeLanguage } = useContext(languageCTX)
   useEffect(() => {
     window['dataLayer'].push({
       event: 'page_view',
@@ -54,7 +55,7 @@ const JoinUs = ({ BotScore, locale }) => {
           captcha(token);
         }}
       />
-      <article className="join_us">
+      <article className="join_us" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
         <section className="banner">
           <h1>{locale.JOIN_US_PAGE.banner}</h1>
           <h2>{locale.JOIN_US_PAGE.note} </h2>

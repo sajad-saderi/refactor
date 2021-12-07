@@ -131,7 +131,8 @@
     "comformCarDelete": "آیا می‌خواهید ماشین {value} {value} را حذف کنید؟",
     "comformOrderDelete": "آیا می‌خواهید این سفارش را حذف کنید؟",
     "iAgree": "می‌پذیرم",
-    "fetchCitiesError": "خطا در دریافت لیست شهر‌ها"
+    "fetchCitiesError": "خطا در دریافت لیست شهر‌ها",
+    "fetchingBrandsError": "خطایی در دریافت لیست برند خودرو رخ داده است."
   },
   "INFORMATION": {
     "text1": "in partnership with Saman Insurance",
@@ -332,7 +333,7 @@
     "model": "نام خودرو (مدل)",
     "estimate": "تخمین درآمد",
     "weekly": "درآمد هفتگی",
-    "millionToman": "میلیون تومان",
+    "millionToman": "Million Toman",
     "monthly": "درآمد ماهانه",
     "daily": "درآمد روزانه",
     "tryAgain": "محاسبه مجدد",

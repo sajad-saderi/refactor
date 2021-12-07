@@ -1,4 +1,4 @@
-@import "../colors";
+@import '../colors';
 .local_payment {
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@
       }
       h4 {
         display: inline-block;
-        font-family: "dana_medium";
+        font-family: 'dana_medium';
         vertical-align: middle;
         font-size: 2.4rem;
         color: $green;
@@ -53,7 +53,7 @@
           p {
             display: inline-block;
             color: $almost_black;
-            font-family: "dana_medium";
+            font-family: 'dana_medium';
             font-size: 16px;
             line-height: 14px;
           }
@@ -122,7 +122,7 @@
         p {
           display: inline-block;
           color: $almost_black;
-          font-family: "dana_medium";
+          font-family: 'dana_medium';
           font-size: 16px;
           line-height: 14px;
         }
@@ -146,7 +146,7 @@
         p {
           display: inline-block;
           color: $almost_black;
-          font-family: "dana_medium";
+          font-family: 'dana_medium';
           font-size: 16px;
           line-height: 14px;
         }
@@ -175,7 +175,7 @@
         p {
           display: inline-block;
           color: $almost_black;
-          font-family: "dana_medium";
+          font-family: 'dana_medium';
           font-size: 16px;
           line-height: 14px;
         }
@@ -215,6 +215,98 @@
     font-weight: 500;
     font-size: 1.6rem;
     color: $blue;
+  }
+}
+
+.local_payment[dir='ltr'] {
+  .payment_cart {
+    .title {
+      img {
+        margin-left: 0;
+        margin-right: 0.8rem;
+      }
+    }
+
+    .details_section {
+      .reserve_information {
+        text-align: left;
+        .section_title {
+          img {
+            margin-left: 0;
+            margin-right: 1.2rem;
+          }
+        }
+        .car_info {
+          div {
+            p {
+              padding-left: 0;
+              padding-right: 5rem;
+            }
+          }
+        }
+      }
+      .paid_price {
+        padding-right: 0;
+        padding-left: 2.4rem;
+
+        div {
+          h3 {
+            margin-right: 0;
+            margin-left: 1.6rem;
+          }
+          span {
+            margin-right: 0;
+            margin-left: 0.4rem;
+          }
+        }
+      }
+    }
+    .delivery_section {
+      text-align: left;
+      .section_title {
+        img {
+          margin-left: 0;
+          margin-right: 1.2rem;
+        }
+      }
+      .delivery_condition {
+        p {
+          padding-right: 0;
+          padding-left: 2.4rem;
+        }
+      }
+    }
+    .return_section {
+      text-align: left;
+      .section_title {
+        img {
+          margin-left: 0;
+          margin-right: 1.2rem;
+        }
+      }
+      .return_condition {
+        p {
+          padding-right: 0;
+          padding-left: 2.4rem;
+        }
+      }
+    }
+
+    .contract_section {
+      text-align: left;
+      .section_title {
+        img {
+          margin-left: 0;
+          margin-right: 1.2rem;
+        }
+      }
+      .return_condition {
+        p {
+          padding-right: 0;
+          padding-left: 2.4rem;
+        }
+      }
+    }
   }
 }
 

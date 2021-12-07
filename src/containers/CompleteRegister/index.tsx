@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 import ErrorHelper from "../../../utils/error_helper";
 import net_CTX from "../../context/internetConnectionCTX";
+import languageCTX from "../../context/languageCTX";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -123,6 +124,7 @@ const Complete_register_container = ({
   const toastCTX = useContext(toast_context);
   const user = useContext(context_user);
   const netCTX = useContext(net_CTX);
+  const { activeLanguage } = useContext(languageCTX);
 
   useEffect(() => {
     // if the user is not register the login modal will show up
@@ -320,7 +322,7 @@ const Complete_register_container = ({
   }, [rolesCheck]);
 
   return show ? (
-    <article className="responsive  complete_register_container">
+    <article className="responsive  complete_register_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       {/* <div className='pageTitle'>
         <IoMdPersonAdd className='Person_icon' size='6rem' color='#4ba3ce' />
         <h3>{language.complete_register}</h3>
@@ -477,7 +479,7 @@ const Complete_register_container = ({
             }}
           />
         </div> */}
-        <div className="check_box_container">
+        <div className="check_box_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
           <label className="container">
             <span
               onClick={() => MODAL_CONTEXT.modalHandler("Law")}

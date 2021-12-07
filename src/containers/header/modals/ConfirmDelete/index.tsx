@@ -43,7 +43,7 @@ const ConfirmDelete = (props: IConfirmDelete) => {
             <p className="modal_content_confirm_delete">{dynamicString([props.data.brand, props.data.model], props.language.COMMON.comformCarDelete)}</p>
           ) : (
             <p className="modal_content_confirm_delete">
-              {props.language.COMON.comformOrderDelete}
+              {props.language.COMMON.comformOrderDelete}
             </p>
           )}
           {/* {error.status ? (

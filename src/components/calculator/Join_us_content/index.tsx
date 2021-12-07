@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import insurance from '../../../../public/image/SamanInsurance.png';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 const Slider = dynamic(() => import('react-slick'));
 import quotation from '../../../../public/image/svg/quotation.svg';
+import languageCTX from '../../../context/languageCTX'
 
 let percentageOfplayedVideo = 0
 let videoNumber = 1
@@ -34,7 +35,7 @@ const Join_us_content = ({
   showVideo,
 }: IJoin_us_content) => {
   const [authorize, set_authorize] = useState(true);
-
+  const { activeLanguage } = useContext(languageCTX)
   useEffect(() => {
     const guard = guard_controller();
     if (guard !== 'auth') {
@@ -64,7 +65,7 @@ const Join_us_content = ({
   }
 
   return (
-    <div className="responsive second_part_container">
+    <div className="responsive second_part_container" >
       <div className="insuranceBox">
         <p>{language.INFORMATION.text1}</p>
         <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
@@ -103,7 +104,7 @@ const Join_us_content = ({
             </a>
           </Link>
           {shouldHideCommnets ? null : (
-            <section className="slick_container">
+            <section className="slick_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
               <h2>{language.JOIN_US_PAGE.reviews.title}</h2>
               <Slider {...settings}>
                 <div className="card_container">

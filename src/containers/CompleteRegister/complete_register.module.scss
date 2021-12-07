@@ -1,4 +1,4 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 .complete_register_container {
   display: flex;
@@ -151,6 +151,31 @@
   }
 }
 
+.complete_register_container[dir='ltr'] {
+  .complete_register_form {
+    .login_modal_title {
+      .login_person_icon {
+        right: auto;
+        left: 0;
+      }
+    }
+    .company_part {
+      .add_company_input_container {
+        .text_input_container {
+          margin-left: 0;
+          margin-right: 2rem;
+        }
+      }
+    }
+
+    .check_box_container {
+      .container {
+        padding-right: 0;
+        padding-left: 2.2rem;
+      }
+    }
+  }
+}
 @media screen and(max-width:575px) {
   .complete_register_container {
     .complete_register_form {

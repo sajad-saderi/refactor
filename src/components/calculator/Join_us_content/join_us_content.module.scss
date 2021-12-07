@@ -51,6 +51,19 @@
   }
 }
 
+.slick_container[dir='ltr'] {
+  .card_container {
+    direction: ltr;
+    p {
+      text-align: left;
+    }
+    h3,
+    .user_name {
+      text-align: right;
+    }
+  }
+}
+
 @media screen and (max-width: 720px) {
   .slick_container {
     width: 100%;

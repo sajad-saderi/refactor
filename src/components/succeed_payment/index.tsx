@@ -103,7 +103,7 @@ const SucceedPayment = ({ language }) => {
   };
 
   return (
-    <article className="responsive minHeight local_payment">
+    <article className="responsive minHeight local_payment" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       {renter ? (
         <section className="payment_cart">
           <div className="title  ">

@@ -43,8 +43,8 @@ const Join_us_content_AB_test = ({
         <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
       </div>
       <div className=" responsive second_container">
+        <h2>{language.INFORMATION.text2}</h2>
         <div className="full_width">
-          <h2>{language.INFORMATION.text2}</h2>
           <p>{language.INFORMATION.text3}</p>
         </div>
         <h2>{language.INFORMATION.text4}</h2>
@@ -87,7 +87,7 @@ const Join_us_content_AB_test = ({
             </a>
           </p> */}
           <section className="slick_container">
-            <h2>میزبان‌ها درباره سپریس چه می‌گویند؟</h2>
+            <h2>{language.JOIN_US_PAGE.reviews.title}</h2>
             <Slider {...settings}>
               <div className="card_container">
                 <img src={quotation} alt="sign" />
