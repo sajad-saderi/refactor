@@ -31,7 +31,7 @@ const Review = ({ review, language, without_title, profile, locale }: IReview) =
                   {item.reviewer_user_profile.name}
                 </p>
                 <p className='size_12 dark_gray'>
-                  <StarGenerator count={item.rate} />{' '}
+                  <StarGenerator count={item.rate} locale={locale} />
                   {moment.unix(item.creation_time.timestamp).format(locale === "fa" ? "jD jMMMM" : "D MMMM")}
                 </p>
                 <pre className='margin_top_12 size_14 review_content'>
