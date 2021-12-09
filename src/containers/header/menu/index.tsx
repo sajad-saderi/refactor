@@ -68,11 +68,6 @@ const Menu = ({ language }: IMenu) => {
         <span>{language.HEADER.guide}</span>
         <ul className="Sub_Nav_Level_2">
           <li>
-            <Link href="/sepris" prefetch={false}>
-              <a>{language.LINKS.sepris}</a>
-            </Link>
-          </li>
-          <li>
             <Link href="/faq" prefetch={false}>
               <a>{language.LINKS.faq}</a>
             </Link>
@@ -82,43 +77,54 @@ const Menu = ({ language }: IMenu) => {
               <a>{language.LINKS.guest}</a>
             </Link>
           </li>
-          <li>
-            <Link href="/guide-renter" prefetch={false}>
-              <a>{language.LINKS.host}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/car-insurance" prefetch={false}>
-              <a>{language.LINKS.insurance}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/assurance" prefetch={false}>
-              <a>{language.LINKS.assurance}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/evaluation" prefetch={false}>
-              <a>{language.LINKS.evaluation}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/guide-picture" prefetch={false}>
-              <a>{language.LINKS.takingPicture}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/gps" prefetch={false}>
-              <a>{language.LINKS.gps}</a>
-            </Link>
-          </li>
+          {local.activeLanguage === 'fa' && (
+            <>
+              <li>
+                <Link href="/sepris" prefetch={false}>
+                  <a>{language.LINKS.sepris}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/guide-renter" prefetch={false}>
+                  <a>{language.LINKS.host}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/car-insurance" prefetch={false}>
+                  <a>{language.LINKS.insurance}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/assurance" prefetch={false}>
+                  <a>{language.LINKS.assurance}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/evaluation" prefetch={false}>
+                  <a>{language.LINKS.evaluation}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/guide-picture" prefetch={false}>
+                  <a>{language.LINKS.takingPicture}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/gps" prefetch={false}>
+                  <a>{language.LINKS.gps}</a>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </li>
       {/* if the user had registered completely, can access to orders history */}
       {complete_register && (
         <li>
           <Link href="/requests" prefetch={false}>
-            <a className="HEAP_Header_Link_MyOrders">{language.HEADER.myRequests}</a>
+            <a className="HEAP_Header_Link_MyOrders">
+              {language.HEADER.myRequests}
+            </a>
           </Link>
         </li>
       )}

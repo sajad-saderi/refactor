@@ -66,46 +66,49 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
             </Link>
           </li>
           <li>
-            <Link href="/sepris" prefetch={false}>
-              <a>{language.LINKS.sepris}</a>
-            </Link>
-          </li>
-          {LinkControl ? (
-            <li>
-              <Link href="/guide-renter" prefetch={false}>
-                <a>{language.LINKS.host}</a>
-              </Link>
-            </li>
-          ) : null}
-          {LinkControl ? (
-            <li>
-              <Link href="/evaluation" prefetch={false}>
-                <a>{language.LINKS.evaluation}</a>
-              </Link>
-            </li>
-          ) : null}
-          <li>
             <Link href="/faq" prefetch={false}>
               <a>{language.LINKS.faq}</a>
             </Link>
           </li>
-          <li>
-            <Link href="/our-policies" prefetch={false}>
-              <a>{language.LINKS.ourPolicies}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/insurance-policies" prefetch={false}>
-              <a>{language.LINKS.insurancePolicies}</a>
-            </Link>
-          </li>
-          {LinkControl ? null : (
-            <li>
-              <Link href="/rent" prefetch={false}>
-                <a>{language.LINKS.rent}</a>
-              </Link>
-            </li>
-          )}
+          {locale === 'fa' &&
+            <>
+              <li>
+                <Link href="/sepris" prefetch={false}>
+                  <a>{language.LINKS.sepris}</a>
+                </Link>
+              </li>
+              {LinkControl ? (
+                <li>
+                  <Link href="/guide-renter" prefetch={false}>
+                    <a>{language.LINKS.host}</a>
+                  </Link>
+                </li>
+              ) : null}
+              {LinkControl ? (
+                <li>
+                  <Link href="/evaluation" prefetch={false}>
+                    <a>{language.LINKS.evaluation}</a>
+                  </Link>
+                </li>
+              ) : null}
+              <li>
+                <Link href="/our-policies" prefetch={false}>
+                  <a>{language.LINKS.ourPolicies}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/insurance-policies" prefetch={false}>
+                  <a>{language.LINKS.insurancePolicies}</a>
+                </Link>
+              </li>
+              {LinkControl ? null : (
+                <li>
+                  <Link href="/rent" prefetch={false}>
+                    <a>{language.LINKS.rent}</a>
+                  </Link>
+                </li>
+              )}</>
+          }
           {LinkControl ? null : (
             <li>
               <Link href="/site-map" prefetch={false}>

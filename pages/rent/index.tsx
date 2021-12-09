@@ -23,7 +23,7 @@ const Rent = ({ locale }) => {
   const netCTX = useContext(net_CTX);
   const { activeLanguage } = useContext(languageCTX);
   const [authorize, set_authorize] = useState(true);
-  const question_set = [
+  const question_set = activeLanguage === 'fa' ? [
     {
       title: `<p itemprop='name'>${locale.RENT_PAGE.question1}</p>`,
       content:
@@ -33,7 +33,13 @@ const Rent = ({ locale }) => {
       title: `<p itemprop='name'>${locale.RENT_PAGE.question2}</p>`,
       content:
         `<p itemprop='text'>${locale.RENT_PAGE.answer2}</p>`,
-    },
+    }
+  ] : [
+    {
+      title: `<p itemprop='name'>${locale.RENT_PAGE.question1}</p>`,
+      content:
+        `<p  itemprop='text'>${locale.RENT_PAGE.answer1}</p>`,
+    }
   ];
   const extraContentRentPage = (
     <div className="rent_contnet" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
@@ -42,15 +48,18 @@ const Rent = ({ locale }) => {
         <p>{locale.INFORMATION.text19}</p>
         <p>{locale.INFORMATION.text20}</p>
         <p>{locale.INFORMATION.text21}</p>
-        <p>
+        {activeLanguage === 'fa' && <p>
           <strong>{locale.INFORMATION.text22}</strong>
-        </p>
+        </p>}
         <p>{locale.INFORMATION.text23}</p>
         <p>{locale.INFORMATION.text24}</p>
-        <p>{locale.INFORMATION.text25}</p>
-        <p>{locale.INFORMATION.text26}</p>
-        <p>{locale.INFORMATION.text27}</p>
-        <p>{locale.INFORMATION.text28}</p>
+        {activeLanguage === 'fa' &&
+          <>
+            <p>{locale.INFORMATION.text25}</p>
+            <p>{locale.INFORMATION.text26}</p>
+            <p>{locale.INFORMATION.text27}</p>
+            <p>{locale.INFORMATION.text28}</p>
+          </>}
       </div>
     </div>
   );

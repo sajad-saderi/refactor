@@ -98,11 +98,13 @@ const Join_us_content = ({
             }
           }}
         >
-          <Link href="/add-car" prefetch={false}>
-            <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">
-              {AbText}
-            </a>
-          </Link>
+          {activeLanguage === 'fa' &&
+            <Link href="/add-car" prefetch={false}>
+              <a className="Blue_BTN add_car_custom HEAP_joinUs_Btn_AddCar">
+                {AbText}
+              </a>
+            </Link>
+          }
           {shouldHideCommnets ? null : (
             <section className="slick_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
               <h2>{language.JOIN_US_PAGE.reviews.title}</h2>

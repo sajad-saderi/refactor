@@ -172,14 +172,16 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                   <FiLogOut size="2rem" color="#4ba3ce" />
                   <p>{language.USER.exit}</p>
                 </div>
-                <Button
-                  value={language.COMMON.addCar}
-                  class="Blue_BTN HEAP_Profile_Btn_AddCar"
-                  click={() => {
-                    router.push("/add-car");
-                  }}
-                  loading={false}
-                />
+                {activeLanguage === 'fa' &&
+                  <Button
+                    value={language.COMMON.addCar}
+                    class="Blue_BTN HEAP_Profile_Btn_AddCar"
+                    click={() => {
+                      router.push("/add-car");
+                    }}
+                    loading={false}
+                  />
+                }
               </div>
             )}
           </>
