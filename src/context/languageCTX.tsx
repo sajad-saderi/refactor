@@ -1,6 +1,6 @@
 import { Context, createContext, useState } from 'react';
 import { supportedLanguages } from '../../utils/types';
-
+import router, { useRouter } from 'next/router';
 interface LanguageCTX {
   changingLanguage: (v: supportedLanguages) => void;
   activeLanguage: supportedLanguages;
@@ -12,7 +12,8 @@ const ChangeLanguageContext: Context<LanguageCTX> = createContext({
 });
 
 export const ChangeLanguageContextProvider = ({ children }) => {
-  const [local, setLocal] = useState<supportedLanguages>('fa');
+  const router = useRouter()
+  const [local, setLocal] = useState<supportedLanguages>(router.locale as supportedLanguages);
 
   const handelingChangeLanguage = (lan: supportedLanguages) => {
     setLocal(lan);

@@ -7,7 +7,7 @@ const Layout = dynamic(() => import("../../src/Layout"));
 // import { logPageView } from "../../utils/analytics";
 import { REQUEST_GET_RENTAL_CAR } from "../../src/API";
 import { useRouter } from "next/router";
-import { payBackInString } from "../../utils/date-range-creator";
+import { initialDate, payBackInString } from "../../utils/date-range-creator";
 import { useContext, useEffect } from "react";
 import languageCTX from '../../src/context/languageCTX';
 
@@ -137,9 +137,10 @@ export async function getServerSideProps(props) {
     start_date,
     end_date,
   } = props.query;
+
   try {
-    const generated_start_date = payBackInString(6, 3).start_date;
-    const generated_end_date = payBackInString(6, 3).end_date;
+    const generated_start_date = initialDate(6, 3).from;
+    const generated_end_date = initialDate(6, 3).to;
 
     if (owner_name) {
       return {
@@ -150,8 +151,8 @@ export async function getServerSideProps(props) {
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
           expired: false,
-          start_date: start_date ? start_date : generated_start_date,
-          end_date: end_date ? end_date : generated_end_date,
+          start_date: start_date ? twoWayDateConvertor(start_date) : generated_start_date,
+          end_date: end_date ? twoWayDateConvertor(end_date) : generated_end_date,
           id,
         },
       };
@@ -161,12 +162,16 @@ export async function getServerSideProps(props) {
         param = { search_id };
       } else {
         if (start_date) {
-          param = { id, start_date, end_date };
+          param = {
+            id,
+            start_date: twoWayDateConvertor(start_date)[props.locale].name,
+            end_date: twoWayDateConvertor(end_date)[props.locale].name
+          };
         } else {
           param = {
             id,
-            start_date: generated_start_date,
-            end_date: generated_end_date,
+            start_date: generated_start_date[props.locale].name,
+            end_date: generated_end_date[props.locale].name,
           };
         }
       }
@@ -178,14 +183,14 @@ export async function getServerSideProps(props) {
           is_mine: owner ? owner : null,
           initial_search_id: search_id ? search_id : null,
           start_date: res.start_date
-            ? res.start_date
+            ? twoWayDateConvertor(res.start_date)
             : start_date
-              ? start_date
+              ? twoWayDateConvertor(start_date)
               : generated_start_date,
           end_date: res.end_date
-            ? res.end_date
+            ? twoWayDateConvertor(res.end_date)
             : end_date
-              ? end_date
+              ? twoWayDateConvertor(end_date)
               : generated_end_date,
           id,
         },

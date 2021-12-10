@@ -130,7 +130,9 @@
     "comformOrderDelete": "آیا می‌خواهید این سفارش را حذف کنید؟",
     "iAgree": "می‌پذیرم",
     "fetchCitiesError": "خطا در دریافت لیست شهر‌ها",
-    "fetchingBrandsError": "خطایی در دریافت لیست برند خودرو رخ داده است."
+    "fetchingBrandsError": "خطایی در دریافت لیست برند خودرو رخ داده است.",
+    "dateIsChanged": "تاریخ جستجو تغییر کرده است.",
+    "carNotFound": "خودروی مورد نظر یافت نشد."
   },
   "INFORMATION": {
     "text1": "in partnership with Saman Insurance",
