@@ -27,7 +27,11 @@ import { ICalender } from '../../../types';
 moment.loadPersian({ dialect: "persian", usePersianDigits: false });
 
 let dateObject: ICalender | null = { from: null, to: null }
-
+let initialCity = {
+  key: 1,
+  name: { fa: "تهران", breadcrumb_fa: "تهران", en: "Tehran", breadcrumb_en: "Tehran" },
+  value: 1
+}
 const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
   const [LocationName, setLocationName] = useState('');
@@ -61,21 +65,16 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   useEffect(() => {
     if (localStorage['User_Location']) {
       let location_storage = JSON.parse(localStorage['User_Location']);
-      if (
-        location_storage.value == 1 ||
-        location_storage.value == 2 ||
-        location_storage.value !== 3 ||
-        location_storage.value == 1657 ||
-        location_storage.value !== 1656 ||
-        location_storage.value !== 1660 ||
-        location_storage.value !== 1690 ||
-        location_storage.value !== 1655 ||
-        location_storage.value !== 1685 ||
-        location_storage.value !== 1658
-      ) {
+      if (!activeCities(location_storage.value)) {
         setLocationId(location_storage.value);
         setLocationName(location_storage.name[activeLanguage]);
+      } else {
+        setLocationId(initialCity.value);
+        setLocationName(initialCity.name[activeLanguage]);
       }
+    } else {
+      setLocationId(initialCity.value);
+      setLocationName(initialCity.name[activeLanguage]);
     }
     get_car_location();
     setDateFromStorage();
@@ -89,7 +88,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     }
     if (localStorage['User_Location']) {
       let location_storage = JSON.parse(localStorage['User_Location']);
-      setLocationName(location_storage.name[activeLanguage])
+      if (!activeCities(location_storage.value))
+        setLocationName(location_storage.name[activeLanguage])
+      else {
+        setLocationId(initialCity.value);
+        setLocationName(initialCity.name[activeLanguage]);
+      }
     }
     setDateFromStorage()
   }, [activeLanguage])
@@ -123,7 +127,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     if (localStorageDate) {
       let { from, to } = JSON.parse(localStorageDate);
       // if the start date on storage is bigger then today
-      if (activeLanguage === 'fa' && from.fa.dump.year < 1900) {
+      if (activeLanguage === 'fa') {
         if (from.fa.dump.day > moment().jDate()) {
           if (from.fa.dump.month >= moment().jMonth() + 1) {
             setDayRange({
@@ -134,6 +138,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           // id the day is smaller than the saved one but the current month is bigger then the month on storage
           else {
             localStorage.removeItem('date');
+            set_default_date_for_search();
           }
         } else if (from.fa.dump.month > moment().jMonth() + 1) {
           setDayRange({
@@ -156,6 +161,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           // id the day is smaller than the saved one but the current month is bigger then the month on storage
           else {
             localStorage.removeItem('date');
+            set_default_date_for_search();
           }
         } else if (from.en.dump.month > date.getMonth() + 1) {
           setDayRange({
@@ -167,7 +173,6 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           set_default_date_for_search();
         }
       }
-
     } else {
       set_default_date_for_search();
     }
@@ -299,7 +304,6 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         data-test-id="GotoSearchResult"
         onSubmit={(e) => GotoSearchResult(e)}
       >
-        {console.log(store.store.date)}
         <div className="search_box_div">
           <p className="label">{language.COMMON.pickupLocation}</p>
           <DropdownSearch

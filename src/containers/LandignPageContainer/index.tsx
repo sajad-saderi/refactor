@@ -25,6 +25,8 @@ import UrlChecker from '../../../utils/UrlChecker';
 import search_query_builder from '../../../utils/search-query-builder';
 import net_CTX from '../../context/internetConnectionCTX';
 import languageCTX from "../../context/languageCTX";
+import AppStore from '../../context/app';
+import { twoWayDateConvertor } from '../../helpers/dateControler';
 
 import Filters from '../Filters';
 import { dynamicString } from '../../helpers/dynamicString';
@@ -80,7 +82,7 @@ const Landing_page_container = ({
   content,
 }: ILanding_page_container) => {
   const [result, setResult] = useState(null);
-  const [extra_info, setExtra_info] = useState([]);
+  const [extra_info, setExtra_info] = useState<any>([]);
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
@@ -104,7 +106,7 @@ const Landing_page_container = ({
   const router = useRouter();
   const netCTX = useContext(net_CTX);
   const { activeLanguage } = useContext(languageCTX);
-
+  const appStore = useContext(AppStore);
   const handleClickOutside = (e) => {
     // If the click is outside of the drop-down box the drop-down section will be close
     if (!new_search_ref.current.contains(e.target)) {
@@ -159,7 +161,7 @@ const Landing_page_container = ({
     // Glob_route = `/rent/${router.query.id}`;
     const { search_params } = landing_data;
 
-    const url_checked = UrlChecker({ ...router.query, ...search_params });
+    const url_checked = UrlChecker({ ...router.query, ...search_params }, router.locale);
     staticRoute = { ...router.query, ...search_params };
     if (url_checked.location_id) {
       filtersChecker.Location = true;
@@ -352,6 +354,12 @@ const Landing_page_container = ({
       }
     }
   }
+
+
+  useEffect(() => {
+    setCarLocationName(appStore.store.location[activeLanguage])
+    Location = appStore.store.location.id
+  }, [appStore.store.location.id])
 
   // const pre_load_controller = (data) => {
   //   const;
@@ -632,7 +640,7 @@ const Landing_page_container = ({
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
-                {dynamicString([total_count, result[0].start_date.slice(5), result[0].end_date.slice(5), carLocationName], language.COMMON.carInResult)}
+                {dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult)}
                 {/* {`${total_count}${language.count_bar_khodro
                   }${result[0].start_date.slice(5)}${language.count_bar_ta
                   }${result[0].end_date.slice(5)}`}

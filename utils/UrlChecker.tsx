@@ -1,10 +1,11 @@
 import moment from "moment-jalaali";
-import { payBackInString } from "./date-range-creator";
+import { twoWayDateConvertor } from '../src/helpers/dateControler';
+import { initialDate, payBackInString } from "./date-range-creator";
 moment.loadPersian({ dialect: "persian-modern" });
 
 let startDate = null;
 let endDate = null;
-const UrlChecker = (props) => {
+const UrlChecker = (props, locale) => {
   let data = null;
   const {
     location_id,
@@ -23,29 +24,28 @@ const UrlChecker = (props) => {
     car_id,
     category_id,
   } = props;
-  if (localStorage["start"]) {
-    const storageStartDate = JSON.parse(localStorage["start"]);
-    const storageEndDate = JSON.parse(localStorage["end"]);
-    startDate = `${storageStartDate.year}/${storageStartDate.month}/${storageStartDate.day}`;
-    endDate = `${storageEndDate.year}/${storageEndDate.month}/${storageEndDate.day}`;
+  if (localStorage["date"]) {
+    const date = JSON.parse(localStorage["date"]);
+    startDate = date.from[locale].name;
+    endDate = date.to[locale].name;
   }
   data = {
     location_id: location_id ? +location_id : null,
     location_n: location_name
       ? location_name
       : location_id == 1
-      ? "tehran"
-      : "",
+        ? "tehran"
+        : "",
     start_date: start_date
-      ? (start_date as string).replace(/-/g, "/")
+      ? twoWayDateConvertor((start_date as string).replace(/-/g, "/"))[locale].name
       : startDate
-      ? startDate
-      : generate_dates().generate_start,
+        ? startDate
+        : generate_dates(locale).generate_start,
     end_date: end_date
-      ? (end_date as string).replace(/-/g, "/")
+      ? twoWayDateConvertor((end_date as string).replace(/-/g, "/"))[locale].name
       : endDate
-      ? endDate
-      : generate_dates().generate_end,
+        ? endDate
+        : generate_dates(locale).generate_end,
     price_order: price_order ? (price_order as string) : "-price",
     page: page ? +page : 1,
     min_price: min_price ? +min_price : 0,
@@ -65,9 +65,9 @@ const UrlChecker = (props) => {
   return data;
 };
 
-const generate_dates = () => {
-  const { start_date, end_date } = payBackInString(6, 3);
-  return { generate_start: start_date, generate_end: end_date };
+const generate_dates = (locale) => {
+  const { from, to } = initialDate(6, 3);
+  return { generate_start: from[locale].name, generate_end: to[locale].name };
 };
 
 export default UrlChecker;

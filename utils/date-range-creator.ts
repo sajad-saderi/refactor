@@ -1,4 +1,5 @@
 import moment from "moment-jalaali";
+import { twoWayDateConvertor } from '../src/helpers/dateControler';
 
 const dateRangeCreator = (durations, kickoff) => {
   let start_date = moment()
@@ -30,5 +31,13 @@ export const payBackInObject = (durations: number, kickoff: number) => {
       month: +endDateArray[1],
       day: +endDateArray[2],
     },
+  };
+};
+
+export const initialDate = (durations: number, kickoff: number) => {
+  const { start_date, end_date } = dateRangeCreator(durations, kickoff);
+  return {
+    from: twoWayDateConvertor(start_date),
+    to: twoWayDateConvertor(end_date)
   };
 };

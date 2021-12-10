@@ -28,7 +28,7 @@ export const REQUEST_GET_SEARCH_FOR_RENT = (data: IgetSearchForRent) => {
           const body_style_id = extra_info.body_style_set.map(
             (value, index) => ({
               value: value.id,
-              text: value.name,
+              name: value.name,
               count: value.count,
             })
           );

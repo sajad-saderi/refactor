@@ -323,7 +323,7 @@ const Filters = ({
             initialValue={[deliver_at_renters_place]}
             data={[
               {
-                text:
+                name:
                   language.COMMON
                     .deliverAtPlace,
                 value: deliver_at_renters_place,
@@ -348,7 +348,7 @@ const Filters = ({
             initialValue={[with_driver]}
             data={[
               {
-                text: language.COMMON.withDeriver,
+                name: language.COMMON.withDriver,
                 value: with_driver,
               },
             ]}
@@ -371,7 +371,7 @@ const Filters = ({
             initialValue={[without_driver]}
             data={[
               {
-                text: language.COMMON.withoutDriver,
+                name: language.COMMON.withoutDriver,
                 value: without_driver,
               },
             ]}
@@ -434,7 +434,7 @@ const Filters = ({
             // add brand_id filter to the filter context
             FilterContext.setDataForSearch({
               car_id: { status: false, value: null },
-              brand_id: { status: true, value: i.value, name: i.text },
+              brand_id: { status: true, value: i.value, name: i.name },
             });
           }}
           browserDropdown={true}
@@ -464,7 +464,7 @@ const Filters = ({
             setcar_id(i.value);
             // add car_id filter to the filter context
             FilterContext.setDataForSearch({
-              car_id: { status: true, value: i.value, name: i.text },
+              car_id: { status: true, value: i.value, name: i.name },
             });
           }}
           browserDropdown={true}

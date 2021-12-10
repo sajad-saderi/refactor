@@ -348,7 +348,7 @@ const Checkout_Container = ({
           {with_driver && (
             <>
               <hr />
-              <h2>{language.COMMON.rent} {language.COMMON.withDrive}</h2>
+              <h2>{language.COMMON.rent} {language.COMMON.withDriver}</h2>
               {without_driver ? (
                 <span>{language.COMMON.rentBothCondition}</span>
               ) : (

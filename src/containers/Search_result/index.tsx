@@ -29,6 +29,7 @@ import net_CTX from "../../context/internetConnectionCTX";
 import languageCTX from "../../context/languageCTX";
 import { dynamicString } from '../../helpers/dynamicString';
 import AppStore from '../../context/app';
+import { twoWayDateConvertor } from '../../helpers/dateControler';
 
 
 
@@ -84,7 +85,7 @@ const Search_result = ({
   showLocationTag,
 }: ISearch_result) => {
   const [result, setResult] = useState(null);
-  const [extra_info, setExtra_info] = useState([]);
+  const [extra_info, setExtra_info] = useState<any>([]);
   const [total_count, setTotal_count] = useState(0);
   const [remained_count, setRemained_count] = useState(0);
   const [show_spinner_loadMore, setShow_spinner_loadMore] = useState(false);
@@ -113,7 +114,7 @@ const Search_result = ({
 
   useEffect(() => {
     staticRoute = { ...router.query };
-    const url_checked = UrlChecker(router.query);
+    const url_checked = UrlChecker(router.query, router.locale);
 
     if (url_checked.location_id) {
       Location = url_checked.location_id;
@@ -178,8 +179,7 @@ const Search_result = ({
     // setTotal_count(initialResults.total_count);
     // setRemained_count(initialResults.remained_count);
     // setExtra_info(initialResults.extra_info);
-    // setResult(initialResults.results);
-
+    // setResult(initialResults.results); 
     initSearch();
 
     const handleRouteChange = (url) => {
@@ -234,7 +234,7 @@ const Search_result = ({
   }, []);
 
   useEffect(() => {
-    setCarLocationName(appStore.store.location.fa)
+    setCarLocationName(appStore.store.location[activeLanguage])
     Location = appStore.store.location.id
   }, [appStore.store.location.id])
 
@@ -613,7 +613,8 @@ const Search_result = ({
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
-                {dynamicString([total_count, result[0].start_date.slice(5), result[0].end_date.slice(5), carLocationName], language.COMMON.carInResult)}
+                {dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult)}
+
                 {/* {`${total_count}${language.count_bar_khodro
                 }${result[0].start_date.slice(5)}${language.count_bar_ta
                 }${result[0].end_date.slice(5)}`}{" "}
