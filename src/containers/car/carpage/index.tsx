@@ -138,8 +138,9 @@ const CarPage = ({
     if (!car_Information) {
       if (initial_search_id) {
         fetchData({ search_id: initial_search_id });
-      } else if (router.asPath.includes("start_date")) {
+      } else if (!router.asPath.includes("start_date")) {
         DateSetter(id);
+        setShowCalender(true);
       } else {
         // if doesn't have search id and it's not mine the user can select day range and get price and search id
         setShowCalender(true);

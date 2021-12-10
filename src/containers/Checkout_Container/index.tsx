@@ -87,11 +87,6 @@ const Checkout_Container = ({
 
   const token = jsCookie.get("token");
 
-  useEffect(() => {
-    moment.locale(activeLanguage)
-  }, [
-    activeLanguage
-  ])
   // useEffect(() => {
   //   const { search_id } = Router.router.query;
   //   fetchData(search_id);
@@ -149,8 +144,8 @@ const Checkout_Container = ({
       setSearch_id(order_information.search_id);
       setStart_date(order_information.start_date);
       dateObject = {
-        from: twoWayDateConvertor(order_information.start_date), to:
-          twoWayDateConvertor(order_information.end_date)
+        from: twoWayDateConvertor(order_information.start_date),
+        to: twoWayDateConvertor(order_information.end_date)
       }
 
       setEnd_date(order_information.end_date);
@@ -177,7 +172,7 @@ const Checkout_Container = ({
     if (coupon.length === 0) {
       setCouponError({
         status: true,
-        message: "لطفا کد تخفیف خود را وارد کنید",
+        message: language.CHECKOUT.enterDiscountCode,
       });
       setCoupanLoading(false);
       return;
@@ -230,7 +225,7 @@ const Checkout_Container = ({
       return;
     }
     if (user.data.id == owner.id) {
-      alert("شما نمیتوانید خودرو خودتان را اجاره کنید");
+      alert(language.CHECKOUT.notAllowedToRentMyOwnCar);
       setLoading(false);
       return;
     }
@@ -277,6 +272,11 @@ const Checkout_Container = ({
     }
   };
 
+  useEffect(() => {
+    moment.locale(router.locale)
+  }, [
+    router.locale
+  ])
 
   return media_set.length > 0 ? (
     <article className="responsive Checkout_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
@@ -284,23 +284,23 @@ const Checkout_Container = ({
         <div className="Date_container">
           <p>
             {/* convert date to days name */}
-            {activeLanguage === 'fa' ? moment(dateObject.from.fa.name, "jYYYY/jMM/jDD").format("dddd")
-              : moment(dateObject.from.en.name, "YYYY/MM/DD").format("dddd")}
+            {activeLanguage === 'fa' ? moment(dateObject.from.fa.name, "jYYYY/jM/jD").format("dddd")
+              : moment(dateObject.from.en.name, "YYYY/M/DD").format("dddd")}
             <br />
             {/* show the day date and month name */}
-            {activeLanguage === 'fa' ? moment(dateObject.from.fa.name, "jYYYY/jMM/jDD").format("jDD jMMMM")
-              : moment(dateObject.from.en.name, "YYYY/MM/DD").format("DD MMMM")
+            {activeLanguage === 'fa' ? moment(dateObject.from.fa.name, "jYYYY/jM/jD").format("jD jMMMM")
+              : moment(dateObject.from.en.name, "YYYY/M/DD").format("DD MMMM")
             }
           </p>
           <IoMdArrowRoundBack size="3rem" color="#707070" />
           <p>
             {/* convert date to days name */}
-            {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jMM/jDD").format("dddd")
-              : moment(dateObject.to.en.name, "YYYY/MM/DD").format("dddd")}
+            {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("dddd")
+              : moment(dateObject.to.en.name, "YYYY/M/DD").format("dddd")}
             <br />
             {/* show the day date and month name */}
-            {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jMM/jDD").format("jDD jMMMM")
-              : moment(dateObject.to.en.name, "YYYY/MM/DD").format("DD MMMM")}
+            {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("jD jMMMM")
+              : moment(dateObject.to.en.name, "YYYY/M/DD").format("DD MMMM")}
           </p>
         </div>
         <div className="car_info">

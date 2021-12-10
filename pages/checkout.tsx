@@ -48,7 +48,7 @@ const Checkout = ({ order_information, expired, locale }) => {
         />
       ) : (
         <NextSeo
-          title={`${dynamicString(['خودرو'], locale.PAGE_HEADER.checkout.title)}`}
+          title={`${dynamicString([locale.COMMON.car], locale.PAGE_HEADER.checkout.title)}`}
           description={locale.PAGE_HEADER.checkout.description}
         />
       )}
@@ -85,7 +85,6 @@ export async function getServerSideProps(props) {
       order_information: null,
     };
     if (
-      error.response.data?.error === 'INVALID_SEARCH_ID' ||
       error.response.data?.error === 'INVALID_SEARCH_ID'
     ) {
       data['expired'] = true;

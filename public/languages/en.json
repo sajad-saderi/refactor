@@ -277,6 +277,8 @@
     "invoice": "Total",
     "booking": "ثبت درخواست",
     "track": "Track Your Request",
+    "enterDiscountCode": "لطفا کد تخفیف خود را وارد کنید",
+    "notAllowedToRentMyOwnCar": "شما نمیتوانید خودرو خودتان را اجاره کنید",
     "insuranceBooking": {
       "option1": {
         "label": "بسته ویژه بیمه سامان ({value} تومان)",
