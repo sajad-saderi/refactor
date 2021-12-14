@@ -73,7 +73,7 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale }: IPriceSlide
           <h3>{language.COMMON.price}</h3>
           <div className='price_text'>
             <p>
-              <span className='TA'>{`${Number(
+              <span>{`${Number(
                 Number(
                   value[0] < 1000000 ? value[0] / 1000 : value[0] / 1000000
                 ).toFixed(1)
@@ -82,7 +82,7 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale }: IPriceSlide
             </p>
             <p className='TA'> {language.COMMON.to} </p>
             <p>
-              <span className='TA'>{`${Number(
+              <span >{`${Number(
                 Number(
                   value[1] < 1000000 ? value[1] / 1000 : value[1] / 1000000
                 ).toFixed(1)

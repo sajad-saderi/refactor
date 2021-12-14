@@ -52,6 +52,7 @@ import languageCTX from "../../../context/languageCTX";
 import appState from "../../../context/app";
 import { twoWayDateConvertor } from '../../../helpers/dateControler';
 import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
+import { dynamicString } from '../../../helpers/dynamicString';
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -527,12 +528,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                     ? coupon.toLocaleString()
                     : discounted_total_price.toLocaleString()}{" "}
               </span>
-              {language.COMMON.toman} ({language.COMMON.for} {no_of_days} {language.COMMON.day})
+              {language.COMMON.toman} ({language.COMMON.for} {no_of_days} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
             </>
           ) : (
             <>
               <span>{discounted_total_price.toLocaleString()} </span>
-              {language.COMMON.toman} ({language.COMMON.for} {no_of_days} {language.COMMON.day})
+              {language.COMMON.toman} ({language.COMMON.for} {no_of_days} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
             </>
           )}
           <span className="insurance_badge">

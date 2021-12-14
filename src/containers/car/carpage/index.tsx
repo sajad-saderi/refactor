@@ -795,7 +795,7 @@ const CarPage = ({
                             activeLanguage === 'fa' ? "jM" : "M"
                           ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}{" "}
                           {no_of_days
-                            ? `(${no_of_days} ${language.COMMON.day})`
+                            ? `(${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
                             : null}
                         </p>
                         <p
@@ -1089,7 +1089,7 @@ const CarPage = ({
                       activeLanguage === 'fa' ? "jM" : "M"
                     ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}{" "}
                     {no_of_days
-                      ? `(${no_of_days} ${language.COMMON.day})`
+                      ? `(${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
                       : null}
                   </p>
                   <p

@@ -156,7 +156,7 @@ const SucceedPayment = ({ language }) => {
                   <div>
                     <p>{language.COMMON.duration}:</p>
                     <span>
-                      {rent_search_dump.no_of_days} {language.COMMON.day}
+                      {rent_search_dump.no_of_days} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}
                     </span>
                   </div>
                   {has_insurance && (

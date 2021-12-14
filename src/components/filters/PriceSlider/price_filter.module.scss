@@ -1,4 +1,4 @@
-@import "../../../styles/colors";
+@import '../../../styles/colors';
 .price_filter {
   margin-bottom: 3rem;
   .price_text {
@@ -7,9 +7,17 @@
     align-items: center;
     margin-bottom: 2rem;
     .TA {
+      margin: 0 0.8rem;
       font-weight: 500;
+      width: auto;
+      overflow: unset;
+      text-overflow: unset;
     }
     p {
+      width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       font-weight: 100;
     }
   }
@@ -109,7 +117,7 @@
       top: -1rem;
       border: 3px solid $blue;
       border-radius: 50%;
-      content: "";
+      content: '';
     }
     &::before {
       left: 0;

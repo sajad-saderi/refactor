@@ -28,6 +28,7 @@ import net_CTX from "../../context/internetConnectionCTX";
 import languageCTX from "../../context/languageCTX";
 import { ICalender } from '../../../types';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
+import { dynamicString } from '../../helpers/dynamicString';
 
 let dateObject: ICalender | null = { from: null, to: null }
 
@@ -411,7 +412,7 @@ const Checkout_Container = ({
               : moment(dateObject.to.en.name, "YYYY/MM/DD").format("DD MMMM")}
           </p>
         </div>
-        <p className="number_of_days">{`${language.COMMON.duration}${no_of_days} ${language.COMMON.day}`}</p>
+        <p className="number_of_days">{`${language.COMMON.duration} ${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)}`}</p>
         <div className="payment_information">
           {/* <p>
               <span>قیمت روزانه</span>
@@ -422,7 +423,7 @@ const Checkout_Container = ({
             </p> */}
           <br />
           <p>
-            <span>{`${language.COMMON.rent}${no_of_days} ${language.COMMON.day}`}</span>
+            <span>{`${language.COMMON.rent} ${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)}`}</span>
             <span>
               {total_price.toLocaleString()}{" "}
               <span className="Toman">{language.COMMON.toman}</span>{" "}

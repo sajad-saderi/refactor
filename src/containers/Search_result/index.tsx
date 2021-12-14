@@ -613,7 +613,7 @@ const Search_result = ({
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
-                {dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult)}
+                {dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult, total_count > 1 ? true : false)}
 
                 {/* {`${total_count}${language.count_bar_khodro
                 }${result[0].start_date.slice(5)}${language.count_bar_ta
