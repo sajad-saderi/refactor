@@ -1,6 +1,7 @@
 import axios from "axios";
 import Error_middleware from "../ApiUtils";
-
+import fa from '../../../public/languages/fa.json'
+import en from '../../../public/languages/en.json'
 const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const SET_ORDER_CANCEL = "/core/rental-car/order/cancel";
 const SET_ORDER_APPROVE = "/core/rental-car/order/approve";
@@ -23,33 +24,31 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
   return new Promise((resolve, reject) => {
     let ACTION_URL;
     let more;
-    let message = "با موفقیت انجام شد";
+    let message = { fa: en.TOASTS.success, en: en.TOASTS.success };
     switch (data.action) {
       case "approve":
         ACTION_URL = SET_ORDER_APPROVE;
-        message =
-          "تایید درخواست ثبت شد. در صورتی که مهمان مبلغ اجاره را پرداخت کند، درخواست قطعی می‌شود و از طریق پیامک به اطلاع شما می‌رسد.";
+        message = { fa: en.TOASTS.approved, en: en.TOASTS.approved };
         break;
       case "reject":
         ACTION_URL = SET_ORDER_REJECT;
-        message = "رد درخواست اجاره ثبت شد و به اطلاع مهمان می‌رسد.";
+        message = { fa: en.TOASTS.rejected, en: en.TOASTS.rejected };
         break;
       case "cancel":
         ACTION_URL = SET_ORDER_CANCEL;
-        message = "درخواست شما حذف شد";
+        message = { fa: en.TOASTS.deleted, en: en.TOASTS.deleted };
         break;
       case "pay":
         ACTION_URL = SET_ORDER_PAY;
         break;
       case "deliver":
         ACTION_URL = SET_ORDER_DELIVER;
-        message =
-          "سفر خوبی را برایتان آرزو می‌کنیم. لطفا در نگهداری خودرو دقت فرمایید. در صورت بروز هرگونه مشکل با میزبان یا سپریس تماس بگیرید.";
+        message = { fa: en.TOASTS.delivered, en: en.TOASTS.delivered };
         break;
       case "return":
         ACTION_URL = SET_ORDER_RETURN;
-        message =
-          "امیدواریم تجربه خوبی از اجاره خودروتان داشته باشید. نظرتان در مورد مهمان را با سایر کاربران در میان بگذارید.";
+        message = { fa: en.TOASTS.returned, en: en.TOASTS.returned };
+
         break;
       // if you want to rate a car, renter or a owner
       //  renter : اجاره گیرنده
@@ -124,13 +123,13 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
 interface InewRentRequest {
   id: string;
   action:
-    | "approve"
-    | "reject"
-    | "pay"
-    | "cancel"
-    | "deliver"
-    | "return"
-    | "rate";
+  | "approve"
+  | "reject"
+  | "pay"
+  | "cancel"
+  | "deliver"
+  | "return"
+  | "rate";
   token: string;
   payload?: {
     toRate: "owner" | "renter"; // only in rate action

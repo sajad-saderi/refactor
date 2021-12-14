@@ -1,0 +1,1 @@
+export const addingCountryCodeToNumber = (str: string): string => `+98${str.trim().slice(1)}` 

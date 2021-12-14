@@ -10,6 +10,7 @@ import {
 } from 'react-icons/io';
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { supportedLanguages } from '../../../types';
+import { addingCountryCodeToNumber } from '../../helpers/addingCountryCodeToNumber';
 
 const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => {
   const [hidden, setHidden] = useState(false);
@@ -135,21 +136,21 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
             {' '}
             {language.FOOTER.customerService}
             <a
-              href={`tel:${language.COMMON.number1}`}
+              href={`tel:${addingCountryCodeToNumber(language.COMMON.number1)}`}
               className="HEAP_Footer_Link_Phone"
             >
               {language.COMMON.number1}
             </a>
             -
             <a
-              href={`tel:${language.COMMON.number2}`}
+              href={`tel:${addingCountryCodeToNumber(language.COMMON.number2)}`}
               className="HEAP_Footer_Link_Phone"
             >
               {language.COMMON.number2}
             </a>
             -
             <a
-              href={`tel:${language.COMMON.number3}`}
+              href={`tel:${addingCountryCodeToNumber(language.COMMON.number3)}`}
               className="HEAP_Footer_Link_Phone"
             >
               {language.COMMON.number3}
@@ -159,7 +160,7 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
           <br />
           <p className="brand_description">
             <img src={car} alt="logo image" />
-            سِپریس نامی ایرانی و به معنی «میدان اسب‌دوانی» است.
+            {language.COMMON.seprisDefinition}
           </p>
         </div>
       </div>

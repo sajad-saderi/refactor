@@ -11,7 +11,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import AppStore from '../../context/app'
 import Icon from "../../../utils/Icon";
 
-const Recommendation_section = (props) => {
+const Recommendation_section = ({ language }) => {
   const [start_date, set_start_date] = useState(null);
   const [end_date, set_end_date] = useState(null);
   const appStore = useContext(AppStore)
@@ -48,7 +48,7 @@ const Recommendation_section = (props) => {
               <a>
                 <figure>
                   <img src={affordable} />
-                  <p>اقتصادی </p>
+                  <p>{language.COMMON.affordableCars}</p>
                 </figure>
               </a>
             </Link>
@@ -58,7 +58,7 @@ const Recommendation_section = (props) => {
               <a>
                 <figure>
                   <img src={for_journey} />
-                  <p>مناسب سفر </p>
+                  <p>{language.COMMON.goodForTravel}</p>
                 </figure>
               </a>
             </Link>
@@ -71,7 +71,7 @@ const Recommendation_section = (props) => {
               <a>
                 <figure>
                   <img src={with_driver} />
-                  <p>با راننده</p>
+                  <p>{language.COMMON.withDriver}</p>
                 </figure>
               </a>
             </Link>
@@ -84,7 +84,7 @@ const Recommendation_section = (props) => {
               <a>
                 <figure>
                   <img src={suv} />
-                  <p>شاسی بلند </p>
+                  <p>{language.COMMON.suvCars}</p>
                 </figure>
               </a>
             </Link>
@@ -97,7 +97,7 @@ const Recommendation_section = (props) => {
               <a>
                 <figure>
                   <img src={van} />
-                  <p>ون</p>
+                  <p>{language.COMMON.vans}</p>
                 </figure>
               </a>
             </Link>

@@ -106,7 +106,7 @@ const GetUserCellPhone = ({
             message: error.response
               ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: "در ورود با شماره همراه خطایی رخ داده است.",
+                _400Message: language.COMMON.errorInLogin,
               })
               : error,
             color: "#ed9026",

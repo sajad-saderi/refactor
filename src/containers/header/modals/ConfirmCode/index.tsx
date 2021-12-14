@@ -171,7 +171,7 @@ const ConfirmCode = ({
             message: error.response
               ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: "خطایی در تایید کد ورود رخ داده است.",
+                _400Message: language.COMMON.errorInSendingCode,
               })
               : error,
             color: "#ed9026",

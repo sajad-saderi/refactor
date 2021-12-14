@@ -173,7 +173,7 @@ const Requests_page = ({ language }: IRequests_page) => {
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "در دریافت لیست سفارش‌ها خطایی رخ داده است.",
+              _400Message: language.COMMON.errorInGetingRequests,
             })
             : error,
           color: "#ed9026",

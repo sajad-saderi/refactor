@@ -117,7 +117,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "خطایی در دریافت لیست مدل خودرو رخ داده است.",
+              _400Message: language.COMMON.fetchingModelError,
             })
             : error,
           color: "#ed9026",

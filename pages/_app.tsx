@@ -198,7 +198,7 @@ class App_Otoli extends App {
                       onClick={this.customPwaPrompt}
                     >
                       <img src={logo} alt="pwa logo icon" />
-                      اپلیکیشن سِپریس را نصب کنید.
+                      {this.state.language.COMMON.installApp}
                     </div>
                     <p
                       className="close_pwa_invitation"
@@ -210,7 +210,7 @@ class App_Otoli extends App {
                       }}
                     >
                       <IoIosClose color="#fff" size="2rem" />
-                      بستن
+                      {this.state.language.COMMON.close}
                     </p>
                   </section>
                 ) : null}

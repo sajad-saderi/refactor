@@ -326,7 +326,7 @@ const Search_result = ({
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "در دریافت نتایج جستجو خطایی رخ داده است.",
+              _400Message: language.COMMON.errorInSearchResult,
             })
             : error,
           color: '#ed9026',

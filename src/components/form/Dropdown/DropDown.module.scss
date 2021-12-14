@@ -1,4 +1,4 @@
-@import "../../../styles/colors";
+@import '../../../styles/colors';
 
 .DropDown_container {
   *::selection {
@@ -132,6 +132,7 @@
       cursor: pointer;
       padding: 1rem;
       border-bottom: 1px solid #f9f9f9;
+      text-transform: capitalize;
       &:last-child {
         border-color: transparent;
       }
@@ -165,27 +166,27 @@
   }
 }
 .DropDown_container[dir='ltr'] {
-  .input_wrapper { 
-    .clean_icon { 
+  .input_wrapper {
+    .clean_icon {
       left: auto;
-      right: 4.5rem; 
+      right: 4.5rem;
     }
-    .color_Circle {   
+    .color_Circle {
       left: auto;
       right: 5rem;
     }
-    .ArrowDown { 
+    .ArrowDown {
       left: auto;
-      right: 1rem; 
-    } 
+      right: 1rem;
+    }
   }
-  .Locations_list_container {   
+  .Locations_list_container {
     .search_input_container {
-      svg { 
+      svg {
         right: auto;
-        left: 0.84rem; 
+        left: 0.84rem;
       }
-    } 
+    }
   }
 }
 

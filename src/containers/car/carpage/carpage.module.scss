@@ -726,10 +726,19 @@
     .separate_info {
       direction: ltr;
     }
+    .driver_and_verified {
+      justify-content: flex-start;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
     .isverified_container {
       img {
         margin-left: 0;
         margin-right: 0.4rem;
+      }
+      span {
+        direction: ltr;
       }
     }
     .calender_section_mobile_view {

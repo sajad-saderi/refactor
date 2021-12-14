@@ -63,8 +63,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const { activeLanguage } = useContext(languageCTX);
 
   useEffect(() => {
-    if (localStorage['User_Location']) {
-      let location_storage = JSON.parse(localStorage['User_Location']);
+    if (localStorage['location']) {
+      let location_storage = JSON.parse(localStorage['location']);
       if (!activeCities(location_storage.value)) {
         setLocationId(location_storage.value);
         setLocationName(location_storage.name[activeLanguage]);
@@ -86,8 +86,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     } else {
       moment.locale("en");
     }
-    if (localStorage['User_Location']) {
-      let location_storage = JSON.parse(localStorage['User_Location']);
+    if (localStorage['location']) {
+      let location_storage = JSON.parse(localStorage['location']);
       if (!activeCities(location_storage.value))
         setLocationName(location_storage.name[activeLanguage])
       else {
@@ -126,6 +126,11 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     let localStorageDate = localStorage['date']
     if (localStorageDate) {
       let { from, to } = JSON.parse(localStorageDate);
+      if (!from) {
+        localStorage.removeItem('date');
+        set_default_date_for_search();
+        return
+      }
       // if the start date on storage is bigger then today
       if (activeLanguage === 'fa') {
         if (from.fa.dump.day > moment().jDate()) {
@@ -315,7 +320,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               language.COMMON.inCities
             }
             Select={(i) => {
-              localStorage['User_Location'] = JSON.stringify(i);
+              localStorage['location'] = JSON.stringify(i);
               if (activeCities(i.value)) {
                 MODAL_CONTEXT.modalHandler('TellMe');
               } else {

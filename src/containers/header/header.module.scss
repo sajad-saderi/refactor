@@ -217,11 +217,9 @@
           right: 0;
         }
         .Sub_Nav_Level_2 {
-          left: auto;
-          right: -16px;
           li {
             &:hover {
-              padding-left: px;
+              padding-left: 0px;
               padding-right: 15px;
             }
           }
@@ -245,8 +243,7 @@
           display: block;
           &::before {
             left: auto;
-            right: 15%;
-
+            right: 78%;
             margin-left: 0px;
             margin-right: -7px;
           }

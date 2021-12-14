@@ -1,4 +1,4 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 .search_result_page_container {
   .content_container {
@@ -26,11 +26,6 @@
         display: block;
         .count {
           float: left;
-        }
-      }
-      .rent-options {
-        .check_box_container:nth-of-type(2) {
-          margin-top: 3rem;
         }
       }
       .DropDown_container {
@@ -75,7 +70,7 @@
           cursor: pointer;
         }
       }
-    }    
+    }
   }
 }
 

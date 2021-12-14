@@ -69,7 +69,7 @@ const TellMe = ({ language }) => {
   };
 
   useEffect(() => {
-    const Location = JSON.parse(localStorage['User_Location']);
+    const Location = JSON.parse(localStorage['location']);
     location_id = Location.value;
     setLocationName(Location.name[localeCTX.activeLanguage]);
     return () => {

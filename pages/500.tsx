@@ -6,6 +6,7 @@ const Layout = dynamic(() => import("../src/Layout"));
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import _500 from "../public/image/500.png";
+import { addingCountryCodeToNumber } from '../src/helpers/addingCountryCodeToNumber';
 // import { logPageView } from "../utils/analytics";
 
 const page_500 = ({ locale }) => {
@@ -39,7 +40,7 @@ const page_500 = ({ locale }) => {
         <span>{locale._500_PAGE.span}</span>
         <p>{locale._500_PAGE.p1}</p>
         <p>
-          <a href={`tel:${locale.COMMON.number1}`}>{locale.COMMON.number1}</a>
+          <a href={`tel:${addingCountryCodeToNumber(locale.COMMON.number1)}`}>{locale.COMMON.number1}</a>
         </p>
         <Link href="/" prefetch={false}>
           <a className="_404PageAnchor Blue_BTN">{locale.COMMON.backToHome}</a>

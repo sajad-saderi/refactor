@@ -47,7 +47,7 @@ const ContentHomePage = ({
           </div>
         </>
         }
-        <Recommendation_section_owl />
+        <Recommendation_section_owl language={language} />
         <h2>{language.INFORMATION.text11}</h2>
         <div className="three_columns">
           <section>

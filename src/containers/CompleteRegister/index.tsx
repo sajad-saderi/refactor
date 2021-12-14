@@ -201,7 +201,7 @@ const Complete_register_container = ({
             message: error.response
               ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: "خطایی در ثبت اطلاعات کاربر جدید رخ داده است.",
+                _400Message: language.COMMON.errorInRegistery,
               })
               : error,
             color: "#ed9026",

@@ -543,7 +543,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             message: error.response
               ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: "در ثبت اطلاعات خودرو خطایی رخ داده است.",
+                _400Message: language.COMMON.errorInSubmittingCar,
               })
               : error,
             color: "#ed9026",

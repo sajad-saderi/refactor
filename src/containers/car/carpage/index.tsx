@@ -1267,7 +1267,7 @@ const CarPage = ({
               {availableCar && !is_mine ? (
                 <div className="continue_to_checkout">
                   <Button
-                    value="ادامه"
+                    value={language.COMMON.continue}
                     class="Blue_BTN localClass HEAP_Car_Btn_Continue"
                     loading={loading}
                     click={GoToCheckout}

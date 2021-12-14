@@ -11,6 +11,7 @@ import Car from "./car";
 // import "./search_result.scss";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 import languageCTX from '../../../context/languageCTX'
+import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
 let quickAccessClick = false;
 const SearchResultList = ({
   showLocation,
@@ -117,7 +118,7 @@ const SearchResultList = ({
             {language.COMMON.part2}
             <br />
             {language.COMMON.part3}
-            <a href={`tel:${language.COMMON.number1}`}>
+            <a href={`tel:${addingCountryCodeToNumber(language.COMMON.number1)}`}>
               {language.COMMON.number1}
             </a>
           </p>

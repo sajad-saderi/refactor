@@ -1,4 +1,5 @@
 import React from 'react';
+import { addingCountryCodeToNumber } from '../../src/helpers/addingCountryCodeToNumber';
 
 class ErrorBounderies extends React.Component<any, any> {
   constructor(props) {
@@ -20,7 +21,7 @@ class ErrorBounderies extends React.Component<any, any> {
           <p>{this.props.language.p_1}</p>
           <p>
             {this.props.language.dial}{' '}
-            <a href={`tel:${this.props.language.call}`}>
+            <a href={`tel:${addingCountryCodeToNumber(this.props.language.call)}`}>
               {this.props.language.call}
             </a>
           </p>

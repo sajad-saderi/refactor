@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
-
+import languageCTX from '../../context/languageCTX'
+import fa from '../../../public/languages/fa.json';
+import en from '../../../public/languages/en.json';
 let setTimer = null;
 
 const Toast = (props: IToast) => {
+  const { activeLanguage } = useContext(languageCTX)
   useEffect(() => {
     if (props.autoClose) {
       setTimer = setTimeout(
@@ -36,7 +39,9 @@ const Toast = (props: IToast) => {
         <p className="message">
           {typeof props.message !== "object"
             ? props.message
-            : "خطایی رخ داده است."}
+            : activeLanguage === 'fa'
+              ? fa.COMMON.thereIsAnError
+              : en.COMMON.thereIsAnError}
         </p>
         {/* time bar */}
         {props.time > 0 && (

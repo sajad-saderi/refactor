@@ -51,6 +51,7 @@ import { useRouter } from "next/router";
 import ErrorHelper from "../../../../utils/error_helper";
 import appState from "../../../context/app";
 import { twoWayDateConvertor } from '../../../helpers/dateControler';
+import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
 
 let dateObject = { from: null, to: null }
 moment.loadPersian({ dialect: "persian-modern" });
@@ -566,7 +567,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               </Link>
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
-                <a className="renter_Cell" href={`tel:0${owner_Info.cell}`}>
+                <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + owner_Info.cell)}`}>
                   <span className="extra_Text">0{owner_Info.cell}</span>
                   <MdCall size="1.6rem" color="#4ba3ce" />
                 </a>
@@ -586,7 +587,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               </Link>
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
-                <a className="renter_Cell" href={`tel:0${renter_info.cell}`}>
+                <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + renter_info.cell)}`}>
                   <span className="extra_Text">0{renter_info.cell}</span>
                   <MdCall size="1.6rem" color="#4ba3ce" />
                 </a>

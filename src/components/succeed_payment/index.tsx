@@ -91,7 +91,7 @@ const SucceedPayment = ({ language }) => {
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: 'خطایی در دریافت اطلاعات پرداخت رخ داده است.',
+              _400Message: language.COMMON.fetchingTransactionError,
             })
             : error,
           color: '#ed9026',

@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
 import { NextSeo } from "next-seo";
+import { addingCountryCodeToNumber } from '../src/helpers/addingCountryCodeToNumber';
 // import { logPageView } from "../utils/analytics";
 
 const AboutUs = ({ locale }) => {
@@ -53,21 +54,21 @@ const AboutUs = ({ locale }) => {
             </a>
             , */}
             <a
-              href={`tel:${locale.COMMON.number1}`}
+              href={`tel:${addingCountryCodeToNumber(locale.COMMON.number1)}`}
               className="HEAP_Aboutus_Link_Phone call_numbers"
             >
               {locale.COMMON.number1}
             </a>{' '}
             ,
             <a
-              href={`tel:${locale.COMMON.number2}`}
+              href={`tel:${addingCountryCodeToNumber(locale.COMMON.number2)}`}
               className="HEAP_Aboutus_Link_Phone call_numbers"
             >
               {locale.COMMON.number2}
             </a>{' '}
             ,
             <a
-              href={`tel:${locale.COMMON.number3}`}
+              href={`tel:${addingCountryCodeToNumber(locale.COMMON.number3)}`}
               className="HEAP_Aboutus_Link_Phone call_numbers"
             >
               {locale.COMMON.number3}
