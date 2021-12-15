@@ -450,6 +450,11 @@ input {
   min-height: 50rem;
 }
 
+[dir='ltr']
+  .Calendar__day.-weekend:not(.-selected):not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween) {
+  color: #000;
+}
+
 .responsive {
   max-width: 114rem;
   padding-right: 1.6rem;

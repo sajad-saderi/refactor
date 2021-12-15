@@ -1,4 +1,4 @@
-@import "../../../../styles/colors";
+@import '../../../../styles/colors';
 
 .search_result_section {
   .carCart {
@@ -93,7 +93,7 @@
       .price {
         left: 0rem;
         text-align: center;
-        width: 80px;
+        width: 86px;
         height: 77px;
         border-radius: 4px;
         padding: 0.5rem;
@@ -135,29 +135,29 @@
 }
 
 .search_result_section[dir='ltr'] {
-  .carCart { 
-    direction: ltr; 
-    figure { 
-      .discount_badge { 
+  .carCart {
+    direction: ltr;
+    figure {
+      .discount_badge {
         left: auto;
-        right: 0px;  
-        border-radius: 3px 0px 0px 0px; 
+        right: 0px;
+        border-radius: 3px 0px 0px 0px;
       }
       .Special {
         border-radius: 3px 0px 0px 0px;
         left: auto;
         right: 0px;
-      }  
+      }
     }
-    .info_box { 
+    .info_box {
       .price {
         left: auto;
-        right: 0rem; 
+        right: 0rem;
       }
-      .tags_container { 
-        li { 
+      .tags_container {
+        li {
           margin-left: 0;
-          margin-right: 0.8rem; 
+          margin-right: 0.8rem;
         }
       }
     }

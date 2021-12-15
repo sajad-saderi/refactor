@@ -357,7 +357,6 @@ const Landing_page_container = ({
 
 
   useEffect(() => {
-    setCarLocationName(appStore.store.location[activeLanguage])
     Location = appStore.store.location.id
   }, [appStore.store.location.id])
 
