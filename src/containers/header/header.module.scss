@@ -26,9 +26,17 @@
       height: 2.7rem;
       margin-left: 1.2rem;
     }
+    .logo_ltr {
+      transform: rotateY(180deg);
+    }
     .text_logo {
       margin-bottom: 2px;
       height: 1.4rem;
+    }
+    .text_logo_ltr {
+      margin-bottom: 1px;
+      width: 98px;
+      height: 25px;
     }
   }
 

@@ -5,6 +5,8 @@ const DOMAIN = process.env.PRODUCTION_ENDPOINT;
 const GET_CAR = "/core/rental-car/search-for-rent/get";
 
 export const REQUEST_GET_RENTAL_CAR = (data: IgetCar) => {
+  console.log('dta in API', data);
+
   return new Promise((resolve, reject) => {
     let queryString = "";
     // If the data object has Coupon and search id, search by the coupon has priority

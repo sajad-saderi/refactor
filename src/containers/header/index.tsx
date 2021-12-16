@@ -4,6 +4,7 @@ import Modal from './modals';
 // import "./header.scss";
 // import * as logo from "../../../public/logo_sticky.svg";
 import * as logo from '../../../public/logo.svg';
+import * as logo_en from '../../../public/logo_en.svg';
 import * as car from '../../../public/car_logo.svg';
 import Link from 'next/link';
 import { IoIosMenu } from 'react-icons/io';
@@ -18,8 +19,8 @@ const Header = ({ language, Show_Modal, modalType, data }: IHeader) => {
         <section className="Logo">
           <Link href="/" prefetch={false}>
             <a>
-              <img className="car_logo" src={car} alt="سپریس لوگو خودکار" />
-              <img className="text_logo" src={logo} alt="سپریس لوگو" />
+              <img className={`car_logo ${activeLanguage === 'fa' ? null : `logo_ltr`}`} src={car} alt="سپریس لوگو خودکار" />
+              <img className={`text_logo ${activeLanguage === 'fa' ? null : `text_logo_ltr`}`} src={activeLanguage === 'fa' ? logo : logo_en} alt="سپریس لوگو" />
             </a>
           </Link>
         </section>

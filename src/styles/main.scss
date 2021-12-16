@@ -196,6 +196,7 @@ input {
   border: 1px solid $blue;
   transition: 0.25s all;
   cursor: pointer;
+  text-transform: capitalize;
   &:hover {
     background-color: $link_hover;
   }

@@ -873,6 +873,11 @@
     }
     .Rent_date {
       text-align: left;
+      p {
+        svg {
+          transform: rotateY(180deg);
+        }
+      }
     }
     .owner_part {
       .owner_part_avatar_container {

@@ -125,7 +125,13 @@ const CarPage = ({
   const { store: { date }, setDate } = useContext(appStore);
 
   const languageCheck = (id) => {
-    fetchData({ id, start_date: searchDate.from[activeLanguage], end_date: searchDate.to[activeLanguage] });
+    console.log(searchDate, start_date[activeLanguage]);
+
+    if (!searchDate.from) {
+      fetchData({ id, start_date: start_date[activeLanguage], end_date: end_date[activeLanguage] });
+    } else {
+      fetchData({ id, start_date: searchDate.from[activeLanguage], end_date: searchDate.to[activeLanguage] });
+    }
   }
 
 
@@ -225,6 +231,7 @@ const CarPage = ({
   // }, [carousel_section]);
 
   const fetchData = async (data) => {
+    console.log(data);
 
     setNo_of_days("...");
     let localData = null;
@@ -456,14 +463,14 @@ const CarPage = ({
     if (showCalender && calenderClick) {
       if (dayRange.from?.day && dayRange.to?.day) {
         if (dateObject.from[activeLanguage].dump) {
+          setDate(dateObject)
+          localStorage['date'] = JSON.stringify(dateObject)
           add_date_to_url();
         }
         calenderClick = false;
         invalidatingSearchId();
         fetchData({ id });
         setShowDateText(true);
-        setDate(dateObject)
-        localStorage['date'] = JSON.stringify(dateObject)
       }
     }
     if (dayRange.from) {
@@ -476,9 +483,8 @@ const CarPage = ({
     }
     if (dayRange.to) {
       setShowBorder(false);
-      setToDay(convertDate(dayRange.to));
-      twoWayDateConvertor(dayRange.to)
       dateObject.to = twoWayDateConvertor(dayRange.to)
+      setToDay(convertDate(dayRange.to));
     } else {
       setToDay(" ");
     }

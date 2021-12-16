@@ -1,4 +1,4 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 footer {
   background-color: #ffffff;
@@ -29,10 +29,10 @@ footer {
   }
   .plus_border {
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
     align-items: center;
     padding-bottom: 2rem !important;
-
+    justify-content: flex-start;
     ul {
       width: 50%;
       border-left: 1px solid #e8e8e8;
@@ -85,7 +85,7 @@ footer {
     .brand_description {
       display: flex;
       justify-content: flex-start;
-      align-items: center; 
+      align-items: center;
       img {
         margin-left: 1.4rem;
       }
@@ -111,19 +111,19 @@ footer {
   }
 }
 
-footer[dir="ltr"] {
-  .toTop { 
-    svg { 
+footer[dir='ltr'] {
+  .toTop {
+    svg {
       left: auto;
-      right: 5rem; 
+      right: 5rem;
     }
   }
-  .plus_border { 
-    ul { 
+  .plus_border {
+    ul {
       border-left: 0px solid #e8e8e8;
       border-right: 1px solid #e8e8e8;
-      li { 
-        a { 
+      li {
+        a {
           &:hover {
             padding-right: 0rem;
             padding-left: 0.5rem;
@@ -132,24 +132,25 @@ footer[dir="ltr"] {
       }
     }
     .social_container_footer {
-      div { 
+      div {
         svg {
           margin-left: 0rem;
-          margin-right: 1rem; 
+          margin-right: 1rem;
         }
       }
     }
-    .brand_description { 
+    .brand_description {
       img {
+        transform: rotateY(180deg);
         margin-left: 0rem;
         margin-right: 1.4rem;
       }
     }
   }
-  .signature { 
-    span { 
+  .signature {
+    span {
       left: auto;
-      right: 1.5rem; 
+      right: 1.5rem;
     }
   }
 }

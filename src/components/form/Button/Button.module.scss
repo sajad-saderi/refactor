@@ -8,7 +8,8 @@
   border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
   border-left: 2px solid transparent;
-  animation: spinner 1s linear  infinite;
+  animation: spinner 1s linear infinite;
+  text-transform: capitalize;
 }
 
 @keyframes spinner {

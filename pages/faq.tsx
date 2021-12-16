@@ -25,6 +25,8 @@ const FAQ = ({ locale }) => {
       pagePath: "/faq",
       pageTitle: locale.PAGE_HEADER.faq.title,
     });
+    console.log(locale.FAQ_PAGE.items);
+
     // logPageView();
     fetchAPI();
   }, []);
@@ -56,9 +58,8 @@ const FAQ = ({ locale }) => {
       />
       <article className="responsive minHeight FAQ_Page" dir={activeLanguage === 'fa' ? 'rtl' : 'lrt'}>
         <h1>{locale.COMMON.faqTitle}</h1>
-        {/* {items.length > 0 ? ( */}
-        {false ? (
-          items.map((item, i) => {
+        {locale.FAQ_PAGE.items.length > 0 ? (
+          locale.FAQ_PAGE.items.map((item, i) => {
             return (
               <div className="FQ_WRAPPER" key={item.id}>
                 {/* The first box shouldn't have title */}

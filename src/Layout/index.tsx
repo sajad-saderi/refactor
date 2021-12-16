@@ -224,14 +224,14 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
         {netCTX.showInternetConnectionNotification && <InternetConnection />}
         {toast ? (
           <Toast
-            message={toastData.message}
+            message={toastData ? toastData.message : localeCTX.activeLanguage === 'fa' ? fa.COMMON.thereIsAnError : en.COMMON.thereIsAnError}
             closeHandler={() => {
               if (sessionStorage['TOAST']) sessionStorage.removeItem('TOAST');
               setToast(false);
             }}
-            time={toastData.time}
-            color={toastData.color}
-            autoClose={toastData.autoClose}
+            time={toastData ? toastData.time : 7}
+            color={toastData ? toastData.color : '#ed9026'}
+            autoClose={toastData ? toastData.autoClose : true}
           />
         ) : null}
       </toast_context.Provider>

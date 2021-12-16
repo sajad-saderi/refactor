@@ -20,7 +20,7 @@
     "aboutCar": "About Car",
     "thousand": "Thousand",
     "million": "Million",
-    "tomanPerDay": "Toman per Day",
+    "tomanPerDay": "Tomans per Day",
     "day": "Day{plural}",
     "pickUpDate": "Pick-up Date",
     "dropOffDate": "Drop-off Date",
@@ -649,8 +649,8 @@
       "successTitle": "Payment Successful"
     },
     "rent": {
-      "title": "اجاره ماشین، اجاره خودرو، لیست قیمت کرایه ماشین | سپریس",
-      "description": "تنها پلتفرم آنلاین اجاره  خودرو. در سِپریس قیمت و شرایط اجاره دهنده‌های مختلف را مقایسه کنید و بهترین گزینه را انتخاب کنید یا از اجاره ماشین خود کسب درآمد کنید."
+      "title": "Sepris| Car Rental in Iran",
+      "description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
     },
     "request": {
       "title": "My Bookings | Sepris"
@@ -666,5 +666,232 @@
       "title": "Car rental from {value}  | Sepris",
       "description": "Profile"
     }
+  },
+  "FAQ_PAGE": {
+    "items": [
+      {
+        "id": 4,
+        "name": {
+          "fa": "Gneral",
+          "en": null
+        },
+        "slug": {
+          "fa": "Gneral",
+          "en": null
+        },
+        "question_set": [
+          {
+            "title": "<p>What does Sepris do? </p>",
+            "content": "<p>Sepris, an online car rental platform, connecting the hosts (car owners) with the guests (car renters.) With Sepris, you can pick and hire out your ideal rental car among a list of available vehicles on any date you want. </p>"
+          },
+          {
+            "title": "<p>In which cities do you offer rental cars? Where can I find them?</p>",
+            "content": "<p>At the moment, you can only rent cars in Tehran and Karaj. In the future, other cities will be added to the system. You can see the list of cities in the search box on the homepage.</p>"
+          },
+          {
+            "title": "<p>How is the car rental fee calculated on the Sepris website?</p>",
+            "content": "<p>The cost of renting a car is presently specified by the host (car owner). The hosts can also see our recommended prices on the calculator page of the website. </p>"
+          },
+          {
+            "title": "<p>Is the entire process for renting cars online? </p>",
+            "content": "<p>Yes, the whole process is online, taking only a few minutes of your time. </p>"
+          },
+          {
+            "title": "<p>There’s a problem with my user account. Should I sign up for a new one?</p>",
+            "content": "<p>Call Sepris customer support and raise the problem. Our experts will provide you with the most appropriate solution. </p>"
+          },
+          {
+            "title": "<p>Can Sepris suspend my user account?</p>",
+            "content": "<p>If you do not comply with the terms and conditions or violate them, your user account may be suspended. </p>"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": {
+          "fa": "Renters FAQ",
+          "en": "Renter"
+        },
+        "slug": {
+          "fa": "Renters FAQ",
+          "en": "renter"
+        },
+        "question_set": [
+          {
+            "title": "<p>How can I sign up on Sepris?</p>",
+            "content": "<p>First, enter your phone number in the sign-up section, then sign up on Sepris by entering the verification code sent to you.</p>"
+          },
+          {
+            "title": "<p>Is it inevitably necessary to sign up for using Sepris?</p>",
+            "content": "<p>If you merely want to browse and see the recommended cars, there is no need to sign up, but for submitting rental requests, you need to sign up first. </p>"
+          },
+          {
+            "title": "<p>How do I browse the cars and see the rental fees? </p>",
+            "content": "<p> Enter the name of the pick-up city as well as pick-up and drop-off dates for renting a car in the search box on the home page. After clicking on the search button, you can see the details for all the available cars. </p>"
+          },
+          {
+            "title": "<p>How can I book a car on Sepris?</p>",
+            "content": "<p>After selecting your pick-up city and dates, you will see the search result in which you can click on any car you want. You will then be directed to the car page where you can see all the details. After selecting your ideal rental car, click on the “Continue” button on the car page to re-check the rental details. Go through the terms and if you agree with them, click on “Submit”. Your request will be sent to the host and you will be notified of the result via SMS.</p>"
+          },
+          {
+            "title": "<p>Are reservations made instantly or do they take long?</p>",
+            "content": "<p>The host will look into your info after receiving your request; it may take either several minutes or hours depending on the time you submit the request. During business hours, this process takes two hours at most. Keep in mind that a complete profile helps the hosts in their decision and accelerates the process, therefore, increases the chance for your request to be accepted.  </p>"
+          },
+          {
+            "title": "<p>Can I increase the chance for my request being accepted?</p>",
+            "content": "<p>The more complete a personal profile you have, and the more cars you have rented from Sepris, the better chance you got for getting confirmed. Besides, after each rental, the host rates you and writes a review about you and the experience they had. The higher your rating, the sooner will hosts accept your request in the future. </p>"
+          },
+          {
+            "title": "<p>Is it possible for the host to decline my request?</p>",
+            "content": "<p>Yes, a host may turn down your request in case they find your conditions and details not convincing enough for a rental. </p>"
+          },
+          {
+            "title": "<p>What happens when my request is declined?</p>",
+            "content": "<p>Seek counsel from Sepris customer support and try again for requesting and booking a car. </p>"
+          },
+          {
+            "title": "<p>Can I insure the car I rent? What kind of insurance does Sepris offer? </p>",
+            "content": "<p>Yes; you can insure the car. In collaboration with Saman Insurance, Sepris has designed a special package for you, the details of which you can see here. This insurance includes coverages for theft, crash and damages, fire, natural disasters, shattered windshields, paint, and chemical substances. </p>"
+          },
+          {
+            "title": "<p>Is the sum displayed on the website the total cost or the daily rent?</p>",
+            "content": "<p>The amount displayed on the search result page and the car page is the daily rent. You can see the total cost on the final bill.  </p>"
+          },
+          {
+            "title": "<p>How soon before the time I would be needing the car, can I rent it? </p>",
+            "content": "<p>The reservation time for each car depends on its type and the conditions specified by the host. You need to search for the dates you will be needing the car and see the recommended cars. </p>"
+          },
+          {
+            "title": "<p>What should I do after submitting the rental request?</p>",
+            "content": "<p>If the host accepts your request, a payment link will be sent to you via SMS for paying the final fee. The host will call you to make arrangements for the time and place of pick-up after the payment had been done. </p>"
+          },
+          {
+            "title": "<p>Can I rent a car for just one day?</p>",
+            "content": "<p>Yes, many hosts rent out their cars for just one day, and you can find a list of them by searching your dates on the website. </p>"
+          },
+          {
+            "title": "<p>What documents and guarantees do I need to present for renting a car?</p>",
+            "content": "<p>Documents and guarantees vary with each vehicle. You can find this information under the rental terms specified on each car page. </p>"
+          },
+          {
+            "title": "<p>To whom should I submit the documents and guarantees?</p>",
+            "content": "<p>You should submit documents and guarantees to the host when signing the contract at pick-up and take them back when returning the car to the host. You should also pay one million Tomans to Sepris for potential fines. A fines report will be taken from the traffic police in 15 business days and in case there is no fine, the sum will be returned to your account. </p>"
+          },
+          {
+            "title": "<p>Do you provide counsel on vehicle selection?</p>",
+            "content": "<p>Yes, you can call Sepris customer support to seek counsel and guidance. </p>"
+          },
+          {
+            "title": "<p>Does the number of days impact the total sum of rent?</p>",
+            "content": "<p>Yes, typically the host will assign certain discounts considering the number of days the car is rented; you can find them out when browsing. </p>"
+          },
+          {
+            "title": "<p>What items should we check during the call with the host?</p>",
+            "content": "<p>It is advisable to discuss some issues such as the required documents mentioned on the car page, contract clauses, the car’s technical condition and safety, car options and features, or the due process for potential problems such as a crash.</p>"
+          },
+          {
+            "title": "<p>How do I pick up the car?</p>",
+            "content": "<p>In the reservation stage, a detailed account of pick-up terms and conditions is specified. If the host offers delivery, the vehicle will be delivered to you at your location. Otherwise, you must go to the location specified by the host to pick up the car. These matters will be settled during the call with the host. </p>"
+          },
+          {
+            "title": "<p>Can we use the rental car for trips?</p>",
+            "content": "<p>Yes, there are no general restrictions for that; however, you must inform the host and Sepris customer support about your destinations upon submitting the request, in order to be mentioned in the contract. </p>"
+          },
+          {
+            "title": "<p>What documents should I submit and to whom?</p>",
+            "content": "<p>The full list of required documents and guarantees you should submit are specified on the car page; however, having a driver’s license and an identification card (passport) is compulsory.</p>"
+          },
+          {
+            "title": "<p>What items should I look into when collecting the car?</p>",
+            "content": "<p>Car specifications (model, color, condition, plate number, etc.) must be completely consistent with the details mentioned on the website. In case of any inconsistencies, call Sepris customer support. </p>"
+          },
+          {
+            "title": "<p>Do we sign a contract when renting and picking up a car? Will I receive a copy?</p>",
+            "content": "<p>Yes, two copies of the contract will be signed by you and the host at the pick-up, one of which will be handed to you. </p>"
+          },
+          {
+            "title": "<p>Is it possible to rent a car for a month or a year?</p>",
+            "content": "<p>Yes, some cars are available to be rented long-term. You can search for your date, find the available cars, and submit your request. The host will examine your request and the result will be sent to you via SMS. These long-term reservations include discounts as well. </p>"
+          },
+          {
+            "title": "<p>What are the terms for cancellation?</p>",
+            "content": "<p>Cancellation terms vary with each car and it is the host (car owner) that specifies them. You must read them carefully on the car page under “Rental and Cancellation Terms” when submitting a request. </p>"
+          },
+          {
+            "title": "<p>How much should I pay as a cancellation fee?</p>",
+            "content": "<p>The cancellation fee differs depending on the type of car and the time of cancellation; you can find this information under “Rental and Cancellation Terms” on the car page. </p>"
+          },
+          {
+            "title": "<p>When will the money return to my account after cancellation?</p>",
+            "content": "<p>We do our best to return the sum as soon as possible, though at times the payback might take up to two business days. </p>"
+          },
+          {
+            "title": "<p>What are the terms for extending a rental and when should I inform?</p>",
+            "content": "<p>You should call the host first to ask for an extension; if they agree, you must submit your request on Sepris website and after the host’s confirmation, you can make the payment and use the car for a longer period. If the host does not accept your request, you should return the car to the host at the previously scheduled time.</p>"
+          },
+          {
+            "title": "<p>Can I change the date after booking the car? Under what circumstances is that possible?</p>",
+            "content": "<p>Call Sepris’s customer support. We will examine your request and act upon it.</p>"
+          },
+          {
+            "title": "<p>How many miles can a car go while rented?</p>",
+            "content": "<p>The allowed mileage is specified by the host, mentioned under “Mileage and Excess Fees” on the car page.</p>"
+          },
+          {
+            "title": "<p>Who is responsible to pay for the repairs in case of a car breakdown during the rental period?</p>",
+            "content": "<p>The host is responsible for the cost of fundamental repairs but the cost of damages incurred by misusing the car must be paid by the renter; in case of a conflict upon these matters, counsel will be sought from an expert. </p>"
+          },
+          {
+            "title": "<p>The host (car owner) called me and said that they cannot rent out the car and I should cancel my request. What should I do?</p>",
+            "content": "<p>Under these circumstances, the host themselves should cancel the reservation. Note that if you do the cancellation, you must pay the cancellation fee. You should certainly inform Sepris customer support about this issue. </p>"
+          },
+          {
+            "title": "<p>The host told me that they will not give the car to me and that I should definitely cancel. It’s been hours and no cancellation has been made. I want to book another car and I need the money. What should I do?</p>",
+            "content": "<p>Call Sepris customer support so that our team makes the cancellation for you. </p>"
+          },
+          {
+            "title": "<p>I have not damaged the vehicle but the owner claims that I’m at fault for the damages sustained. </p>",
+            "content": "<p>To avoid these kinds of problems, you need to take photos of all exterior defects of the car upon pick-up, specify them on the checklist provided by Sepris, and sign. If you have purchased insurance for the rental, photos included in the insurance will be also valid documents to ascertain whether any damages have been incurred by you or not.  </p>"
+          },
+          {
+            "title": "<p>Am I liable to pay for the traffic tickets when driving the rental car?</p>",
+            "content": "<p>You are in charge of paying the traffic fines for the period you have rented the car. The amount will be specified after 15 business days and will be taken out of your account; in case you have not been fined at all, the total sum will be returned to your account. </p>"
+          },
+          {
+            "title": "<p>When will the deposit be given back to me?</p>",
+            "content": "<p>The deposit will be paid back to you when you return the car; only one million Tomans of it will remain in Sepris Company up to the next 15 days to cover the potential traffic fines. </p>"
+          },
+          {
+            "title": "<p>Are all the cars equipped with GPS?</p>",
+            "content": "<p>Yes, to prevent potential problems, each vehicle is equipped with a GPS that a host may check on special occasions and in case of problems. </p>"
+          },
+          {
+            "title": "<p>How should I return the car?</p>",
+            "content": "<p>Return the car in the same condition (same petrol volume, cleanliness, etc.) you collected it on the specified date, hour, and the place you had agreed upon with the host. </p>"
+          },
+          {
+            "title": "<p>Can we rent a chauffeur-driven car?</p>",
+            "content": "<p>Yes. You can see a list of chauffeur-driven cars on the website, specified with a tag. You can also filter the results accordingly on the search result page.</p>"
+          }
+        ]
+      }
+    ]
+  },
+  "GUIDE_FOR_GUESTS_PAGE": {
+    "h1": "Sepris; Your Ideal Car Rental in Iran",
+    "h2_1": "What We Do",
+    "p1_1": "We connect people around the world with their ideal rental car in Iran during their trip. At Sepris.com, you can search for all kinds of rental cars in Iran, compare prices, detailed information on additional facilities, and book the best option that fits your needs. ",
+    "h2_2": "What We Bring",
+    "h3_1": "Insurance Guarantee",
+    "p1_2": "We make sure you drive a car with peace of mind. We provide you with insurance that pays for everything in case of any damage or accident.",
+    "h3_2": "Diversity of Choice",
+    "p1_3": "We have provided an exceptional list of options for you to choose among. The rental cars available at Sepris are great in diversity; best prices, various body styles, options, features, and brands.",
+    "h3_3": " 24/7 Customer Service",
+    "p1_4": "We assure you get the help you may need at the right time. Our customer service team at Sepris is available 24/7 for any possible question, problem, or urgency.",
+    "h2_3": "Why Rent a Car in Iran?",
+    "p2_1": "No matter how long our trip is, it always seems short and we want to make the most out of the days. Renting a car in Iran would provide you with perfect opportunities and possibilities you wouldn’t otherwise imagine having. For that matter; a rental car in Iran gives you the freedom to explore the cities on your own and have a tour to places out of the common tourist traps and crowded cities. Moreover, you can rent a car in Tehran to get yourself out of the cost, delay, and hassle of public transport and online taxis. With taxis, you need to spend time requesting, calling, and organizing without having control over your schedule, changing your plan anytime, pulling over anywhere on the road to rest, to see the view, or for the toilet break, driving at the desired speed, etc. Having a rental car in Iran means you can have your own schedule regardless of the public transport and tour buses’ timetables. It may seem public transport is cheaper than car rental, but considering the convenience, the comfort, and the additional time you get, renting a car is incredibly cheap and cost-effective. Furthermore, having a taxi from the airport to the city usually costs a lot, having a rental from the onset of your trip helps you save money and time right from the start. We recommend renting a car in Tehran especially if you are traveling with family or in a group; that would be extremely cheaper than any other way of transportation.",
+    "p2_2": " Also, not all trips are the same; you might travel for work or leisure, you might travel alone, with colleagues or family, you might be having a long road trip or just a small city tour. By using rental cars, you can pick the one that best fits your needs regarding comfort, space, gas consumption, etc. You can also choose to rent chauffeur-driven cars or self-drives. With chauffeur-driven rental cars, you will also have the benefit of a local guide’s companionship. Renting a car in Iran would bring you an extreme amount of comfort and convenience by having easy access to your stuff, making a great deal of space to stretch out, having control over the air conditioner, car windows, radio or player, etc. You will also have the privacy and peace that public transports would never offer you.",
+    "h2_4": "What’s Different about Us",
+    "p3_1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits."
   }
 }

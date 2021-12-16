@@ -639,7 +639,10 @@ const Landing_page_container = ({
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
-                {dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult)}
+                {
+                  extra_info?.params?.start_date ?
+                    dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult)
+                    : null}
                 {/* {`${total_count}${language.count_bar_khodro
                   }${result[0].start_date.slice(5)}${language.count_bar_ta
                   }${result[0].end_date.slice(5)}`}

@@ -108,15 +108,16 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
                     <a>{language.LINKS.rent}</a>
                   </Link>
                 </li>
-              )}</>
+              )}
+              {LinkControl ? null : (
+                <li>
+                  <Link href="/site-map" prefetch={false}>
+                    <a>{language.LINKS.siteMap}</a>
+                  </Link>
+                </li>
+              )}
+            </>
           }
-          {LinkControl ? null : (
-            <li>
-              <Link href="/site-map" prefetch={false}>
-                <a>{language.LINKS.siteMap}</a>
-              </Link>
-            </li>
-          )}
         </ul>
 
         <div className="social_container_footer">

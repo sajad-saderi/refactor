@@ -117,8 +117,8 @@ const Car = ({
         id={id}
         start_date={start_date}
         searchDate={start_date ? {
-          from: twoWayDateConvertor(start_date),
-          to: twoWayDateConvertor(end_date),
+          from: start_date,
+          to: end_date,
         } : { from: null, to: null }}
         end_date={end_date}
         expired={expired}
