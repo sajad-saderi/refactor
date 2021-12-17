@@ -181,12 +181,22 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
                       {rent_search_dump.no_of_days} {language.day}
                     </span>
                   </div>
-                  {has_insurance && (
-                    <div>
-                      <p>بیمه اجاره خودرو:</p>
-                      <span>دارد</span>
-                    </div>
-                  )}
+                  {extension ?
+                    extensionInfo.insurance_price > 0
+                      ? <div>
+                        <p>بیمه اجاره خودرو:</p>
+                        <span>دارد</span>
+                      </div>
+                      : <div>
+                        <p>بیمه اجاره خودرو:</p>
+                        <span>ندارد</span>
+                      </div>
+                    : has_insurance && (
+                      <div>
+                        <p>بیمه اجاره خودرو:</p>
+                        <span>دارد</span>
+                      </div>
+                    )}
                   <div>
                     <p>محدودیت مسافت:</p>
                     <span className="float-left">
@@ -225,27 +235,29 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
               />
             </div>
           </div>
-          <div className="delivery_section margin_top_24">
-            <div className="section_title margin_bottom_16">
-              <img src={key} className="تحویل خودرو" />
-              <p>تحویل خودرو:</p>
-            </div>
-            <div className="delivery_condition">
-              {rent_search_dump.deliver_at_renters_place ? (
-                <p className="margin_bottom_16">
-                  {rent_search_dump.location.parent_id === 1
-                    ? language.span_3
-                    : rent_search_dump.location.id === 1657
-                      ? language.span_4
-                      : null}
-                  {/* {rent_search_dump.location.name.fa} */}
+          {!extension
+            && <div className="delivery_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={key} className="تحویل خودرو" />
+                <p>تحویل خودرو:</p>
+              </div>
+              <div className="delivery_condition">
+                {rent_search_dump.deliver_at_renters_place ? (
+                  <p className="margin_bottom_16">
+                    {rent_search_dump.location.parent_id === 1
+                      ? language.span_3
+                      : rent_search_dump.location.id === 1657
+                        ? language.span_4
+                        : null}
+                    {/* {rent_search_dump.location.name.fa} */}
+                  </p>
+                ) : null}
+                <p>
+                  میزبان برای هماهنگی در مورد تحویل خودرو با شما تماس خواهد گرفت.
                 </p>
-              ) : null}
-              <p>
-                میزبان برای هماهنگی در مورد تحویل خودرو با شما تماس خواهد گرفت.
-              </p>
+              </div>
             </div>
-          </div>
+          }
           <div className="return_section margin_top_24">
             <div className="section_title margin_bottom_16">
               <img src={return_icon} className="بازگشت خودرو" />
@@ -273,19 +285,20 @@ const SucceedPayment = ({ language, extension }: SuccessPayment) => {
               </p>
             </div>
           </div>
-          <div className="contract_section margin_top_24">
-            <div className="section_title margin_bottom_16">
-              <img src={paper} className="قرارداد اجاره" />
-              <p>قرارداد اجاره:</p>
-            </div>
-            <div className="return_condition">
-              <p className="margin_bottom_16">
-                سپریس نمونه قراردادی برای طرفین آماده کرده است. میزبان در روز
-                تحویل خودرو این قرارداد را در دو نسخه تهیه می‌کند و به امضای دو
-                طرف می‌رسد.
-              </p>
-            </div>
-          </div>
+          {!extension
+            && <div className="contract_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={paper} className="قرارداد اجاره" />
+                <p>قرارداد اجاره:</p>
+              </div>
+              <div className="return_condition">
+                <p className="margin_bottom_16">
+                  سپریس نمونه قراردادی برای طرفین آماده کرده است. میزبان در روز
+                  تحویل خودرو این قرارداد را در دو نسخه تهیه می‌کند و به امضای دو
+                  طرف می‌رسد.
+                </p>
+              </div>
+            </div>}
         </section>
       ) : hasError ? (
         <p className="loading_text">اطلاعات پرداخت یافت نشد.</p>
