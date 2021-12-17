@@ -228,7 +228,7 @@ const ConfirmCode = ({
             <div className="Count_Down_text">
               <span>{language.LOGIN.tryagain}</span>{" "}
               <CountDown time={20} Done={Done} />{" "}
-              <span>{language.LOGIN.seconds}</span>
+              <span>{language.COMMON.seconds}</span>
             </div>
           )}
         </div>

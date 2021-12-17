@@ -177,9 +177,9 @@ class App_Otoli extends App {
     } catch (error) {
       if (error === 111) {
         alert(
-          'خطا در اتصال به شبکه، لطفا از اتصال دستگاه به اینترنت مطمئن شوید.',
+          this.state.language.COMMON.internetConnectionError,
         );
-      } else alert('خطا در دریافت اطلاعات حساب کاربری');
+      } else alert(this.state.language.COMMON.errorInUserInfo);
     }
   };
 
@@ -192,13 +192,13 @@ class App_Otoli extends App {
             {(value) => (
               <>
                 {this.state.showPwaBanner ? (
-                  <section className="pwa_invitation_banner">
+                  <section className={`pwa_invitation_banner ${Router.router.locale === 'fa' ? '' : 'pwaLtr'}`}>
                     <div
                       className="pwa_content HEAP_PWA_INVITATION"
                       onClick={this.customPwaPrompt}
                     >
                       <img src={logo} alt="pwa logo icon" />
-                      {this.state.language.COMMON.installApp}
+                      {Router.router.locale === 'fa' ? fa.COMMON.installApp : en.COMMON.installApp}
                     </div>
                     <p
                       className="close_pwa_invitation"

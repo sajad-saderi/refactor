@@ -62,6 +62,13 @@ const Menu = ({ language }: IMenu) => {
     }
   }, [user.data]);
 
+  let allowToShow = router.pathname === "/join-us"
+    || router.pathname === "/join-us2"
+    || router.pathname === "/join-us3"
+    || router.pathname === "/join-us4"
+    || router.pathname === "/add-car"
+    || router.pathname === "/set-car-timing" ? false : true
+
   return (
     <ul>
       <li className="Drop_Down">
@@ -128,16 +135,17 @@ const Menu = ({ language }: IMenu) => {
           </Link>
         </li>
       )}
-      <li
-        onClick={() => {
-          local.changingLanguage(local.activeLanguage === 'en' ? 'fa' : 'en');
-          router.push(router.pathname, router.asPath, {
-            locale: local.activeLanguage === 'en' ? 'fa' : 'en',
-          });
-        }}
-      >
-        <span>{local.activeLanguage === 'en' ? 'fa' : 'en'}</span>
-      </li>
+      {allowToShow &&
+        <li
+          onClick={() => {
+            local.changingLanguage(local.activeLanguage === 'en' ? 'fa' : 'en');
+            router.push(router.pathname, router.asPath, {
+              locale: local.activeLanguage === 'en' ? 'fa' : 'en',
+            });
+          }}
+        >
+          <span>{local.activeLanguage === 'en' ? 'fa' : 'en'}</span>
+        </li>}
       {token ? (
         spinner ? (
           <li className="header_spinner">

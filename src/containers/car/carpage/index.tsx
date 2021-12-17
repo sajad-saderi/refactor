@@ -799,7 +799,8 @@ const CarPage = ({
                           {` ${dayRange.to.day} ${moment(
                             dayRange.to.month,
                             activeLanguage === 'fa' ? "jM" : "M"
-                          ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}{" "}
+                          ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
+                          <br />
                           {no_of_days
                             ? `(${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
                             : null}
@@ -1094,6 +1095,7 @@ const CarPage = ({
                       dayRange.to.month,
                       activeLanguage === 'fa' ? "jM" : "M"
                     ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}{" "}
+                    <br />
                     {no_of_days
                       ? `(${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
                       : null}

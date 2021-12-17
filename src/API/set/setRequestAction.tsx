@@ -24,30 +24,30 @@ export const REQUEST_REQUEST_ACTION = (data: InewRentRequest) => {
   return new Promise((resolve, reject) => {
     let ACTION_URL;
     let more;
-    let message = { fa: en.TOASTS.success, en: en.TOASTS.success };
+    let message = { fa: fa.TOASTS.success, en: en.TOASTS.success };
     switch (data.action) {
       case "approve":
         ACTION_URL = SET_ORDER_APPROVE;
-        message = { fa: en.TOASTS.approved, en: en.TOASTS.approved };
+        message = { fa: fa.TOASTS.approved, en: en.TOASTS.approved };
         break;
       case "reject":
         ACTION_URL = SET_ORDER_REJECT;
-        message = { fa: en.TOASTS.rejected, en: en.TOASTS.rejected };
+        message = { fa: fa.TOASTS.rejected, en: en.TOASTS.rejected };
         break;
       case "cancel":
         ACTION_URL = SET_ORDER_CANCEL;
-        message = { fa: en.TOASTS.deleted, en: en.TOASTS.deleted };
+        message = { fa: fa.TOASTS.deleted, en: en.TOASTS.deleted };
         break;
       case "pay":
         ACTION_URL = SET_ORDER_PAY;
         break;
       case "deliver":
         ACTION_URL = SET_ORDER_DELIVER;
-        message = { fa: en.TOASTS.delivered, en: en.TOASTS.delivered };
+        message = { fa: fa.TOASTS.delivered, en: en.TOASTS.delivered };
         break;
       case "return":
         ACTION_URL = SET_ORDER_RETURN;
-        message = { fa: en.TOASTS.returned, en: en.TOASTS.returned };
+        message = { fa: fa.TOASTS.returned, en: en.TOASTS.returned };
 
         break;
       // if you want to rate a car, renter or a owner

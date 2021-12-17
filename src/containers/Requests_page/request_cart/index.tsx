@@ -109,7 +109,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         window.location.href = `${request_res.redirect_to}`;
       } else {
         TOAST_CONTEXT.toast_option({
-          message: request_res.message,
+          message: request_res.message[router.locale],
           time: 15,
           autoClose: true,
         });

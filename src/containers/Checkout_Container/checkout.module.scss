@@ -279,6 +279,19 @@
       text-align: center;
       display: block;
     }
+    .continue_to_pay {
+      right: auto;
+      left: 0;
+      .error_message_link {
+        text-align: left;
+        margin-right: 0;
+        margin-left: 1rem;
+      }
+      .extra_info {
+        margin-right: 0;
+        margin-left: 1rem;
+      }
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-@import "../colors";
+@import '../colors';
 
 .failed_payment {
   display: flex;
@@ -16,8 +16,5 @@
       font-weight: 500;
       color: $purple;
     }
-  }
-  .local_style {
-    width: 15rem;
   }
 }

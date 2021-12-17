@@ -6,7 +6,7 @@ import { IoMdRefresh } from "react-icons/io";
 import Icon from "../../../utils/Icon";
 import toast_context from "../../context/Toast_context";
 
-const InternetConnection = () => {
+const InternetConnection = ({ language }) => {
   const [time, setTime] = useState(5);
   const [startTimer, setStartTimer] = useState(true);
   const toastCTX = useContext(toast_context);
@@ -38,22 +38,22 @@ const InternetConnection = () => {
   };
 
   return ReactDOM.createPortal(
-    <div className="internet-connection">
+    <div className={`internet-connection ${router.locale === 'fa' ? '' : 'internetConnectionLtr'}`}>
       <Icon name="warning" />
       <div>
-        <p>دستگاه شما به اینترنت متصل نیست.</p>
+        <p>{language.COMMON.youDeviceIsNotConnected}</p>
         {startTimer ? (
           <p className="automatic-retry">
-            بررسی خودکار اتصال به شبکه تا{" "}
-            {<CountDown time={time} Done={checkTheConnection} />} ثانیه دیگر.
+            {language.COMMON.checkingConnectionLater}{" "}
+            {<CountDown time={time} Done={checkTheConnection} />} {language.COMMON.seconds}.
           </p>
         ) : (
-          <p className="automatic-retry">بررسی اتصال دستگاه به اینترنت...</p>
+          <p className="automatic-retry">{language.COMMON.checkInternetConnection}...</p>
         )}
       </div>
       <p className="retry" onClick={checkTheConnection}>
         <IoMdRefresh size="2rem" color="" />
-        بررسی مجدد
+        {language.COMMON.checkConnection}
       </p>
     </div>,
     document.getElementById("portal_notification")

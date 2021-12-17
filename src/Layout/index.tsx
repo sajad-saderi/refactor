@@ -221,17 +221,17 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
             </ErrorBounderies>
           </auth_context.Provider>
         </modal_context.Provider>
-        {netCTX.showInternetConnectionNotification && <InternetConnection />}
-        {toast ? (
+        {netCTX.showInternetConnectionNotification && <InternetConnection language={localeCTX.activeLanguage === 'fa' ? fa : en} />}
+        {toast && toastData ? (
           <Toast
-            message={toastData ? toastData.message : localeCTX.activeLanguage === 'fa' ? fa.COMMON.thereIsAnError : en.COMMON.thereIsAnError}
+            message={toastData.message}
             closeHandler={() => {
               if (sessionStorage['TOAST']) sessionStorage.removeItem('TOAST');
               setToast(false);
             }}
-            time={toastData ? toastData.time : 7}
-            color={toastData ? toastData.color : '#ed9026'}
-            autoClose={toastData ? toastData.autoClose : true}
+            time={toastData.time}
+            color={toastData.color}
+            autoClose={toastData.autoClose}
           />
         ) : null}
       </toast_context.Provider>

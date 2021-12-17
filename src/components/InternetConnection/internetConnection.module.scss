@@ -1,4 +1,4 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 .internet-connection {
   z-index: 9999;
   position: fixed;
@@ -7,6 +7,7 @@
   right: 0;
   bottom: 0%;
   padding: 1.6rem;
+  direction: rtl;
   img {
     display: inline-block;
     vertical-align: super;
@@ -39,6 +40,22 @@
     cursor: pointer;
     text-align: left;
     margin-top: 1.6rem;
+  }
+}
+.internetConnectionLtr {
+  direction: ltr;
+  img {
+    margin-left: 0px;
+    margin-right: 8px;
+  }
+  p {
+    svg {
+      margin-left: 0;
+      margin-right: 0.6rem;
+    }
+  }
+  .retry {
+    text-align: right;
   }
 }
 

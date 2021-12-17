@@ -4,6 +4,7 @@
     "for": "for",
     "host": "host",
     "guest": "guest",
+    "seconds": "seconds",
     "backToHome": "Back to Homepage",
     "sepris": "Sepris",
     "contactNumbers": "Contact Numbers:",
@@ -12,7 +13,7 @@
     "number3": " 09391414574 ",
     "submit": "submit",
     "addCar": "Add Car",
-    "toman": "Toman",
+    "toman": "tomans",
     "district": "District",
     "company": "Manufacturer",
     "model": "Model",
@@ -20,7 +21,7 @@
     "aboutCar": "About Car",
     "thousand": "Thousand",
     "million": "Million",
-    "tomanPerDay": "Tomans per Day",
+    "tomanPerDay": "tomans per Day",
     "day": "Day{plural}",
     "pickUpDate": "Pick-up Date",
     "dropOffDate": "Drop-off Date",
@@ -113,7 +114,7 @@
     "inputSearchNoResult": "No Result found",
     "tellMeModal": "Spris currently only covers rentals originating in Tehran.",
     "tellMeNote": "Sepris Currently Is Not Covering {value}",
-    "carInResult": "{value} car{plural} from {value} to {value} in {value}",
+    "carInResult": "{value} car{plural} {value} to {value} in {value}",
     "price": "Price",
     "quickAccess": "Quick Access",
     "suvCars": "SUV Cars",
@@ -125,7 +126,7 @@
     "noResultFind": "No result for your request",
     "loginFirst": "You need to sign in to access this page",
     "videoNotSupported": "Your browser does not support the video tag.",
-    "minimunCarValue": "car value should be more than 20 million toman",
+    "minimunCarValue": "car value should be more than 20 million tomans",
     "enterCarValue": "Please enter value of car",
     "contract": "rent contract",
     "comformCarDelete": "Do yo want to delete {value} {value}?",
@@ -146,7 +147,13 @@
     "carNotFound": "we couldn't find the car!!",
     "seprisDefinition": "Sepris is an Iranian name meaning \"Horse Racing Field\".",
     "installApp": "Install Sepris Mobile Application",
-    "continue": "continue"
+    "continue": "continue",
+    "internetConnectionError": "Network connection error, please make sure your device is connected to the internet.",
+    "errorInUserInfo": "Error receiving account information",
+    "youDeviceIsNotConnected": "Your device is not connected to the Internet.",
+    "checkingConnectionLater": "Automatic check of network connection in",
+    "checkInternetConnection": "Check the device connection to the Internet",
+    "checkConnection": "Check again"
   },
   "INFORMATION": {
     "text1": "in partnership with Saman Insurance",
@@ -205,7 +212,6 @@
     "label": "Please enter the 4-digit code have been sent to {value}",
     "exapmle": "Please enter the code.",
     "tryagain": "Resend Code",
-    "seconds": "seconds",
     "edit": "Edit Mobile Number",
     "enter": "Sign in",
     "error1": "Please Enter Your Mobile Number.",
@@ -289,13 +295,13 @@
     "submit": "Apply",
     "discountCode": "Discount Code",
     "invoice": "Total",
-    "booking": "Booking",
+    "booking": "Book Now",
     "track": "Track Your Request",
     "enterDiscountCode": "please insert your discount code",
     "notAllowedToRentMyOwnCar": "you can not rent your own car",
     "insuranceBooking": {
       "option1": {
-        "label": "Saman Insurance special offer ({value} toman)",
+        "label": "Saman Insurance special offer ({value} tomans)",
         "text": "Covers include: theft, accident, natural disasters and spray paint and chemicals during rental"
       },
       "option2": {
@@ -349,7 +355,7 @@
     "model": "نام خودرو (مدل)",
     "estimate": "تخمین درآمد",
     "weekly": "درآمد هفتگی",
-    "millionToman": "Million Toman",
+    "millionToman": "Million tomans",
     "monthly": "درآمد ماهانه",
     "daily": "درآمد روزانه",
     "tryAgain": "محاسبه مجدد",
@@ -404,25 +410,25 @@
     "text34": "در زمان پایان قرارداد و در محل تعیین شده با مهمان ملاقات کنید. تمامی موارد مورد نیاز را در ماشین بررسی کنید، ماشین را تحویل بگیرید، در صفحه سفارش‌ها تحویل خودرو را تایید کنید و به مهمان امتیاز دهید."
   },
   "PAYMENT_PAGE": {
-    "cancel": "انصراف از پرداخت",
-    "successfullPurchase": "پرداخت با موفقیت انجام شد",
-    "issueTracking": "شماره پیگیری:",
-    "carOptions": "مشخصات رزرو",
-    "deliveryDate": "تاریخ تحویل",
-    "returnDate": "تاریخ بازگشت",
-    "carInsurance": "بیمه اجاره خودرو",
-    "carDelivery": "تحویل خودرو",
-    "returningCar": "بازگشت خودرو",
-    "text1": "شروع مدت اجاره از ساعت تحویل خودرو آغاز می‌شود لذا لازم است در روز بازگشت در همان ساعت خودرو را بازتحویل دهید. در صورت دیرکرد، برای این خودرو به ازای هر ساعت {value} هزینه دیرکرد محاسبه خواهد شد.",
-    "text2": "محدودیت مسافت در نظر گرفته شده برای این خودرو {value} کیلومتر است. برای هر کیلومتر بیشتر {value} هزینه اضافه محاسبه خواهد شد.",
-    "text3": "سپریس نمونه قراردادی برای طرفین آماده کرده است. میزبان در روز تحویل خودرو این قرارداد را در دو نسخه تهیه می‌کند و به امضای دو طرف می‌رسد.",
-    "image": "تصویر خودرو",
-    "invoice": "مبلغ پرداخت شده: ",
-    "notFound": "اطلاعات پرداخت یافت نشد."
+    "cancel": "Cancel payment",
+    "successfullPurchase": "Payment was successful",
+    "issueTracking": "Issue Tracking:",
+    "carOptions": "Booking details",
+    "deliveryDate": "Pick up Date",
+    "returnDate": "Drop off date",
+    "carInsurance": "Car rental insurance",
+    "carDelivery": "Car delivery",
+    "returningCar": "Car return",
+    "text1": "The rental period starts from the time of delivery of the car, so it is necessary to return the car at the same time on the day of return. In case of delay, for this car delay cost is {value} and will be calculated per hour.",
+    "text2": "The distance limit for this car is {value} km. An additional cost is {value} and will be calculated for each additional kilometer.",
+    "text3": "A sample contract has been prepared for the parties by Sepris. The host prepares this contract in two copies on the day of delivery of the car and it is signed by both parties.",
+    "image": "Car image",
+    "invoice": "Amount paid: ",
+    "notFound": "Payment information not found."
   },
   "RENT_PAGE": {
-    "banner": "لیست قیمت اجاره ماشین در سپریس",
-    "note": "ماشینی که دوست دارید را با خیال راحت اجاره کنید.",
+    "banner": "Price list of car rental in Sepris",
+    "note": "Rent the car you like.",
     "question1": "What’s Different about Us",
     "answer1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits.",
     "question2": "شرایط اجاره خودرو از سپریس چیست؟",
@@ -775,7 +781,7 @@
           },
           {
             "title": "<p>To whom should I submit the documents and guarantees?</p>",
-            "content": "<p>You should submit documents and guarantees to the host when signing the contract at pick-up and take them back when returning the car to the host. You should also pay one million Tomans to Sepris for potential fines. A fines report will be taken from the traffic police in 15 business days and in case there is no fine, the sum will be returned to your account. </p>"
+            "content": "<p>You should submit documents and guarantees to the host when signing the contract at pick-up and take them back when returning the car to the host. You should also pay one million tomans to Sepris for potential fines. A fines report will be taken from the traffic police in 15 business days and in case there is no fine, the sum will be returned to your account. </p>"
           },
           {
             "title": "<p>Do you provide counsel on vehicle selection?</p>",
@@ -859,7 +865,7 @@
           },
           {
             "title": "<p>When will the deposit be given back to me?</p>",
-            "content": "<p>The deposit will be paid back to you when you return the car; only one million Tomans of it will remain in Sepris Company up to the next 15 days to cover the potential traffic fines. </p>"
+            "content": "<p>The deposit will be paid back to you when you return the car; only one million tomans of it will remain in Sepris Company up to the next 15 days to cover the potential traffic fines. </p>"
           },
           {
             "title": "<p>Are all the cars equipped with GPS?</p>",

@@ -746,6 +746,11 @@
         text-align: left;
         padding-right: 0;
         padding-left: 2.4rem;
+        p {
+          svg {
+            transform: rotateY(180deg);
+          }
+        }
       }
       .search_box_div {
         // .PushToRight {
@@ -908,6 +913,14 @@
           left: auto;
           right: 0rem;
         }
+      }
+    }
+    .continue_to_checkout {
+      right: auto;
+      left: 0;
+      .extra_info {
+        margin-right: 0;
+        margin-left: 1rem;
       }
     }
   }
