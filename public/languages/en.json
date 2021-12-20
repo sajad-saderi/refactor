@@ -427,7 +427,7 @@
     "notFound": "Payment information not found."
   },
   "RENT_PAGE": {
-    "banner": "Price list of car rental in Sepris",
+    "banner": "Sepris, Convenient Car Rental in Iran",
     "note": "Rent the car you like.",
     "question1": "What’s Different about Us",
     "answer1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits.",
@@ -655,7 +655,7 @@
       "successTitle": "Payment Successful"
     },
     "rent": {
-      "title": "Sepris| Car Rental in Iran",
+      "title": "Sepris | Easy Car Rental - Choose from landlords",
       "description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
     },
     "request": {
