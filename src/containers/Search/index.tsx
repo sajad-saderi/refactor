@@ -94,6 +94,9 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         setLocationId(initialCity.value);
         setLocationName(initialCity.name[activeLanguage]);
       }
+    } else {
+      setLocationId(initialCity.value);
+      setLocationName(initialCity.name[activeLanguage]);
     }
     setDateFromStorage()
   }, [activeLanguage])

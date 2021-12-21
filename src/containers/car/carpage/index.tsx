@@ -125,12 +125,11 @@ const CarPage = ({
   const { store: { date }, setDate } = useContext(appStore);
 
   const languageCheck = (id) => {
-    console.log(searchDate, start_date[activeLanguage]);
 
     if (!searchDate.from) {
-      fetchData({ id, start_date: start_date[activeLanguage], end_date: end_date[activeLanguage] });
+      fetchData({ id, from: start_date[activeLanguage].dump, to: end_date[activeLanguage].dump });
     } else {
-      fetchData({ id, start_date: searchDate.from[activeLanguage], end_date: searchDate.to[activeLanguage] });
+      fetchData({ id, from: searchDate.from[activeLanguage].dump, to: searchDate.to[activeLanguage].dump });
     }
   }
 
@@ -231,8 +230,6 @@ const CarPage = ({
   // }, [carousel_section]);
 
   const fetchData = async (data) => {
-    console.log(data);
-
     setNo_of_days("...");
     let localData = null;
     setShowPriceLoading(true);
@@ -456,26 +453,13 @@ const CarPage = ({
   };
 
   useEffect(() => {
-    if (dayRange.from && dayRange.to) {
-      setDate(dateObject)
-    }
-
-    if (showCalender && calenderClick) {
-      if (dayRange.from?.day && dayRange.to?.day) {
-        if (dateObject.from[activeLanguage].dump) {
-          setDate(dateObject)
-          localStorage['date'] = JSON.stringify(dateObject)
-          add_date_to_url();
-        }
-        calenderClick = false;
-        invalidatingSearchId();
-        fetchData({ id });
-        setShowDateText(true);
-      }
-    }
+    // if (dayRange.from && dayRange.to) {
+    //   setDate(dateObject)
+    // }
     if (dayRange.from) {
       setFromDay(convertDate(dayRange.from));
       dateObject.from = twoWayDateConvertor(dayRange.from)
+      dateObject.to = null
     } else {
       setFromDay(" ");
       setToDay(" ");
@@ -488,6 +472,20 @@ const CarPage = ({
     } else {
       setToDay(" ");
     }
+    if (showCalender && calenderClick) {
+      if (dayRange.from?.day && dayRange.to?.day) {
+        if (dateObject.from[activeLanguage].dump && dateObject.to[activeLanguage].dump) {
+          setDate({ from: dateObject.from[activeLanguage].dump, to: dateObject.to[activeLanguage].dump })
+          localStorage['date'] = JSON.stringify(dateObject)
+          add_date_to_url();
+        }
+        calenderClick = false;
+        invalidatingSearchId();
+        fetchData({ id });
+        setShowDateText(true);
+      }
+    }
+
   }, [dayRange]);
 
   const invalidatingSearchId = () => {
@@ -516,7 +514,6 @@ const CarPage = ({
       end = dateObject.to[activeLanguage].name;
     }
     router.query = { ...router.query, start_date: start, end_date: end };
-
 
     if (router.asPath.includes("start_date")) {
       UrlCreator({
