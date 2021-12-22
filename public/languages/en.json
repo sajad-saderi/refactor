@@ -525,7 +525,7 @@
   },
   "USER": {
     "edit": "Edit profile",
-    "exit": "Sign up",
+    "exit": "Sign out",
     "changeAvatar": "Change Avatar",
     "personalLinkLabel": "Add link address",
     "linkPlaceholder": "Link Address",

@@ -449,7 +449,7 @@ const CarPage = ({
     router.push({
       pathname: "/checkout",
       query: { search_id: search_id },
-    });
+    }, undefined, { locale: activeLanguage });
   };
 
   useEffect(() => {

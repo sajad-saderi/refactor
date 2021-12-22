@@ -179,18 +179,14 @@ const Complete_register_container = ({
           name: `${state.first_name} ${state.last_name}`,
         });
         if (localStorage["last_location"]) {
-          if (localStorage["last_location"] !== "/add-car")
-            window.history.go(-2);
-          else
-            router.push({
-              pathname: "/add-car",
-            });
+
+          router.replace(decodeURIComponent(localStorage["last_location"]), undefined, { locale: activeLanguage });
 
           // router.push(localStorage["last_location"]);
         } else {
-          router.push({
+          router.replace({
             pathname: `/user/${user.data?.id}`,
-          });
+          }, undefined, { locale: activeLanguage });
         }
       } catch (error) {
         setLoading(false);

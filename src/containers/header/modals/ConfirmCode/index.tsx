@@ -103,9 +103,9 @@ const ConfirmCode = ({
             } catch (e) {
               console.log("Em...I think heap is not work correctly :/");
             }
-            router.push({
+            router.replace({
               pathname: "/complete-register",
-            });
+            }, undefined, { locale: activeLanguage });
           }
           // if user completely registered
           else {
@@ -126,12 +126,15 @@ const ConfirmCode = ({
             } catch (e) {
               console.log("Em...I think heap is not work correctly :/");
             }
-            if (localStorage["last_location"] !== "/add-car")
-              window.history.go(-1);
+            if (localStorage["last_location"] !== "/add-car") {
+              const url = decodeURIComponent(localStorage["last_location"]);
+
+              router.replace(url, undefined, { locale: activeLanguage });
+            }
             else
-              router.push({
+              router.replace({
                 pathname: "/add-car",
-              });
+              }, undefined, { locale: activeLanguage });
             // router.push(
             //   localStorage["last_location"]
             //     ? localStorage["last_location"]
