@@ -130,9 +130,9 @@ const Checkout_Container = ({
         setInsurance_total_price(0);
       }
       setMax_km_per_day(order_information.max_km_per_day);
-      setExtra_km_price_name(order_information.extra_km_price_name);
+      setExtra_km_price_name(order_information.extra_km_price_i18n.name_i18n[activeLanguage]);
       if (order_information.extra_hour_price)
-        setExtra_hour_price_name(order_information.extra_hour_price_name);
+        setExtra_hour_price_name(order_information.extra_hour_price_i18n.name_i18n[activeLanguage]);
       setDiscounted_total_price(order_information.discounted_total_price);
       setId(order_information.id);
       setTotal_discount(order_information.total_discount);

@@ -146,7 +146,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                       <p className="size_14 margin_top_16 margin_bottom_16">
                         {dynamicString([data.owner_avg_response_time.total_seconds >= 86400
                           ? language.COMMON.moreOneDay
-                          : data.owner_avg_response_time.name], language.COMMON.responseTime)}
+                          : data.owner_avg_response_time.name_i18n[activeLanguage]], language.COMMON.responseTime)}
                         {/* {language.mamoolan}
                         <strong>
                           {language.hodood}{" "}
