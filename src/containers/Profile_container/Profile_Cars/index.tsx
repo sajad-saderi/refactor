@@ -90,7 +90,7 @@ const Profile_Cars = ({
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "خطا در دریافت لیست خودروهای کاربر",
+              _400Message: language.COMMON.errorInUserCars,
             })
             : error,
           color: "#ed9026",

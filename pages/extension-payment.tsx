@@ -1,27 +1,27 @@
-import { NextSeo } from 'next-seo'
-import Layout from '../src/Layout'
-import language from "../public/languages/fa/paymentsucceed.json";
-import SucceedPayment from "../src/components/succeed_payment";
+import { NextSeo } from 'next-seo';
+import Layout from '../src/Layout';
+import SucceedPayment from '../src/components/succeed_payment';
 
-const ExtensionPayment = () => {
-    return (
-        <Layout>
-            <NextSeo
-                title={language.next_seo.title}
-                description={language.next_seo.description}
-                openGraph={{
-                    title: language.next_seo.title,
-                    description: language.next_seo.description,
-                }}
-                twitter={{
-                    handle: language.next_seo.handle,
-                    site: language.next_seo.site,
-                    cardType: language.next_seo.cardType,
-                }}
-            />
-            <SucceedPayment language={language} extension />
-        </Layout>
-    )
-}
+const ExtensionPayment = ({ locale }) => {
+	return (
+		<Layout>
+			<NextSeo
+				title={locale.PAGE_HEADER.payment.successTitle}
+				description={locale.PAGE_HEADER.payment.successTitle}
+				openGraph={{
+					title: locale.PAGE_HEADER.payment.successTitle,
+					description: locale.PAGE_HEADER.payment.successTitle,
+					site_name: locale.COMMON.site_name,
+				}}
+				twitter={{
+					handle: locale.PAGE_HEADER.handle,
+					site: locale.PAGE_HEADER.site,
+					cardType: locale.PAGE_HEADER.cardType,
+				}}
+			/>
+			<SucceedPayment language={locale} extension />
+		</Layout>
+	);
+};
 
-export default ExtensionPayment
+export default ExtensionPayment;

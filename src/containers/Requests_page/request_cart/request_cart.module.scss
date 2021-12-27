@@ -398,6 +398,9 @@
 .Request_car[dir='ltr'] {
   text-align: left;
   .rent_status {
+    .extensionBadge{
+      margin-left: 8px;
+    }
     svg,
     img {
       margin-left: 0rem;

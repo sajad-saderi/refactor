@@ -325,7 +325,7 @@ const CarPage = ({
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "خطا در دریافت لیست نظرات",
+              _400Message:language.COMMON.errorInReviews,
             })
             : error,
           color: "#ed9026",

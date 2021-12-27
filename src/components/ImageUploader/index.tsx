@@ -103,7 +103,7 @@ const ImageUploader = ({
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: "خطایی در آپلود تصویر رخ داده است.",
+              _400Message: language.COMMON.errorInUploadingImage,
             })
             : error,
           color: "#ed9026",

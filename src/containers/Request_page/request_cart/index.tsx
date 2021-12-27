@@ -215,7 +215,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdAlarm size="2rem" color="#f7941d" />
               <span>{language.REQUEST_PAGE.pending}</span>
               </div>
-              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
+              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
             </div>
             {!renter && (
               <div className="timer">
@@ -268,7 +268,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <MdCreditCard size="2rem" color="#a3678b" />
               <span>{language.REQUEST_PAGE.approved}</span>
               </div>
-              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
+              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
             </div>
             {!renter && (
               <div className="timer">
@@ -332,7 +332,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <MdVpnKey size="2rem" color="#2cbbc2" />
             <span>{language.REQUEST_PAGE.paid}</span>
               </div>
-              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
+              {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
             </div>
           </div>
         );
@@ -357,7 +357,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <IoIosHand size="1.4rem" color="#656565" />
             <span>{data.status.name}</span>
             </div>
-            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
+            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
           </div>
         );
         break;
@@ -368,7 +368,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <MdDriveEta size="2rem" color="#2cbbc2" />
             <span>{language.REQUEST_PAGE.delivered}</span>
             </div>
-            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
+            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
           </div>
         );
         setButton_code(
@@ -393,7 +393,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <MdKeyboardReturn size="2rem" color="#2cbbc2" />
             <span>{language.REQUEST_PAGE.returned}</span>
             </div>
-            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">تمدید شده</span>}
+            {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
           </div>
         );
         setButton_code(

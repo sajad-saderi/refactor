@@ -16,7 +16,7 @@ import { dynamicString } from '../../helpers/dynamicString';
 import Router from "next/router";
 moment.loadPersian({ dialect: 'persian-modern' });
 
-const SucceedPayment = ({ extension, language }) => {
+const SucceedPayment = ({ extension, language }:SuccessPayment) => {
   const [renter, setRenter] = useState(null);
   const [rent_search_dump, setRent_search_dump] = useState(null);
   const [bank_id_track, set_bank_id_track] = useState(null);
@@ -106,7 +106,7 @@ const SucceedPayment = ({ extension, language }) => {
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: 'خطایی در دریافت اطلاعات پرداخت رخ داده است.',
+              _400Message: language.COMMON.errorInFetchingTransactionData,
             })
             : error,
           color: '#ed9026',
@@ -122,8 +122,8 @@ const SucceedPayment = ({ extension, language }) => {
       {renter ? (
         <section className="payment_cart">
           <div className="title  ">
-            <img src={check_icon} alt="پرداخت موفق" />
-            <h4>{extension ? "تمدید با موفقیت انجام شد" : language.PAYMENT_PAGE.successfullPurchase}</h4>
+            <img src={check_icon} alt="check Icon" />
+            <h4>{extension ? language.PAYMENT_PAGE.successfullExtension : language.PAYMENT_PAGE.successfullPurchase}</h4>
           </div >
           <div className="bank_track_id ">
             <p>{language.PAYMENT_PAGE.issueTracking} {bank_id_track}</p>
@@ -152,7 +152,7 @@ const SucceedPayment = ({ extension, language }) => {
                   </div>
                   <div>
 
-                    <p>{extension ? 'تمدید از' : language.PAYMENT_PAGE.deliveryDate}:</p>
+                    <p>{extension ?  language.PAYMENT_PAGE.ExtensionDate: language.PAYMENT_PAGE.deliveryDate}:</p>
                     <span>
                       {extension ?
                         moment(
@@ -180,7 +180,7 @@ const SucceedPayment = ({ extension, language }) => {
                     </span>
                   </div>
                   <div>
-                    <p>{`${extension ? 'تمدید به مدت' : language.COMMON.duration}`}:</p>
+                    <p>{`${extension ? language.COMMON.extensionDuration : language.COMMON.duration}`}:</p>
 
                     <span>
                       {rent_search_dump.no_of_days} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}

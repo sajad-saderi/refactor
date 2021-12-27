@@ -1,903 +1,911 @@
 {
-  "COMMON": {
-    "to": "to",
-    "for": "for",
-    "host": "host",
-    "guest": "guest",
-    "seconds": "seconds",
-    "backToHome": "Back to Homepage",
-    "sepris": "Sepris",
-    "contactNumbers": "Contact Numbers:",
-    "number1": " 02191091431 ",
-    "number2": " 02191091432 ",
-    "number3": " 09391414574 ",
-    "submit": "submit",
-    "addCar": "Add Car",
-    "toman": "tomans",
-    "district": "District",
-    "company": "Manufacturer",
-    "model": "Model",
-    "year": "Year",
-    "aboutCar": "About Car",
-    "thousand": "Thousand",
-    "million": "Million",
-    "tomanPerDay": "tomans per Day",
-    "day": "Day{plural}",
-    "pickUpDate": "Pick-up Date",
-    "dropOffDate": "Drop-off Date",
-    "change": "Change",
-    "deliver": "Car Delivery Location",
-    "locationDelivery": "In Tehran/Karaj area; the car will be delivered to you at your location.",
-    "arrangmentForDelivery": "The place of delivery is determined in coordination with you and the host",
-    "withDriver": "Chauffeur-driven",
-    "withoutDriver": "Self-drive",
-    "isAudited": "Reviewed by Sepris",
-    "distance": "Mileage and Excess Fees",
-    "kmLimit": "Allowed Mileage",
-    "km": " Kilometer ",
-    "kmDay": "per Day",
-    "extraKm": "Fee per Additional Kilometer",
-    "extraTime": "Late Drop-off Fee per Hour",
-    "cancellationPolicies": "Rental and Cancellation Terms",
-    "member": "Has been a Member Since {value}.",
-    "hasTravel": "Has traveled {value} times with Sepris.",
-    "hostOfTrip": "Has been a Host for {value} Trips.",
-    "see": "view",
-    "responseRate": "Has Responded to {value}% of Requests",
-    "responseTime": "and Usually Responds within {value}",
-    "moreOneDay": "More than One Day",
-    "location": "Delivery Location",
-    "rentWithDriver": "This car can only be rented with driver.",
-    "rentBothCondition": "This car can be rented with or without driver.",
-    "rent": "Rent",
-    "discount": "Discount",
-    "insurance": "Insurance",
-    "without": "Without",
-    "with": "With",
-    "relativeLinks": "Relevant Pages",
-    "ok": "Confirm",
-    "cancel": "Cancel",
-    "car": "Car",
-    "pickupLocation": "Pick-up Location",
-    "inCities": "in Cities",
-    "errorEmptyDate": "Pick-up and drop-off dates cannot be the same.",
-    "errorStartDate": "Please select a pick-up date.",
-    "errorEndDate": "Please select a drop-off date.",
-    "search": "Search",
-    "close": "Close",
-    "changeSearch": "Modify Search",
-    "highToLow": "Highest Price",
-    "lowToHigh": "Lowest Price",
-    "advanceSearch": "Advanced Search",
-    "badgeCarLocation": "Car Location",
-    "badgePrice": "Price Range from {value} to {value}",
-    "delivery": "Delivery at Location",
-    "badgeCategory": "Sort",
-    "seaction1": "Rent Options",
-    "deliverAtPlace": "Delivery at your location",
-    "bodyStyle": "Body Style",
-    "inCompany": "in Manufacturers",
-    "inModel": "in Models",
-    "modelLabel": "Model",
-    "show": "View {value} Results",
-    "noResult": "No Results Found for These Filters",
-    "part1": "Sorry, No Results Found for Your Search.",
-    "part2": "If You Have Applied Filters, Please Remove/Refine Them or Search for Another Date.",
-    "part3": "You Can Always Call Sepris Customer Support:",
-    "carCard": {
-      "discount": "% Discount",
-      "special": "Special Offer",
-      "image": "Default Image Placeholder",
-      "details": "Details"
-    },
-    "loadMore": "Show More",
-    "loading": "Loading...",
-    "logInOut": "Sign in / Sign up",
-    "goToAddCar": "Start earning money",
-    "carPrice": "car price",
-    "duration": "Rental Period",
-    "kmLimitInday": "Allowed Mileage per Day",
-    "kmInDay": "kilometers per Day",
-    "notValid": "Please enter valid characters.",
-    "minLength": "The minimum Length is {value}",
-    "maxLength": "The maximum Length is {value}",
-    "alphabet": "Characters",
-    "name": "Name",
-    "lastName": "Last Name",
-    "faqTitle": "FAQ",
-    "companyName": "Company Name",
-    "errorParagraph1": "An Error has Occurred.",
-    "errorParagraph2": "Please contact support and let us know.",
-    "addYourCar": "Add your car",
-    "goToJoinUs": "Monthly income estimates",
-    "samanInsuranceImage": "Saman's Logo",
-    "inputSearchNoResult": "No Result found",
-    "tellMeModal": "Spris currently only covers rentals originating in Tehran.",
-    "tellMeNote": "Sepris Currently Is Not Covering {value}",
-    "carInResult": "{value} car{plural} {value} to {value} in {value}",
-    "price": "Price",
-    "quickAccess": "Quick Access",
-    "suvCars": "SUV Cars",
-    "affordableCars": "Affordable Cars",
-    "goodForTravel": "For Travel",
-    "vans": "Vans",
-    "perDay": "per Day",
-    "paymentNote": "The payment will be made after the host confirms your request.",
-    "noResultFind": "No result for your request",
-    "loginFirst": "You need to sign in to access this page",
-    "videoNotSupported": "Your browser does not support the video tag.",
-    "minimunCarValue": "car value should be more than 20 million tomans",
-    "enterCarValue": "Please enter value of car",
-    "contract": "rent contract",
-    "comformCarDelete": "Do yo want to delete {value} {value}?",
-    "comformOrderDelete": "Do you want to delete this request",
-    "iAgree": "I agree",
-    "fetchCitiesError": "there is some problem in showing cities",
-    "fetchingBrandsError": "there is some problem in showing manufacturers",
-    "fetchingModelError": "there is some problem in showing car models",
-    "fetchingTransactionError": "there is some problem in showing transaction information",
-    "thereIsAnError": "an error occurred",
-    "errorInSubmittingCar": "an error occurred in submitting car information",
-    "errorInSearchResult": "an error occurred in search results",
-    "errorInRegistery": "an error occurred in registering new user",
-    "errorInSendingCode": "an error occurred in sending the confirmation code",
-    "errorInLogin": "there is a problem with login with a cell phone",
-    "errorInGetingRequests": "there is a problem in showing orders history",
-    "dateIsChanged": "pick-up date and drop-off date have been changed",
-    "carNotFound": "we couldn't find the car!!",
-    "seprisDefinition": "Sepris is an Iranian name meaning \"Horse Racing Field\".",
-    "installApp": "Install Sepris Mobile Application",
-    "continue": "continue",
-    "internetConnectionError": "Network connection error, please make sure your device is connected to the internet.",
-    "errorInUserInfo": "Error receiving account information",
-    "youDeviceIsNotConnected": "Your device is not connected to the Internet.",
-    "checkingConnectionLater": "Automatic check of network connection in",
-    "checkInternetConnection": "Check the device connection to the Internet",
-    "checkConnection": "Check again"
-  },
-  "INFORMATION": {
-    "text1": "in partnership with Saman Insurance",
-    "text2": "What We Do?",
-    "text3": "We connect people around the world with their ideal rental car in Iran during their trip. At Sepris.com, you can search for all kinds of rental cars in Iran, compare prices, detailed information on additional facilities, and book the best option that fits your needs. ",
-    "text4": "چرا در سِپریس ماشین اجاره دهیم؟",
-    "text5": "کسب درآمد",
-    "text6": "اطلاعات ماشین‌تان را در سپریس ثبت کنید و منتظر بمانید! با سپریس می‌توانید از اجاره ماشین‌تان درآمد روزانه داشته باشید. فقط کافی‌ست اطلاعات خودرو را درست و دقیق وارد کنید و تصاویر خوب و باکیفیت برای ماشین‌تان انتخاب کنید.",
-    "text7": "با شرایط شما",
-    "text8": "رایگان و با شرایط مورد نظر خود، ماشین‌تان را در سپریس ثبت کنید. اجاره خودرو به تعداد روزهای تعیین شده از سمت شما، در تاریخ‌های مدنظر شما، قیمت انتخابی شما و با بررسی کامل شخص مهمان از طرف شما انجام خواهد شد.",
-    "text9": "Insurance Guarantee",
-    "text10": "با خیال راحت کسب درآمد کنید. بیمه اجاره خودرو بابت خسارت‌های احتمالی به شما اطمینان خاطر خواهد داد.",
-    "text11": "What We Bring?",
-    "text12": "Insurance Guarantee",
-    "text13": "We make sure you drive a car with peace of mind. We provide you with insurance that pays for everything in case of any damage or accident.",
-    "text14": "Diversity in Choice",
-    "text15": "We have provided an exceptional list of options for you to choose among. The rental cars available at Sepris are great in diversity as for prices, car types, options, features, brands, etc.",
-    "text16": "24/7 Customer Service",
-    "text17": "We assure you get the help you may need at the right time. Our customer support team at Sepris is available 24/7 for any possible question, problem, or urgency.",
-    "text18": "Why Rent a Car in Iran?",
-    "text19": "No matter how long our trip is, it always seems short and we want to make the most out of the days. Renting a car in Iran would provide you with perfect opportunities and possibilities you wouldn’t otherwise imagine having. For that matter; a rental car in Iran gives you the freedom to explore the cities on your own and have a tour to places out of the common tourist traps and crowded cities.",
-    "text20": "Moreover, you can rent a car in Tehran to get yourself out of the cost, delay, and hassle of public transport and online taxis. With taxis, you need to spend time requesting, calling, and organizing without having control over your schedule, changing your plan anytime, pulling over anywhere on the road to rest, to see the view, or for the toilet break, driving at the desired speed, etc. Having a rental car in Iran means you can have your own schedule regardless of the public transport and tour buses’ timetables. It may seem public transport is cheaper than car rental, but considering the convenience, the comfort, and the additional time you get, renting a car is incredibly cheap and cost-effective. ",
-    "text21": "Furthermore, having a taxi from the airport to the city usually costs a lot, having a rental from the onset of your trip helps you save money and time right from the start. We recommend renting a car in Tehran especially if you are traveling with family or in a group; that would be extremely cheaper than any other way of transportation.",
-    "text22": "علاوه بر موارد اشاره شده، اجاره ماشین مزایای زیر را در بردارد:",
-    "text23": "Also, not all trips are the same; you might travel for work or leisure, you might travel alone, with colleagues or family, you might be having a long road trip or just a small city tour. By using rental cars, you can pick the one that best fits your needs regarding comfort, space, gas consumption, etc. You can also choose to rent chauffeur-driven cars or self-drives. With chauffeur-driven rental cars, you will also have the benefit of a local guide’s companionship.",
-    "text24": "Renting a car in Iran would bring you an extreme amount of comfort and convenience by having easy access to your stuff, making a great deal of space to stretch out, having control over the air conditioner, car windows, radio or player, etc. You will also have the privacy and peace that public transports would never offer you.",
-    "text25": "حتی اگر دارای ماشین شخصی هستید، می‌توانید با یک انتخاب هوشمندانه ماشین مناسبی برای سفر خود اجاره کنید. به این ترتیب، علاوه بر آنکه از استهلاک خودروی خود جلوگیری می‌کنید، می‌توانید ماشینی را انتخاب کنید که به نسبت ماشین خود دارای مصرف سوخت بهینه‌تر یا به عبارتی کمتر است و یا فضای بیشتری برای سرنشینان و چمدانها دارد.",
-    "text26": "اجاره ماشین درون شهر به شما این امکان را می‌دهد که بدون نگرانی از نبود تاکسی و یا دیر رسیدن به ایستگاه مورد نظر، یک روز عالی کاری را فارغ از صف‌های طولانی اتوبوس و تاکسی و یا انتظار برای قبول درخواست شما از سوی سامانه‌های آنلاین رزرو تاکسی را داشته باشید.",
-    "text27": "فارغ از بودجه‌ای که برای مراسم عروسی خود در نظر گرفته‌اید، شما می‌توانید ماشین ایده‌آل خود را برای یک شب رویارویی اجاره کنید. فراموش نکنید که تنها قرار است هزینه رنت ماشین را پرداخت کنید و نه هزینه خرید آن را.",
-    "text28": "هر یک از موارد فوق می‌تواند دلیل خوبی برای اجاره ماشین باشد، که اجاره ماشین از سامانه سپریس به شما این اطمینان را می‌دهد که ماشین به دلخواه خود را برای مدت معین با رعایت قوانین و مقررات مشخص شده، در اختیار داشته باشید و از آن لذت ببرید.",
-    "text29": "قیمت مناسب",
-    "text30": "در سپریس، با همراهی کارشناسان ما، خودرو را مستقیم از مالک اجاره می‌کنید؛ به همین دلیل قیمت مناسب‌تر و شرایط آسان‌تری را تجربه خواهید کرد."
-  },
-  "LINKS": {
-    "aboutUs": "About Us",
-    "sepris": "How Sepris Works?",
-    "host": "Guide for Hosts",
-    "guest": "Guide for Guests",
-    "evaluation": "Customer validation",
-    "ourPolicies": "Terms of Use",
-    "insurance": "Car Insurance",
-    "insurancePolicies": "Insurance Terms",
-    "rent": "Car Rental",
-    "siteMap": "Sitemap",
-    "faq": "Frequently Asked Questions",
-    "assurance": "Car Rental Requirements",
-    "takingPicture": "Guide for Car Photography",
-    "gps": "Guide for Choosing GPS"
-  },
-  "LOGIN": {
-    "login": "Sign in / Sign up",
-    "cellPhone": "Mobile Phone",
-    "example": "e.g: +12012019999",
-    "send": "Send Code",
-    "title": "Enter Code",
-    "label": "Please enter the 4-digit code have been sent to {value}",
-    "exapmle": "Please enter the code.",
-    "tryagain": "Resend Code",
-    "edit": "Edit Mobile Number",
-    "enter": "Sign in",
-    "error1": "Please Enter Your Mobile Number.",
-    "error2": "Mobile Number Must be 11 Digits.",
-    "error3": "Please Enter a Valid Mobile Number.",
-    "error4": "Please enter the code.",
-    "error5": "Confirmation code must be 4 digits"
-  },
-  "_500_PAGE": {
-    "span": "Sorry for the inconvenience. We are currently trying to fix the problem; please come back later.",
-    "p1": "We will be glad to hear from you. You can call us at:"
-  },
-  "ABOUT_US_PAGE": {
-    "h1": "About Us",
-    "p": "We connect people around the world with their ideal rental car in Iran during their trip. There are hundreds of vehicles with different features, various additional options, and excellent insurance coverages among which you can find your desired rental car. We offer our services in partnership with local car owners in major cities of Iran. Best price and exceptional customer support are our priorities. We make sure every traveler is offered high-quality services to make their trip as easy and pleasant as possible. Concentrating on keeping our rates especially low and affordable, we try to help you plan a trip within your budget. We are more than happy to present unique services such as delivery at a location anywhere around the cities and rental cars with drivers. Sepris means horse racing field suggesting our services provide travelers with the comfort, confidence, and peace of mind to rent and ride all through the country. ",
-    "h3": "Address",
-    "address": "Unit 6, No. 8, Nakhoda Hemmati ALY, Sa’di St., Darya Blvd., Shahrak-e Gharb, Tehran"
-  },
-  "ADD_CAR_PAGE": {
-    "formTitle": "مشخصات خودرو را با مطابق با مدارک آن پر کنید.",
-    "location": "ماشین شما کجاست؟ (شهر)",
-    "districtNote": "سپریس فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در {value} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.",
-    "inDistrict": "in Districts",
-    "transmissionType": "Transmission Type",
-    "manualTransmission": "manual Transmission",
-    "automaticTransmission": "automatic Transmission",
-    "bodyStyle": "body Style",
-    "cylinder": "cylinders",
-    "capacity": "capacity",
-    "mileage": "mileage",
-    "carLicenseLabel": "پلاک خودرو",
-    "carLicenseNote": "پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در نتایج جستجو نمایش داده نمی‌شود.",
-    "facilities": "facilities",
-    "facilitiesShowMore": "Show More",
-    "colorPicker": "Pick Your car's color",
-    "colorPlaceholder": "Color Picker",
-    "picture": "car Images",
-    "fromGallery": "pick from Gallery",
-    "text1": "عکس‌های با کیفیت و در زوایای مختلف احتمال اجاره را بیشتر می‌کند، خودروهای بدون عکس شانس کمی برای گرفتن درخواست اجاره دارند. ",
-    "text2": "لازم است عکس‌ها افقی باشد و تمام خودرو داخل کادر قرار گرفته باشد. ",
-    "text3": "جهت بارگذاری تصاویر خودرو اینجا کلیک کنید یا آن را داخل این کادر بیندازید.",
-    "errorLocation": "لطفا شهر خودرو را انتخاب کنید.",
-    "errorDistrict": "لطفا محله را انتخاب کنید.",
-    "errorBrand": "لطفا سازنده را انتخاب کنید.",
-    "errorModel": "لطفا مدل را انتخاب کنید.",
-    "errorYear": " لطفا سال را انتخاب کنید.",
-    "errorTransmission": "لطفا نوع دنده را انتخاب کنید.",
-    "errorBodyStyle": "لطفا نوع شاسی را انتخاب کنید.",
-    "errorCylinder": "لطفا تعداد سیلندر را انتخاب کنید.",
-    "errorCapacity": "لطفا ظرفیت خودرو را انتخاب کنبد.",
-    "errorMileage": "لطفا کارکرد خودرو را انتخاب کنید.",
-    "errorLicense1": "بخش نخست شماره پلاک باید ۲ رقم باشد",
-    "errorLicense2": "لطفا بخش دوم پلاک را کامل کنید.",
-    "errorLicense3": "بخش سوم شماره پلاک باید ۳ رقم باشد.",
-    "errorLicense4": "کد استانی شماره پلاک باید ۲ رقم باشد.",
-    "errorInSubmit": "خطایی در ثبت اطلاعات خودرو رخ داده است",
-    "errorLicens5": "قبلا خودرویی با این شماره پلاک ثبت شده است. اگر مالک این خودرو هستید با پشتیبانی سپریس تماس بگیرید.",
-    "errorColor": "لطفا رنگ خود را انتخاب کنید.",
-    "optional": "(Optional)",
-    "descriptionPlaceholder": "برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود. برای ماشین‌تان اسمی انتخاب کرده‌اید؟ با ماشین‌تان به کجاها سفر کرده‌اید؟"
-  },
-  "CAR_PAGE": {
-    "date": "Date of rent",
-    "features": "Technical Specifications",
-    "transmission": "Gearbox type",
-    "cylinder": "Cylinder",
-    "mileage": "Mileage",
-    "capacity": "Capacity",
-    "persons": "Persons",
-    "facilities": "Options",
-    "reviews": "Reviews",
-    "noReview": "There Is No Review"
-  },
-  "CHECKOUT": {
-    "expired": "This request session has expired.",
-    "toast": "Your request has been submitted. We will notify you of the result via SMS when the host responds to your request.",
-    "insurance": "Insurance",
-    "discount": "Discount",
-    "hasDiscount": "I have a discount code.",
-    "discountPlaceholder": "Enter the discount code",
-    "submit": "Apply",
-    "discountCode": "Discount Code",
-    "invoice": "Total",
-    "booking": "Book Now",
-    "track": "Track Your Request",
-    "enterDiscountCode": "please insert your discount code",
-    "notAllowedToRentMyOwnCar": "you can not rent your own car",
-    "insuranceBooking": {
-      "option1": {
-        "label": "Saman Insurance special offer ({value} tomans)",
-        "text": "Covers include: theft, accident, natural disasters and spray paint and chemicals during rental"
-      },
-      "option2": {
-        "label": "I do not need insurance",
-        "text": "You will be responsible for the maintenance of the car during the rental period. By purchasing rental insurance issued by Saman Insurance, you will only be liable for compensation for items that are not covered by the purchased insurance."
-      }
-    }
-  },
-  "COMPLETE_REGISTER": {
-    "title": "Complete Sign-up",
-    "name": "Type your name",
-    "lastname": "Type your last name",
-    "company": "Add company name",
-    "justAgencies": "Only for car rental companies",
-    "dob": "Date of Birth",
-    "year": "e.g: 1980",
-    "policies": "Terms and Conditions",
-    "iAgree": "If you check this box, it means you have read and agreed with Sepris's",
-    "errorName": "Please Enter your name.",
-    "errorLastname": "Please enter your last name",
-    "errorDay": "Pleae enter your day of birth.",
-    "errorMonth": "Please enter your month of birth.",
-    "errorYear": "Please enter your year of birth.",
-    "errorPolicies": "Please accept Terms and Conditions.",
-    "error1": "Day must be more that 1.",
-    "error2": "Day must be less than 31.",
-    "error3": "Day must be less than 31.",
-    "error4": "Year must be 4 digits.",
-    "error5": "Please enter a valid number."
-  },
-  "FOOTER": {
-    "followUs": "We are on social media:",
-    "customerService": "Contact Us:",
-    "signature": "© Sepris. All rights reserved."
-  },
-  "HEADER": {
-    "myRequests": "My Bookings",
-    "guide": "Guide"
-  },
-  "HOME_PAGE": {
-    "banner": "Sepris, Convenient Car Rental in Iran",
-    "note": "Find your ideal rental car and book with confidence."
-  },
-  "JOIN_US_PAGE": {
-    "banner": "سِپریس، برای اوقات فراغت ماشین شما",
-    "note": "به راحتی خودروتان را در سِپریس کوتاه مدت اجاره بدهید و درآمد کسب کنید",
-    "calculatorTitle": "چقدر می‌توانید از ماشینتان کسب درآمد کنید؟",
-    "formTitle": "مشخصات ماشین‌تان را وارد کنید:",
-    "inBrand": "در نام در سازنده‌ها",
-    "brand": "نام خودرو (سازنده)",
-    "model": "نام خودرو (مدل)",
-    "estimate": "تخمین درآمد",
-    "weekly": "درآمد هفتگی",
-    "millionToman": "Million tomans",
-    "monthly": "درآمد ماهانه",
-    "daily": "درآمد روزانه",
-    "tryAgain": "محاسبه مجدد",
-    "error1": "سازنده را انتخاب کنید",
-    "error2": "نام مدل را انتخاب کنید",
-    "error3": "ارزش خودرو را وارد کنید",
-    "error4": "ارزش خودرو کمتر از حد مجاز",
-    "reviews": {
-      "title": "میزبان‌ها درباره سپریس چه می‌گویند؟",
-      "name1": "جواد کسائی",
-      "review1": "وقتی تصمیم به اجاره خودروم گرفتم، از طریق جستجو در گوگل با سپریس آشنا شدم و بعد از دیدن سایت و تماس با پشتیبانی، اعتمادم جلب شد. بعدها هم هربار با پشتیبانی تماس گرفتم در دسترس بودن و هیچ مسئله‌ای رو از قلم نمی‌انداختن. با وجود این‌که ماشینم بیمه بدنه داره، بیمه اجاره خودرو سپریس رو مثل یک قانون در نظر گرفتم و درخواست مهمان‌هایی رو که بیمه خریداری کرده‌اند در اولویت می‌ذارم. تا حالا چند بار ماشینم رو از طریق اتولی اجاره دادم، چون خیالم راحته و قصد دارم باز هم به این کار ادامه بدم.",
-      "name2": "فرزین روحانی",
-      "review2": "زمانی که تصمیم گرفتم ماشینم رو اجاره بدم، چند تا از شرکت‌های سنتی و غیراستارت‌آپی اجاره خودرو در تهران رو بررسی کردم اما در نهایت شرکت شما رو انتخاب کردم، چون به نسبت همه، شرایط بهتری داشتید و این امکان رو فراهم کردین که مهمان بیمه اجاره خودرو خریداری کنه و همین‌طور ما (میزبان)، مهمان را مستقیم ببینیم و رودررو با هم صحبت کنیم و شرایط رو دقیق‌تر بررسی کنیم که بتونیم مهمان‌های بهتر و مسئولیت‌پذیرتری انتخاب کنیم. پشتیبانی هم همیشه در دسترس بوده و در همه مسائل به بهترین شکل به ما مشاوره داده و راهنمایی کرده.",
-      "name3": "رضا جلیلی",
-      "review3": "تا قبل از آشنایی با سپریس، ماشینم رو اجاره نداده بودم . اما در آلمان تجربه اجاره‌کردن خودرو را داشتم. اولش شناخت زیادی از سپریس نداشتم و بار اول اجاره دادن ماشین از نظرم ریسک بود. ولی از دفعات بعد با توجه به نحوه کار و پشتیبانی‌تون اعتمادم جلب شد. چون تا حالا تو هیچ شرکتی ندیدم که مثل شما واقعا “پشتیبان” داشته باشن. هروقت از شبانه‌روز که تماس گرفتم حضور داشتین و برای تصمیم‌گیری همراهم بودین. اوایل شرایطم برای اجاره دادن ماشین سخت‌گیرانه بود، ولی به خاطر همین حمایت و پشتیبانی شما منعطف‌تر شدم و سخت‌گیری‌های اولیه را ندارم."
-    }
-  },
-  "SEPRIS_PAGE": {
-    "text1": "سپریس چگونه کار می‌کند؟",
-    "text2": "خودرو اجاره کنید",
-    "text3": "در سپریس ثبت‌نام کنید",
-    "text4": "ثبت نام در سپریس ساده است، بعد از وارد کردن شماره تماس کد تایید ارسال شده را وارد کنید و اطلاعاتتان را تکمیل کنید.",
-    "text5": "بهترین خودرو را انتخاب کنید",
-    "text6": "در بخش جستجوی وب‌سایت، شهر و تاریخ موردنظرتان برای اجاره خودرو را تعیین کنید و از بین گزینه‌های پیشنهادی ماشین دلخواهتان را انتخاب کنید.",
-    "text7": "بیمه بخرید و ماشین اجاره‌ای را رزرو کنید",
-    "text8": "در زمان ارسال درخواست رزرو می‌توانید برای خودرو پوشش بیمه خریداری کنید. خرید بیمه اختیاری است و در صورت بروز حادثه، بخشی از هزینه‌های خودرو را تامین خواهد کرد. در صورتی که پوشش بیمه انتخاب نکنید، تمام خسارت‌های احتمالی به عهده شما خواهد بود. بعد از انتخاب بیمه باید، درخواست رزرو دهید. صاحب خودرو بعد از بررسی، درخواست شما را قبول یا رد خواهد کرد.",
-    "text9": "مبلغ اجاره را پرداخت کنید",
-    "text10": "بعد از قبول درخواست رزرو از سمت میزبان، سپریس لینک پرداخت را برای شما ارسال خواهد کرد، از طریق آن و یا از طریق لینک موجود در صفحه سفارش‌ها مبلغ اجاره را پرداخت کنید.",
-    "text11": "خودرو اجاره دهید",
-    "text12": "در سپریس ثبت‌نام کنید",
-    "text13": "ثبت نام در سپریس ساده است، بعد از وارد کردن شماره تماس کد تایید ارسال شده را وارد کنید و اطلاعاتتان را تکمیل کنید.",
-    "text14": "در سپریس ماشین ثبت کنید",
-    "text15": "ابتدا با وارد کردن اطلاعات و بارگذاری تصاویر، ماشین یا ماشین‌های خود را در سپریس ثبت کنید. این کار در کمتر از چند دقیقه انجام خواهد شد. همچنین اطلاعات دقیق و عکس‌های خوب به اجاره سریع ماشین شما کمک خواهد کرد.",
-    "text16": "درخواست‌ها را بررسی کنید",
-    "text17": "درخواست‌های رزرو اجاره خودروی شما برایتان ارسال خواهد شد. شما می‌توانید بعد از بررسی فرم درخواست، آن را قبول یا رد کنید.می توانید سوالات یا ابهامات خود را در تماس با مهمان مطرح کنید.",
-    "text18": "هماهنگی تحویل",
-    "text19": "منتظر تماس میزبان باشید",
-    "text20": "بعد از واریز وجه منتظر تماس میزبان باشید تا هماهنگی‌های لازم مثل محل تحویل خودرو را با هم هماهنگ کنید و سوالات خود را درباره شرایط فنی، تمیزی و ... بپرسید.",
-    "text21": "با مهمان تماس بگیرید",
-    "text22": "بعد از قبول درخواست و انجام واریز وجه توسط مهمان، با او تماس بگیرید تا محل و زمان تحویل خودرو را هماهنگ کنید.",
-    "text23": "تحویل خودرو",
-    "text24": "ماشین انتخابی‌تان را تحویل بگیرید",
-    "text25": "با صاحب ماشین در محل توافق شده دیدار کنید. ابتدا خودرو را به‌خوبی بررسی کنید و بعد از ارائه مدارک و امضای قرارداد، ماشین را تحویل بگیرید.",
-    "text26": "ماشین را تحویل دهید",
-    "text27": "با مهمان ماشین در محل توافق شده دیدار کنید. باک بنزین، تمیزی خودرو و میزان کارکرد را بررسی کرده، قرارداد را امضا کنید و ماشین را تحویل دهید.",
-    "text28": "از ماشین خود کسب درآمد کنید",
-    "text29": "در تمام این مدت می‌توانید استراحت کنید. خودرو شما برایتان درآمد خواهد داشت.",
-    "text30": "بازگشت خودرو",
-    "text31": "خودرو را به صاحبش بازگردانید",
-    "text32": "در زمان پایان قرارداد، خودرو را با شرایطی که تحویل گرفته‌اید (حجم بنزین، تمیزی و ...) در محل تعیین شده به صاحبش بازگردانید و به میزبان امتیاز دهید.",
-    "text33": "ماشین را تحویل بگیرید",
-    "text34": "در زمان پایان قرارداد و در محل تعیین شده با مهمان ملاقات کنید. تمامی موارد مورد نیاز را در ماشین بررسی کنید، ماشین را تحویل بگیرید، در صفحه سفارش‌ها تحویل خودرو را تایید کنید و به مهمان امتیاز دهید."
-  },
-  "PAYMENT_PAGE": {
-    "cancel": "Cancel payment",
-    "successfullPurchase": "Payment was successful",
-    "issueTracking": "Issue Tracking:",
-    "carOptions": "Booking details",
-    "deliveryDate": "Pick up Date",
-    "returnDate": "Drop off date",
-    "carInsurance": "Car rental insurance",
-    "carDelivery": "Car delivery",
-    "returningCar": "Car return",
-    "text1": "The rental period starts from the time of delivery of the car, so it is necessary to return the car at the same time on the day of return. In case of delay, for this car delay cost is {value} and will be calculated per hour.",
-    "text2": "The distance limit for this car is {value} km. An additional cost is {value} and will be calculated for each additional kilometer.",
-    "text3": "A sample contract has been prepared for the parties by Sepris. The host prepares this contract in two copies on the day of delivery of the car and it is signed by both parties.",
-    "image": "Car image",
-    "invoice": "Amount paid: ",
-    "notFound": "Payment information not found."
-  },
-  "RENT_PAGE": {
-    "banner": "Sepris, Convenient Car Rental in Iran",
-    "note": "Rent the car you like.",
-    "question1": "What’s Different about Us",
-    "answer1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits.",
-    "question2": "شرایط اجاره خودرو از سپریس چیست؟",
-    "answer2": "چون در سِپریس خودرو را از مالک اجاره می‌کنید، قیمت‌ها اغلب پایین‌تر از سایز مراکز است. همین طور به دلیل همکاری نزدیک با بیمه، میزبان‌ها مدارک و ودیعه‌های کمتری از شما دریافت می‌کنند."
-  },
-  "REQUEST_PAGE": {
-    "isSuccessful": "با موفقیت انجام شد",
-    "rateCar": "امتیاز شما به خودرو",
-    "insertYourRate": "امتیاز خود را وارد کنید",
-    "note": "توضیح",
-    "shareYourReview": "(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)",
-    "rateHost": "امتیاز شما به میزبان",
-    "rateGuest": "امتیاز شما به مهمان",
-    "pending": "Pending confirmation",
-    "approved": "Pending payment",
-    "noOrder": "You had had no bookings recently.",
-    "activeOrders": "Recent Bookings",
-    "deactivateOrders": "Previous Bookings",
-    "returned": "I got it back",
-    "reject": "Decline",
-    "rejected": "Declined",
-    "expired": "Expired",
-    "cancelled": "Cancelled",
-    "pay": "Pay",
-    "paid": "Pending pick-up",
-    "deliver": "I picked it up",
-    "delivered": "Delivered",
-    "review": "Submit Review",
-    "withInsurance": "Insurance included",
-    "withoutInsurance": "No insurance included",
-    "invoice": "invoice",
-    "downloadContact": "Download the Contract",
-    "callGuest": "Contact the Guest",
-    "error1": "You have already submitted a review for this car.",
-    "error2": "خطا در انجام عملیات بر روی سفارش اجاره"
-  },
-  "CAR_SETTING": {
-    "title": "شرایط شما برای اجاره",
-    "rentPrice": "نرخ اجاره",
-    "daily": "(روزانه)",
-    "pricePlaceholder": "مثال: 50,000",
-    "recommendation": "قیمت متوسط پیشنهادی:",
-    "limitPlaceholder": "مثال: 1000",
-    "extraHour": "هزینه هر ساعت اضافه",
-    "remindeMe": "زمان اطلاع از اجاره",
-    "before": "روز قبل",
-    "minimumDuration": "حداقل مدت اجاره",
-    "delivetyType": "نحوه تحویل",
-    "delivery": "I will deliver the car at guest's location",
-    "rentCondition": "با راننده اجاره می‌دهید یا بدون راننده؟",
-    "note": "اکثر درخواست‌ها برای اجاره ماشین بدون راننده است.",
-    "withDriver": "فقط با راننده",
-    "withoutDriver": "فقط بدون راننده",
-    "bothCondition": "با راننده و بدون راننده",
-    "discounts": "تخفیف‌ها",
-    "discountNote": "می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید",
-    "percentage": "percent discount",
-    "addingDiscount": "افزودن تخفیف",
-    "more": "for rents more than {value} days",
-    "conditions": "شرایط و ضمانت‌های اجاره",
-    "cancellationPolicies": "شرایط و مدارک مورد نیاز برای اجاره خودروتان را بنویسید یا از موارد بالا انتخاب کنید.",
-    "requirements": "چه مدارک و ضمانت‌هایی بگیریم؟",
-    "assurance": {
-      "text1": "در سایت سپریس هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش بگذارد که بسته به نوع ماشین می‌تواند متفاوت باشد، به صورت کلی می‌توانید مدارک و ضمانت‌های زیر را برای اجاره خودروتان از مشتری بگیرید، اما این نکته را در نظر داشته باشید که مدارک و ضمانت‌های زیاد می‌تواند میزان درخواست‌های اجاره خودرو شما را کاهش بدهد.",
-      "text2": "مدارک شناسایی معتبر مانند کارت ملی یا شناسنامه و در صورتی که اتباع خارجی یا گردشگر هستند پاسپورت.",
-      "text3": "گواهینامه معتبر که حداقل ۶ ماه دارای اعتبار باشد.",
-      "text4": "بیمه‌نامه اجاره خودرو (در زمان درخواست اجاره خودرو می‌تواند تهیه کند. توصیه می‌شود مشتریانی که این بیمه‌نامه را خریداری می‌کنند در اولویت قبول درخواست قرار دهید.)",
-      "text5": "در نظر گرفتن شرایط سنی (پیشنهاد می‌شود که حداقل سن ۲۵ سال را در نظر بگیرید.)",
-      "text6": " چک یا سفته به میزان مورد نیاز(معمولا به مبلغ ماشین گرفته می‌شود)",
-      "text7": "ودیعه نقدی: با توجه به نوع ماشین می‌توانید مقداری پول نقد از مشتری بابت خسارت‌های احتمالی بگیرید."
-    },
-    "moreThan": "more than",
-    "toast": "خودروی {value} با موفقیت ثبت شد. ظرف روزهای آتی برای هماهنگی‌های بیشتر با شما تماس خواهیم گرفت.",
-    "error1": "شما مجاز به انجام این فعالیت نیستید",
-    "error2": "لطفا نرخ اجاره را وارد کنید",
-    "error3": "شروع قیمت روزانه از 50.000 تومان است",
-    "error4": "لطفا حداقل زمان اطلاع از اجاره را انتخاب کنید",
-    "error5": "لطفا  حداقل مدت اجاره را انتخاب کنید",
-    "error6": "لطفا محدودیت مسافت در روز را وارد کنید",
-    "error7": " لطفا هزینه هر کیلومتر اضافه را وارد کنید",
-    "error8": "حداقل هزینه هر کیلومتر اضافه از 100 تومان است",
-    "error9": "لطفا شرایط تخفیف را وارد کنید",
-    "error10": "لطفا شرایط و ضمانت‌های اجاره را وارد کنید",
-    "error12": " لطفا هزینه هر ساعت اضافه را وارد کنید",
-    "error13": "حداقل هزینه هر ساعت اضافه 100 تومان است",
-    "error14": "لطفا  قیمت روزانه را وارد کنید",
-    "error15": "حداقل قیمت 50 هزار تومان",
-    "error16": "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
-    "error17": "لطفا هزینه هر ساعت اضافه را وارد کنید",
-    "error18": "شروع قیمت روزانه از 100 تومان است",
-    "error20": "لطفا تعداد روز را مشخص کنید",
-    "error21": "لطفا درصد تخفیف را مشخص کنید",
-    "error22": "لطفا درصد تخفیف را وارد کنید"
-  },
-  "USER": {
-    "edit": "Edit profile",
-    "exit": "Sign out",
-    "changeAvatar": "Change Avatar",
-    "personalLinkLabel": "Add link address",
-    "linkPlaceholder": "Link Address",
-    "all": "All Cars",
-    "hostReviews": "Guests Reviews",
-    "guestReviews": "Hosts Reviews",
-    "inactive": "Inactive Cars",
-    "active": "Active Cars",
-    "activeCar": "{value} will not be displayed in search results.",
-    "inactiveCar": "{value} will be displayed in search results.",
-    "imageAlt": "Car Thumbnail",
-    "details": "View Details",
-    "text1": "To activate the car You should set up ",
-    "text2": "Rental Terms",
-    "text3": ".",
-    "waiting": "Pending confirmation by Sepris",
-    "carSetting": "Modify Date and Price",
-    "activatingCar": "Activate",
-    "inactivatingCar": "Deactivate",
-    "errorName": "Please enter a valid name/last name.",
-    "errorUserName": "Please enter a valid username.",
-    "errorCompany": "Please enter a valid company name.",
-    "errorImageFormat": "Please upload the image in JPEG format.",
-    "error1": "خطا در دریافت اطلاعات کاربری."
-  },
-  "TOASTS": {
-    "success": "Have been done successfully",
-    "approved": "Confirmation of the request has been registered. If the guest pays the rent, the request will be finalized and you will be notified via SMS.",
-    "rejected": "The rejection of the rental application has been registered and the guest will be notified.",
-    "deleted": "your request is canceled",
-    "delivered": "We wish you a good trip. Please be careful in car maintenance. Contact the host or Sepris customer service in case of any problems.",
-    "returned": "We hope you have a good experience renting your car. Share your review about the guest with other users."
-  },
-  "PAGE_HEADER": {
-    "handle": "@seprisrent",
-    "site": "@seprisrent",
-    "cardType": "summary_large_image",
-    "assurance": {
-      "title": "Documents and Guarantees for Car Rental | Sepris",
-      "description": "These are the documents you need to submit for renting a car in Iran. Find your ideal rental car and book with confidence."
-    },
-    "carInsurance": {
-      "title": "Rental Car Insurance | Sepris",
-      "description": "Rent a car in Iran with insurance coverage on Sepris. Find your ideal rental car and book with confidence."
-    },
-    "evaluation": {
-      "title": "evaluation سنجی مشتریان | سپریس",
-      "description": "سپریس با سیستم اعتبارسنجی مورد تایید بانک مرکزی، مشتریان (مهمان) را از نظر سوابق و رفتار مالی در هشت سال گذشته را بررسی می‌کند "
-    },
-    "gps": {
-      "title": "راهنمای انتخاب ردیاب | سپریس",
-      "description": "راهنمای انتخاب ردیاب با توجه به نیاز‌های شما برای اجاره خودروتان"
-    },
-    "guideForRent": {
-      "title": "Guest Guide | Sepris",
-      "description": "A complete guide to guests"
-    },
-    "guidePicture": {
-      "title": "راهنمای عکس گرفتن | سپریس",
-      "description": "راهنمای عکاسی برای ثبت خودرو در سپریس"
-    },
-    "guideRenter": {
-      "title": "راهنمای میزبان | سپریس",
-      "description": "راهنمای کامل سپریس برای میزبان"
-    },
-    "insurancePolicies": {
-      "title": "بیمه | سپریس",
-      "description": "پوشش بیمه برای اجاره خودرو در سپریس نیز یکی از سرمایه‌گذاری‌های ما برای جبران خطرات و خسارات احتمالی است که متوجه مهمان ماشین خواهند بود."
-    },
-    "ourPolicies": {
-      "title": "قوانین و مقررات سپریس | سپریس",
-      "description": "برای اجاره خودرو در سپریس چه قوانینی را باید رعایت کنیم."
-    },
-    "_404": {
-      "title": "Page Not Found | Sepris",
-      "description": "Sorry; the page you are looking for, does not exist."
-    },
-    "_500": {
-      "title": "خطایی رخ داده است | سپریس"
-    },
-    "aboutUs": {
-      "title": "About Sepris",
-      "description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
-    },
-    "addCar": {
-      "title": "افزودن خودرو | سپریس",
-      "editTitle": "ویرایش خودرو | سپریس",
-      "description": "افزودن خودرو | سپریس"
-    },
-    "carSetting": {
-      "title": "تعیین شرایط اجاره | سپریس",
-      "description": "تعیین شرایط اجاره | سپریس"
-    },
-    "carPage": {
-      "title": " | Sepris",
-      "description": "Compare cars by their specifications and prices and book you ideal rental car in Iran right now."
-    },
-    "checkout": {
-      "title": "Booking | Sepris",
-      "description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
-    },
-    "completeRegister": {
-      "title": "Complete Sign-up | Sepris"
-    },
-    "faq": {
-      "title": "FAQ | Sepris",
-      "description": "We answer all your questions in the Question and Answer section"
-    },
-    "helpCenter": {
-      "title": "صفحه راهنما",
-      "description": "دسترسی سریع به تمام آموزش های سایت"
-    },
-    "home": {
-      "itle": "Sepris| Car Rental in Iran",
-      "description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
-    },
-    "joinUs": {
-      "title": "کسب درآمد از خودرو | سِپریس",
-      "description": "سپریس سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با سپریس هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
-    },
-    "sepris": {
-      "title": "سپریس چگونه کار می‌کند؟ | سپریس",
-      "description": "سپریس چگونه کار می‌کند؟"
-    },
-    "payment": {
-      "failTitle": "Payment failed",
-      "successTitle": "Payment Successful"
-    },
-    "rent": {
-      "title": "Sepris | Easy Car Rental - Choose from landlords",
-      "description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
-    },
-    "request": {
-      "title": "My Bookings | Sepris"
-    },
-    "search": {
-      "title": "جستجو | سپریس",
-      "description": "سپریس سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با سپریس هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
-    },
-    "siteMap": {
-      "title": "سپریس | نقشه سایت"
-    },
-    "user": {
-      "title": "Car rental from {value}  | Sepris",
-      "description": "Profile"
-    }
-  },
-  "FAQ_PAGE": {
-    "items": [
-      {
-        "id": 4,
-        "name": {
-          "fa": "Gneral",
-          "en": null
-        },
-        "slug": {
-          "fa": "Gneral",
-          "en": null
-        },
-        "question_set": [
-          {
-            "title": "<p>What does Sepris do? </p>",
-            "content": "<p>Sepris, an online car rental platform, connecting the hosts (car owners) with the guests (car renters.) With Sepris, you can pick and hire out your ideal rental car among a list of available vehicles on any date you want. </p>"
-          },
-          {
-            "title": "<p>In which cities do you offer rental cars? Where can I find them?</p>",
-            "content": "<p>At the moment, you can only rent cars in Tehran and Karaj. In the future, other cities will be added to the system. You can see the list of cities in the search box on the homepage.</p>"
-          },
-          {
-            "title": "<p>How is the car rental fee calculated on the Sepris website?</p>",
-            "content": "<p>The cost of renting a car is presently specified by the host (car owner). The hosts can also see our recommended prices on the calculator page of the website. </p>"
-          },
-          {
-            "title": "<p>Is the entire process for renting cars online? </p>",
-            "content": "<p>Yes, the whole process is online, taking only a few minutes of your time. </p>"
-          },
-          {
-            "title": "<p>There’s a problem with my user account. Should I sign up for a new one?</p>",
-            "content": "<p>Call Sepris customer support and raise the problem. Our experts will provide you with the most appropriate solution. </p>"
-          },
-          {
-            "title": "<p>Can Sepris suspend my user account?</p>",
-            "content": "<p>If you do not comply with the terms and conditions or violate them, your user account may be suspended. </p>"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "name": {
-          "fa": "Renters FAQ",
-          "en": "Renter"
-        },
-        "slug": {
-          "fa": "Renters FAQ",
-          "en": "renter"
-        },
-        "question_set": [
-          {
-            "title": "<p>How can I sign up on Sepris?</p>",
-            "content": "<p>First, enter your phone number in the sign-up section, then sign up on Sepris by entering the verification code sent to you.</p>"
-          },
-          {
-            "title": "<p>Is it inevitably necessary to sign up for using Sepris?</p>",
-            "content": "<p>If you merely want to browse and see the recommended cars, there is no need to sign up, but for submitting rental requests, you need to sign up first. </p>"
-          },
-          {
-            "title": "<p>How do I browse the cars and see the rental fees? </p>",
-            "content": "<p> Enter the name of the pick-up city as well as pick-up and drop-off dates for renting a car in the search box on the home page. After clicking on the search button, you can see the details for all the available cars. </p>"
-          },
-          {
-            "title": "<p>How can I book a car on Sepris?</p>",
-            "content": "<p>After selecting your pick-up city and dates, you will see the search result in which you can click on any car you want. You will then be directed to the car page where you can see all the details. After selecting your ideal rental car, click on the “Continue” button on the car page to re-check the rental details. Go through the terms and if you agree with them, click on “Submit”. Your request will be sent to the host and you will be notified of the result via SMS.</p>"
-          },
-          {
-            "title": "<p>Are reservations made instantly or do they take long?</p>",
-            "content": "<p>The host will look into your info after receiving your request; it may take either several minutes or hours depending on the time you submit the request. During business hours, this process takes two hours at most. Keep in mind that a complete profile helps the hosts in their decision and accelerates the process, therefore, increases the chance for your request to be accepted.  </p>"
-          },
-          {
-            "title": "<p>Can I increase the chance for my request being accepted?</p>",
-            "content": "<p>The more complete a personal profile you have, and the more cars you have rented from Sepris, the better chance you got for getting confirmed. Besides, after each rental, the host rates you and writes a review about you and the experience they had. The higher your rating, the sooner will hosts accept your request in the future. </p>"
-          },
-          {
-            "title": "<p>Is it possible for the host to decline my request?</p>",
-            "content": "<p>Yes, a host may turn down your request in case they find your conditions and details not convincing enough for a rental. </p>"
-          },
-          {
-            "title": "<p>What happens when my request is declined?</p>",
-            "content": "<p>Seek counsel from Sepris customer support and try again for requesting and booking a car. </p>"
-          },
-          {
-            "title": "<p>Can I insure the car I rent? What kind of insurance does Sepris offer? </p>",
-            "content": "<p>Yes; you can insure the car. In collaboration with Saman Insurance, Sepris has designed a special package for you, the details of which you can see here. This insurance includes coverages for theft, crash and damages, fire, natural disasters, shattered windshields, paint, and chemical substances. </p>"
-          },
-          {
-            "title": "<p>Is the sum displayed on the website the total cost or the daily rent?</p>",
-            "content": "<p>The amount displayed on the search result page and the car page is the daily rent. You can see the total cost on the final bill.  </p>"
-          },
-          {
-            "title": "<p>How soon before the time I would be needing the car, can I rent it? </p>",
-            "content": "<p>The reservation time for each car depends on its type and the conditions specified by the host. You need to search for the dates you will be needing the car and see the recommended cars. </p>"
-          },
-          {
-            "title": "<p>What should I do after submitting the rental request?</p>",
-            "content": "<p>If the host accepts your request, a payment link will be sent to you via SMS for paying the final fee. The host will call you to make arrangements for the time and place of pick-up after the payment had been done. </p>"
-          },
-          {
-            "title": "<p>Can I rent a car for just one day?</p>",
-            "content": "<p>Yes, many hosts rent out their cars for just one day, and you can find a list of them by searching your dates on the website. </p>"
-          },
-          {
-            "title": "<p>What documents and guarantees do I need to present for renting a car?</p>",
-            "content": "<p>Documents and guarantees vary with each vehicle. You can find this information under the rental terms specified on each car page. </p>"
-          },
-          {
-            "title": "<p>To whom should I submit the documents and guarantees?</p>",
-            "content": "<p>You should submit documents and guarantees to the host when signing the contract at pick-up and take them back when returning the car to the host. You should also pay one million tomans to Sepris for potential fines. A fines report will be taken from the traffic police in 15 business days and in case there is no fine, the sum will be returned to your account. </p>"
-          },
-          {
-            "title": "<p>Do you provide counsel on vehicle selection?</p>",
-            "content": "<p>Yes, you can call Sepris customer support to seek counsel and guidance. </p>"
-          },
-          {
-            "title": "<p>Does the number of days impact the total sum of rent?</p>",
-            "content": "<p>Yes, typically the host will assign certain discounts considering the number of days the car is rented; you can find them out when browsing. </p>"
-          },
-          {
-            "title": "<p>What items should we check during the call with the host?</p>",
-            "content": "<p>It is advisable to discuss some issues such as the required documents mentioned on the car page, contract clauses, the car’s technical condition and safety, car options and features, or the due process for potential problems such as a crash.</p>"
-          },
-          {
-            "title": "<p>How do I pick up the car?</p>",
-            "content": "<p>In the reservation stage, a detailed account of pick-up terms and conditions is specified. If the host offers delivery, the vehicle will be delivered to you at your location. Otherwise, you must go to the location specified by the host to pick up the car. These matters will be settled during the call with the host. </p>"
-          },
-          {
-            "title": "<p>Can we use the rental car for trips?</p>",
-            "content": "<p>Yes, there are no general restrictions for that; however, you must inform the host and Sepris customer support about your destinations upon submitting the request, in order to be mentioned in the contract. </p>"
-          },
-          {
-            "title": "<p>What documents should I submit and to whom?</p>",
-            "content": "<p>The full list of required documents and guarantees you should submit are specified on the car page; however, having a driver’s license and an identification card (passport) is compulsory.</p>"
-          },
-          {
-            "title": "<p>What items should I look into when collecting the car?</p>",
-            "content": "<p>Car specifications (model, color, condition, plate number, etc.) must be completely consistent with the details mentioned on the website. In case of any inconsistencies, call Sepris customer support. </p>"
-          },
-          {
-            "title": "<p>Do we sign a contract when renting and picking up a car? Will I receive a copy?</p>",
-            "content": "<p>Yes, two copies of the contract will be signed by you and the host at the pick-up, one of which will be handed to you. </p>"
-          },
-          {
-            "title": "<p>Is it possible to rent a car for a month or a year?</p>",
-            "content": "<p>Yes, some cars are available to be rented long-term. You can search for your date, find the available cars, and submit your request. The host will examine your request and the result will be sent to you via SMS. These long-term reservations include discounts as well. </p>"
-          },
-          {
-            "title": "<p>What are the terms for cancellation?</p>",
-            "content": "<p>Cancellation terms vary with each car and it is the host (car owner) that specifies them. You must read them carefully on the car page under “Rental and Cancellation Terms” when submitting a request. </p>"
-          },
-          {
-            "title": "<p>How much should I pay as a cancellation fee?</p>",
-            "content": "<p>The cancellation fee differs depending on the type of car and the time of cancellation; you can find this information under “Rental and Cancellation Terms” on the car page. </p>"
-          },
-          {
-            "title": "<p>When will the money return to my account after cancellation?</p>",
-            "content": "<p>We do our best to return the sum as soon as possible, though at times the payback might take up to two business days. </p>"
-          },
-          {
-            "title": "<p>What are the terms for extending a rental and when should I inform?</p>",
-            "content": "<p>You should call the host first to ask for an extension; if they agree, you must submit your request on Sepris website and after the host’s confirmation, you can make the payment and use the car for a longer period. If the host does not accept your request, you should return the car to the host at the previously scheduled time.</p>"
-          },
-          {
-            "title": "<p>Can I change the date after booking the car? Under what circumstances is that possible?</p>",
-            "content": "<p>Call Sepris’s customer support. We will examine your request and act upon it.</p>"
-          },
-          {
-            "title": "<p>How many miles can a car go while rented?</p>",
-            "content": "<p>The allowed mileage is specified by the host, mentioned under “Mileage and Excess Fees” on the car page.</p>"
-          },
-          {
-            "title": "<p>Who is responsible to pay for the repairs in case of a car breakdown during the rental period?</p>",
-            "content": "<p>The host is responsible for the cost of fundamental repairs but the cost of damages incurred by misusing the car must be paid by the renter; in case of a conflict upon these matters, counsel will be sought from an expert. </p>"
-          },
-          {
-            "title": "<p>The host (car owner) called me and said that they cannot rent out the car and I should cancel my request. What should I do?</p>",
-            "content": "<p>Under these circumstances, the host themselves should cancel the reservation. Note that if you do the cancellation, you must pay the cancellation fee. You should certainly inform Sepris customer support about this issue. </p>"
-          },
-          {
-            "title": "<p>The host told me that they will not give the car to me and that I should definitely cancel. It’s been hours and no cancellation has been made. I want to book another car and I need the money. What should I do?</p>",
-            "content": "<p>Call Sepris customer support so that our team makes the cancellation for you. </p>"
-          },
-          {
-            "title": "<p>I have not damaged the vehicle but the owner claims that I’m at fault for the damages sustained. </p>",
-            "content": "<p>To avoid these kinds of problems, you need to take photos of all exterior defects of the car upon pick-up, specify them on the checklist provided by Sepris, and sign. If you have purchased insurance for the rental, photos included in the insurance will be also valid documents to ascertain whether any damages have been incurred by you or not.  </p>"
-          },
-          {
-            "title": "<p>Am I liable to pay for the traffic tickets when driving the rental car?</p>",
-            "content": "<p>You are in charge of paying the traffic fines for the period you have rented the car. The amount will be specified after 15 business days and will be taken out of your account; in case you have not been fined at all, the total sum will be returned to your account. </p>"
-          },
-          {
-            "title": "<p>When will the deposit be given back to me?</p>",
-            "content": "<p>The deposit will be paid back to you when you return the car; only one million tomans of it will remain in Sepris Company up to the next 15 days to cover the potential traffic fines. </p>"
-          },
-          {
-            "title": "<p>Are all the cars equipped with GPS?</p>",
-            "content": "<p>Yes, to prevent potential problems, each vehicle is equipped with a GPS that a host may check on special occasions and in case of problems. </p>"
-          },
-          {
-            "title": "<p>How should I return the car?</p>",
-            "content": "<p>Return the car in the same condition (same petrol volume, cleanliness, etc.) you collected it on the specified date, hour, and the place you had agreed upon with the host. </p>"
-          },
-          {
-            "title": "<p>Can we rent a chauffeur-driven car?</p>",
-            "content": "<p>Yes. You can see a list of chauffeur-driven cars on the website, specified with a tag. You can also filter the results accordingly on the search result page.</p>"
-          }
-        ]
-      }
-    ]
-  },
-  "GUIDE_FOR_GUESTS_PAGE": {
-    "h1": "Sepris; Your Ideal Car Rental in Iran",
-    "h2_1": "What We Do",
-    "p1_1": "We connect people around the world with their ideal rental car in Iran during their trip. At Sepris.com, you can search for all kinds of rental cars in Iran, compare prices, detailed information on additional facilities, and book the best option that fits your needs. ",
-    "h2_2": "What We Bring",
-    "h3_1": "Insurance Guarantee",
-    "p1_2": "We make sure you drive a car with peace of mind. We provide you with insurance that pays for everything in case of any damage or accident.",
-    "h3_2": "Diversity of Choice",
-    "p1_3": "We have provided an exceptional list of options for you to choose among. The rental cars available at Sepris are great in diversity; best prices, various body styles, options, features, and brands.",
-    "h3_3": " 24/7 Customer Service",
-    "p1_4": "We assure you get the help you may need at the right time. Our customer service team at Sepris is available 24/7 for any possible question, problem, or urgency.",
-    "h2_3": "Why Rent a Car in Iran?",
-    "p2_1": "No matter how long our trip is, it always seems short and we want to make the most out of the days. Renting a car in Iran would provide you with perfect opportunities and possibilities you wouldn’t otherwise imagine having. For that matter; a rental car in Iran gives you the freedom to explore the cities on your own and have a tour to places out of the common tourist traps and crowded cities. Moreover, you can rent a car in Tehran to get yourself out of the cost, delay, and hassle of public transport and online taxis. With taxis, you need to spend time requesting, calling, and organizing without having control over your schedule, changing your plan anytime, pulling over anywhere on the road to rest, to see the view, or for the toilet break, driving at the desired speed, etc. Having a rental car in Iran means you can have your own schedule regardless of the public transport and tour buses’ timetables. It may seem public transport is cheaper than car rental, but considering the convenience, the comfort, and the additional time you get, renting a car is incredibly cheap and cost-effective. Furthermore, having a taxi from the airport to the city usually costs a lot, having a rental from the onset of your trip helps you save money and time right from the start. We recommend renting a car in Tehran especially if you are traveling with family or in a group; that would be extremely cheaper than any other way of transportation.",
-    "p2_2": " Also, not all trips are the same; you might travel for work or leisure, you might travel alone, with colleagues or family, you might be having a long road trip or just a small city tour. By using rental cars, you can pick the one that best fits your needs regarding comfort, space, gas consumption, etc. You can also choose to rent chauffeur-driven cars or self-drives. With chauffeur-driven rental cars, you will also have the benefit of a local guide’s companionship. Renting a car in Iran would bring you an extreme amount of comfort and convenience by having easy access to your stuff, making a great deal of space to stretch out, having control over the air conditioner, car windows, radio or player, etc. You will also have the privacy and peace that public transports would never offer you.",
-    "h2_4": "What’s Different about Us",
-    "p3_1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits."
-  }
+	"COMMON": {
+		"to": "to",
+		"for": "for",
+		"host": "host",
+		"guest": "guest",
+		"seconds": "seconds",
+		"backToHome": "Back to Homepage",
+		"sepris": "Sepris",
+		"contactNumbers": "Contact Numbers:",
+		"number1": " 02191091431 ",
+		"number2": " 02191091432 ",
+		"number3": " 09391414574 ",
+		"submit": "submit",
+		"addCar": "Add Car",
+		"toman": "tomans",
+		"district": "District",
+		"company": "Manufacturer",
+		"model": "Model",
+		"year": "Year",
+		"aboutCar": "About Car",
+		"thousand": "Thousand",
+		"million": "Million",
+		"tomanPerDay": "tomans per Day",
+		"day": "Day{plural}",
+		"pickUpDate": "Pick-up Date",
+		"dropOffDate": "Drop-off Date",
+		"change": "Change",
+		"deliver": "Car Delivery Location",
+		"locationDelivery": "In Tehran/Karaj area; the car will be delivered to you at your location.",
+		"arrangmentForDelivery": "The place of delivery is determined in coordination with you and the host",
+		"withDriver": "Chauffeur-driven",
+		"withoutDriver": "Self-drive",
+		"isAudited": "Reviewed by Sepris",
+		"distance": "Mileage and Excess Fees",
+		"kmLimit": "Allowed Mileage",
+		"km": " Kilometer ",
+		"kmDay": "per Day",
+		"extraKm": "Fee per Additional Kilometer",
+		"extraTime": "Late Drop-off Fee per Hour",
+		"cancellationPolicies": "Rental and Cancellation Terms",
+		"member": "Has been a Member Since {value}.",
+		"hasTravel": "Has traveled {value} times with Sepris.",
+		"hostOfTrip": "Has been a Host for {value} Trips.",
+		"see": "view",
+		"responseRate": "Has Responded to {value}% of Requests",
+		"responseTime": "and Usually Responds within {value}",
+		"moreOneDay": "More than One Day",
+		"location": "Delivery Location",
+		"rentWithDriver": "This car can only be rented with driver.",
+		"rentBothCondition": "This car can be rented with or without driver.",
+		"rent": "Rent",
+		"discount": "Discount",
+		"insurance": "Insurance",
+		"without": "Without",
+		"with": "With",
+		"relativeLinks": "Relevant Pages",
+		"ok": "Confirm",
+		"cancel": "Cancel",
+		"car": "Car",
+		"pickupLocation": "Pick-up Location",
+		"inCities": "in Cities",
+		"errorEmptyDate": "Pick-up and drop-off dates cannot be the same.",
+		"errorStartDate": "Please select a pick-up date.",
+		"errorEndDate": "Please select a drop-off date.",
+		"search": "Search",
+		"close": "Close",
+		"changeSearch": "Modify Search",
+		"highToLow": "Highest Price",
+		"lowToHigh": "Lowest Price",
+		"advanceSearch": "Advanced Search",
+		"badgeCarLocation": "Car Location",
+		"badgePrice": "Price Range from {value} to {value}",
+		"delivery": "Delivery at Location",
+		"badgeCategory": "Sort",
+		"seaction1": "Rent Options",
+		"deliverAtPlace": "Delivery at your location",
+		"bodyStyle": "Body Style",
+		"inCompany": "in Manufacturers",
+		"inModel": "in Models",
+		"modelLabel": "Model",
+		"show": "View {value} Results",
+		"noResult": "No Results Found for These Filters",
+		"part1": "Sorry, No Results Found for Your Search.",
+		"part2": "If You Have Applied Filters, Please Remove/Refine Them or Search for Another Date.",
+		"part3": "You Can Always Call Sepris Customer Support:",
+		"carCard": {
+			"discount": "% Discount",
+			"special": "Special Offer",
+			"image": "Default Image Placeholder",
+			"details": "Details"
+		},
+		"loadMore": "Show More",
+		"loading": "Loading...",
+		"logInOut": "Sign in / Sign up",
+		"goToAddCar": "Start earning money",
+		"carPrice": "car price",
+		"duration": "Rental Period",
+		"extensionDuration": "Extension Period",
+		"kmLimitInday": "Allowed Mileage per Day",
+		"kmInDay": "kilometers per Day",
+		"notValid": "Please enter valid characters.",
+		"minLength": "The minimum Length is {value}",
+		"maxLength": "The maximum Length is {value}",
+		"alphabet": "Characters",
+		"name": "Name",
+		"lastName": "Last Name",
+		"faqTitle": "FAQ",
+		"companyName": "Company Name",
+		"errorParagraph1": "An Error has Occurred.",
+		"errorParagraph2": "Please contact support and let us know.",
+		"addYourCar": "Add your car",
+		"goToJoinUs": "Monthly income estimates",
+		"samanInsuranceImage": "Saman's Logo",
+		"inputSearchNoResult": "No Result found",
+		"tellMeModal": "Spris currently only covers rentals originating in Tehran.",
+		"tellMeNote": "Sepris Currently Is Not Covering {value}",
+		"carInResult": "{value} car{plural} {value} to {value} in {value}",
+		"price": "Price",
+		"quickAccess": "Quick Access",
+		"suvCars": "SUV Cars",
+		"affordableCars": "Affordable Cars",
+		"goodForTravel": "For Travel",
+		"vans": "Vans",
+		"perDay": "per Day",
+		"paymentNote": "The payment will be made after the host confirms your request.",
+		"noResultFind": "No result for your request",
+		"loginFirst": "You need to sign in to access this page",
+		"videoNotSupported": "Your browser does not support the video tag.",
+		"minimunCarValue": "car value should be more than 20 million tomans",
+		"enterCarValue": "Please enter value of car",
+		"contract": "rent contract",
+		"comformCarDelete": "Do yo want to delete {value} {value}?",
+		"comformOrderDelete": "Do you want to delete this request",
+		"iAgree": "I agree",
+		"fetchCitiesError": "there is some problem in showing cities",
+		"fetchingBrandsError": "there is some problem in showing manufacturers",
+		"fetchingModelError": "there is some problem in showing car models",
+		"fetchingTransactionError": "there is some problem in showing transaction information",
+		"thereIsAnError": "an error occurred",
+		"errorInSubmittingCar": "an error occurred in submitting car information",
+		"errorInSearchResult": "an error occurred in search results",
+		"errorInRegistery": "an error occurred in registering new user",
+		"errorInSendingCode": "an error occurred in sending the confirmation code",
+		"errorInLogin": "there is a problem with login with a cell phone",
+		"errorInGetingRequests": "there is a problem in showing orders history",
+		"dateIsChanged": "pick-up date and drop-off date have been changed",
+		"carNotFound": "we couldn't find the car!!",
+		"seprisDefinition": "Sepris is an Iranian name meaning \"Horse Racing Field\".",
+		"installApp": "Install Sepris' Mobile Application",
+		"continue": "continue",
+		"internetConnectionError": "Network connection error, please make sure your device is connected to the internet.",
+		"errorInUserInfo": "Error receiving account information",
+		"youDeviceIsNotConnected": "Your device is not connected to the Internet.",
+		"checkingConnectionLater": "Automatic check of network connection in",
+		"checkInternetConnection": "Check the device connection to the Internet",
+		"checkConnection": "Check again",
+		"errorInUploadingImage": "An Error Occurred While Uploading the Image",
+		"errorInFetchingTransactionData": "An Error Occurred While Fetching the Transaction Information",
+		"errorInReviews": "An Error Occurred in fetching Reviews",
+		"errorInUserCars": "There is an error in fetching user's car"
+	},
+	"INFORMATION": {
+		"text1": "in partnership with Saman Insurance",
+		"text2": "What We Do?",
+		"text3": "We connect people around the world with their ideal rental car in Iran during their trip. At Sepris.com, you can search for all kinds of rental cars in Iran, compare prices, detailed information on additional facilities, and book the best option that fits your needs. ",
+		"text4": "چرا در سِپریس ماشین اجاره دهیم؟",
+		"text5": "کسب درآمد",
+		"text6": "اطلاعات ماشین‌تان را در سپریس ثبت کنید و منتظر بمانید! با سپریس می‌توانید از اجاره ماشین‌تان درآمد روزانه داشته باشید. فقط کافی‌ست اطلاعات خودرو را درست و دقیق وارد کنید و تصاویر خوب و باکیفیت برای ماشین‌تان انتخاب کنید.",
+		"text7": "با شرایط شما",
+		"text8": "رایگان و با شرایط مورد نظر خود، ماشین‌تان را در سپریس ثبت کنید. اجاره خودرو به تعداد روزهای تعیین شده از سمت شما، در تاریخ‌های مدنظر شما، قیمت انتخابی شما و با بررسی کامل شخص مهمان از طرف شما انجام خواهد شد.",
+		"text9": "Insurance Guarantee",
+		"text10": "با خیال راحت کسب درآمد کنید. بیمه اجاره خودرو بابت خسارت‌های احتمالی به شما اطمینان خاطر خواهد داد.",
+		"text11": "What We Bring?",
+		"text12": "Insurance Guarantee",
+		"text13": "We make sure you drive a car with peace of mind. We provide you with insurance that pays for everything in case of any damage or accident.",
+		"text14": "Diversity in Choice",
+		"text15": "We have provided an exceptional list of options for you to choose among. The rental cars available at Sepris are great in diversity as for prices, car types, options, features, brands, etc.",
+		"text16": "24/7 Customer Service",
+		"text17": "We assure you get the help you may need at the right time. Our customer support team at Sepris is available 24/7 for any possible question, problem, or urgency.",
+		"text18": "Why Rent a Car in Iran?",
+		"text19": "No matter how long our trip is, it always seems short and we want to make the most out of the days. Renting a car in Iran would provide you with perfect opportunities and possibilities you wouldn’t otherwise imagine having. For that matter; a rental car in Iran gives you the freedom to explore the cities on your own and have a tour to places out of the common tourist traps and crowded cities.",
+		"text20": "Moreover, you can rent a car in Tehran to get yourself out of the cost, delay, and hassle of public transport and online taxis. With taxis, you need to spend time requesting, calling, and organizing without having control over your schedule, changing your plan anytime, pulling over anywhere on the road to rest, to see the view, or for the toilet break, driving at the desired speed, etc. Having a rental car in Iran means you can have your own schedule regardless of the public transport and tour buses’ timetables. It may seem public transport is cheaper than car rental, but considering the convenience, the comfort, and the additional time you get, renting a car is incredibly cheap and cost-effective. ",
+		"text21": "Furthermore, having a taxi from the airport to the city usually costs a lot, having a rental from the onset of your trip helps you save money and time right from the start. We recommend renting a car in Tehran especially if you are traveling with family or in a group; that would be extremely cheaper than any other way of transportation.",
+		"text22": "علاوه بر موارد اشاره شده، اجاره ماشین مزایای زیر را در بردارد:",
+		"text23": "Also, not all trips are the same; you might travel for work or leisure, you might travel alone, with colleagues or family, you might be having a long road trip or just a small city tour. By using rental cars, you can pick the one that best fits your needs regarding comfort, space, gas consumption, etc. You can also choose to rent chauffeur-driven cars or self-drives. With chauffeur-driven rental cars, you will also have the benefit of a local guide’s companionship.",
+		"text24": "Renting a car in Iran would bring you an extreme amount of comfort and convenience by having easy access to your stuff, making a great deal of space to stretch out, having control over the air conditioner, car windows, radio or player, etc. You will also have the privacy and peace that public transports would never offer you.",
+		"text25": "حتی اگر دارای ماشین شخصی هستید، می‌توانید با یک انتخاب هوشمندانه ماشین مناسبی برای سفر خود اجاره کنید. به این ترتیب، علاوه بر آنکه از استهلاک خودروی خود جلوگیری می‌کنید، می‌توانید ماشینی را انتخاب کنید که به نسبت ماشین خود دارای مصرف سوخت بهینه‌تر یا به عبارتی کمتر است و یا فضای بیشتری برای سرنشینان و چمدانها دارد.",
+		"text26": "اجاره ماشین درون شهر به شما این امکان را می‌دهد که بدون نگرانی از نبود تاکسی و یا دیر رسیدن به ایستگاه مورد نظر، یک روز عالی کاری را فارغ از صف‌های طولانی اتوبوس و تاکسی و یا انتظار برای قبول درخواست شما از سوی سامانه‌های آنلاین رزرو تاکسی را داشته باشید.",
+		"text27": "فارغ از بودجه‌ای که برای مراسم عروسی خود در نظر گرفته‌اید، شما می‌توانید ماشین ایده‌آل خود را برای یک شب رویارویی اجاره کنید. فراموش نکنید که تنها قرار است هزینه رنت ماشین را پرداخت کنید و نه هزینه خرید آن را.",
+		"text28": "هر یک از موارد فوق می‌تواند دلیل خوبی برای اجاره ماشین باشد، که اجاره ماشین از سامانه سپریس به شما این اطمینان را می‌دهد که ماشین به دلخواه خود را برای مدت معین با رعایت قوانین و مقررات مشخص شده، در اختیار داشته باشید و از آن لذت ببرید.",
+		"text29": "قیمت مناسب",
+		"text30": "در سپریس، با همراهی کارشناسان ما، خودرو را مستقیم از مالک اجاره می‌کنید؛ به همین دلیل قیمت مناسب‌تر و شرایط آسان‌تری را تجربه خواهید کرد."
+	},
+	"LINKS": {
+		"aboutUs": "About Us",
+		"sepris": "How Sepris Works?",
+		"host": "Guide for Hosts",
+		"guest": "Guide for Guests",
+		"evaluation": "Customer validation",
+		"ourPolicies": "Terms of Use",
+		"insurance": "Car Insurance",
+		"insurancePolicies": "Insurance Terms",
+		"rent": "Car Rental",
+		"siteMap": "Sitemap",
+		"faq": "Frequently Asked Questions",
+		"assurance": "Car Rental Requirements",
+		"takingPicture": "Guide for Car Photography",
+		"gps": "Guide for Choosing GPS"
+	},
+	"LOGIN": {
+		"login": "Sign in / Sign up",
+		"cellPhone": "Mobile Phone",
+		"example": "e.g: +12012019999",
+		"send": "Send Code",
+		"title": "Enter Code",
+		"label": "Please enter the 4-digit code have been sent to {value}",
+		"exapmle": "Please enter the code.",
+		"tryagain": "Resend Code",
+		"edit": "Edit Mobile Number",
+		"enter": "Sign in",
+		"error1": "Please Enter Your Mobile Number.",
+		"error2": "Mobile Number Must be 11 Digits.",
+		"error3": "Please Enter a Valid Mobile Number.",
+		"error4": "Please enter the code.",
+		"error5": "Confirmation code must be 4 digits"
+	},
+	"_500_PAGE": {
+		"span": "Sorry for the inconvenience. We are currently trying to fix the problem; please come back later.",
+		"p1": "We will be glad to hear from you. You can call us at:"
+	},
+	"ABOUT_US_PAGE": {
+		"h1": "About Us",
+		"p": "We connect people around the world with their ideal rental car in Iran during their trip. There are hundreds of vehicles with different features, various additional options, and excellent insurance coverages among which you can find your desired rental car. We offer our services in partnership with local car owners in major cities of Iran. Best price and exceptional customer support are our priorities. We make sure every traveler is offered high-quality services to make their trip as easy and pleasant as possible. Concentrating on keeping our rates especially low and affordable, we try to help you plan a trip within your budget. We are more than happy to present unique services such as delivery at a location anywhere around the cities and rental cars with drivers. Sepris means horse racing field suggesting our services provide travelers with the comfort, confidence, and peace of mind to rent and ride all through the country. ",
+		"h3": "Address",
+		"address": "Unit 6, No. 8, Nakhoda Hemmati ALY, Sa’di St., Darya Blvd., Shahrak-e Gharb, Tehran"
+	},
+	"ADD_CAR_PAGE": {
+		"formTitle": "مشخصات خودرو را با مطابق با مدارک آن پر کنید.",
+		"location": "ماشین شما کجاست؟ (شهر)",
+		"districtNote": "سپریس فعلا فقط در تهران فعال است اما می‌توانید ثبت ماشین‌تان را کامل کنید. به محض اینکه در {value} فعال شویم با هماهنگی شما خودروتان را نمایش می‌دهیم.",
+		"inDistrict": "in Districts",
+		"transmissionType": "Transmission Type",
+		"manualTransmission": "manual Transmission",
+		"automaticTransmission": "automatic Transmission",
+		"bodyStyle": "body Style",
+		"cylinder": "cylinders",
+		"capacity": "capacity",
+		"mileage": "mileage",
+		"carLicenseLabel": "پلاک خودرو",
+		"carLicenseNote": "پلاک خودرو جهت جلوگیری از ثبت خودروی تکراری استفاده می‌شود و در نتایج جستجو نمایش داده نمی‌شود.",
+		"facilities": "facilities",
+		"facilitiesShowMore": "Show More",
+		"colorPicker": "Pick Your car's color",
+		"colorPlaceholder": "Color Picker",
+		"picture": "car Images",
+		"fromGallery": "pick from Gallery",
+		"text1": "عکس‌های با کیفیت و در زوایای مختلف احتمال اجاره را بیشتر می‌کند، خودروهای بدون عکس شانس کمی برای گرفتن درخواست اجاره دارند. ",
+		"text2": "لازم است عکس‌ها افقی باشد و تمام خودرو داخل کادر قرار گرفته باشد. ",
+		"text3": "جهت بارگذاری تصاویر خودرو اینجا کلیک کنید یا آن را داخل این کادر بیندازید.",
+		"errorLocation": "لطفا شهر خودرو را انتخاب کنید.",
+		"errorDistrict": "لطفا محله را انتخاب کنید.",
+		"errorBrand": "لطفا سازنده را انتخاب کنید.",
+		"errorModel": "لطفا مدل را انتخاب کنید.",
+		"errorYear": " لطفا سال را انتخاب کنید.",
+		"errorTransmission": "لطفا نوع دنده را انتخاب کنید.",
+		"errorBodyStyle": "لطفا نوع شاسی را انتخاب کنید.",
+		"errorCylinder": "لطفا تعداد سیلندر را انتخاب کنید.",
+		"errorCapacity": "لطفا ظرفیت خودرو را انتخاب کنبد.",
+		"errorMileage": "لطفا کارکرد خودرو را انتخاب کنید.",
+		"errorLicense1": "بخش نخست شماره پلاک باید ۲ رقم باشد",
+		"errorLicense2": "لطفا بخش دوم پلاک را کامل کنید.",
+		"errorLicense3": "بخش سوم شماره پلاک باید ۳ رقم باشد.",
+		"errorLicense4": "کد استانی شماره پلاک باید ۲ رقم باشد.",
+		"errorInSubmit": "خطایی در ثبت اطلاعات خودرو رخ داده است",
+		"errorLicens5": "قبلا خودرویی با این شماره پلاک ثبت شده است. اگر مالک این خودرو هستید با پشتیبانی سپریس تماس بگیرید.",
+		"errorColor": "لطفا رنگ خود را انتخاب کنید.",
+		"optional": "(Optional)",
+		"descriptionPlaceholder": "برای ماشین‌تان توضیحات جذاب بنویسید تا احتمال اجاره آن بیشتر شود. برای ماشین‌تان اسمی انتخاب کرده‌اید؟ با ماشین‌تان به کجاها سفر کرده‌اید؟"
+	},
+	"CAR_PAGE": {
+		"date": "Date of rent",
+		"features": "Technical Specifications",
+		"transmission": "Gearbox type",
+		"cylinder": "Cylinder",
+		"mileage": "Mileage",
+		"capacity": "Capacity",
+		"persons": "Persons",
+		"facilities": "Options",
+		"reviews": "Reviews",
+		"noReview": "There Is No Review"
+	},
+	"CHECKOUT": {
+		"expired": "This request session has expired.",
+		"toast": "Your request has been submitted. We will notify you of the result via SMS when the host responds to your request.",
+		"insurance": "Insurance",
+		"discount": "Discount",
+		"hasDiscount": "I have a discount code.",
+		"discountPlaceholder": "Enter the discount code",
+		"submit": "Apply",
+		"discountCode": "Discount Code",
+		"invoice": "Total",
+		"booking": "Book Now",
+		"track": "Track Your Request",
+		"enterDiscountCode": "please insert your discount code",
+		"notAllowedToRentMyOwnCar": "you can not rent your own car",
+		"insuranceBooking": {
+			"option1": {
+				"label": "Saman Insurance special offer ({value} tomans)",
+				"text": "Covers include: theft, accident, natural disasters and spray paint and chemicals during rental"
+			},
+			"option2": {
+				"label": "I do not need insurance",
+				"text": "You will be responsible for the maintenance of the car during the rental period. By purchasing rental insurance issued by Saman Insurance, you will only be liable for compensation for items that are not covered by the purchased insurance."
+			}
+		}
+	},
+	"COMPLETE_REGISTER": {
+		"title": "Complete Sign-up",
+		"name": "Type your name",
+		"lastname": "Type your last name",
+		"company": "Add company name",
+		"justAgencies": "Only for car rental companies",
+		"dob": "Date of Birth",
+		"year": "e.g: 1980",
+		"policies": "Terms and Conditions",
+		"iAgree": "If you check this box, it means you have read and agreed with Sepris's",
+		"errorName": "Please Enter your name.",
+		"errorLastname": "Please enter your last name",
+		"errorDay": "Pleae enter your day of birth.",
+		"errorMonth": "Please enter your month of birth.",
+		"errorYear": "Please enter your year of birth.",
+		"errorPolicies": "Please accept Terms and Conditions.",
+		"error1": "Day must be more that 1.",
+		"error2": "Day must be less than 31.",
+		"error3": "Day must be less than 31.",
+		"error4": "Year must be 4 digits.",
+		"error5": "Please enter a valid number."
+	},
+	"FOOTER": {
+		"followUs": "We are on social media:",
+		"customerService": "Contact Us:",
+		"signature": "© Sepris. All rights reserved."
+	},
+	"HEADER": {
+		"myRequests": "My Bookings",
+		"guide": "Guide"
+	},
+	"HOME_PAGE": {
+		"banner": "Sepris, Convenient Car Rental in Iran",
+		"note": "Find your ideal rental car and book with confidence."
+	},
+	"JOIN_US_PAGE": {
+		"banner": "سِپریس، برای اوقات فراغت ماشین شما",
+		"note": "به راحتی خودروتان را در سِپریس کوتاه مدت اجاره بدهید و درآمد کسب کنید",
+		"calculatorTitle": "چقدر می‌توانید از ماشینتان کسب درآمد کنید؟",
+		"formTitle": "مشخصات ماشین‌تان را وارد کنید:",
+		"inBrand": "در نام در سازنده‌ها",
+		"brand": "نام خودرو (سازنده)",
+		"model": "نام خودرو (مدل)",
+		"estimate": "تخمین درآمد",
+		"weekly": "درآمد هفتگی",
+		"millionToman": "Million tomans",
+		"monthly": "درآمد ماهانه",
+		"daily": "درآمد روزانه",
+		"tryAgain": "محاسبه مجدد",
+		"error1": "سازنده را انتخاب کنید",
+		"error2": "نام مدل را انتخاب کنید",
+		"error3": "ارزش خودرو را وارد کنید",
+		"error4": "ارزش خودرو کمتر از حد مجاز",
+		"reviews": {
+			"title": "میزبان‌ها درباره سپریس چه می‌گویند؟",
+			"name1": "جواد کسائی",
+			"review1": "وقتی تصمیم به اجاره خودروم گرفتم، از طریق جستجو در گوگل با سپریس آشنا شدم و بعد از دیدن سایت و تماس با پشتیبانی، اعتمادم جلب شد. بعدها هم هربار با پشتیبانی تماس گرفتم در دسترس بودن و هیچ مسئله‌ای رو از قلم نمی‌انداختن. با وجود این‌که ماشینم بیمه بدنه داره، بیمه اجاره خودرو سپریس رو مثل یک قانون در نظر گرفتم و درخواست مهمان‌هایی رو که بیمه خریداری کرده‌اند در اولویت می‌ذارم. تا حالا چند بار ماشینم رو از طریق اتولی اجاره دادم، چون خیالم راحته و قصد دارم باز هم به این کار ادامه بدم.",
+			"name2": "فرزین روحانی",
+			"review2": "زمانی که تصمیم گرفتم ماشینم رو اجاره بدم، چند تا از شرکت‌های سنتی و غیراستارت‌آپی اجاره خودرو در تهران رو بررسی کردم اما در نهایت شرکت شما رو انتخاب کردم، چون به نسبت همه، شرایط بهتری داشتید و این امکان رو فراهم کردین که مهمان بیمه اجاره خودرو خریداری کنه و همین‌طور ما (میزبان)، مهمان را مستقیم ببینیم و رودررو با هم صحبت کنیم و شرایط رو دقیق‌تر بررسی کنیم که بتونیم مهمان‌های بهتر و مسئولیت‌پذیرتری انتخاب کنیم. پشتیبانی هم همیشه در دسترس بوده و در همه مسائل به بهترین شکل به ما مشاوره داده و راهنمایی کرده.",
+			"name3": "رضا جلیلی",
+			"review3": "تا قبل از آشنایی با سپریس، ماشینم رو اجاره نداده بودم . اما در آلمان تجربه اجاره‌کردن خودرو را داشتم. اولش شناخت زیادی از سپریس نداشتم و بار اول اجاره دادن ماشین از نظرم ریسک بود. ولی از دفعات بعد با توجه به نحوه کار و پشتیبانی‌تون اعتمادم جلب شد. چون تا حالا تو هیچ شرکتی ندیدم که مثل شما واقعا “پشتیبان” داشته باشن. هروقت از شبانه‌روز که تماس گرفتم حضور داشتین و برای تصمیم‌گیری همراهم بودین. اوایل شرایطم برای اجاره دادن ماشین سخت‌گیرانه بود، ولی به خاطر همین حمایت و پشتیبانی شما منعطف‌تر شدم و سخت‌گیری‌های اولیه را ندارم."
+		}
+	},
+	"SEPRIS_PAGE": {
+		"text1": "سپریس چگونه کار می‌کند؟",
+		"text2": "خودرو اجاره کنید",
+		"text3": "در سپریس ثبت‌نام کنید",
+		"text4": "ثبت نام در سپریس ساده است، بعد از وارد کردن شماره تماس کد تایید ارسال شده را وارد کنید و اطلاعاتتان را تکمیل کنید.",
+		"text5": "بهترین خودرو را انتخاب کنید",
+		"text6": "در بخش جستجوی وب‌سایت، شهر و تاریخ موردنظرتان برای اجاره خودرو را تعیین کنید و از بین گزینه‌های پیشنهادی ماشین دلخواهتان را انتخاب کنید.",
+		"text7": "بیمه بخرید و ماشین اجاره‌ای را رزرو کنید",
+		"text8": "در زمان ارسال درخواست رزرو می‌توانید برای خودرو پوشش بیمه خریداری کنید. خرید بیمه اختیاری است و در صورت بروز حادثه، بخشی از هزینه‌های خودرو را تامین خواهد کرد. در صورتی که پوشش بیمه انتخاب نکنید، تمام خسارت‌های احتمالی به عهده شما خواهد بود. بعد از انتخاب بیمه باید، درخواست رزرو دهید. صاحب خودرو بعد از بررسی، درخواست شما را قبول یا رد خواهد کرد.",
+		"text9": "مبلغ اجاره را پرداخت کنید",
+		"text10": "بعد از قبول درخواست رزرو از سمت میزبان، سپریس لینک پرداخت را برای شما ارسال خواهد کرد، از طریق آن و یا از طریق لینک موجود در صفحه سفارش‌ها مبلغ اجاره را پرداخت کنید.",
+		"text11": "خودرو اجاره دهید",
+		"text12": "در سپریس ثبت‌نام کنید",
+		"text13": "ثبت نام در سپریس ساده است، بعد از وارد کردن شماره تماس کد تایید ارسال شده را وارد کنید و اطلاعاتتان را تکمیل کنید.",
+		"text14": "در سپریس ماشین ثبت کنید",
+		"text15": "ابتدا با وارد کردن اطلاعات و بارگذاری تصاویر، ماشین یا ماشین‌های خود را در سپریس ثبت کنید. این کار در کمتر از چند دقیقه انجام خواهد شد. همچنین اطلاعات دقیق و عکس‌های خوب به اجاره سریع ماشین شما کمک خواهد کرد.",
+		"text16": "درخواست‌ها را بررسی کنید",
+		"text17": "درخواست‌های رزرو اجاره خودروی شما برایتان ارسال خواهد شد. شما می‌توانید بعد از بررسی فرم درخواست، آن را قبول یا رد کنید.می توانید سوالات یا ابهامات خود را در تماس با مهمان مطرح کنید.",
+		"text18": "هماهنگی تحویل",
+		"text19": "منتظر تماس میزبان باشید",
+		"text20": "بعد از واریز وجه منتظر تماس میزبان باشید تا هماهنگی‌های لازم مثل محل تحویل خودرو را با هم هماهنگ کنید و سوالات خود را درباره شرایط فنی، تمیزی و ... بپرسید.",
+		"text21": "با مهمان تماس بگیرید",
+		"text22": "بعد از قبول درخواست و انجام واریز وجه توسط مهمان، با او تماس بگیرید تا محل و زمان تحویل خودرو را هماهنگ کنید.",
+		"text23": "تحویل خودرو",
+		"text24": "ماشین انتخابی‌تان را تحویل بگیرید",
+		"text25": "با صاحب ماشین در محل توافق شده دیدار کنید. ابتدا خودرو را به‌خوبی بررسی کنید و بعد از ارائه مدارک و امضای قرارداد، ماشین را تحویل بگیرید.",
+		"text26": "ماشین را تحویل دهید",
+		"text27": "با مهمان ماشین در محل توافق شده دیدار کنید. باک بنزین، تمیزی خودرو و میزان کارکرد را بررسی کرده، قرارداد را امضا کنید و ماشین را تحویل دهید.",
+		"text28": "از ماشین خود کسب درآمد کنید",
+		"text29": "در تمام این مدت می‌توانید استراحت کنید. خودرو شما برایتان درآمد خواهد داشت.",
+		"text30": "بازگشت خودرو",
+		"text31": "خودرو را به صاحبش بازگردانید",
+		"text32": "در زمان پایان قرارداد، خودرو را با شرایطی که تحویل گرفته‌اید (حجم بنزین، تمیزی و ...) در محل تعیین شده به صاحبش بازگردانید و به میزبان امتیاز دهید.",
+		"text33": "ماشین را تحویل بگیرید",
+		"text34": "در زمان پایان قرارداد و در محل تعیین شده با مهمان ملاقات کنید. تمامی موارد مورد نیاز را در ماشین بررسی کنید، ماشین را تحویل بگیرید، در صفحه سفارش‌ها تحویل خودرو را تایید کنید و به مهمان امتیاز دهید."
+	},
+	"PAYMENT_PAGE": {
+		"cancel": "Cancel payment",
+		"successfullPurchase": "Payment was successful",
+		"successfullExtension": "Extension was successfull",
+		"issueTracking": "Issue Tracking:",
+		"carOptions": "Booking details",
+		"deliveryDate": "Pick up Date",
+		"ExtensionDate": "Extension from",
+		"returnDate": "Drop off date",
+		"carInsurance": "Car rental insurance",
+		"carDelivery": "Car delivery",
+		"returningCar": "Car return",
+		"text1": "The rental period starts from the time of delivery of the car, so it is necessary to return the car at the same time on the day of return. In case of delay, for this car delay cost is {value} and will be calculated per hour.",
+		"text2": "The distance limit for this car is {value} km. An additional cost is {value} and will be calculated for each additional kilometer.",
+		"text3": "A sample contract has been prepared for the parties by Sepris. The host prepares this contract in two copies on the day of delivery of the car and it is signed by both parties.",
+		"image": "Car image",
+		"invoice": "Amount paid: ",
+		"notFound": "Payment information not found."
+	},
+	"RENT_PAGE": {
+		"banner": "Sepris, Convenient Car Rental in Iran",
+		"note": "Rent the car you like.",
+		"question1": "What’s Different about Us",
+		"answer1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits.",
+		"question2": "شرایط اجاره خودرو از سپریس چیست؟",
+		"answer2": "چون در سِپریس خودرو را از مالک اجاره می‌کنید، قیمت‌ها اغلب پایین‌تر از سایز مراکز است. همین طور به دلیل همکاری نزدیک با بیمه، میزبان‌ها مدارک و ودیعه‌های کمتری از شما دریافت می‌کنند."
+	},
+	"REQUEST_PAGE": {
+		"isSuccessful": "با موفقیت انجام شد",
+		"rateCar": "امتیاز شما به خودرو",
+		"insertYourRate": "امتیاز خود را وارد کنید",
+		"note": "Description",
+		"shareYourReview": "(با به اشتراک‌گذاری تجربه‌تان، به کاربران دیگر در انتخاب کمک می‌کنید.)",
+		"rateHost": "امتیاز شما به میزبان",
+		"rateGuest": "امتیاز شما به مهمان",
+		"pending": "Pending confirmation",
+		"extended": "Extended",
+		"approved": "Pending payment",
+		"noOrder": "You had had no bookings recently.",
+		"activeOrders": "Recent Bookings",
+		"deactivateOrders": "Previous Bookings",
+		"returned": "I got it back",
+		"reject": "Decline",
+		"rejected": "Declined",
+		"expired": "Expired",
+		"cancelled": "Cancelled",
+		"pay": "Pay",
+		"paid": "Pending pick-up",
+		"deliver": "I picked it up",
+		"delivered": "Delivered",
+		"review": "Submit Review",
+		"withInsurance": "Insurance included",
+		"withoutInsurance": "No insurance included",
+		"invoice": "invoice",
+		"downloadContact": "Download the Contract",
+		"callGuest": "Contact the Guest",
+		"error1": "You have already submitted a review for this car.",
+		"error2": "خطا در انجام عملیات بر روی سفارش اجاره"
+	},
+	"CAR_SETTING": {
+		"title": "شرایط شما برای اجاره",
+		"rentPrice": "نرخ اجاره",
+		"daily": "(روزانه)",
+		"pricePlaceholder": "مثال: 50,000",
+		"recommendation": "قیمت متوسط پیشنهادی:",
+		"limitPlaceholder": "مثال: 1000",
+		"extraHour": "هزینه هر ساعت اضافه",
+		"remindeMe": "زمان اطلاع از اجاره",
+		"before": "روز قبل",
+		"minimumDuration": "حداقل مدت اجاره",
+		"delivetyType": "نحوه تحویل",
+		"delivery": "I will deliver the car at guest's location",
+		"rentCondition": "با راننده اجاره می‌دهید یا بدون راننده؟",
+		"note": "اکثر درخواست‌ها برای اجاره ماشین بدون راننده است.",
+		"withDriver": "فقط با راننده",
+		"withoutDriver": "فقط بدون راننده",
+		"bothCondition": "با راننده و بدون راننده",
+		"discounts": "تخفیف‌ها",
+		"discountNote": "می‌توانید برای اجاره‌های با مدت بیشتر تخفیف تعیین کنید",
+		"percentage": "percent discount",
+		"addingDiscount": "افزودن تخفیف",
+		"more": "for rents more than {value} days",
+		"conditions": "شرایط و ضمانت‌های اجاره",
+		"cancellationPolicies": "شرایط و مدارک مورد نیاز برای اجاره خودروتان را بنویسید یا از موارد بالا انتخاب کنید.",
+		"requirements": "چه مدارک و ضمانت‌هایی بگیریم؟",
+		"assurance": {
+			"text1": "در سایت سپریس هر میزبان می‌تواند شرایط متفاوتی برای اجاره ماشینش بگذارد که بسته به نوع ماشین می‌تواند متفاوت باشد، به صورت کلی می‌توانید مدارک و ضمانت‌های زیر را برای اجاره خودروتان از مشتری بگیرید، اما این نکته را در نظر داشته باشید که مدارک و ضمانت‌های زیاد می‌تواند میزان درخواست‌های اجاره خودرو شما را کاهش بدهد.",
+			"text2": "مدارک شناسایی معتبر مانند کارت ملی یا شناسنامه و در صورتی که اتباع خارجی یا گردشگر هستند پاسپورت.",
+			"text3": "گواهینامه معتبر که حداقل ۶ ماه دارای اعتبار باشد.",
+			"text4": "بیمه‌نامه اجاره خودرو (در زمان درخواست اجاره خودرو می‌تواند تهیه کند. توصیه می‌شود مشتریانی که این بیمه‌نامه را خریداری می‌کنند در اولویت قبول درخواست قرار دهید.)",
+			"text5": "در نظر گرفتن شرایط سنی (پیشنهاد می‌شود که حداقل سن ۲۵ سال را در نظر بگیرید.)",
+			"text6": " چک یا سفته به میزان مورد نیاز(معمولا به مبلغ ماشین گرفته می‌شود)",
+			"text7": "ودیعه نقدی: با توجه به نوع ماشین می‌توانید مقداری پول نقد از مشتری بابت خسارت‌های احتمالی بگیرید."
+		},
+		"moreThan": "more than",
+		"toast": "خودروی {value} با موفقیت ثبت شد. ظرف روزهای آتی برای هماهنگی‌های بیشتر با شما تماس خواهیم گرفت.",
+		"error1": "شما مجاز به انجام این فعالیت نیستید",
+		"error2": "لطفا نرخ اجاره را وارد کنید",
+		"error3": "شروع قیمت روزانه از 50.000 تومان است",
+		"error4": "لطفا حداقل زمان اطلاع از اجاره را انتخاب کنید",
+		"error5": "لطفا  حداقل مدت اجاره را انتخاب کنید",
+		"error6": "لطفا محدودیت مسافت در روز را وارد کنید",
+		"error7": " لطفا هزینه هر کیلومتر اضافه را وارد کنید",
+		"error8": "حداقل هزینه هر کیلومتر اضافه از 100 تومان است",
+		"error9": "لطفا شرایط تخفیف را وارد کنید",
+		"error10": "لطفا شرایط و ضمانت‌های اجاره را وارد کنید",
+		"error12": " لطفا هزینه هر ساعت اضافه را وارد کنید",
+		"error13": "حداقل هزینه هر ساعت اضافه 100 تومان است",
+		"error14": "لطفا  قیمت روزانه را وارد کنید",
+		"error15": "حداقل قیمت 50 هزار تومان",
+		"error16": "لطفا هزینه هر کیلومتر اضافه را وارد کنید",
+		"error17": "لطفا هزینه هر ساعت اضافه را وارد کنید",
+		"error18": "شروع قیمت روزانه از 100 تومان است",
+		"error20": "لطفا تعداد روز را مشخص کنید",
+		"error21": "لطفا درصد تخفیف را مشخص کنید",
+		"error22": "لطفا درصد تخفیف را وارد کنید"
+	},
+	"USER": {
+		"edit": "Edit profile",
+		"exit": "Sign out",
+		"changeAvatar": "Change Avatar",
+		"personalLinkLabel": "Add link address",
+		"linkPlaceholder": "Link Address",
+		"all": "All Cars",
+		"hostReviews": "Guests Reviews",
+		"guestReviews": "Hosts Reviews",
+		"inactive": "Inactive Cars",
+		"active": "Active Cars",
+		"activeCar": "{value} will not be displayed in search results.",
+		"inactiveCar": "{value} will be displayed in search results.",
+		"imageAlt": "Car Thumbnail",
+		"details": "View Details",
+		"text1": "To activate the car You should set up ",
+		"text2": "Rental Terms",
+		"text3": ".",
+		"waiting": "Pending confirmation by Sepris",
+		"carSetting": "Modify Date and Price",
+		"activatingCar": "Activate",
+		"inactivatingCar": "Deactivate",
+		"errorName": "Please enter a valid name/last name.",
+		"errorUserName": "Please enter a valid username.",
+		"errorCompany": "Please enter a valid company name.",
+		"errorImageFormat": "Please upload the image in JPEG format.",
+		"error1": "خطا در دریافت اطلاعات کاربری."
+	},
+	"TOASTS": {
+		"success": "Have been done successfully",
+		"approved": "Confirmation of the request has been registered. If the guest pays the rent, the request will be finalized and you will be notified via SMS.",
+		"rejected": "The rejection of the rental application has been registered and the guest will be notified.",
+		"deleted": "your request is canceled",
+		"delivered": "We wish you a good trip. Please be careful in car maintenance. Contact the host or Sepris customer service in case of any problems.",
+		"returned": "We hope you have a good experience renting your car. Share your review about the guest with other users."
+	},
+	"PAGE_HEADER": {
+		"handle": "@seprisrent",
+		"site": "@seprisrent",
+		"cardType": "summary_large_image",
+		"assurance": {
+			"title": "Documents and Guarantees for Car Rental | Sepris",
+			"description": "These are the documents you need to submit for renting a car in Iran. Find your ideal rental car and book with confidence."
+		},
+		"carInsurance": {
+			"title": "Rental Car Insurance | Sepris",
+			"description": "Rent a car in Iran with insurance coverage on Sepris. Find your ideal rental car and book with confidence."
+		},
+		"evaluation": {
+			"title": "evaluation سنجی مشتریان | سپریس",
+			"description": "سپریس با سیستم اعتبارسنجی مورد تایید بانک مرکزی، مشتریان (مهمان) را از نظر سوابق و رفتار مالی در هشت سال گذشته را بررسی می‌کند "
+		},
+		"gps": {
+			"title": "راهنمای انتخاب ردیاب | سپریس",
+			"description": "راهنمای انتخاب ردیاب با توجه به نیاز‌های شما برای اجاره خودروتان"
+		},
+		"guideForRent": {
+			"title": "Guest Guide | Sepris",
+			"description": "A complete guide to guests"
+		},
+		"guidePicture": {
+			"title": "راهنمای عکس گرفتن | سپریس",
+			"description": "راهنمای عکاسی برای ثبت خودرو در سپریس"
+		},
+		"guideRenter": {
+			"title": "راهنمای میزبان | سپریس",
+			"description": "راهنمای کامل سپریس برای میزبان"
+		},
+		"insurancePolicies": {
+			"title": "بیمه | سپریس",
+			"description": "پوشش بیمه برای اجاره خودرو در سپریس نیز یکی از سرمایه‌گذاری‌های ما برای جبران خطرات و خسارات احتمالی است که متوجه مهمان ماشین خواهند بود."
+		},
+		"ourPolicies": {
+			"title": "قوانین و مقررات سپریس | سپریس",
+			"description": "برای اجاره خودرو در سپریس چه قوانینی را باید رعایت کنیم."
+		},
+		"_404": {
+			"title": "Page Not Found | Sepris",
+			"description": "Sorry; the page you are looking for, does not exist."
+		},
+		"_500": {
+			"title": "خطایی رخ داده است | سپریس"
+		},
+		"aboutUs": {
+			"title": "About Sepris",
+			"description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
+		},
+		"addCar": {
+			"title": "افزودن خودرو | سپریس",
+			"editTitle": "ویرایش خودرو | سپریس",
+			"description": "افزودن خودرو | سپریس"
+		},
+		"carSetting": {
+			"title": "تعیین شرایط اجاره | سپریس",
+			"description": "تعیین شرایط اجاره | سپریس"
+		},
+		"carPage": {
+			"title": " | Sepris",
+			"description": "Compare cars by their specifications and prices and book you ideal rental car in Iran right now."
+		},
+		"checkout": {
+			"title": "Booking | Sepris",
+			"description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
+		},
+		"completeRegister": {
+			"title": "Complete Sign-up | Sepris"
+		},
+		"faq": {
+			"title": "FAQ | Sepris",
+			"description": "We answer all your questions in the Question and Answer section"
+		},
+		"helpCenter": {
+			"title": "صفحه راهنما",
+			"description": "دسترسی سریع به تمام آموزش های سایت"
+		},
+		"home": {
+			"itle": "Sepris| Car Rental in Iran",
+			"description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
+		},
+		"joinUs": {
+			"title": "کسب درآمد از خودرو | سِپریس",
+			"description": "سپریس سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با سپریس هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+		},
+		"sepris": {
+			"title": "سپریس چگونه کار می‌کند؟ | سپریس",
+			"description": "سپریس چگونه کار می‌کند؟"
+		},
+		"payment": {
+			"failTitle": "Payment failed",
+			"successTitle": "Payment Successful"
+		},
+		"rent": {
+			"title": "Sepris | Easy Car Rental - Choose from landlords",
+			"description": "Sepris is an online platform for car rental in Iran, connecting local car owners to renters. Find your ideal rental car and book with confidence."
+		},
+		"request": {
+			"title": "My Bookings | Sepris"
+		},
+		"search": {
+			"title": "جستجو | سپریس",
+			"description": "سپریس سامانه‌ای است برای اجاره خودرو به‌صورت آنلاین. با سپریس هم می‌توانید ماشین اجاره کنید و هم از اجاره ماشین خود کسب درآمد کنید."
+		},
+		"siteMap": {
+			"title": "سپریس | نقشه سایت"
+		},
+		"user": {
+			"title": "Car rental from {value}  | Sepris",
+			"description": "Profile"
+		}
+	},
+	"FAQ_PAGE": {
+		"items": [
+			{
+				"id": 4,
+				"name": {
+					"fa": "Gneral",
+					"en": null
+				},
+				"slug": {
+					"fa": "Gneral",
+					"en": null
+				},
+				"question_set": [
+					{
+						"title": "<p>What does Sepris do? </p>",
+						"content": "<p>Sepris, an online car rental platform, connecting the hosts (car owners) with the guests (car renters.) With Sepris, you can pick and hire out your ideal rental car among a list of available vehicles on any date you want. </p>"
+					},
+					{
+						"title": "<p>In which cities do you offer rental cars? Where can I find them?</p>",
+						"content": "<p>At the moment, you can only rent cars in Tehran and Karaj. In the future, other cities will be added to the system. You can see the list of cities in the search box on the homepage.</p>"
+					},
+					{
+						"title": "<p>How is the car rental fee calculated on the Sepris website?</p>",
+						"content": "<p>The cost of renting a car is presently specified by the host (car owner). The hosts can also see our recommended prices on the calculator page of the website. </p>"
+					},
+					{
+						"title": "<p>Is the entire process for renting cars online? </p>",
+						"content": "<p>Yes, the whole process is online, taking only a few minutes of your time. </p>"
+					},
+					{
+						"title": "<p>There’s a problem with my user account. Should I sign up for a new one?</p>",
+						"content": "<p>Call Sepris customer support and raise the problem. Our experts will provide you with the most appropriate solution. </p>"
+					},
+					{
+						"title": "<p>Can Sepris suspend my user account?</p>",
+						"content": "<p>If you do not comply with the terms and conditions or violate them, your user account may be suspended. </p>"
+					}
+				]
+			},
+			{
+				"id": 1,
+				"name": {
+					"fa": "Renters FAQ",
+					"en": "Renter"
+				},
+				"slug": {
+					"fa": "Renters FAQ",
+					"en": "renter"
+				},
+				"question_set": [
+					{
+						"title": "<p>How can I sign up on Sepris?</p>",
+						"content": "<p>First, enter your phone number in the sign-up section, then sign up on Sepris by entering the verification code sent to you.</p>"
+					},
+					{
+						"title": "<p>Is it inevitably necessary to sign up for using Sepris?</p>",
+						"content": "<p>If you merely want to browse and see the recommended cars, there is no need to sign up, but for submitting rental requests, you need to sign up first. </p>"
+					},
+					{
+						"title": "<p>How do I browse the cars and see the rental fees? </p>",
+						"content": "<p> Enter the name of the pick-up city as well as pick-up and drop-off dates for renting a car in the search box on the home page. After clicking on the search button, you can see the details for all the available cars. </p>"
+					},
+					{
+						"title": "<p>How can I book a car on Sepris?</p>",
+						"content": "<p>After selecting your pick-up city and dates, you will see the search result in which you can click on any car you want. You will then be directed to the car page where you can see all the details. After selecting your ideal rental car, click on the “Continue” button on the car page to re-check the rental details. Go through the terms and if you agree with them, click on “Submit”. Your request will be sent to the host and you will be notified of the result via SMS.</p>"
+					},
+					{
+						"title": "<p>Are reservations made instantly or do they take long?</p>",
+						"content": "<p>The host will look into your info after receiving your request; it may take either several minutes or hours depending on the time you submit the request. During business hours, this process takes two hours at most. Keep in mind that a complete profile helps the hosts in their decision and accelerates the process, therefore, increases the chance for your request to be accepted.  </p>"
+					},
+					{
+						"title": "<p>Can I increase the chance for my request being accepted?</p>",
+						"content": "<p>The more complete a personal profile you have, and the more cars you have rented from Sepris, the better chance you got for getting confirmed. Besides, after each rental, the host rates you and writes a review about you and the experience they had. The higher your rating, the sooner will hosts accept your request in the future. </p>"
+					},
+					{
+						"title": "<p>Is it possible for the host to decline my request?</p>",
+						"content": "<p>Yes, a host may turn down your request in case they find your conditions and details not convincing enough for a rental. </p>"
+					},
+					{
+						"title": "<p>What happens when my request is declined?</p>",
+						"content": "<p>Seek counsel from Sepris customer support and try again for requesting and booking a car. </p>"
+					},
+					{
+						"title": "<p>Can I insure the car I rent? What kind of insurance does Sepris offer? </p>",
+						"content": "<p>Yes; you can insure the car. In collaboration with Saman Insurance, Sepris has designed a special package for you, the details of which you can see here. This insurance includes coverages for theft, crash and damages, fire, natural disasters, shattered windshields, paint, and chemical substances. </p>"
+					},
+					{
+						"title": "<p>Is the sum displayed on the website the total cost or the daily rent?</p>",
+						"content": "<p>The amount displayed on the search result page and the car page is the daily rent. You can see the total cost on the final bill.  </p>"
+					},
+					{
+						"title": "<p>How soon before the time I would be needing the car, can I rent it? </p>",
+						"content": "<p>The reservation time for each car depends on its type and the conditions specified by the host. You need to search for the dates you will be needing the car and see the recommended cars. </p>"
+					},
+					{
+						"title": "<p>What should I do after submitting the rental request?</p>",
+						"content": "<p>If the host accepts your request, a payment link will be sent to you via SMS for paying the final fee. The host will call you to make arrangements for the time and place of pick-up after the payment had been done. </p>"
+					},
+					{
+						"title": "<p>Can I rent a car for just one day?</p>",
+						"content": "<p>Yes, many hosts rent out their cars for just one day, and you can find a list of them by searching your dates on the website. </p>"
+					},
+					{
+						"title": "<p>What documents and guarantees do I need to present for renting a car?</p>",
+						"content": "<p>Documents and guarantees vary with each vehicle. You can find this information under the rental terms specified on each car page. </p>"
+					},
+					{
+						"title": "<p>To whom should I submit the documents and guarantees?</p>",
+						"content": "<p>You should submit documents and guarantees to the host when signing the contract at pick-up and take them back when returning the car to the host. You should also pay one million tomans to Sepris for potential fines. A fines report will be taken from the traffic police in 15 business days and in case there is no fine, the sum will be returned to your account. </p>"
+					},
+					{
+						"title": "<p>Do you provide counsel on vehicle selection?</p>",
+						"content": "<p>Yes, you can call Sepris customer support to seek counsel and guidance. </p>"
+					},
+					{
+						"title": "<p>Does the number of days impact the total sum of rent?</p>",
+						"content": "<p>Yes, typically the host will assign certain discounts considering the number of days the car is rented; you can find them out when browsing. </p>"
+					},
+					{
+						"title": "<p>What items should we check during the call with the host?</p>",
+						"content": "<p>It is advisable to discuss some issues such as the required documents mentioned on the car page, contract clauses, the car’s technical condition and safety, car options and features, or the due process for potential problems such as a crash.</p>"
+					},
+					{
+						"title": "<p>How do I pick up the car?</p>",
+						"content": "<p>In the reservation stage, a detailed account of pick-up terms and conditions is specified. If the host offers delivery, the vehicle will be delivered to you at your location. Otherwise, you must go to the location specified by the host to pick up the car. These matters will be settled during the call with the host. </p>"
+					},
+					{
+						"title": "<p>Can we use the rental car for trips?</p>",
+						"content": "<p>Yes, there are no general restrictions for that; however, you must inform the host and Sepris customer support about your destinations upon submitting the request, in order to be mentioned in the contract. </p>"
+					},
+					{
+						"title": "<p>What documents should I submit and to whom?</p>",
+						"content": "<p>The full list of required documents and guarantees you should submit are specified on the car page; however, having a driver’s license and an identification card (passport) is compulsory.</p>"
+					},
+					{
+						"title": "<p>What items should I look into when collecting the car?</p>",
+						"content": "<p>Car specifications (model, color, condition, plate number, etc.) must be completely consistent with the details mentioned on the website. In case of any inconsistencies, call Sepris customer support. </p>"
+					},
+					{
+						"title": "<p>Do we sign a contract when renting and picking up a car? Will I receive a copy?</p>",
+						"content": "<p>Yes, two copies of the contract will be signed by you and the host at the pick-up, one of which will be handed to you. </p>"
+					},
+					{
+						"title": "<p>Is it possible to rent a car for a month or a year?</p>",
+						"content": "<p>Yes, some cars are available to be rented long-term. You can search for your date, find the available cars, and submit your request. The host will examine your request and the result will be sent to you via SMS. These long-term reservations include discounts as well. </p>"
+					},
+					{
+						"title": "<p>What are the terms for cancellation?</p>",
+						"content": "<p>Cancellation terms vary with each car and it is the host (car owner) that specifies them. You must read them carefully on the car page under “Rental and Cancellation Terms” when submitting a request. </p>"
+					},
+					{
+						"title": "<p>How much should I pay as a cancellation fee?</p>",
+						"content": "<p>The cancellation fee differs depending on the type of car and the time of cancellation; you can find this information under “Rental and Cancellation Terms” on the car page. </p>"
+					},
+					{
+						"title": "<p>When will the money return to my account after cancellation?</p>",
+						"content": "<p>We do our best to return the sum as soon as possible, though at times the payback might take up to two business days. </p>"
+					},
+					{
+						"title": "<p>What are the terms for extending a rental and when should I inform?</p>",
+						"content": "<p>You should call the host first to ask for an extension; if they agree, you must submit your request on Sepris website and after the host’s confirmation, you can make the payment and use the car for a longer period. If the host does not accept your request, you should return the car to the host at the previously scheduled time.</p>"
+					},
+					{
+						"title": "<p>Can I change the date after booking the car? Under what circumstances is that possible?</p>",
+						"content": "<p>Call Sepris’s customer support. We will examine your request and act upon it.</p>"
+					},
+					{
+						"title": "<p>How many miles can a car go while rented?</p>",
+						"content": "<p>The allowed mileage is specified by the host, mentioned under “Mileage and Excess Fees” on the car page.</p>"
+					},
+					{
+						"title": "<p>Who is responsible to pay for the repairs in case of a car breakdown during the rental period?</p>",
+						"content": "<p>The host is responsible for the cost of fundamental repairs but the cost of damages incurred by misusing the car must be paid by the renter; in case of a conflict upon these matters, counsel will be sought from an expert. </p>"
+					},
+					{
+						"title": "<p>The host (car owner) called me and said that they cannot rent out the car and I should cancel my request. What should I do?</p>",
+						"content": "<p>Under these circumstances, the host themselves should cancel the reservation. Note that if you do the cancellation, you must pay the cancellation fee. You should certainly inform Sepris customer support about this issue. </p>"
+					},
+					{
+						"title": "<p>The host told me that they will not give the car to me and that I should definitely cancel. It’s been hours and no cancellation has been made. I want to book another car and I need the money. What should I do?</p>",
+						"content": "<p>Call Sepris customer support so that our team makes the cancellation for you. </p>"
+					},
+					{
+						"title": "<p>I have not damaged the vehicle but the owner claims that I’m at fault for the damages sustained. </p>",
+						"content": "<p>To avoid these kinds of problems, you need to take photos of all exterior defects of the car upon pick-up, specify them on the checklist provided by Sepris, and sign. If you have purchased insurance for the rental, photos included in the insurance will be also valid documents to ascertain whether any damages have been incurred by you or not.  </p>"
+					},
+					{
+						"title": "<p>Am I liable to pay for the traffic tickets when driving the rental car?</p>",
+						"content": "<p>You are in charge of paying the traffic fines for the period you have rented the car. The amount will be specified after 15 business days and will be taken out of your account; in case you have not been fined at all, the total sum will be returned to your account. </p>"
+					},
+					{
+						"title": "<p>When will the deposit be given back to me?</p>",
+						"content": "<p>The deposit will be paid back to you when you return the car; only one million tomans of it will remain in Sepris Company up to the next 15 days to cover the potential traffic fines. </p>"
+					},
+					{
+						"title": "<p>Are all the cars equipped with GPS?</p>",
+						"content": "<p>Yes, to prevent potential problems, each vehicle is equipped with a GPS that a host may check on special occasions and in case of problems. </p>"
+					},
+					{
+						"title": "<p>How should I return the car?</p>",
+						"content": "<p>Return the car in the same condition (same petrol volume, cleanliness, etc.) you collected it on the specified date, hour, and the place you had agreed upon with the host. </p>"
+					},
+					{
+						"title": "<p>Can we rent a chauffeur-driven car?</p>",
+						"content": "<p>Yes. You can see a list of chauffeur-driven cars on the website, specified with a tag. You can also filter the results accordingly on the search result page.</p>"
+					}
+				]
+			}
+		]
+	},
+	"GUIDE_FOR_GUESTS_PAGE": {
+		"h1": "Sepris; Your Ideal Car Rental in Iran",
+		"h2_1": "What We Do",
+		"p1_1": "We connect people around the world with their ideal rental car in Iran during their trip. At Sepris.com, you can search for all kinds of rental cars in Iran, compare prices, detailed information on additional facilities, and book the best option that fits your needs. ",
+		"h2_2": "What We Bring",
+		"h3_1": "Insurance Guarantee",
+		"p1_2": "We make sure you drive a car with peace of mind. We provide you with insurance that pays for everything in case of any damage or accident.",
+		"h3_2": "Diversity of Choice",
+		"p1_3": "We have provided an exceptional list of options for you to choose among. The rental cars available at Sepris are great in diversity; best prices, various body styles, options, features, and brands.",
+		"h3_3": " 24/7 Customer Service",
+		"p1_4": "We assure you get the help you may need at the right time. Our customer service team at Sepris is available 24/7 for any possible question, problem, or urgency.",
+		"h2_3": "Why Rent a Car in Iran?",
+		"p2_1": "No matter how long our trip is, it always seems short and we want to make the most out of the days. Renting a car in Iran would provide you with perfect opportunities and possibilities you wouldn’t otherwise imagine having. For that matter; a rental car in Iran gives you the freedom to explore the cities on your own and have a tour to places out of the common tourist traps and crowded cities. Moreover, you can rent a car in Tehran to get yourself out of the cost, delay, and hassle of public transport and online taxis. With taxis, you need to spend time requesting, calling, and organizing without having control over your schedule, changing your plan anytime, pulling over anywhere on the road to rest, to see the view, or for the toilet break, driving at the desired speed, etc. Having a rental car in Iran means you can have your own schedule regardless of the public transport and tour buses’ timetables. It may seem public transport is cheaper than car rental, but considering the convenience, the comfort, and the additional time you get, renting a car is incredibly cheap and cost-effective. Furthermore, having a taxi from the airport to the city usually costs a lot, having a rental from the onset of your trip helps you save money and time right from the start. We recommend renting a car in Tehran especially if you are traveling with family or in a group; that would be extremely cheaper than any other way of transportation.",
+		"p2_2": " Also, not all trips are the same; you might travel for work or leisure, you might travel alone, with colleagues or family, you might be having a long road trip or just a small city tour. By using rental cars, you can pick the one that best fits your needs regarding comfort, space, gas consumption, etc. You can also choose to rent chauffeur-driven cars or self-drives. With chauffeur-driven rental cars, you will also have the benefit of a local guide’s companionship. Renting a car in Iran would bring you an extreme amount of comfort and convenience by having easy access to your stuff, making a great deal of space to stretch out, having control over the air conditioner, car windows, radio or player, etc. You will also have the privacy and peace that public transports would never offer you.",
+		"h2_4": "What’s Different about Us",
+		"p3_1": "As a car rental service in Iran, Sepris has made it possible for you to rent the car directly from local car owners. By paying an insignificant amount of money, you can benefit from full car insurance (in partnership with Saman Insurance) for possible damages. Using our service, you can compare cars, prices, and conditions, choose the one with the best price and conditions for you, and rent it without having to submit numerous documents and unreasonable deposits."
+	}
 }
