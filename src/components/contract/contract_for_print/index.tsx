@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import dynamic from "next/dynamic";
 import { GET_ORDER_REQUEST } from "../../../API";
 const Generate_pdf = dynamic(() => import("../generate_pdf"), { ssr: false });
-import language from "../../../../public/languages/fa/contract.json";
+// import language from "../../../../public/languages/fa/contract.json";
 import jsCookie from "js-cookie";
 import { useRouter } from "next/router";
 import context_user from "../../../context/User_info";
@@ -29,7 +29,7 @@ const Contract = ({ unique_id }: IContract) => {
       event: "page_view",
       pageURL: window.location.href,
       pagePath: "/evaluation",
-      pageTitle: language.next_seo.title,
+      // pageTitle: language.next_seo.title,
     });
   }, []);
 
