@@ -111,7 +111,7 @@ const TextInput = (props: ItextInput) => {
       if (/[^0-9]/g.test(value.toString())) {
         setLocalError({
           status: true,
-          message: language?.not_valid,
+          message: 'ورودی نامعتبر',
         });
       } else if (data.LengthControl) {
         if (data.LengthControl.minLen) {

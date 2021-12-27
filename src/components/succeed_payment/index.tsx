@@ -13,14 +13,16 @@ import ErrorHelper from '../../../utils/error_helper';
 import net_CTX from '../../context/internetConnectionCTX';
 import languageCTX from '../../context/languageCTX';
 import { dynamicString } from '../../helpers/dynamicString';
-
+import Router from "next/router";
 moment.loadPersian({ dialect: 'persian-modern' });
 
-const SucceedPayment = ({ language }) => {
+const SucceedPayment = ({ extension, language }) => {
   const [renter, setRenter] = useState(null);
   const [rent_search_dump, setRent_search_dump] = useState(null);
   const [bank_id_track, set_bank_id_track] = useState(null);
   const [has_insurance, set_has_insurance] = useState(false);
+  const [extensionInfo, setExtensionInfo] = useState(null);
+  const [extensionStartDate, setExtensionStartDate] = useState(null);
   const [hasError, setHasError] = useState(false);
   const token = jsCookie.get('token');
   const toastCTX = useContext(toast_context);
@@ -28,15 +30,19 @@ const SucceedPayment = ({ language }) => {
   const { activeLanguage } = useContext(languageCTX);
 
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/payment-success',
-      pageTitle: language.PAGE_HEADER.payment.successTitle,
-    });
-    // logPageView();
+    if (window["auth"]) {
+      window['dataLayer'].push({
+        event: 'page_view',
+        pageURL: window.location.href,
+        pagePath: '/payment-success',
+        pageTitle: language.PAGE_HEADER.payment.successTitle,
+      });
+      // logPageView();
 
-    fetchAPI(window.location.search.match(/(\d+)/)[0]);
+      fetchAPI(window.location.search.match(/(\d+)/)[0]);
+    } else {
+      Router.push("/login");
+    }
   }, []);
 
   /**
@@ -49,7 +55,16 @@ const SucceedPayment = ({ language }) => {
 
     try {
       const Order_res: any = await GET_ORDER_REQUEST({ token, id });
+      let lastExtension = null
+      if (Order_res.data?.extend_request_set) {
+        lastExtension = Order_res.data.extend_request_set[0]
+        setExtensionInfo(lastExtension)
+        if (Order_res.data?.extend_request_set.length > 1) {
+          let startDate = Order_res.data.extend_request_set[1].end_date.jalali
+          setExtensionStartDate(`${startDate.y}/${startDate.m}/${startDate.d}`)
 
+        }
+      }
       setRent_search_dump(Order_res.data.rent_search_dump);
       setRenter(Order_res.data.renter);
       set_bank_id_track(Order_res.data.id);
@@ -70,9 +85,9 @@ const SucceedPayment = ({ language }) => {
       // });
 
       window['dataLayer'].push({
-        event: 'purchase',
+        event: extension ? 'extension' : 'purchase',
         transactionId: Order_res.data.id,
-        transactionTotal: Order_res.data.rent_search_dump.total_price,
+        transactionTotal: extension ? lastExtension.price : Order_res.data.rent_search_dump.total_price,
         transactionProducts: [
           {
             sku: Order_res.data.rent_search_dump.id,
@@ -91,7 +106,7 @@ const SucceedPayment = ({ language }) => {
           message: error.response
             ? ErrorHelper({
               errorObj: error.response,
-              _400Message: language.COMMON.fetchingTransactionError,
+              _400Message: 'خطایی در دریافت اطلاعات پرداخت رخ داده است.',
             })
             : error,
           color: '#ed9026',
@@ -108,8 +123,8 @@ const SucceedPayment = ({ language }) => {
         <section className="payment_cart">
           <div className="title  ">
             <img src={check_icon} alt="پرداخت موفق" />
-            <h4>{language.PAYMENT_PAGE.successfullPurchase}</h4>
-          </div>
+            <h4>{extension ? "تمدید با موفقیت انجام شد" : language.PAYMENT_PAGE.successfullPurchase}</h4>
+          </div >
           <div className="bank_track_id ">
             <p>{language.PAYMENT_PAGE.issueTracking} {bank_id_track}</p>
           </div>
@@ -119,7 +134,7 @@ const SucceedPayment = ({ language }) => {
                 <div className="section_title margin_bottom_24">
                   <img src={paper_check} className={language.PAYMENT_PAGE.carOptions} />
                   <p>{language.PAYMENT_PAGE.carOptions}</p>
-                </div>
+                </div >
                 <div className="car_info padding_right_24">
                   <div>
                     <p>{language.COMMON.car}:</p>
@@ -136,48 +151,69 @@ const SucceedPayment = ({ language }) => {
                     </span>
                   </div>
                   <div>
-                    <p>{language.PAYMENT_PAGE.deliveryDate}:</p>
+
+                    <p>{extension ? 'تمدید از' : language.PAYMENT_PAGE.deliveryDate}:</p>
                     <span>
-                      {moment(
-                        rent_search_dump.start_date,
-                        'jYYYY/jMM/jDD',
-                      ).format('jYYYY/jMM/jD')}
+                      {extension ?
+                        moment(
+                          extensionStartDate ? extensionStartDate : rent_search_dump.end_date,
+                          'jYYYY/jMM/jDD',
+                        ).format('jYYYY/jMM/jD')
+                        : moment(
+                          rent_search_dump.start_date,
+                          'jYYYY/jMM/jDD',
+                        ).format('jYYYY/jMM/jD')}
                     </span>
-                  </div>
+                  </div >
                   <div>
                     <p>{language.PAYMENT_PAGE.returnDate}:</p>
                     <span>
-                      {moment(
-                        rent_search_dump.end_date,
-                        'jYYYY/jMM/jDD',
-                      ).format('jYYYY/jMM/jD')}
+                      {extension ?
+                        moment(
+                          `${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`,
+                          'jYYYY/jM/jD',
+                        ).format('jYYYY/jMM/jD')
+                        : moment(
+                          rent_search_dump.end_date,
+                          'jYYYY/jMM/jDD',
+                        ).format('jYYYY/jMM/jD')}
                     </span>
                   </div>
                   <div>
-                    <p>{language.COMMON.duration}:</p>
+                    <p>{`${extension ? 'تمدید به مدت' : language.COMMON.duration}`}:</p>
+
                     <span>
                       {rent_search_dump.no_of_days} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}
                     </span>
                   </div>
-                  {has_insurance && (
-                    <div>
-                      <p>{language.PAYMENT_PAGE.carInsurance}:</p>
-                      <span>{language.COMMON.with}</span>
-                    </div>
-                  )}
+                  {
+                    extension ?
+                      extensionInfo.insurance_price > 0
+                      &&
+                      <div>
+                        <p>{language.PAYMENT_PAGE.carInsurance}:</p>
+                        <span>{language.COMMON.with}</span>
+                      </div>
+                      : has_insurance && (
+                        <div>
+                          <p>{language.PAYMENT_PAGE.carInsurance}:</p>
+                          <span>{language.COMMON.with}</span>
+                        </div>
+                      )
+                  }
                   <div>
                     <p>{language.COMMON.kmLimit}:</p>
                     <span className="float-left">
                       {rent_search_dump.max_km_per_day} {language.COMMON.km}
                     </span>
                   </div>
-                </div>
-              </div>
+                </div >
+              </div >
               <div className="paid_price ">
                 <p>{language.PAYMENT_PAGE.invoice}</p>
                 <div>
                   <h3>
-                    {(
+                    {extension ? (extensionInfo.price + extensionInfo.insurance_price).toLocaleString() : (
                       rent_search_dump.total_price -
                       rent_search_dump.total_discount -
                       (rent_search_dump.coupon
@@ -189,9 +225,9 @@ const SucceedPayment = ({ language }) => {
                     ).toLocaleString()}
                   </h3>
                   <span className="toman"> {language.COMMON.toman}</span>
-                </div>
-              </div>
-            </div>
+                </div >
+              </div >
+            </div >
             <div className="figure_section">
               <img
                 alt={language.PAYMENT_PAGE.image}
@@ -202,27 +238,29 @@ const SucceedPayment = ({ language }) => {
                 }
               />
             </div>
-          </div>
-          <div className="delivery_section margin_top_24">
-            <div className="section_title margin_bottom_16">
-              <img src={key} className="icon" />
-              <p>{language.PAYMENT_PAGE.carDelivery}:</p>
-            </div>
-            <div className="delivery_condition">
-              {rent_search_dump.deliver_at_renters_place ? (
-                <p className="margin_bottom_16">
-                  {rent_search_dump.location.parent_id === 1
-                    || rent_search_dump.location.id === 1657
-                    ? language.COMMON.locationDelivery
-                    : null}
-                  {/* {rent_search_dump.location.name.fa} */}
+          </div >
+          {
+            !extension
+            && <div className="delivery_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={key} className="icon" />
+                <p>{language.PAYMENT_PAGE.carDelivery}:</p>
+              </div>
+              <div className="delivery_condition">
+                {rent_search_dump.deliver_at_renters_place ? (
+                  <p className="margin_bottom_16">
+                    {rent_search_dump.location.parent_id === 1
+                      || rent_search_dump.location.id === 1657
+                      ? language.COMMON.locationDelivery
+                      : null}
+                  </p>
+                ) : null}
+                <p>
+                  {language.COMMON.arrangmentForDelivery}
                 </p>
-              ) : null}
-              <p>
-                {language.COMMON.arrangmentForDelivery}
-              </p>
+              </div>
             </div>
-          </div>
+          }
           <div className="return_section margin_top_24">
             <div className="section_title margin_bottom_16">
               <img src={return_icon} className="icon" />
@@ -231,39 +269,41 @@ const SucceedPayment = ({ language }) => {
             <div className="return_condition">
               <p className="margin_bottom_8">
                 {dynamicString([rent_search_dump.extra_hour_price_name], language.PAYMENT_PAGE.text1)}
-                {/* شروع مدت اجاره از ساعت تحویل خودرو آغاز می‌شود لذا لازم است در
-                روز بازگشت در همان ساعت خودرو را بازتحویل دهید. در صورت دیرکرد،
-                برای این خودرو به ازای{' '}
-                <span>
-                  هر ساعت {rent_search_dump.extra_hour_price_name} هزینه دیرکرد{' '}
-                </span>
-                محاسبه خواهد شد. */}
-              </p>
+
+
+
+              </p >
               <p>
                 {dynamicString([rent_search_dump.max_km_per_day, rent_search_dump.extra_km_price_name], language.PAYMENT_PAGE.text2)}
 
               </p>
-            </div>
-          </div>
-          <div className="contract_section margin_top_24">
-            <div className="section_title margin_bottom_16">
-              <img src={paper} className="قرارداد اجاره" />
-              <p>{language.COMMON.contract}:</p>
-            </div>
-            <div className="return_condition">
-              <p className="margin_bottom_16">
-                {language.PAYMENT_PAGE.text3}
-              </p>
-            </div>
-          </div>
-        </section>
+            </div >
+          </div >
+          {!extension
+            && <div className="contract_section margin_top_24">
+              <div className="section_title margin_bottom_16">
+                <img src={paper} className="قرارداد اجاره" />
+                <p>{language.COMMON.contract}:</p>
+              </div>
+              <div className="return_condition">
+                <p className="margin_bottom_16">
+                  {language.PAYMENT_PAGE.text3}
+                </p>
+              </div>
+            </div>}
+        </section >
       ) : hasError ? (
         <p className="loading_text">{language.PAYMENT_PAGE.notFound}</p>
       ) : (
         <p className="loading_text">{language.COMMON.loading}</p>
       )}
-    </article>
+    </article >
   );
 };
+
+interface SuccessPayment {
+  language: any,
+  extension?: boolean
+}
 
 export default SucceedPayment;

@@ -1,0 +1,61 @@
+{
+  "next_seo": {
+    "title": "رزرو‌های من | سپریس",
+    "description": "رزرو‌های من | سپریس",
+    "handle": "@seprisrent",
+    "site": "@seprisrent",
+    "cardType": "summary_large_image"
+  },
+  "request_page": {
+    "request_cart": {
+      "new": "در انتظار تأیید",
+      "approved": "در انتظار پرداخت",
+      "rejected": "رد شده",
+      "expired": "منقضی شده",
+      "cancelled": "لغو شده",
+      "paid": "در انتظار تحویل",
+      "delivered": "در حال سفر",
+      "returned_label": "برگشت داده شده",
+      "accept": "تایید",
+      "cancel": "انصراف",
+      "reject": "رد",
+      "pay": "پرداخت",
+      "deliver": "تحویل گرفتم",
+      "returned": "تحویل گرفتم",
+      "repetitive_review": "قبلا نظر ثبت کرده اید",
+      "review": "ثبت نظر",
+      "rent_duration": "مدت اجاره",
+      "day": "روز",
+      "with_insurance": "بیمه دارد",
+      "without_insurance": "بیمه ندارد",
+      "cost": "هزینه اجاره",
+      "toman": "تومان",
+      "for": "برای",
+      "contact_with_renter": ":تماس با اجاره گیرنده"
+    },
+    "please_login": {
+      "GetUserCellPhone": {
+        "log_sigh": "ورود / ثبت نام",
+        "cell_phone": "شماره تلفن همراه",
+        "example": "مثال: 09121234567",
+        "error_1": "لطفا تلفن همراه را وارد کنید",
+        "error_2": "شماره همراه باید 11 رقم باشد",
+        "error_3": "شماره وارد شده صحیح نیست",
+        "error_4": "شماره وارد شده صحیح نیست",
+        "send": "ارسال کد ورود"
+      },
+      "ConfirmCode": {
+        "confirm_code_title": "ورود کد تایید",
+        "text_input_label_1": "کد چهار رقمی ارسال شده به شماره",
+        "text_input_label_2": "را وارد کنید.",
+        "place_holder": "لطفا کد را وارد کنید",
+        "require": "لطفا کد تایید را وارد کنید",
+        "length": "کد تایید باید 4 رقم باشد",
+        "send_again": "ارسال مجدد",
+        "seconds": "ثانیه",
+        "edit_the_number": "ویرایش شماره",
+        "enter": "ورود"
+      }
+    }
+  }
+}

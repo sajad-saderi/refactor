@@ -764,7 +764,7 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {dynamicString([Number(price.min).toLocaleString(), Number(price.max).toLocaleString()], language.COMMON.badgePrice)}
           </p>
         ) : null}
@@ -786,7 +786,7 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.COMMON.delivery}
           </p>
         ) : null}
@@ -808,7 +808,7 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.COMMON.withDriver}
           </p>
         ) : null}
@@ -830,7 +830,7 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.COMMON.withoutDriver}
           </p>
         ) : null}
@@ -862,7 +862,7 @@ const Search_result = ({
                   initSearch();
                 }}
               >
-                <IoMdClose size="1.3rem" color="#8c8c8c" />
+                <IoMdClose size="1.3rem" color="#3fa6da" />
                 {/* {language.minimal_filters_body_style} */}
                 {name[activeLanguage]}
               </p >
@@ -890,7 +890,7 @@ const Search_result = ({
                 // initSearch();
               }}
             >
-              <IoMdClose size="1.3rem" color="#8c8c8c" />
+              <IoMdClose size="1.3rem" color="#3fa6da" />
               {/* {language.minimal_filters_brand} */}
               {brand_name}
             </p>
@@ -916,7 +916,7 @@ const Search_result = ({
                 // initSearch();
               }}
             >
-              <IoMdClose size="1.3rem" color="#8c8c8c" />
+              <IoMdClose size="1.3rem" color="#3fa6da" />
               {/* {language.minimal_filters_model} */}
               {car_name}
             </p>

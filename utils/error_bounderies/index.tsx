@@ -9,7 +9,6 @@ class ErrorBounderies extends React.Component<any, any> {
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    console.log('getDerivedStateFromError', error);
     return { hasError: true };
   }
 

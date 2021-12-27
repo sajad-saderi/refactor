@@ -63,24 +63,79 @@ class App_Otoli extends App {
     }
   }
 
+  Captcha = (token) => {
+
+    let scoreData = null;
+    try {
+      window["__recaptchaCallback"] = () => {
+        if (window["grecaptcha"]) {
+          window["grecaptcha"]
+            .execute(process.env.GOOGLE_CAPTCHA, {
+              action: window.location.pathname.slice(1).replace(/-/, ""),
+            })
+            .then(() => {
+              var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
+              Axios.get(url + "?g-recaptcha-response=" + token)
+                .then((res) => {
+                  this.setState({ BotScore: res.data.recaptcha.score });
+                  scoreData = res;
+                  window["dataLayer"].push({
+                    event: "recaptcha",
+                    recaptchaAnswer: res.data.status,
+                    recaptchaScore: res.data.recaptcha.score,
+                  });
+                })
+                .then(() => {
+                  Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
+                    success: true, // whether this request was a valid reCAPTCHA token for your site
+                    score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
+                    action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
+                    hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
+                  })
+                    .then((res) => {
+                      if (window["heap"]) {
+                        window["heap"].addUserProperties({
+                          RecaptchaScore: scoreData.data.recaptcha.score,
+                        });
+                      }
+                    })
+                    .catch((e) => {
+                      console.log(e);
+                    });
+                })
+                .catch((e) => {
+                  console.log(e);
+                });
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        }
+      };
+      window["__recaptchaCallback"]();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   componentDidMount = () => {
-    const userId = jsCookie.get('user_id');
-    const token = jsCookie.get('token');
-    const first_name = jsCookie.get('first_name');
+    const userId = jsCookie.get("user_id");
+    const token = jsCookie.get("token");
+    const first_name = jsCookie.get("first_name");
     window['locale'] = {
       fa: { textInputComponent: fa.COMMON.notValid },
       en: { textInputComponent: en.COMMON.notValid },
     };
     if (userId) {
       this.get_user_data(userId, token);
-      window['auth'] = true;
+      window["auth"] = true;
 
       if (first_name) {
-        window['complete_register'] = true;
+        window["complete_register"] = true;
       }
     } else {
-      window['auth'] = false;
-      window['complete_register'] = false;
+      window["auth"] = false;
+      window["complete_register"] = false;
     }
     /*
         It checks the current URL if there are any UTM values in there
@@ -242,7 +297,7 @@ class App_Otoli extends App {
             )}
           </LanguageCTX.Consumer>
         </ChangeLanguageContextProvider>
-      </GoogleReCaptchaProvider>
+      </GoogleReCaptchaProvider >
     );
   }
 }

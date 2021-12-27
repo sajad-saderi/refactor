@@ -12,9 +12,11 @@
     width: auto;
     border-radius: 4px;
     text-align: center;
-    padding: 0.2rem 0.8rem;
+    padding: 0.2rem 0rem;
     font-size: 1.4rem;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     svg,
     img {
       display: inline-block;
@@ -27,22 +29,43 @@
       display: inline-block;
     }
   }
-  .status_expired {
+  .extensionBadge {
     background-color: $almost_gray;
+    border-radius: 4px;
+    text-align: center;
+    padding: 0.2rem 0.8rem;
+    font-size: 1.4rem;
+    margin-right: 8px;
+    height: 2.3rem;
+    display: inline-flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+  }
+  .status_expired {
+    display: inline-block;
+    background-color: $almost_gray;
+    padding: 0.2rem 0.8rem;
     span {
       color: $almost_black;
     }
   }
+  .status_paid {
+    border-radius: 4px;
+    padding: 0.2rem 0.8rem;
+  }
   .status_returned,
   .status_paid,
   .status_on_trip {
+    padding: 0.2rem 0.8rem;
+    display: inline-block;
     background-color: $almost_teal;
     span {
       color: $teal;
     }
   }
   .status_approved {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     padding: 0;
     justify-content: space-between;
@@ -71,7 +94,7 @@
     }
   }
   .status_new {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     padding: 0;
     justify-content: space-between;
@@ -83,20 +106,20 @@
         color: $orange;
       }
     }
-    .timer {
-      display: flex;
-      justify-content: left;
-      align-items: center;
-      div {
-        width: auto !important;
-        font-size: 1.4rem !important;
-        color: $orange;
-        font-weight: 500;
-      }
-      svg {
-        margin-left: 0;
-        margin-right: 0.4rem;
-      }
+  }
+  .timer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    div {
+      width: auto !important;
+      font-size: 1.4rem !important;
+      color: $orange;
+      font-weight: 500;
+    }
+    svg {
+      margin-left: 0;
+      margin-right: 0.4rem;
     }
   }
   .cart {
@@ -215,7 +238,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     a {
       color: $blue;
       font-weight: normal;

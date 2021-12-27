@@ -25,7 +25,6 @@ const FAQ = ({ locale }) => {
       pagePath: "/faq",
       pageTitle: locale.PAGE_HEADER.faq.title,
     });
-    console.log(locale.FAQ_PAGE.items);
 
     // logPageView();
     fetchAPI();

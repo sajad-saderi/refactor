@@ -123,10 +123,16 @@
             border: 1px solid $lighter_grey;
           }
           .location_tag {
-            background: $ultimate_blue;
-            color: $dark_blue;
+            background: $ultimate_gray;
+            color: $almost_black;
             border-color: $light_blue;
             font-weight: 500;
+            img {
+              width: 1rem;
+              display: inline-block;
+              vertical-align: middle;
+              margin-left: 0.5rem;
+            }
           }
         }
       }

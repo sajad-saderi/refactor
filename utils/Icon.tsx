@@ -15,6 +15,7 @@ import Active_shield from "../public/image/svg/active_shield.svg";
 import Deactivate_shield from "../public/image/svg/deactivated_shield.svg";
 import cancel from "../public/image/svg/cancel.svg";
 import warning from "../public/image/svg/warning.svg";
+import location from "../public/image/svg/location.svg";
 
 const Icon = ({ name }: IIcon) => {
   let icon = null;
@@ -70,6 +71,9 @@ const Icon = ({ name }: IIcon) => {
     case "warning":
       icon = warning;
       break;
+    case "location":
+      icon = location;
+      break;
     default:
       // eslint-disable-next-line no-console
       console.warn("Incorrect icon name specified");
@@ -81,23 +85,24 @@ const Icon = ({ name }: IIcon) => {
 
 interface IIcon {
   name:
-    | "star"
-    | "arrow_right"
-    | "check"
-    | "calendar"
-    | "pin"
-    | "document"
-    | "car"
-    | "boxes"
-    | "gear"
-    | "avatar"
-    | "fullscreen"
-    | "balloon"
-    | "active_shield"
-    | "deactivate_shield"
-    | "opposite_arrows"
-    | "cancel"
-    | "warning";
+  | "star"
+  | "arrow_right"
+  | "check"
+  | "calendar"
+  | "pin"
+  | "document"
+  | "car"
+  | "boxes"
+  | "gear"
+  | "avatar"
+  | "fullscreen"
+  | "balloon"
+  | "active_shield"
+  | "deactivate_shield"
+  | "opposite_arrows"
+  | "cancel"
+  | "location"
+  | "warning";
 }
 
 export default Icon;

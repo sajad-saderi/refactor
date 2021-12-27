@@ -41,10 +41,10 @@ const Join_us_content_AB_test = ({
       <div className="insuranceBox">
         <p>{language.INFORMATION.text1}</p>
         <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
-      </div>
+      </div >
       <div className=" responsive second_container">
-        <h2>{language.INFORMATION.text2}</h2>
         <div className="full_width">
+          <h2>{language.INFORMATION.text2}</h2>
           <p>{language.INFORMATION.text3}</p>
         </div>
         <h2>{language.INFORMATION.text4}</h2>
@@ -116,8 +116,8 @@ const Join_us_content_AB_test = ({
             </Slider>
           </section>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

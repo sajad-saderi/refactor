@@ -14,11 +14,12 @@ import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { captcha } from '../src/helpers/capchaHelper';
 // import { logPageView } from "../utils/analytics";
 import languageCTX from '../src/context/languageCTX'
-
+let isSent = false
 const JoinUs = ({ BotScore, locale }) => {
   const [shouldHideCommnets, setShouldHideCommnets] = useState(true);
   const [showVideo, setShowVideo] = useState(false);
   const [Score, SetScore] = useState(null);
+  const [token, setToken] = useState(null);
   const { activeLanguage } = useContext(languageCTX)
   useEffect(() => {
     window['dataLayer'].push({
@@ -33,6 +34,13 @@ const JoinUs = ({ BotScore, locale }) => {
     setShowVideo(window.location.search.includes('show_video') ? true : false);
     // logPageView();
   }, []);
+
+  useEffect(() => {
+    if (token && !isSent) {
+      captcha(token)
+      isSent = true
+    }
+  })
 
   return (
     <Layout LinkControl={true}>
@@ -51,8 +59,9 @@ const JoinUs = ({ BotScore, locale }) => {
         }}
       />
       <GoogleReCaptcha
-        onVerify={token => {
-          captcha(token);
+        onVerify={googletoken => {
+          if (!token)
+            setToken(googletoken);
         }}
       />
       <article className="join_us" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
@@ -66,7 +75,6 @@ const JoinUs = ({ BotScore, locale }) => {
               AbText={locale.COMMON.goToAddCar}
             />
           </div>
-          <p className="temporary_score">{Score}</p>
         </section>
         <Join_us_content
           shouldHideCommnets={shouldHideCommnets}

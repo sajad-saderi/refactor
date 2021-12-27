@@ -92,7 +92,6 @@ const Filters = ({
   };
 
   useEffect(() => {
-
     if (extra_info.body_style_id) {
       setbody_style_set(extra_info.body_style_id);
     }
@@ -324,8 +323,7 @@ const Filters = ({
             data={[
               {
                 name:
-                  language.COMMON
-                    .deliverAtPlace,
+                  language.COMMON.deliverAtPlace,
                 value: deliver_at_renters_place,
               },
             ]}

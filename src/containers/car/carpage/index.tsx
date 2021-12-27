@@ -340,8 +340,6 @@ const CarPage = ({
     if (router.asPath.includes("start_date")) {
       const start = twoWayDateConvertor(router.query.start_date as string)[activeLanguage].dump;
       const end = twoWayDateConvertor(router.query.end_date as string)[activeLanguage].dump;
-
-
       if (start.day >= moment().jDate()) {
         if (start.month >= moment().jMonth() + 1) {
           fetchData({

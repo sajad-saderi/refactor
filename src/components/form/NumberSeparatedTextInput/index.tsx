@@ -31,7 +31,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
     if (/[^0-9]/g.test(value.toString())) {
       setLocalError({
         status: true,
-        message: 'ورودی نامعتبر',
+        message: 'وردی نامعتبر',
       });
     } else if (data.LengthControl) {
       if (data.LengthControl.minLen) {
@@ -140,7 +140,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         the Error message shown under the input box 
       */}
       {(props.error.status || localError.status) && (
-        <p data-test-id="input_error_message" className="input_error_message">
+        <p data-test-id='input_error_message' className='input_error_message'>
           {props.error.message || localError.message}
         </p>
       )}

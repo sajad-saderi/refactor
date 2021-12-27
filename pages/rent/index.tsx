@@ -91,7 +91,6 @@ const Rent = ({ locale }) => {
       }
     }
   };
-  console.log(dynamicLinks);
 
   return (
     <Layout>

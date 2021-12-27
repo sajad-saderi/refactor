@@ -796,7 +796,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {dynamicString([Number(price.min).toLocaleString(), Number(price.max).toLocaleString()], language.COMMON.badgePrice)}
             {/* {language.minimal_filters_price_from}
             {Number(price.min).toLocaleString()}
@@ -822,7 +822,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.COMMON.delivery}
           </p>
         ) : null}
@@ -845,7 +845,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {category_name}
           </p>
         ) : null}
@@ -867,7 +867,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#ababab" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.COMMON.withDriver}
           </p>
         ) : null}
@@ -889,7 +889,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size="1.3rem" color="#8c8c8c" />
+            <IoMdClose size="1.3rem" color="#3fa6da" />
             {language.COMMON.withoutDriver}
           </p>
         ) : null}
@@ -921,7 +921,7 @@ const Landing_page_container = ({
                   initSearch();
                 }}
               >
-                <IoMdClose size="1.3rem" color="#8c8c8c" />
+                <IoMdClose size="1.3rem" color="#3fa6da" />
                 {/* {language.minimal_filters_body_style} */}
                 {name[activeLanguage]}
               </p>

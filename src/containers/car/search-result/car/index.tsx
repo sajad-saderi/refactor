@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
 import Link from "next/link";
+import Icon from '../../../../../utils/Icon';
 import languageCTX from '../../../../context/languageCTX';
 // import "./car.scss";
 
@@ -187,6 +188,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                     }}
                   >
                     <span className="tags location_tag">
+                      <Icon name="location" />
                       {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
                     </span>
                   </li>
