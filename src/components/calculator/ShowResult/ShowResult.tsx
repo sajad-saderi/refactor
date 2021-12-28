@@ -1,10 +1,14 @@
+import {useContext} from 'react';
+import { numberChanger } from "../../../../utils/numberChanger";
+import languageCTX from '../../../context/languageCTX'
 const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
+const {activeLanguage} = useContext(languageCTX)
   return (
     <div className='CalculatorResult' id='CalculatorResult'>
       <div className='eachSvgBox'>
         {weekly > 0 && (
           <h3 className='CalcH3' data-test-id='weekly'>
-            {weekly < 1000000
+            {numberChanger(weekly < 1000000
               ? /**
                  * @weekly
                  *  If it's smaller then 1.000.000 for instance 999.000 then the result should be 999
@@ -15,7 +19,7 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
                 ? weekly >= 10000000
                   ? weekly.toLocaleString("de-DE").slice(0, 2)
                   : (weekly + 100000).toLocaleString("de-DE").slice(0, 3)
-                : weekly.toLocaleString("de-DE").slice(0, 3)}
+                : weekly.toLocaleString("de-DE").slice(0, 3),activeLanguage)}
             <p>
               {weekly >= 1000000 ? language.COMMON.million : language.COMMON.thousand}{" "}
               {language.COMMON.toman}
@@ -91,11 +95,11 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
              *  The monthly value always is larger than one million
              *  Instance: 9.999.000 output is 9.9
              */
-              monthly >= 10000000
+             numberChanger( monthly >= 10000000
                 ? monthly < 100000000
                   ? monthly.toLocaleString("de-DE").slice(0, 2)
                   : monthly.toLocaleString("de-DE").slice(0, 3)
-                : (monthly + 100000).toLocaleString("de-DE").slice(0, 3)}
+                : (monthly + 100000).toLocaleString("de-DE").slice(0, 3),activeLanguage)}
             <p>{language.JOIN_US_PAGE.millionToman}</p>
           </h3>
         )}
@@ -169,13 +173,13 @@ const ShowResult = ({ weekly, monthly, daily, language }: IShowResult) => {
              *  If it's equal or bigger then 100.000 for instance 101.000 then the result should be 101
              *  If it's equal or larger then 1.000.000 like 9.999.000 output is 9.9
              */
-              daily < 1000000
+             numberChanger(daily < 1000000
                 ? daily < 100000
                   ? daily.toString().slice(0, 2)
                   : daily.toString().slice(0, 3)
                 : daily < 10000000
                   ? daily.toLocaleString("de-DE").slice(0, 3)
-                  : daily.toLocaleString("de-DE").slice(0, 2)}
+                  : daily.toLocaleString("de-DE").slice(0, 2),activeLanguage)}
             <p>
               {daily >= 1000000 ? language.COMMON.million : language.COMMON.thousand}{" "}
               {language.COMMON.toman}

@@ -16,6 +16,7 @@ const NameAvatar = dynamic(() =>
 import languageCTX from '../../../context/languageCTX';
 import { dynamicString } from '../../../helpers/dynamicString';
 import { dateSlicer } from '../../../helpers/dateSlicer';
+import { numberChanger } from "../../../../utils/numberChanger";
 
 const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   const [name, setName] = useState(null);
@@ -112,7 +113,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                     </p>
                     {data.no_of_successfully_rented_cars_as_owner > 0 ? (
                       <span className="margin_top_16 inline_block_container">
-                        {dynamicString([data.no_of_successfully_rented_cars_as_owner], language.COMMON.hostOfTrip)}
+                        {numberChanger(dynamicString([data.no_of_successfully_rented_cars_as_owner], language.COMMON.hostOfTrip),activeLanguage)}
                         {/* {language.mizban}{" "}
                         <strong>
                           {data.no_of_successfully_rented_cars_as_owner}
@@ -123,7 +124,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                     ) : null}
                     {data.no_of_trips_gone > 0 ? (
                       <span className="margin_top_16 inline_block_container">
-                        {dynamicString([data.no_of_trips_gone], language.COMMON.hasTravel)}
+                        {numberChanger(dynamicString([data.no_of_trips_gone], language.COMMON.hasTravel),activeLanguage)}
                         {/* <strong>
                           {data.no_of_trips_gone}
                           {language.safar}
@@ -133,7 +134,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
                     ) : null}
                     {data.owner_response_rate > 0 ? (
                       <p className="size_14 margin_top_16 margin_bottom_16">
-                        {dynamicString([data.owner_response_rate], language.COMMON.responseRate)}
+                        {numberChanger(dynamicString([data.owner_response_rate], language.COMMON.responseRate),activeLanguage)}
                         {/* به
                         <strong>
                           {" "}

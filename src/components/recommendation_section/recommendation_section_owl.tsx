@@ -10,10 +10,11 @@ import Link from "next/link";
 import ScrollContainer from "react-indiana-drag-scroll";
 import AppStore from '../../context/app'
 import Icon from "../../../utils/Icon";
+import { numberChanger } from "../../../utils/numberChanger";
 
 const Recommendation_section = ({ language }) => {
-  const [start_date, set_start_date] = useState(null);
-  const [end_date, set_end_date] = useState(null);
+  const [start_date, set_start_date] = useState('');
+  const [end_date, set_end_date] = useState('');
   const appStore = useContext(AppStore)
   useEffect(() => {
     set_default_date_for_search();
@@ -42,7 +43,7 @@ const Recommendation_section = ({ language }) => {
         <div className="inner-container">
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
+              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&max_price=500000`}
               prefetch={false}
             >
               <a>
@@ -65,7 +66,7 @@ const Recommendation_section = ({ language }) => {
           </div>
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&with_driver=1`}
+              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&with_driver=1`}
               prefetch={false}
             >
               <a>
@@ -78,7 +79,7 @@ const Recommendation_section = ({ language }) => {
           </div>
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
+              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&body_style_id=2`}
               prefetch={false}
             >
               <a>
@@ -91,7 +92,7 @@ const Recommendation_section = ({ language }) => {
           </div>
           <div className="suggestion_card">
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=5`}
+              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&body_style_id=5`}
               prefetch={false}
             >
               <a>

@@ -11,6 +11,7 @@ import {
 import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { supportedLanguages } from '../../../types';
 import { addingCountryCodeToNumber } from '../../helpers/addingCountryCodeToNumber';
+import { numberChanger } from '../../../utils/numberChanger';
 
 const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => {
   const [hidden, setHidden] = useState(false);
@@ -140,21 +141,21 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number1)}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {language.COMMON.number1}
+              {numberChanger(language.COMMON.number1,locale)}
             </a>
             -
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number2)}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {language.COMMON.number2}
+              {numberChanger(language.COMMON.number2,locale)}
             </a>
             -
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number3)}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {language.COMMON.number3}
+              {numberChanger(language.COMMON.number3,locale)}
             </a>
           </p>
           <br />

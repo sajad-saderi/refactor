@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 // import "./inputStyle.scss";
 import { IoMdClose } from 'react-icons/io';
 import languageCTX from '../../../context/languageCTX'
+import { numberChanger } from '../../../../utils/numberChanger';
 
 let language = null;
 
@@ -227,13 +228,13 @@ const TextInput = (props: ItextInput) => {
              * If it's NOT number
              *   Print the current value without change
              */
-            props.number
+             numberChanger(props.number
               ? props.value === ''
                 ? props.value.toLocaleString()
                 : props.localeString
                   ? props.value
                   : Number(props.value).toLocaleString()
-              : props.value
+              : props.value,activeLanguage)
             // props.value
           }
           onChange={(e: any) => {

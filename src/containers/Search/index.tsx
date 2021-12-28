@@ -23,6 +23,7 @@ import ErrorHelper from '../../../utils/error_helper';
 import { activeCities } from '../../helpers/activeCities';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { ICalender } from '../../../types';
+import { numberChanger } from '../../../utils/numberChanger';
 
 moment.loadPersian({ dialect: "persian", usePersianDigits: false });
 
@@ -372,7 +373,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                       : null
                 }
                 readOnly={true}
-                value={fromDay ? fromDay : ''}
+                value={fromDay ? numberChanger(fromDay, activeLanguage) : ''}
               />
               {/* appear the error for the start date here */}
               <span>{fromError.message}</span>
@@ -396,7 +397,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                       : null,
                 ].join(' ')}
                 readOnly={true}
-                value={toDay ? toDay : ''}
+                value={toDay ? numberChanger(toDay , activeLanguage): ''}
               />
               {/* appear the error for the end date here */}
               <span>{toError.message}</span>

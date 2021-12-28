@@ -5,6 +5,7 @@ import Icon from "../../../../utils/Icon";
 import net_CTX from "../../../context/internetConnectionCTX";
 import languageCTX from "../../../context/languageCTX";
 import { supportedLanguages } from '../../../../types';
+import { numberChanger } from "../../../../utils/numberChanger";
 
 const Comment_section = ({ user_id, user_data, language }: IComment_section) => {
   const [active_tab, set_active_tab] = useState(true);
@@ -58,9 +59,9 @@ const Comment_section = ({ user_id, user_data, language }: IComment_section) => 
             <div className="rate_container">
               <Icon name="star" />
               <span>
-                {user_data.rate.avg_rate_as_owner}{" "}
+                {numberChanger((user_data.rate.avg_rate_as_owner).toString(),activeLanguage)}{" "}
                 <span className="sum_rent">
-                  ({user_data.rate.no_of_received_rates_as_owner})
+                  ({numberChanger((user_data.rate.no_of_received_rates_as_owner).toString(),activeLanguage)})
                 </span>
               </span>
             </div>
@@ -69,9 +70,9 @@ const Comment_section = ({ user_id, user_data, language }: IComment_section) => 
           <div className="rate_container">
             <Icon name="star" />
             <span>
-              {user_data.rate.avg_rate_as_renter}{" "}
+              {numberChanger((user_data.rate.avg_rate_as_renter).toString(),activeLanguage)}{" "}
               <span className="sum_rent">
-                ({user_data.rate.no_of_received_rates_as_renter})
+                ({numberChanger((user_data.rate.no_of_received_rates_as_renter).toString(),activeLanguage)})
               </span>
             </span>
           </div>

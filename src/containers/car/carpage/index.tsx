@@ -39,6 +39,7 @@ import { dynamicString } from '../../../helpers/dynamicString';
 import { dateSlicer } from '../../../helpers/dateSlicer';
 import { ICalender } from '../../../../types';
 import { twoWayDateConvertor } from '../../../helpers/dateControler';
+import { numberChanger } from "../../../../utils/numberChanger"; 
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -782,7 +783,7 @@ const CarPage = ({
                             `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
                             activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
                           ).format("dddd")}،`}</span>
-                          {` ${dayRange.from.day} ${moment(
+                          {` ${numberChanger((dayRange.from.day).toString(),activeLanguage)} ${moment(
                             dayRange.from.month,
                             activeLanguage === 'fa' ? "jM" : "M"
                           ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
@@ -791,13 +792,13 @@ const CarPage = ({
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                             activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
                           ).format("dddd")}،`}</span>
-                          {` ${dayRange.to.day} ${moment(
+                          {` ${numberChanger((dayRange.to.day).toString(),activeLanguage)} ${moment(
                             dayRange.to.month,
                             activeLanguage === 'fa' ? "jM" : "M"
                           ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
                           <br />
                           {no_of_days
-                            ? `(${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
+                            ? `(${numberChanger((no_of_days).toString(),activeLanguage)} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
                             : null}
                         </p>
                         <p
@@ -915,7 +916,7 @@ const CarPage = ({
                 <Icon name="document" />
                 <span>{language.COMMON.cancellationPolicies}</span>
               </h2>
-              <pre className="padding_right_24">{cancellation_policy}</pre>
+              <pre className="padding_right_24">{numberChanger(cancellation_policy,activeLanguage)}</pre>
               {/* {with_driver && (
                 <>
                   <hr />
@@ -931,19 +932,19 @@ const CarPage = ({
               <p className="distance_limitation margin_bottom_16 padding_right_24">
                 {language.COMMON.kmLimit}:{" "}
                 <strong>
-                  {max_km_per_day}
+                  {numberChanger((max_km_per_day).toString(),activeLanguage)}
                   {language.COMMON.km}
                 </strong>
                 {language.COMMON.perDay}
               </p>
               <p className="distance_limitation_penalty margin_bottom_16 padding_right_24">
                 {language.COMMON.extraKm}:{" "}
-                <strong>{extra_km_price_name}</strong>
+                <strong>{numberChanger((extra_km_price_name).toString(),activeLanguage)}</strong>
               </p>
               {extra_hour_price_name && (
                 <p className="margin_bottom_16 hour_limitation_penalty padding_right_24">
                   {language.COMMON.extraTime}:{" "}
-                  <strong>{extra_hour_price_name}</strong>
+                  <strong>{numberChanger((extra_hour_price_name).toString(),activeLanguage)}</strong>
                 </p>
               )}
               {description && (
@@ -991,17 +992,17 @@ const CarPage = ({
                 {cylinder ? (
                   <p className="alignThem">
                     <span className="info_name">{language.CAR_PAGE.cylinder}</span>{" "}
-                    <span className="info_value">{cylinder.name[activeLanguage]}</span>
+                    <span className="info_value">{numberChanger(cylinder.name[activeLanguage],activeLanguage)}</span>
                   </p>
                 ) : null}
                 <p className="alignThem">
                   <span className="info_name">{language.CAR_PAGE.mileage}</span>{" "}
-                  <span className="info_value">{mileage_range.name[activeLanguage]}</span>
+                  <span className="info_value">{numberChanger(mileage_range.name[activeLanguage],activeLanguage)}</span>
                 </p>
                 <p className="alignThem">
                   <span className="info_name">{language.CAR_PAGE.capacity}</span>{" "}
                   <span className="info_value">
-                    {capacity} {language.CAR_PAGE.persons}
+                    {numberChanger(capacity.toString(),activeLanguage)} {language.CAR_PAGE.persons}
                   </span>
                 </p>
               </div>
@@ -1043,7 +1044,7 @@ const CarPage = ({
                         }
                       >
                         {avg_price_per_day
-                          ? avg_price_per_day.toLocaleString()
+                          ? numberChanger(avg_price_per_day.toLocaleString(),activeLanguage)
                           : null}
                       </span>
                       {total_discount_percent ? (
@@ -1055,7 +1056,7 @@ const CarPage = ({
                     {total_discount ? (
                       <p>
                         {avg_discounted_price_per_day
-                          ? avg_discounted_price_per_day.toLocaleString()
+                          ? numberChanger(avg_discounted_price_per_day.toLocaleString(),activeLanguage)
                           : null}
                       </p>
                     ) : null}
@@ -1077,7 +1078,7 @@ const CarPage = ({
                         activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
                       ).format("dddd")}،`}
                     </span>
-                    {` ${dayRange.from.day} ${moment(
+                    {` ${numberChanger((dayRange.from.day).toString(),activeLanguage)} ${moment(
                       dayRange.from.month,
                       activeLanguage === 'fa' ? "jM" : "M"
                     ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
@@ -1086,13 +1087,13 @@ const CarPage = ({
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                       activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
                     ).format("dddd")}،`}</span>
-                    {` ${dayRange.to.day} ${moment(
+                    {` ${numberChanger((dayRange.to.day).toString(),activeLanguage)} ${moment(
                       dayRange.to.month,
                       activeLanguage === 'fa' ? "jM" : "M"
                     ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}{" "}
                     <br />
                     {no_of_days
-                      ? `(${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
+                      ? `(${numberChanger((no_of_days).toString(),activeLanguage)} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})`
                       : null}
                   </p>
                   <p
@@ -1207,7 +1208,7 @@ const CarPage = ({
                       {owner.rate.avg_rate_as_owner ? (
                         <p>
                           <Icon name="star" />
-                          {owner.rate.avg_rate_as_owner}
+                          {numberChanger((owner.rate.avg_rate_as_owner).toString(),activeLanguage)}
                         </p>
                       ) : null}
                     </div>
@@ -1219,7 +1220,7 @@ const CarPage = ({
                     </p>
                     {owner.no_of_successfully_rented_cars_as_owner > 0 ? (
                       <span>
-                        {dynamicString([owner.no_of_successfully_rented_cars_as_owner], language.COMMON.hostOfTrip)}
+                        {numberChanger(dynamicString([owner.no_of_successfully_rented_cars_as_owner], language.COMMON.hostOfTrip),activeLanguage)}
                         {/* {language.mizban}{" "}
                         <strong>
                           {owner.no_of_successfully_rented_cars_as_owner}
@@ -1230,7 +1231,7 @@ const CarPage = ({
                     ) : null}
                     {owner.no_of_trips_gone > 0 ? (
                       <span className="margin_top_16 inline_block_container">
-                        {dynamicString([owner.no_of_trips_gone], language.COMMON.hasTravel)}
+                        {numberChanger(dynamicString([owner.no_of_trips_gone], language.COMMON.hasTravel),activeLanguage)}
                         {/* <strong>
                           {owner.no_of_trips_gone}
                           {language.safar}
@@ -1240,7 +1241,7 @@ const CarPage = ({
                     ) : null}
                     {owner.owner_response_rate > 0 ? (
                       <p className="size_14 margin_top_16 margin_bottom_16">
-                        {dynamicString([owner.owner_response_rate], language.COMMON.responseRate)}
+                        {numberChanger(dynamicString([owner.owner_response_rate], language.COMMON.responseRate),activeLanguage)}
                         {/* به
                         <strong>
                           {" "}

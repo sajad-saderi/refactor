@@ -53,6 +53,7 @@ import appState from "../../../context/app";
 import { twoWayDateConvertor } from '../../../helpers/dateControler';
 import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
 import { dynamicString } from '../../../helpers/dynamicString';
+import { numberChanger } from "../../../../utils/numberChanger";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -505,8 +506,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             <p className="date_duration">
               <span>
                 {/* e.g, 99 01 23 */}
-                {activeLanguage === 'fa' ? moment(date.from[activeLanguage].name, "jYYYY/jMM/jDD").format("jD jMMMM")
-                  : moment(date.from[activeLanguage].name, "YYYY/MM/DD").format("D MMMM")}
+                {activeLanguage === 'fa' ? numberChanger(moment(date.from[activeLanguage].name, "jYYYY/jMM/jDD").format("jD jMMMM"),activeLanguage)
+                  : numberChanger(moment(date.from[activeLanguage].name, "YYYY/MM/DD").format("D MMMM"),activeLanguage)}
                 <span>
                   {/* day's name of week  */}
                   {activeLanguage === 'fa' ? moment(date.from[activeLanguage].name, "jYYYY/jMM/jDD").format("dddd")
@@ -518,13 +519,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 {
                   (extensionInfo && extensionSum.status.id === "extended") ?
                   activeLanguage === 'fa' ?
-                  moment(`${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`
-                    , "jYYYY/jM/jD").format("jD jMMMM")
+                  numberChanger(moment(`${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`
+                    , "jYYYY/jM/jD").format("jD jMMMM"),activeLanguage)
                     :
-                    moment(`${extensionInfo.end_date.gregorian.y}/${extensionInfo.end_date.gregorian.m}/${extensionInfo.end_date.gregorian.d}`
-                    , "YYYY/M/D").format("D MMMM")
-                  : activeLanguage === 'fa' ? moment(date.to[activeLanguage].name, "jYYYY/jMM/jDD").format("jD jMMMM")
-                  : moment(date.to[activeLanguage].name, "YYYY/MM/DD").format("D MMMM")}
+                    numberChanger(moment(`${extensionInfo.end_date.gregorian.y}/${extensionInfo.end_date.gregorian.m}/${extensionInfo.end_date.gregorian.d}`
+                    , "YYYY/M/D").format("D MMMM"),activeLanguage)
+                  : activeLanguage === 'fa' ? numberChanger(moment(date.to[activeLanguage].name, "jYYYY/jMM/jDD").format("jD jMMMM"),activeLanguage)
+                  : numberChanger(moment(date.to[activeLanguage].name, "YYYY/MM/DD").format("D MMMM"),activeLanguage)}
                 <span>{
                   (extensionInfo && extensionSum.status.id === "extended") ?
                   activeLanguage === 'fa' ?
@@ -572,20 +573,20 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               <span>
                 {insurance_total_price
                   ? coupon
-                    ? (coupon + insurance_total_price).toLocaleString()
-                    : (
+                    ? numberChanger((coupon + insurance_total_price).toLocaleString(),activeLanguage)
+                    : numberChanger((
 discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_total_price
-                    ).toLocaleString()
+                    ).toLocaleString(),activeLanguage)
                   : coupon
-                    ? coupon.toLocaleString()
-                    : (discounted_total_price + (extensionSum ? extensionSum.price : 0)).toLocaleString()}{" "}
+                    ? numberChanger(coupon.toLocaleString(),activeLanguage)
+                    : numberChanger((discounted_total_price + (extensionSum ? extensionSum.price : 0)).toLocaleString(),activeLanguage)}{" "}
               </span>
-              {language.COMMON.toman} ({language.COMMON.for} {no_of_days} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
+              {language.COMMON.toman} ({language.COMMON.for} {numberChanger((no_of_days).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
             </>
           ) : (
             <>
-              <span>{discounted_total_price.toLocaleString()} </span>
-              {language.COMMON.toman} ({language.COMMON.for} {no_of_days} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
+              <span>{numberChanger(discounted_total_price.toLocaleString(),activeLanguage)} </span>
+              {language.COMMON.toman} ({language.COMMON.for} {numberChanger((no_of_days).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
             </>
           )}
           <span className="insurance_badge">
@@ -620,7 +621,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + owner_Info.cell)}`}>
-                  <span className="extra_Text">0{owner_Info.cell}</span>
+                  <span className="extra_Text">{numberChanger(`0${owner_Info.cell}`,activeLanguage)}</span>
                   <MdCall size="2rem" color="#4ba3ce" />
                 </a>
               ) : null}
@@ -640,7 +641,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               {/* show the renter's cellphone to the owner if the status is "approved" */}
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + renter_info.cell)}`}>
-                  <span className="extra_Text">0{renter_info.cell}</span>
+                  <span className="extra_Text">{numberChanger(`0${renter_info.cell}`,activeLanguage)}</span>
                   <MdCall size="2rem" color="#4ba3ce" />
                 </a>
               ) : null}

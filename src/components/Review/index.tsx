@@ -3,6 +3,7 @@ import Icon from "../../../utils/Icon";
 import moment from "moment-jalaali";
 import dynamic from "next/dynamic";
 import { supportedLanguages } from '../../../utils/types'
+import { numberChanger } from "../../../utils/numberChanger";
 
 const StarGenerator = dynamic(() => import("../StarGenerator"));
 // import StarGenerator from "../StarGenerator";
@@ -32,7 +33,7 @@ const Review = ({ review, language, without_title, profile, locale }: IReview) =
                 </p>
                 <p className='size_12 dark_gray'>
                   <StarGenerator count={item.rate} locale={locale} />
-                  {moment.unix(item.creation_time.timestamp).format(locale === "fa" ? "jD jMMMM" : "D MMMM")}
+                  {numberChanger(moment.unix(item.creation_time.timestamp).format(locale === "fa" ? "jD jMMMM" : "D MMMM"),locale)}
                 </p>
                 <pre className='margin_top_12 size_14 review_content'>
                   {item.review}

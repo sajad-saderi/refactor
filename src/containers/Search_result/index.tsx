@@ -30,6 +30,7 @@ import languageCTX from "../../context/languageCTX";
 import { dynamicString } from '../../helpers/dynamicString';
 import AppStore from '../../context/app';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
+import { numberChanger } from '../../../utils/numberChanger';
 
 
 
@@ -613,7 +614,7 @@ const Search_result = ({
             result.length > 0 && !showSearch ? (
               <p className="count_bar_count">
                 {extra_info?.params?.start_date
-                  ? dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult, total_count > 1 ? true : false)
+                  ? numberChanger(dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult, total_count > 1 ? true : false),activeLanguage)
                   : null}
                 {/* {`${total_count}${language.count_bar_khodro
                 }${result[0].start_date.slice(5)}${language.count_bar_ta
@@ -765,7 +766,7 @@ const Search_result = ({
             }}
           >
             <IoMdClose size="1.3rem" color="#3fa6da" />
-            {dynamicString([Number(price.min).toLocaleString(), Number(price.max).toLocaleString()], language.COMMON.badgePrice)}
+            {numberChanger(dynamicString([Number(price.min).toLocaleString(), Number(price.max).toLocaleString()], language.COMMON.badgePrice),activeLanguage)}
           </p>
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (

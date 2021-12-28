@@ -8,6 +8,7 @@ import "rc-slider/assets/index.css";
 import filterContext from "../../../context/filter-context";
 import dynamic from "next/dynamic";
 import { supportedLanguages } from '../../../../utils/types';
+import { numberChanger } from "../../../../utils/numberChanger";
 
 const Price_slider_loader = dynamic(() =>
   import("../../loaders/PriceSliderLoader")
@@ -73,20 +74,20 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale }: IPriceSlide
           <h3>{language.COMMON.price}</h3>
           <div className='price_text'>
             <p>
-              <span>{`${Number(
+              <span>{`${numberChanger(Number(
                 Number(
                   value[0] < 1000000 ? value[0] / 1000 : value[0] / 1000000
                 ).toFixed(1)
-              ).toLocaleString()}`}</span>{" "}
+              ).toLocaleString(),locale)}`}</span>{" "}
               {`${value[0] >= 1000000 ? language.COMMON.million : language.COMMON.thousand} ${language.COMMON.toman} `}
             </p>
             <p className='TA'> {language.COMMON.to} </p>
             <p>
-              <span >{`${Number(
+              <span >{`${numberChanger(Number(
                 Number(
                   value[1] < 1000000 ? value[1] / 1000 : value[1] / 1000000
                 ).toFixed(1)
-              ).toLocaleString()}`}</span>{" "}
+              ).toLocaleString(),locale)}`}</span>{" "}
               {`${value[1] >= 1000000 ? language.COMMON.million : language.COMMON.thousand} ${language.COMMON.toman} `}
             </p>
           </div>

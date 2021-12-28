@@ -30,13 +30,14 @@ import { twoWayDateConvertor } from '../../helpers/dateControler';
 
 import Filters from '../Filters';
 import { dynamicString } from '../../helpers/dynamicString';
+import { numberChanger } from '../../../utils/numberChanger';
 // import Search from "../Search";
 
 // let Glob_route = null;
 // default location is Tehran
 let staticRoute = null;
 let Location = 1;
-let location_n = null;
+let location_n = '';
 let Start_date = null;
 let End_date = null;
 // start page is 1
@@ -101,7 +102,7 @@ const Landing_page_container = ({
     car_id: false,
     category_id: false,
   });
-  const [carLocationName, setCarLocationName] = useState(null);
+  const [carLocationName, setCarLocationName] = useState('');
   const new_search_ref = useRef(null);
   const router = useRouter();
   const netCTX = useContext(net_CTX);
@@ -641,7 +642,7 @@ const Landing_page_container = ({
               <p className="count_bar_count">
                 {
                   extra_info?.params?.start_date ?
-                    dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult)
+                  numberChanger(dynamicString([total_count, extra_info.params.start_date.slice(5), extra_info.params.end_date.slice(5), carLocationName], language.COMMON.carInResult),activeLanguage)
                     : null}
                 {/* {`${total_count}${language.count_bar_khodro
                   }${result[0].start_date.slice(5)}${language.count_bar_ta
@@ -797,7 +798,7 @@ const Landing_page_container = ({
             }}
           >
             <IoMdClose size="1.3rem" color="#3fa6da" />
-            {dynamicString([Number(price.min).toLocaleString(), Number(price.max).toLocaleString()], language.COMMON.badgePrice)}
+            {numberChanger(dynamicString([Number(price.min).toLocaleString(), Number(price.max).toLocaleString()], language.COMMON.badgePrice),activeLanguage)}
             {/* {language.minimal_filters_price_from}
             {Number(price.min).toLocaleString()}
             {language.minimal_filters_ta}

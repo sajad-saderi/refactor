@@ -29,6 +29,7 @@ import languageCTX from "../../context/languageCTX";
 import { ICalender } from '../../../types';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { dynamicString } from '../../helpers/dynamicString';
+import { numberChanger } from "../../../utils/numberChanger";
 
 let dateObject: ICalender | null = { from: null, to: null }
 
@@ -289,19 +290,20 @@ const Checkout_Container = ({
               : moment(dateObject.from.en.name, "YYYY/M/DD").format("dddd")}
             <br />
             {/* show the day date and month name */}
-            {activeLanguage === 'fa' ? moment(dateObject.from.fa.name, "jYYYY/jM/jD").format("jD jMMMM")
-              : moment(dateObject.from.en.name, "YYYY/M/DD").format("DD MMMM")
+            {activeLanguage === 'fa' ? numberChanger(moment(dateObject.from.fa.name, "jYYYY/jM/jD").format("jD jMMMM"),activeLanguage)
+              : numberChanger(moment(dateObject.from.en.name, "YYYY/M/DD").format("DD MMMM"),activeLanguage)
             }
           </p>
           <IoMdArrowRoundBack size="3rem" color="#707070" />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("dddd")
-              : moment(dateObject.to.en.name, "YYYY/M/DD").format("dddd")}
+              : moment(dateObject.to.en.name, "YYYY/M/DD").format("dddd")
+              }
             <br />
             {/* show the day date and month name */}
-            {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("jD jMMMM")
-              : moment(dateObject.to.en.name, "YYYY/M/DD").format("DD MMMM")}
+            {activeLanguage === 'fa' ? numberChanger(moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("jD jMMMM"),activeLanguage)
+              : numberChanger(moment(dateObject.to.en.name, "YYYY/M/DD").format("DD MMMM"),activeLanguage)}
           </p>
         </div>
         <div className="car_info">
@@ -337,7 +339,7 @@ const Checkout_Container = ({
           </div>
           <hr />
           <h2>{language.COMMON.cancellationPolicies}</h2>
-          <pre>{cancellation_policy}</pre>
+          <pre>{numberChanger(cancellation_policy,activeLanguage)}</pre>
           <hr />
           <h2>{language.COMMON.location}</h2>
           <p>{location.name[`breadcrumb_${activeLanguage}`]}</p>
@@ -362,19 +364,19 @@ const Checkout_Container = ({
           <p>
             {language.COMMON.kmLimit}:{" "}
             <strong>
-              {max_km_per_day}
+              {numberChanger((max_km_per_day).toString(),activeLanguage)}
               {language.COMMON.km}
             </strong>
             {language.COMMON.perDay}
           </p>
           <p>
             {language.COMMON.extraKm}:{" "}
-            <strong>{extra_km_price_name}</strong>
+            <strong>{numberChanger((extra_km_price_name).toString(),activeLanguage)}</strong>
           </p>
           {extra_hour_price_name && (
             <p>
               {language.COMMON.extraTime}:{" "}
-              <strong>{extra_hour_price_name}</strong>
+              <strong>{numberChanger((extra_hour_price_name).toString(),activeLanguage)}</strong>
             </p>
           )}
         </div>
@@ -385,6 +387,7 @@ const Checkout_Container = ({
               insurance_price={insurance_total_price}
               hasInsurance={hasInsurance}
               language={language}
+              locale={activeLanguage}
             />
           </div>
         ) : null}
@@ -397,8 +400,8 @@ const Checkout_Container = ({
               : moment(dateObject.from.en.name, "YYYY/MM/DD").format("dddd")}
             <br />
             {/* show the day date and month name */}
-            {activeLanguage === 'fa' ? moment(dateObject.from.fa.name, "jYYYY/jMM/jDD").format("jDD jMMMM")
-              : moment(dateObject.from.en.name, "YYYY/MM/DD").format("DD MMMM")
+            {activeLanguage === 'fa' ? numberChanger(moment(dateObject.from.fa.name, "jYYYY/jMM/jDD").format("jDD jMMMM"),activeLanguage)
+              : numberChanger(moment(dateObject.from.en.name, "YYYY/MM/DD").format("DD MMMM"),activeLanguage)
             }
           </p>
           <IoMdArrowRoundBack size="3rem" color="#707070" />
@@ -408,11 +411,11 @@ const Checkout_Container = ({
               : moment(dateObject.to.en.name, "YYYY/MM/DD").format("dddd")}
             <br />
             {/* show the day date and month name */}
-            {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jMM/jDD").format("jDD jMMMM")
-              : moment(dateObject.to.en.name, "YYYY/MM/DD").format("DD MMMM")}
+            {activeLanguage === 'fa' ? numberChanger(moment(dateObject.to.fa.name, "jYYYY/jMM/jDD").format("jDD jMMMM"),activeLanguage)
+              : numberChanger(moment(dateObject.to.en.name, "YYYY/MM/DD").format("DD MMMM"),activeLanguage)}
           </p>
         </div>
-        <p className="number_of_days">{`${language.COMMON.duration} ${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)}`}</p>
+        <p className="number_of_days">{`${language.COMMON.duration} ${numberChanger((no_of_days).toString(),activeLanguage)} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)}`}</p>
         <div className="payment_information">
           {/* <p>
               <span>قیمت روزانه</span>
@@ -423,9 +426,9 @@ const Checkout_Container = ({
             </p> */}
           <br />
           <p>
-            <span>{`${language.COMMON.rent} ${no_of_days} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)}`}</span>
+            <span>{`${language.COMMON.rent} ${numberChanger((no_of_days).toString(),activeLanguage)} ${dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)}`}</span>
             <span>
-              {total_price.toLocaleString()}{" "}
+              {numberChanger(total_price.toLocaleString(),activeLanguage)}{" "}
               <span className="Toman">{language.COMMON.toman}</span>{" "}
             </span>
           </p>
@@ -433,11 +436,11 @@ const Checkout_Container = ({
             <p className="Discount_color">
               <span>
                 {!has_system_discount
-                  ? `${language.CHECKOUT.discount} ${no_of_days} ${language.COMMON.day}`
+                  ? `${language.CHECKOUT.discount} ${numberChanger((no_of_days).toString(),activeLanguage)} ${language.COMMON.day}`
                   : language.COMMON.discount}
               </span>
               <span>
-                {total_discount.toLocaleString()}-{" "}
+                {numberChanger(total_discount.toLocaleString(),activeLanguage)}-{" "}
                 <span className="Toman">{language.COMMON.toman}</span>
               </span>
             </p>
@@ -448,7 +451,7 @@ const Checkout_Container = ({
               <span>
                 {showInsurance ? (
                   <>
-                    {`${insurance_total_price.toLocaleString()} `}
+                    {`${numberChanger(insurance_total_price.toLocaleString(),activeLanguage)} `}
                     <span className="Toman">{language.COMMON.toman}</span>
                   </>
                 ) : (
@@ -506,7 +509,7 @@ const Checkout_Container = ({
             <p>
               <span>{language.CHECKOUT.discountCode}</span>
               <span className="total_price_number">
-                {couponDiscount.toLocaleString()}-
+                {numberChanger(couponDiscount.toLocaleString(),activeLanguage)}-
                 <span className="Toman">{language.COMMON.toman}</span>
               </span>
             </p>
@@ -515,10 +518,10 @@ const Checkout_Container = ({
             <span className="total_price_text">{language.CHECKOUT.invoice}</span>
             <span className="total_price_number">
               {showInsurance
-                ? (
+                ? numberChanger((
                   discounted_total_price + insurance_total_price
-                ).toLocaleString()
-                : discounted_total_price.toLocaleString()}{" "}
+                ).toLocaleString(),activeLanguage)
+                : numberChanger(discounted_total_price.toLocaleString(),activeLanguage)}{" "}
               <span className="Toman">{language.COMMON.toman}</span>
             </span>
           </p>

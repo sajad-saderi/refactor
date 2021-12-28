@@ -3,6 +3,7 @@ import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
 import Link from "next/link";
 import Icon from '../../../../../utils/Icon';
 import languageCTX from '../../../../context/languageCTX';
+import { numberChanger } from "../../../../../utils/numberChanger";
 // import "./car.scss";
 
 const Car = ({ data, showLocation, tagClick, language }: ICar) => {
@@ -40,15 +41,15 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   let price =
     avg_discounted_price_per_day >= 10000000
       ? avg_discounted_price_per_day >= 10100000
-        ? avg_discounted_price_per_day / 10000000
-        : avg_discounted_price_per_day / 10000000
+        ? numberChanger((avg_discounted_price_per_day / 10000000).toString(),activeLanguage)
+        : numberChanger((avg_discounted_price_per_day / 10000000).toString(),activeLanguage)
       : avg_discounted_price_per_day >= 1000000
         ? avg_discounted_price_per_day_name.slice(2, 3) === "."
-          ? avg_discounted_price_per_day / 1000000
-          : avg_discounted_price_per_day / 1000000
+          ? numberChanger((avg_discounted_price_per_day / 1000000).toString(),activeLanguage)
+          : numberChanger((avg_discounted_price_per_day / 1000000).toString(),activeLanguage)
         : avg_discounted_price_per_day < 100000
-          ? avg_discounted_price_per_day.toString().slice(0, 2)
-          : avg_discounted_price_per_day.toString().slice(0, 3);
+          ? numberChanger((avg_discounted_price_per_day.toString().slice(0, 2)).toString(),activeLanguage)
+          : numberChanger((avg_discounted_price_per_day.toString().slice(0, 3)).toString(),activeLanguage);
 
   let unit =
     avg_discounted_price_per_day >= 1000000
@@ -93,7 +94,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
             >
               {total_discount_percent > 0 && (
                 <span className="discount_badge">
-                  {total_discount_percent}
+                  {numberChanger((total_discount_percent).toString(),activeLanguage)}
                   {language.COMMON.carCard.discount}
                 </span>
               )}

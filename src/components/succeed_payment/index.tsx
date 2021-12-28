@@ -14,12 +14,13 @@ import net_CTX from '../../context/internetConnectionCTX';
 import languageCTX from '../../context/languageCTX';
 import { dynamicString } from '../../helpers/dynamicString';
 import Router from "next/router";
+import { numberChanger } from '../../../utils/numberChanger';
 moment.loadPersian({ dialect: 'persian-modern' });
 
 const SucceedPayment = ({ extension, language }:SuccessPayment) => {
   const [renter, setRenter] = useState(null);
   const [rent_search_dump, setRent_search_dump] = useState(null);
-  const [bank_id_track, set_bank_id_track] = useState(null);
+  const [bank_id_track, set_bank_id_track] = useState('');
   const [has_insurance, set_has_insurance] = useState(false);
   const [extensionInfo, setExtensionInfo] = useState(null);
   const [extensionStartDate, setExtensionStartDate] = useState(null);
@@ -126,7 +127,7 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
             <h4>{extension ? language.PAYMENT_PAGE.successfullExtension : language.PAYMENT_PAGE.successfullPurchase}</h4>
           </div >
           <div className="bank_track_id ">
-            <p>{language.PAYMENT_PAGE.issueTracking} {bank_id_track}</p>
+            <p>{language.PAYMENT_PAGE.issueTracking} {numberChanger((bank_id_track).toString(),activeLanguage)}</p>
           </div>
           <div className="details_section">
             <div>
@@ -155,35 +156,35 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                     <p>{extension ?  language.PAYMENT_PAGE.ExtensionDate: language.PAYMENT_PAGE.deliveryDate}:</p>
                     <span>
                       {extension ?
-                        moment(
+                        numberChanger(moment(
                           extensionStartDate ? extensionStartDate : rent_search_dump.end_date,
                           'jYYYY/jMM/jDD',
-                        ).format('jYYYY/jMM/jD')
-                        : moment(
+                        ).format('jYYYY/jMM/jD'),activeLanguage)
+                        : numberChanger(moment(
                           rent_search_dump.start_date,
                           'jYYYY/jMM/jDD',
-                        ).format('jYYYY/jMM/jD')}
+                        ).format('jYYYY/jMM/jD'),activeLanguage)}
                     </span>
                   </div >
                   <div>
                     <p>{language.PAYMENT_PAGE.returnDate}:</p>
                     <span>
                       {extension ?
-                        moment(
+                        numberChanger(moment(
                           `${extensionInfo.end_date.jalali.y}/${extensionInfo.end_date.jalali.m}/${extensionInfo.end_date.jalali.d}`,
                           'jYYYY/jM/jD',
-                        ).format('jYYYY/jMM/jD')
-                        : moment(
+                        ).format('jYYYY/jMM/jD'),activeLanguage)
+                        : numberChanger(moment(
                           rent_search_dump.end_date,
                           'jYYYY/jMM/jDD',
-                        ).format('jYYYY/jMM/jD')}
+                        ).format('jYYYY/jMM/jD'),activeLanguage)}
                     </span>
                   </div>
                   <div>
                     <p>{`${extension ? language.COMMON.extensionDuration : language.COMMON.duration}`}:</p>
 
                     <span>
-                      {rent_search_dump.no_of_days} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}
+                      {numberChanger((rent_search_dump.no_of_days).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}
                     </span>
                   </div>
                   {
@@ -204,7 +205,7 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                   <div>
                     <p>{language.COMMON.kmLimit}:</p>
                     <span className="float-left">
-                      {rent_search_dump.max_km_per_day} {language.COMMON.km}
+                      {numberChanger((rent_search_dump.max_km_per_day).toString(),activeLanguage)} {language.COMMON.km}
                     </span>
                   </div>
                 </div >
@@ -213,7 +214,8 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                 <p>{language.PAYMENT_PAGE.invoice}</p>
                 <div>
                   <h3>
-                    {extension ? (extensionInfo.price + extensionInfo.insurance_price).toLocaleString() : (
+                    {extension ? numberChanger((extensionInfo.price + extensionInfo.insurance_price).toLocaleString(),activeLanguage) 
+                    : numberChanger((
                       rent_search_dump.total_price -
                       rent_search_dump.total_discount -
                       (rent_search_dump.coupon
@@ -222,7 +224,7 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                       (has_insurance
                         ? rent_search_dump.insurance_total_price
                         : 0)
-                    ).toLocaleString()}
+                    ).toLocaleString(),activeLanguage)}
                   </h3>
                   <span className="toman"> {language.COMMON.toman}</span>
                 </div >
@@ -268,13 +270,13 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
             </div>
             <div className="return_condition">
               <p className="margin_bottom_8">
-                {dynamicString([rent_search_dump.extra_hour_price_name], language.PAYMENT_PAGE.text1)}
+                {numberChanger(dynamicString([rent_search_dump.extra_hour_price_name], language.PAYMENT_PAGE.text1),activeLanguage)}
 
 
 
               </p >
               <p>
-                {dynamicString([rent_search_dump.max_km_per_day, rent_search_dump.extra_km_price_name], language.PAYMENT_PAGE.text2)}
+                {numberChanger(dynamicString([rent_search_dump.max_km_per_day, rent_search_dump.extra_km_price_name], language.PAYMENT_PAGE.text2),activeLanguage)}
 
               </p>
             </div >
