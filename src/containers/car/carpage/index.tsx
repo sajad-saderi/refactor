@@ -746,14 +746,14 @@ const CarPage = ({
                             }
                           >
                             {avg_price_per_day
-                              ? avg_price_per_day.toLocaleString()
+                              ? numberChanger(avg_price_per_day.toLocaleString(),activeLanguage)
                               : null}
                           </span>
                         </div>
                         {total_discount ? (
                           <p>
                             {avg_discounted_price_per_day
-                              ? avg_discounted_price_per_day.toLocaleString()
+                              ? numberChanger(avg_discounted_price_per_day.toLocaleString(),activeLanguage)
                               : null}
                           </p>
                         ) : null}

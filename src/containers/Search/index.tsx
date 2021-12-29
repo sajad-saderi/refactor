@@ -25,7 +25,7 @@ import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { ICalender } from '../../../types';
 import { numberChanger } from '../../../utils/numberChanger';
 
-moment.loadPersian({ dialect: "persian", usePersianDigits: false });
+moment.loadPersian({ dialect: "persian-modern", usePersianDigits: false });
 
 let dateObject: ICalender | null = { from: null, to: null }
 let initialCity = {
