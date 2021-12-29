@@ -92,7 +92,7 @@
 		},
 		"loadMore": "Show More",
 		"loading": "Loading...",
-		"logInOut": "Sign in / Sign up",
+		"logInOut": "Sign in/up",
 		"goToAddCar": "Start earning money",
 		"carPrice": "car price",
 		"duration": "Rental Period",
@@ -158,7 +158,9 @@
 		"errorInUploadingImage": "An Error Occurred While Uploading the Image",
 		"errorInFetchingTransactionData": "An Error Occurred While Fetching the Transaction Information",
 		"errorInReviews": "An Error Occurred in fetching Reviews",
-		"errorInUserCars": "There is an error in fetching user's car"
+		"errorInUserCars": "There is an error in fetching user's car",
+		"invalidCharacters":"invalid Character",
+		"insertYourPhone": "insert your cellphone number"
 	},
 	"INFORMATION": {
 		"text1": "in partnership with Saman Insurance",
@@ -209,7 +211,7 @@
 		"gps": "Guide for Choosing GPS"
 	},
 	"LOGIN": {
-		"login": "Sign in / Sign up",
+		"login": "Sign in/up",
 		"cellPhone": "Mobile Phone",
 		"example": "e.g: +12012019999",
 		"send": "Send Code",

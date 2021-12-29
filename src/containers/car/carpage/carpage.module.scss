@@ -172,7 +172,7 @@
         justify-content: space-between;
         padding-right: 2.4rem;
         p {
-          line-height: 1.4rem;
+          line-height: normal;
           svg {
             display: inline-block;
             vertical-align: middle;
@@ -313,7 +313,7 @@
     .car_delivery {
       p {
         font-size: 1.6rem;
-        line-height: 1.4rem;
+      line-height: normal;
       }
     }
     .distance_limitation,
@@ -747,6 +747,7 @@
         padding-right: 0;
         padding-left: 2.4rem;
         p {
+          line-height: normal;
           svg {
             transform: rotateY(180deg);
           }
@@ -917,10 +918,10 @@
     }
     .continue_to_checkout {
       right: auto;
-      left: 0;
+      right: 0;
       .extra_info {
-        margin-right: 0;
-        margin-left: 1rem;
+        margin-left: 0;
+        margin-right: 1rem;
       }
     }
   }
@@ -950,6 +951,7 @@
       font-weight: 500;
       font-size: 1.4rem;
       color: #fff;
+      line-height: normal;
     }
   }
   .Car_page_container {
@@ -992,6 +994,7 @@
       .car_delivery {
         p {
           font-size: 1.4rem;
+          line-height: normal;
         }
       }
       pre {
@@ -1157,7 +1160,7 @@
         box-shadow: rgb(204, 204, 204) 0px -1px 3px;
         width: 100%;
         bottom: 0px;
-        right: 0;
+        left: 0;
         padding: 1.5rem;
         display: flex;
         justify-content: space-between;
@@ -1168,7 +1171,7 @@
           margin: 0;
         }
         .extra_info {
-          margin-right: 1rem;
+          margin-left: 1rem;
           font-size: 1.1rem;
           text-align: justify;
           font-weight: 500;

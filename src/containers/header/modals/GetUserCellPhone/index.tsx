@@ -15,6 +15,7 @@ import Error_middleware from "../../../../API/ApiUtils";
 import toast_context from "../../../../context/Toast_context";
 import languageCTX from "../../../../context/languageCTX";
 import ErrorHelper from "../../../../../utils/error_helper";
+import { errorCodeFormatter } from "../../../../../utils/errorCodeFormatter";
 
 const GetUserCellPhone = ({
   panelController,
@@ -46,7 +47,14 @@ const GetUserCellPhone = ({
     if (!cellPhone) {
       setError({
         status: true,
-        message: "شماره تلفن همراه‌تان را وارد  کنید.",
+        message: language.COMMON.insertYourPhone,
+      });
+      return;
+    }
+    if (/[^0-9۰-۹]/g.test(cellPhone.toString())) {
+      setError({
+        status: true,
+        message: language.COMMON.invalidCharacters,
       });
       return;
     }
@@ -99,7 +107,8 @@ const GetUserCellPhone = ({
         if (error.response.data.error === "INVALID_CELL") {
           setError({
             status: true,
-            message: error.response.data.message,
+            message: activeLanguage === 'fa' ? error.response.data.message:
+            errorCodeFormatter(error.response.data.error)
           });
         } else {
           toastCTX.toast_option({
@@ -126,7 +135,7 @@ const GetUserCellPhone = ({
       <div className="modal_box_div" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
         <form onSubmit={sendConfirmCode}>
           <TextInput
-            type="number"
+            type="text"
             error={error}
             name="cell Phone"
             onChangeHandler={(e) => {

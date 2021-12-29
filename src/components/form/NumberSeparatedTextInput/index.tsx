@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { supportedLanguages } from '../../../../utils/types';
 
 const NumberSeparatedTextInput = (props: ItextInput) => {
   const [localError, setLocalError] = useState({
@@ -28,10 +29,10 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
         });
       }
     }
-    if (/[^0-9]/g.test(value.toString())) {
+    if (/[^0-9۰-۹]/g.test(value.toString())) {
       setLocalError({
         status: true,
-        message: 'وردی نامعتبر',
+        message: props.language.COMMON.invalidCharacters,
       });
     } else if (data.LengthControl) {
       if (data.LengthControl.minLen) {
@@ -93,7 +94,7 @@ const NumberSeparatedTextInput = (props: ItextInput) => {
       <div className="separated_places">
         <input
           ref={input_ref_separated}
-          type="number"
+          type="text"
           data-hj-allow
           tabIndex={1}
           autoFocus={true}
@@ -161,6 +162,8 @@ interface ItextInput {
   validation?: any;
   value: any;
   tabToButton: any;
+  language:any;
+locale:supportedLanguages
 }
 
 export default NumberSeparatedTextInput;

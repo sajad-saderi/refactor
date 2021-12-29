@@ -284,12 +284,12 @@
       left: 0;
       .error_message_link {
         text-align: left;
-        margin-right: 0;
-        margin-left: 1rem;
+        margin-left: 0;
+        margin-right: 1rem;
       }
       .extra_info {
-        margin-right: 0;
-        margin-left: 1rem;
+        margin-left: 0;
+        margin-right: 1rem;
       }
     }
   }
@@ -356,7 +356,7 @@
           }
         }
         .extra_info {
-          margin-right: 1rem;
+          margin-left: 1rem;
           text-align: justify;
           font-size: 1.1rem;
           font-weight: 500;

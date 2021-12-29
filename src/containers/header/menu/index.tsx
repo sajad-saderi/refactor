@@ -5,6 +5,7 @@ import languageCTX from '../../../context/languageCTX';
 import Spinner from '../../../components/Spinner';
 import { useRouter } from 'next/router';
 import NameAvatar from '../../../components/name_avatar/avatar-name';
+import Icon from '../../../../utils/Icon';
 
 let token = null;
 let complete_register = null;
@@ -71,6 +72,33 @@ const Menu = ({ language }: IMenu) => {
 
   return (
     <ul>
+      {allowToShow &&
+       <li className="Drop_Down">
+        <span className='earthIcon'> <Icon name='earth'/></span> 
+      <ul className="Sub_Nav_Level_2">
+        <li
+          onClick={() => {
+            local.changingLanguage('fa');
+            router.push(router.pathname, router.asPath, {
+              locale: 'fa' ,
+            });
+          }}
+          >
+          <span>فارسی</span>
+        </li>
+        <li
+          onClick={() => {
+            local.changingLanguage('en');
+            router.push(router.pathname, router.asPath, {
+              locale: 'en',
+            });
+          }}
+          >
+          <span>English</span>
+        </li>
+        </ul>
+          </li>
+        }
       <li className="Drop_Down">
         <span>{language.HEADER.guide}</span>
         <ul className="Sub_Nav_Level_2">
@@ -135,17 +163,6 @@ const Menu = ({ language }: IMenu) => {
           </Link>
         </li>
       )}
-      {allowToShow &&
-        <li
-          onClick={() => {
-            local.changingLanguage(local.activeLanguage === 'en' ? 'fa' : 'en');
-            router.push(router.pathname, router.asPath, {
-              locale: local.activeLanguage === 'en' ? 'fa' : 'en',
-            });
-          }}
-        >
-          <span>{local.activeLanguage === 'en' ? 'fa' : 'en'}</span>
-        </li>}
       {token ? (
         spinner ? (
           <li className="header_spinner">

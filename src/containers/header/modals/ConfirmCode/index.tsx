@@ -20,6 +20,8 @@ import Error_middleware from "../../../../API/ApiUtils";
 import ErrorHelper from "../../../../../utils/error_helper";
 import { dynamicString } from '../../../../helpers/dynamicString';
 import languageCTX from "../../../../context/languageCTX";
+import { numberChanger } from "../../../../../utils/numberChanger";
+import { errorCodeFormatter } from "../../../../../utils/errorCodeFormatter";
 
 const ConfirmCode = ({
   panelController,
@@ -167,7 +169,7 @@ const ConfirmCode = ({
         ) {
           setError({
             status: true,
-            message: error.response.data.message,
+            message: activeLanguage === 'fa' ? error.response.data.message : errorCodeFormatter(error.response.data.error),
           });
         } else
           toastCTX.toast_option({
@@ -202,8 +204,8 @@ const ConfirmCode = ({
           onChangeHandler={(e) => {
             setCode(e);
           }}
-          value={code}
-          label={dynamicString([Cell_Phone_context.cell_phone], language.LOGIN.label)}
+          value={numberChanger(code,activeLanguage)}
+          label={ numberChanger(dynamicString([Cell_Phone_context.cell_phone], language.LOGIN.label),activeLanguage)}
           validation={{
             number: true,
             length: 4,
@@ -214,6 +216,8 @@ const ConfirmCode = ({
             required: true,
           }}
           tabToButton={() => buttonRef.current.focus()}
+          language={language}
+          locale={activeLanguage}
         />
         <div
           className={[

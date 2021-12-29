@@ -158,7 +158,9 @@
 		"errorInUploadingImage": "خطایی در آپلود تصویر رخ داده است.",
 		"errorInFetchingTransactionData": "خطایی در دریافت اطلاعات پرداخت رخ داده است.",
 		"errorInReviews": "خطا در دریافت لیست نظرات",
-		"errorInUserCars": "خطا در دریافت لیست خودروهای کاربر"
+		"errorInUserCars": "خطا در دریافت لیست خودروهای کاربر",
+		"invalidCharacters":"وردی نامعتبر",
+		"insertYourPhone": "شماره تلفن همراه‌تان را وارد  کنید."
 	},
 	"INFORMATION": {
 		"text1": "با همکاری بیمه‌های اتومبیل سامان",

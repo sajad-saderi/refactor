@@ -16,6 +16,7 @@ import Deactivate_shield from "../public/image/svg/deactivated_shield.svg";
 import cancel from "../public/image/svg/cancel.svg";
 import warning from "../public/image/svg/warning.svg";
 import location from "../public/image/svg/location.svg";
+import earth from "../public/image/svg/earth.svg";
 
 const Icon = ({ name }: IIcon) => {
   let icon = null;
@@ -74,6 +75,9 @@ const Icon = ({ name }: IIcon) => {
     case "location":
       icon = location;
       break;
+    case "earth":
+      icon = earth;
+      break;
     default:
       // eslint-disable-next-line no-console
       console.warn("Incorrect icon name specified");
@@ -102,6 +106,7 @@ interface IIcon {
   | "opposite_arrows"
   | "cancel"
   | "location"
+  | "earth"
   | "warning";
 }
 

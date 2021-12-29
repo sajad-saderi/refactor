@@ -30,6 +30,7 @@ import { ICalender } from '../../../types';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { dynamicString } from '../../helpers/dynamicString';
 import { numberChanger } from "../../../utils/numberChanger";
+import { errorCodeFormatter } from "../../../utils/errorCodeFormatter";
 
 let dateObject: ICalender | null = { from: null, to: null }
 
@@ -263,7 +264,7 @@ const Checkout_Container = ({
               errorObj: error.response,
               _400Message:
                 error.response.data.error === "DUPLICATE_RENT_ORDER"
-                  ? error.response.data.message
+                  ? activeLanguage === 'fa'? error.response.data.message: errorCodeFormatter(error.response.data.error)
                   : null,
             })
             : error,
@@ -527,13 +528,6 @@ const Checkout_Container = ({
           </p>
         </div>
         <div className="continue_to_pay">
-          <Button
-            value={language.CHECKOUT.booking}
-            class="Blue_BTN localClass HEAP_Checkout_Btn_Book"
-            disable={loading}
-            loading={loading}
-            click={GoToRequests}
-          />
           {error_message ? (
             <Link href="/requests" prefetch={false}>
               <a className="error_message_link">
@@ -544,6 +538,13 @@ const Checkout_Container = ({
           ) : (
             <span className="extra_info">{language.COMMON.paymentNote}</span>
           )}
+          <Button
+            value={language.CHECKOUT.booking}
+            class="Blue_BTN localClass HEAP_Checkout_Btn_Book"
+            disable={loading}
+            loading={loading}
+            click={GoToRequests}
+          />
         </div>
       </section>
     </article>

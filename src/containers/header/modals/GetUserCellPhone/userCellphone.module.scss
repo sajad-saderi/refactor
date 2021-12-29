@@ -21,6 +21,7 @@
         line-height: 1.5;
       }
       input {
+        text-align: left;
         margin-bottom: 0.3rem;
         &:focus::placeholder {
           color: transparent;

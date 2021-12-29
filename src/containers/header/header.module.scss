@@ -125,6 +125,7 @@
               }
               padding-left: 15px;
             }
+            span,
             a {
               font-size: 1.1rem;
               color: $almost_black;
@@ -176,11 +177,12 @@
         }
       }
       .Drop_Down {
+        .earthIcon{display: inherit;}
         &:hover .Sub_Nav_Level_2 {
           display: block;
           &::before {
             bottom: 100%;
-            left: 15%;
+            left: 13%;
             content: '';
             height: 0px;
             width: 0px;
@@ -251,7 +253,7 @@
           display: block;
           &::before {
             left: auto;
-            right: 78%;
+            right: 81%;
             margin-left: 0px;
             margin-right: -7px;
           }

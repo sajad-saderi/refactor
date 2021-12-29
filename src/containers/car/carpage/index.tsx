@@ -1270,13 +1270,13 @@ const CarPage = ({
               </Link>
               {availableCar && !is_mine ? (
                 <div className="continue_to_checkout">
+                  <span className="extra_info">{language.COMMON.paymentNote}</span>
                   <Button
                     value={language.COMMON.continue}
                     class="Blue_BTN localClass HEAP_Car_Btn_Continue"
                     loading={loading}
                     click={GoToCheckout}
                   />
-                  <span className="extra_info">{language.COMMON.paymentNote}</span>
                 </div>
               ) : null}
             </section>
