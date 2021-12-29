@@ -73,6 +73,7 @@ const JoinUs = ({ BotScore, locale }) => {
             <Calculator
               language={locale}
               AbText={locale.COMMON.goToAddCar}
+              locale={activeLanguage}
             />
           </div>
         </section>

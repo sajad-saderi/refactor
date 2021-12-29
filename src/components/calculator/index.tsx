@@ -19,10 +19,11 @@ import { guard_controller } from "../../../utils/guard_controller";
 import toast_context from "../../context/Toast_context";
 import ErrorHelper from "../../../utils/error_helper";
 import net_CTX from "../../context/internetConnectionCTX";
+import { supportedLanguages } from "../../../utils/types";
 
 // import ShowResult from "./ShowResult/ShowResult";
 
-const Calculator = ({ AbText, language }: ICalculator) => {
+const Calculator = ({ AbText, language,locale }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
   const [modelList, setModelList] = useState([]);
   const [value, setValue] = useState("");
@@ -215,13 +216,15 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                 //   })
                 // }
                 Select={(v) => {
+                  console.log(v);
+                  
                   fetchModelList(v.value);
                   setSaveCarInfo((saveCarInfo) => {
                     return { ...saveCarInfo, brand: v };
                   });
                   setBrand({
                     id: v.value,
-                    name: v.name,
+                    name: v.name[locale],
                   });
                   try {
                     if (window["heap"]) {
@@ -263,7 +266,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
                   } catch (e) {
                     console.log("Em...I think heap is not work correctly :/");
                   }
-                  setModel({ id: v.value, name: v.name });
+                  setModel({ id: v.value, name: v.name[locale] });
                 }}
                 placeholder={language.JOIN_US_PAGE.model}
                 error_status={modelError.status}
@@ -367,6 +370,7 @@ const Calculator = ({ AbText, language }: ICalculator) => {
 interface ICalculator {
   AbText?: string;
   language: any;
+  locale:supportedLanguages
 }
 
 export default Calculator;

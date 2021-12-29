@@ -56,6 +56,8 @@ const JoinUs = ({ BotScore, locale }) => {
             <Calculator
               language={locale}
               AbText={locale.COMMON.goToAddCar}
+              locale={activeLanguage}
+
             />
           </div>
           <p className="temporary_score">{Score}</p>
