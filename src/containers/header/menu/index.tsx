@@ -75,7 +75,7 @@ const Menu = ({ language }: IMenu) => {
       {allowToShow &&
        <li className="Drop_Down">
         <span className='earthIcon'> <Icon name='earth'/></span> 
-      <ul className="Sub_Nav_Level_2">
+      <ul className="Sub_Nav_Level_2 localeDropDown">
         <li
           onClick={() => {
             local.changingLanguage('fa');

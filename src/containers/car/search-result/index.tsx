@@ -64,7 +64,8 @@ const SearchResultList = ({
                   tagClick={tagClick}
                   language={language}
                 />
-                <section className='quick_access_middle_searchResult'>
+                <section className='quick_access_middle_searchResult'
+                dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
                   <h2>{language.COMMON.quickAccess}</h2>
                   <div className='quick_access_child_container'>
                     <div
