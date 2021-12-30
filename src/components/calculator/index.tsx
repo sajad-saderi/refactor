@@ -135,20 +135,20 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
      * validation to ignore empty values or if the inputted value is smaller then 10 million
      */
     if (!brand.id) {
-      setBrandError({ status: true, message: language.JOIN_US_PAGE.form_error_1 });
+      setBrandError({ status: true, message: language.JOIN_US_PAGE.error1 });
       setLoading(false);
       return;
     } else if (!model.id) {
-      setModelError({ status: true, message: language.JOIN_US_PAGE.form_error_2 });
+      setModelError({ status: true, message: language.JOIN_US_PAGE.error2 });
       setLoading(false);
       return;
     } else if (value === "") {
-      setValueError({ status: true, message: language.JOIN_US_PAGE.form_error_3 });
+      setValueError({ status: true, message: language.JOIN_US_PAGE.error3 });
       setLoading(false);
       return;
     }
     if (+value < 20000000) {
-      setValueError({ status: true, message: language.JOIN_US_PAGE.form_error_4 });
+      setValueError({ status: true, message: language.JOIN_US_PAGE.error4 });
       setLoading(false);
       return;
     }

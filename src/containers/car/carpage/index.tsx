@@ -126,7 +126,6 @@ const CarPage = ({
   const { store: { date }, setDate } = useContext(appStore);
 
   const languageCheck = (id) => {
-
     if (!searchDate.from) {
       fetchData({ id, from: start_date[activeLanguage].dump, to: end_date[activeLanguage].dump });
     } else {
@@ -157,18 +156,19 @@ const CarPage = ({
       if (initial_search_id) {
         search_id = initial_search_id;
       }
-      // setDayRange({
-      //   from: {
-      //     year: searchDate ? +searchDate.from[activeLanguage].year,
-      //     month: searchDate ? +searchDate.from[activeLanguage].month,
-      //     day: searchDate ? +searchDate.from[activeLanguage].day,
-      //   },
-      //   to: {
-      //     year: searchDate ? +searchDate.to[activeLanguage].year,
-      //     month: searchDate ? +searchDate.to[activeLanguage].month,
-      //     day: searchDate ? +searchDate.to[activeLanguage].day,
-      //   },
-      // });
+      if(!router.asPath.includes("start_date")){        
+      setDayRange({
+        from: {
+          year:   +searchDate.from[activeLanguage].dump.year,
+          month:   +searchDate.from[activeLanguage].dump.month,
+          day:   +searchDate.from[activeLanguage].dump.day,
+        },
+        to: {
+          year:  +searchDate.to[activeLanguage].dump.year,
+          month:  +searchDate.to[activeLanguage].dump.month,
+          day:  +searchDate.to[activeLanguage].dump.day,
+        },
+      })}
       setShowCalender(true);
       set_CarInformation(car_Information);
       get_reviews();

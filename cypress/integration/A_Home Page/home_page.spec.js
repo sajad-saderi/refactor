@@ -1,4 +1,5 @@
 import { set_default_date_for_search } from '../../utils/set_defult_date_for_search';
+import { numberChanger } from '../../utils/numberChanger';
 
 // "چک کردن تاریخ در باکس های تاریخ رفت و برگشت، شامل: مقدار تاریخ، فاصله 3 روزه بین انها و نمایش مقدار در در هردو باکس"
 const date = set_default_date_for_search();
@@ -26,7 +27,7 @@ describe('تست یو-آی صفحه خانه', () => {
             cy
               .get('.Nav>ul li')
               .its('length')
-              .should('equal', 11),
+              .should('equal', 14),
           );
         }
       });
@@ -85,9 +86,9 @@ describe('تست یو-آی صفحه خانه', () => {
     cy.get('footer .plus_border .social_container_footer a:last-child')
       .invoke('attr', 'href')
       .should('contain', 'https://wa.me/message/C3U7RO7ADABWF1');
-    cy.get('a.HEAP_Footer_Link_Phone:nth-of-type(1)').contains('02191091431');
-    cy.get('a.HEAP_Footer_Link_Phone:nth-of-type(2)').contains('02191091432');
-    cy.get('a.HEAP_Footer_Link_Phone:nth-of-type(3)').contains('09391414574');
+    cy.get('a.HEAP_Footer_Link_Phone:nth-of-type(1)').contains('۰۲۱۹۱۰۹۱۴۳۱');
+    cy.get('a.HEAP_Footer_Link_Phone:nth-of-type(2)').contains('۰۲۱۹۱۰۹۱۴۳۲');
+    cy.get('a.HEAP_Footer_Link_Phone:nth-of-type(3)').contains('۰۹۳۹۱۴۱۴۵۷۴');
   });
 
   // .........................
@@ -109,7 +110,7 @@ describe('تست یو-آی صفحه خانه', () => {
           .get('.Modal')
           .should('be.visible')
           .get('.modal_box_div .p3')
-          .contains('وقتی در سنندج فعال شدیم خبرتان می‌کنیم.')
+          .contains('سپریس هنوز در سنندج فعال نشده است.')
           .get('.text_input_container .input_surround .text_input')
           .type('09380158835')
           .intercept('POST', core_url + '/service-request/new')
@@ -139,14 +140,16 @@ describe('تست یو-آی صفحه خانه', () => {
     )
       .invoke('val')
       .then((text) => {
-        expect(text).to.be.equal(date.from_text_form);
+        let format = numberChanger(date.from_text_form,'fa')  
+        expect(text).to.be.equal(format);
       });
     cy.get(
       '.search_box form .Date_picker_container .date_Input_Container .input_container:nth-of-type(3) input',
     )
       .invoke('val')
       .then((text) => {
-        expect(text).to.be.equal(date.to_text_form);
+        let format = numberChanger(date.to_text_form,'fa') 
+        expect(text).to.be.equal(format);
       });
   });
 
