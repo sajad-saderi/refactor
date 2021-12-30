@@ -83,7 +83,7 @@ const ConfirmCode = ({
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellNumber,
-        code: numberChanger(code,'en'),
+        code: numberChanger(code,'en  '),
         ...utm,
       })
       .then((response) => {

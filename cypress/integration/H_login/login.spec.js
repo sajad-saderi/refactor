@@ -1,5 +1,6 @@
 import log_me_in from "../../utils/log_me_in";
 import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
+import { numberChanger } from "../../utils/numberChanger";
 
 const date = set_default_date_for_search();
 const core_url = "https://core.sepris.com/core";
@@ -114,7 +115,7 @@ describe("بررسی صفحه لاگین", () => {
         console.log(result);
         expect(result.status).to.eq(200);
         cy.get(".text_input_container label")
-          .contains(cell_phone)
+          .contains(numberChanger(cell_phone,'fa'))
           .get(".separated_places .text_input.data-hj-allow")
           .as("separated_input")
           .type(1111)
@@ -135,7 +136,7 @@ describe("بررسی صفحه لاگین", () => {
   it("بررسی دسترسی های صفحه", () => {
     cy.get(".Nav> ul")
       .children()
-      .should("have.length", 3)
+      .should("have.length", 4)
       // .intercept("/add-car")
       // .as("go_to_add_car_after_login")
       .get(".second_container .add_car_section a:last-child")
