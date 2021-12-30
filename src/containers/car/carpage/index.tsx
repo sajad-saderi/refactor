@@ -156,7 +156,7 @@ const CarPage = ({
       if (initial_search_id) {
         search_id = initial_search_id;
       }
-      if(!router.asPath.includes("start_date")){        
+          
       setDayRange({
         from: {
           year:   +searchDate.from[activeLanguage].dump.year,
@@ -168,7 +168,7 @@ const CarPage = ({
           month:  +searchDate.to[activeLanguage].dump.month,
           day:  +searchDate.to[activeLanguage].dump.day,
         },
-      })}
+      })
       setShowCalender(true);
       set_CarInformation(car_Information);
       get_reviews();
