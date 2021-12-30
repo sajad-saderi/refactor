@@ -1,6 +1,6 @@
 {
   "env": {
-    "DEV_HOME": "http://localhost:3000/",
+    "DEV_HOME": "https://refactor-h2ybayz99-sajad-saderi.vercel.app/",
     "CORE": "https://core.sepris.com/core/",
     "PRO_HOME": "http://sepris.com/",
     "CELL_A": "09000000000",

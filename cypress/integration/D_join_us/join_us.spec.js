@@ -72,7 +72,7 @@ describe("تست های صفحه به ما بپیوندید", () => {
         cy.get(".CalculatorResult")
           .should("exist")
           .get(".CalculatorResult .eachSvgBox .CalcH3")
-          .contains("1.1")
+          .contains("۱.۱")
           .get(".addCar_top_joinus_a")
           .should("exist")
           .should("have.attr", "href")

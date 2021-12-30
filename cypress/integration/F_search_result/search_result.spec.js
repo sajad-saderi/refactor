@@ -1,4 +1,5 @@
 import { set_default_date_for_search } from "../../utils/set_defult_date_for_search";
+import { numberChanger } from "../../utils/numberChanger";
 
 describe("تست صفحه نتایج جستجو", () => {
   const core_url = "https://core.sepris.com/core";
@@ -113,7 +114,7 @@ describe("تست صفحه نتایج جستجو", () => {
               `/rental-car/search-for-rent/list?location_id=1&start_date=${date.from_date_form}&end_date=${date.to_date_form}&o=-price&page=1&limit=15`
           )
           .then(() => {
-            cy.url()
+            cy.wait(3000).url()            
               .should("contain", "&deliver_at_renters_place=1&with_driver=1")
               .then(() => {
                 cy.get(".minimal_filter_tags")
@@ -129,7 +130,7 @@ describe("تست صفحه نتایج جستجو", () => {
                   .then(() => {
                     cy.get(".minimal_filter_tags")
                       .should("exist")
-                      .contains("اجاره همراه راننده")
+                      .contains("با راننده")
                       .click()
                       .request(
                         "GET",
@@ -352,14 +353,14 @@ describe("تست صفحه نتایج جستجو", () => {
                                                                                         .textContent;
                                                                                       cy.url().should(
                                                                                         "contain",
-                                                                                        `&min_price=${filter_label_value
+                                                                                        `&min_price=${numberChanger(filter_label_value
                                                                                           .split(
                                                                                             " "
                                                                                           )[2]
                                                                                           .replace(
                                                                                             /,/g,
                                                                                             ""
-                                                                                          )}`
+                                                                                          ),'en')}`
                                                                                       );
                                                                                       cy
                                                                                         // .intercept(
