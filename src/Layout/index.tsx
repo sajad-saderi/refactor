@@ -84,17 +84,23 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
     if (!window.navigator.onLine) {
       netCTX.toggleTheContainer(true);
     }
+   
+try{
 
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    if (urlParams.get('utm_source')) {
-      localStorage['utm_source'] = urlParams.get('utm_source');
-      localStorage['utm_medium'] = urlParams.get('utm_medium');
-      localStorage['utm_campaign'] = urlParams.get('utm_campaign');
-      localStorage['utm_term'] = urlParams.get('utm_term');
-      localStorage['utm_content'] = urlParams.get('utm_content');
-    }
-
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.get('utm_source')) {
+    localStorage['utm_source'] = urlParams.get('utm_source');
+    localStorage['utm_medium'] = urlParams.get('utm_medium');
+    localStorage['utm_campaign'] = urlParams.get('utm_campaign');
+    localStorage['utm_term'] = urlParams.get('utm_term');
+    localStorage['utm_content'] = urlParams.get('utm_content');
+  }
+}catch(e){
+  console.log('error in URLSearchParams, your browser is not supporting URLSearchParams');
+  
+}
+  
     if (localeCTX.activeLanguage !== Router.router.locale) {
       localeCTX.changingLanguage(Router.router.locale as supportedLanguages);
     }
