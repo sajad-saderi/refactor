@@ -89,7 +89,7 @@ try{
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  if (urlParams.get('utm_source')) {
+  if (urlParams.has('utm_source')) {
     localStorage['utm_source'] = urlParams.get('utm_source');
     localStorage['utm_medium'] = urlParams.get('utm_medium');
     localStorage['utm_campaign'] = urlParams.get('utm_campaign');

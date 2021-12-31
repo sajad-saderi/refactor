@@ -41,7 +41,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   let price =
     avg_discounted_price_per_day >= 10000000
       ? avg_discounted_price_per_day >= 10100000
-        ? numberChanger((avg_discounted_price_per_day / 10000000).toString(),activeLanguage)
+        ? numberChanger((avg_discounted_price_per_day / 1000000).toString(),activeLanguage)
         : numberChanger((avg_discounted_price_per_day / 10000000).toString(),activeLanguage)
       : avg_discounted_price_per_day >= 1000000
         ? avg_discounted_price_per_day_name.slice(2, 3) === "."
