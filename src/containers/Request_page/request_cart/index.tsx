@@ -272,8 +272,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
             </div>
             {!renter && (
-              <div className="timer">
-                <CountdownTimer
+              <div className="timer timer_approved">
+                 <CountdownTimer
                   timeLeft={
                     data.time_remaining_to_take_action.total_seconds * 1000
                   }
