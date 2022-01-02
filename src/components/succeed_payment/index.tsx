@@ -42,6 +42,7 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
 
       fetchAPI(window.location.search.match(/(\d+)/)[0]);
     } else {
+      localStorage["last_location"] = Router.router.asPath;
       Router.push("/login");
     }
   }, []);

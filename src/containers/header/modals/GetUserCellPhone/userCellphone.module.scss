@@ -22,6 +22,7 @@
       }
       input {
         text-align: left;
+        direction: ltr;
         margin-bottom: 0.3rem;
         &:focus::placeholder {
           color: transparent;
