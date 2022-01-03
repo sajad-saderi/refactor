@@ -415,8 +415,13 @@ const CarPage = ({
     setWith_driver(res.with_driver);
     setWithout_driver(res.without_driver);
     setDescription(res.description);
-    setMax_km_per_day(res.max_km_per_day);
-    setExtra_km_price_name(res.extra_km_price_i18n.name_i18n[activeLanguage]);
+    setMax_km_per_day(res.max_km_per_day?res.max_km_per_day:'');
+    if(res.extra_km_price_i18n){
+      setExtra_km_price_name(res.extra_km_price_i18n.name_i18n[activeLanguage]);
+    }else{
+      setExtra_km_price_name(res.extra_km_price_name)
+    }
+
     // setIs_out_of_service(res.is_out_of_service);
     setRate(res.rate);
     setDeliver_at_renters_place(res.deliver_at_renters_place);
@@ -426,7 +431,9 @@ const CarPage = ({
     setIs_verified(res.is_verified);
     setIs_audited(res.is_audited);
     if (res.extra_hour_price > 0)
-      setExtra_hour_price_name(res.extra_hour_price_i18n.name_i18n[activeLanguage]);
+      if(res.extra_hour_price_i18n){
+        setExtra_hour_price_name(res.extra_hour_price_i18n.name_i18n[activeLanguage]);
+      }else setExtra_hour_price_name(res.extra_hour_price_name);
     setOwner(res.owner);
     setCylinder(res.cylinder);
     setFacility_set(res.facility_set);
@@ -1254,7 +1261,10 @@ const CarPage = ({
                       <p className="size_14 margin_top_16 margin_bottom_16">
                         {dynamicString([owner.owner_avg_response_time.total_seconds >= 86400
                           ? language.COMMON.moreOneDay
-                          : owner.owner_avg_response_time.name_i18n[activeLanguage]], language.COMMON.responseTime)}
+                          : owner.owner_avg_response_time
+                            ? owner.owner_avg_response_time.name_i18n[activeLanguage]
+                            :''
+                          ], language.COMMON.responseTime)}
                         {/* <strong>
                           {owner.owner_avg_response_time.total_seconds >= 86400
                             ? language.COMMON.moreOneDay
