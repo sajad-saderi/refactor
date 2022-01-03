@@ -855,7 +855,7 @@ const CarPage = ({
                                   : null
                               }
                               readOnly={true}
-                              value={fromDay ? fromDay : ""}
+                              value={fromDay ? numberChanger(fromDay,activeLanguage) : ""}
                             />
                           </div>
                           <div className="input_container">
@@ -877,7 +877,7 @@ const CarPage = ({
                                   : null,
                               ].join(" ")}
                               readOnly={true}
-                              value={toDay ? toDay : ""}
+                              value={toDay ? numberChanger(toDay,activeLanguage) : ""}
                             />
                           </div>
                         </div>
@@ -1152,7 +1152,7 @@ const CarPage = ({
                               : null
                           }
                           readOnly={true}
-                          value={fromDay ? fromDay : ""}
+                          value={fromDay ? numberChanger(fromDay,activeLanguage) : ""}
                         />
                       </div>
                       <div className="input_container">
@@ -1174,7 +1174,7 @@ const CarPage = ({
                               : null,
                           ].join(" ")}
                           readOnly={true}
-                          value={toDay ? toDay : ""}
+                          value={toDay ? numberChanger(toDay, activeLanguage) : ""}
                         />
                       </div>
                     </div>

@@ -1,5 +1,6 @@
 export const numberChanger = (string:string, locale) => {
-	let temp = '';    
+	let temp = '';  
+	if(string){ 
 	for (let i = 0; i < string.length; i++) {
 		let b: string | number = '';
 		b = string[i];
@@ -78,4 +79,5 @@ export const numberChanger = (string:string, locale) => {
 		temp += b;
 	}
 	return temp;
+}return string 
 };
