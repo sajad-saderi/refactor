@@ -574,15 +574,15 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                     ? numberChanger(coupon.toLocaleString(),activeLanguage)
                     : numberChanger((discounted_total_price + (extensionSum ? extensionSum.price : 0)).toLocaleString(),activeLanguage)}{" "}
               </span>
-              {language.COMMON.toman} ({language.COMMON.for} {numberChanger((no_of_days + (extensionSum.price ?extensionInfo?.no_of_extended_days:0) ).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
+              {language.COMMON.toman} ({language.COMMON.for} {numberChanger((no_of_days + (extensionSum?extensionSum.price ?extensionInfo?.no_of_extended_days:0:0) ).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
             </>
           ) : (
             <>
               <span>{numberChanger(discounted_total_price.toLocaleString(),activeLanguage)} </span>
-              {language.COMMON.toman} ({language.COMMON.for} {numberChanger((no_of_days + (extensionSum.price ?extensionInfo?.no_of_extended_days:0)).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
+              {language.COMMON.toman} ({language.COMMON.for} {numberChanger((no_of_days + (extensionSum?extensionSum.price ?extensionInfo?.no_of_extended_days:0:0)).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, no_of_days > 1 ? true : false)})
             </>
           )}
-          {!extensionSum.price&&<span className="insurance_badge">
+          {!extensionSum?.price&&<span className="insurance_badge">
             {has_Insurance ? (
               <>
                 <Icon name="active_shield" />
