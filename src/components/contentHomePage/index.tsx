@@ -20,7 +20,7 @@ const ContentHomePage = ({
         )}
       >
         <p>{language.INFORMATION.text1}</p>
-        <img src={insurance} alt={language.COMMON.samanInsuranceImage} width="115" height="47" />
+        <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
       </div>
       <div className="second_container">
         <h2>{language.INFORMATION.text2}</h2>
