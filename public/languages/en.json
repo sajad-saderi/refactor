@@ -425,6 +425,7 @@
 		"deliveryDate": "Pick up Date",
 		"ExtensionDate": "Extension from",
 		"returnDate": "Drop off date",
+		"newReturnDate": "new drop off date",
 		"carInsurance": "Car rental insurance",
 		"carDelivery": "Car delivery",
 		"returningCar": "Car return",

@@ -152,23 +152,32 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                         : rent_search_dump.owner.name}
                     </span>
                   </div>
-                  <div>
+                  {!extension &&<div>
 
-                    <p>{extension ?  language.PAYMENT_PAGE.ExtensionDate: language.PAYMENT_PAGE.deliveryDate}:</p>
+                    <p>{extension ?  null: language.PAYMENT_PAGE.deliveryDate}:</p>
                     <span>
-                      {extension ?
-                        numberChanger(moment(
-                          extensionStartDate ? extensionStartDate : rent_search_dump.end_date,
-                          'jYYYY/jMM/jDD',
-                        ).format('jYYYY/jMM/jD'),activeLanguage)
+                      {extension ? null
+                        // numberChanger(moment(
+                        //   extensionStartDate ? extensionStartDate : rent_search_dump.end_date,
+                        //   'jYYYY/jMM/jDD',
+                        // ).format('jYYYY/jMM/jD'),activeLanguage)
                         : numberChanger(moment(
                           rent_search_dump.start_date,
                           'jYYYY/jMM/jDD',
                         ).format('jYYYY/jMM/jD'),activeLanguage)}
                     </span>
-                  </div >
+                  </div >}
                   <div>
-                    <p>{language.PAYMENT_PAGE.returnDate}:</p>
+                    <p>{`${extension ? language.COMMON.extensionDuration : language.COMMON.duration}`}:</p>
+ 
+                      {
+                        extension 
+                        ?<span>{numberChanger((extensionInfo.no_of_extended_days).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}</span>
+                      :<span>{numberChanger((rent_search_dump.no_of_days).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}</span>
+                      } 
+                  </div>
+                  <div>
+                    <p>{extension ?language.PAYMENT_PAGE.newReturnDate :language.PAYMENT_PAGE.returnDate}:</p>
                     <span>
                       {extension ?
                         numberChanger(moment(
@@ -179,13 +188,6 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                           rent_search_dump.end_date,
                           'jYYYY/jMM/jDD',
                         ).format('jYYYY/jMM/jD'),activeLanguage)}
-                    </span>
-                  </div>
-                  <div>
-                    <p>{`${extension ? language.COMMON.extensionDuration : language.COMMON.duration}`}:</p>
-
-                    <span>
-                      {numberChanger((rent_search_dump.no_of_days).toString(),activeLanguage)} {dynamicString(null, language.COMMON.day, rent_search_dump.no_of_days > 1 ? true : false)}
                     </span>
                   </div>
                   {
@@ -203,12 +205,12 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
                         </div>
                       )
                   }
-                  <div>
+                  {/* <div>
                     <p>{language.COMMON.kmLimit}:</p>
                     <span className="float-left">
                       {numberChanger((rent_search_dump.max_km_per_day).toString(),activeLanguage)} {language.COMMON.km}
                     </span>
-                  </div>
+                  </div> */}
                 </div >
               </div >
               <div className="paid_price ">
