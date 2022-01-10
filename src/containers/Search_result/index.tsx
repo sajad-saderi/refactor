@@ -105,7 +105,7 @@ const Search_result = ({
     car_id: false,
     category_id: false,
   });
-  const [carLocationName, setCarLocationName] = useState(null);
+  const [carLocationName, setCarLocationName] = useState('');
   const toastCTX = useContext(toast_context);
   const appStore = useContext(AppStore);
   const router = useRouter();

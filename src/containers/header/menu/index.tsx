@@ -39,18 +39,23 @@ const Menu = ({ language }: IMenu) => {
   }, []);
 
 	const handleClickOutside = (e) => {
-		// If the click is outside of the drop-down box the drop-down section will be close
-    if (!wrapperRef.current.contains(e.target)) {
-			setShowController(false);
-      return;
-    }}
+		// If the click is outside of the drop-down box the drop-down section will be close		
+    if(wrapperRef.current){
+			if (!wrapperRef.current.contains(e.target)) {
+				setShowController(false);
+				return;
+			}}
+		}
 
 
 	const handleClickOutsideGuide = (e) => {
+    if(guideWrapperRef.current){
+
 		if (!guideWrapperRef.current.contains(e.target)) {
       setShowControllerGuide(false);
       return;
     }
+	}
   };
 
   useEffect(() => {
@@ -94,6 +99,7 @@ const Menu = ({ language }: IMenu) => {
     || router.pathname === "/join-us3"
     || router.pathname === "/join-us4"
     || router.pathname === "/add-car"
+    || router.pathname === "/assurance"
     || router.pathname === "/set-car-timing" ? false : true
 
   return (
