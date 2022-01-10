@@ -179,12 +179,12 @@
       .Drop_Down {
         .earthIcon{display: inherit;}
         .localeDropDown{
-          min-width: 90px;
+          min-width: 105px;
           width: auto; 
-          &::before {left: 29% !important; }
+          &::before {left: 24% !important; }
         }
-        &:hover .Sub_Nav_Level_2 {
-          display: block;
+        .Sub_Nav_Level_2 {
+          // display: block;
           &::before {
             bottom: 100%;
             left: 13%;
@@ -200,6 +200,9 @@
             border-width: 5px;
           }
         }
+				.dropdownIsActive{
+					display: block;
+				}
       }
     }
   }
@@ -256,10 +259,9 @@
       .Drop_Down {
         .localeDropDown{ 
           &::before {left: auto !important;
-            right: 58% !important;}
+            right: 63% !important;}
         }
-        &:hover .Sub_Nav_Level_2 {
-          display: block;
+         .Sub_Nav_Level_2 { 
           &::before {
             left: auto;
             right: 81%;

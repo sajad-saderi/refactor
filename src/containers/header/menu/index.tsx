@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import context_user from '../../../context/User_info';
 import languageCTX from '../../../context/languageCTX';
@@ -17,15 +17,41 @@ let user_id = null;
 const Menu = ({ language }: IMenu) => {
   const [spinner, set_spinner] = useState(false);
   const [en, setEn] = useState();
+  const [ShowController, setShowController] = useState(false);
+  const [ShowControllerGuide, setShowControllerGuide] = useState(false);
+
   const user = useContext(context_user);
   const local = useContext(languageCTX);
   const router = useRouter();
+  const wrapperRef = useRef(null);
+  const guideWrapperRef = useRef(null);
 
   useEffect(() => {
     if (window['auth'] && !user.data) {
       set_spinner(true);
     }
+			document.addEventListener("mousedown", handleClickOutside);
+			document.addEventListener("mousedown", handleClickOutsideGuide);
+			return () => {
+				document.removeEventListener("mousedown", handleClickOutside);
+				document.removeEventListener("mousedown", handleClickOutsideGuide);
+			};
   }, []);
+
+	const handleClickOutside = (e) => {
+		// If the click is outside of the drop-down box the drop-down section will be close
+    if (!wrapperRef.current.contains(e.target)) {
+			setShowController(false);
+      return;
+    }}
+
+
+	const handleClickOutsideGuide = (e) => {
+		if (!guideWrapperRef.current.contains(e.target)) {
+      setShowControllerGuide(false);
+      return;
+    }
+  };
 
   useEffect(() => {
     if (user.data) {
@@ -74,10 +100,11 @@ const Menu = ({ language }: IMenu) => {
     <ul>
       {allowToShow &&
        <li className="Drop_Down">
-        <span className='earthIcon'> <Icon name='earth'/></span> 
-      <ul className="Sub_Nav_Level_2 localeDropDown">
+        <span className='earthIcon' onClick={() =>{setShowController(!ShowController);setShowControllerGuide(false)}}> <Icon name='earth'/></span> 
+      <ul className={`Sub_Nav_Level_2 localeDropDown ${ShowController ? "dropdownIsActive" : ''}`}  ref={wrapperRef}>
         <li
           onClick={() => {
+						setShowController(false)
             local.changingLanguage('fa');
             router.push(router.pathname, router.asPath, {
               locale: 'fa' ,
@@ -88,6 +115,7 @@ const Menu = ({ language }: IMenu) => {
         </li>
         <li
           onClick={() => {
+						setShowController(false)
             local.changingLanguage('en');
             router.push(router.pathname, router.asPath, {
               locale: 'en',
@@ -100,51 +128,51 @@ const Menu = ({ language }: IMenu) => {
           </li>
         }
       <li className="Drop_Down">
-        <span>{language.HEADER.guide}</span>
-        <ul className="Sub_Nav_Level_2">
-          <li>
+        <span onClick={()=>{setShowControllerGuide(!ShowControllerGuide);setShowController(false)}}>{language.HEADER.guide}</span>
+        <ul className={`Sub_Nav_Level_2 ${ShowControllerGuide ? "dropdownIsActive" : ''}`}  ref={guideWrapperRef}  >
+          <li onClick={()=>setShowControllerGuide(false)}>
             <Link href="/faq" prefetch={false}>
               <a>{language.LINKS.faq}</a>
             </Link>
           </li>
-          <li>
+          <li onClick={()=>setShowControllerGuide(false)}>
             <Link href="/guide-for-rent" prefetch={false}>
               <a>{language.LINKS.guest}</a>
             </Link>
           </li>
           {local.activeLanguage === 'fa' && (
             <>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/sepris" prefetch={false}>
                   <a>{language.LINKS.sepris}</a>
                 </Link>
               </li>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/guide-renter" prefetch={false}>
                   <a>{language.LINKS.host}</a>
                 </Link>
               </li>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/car-insurance" prefetch={false}>
                   <a>{language.LINKS.insurance}</a>
                 </Link>
               </li>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/assurance" prefetch={false}>
                   <a>{language.LINKS.assurance}</a>
                 </Link>
               </li>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/evaluation" prefetch={false}>
                   <a>{language.LINKS.evaluation}</a>
                 </Link>
               </li>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/guide-picture" prefetch={false}>
                   <a>{language.LINKS.takingPicture}</a>
                 </Link>
               </li>
-              <li>
+              <li onClick={()=>setShowControllerGuide(false)}>
                 <Link href="/gps" prefetch={false}>
                   <a>{language.LINKS.gps}</a>
                 </Link>
