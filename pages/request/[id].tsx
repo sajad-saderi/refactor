@@ -22,10 +22,10 @@ const Request = ({ locale }) => {
     <Layout>
       <NextSeo
         title={locale.PAGE_HEADER.request.title}
-        description={locale.PAGE_HEADER.request.title}
+        description={locale.PAGE_HEADER.request.description}
         openGraph={{
           title: locale.PAGE_HEADER.request.title,
-          description: locale.PAGE_HEADER.request.title,
+          description: locale.PAGE_HEADER.request.description,
           site_name: locale.COMMON.sepris,
         }}
         twitter={{
