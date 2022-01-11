@@ -70,7 +70,24 @@
       width: 2rem;
     }
   }
-
+	.disableSort{
+		position: relative;
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 2px;
+		height: 100%;
+		width: 100%;
+		background-color: #ffffff;
+		opacity: 0.2;
+		cursor: not-allowed;
+		content: '';
+		display: block;
+		z-index: 2;
+	}
+	}
   .price_sort_container {
     padding: 1.5rem 0;
     text-align: left;
@@ -106,6 +123,24 @@
       float: right;
     }
   }
+	.disabledmMinimal_filters{
+		position: relative;
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			padding: 2px;
+			height: 100%;
+			width: 100%;
+			background-color: #ffffff;
+			opacity: 0.2;
+			cursor: not-allowed;
+			content: '';
+			display: block;
+			z-index: 2;
+		}
+	}
   .minimal_filters {
     .minimal_filter_tags {
       display: inline-block;

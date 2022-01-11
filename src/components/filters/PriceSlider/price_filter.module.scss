@@ -1,4 +1,23 @@
 @import '../../../styles/colors';
+.disabledPriceSlider{
+	position: relative;
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 2px;
+		height: 100%;
+		width: 100%;
+		background-color: #ffffff;
+		opacity: 0.2;
+		cursor: not-allowed;
+		content: '';
+		display: block;
+		z-index: 2;
+	}
+}
+
 .price_filter {
   margin-bottom: 3rem;
   .price_text {

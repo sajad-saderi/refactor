@@ -82,6 +82,7 @@ const Landing_page_container = ({
   language,
   content,
 }: ILanding_page_container) => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState<any>([]);
   const [total_count, setTotal_count] = useState(0);
@@ -237,6 +238,7 @@ const Landing_page_container = ({
   }, [landing_data]);
 
   async function initSearch() {
+		setLoading(true)
     // set the filter name
     body_style_names = [];
     // setSliderRange([]);
@@ -327,6 +329,7 @@ const Landing_page_container = ({
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         searchQuery,
       });
+		  setLoading(false)
       result_key = res.result_key;
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
@@ -350,7 +353,8 @@ const Landing_page_container = ({
         setResult(res.results);
       }
     } catch (error) {
-      if (error === 111) {
+		setLoading(false)
+		if (error === 111) {
         netCTX.toggleTheContainer(true);
       }
     }
@@ -713,7 +717,7 @@ const Landing_page_container = ({
       )}
       {/* price sort part */}
       <section className="responsive">
-        <div className="price_sort_container">
+        <div className={`price_sort_container ${loading?'disableSort':''}`}>
           <span
             className={o === '-price' ? 'active' : null}
             onClick={() => {
@@ -753,7 +757,7 @@ const Landing_page_container = ({
           </p>
         </div>
       </section>
-      <section className="responsive minimal_filters">
+      <section className={`responsive minimal_filters ${loading ? 'disabledmMinimal_filters':''}`}>
         {/* {filtersChecker.Location ? (
           <p
             className='minimal_filter_tags'
@@ -989,6 +993,7 @@ const Landing_page_container = ({
           }}
         >
           <Filters
+					  loading={loading} 
             extra_info={extra_info}
             ResultCount={{ total_count, remained_count }}
             reset={filterReset}

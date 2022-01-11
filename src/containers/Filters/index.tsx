@@ -33,6 +33,7 @@ const Filters = ({
   language,
   sliderRange,
   sliderPrice,
+	loading
 }: IFilter) => {
   const [deliver_at_renters_place, setDeliver_at_renters_place] = useState(0);
   const [with_driver, setwith_driver] = useState(0);
@@ -314,11 +315,13 @@ const Filters = ({
           // initialValueMax={initialValueMax}
         /> */}
         <PriceSlider sliderRange={sliderRange} sliderPrice={sliderPrice} language={language}
-          locale={activeLanguage} />
+          locale={activeLanguage}
+					disable={loading} />
         {/* )} */}
         <div className="rent-options">
-          <h3>{language.COMMON.seaction1}</h3>
+          <h3>{language.COMMON.seaction1}</h3> 
           <Checkbox
+						disable={loading} 
             initialValue={[deliver_at_renters_place]}
             data={[
               {
@@ -343,6 +346,7 @@ const Filters = ({
             }}
           />
           <Checkbox
+						disable={loading} 
             initialValue={[with_driver]}
             data={[
               {
@@ -366,6 +370,7 @@ const Filters = ({
             }}
           />
           <Checkbox
+						disable={loading} 
             initialValue={[without_driver]}
             data={[
               {
@@ -392,6 +397,7 @@ const Filters = ({
         <div className="body_style_type_wrapper">
           <h3>{language.COMMON.bodyStyle}</h3>
           <Checkbox
+						disable={loading} 
             initialValue={body_style_list}
             data={body_style_set}
             name="body_style_set"
@@ -404,6 +410,7 @@ const Filters = ({
           />
         </div>
         <DropdownSearch
+						disabled={loading} 
           InputDisable={true}
           language={language}
           label={language.COMMON.company}
@@ -440,7 +447,7 @@ const Filters = ({
         <DropdownSearch
           InputDisable={true}
           language={language}
-          disabled={!Brand_id ? true : false}
+          disabled={!Brand_id || loading ? true : false}
           label={language.COMMON.modelLabel}
           search_place_holder={
             language.COMMON.inModel
@@ -502,6 +509,7 @@ const Filters = ({
 
 interface IFilter {
   // list of car body style
+  loading: boolean;
   extra_info: any;
   ResultCount: any;
   reset?: any;

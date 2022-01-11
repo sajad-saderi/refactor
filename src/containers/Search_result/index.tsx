@@ -85,6 +85,7 @@ const Search_result = ({
   revealRsearchbBox,
   showLocationTag,
 }: ISearch_result) => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [extra_info, setExtra_info] = useState<any>([]);
   const [total_count, setTotal_count] = useState(0);
@@ -239,6 +240,7 @@ const Search_result = ({
   }, [appStore.store.location.id])
 
   async function initSearch() {
+		setLoading(true)
     JumpTo = jsCookie.get('JumpTo');
     body_style_names = [];
     // setSliderRange([]);
@@ -296,6 +298,7 @@ const Search_result = ({
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
         searchQuery,
       });
+		  setLoading(false)
       setTotal_count(res.total_count);
       setRemained_count(res.remained_count);
       result_key = res.result_key;
@@ -319,6 +322,8 @@ const Search_result = ({
         page = +jsCookie.get('page');
       }
     } catch (error) {
+		setLoading(false)
+
       if (error === 111) {
         netCTX.toggleTheContainer(true);
       } else
@@ -679,7 +684,7 @@ const Search_result = ({
       {/* search box */}
       <section className="responsive">
         {/* price sort part */}
-        <div className="price_sort_container">
+        <div className={`price_sort_container ${loading?'disableSort':''}`}>
           <span
             className={o === '-price' ? 'active' : null}
             onClick={() => {
@@ -719,7 +724,7 @@ const Search_result = ({
           </p>
         </div>
       </section>
-      <section className="responsive minimal_filters">
+      <section className={`responsive minimal_filters ${loading ? 'disabledmMinimal_filters':''}`}>
         {/* {filtersChecker.location ? (
           <p
             className='minimal_filter_tags'
@@ -934,6 +939,7 @@ const Search_result = ({
           }}
         >
           <Filters
+					  loading={loading} 
             extra_info={extra_info}
             ResultCount={{ total_count, remained_count }}
             reset={filterReset}

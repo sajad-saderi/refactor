@@ -29,7 +29,7 @@ const Checkbox = (props: ICheckbox) => {
         </div>
       ) : (
         <div
-          className={["check_box_container", props.custom_className].join(" ")}
+          className={["check_box_container", props.disable?'disableCheckBox':'', props.custom_className].join(" ")}
           dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
         >
           {Data.map((i, index) => (
@@ -104,6 +104,7 @@ interface ICheckbox {
    * add a custom class to the main container
    */
   custom_className?: string;
+	disable?:boolean
 }
 
 export default Checkbox;

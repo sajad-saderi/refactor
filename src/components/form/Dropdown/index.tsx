@@ -332,7 +332,7 @@ interface IDropDown {
 
   // Reset the controller value of clear input from the parent component
   search_place_holder?: string;
-  language: any
+  language: any; 
 }
 
 export default DropdownSearch;

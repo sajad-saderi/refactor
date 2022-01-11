@@ -1,108 +1,125 @@
 @import '../../../styles/colors';
-
+.disableCheckBox {
+	position: relative;
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 2px;
+		height: 100%;
+		width: 100%;
+		background-color: #fcfcfc;
+		opacity: 0.3;
+		cursor: not-allowed;
+		content: '';
+		display: block;
+		z-index: 2;
+	}
+}
 .check_box_container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 0.5rem;
-  /* Customize the label (the container) */
-  .container {
-    display: block;
-    position: relative;
-    padding-right: 2.8rem;
-    margin-bottom: 2rem;
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 400;
-    min-width: 33%;
-    color: $almost_black;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 0.5rem;
+	/* Customize the label (the container) */
+	.container {
+		display: block;
+		position: relative;
+		padding-right: 2.8rem;
+		margin-bottom: 2rem;
+		cursor: pointer;
+		font-size: 1.4rem;
+		font-weight: 400;
+		min-width: 33%;
+		color: $almost_black;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 
-  /* Hide the browser's default checkbox */
-  .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
+	/* Hide the browser's default checkbox */
+	.container input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
 
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 1.6rem;
-    width: 1.6rem;
-    background-color: #ffffff;
-    border: 1px solid $light_grey;
-    border-radius: 4px;
-  }
+	/* Create a custom checkbox */
+	.checkmark {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 1.6rem;
+		width: 1.6rem;
+		background-color: #ffffff;
+		border: 1px solid $light_grey;
+		border-radius: 4px;
+	}
 
-  .container:hover {
-    color: $almost_black;
-  }
+	.container:hover {
+		color: $almost_black;
+	}
 
-  /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
-    background-color: transparent;
-  }
+	/* On mouse-over, add a grey background color */
+	.container:hover input ~ .checkmark {
+		background-color: transparent;
+	}
 
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked ~ .checkmark {
-    background-color: transparent;
-    border-color: $blue;
-  }
+	/* When the checkbox is checked, add a blue background */
+	.container input:checked ~ .checkmark {
+		background-color: transparent;
+		border-color: $blue;
+	}
 
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: '';
-    position: absolute;
-    display: none;
-  }
+	/* Create the checkmark/indicator (hidden when not checked) */
+	.checkmark:after {
+		content: '';
+		position: absolute;
+		display: none;
+	}
 
-  /* Show the checkmark when checked */
-  .container input:checked ~ .checkmark:after {
-    display: block;
-  }
+	/* Show the checkmark when checked */
+	.container input:checked ~ .checkmark:after {
+		display: block;
+	}
 
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: 4px;
-    top: 0px;
-    width: 3px;
-    height: 9px;
-    border: solid $blue;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
+	/* Style the checkmark/indicator */
+	.container .checkmark:after {
+		left: 4px;
+		top: 0px;
+		width: 3px;
+		height: 9px;
+		border: solid $blue;
+		border-width: 0 3px 3px 0;
+		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
 }
 
 .check_box_container[dir='ltr'] {
-  justify-content: flex-start;
-  /* Customize the label (the container) */
-  .container {
-    padding-right: 0rem;
-    padding-left: 2.8rem;
-  }
+	justify-content: flex-start;
+	/* Customize the label (the container) */
+	.container {
+		padding-right: 0rem;
+		padding-left: 2.8rem;
+	}
 
-  /* Create a custom checkbox */
-  .checkmark {
-    right: auto;
-    left: 0;
-  }
+	/* Create a custom checkbox */
+	.checkmark {
+		right: auto;
+		left: 0;
+	}
 
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: auto;
-    right: 4px;
-    border-width: 0 3px 3px 0;
-  }
+	/* Style the checkmark/indicator */
+	.container .checkmark:after {
+		left: auto;
+		right: 4px;
+		border-width: 0 3px 3px 0;
+	}
 }

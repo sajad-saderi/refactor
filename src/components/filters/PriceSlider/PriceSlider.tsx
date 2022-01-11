@@ -15,7 +15,7 @@ const Price_slider_loader = dynamic(() =>
 );
 // import Price_slider_loader from "../../loaders/PriceSliderLoader";
 
-const PriceSlider = ({ sliderRange, sliderPrice, language, locale }: IPriceSlider) => {
+const PriceSlider = ({ sliderRange, sliderPrice, language, locale,disable }: IPriceSlider) => {
   const [value, setValue] = useState([0, 10000000]);
   const [range, setRange] = useState(null);
   const [step, setStep] = useState(100000);
@@ -91,7 +91,7 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale }: IPriceSlide
               {`${value[1] >= 1000000 ? language.COMMON.million : language.COMMON.thousand} ${language.COMMON.toman} `}
             </p>
           </div>
-          <Range
+          <Range 
             allowCross={false}
             reverse={locale === 'fa' ? true : false}
             max={range[1]}
@@ -99,7 +99,7 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale }: IPriceSlide
             step={step}
             value={value}
             defaultValue={range}
-            disabled={noSlider}
+            disabled={noSlider || disable}
             onChange={(i) => {
               setValue([i[0], i[1]]);
             }}
@@ -120,6 +120,7 @@ interface IPriceSlider {
   sliderRange: any;
   language: any;
   locale: supportedLanguages;
+	disable:boolean
 }
 
 export default PriceSlider;
