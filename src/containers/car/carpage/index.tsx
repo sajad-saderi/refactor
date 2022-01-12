@@ -61,7 +61,8 @@ const CarPage = ({
   car_Information,
   start_date,
   end_date,
-  searchDate
+  searchDate,
+	dateChanged
 }: ICarPage) => {
   // set date picker date to get new price and availability
   const [dayRange, setDayRange] = useState<DayRange>({
@@ -135,6 +136,15 @@ const CarPage = ({
 
 
   useEffect(() => {
+		if(dateChanged){
+			toastCTX.toast_option({
+				message: language.COMMON.datesOfSearchIsChanges,
+				color: "#ec7f00",
+				time :10,
+				hideTimeBar:true,
+				autoClose:true,
+			});
+		}
     if (expired) {
       // DateSetter(id);
       setShowCalender(true);
@@ -1313,6 +1323,7 @@ interface ICarPage {
   expired: boolean;
   start_date: string;
   end_date: string;
-  searchDate: ICalender
+  searchDate: ICalender,
+	dateChanged:boolean
 }
 export default CarPage;

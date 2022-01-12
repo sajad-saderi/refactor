@@ -160,7 +160,8 @@
 		"errorInReviews": "An Error Occurred in fetching Reviews",
 		"errorInUserCars": "There is an error in fetching user's car",
 		"invalidCharacters":"invalid Character",
-		"insertYourPhone": "insert your cellphone number"
+		"insertYourPhone": "insert your cellphone number",
+		"datesOfSearchIsChanges": "Dates of Rental Automatically have been changed"
 	},
 	"INFORMATION": {
 		"text1": "in partnership with Saman' Car Insurance",

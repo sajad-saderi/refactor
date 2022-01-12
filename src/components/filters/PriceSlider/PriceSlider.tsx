@@ -72,7 +72,7 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale,disable }: IPr
       {range ? (
         <div className='price_filter'>
           <h3>{language.COMMON.price}</h3>
-          <div className='price_text'>
+          <div className={`price_text ${disable? 'disablePriceFilter':''}`}>
             <p>
               <span>{`${numberChanger(Number(
                 Number(

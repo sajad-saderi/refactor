@@ -160,7 +160,8 @@
 		"errorInReviews": "خطا در دریافت لیست نظرات",
 		"errorInUserCars": "خطا در دریافت لیست خودروهای کاربر",
 		"invalidCharacters":"وردی نامعتبر",
-		"insertYourPhone": "شماره تلفن همراه‌تان را وارد  کنید."
+		"insertYourPhone": "شماره تلفن همراه‌تان را وارد  کنید.",
+		"datesOfSearchIsChanges":"تاریخ اجاره تغییر کرد"
 	},
 	"INFORMATION": {
 		"text1": "با همکاری بیمه‌های اتومبیل سامان",

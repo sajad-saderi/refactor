@@ -20,6 +20,24 @@
 
 .price_filter {
   margin-bottom: 3rem;
+	.disablePriceFilter{
+		position: relative;
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			padding: 2px;
+			height: 100%;
+			width: 100%;
+			background-color: #fcfcfc;
+			opacity: 0.3;
+			cursor: not-allowed;
+			content: '';
+			display: block;
+			z-index: 2;
+		}
+	}
   .price_text {
     display: flex;
     justify-content: space-between;
@@ -76,6 +94,13 @@
       height: 5px;
     }
   }
+	.rc-slider-disabled .rc-slider-track {
+    background-color: #ccc;
+		border-color: #ccc;
+}
+.rc-slider-disabled .rc-slider-handle, .rc-slider-disabled .rc-slider-dot {
+	background-color: #ccc;
+}
   .rc-slider-handle {
     border: 3px solid $blue;
     background: $blue;

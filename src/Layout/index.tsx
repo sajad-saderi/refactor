@@ -239,6 +239,7 @@ try{
             }}
             time={toastData.time}
             color={toastData.color}
+						hideTimeBar={toastData.hideTimeBar}
             autoClose={toastData.autoClose}
           />
         ) : null}
