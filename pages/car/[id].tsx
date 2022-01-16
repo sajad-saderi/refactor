@@ -169,7 +169,7 @@ let dateChanged=false
 					const temp_start_date = twoWayDateConvertor(start_date)
 					const temp_end_date = twoWayDateConvertor(end_date)
 					if (props.locale === 'fa') {
-						if (temp_start_date.fa.dump.day > moment().jDate()) {
+						if (temp_start_date.fa.dump.day >= moment().jDate()) {
 							if (temp_start_date.fa.dump.month >= moment().jMonth() + 1) {
 								
 							} else { 
@@ -186,7 +186,7 @@ let dateChanged=false
 						}
 					} else {
 						let date = new Date()
-						if (temp_start_date.en.dump.day > date.getDate()) {
+						if (temp_start_date.en.dump.day >= date.getDate()) {
 							if (temp_start_date.en.dump.month >= date.getMonth() + 1) {
 							 
 							}
