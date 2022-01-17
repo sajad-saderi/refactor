@@ -924,7 +924,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             <div className="custom_input_container_step_2 DropDown_extra_km">
               <DropdownSearch
                 language={language}
-                label={language.CAR_SETTING.kmLimitInday}
+                label={language.COMMON.kmLimitInDay}
                 InputDisable={true}
                 error_status={ErrorState.max_km_per_day}
                 data={[
@@ -961,7 +961,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   }
                 }}
               />
-              <span className="tail_text">{language.CAR_SETTING.kmInDay}</span>
+              <span className="tail_text">{language.COMMON.kmInDay}</span>
             </div>
             <div className="custom_input_container_step_2 extra_km_price_container">
               <TextInput

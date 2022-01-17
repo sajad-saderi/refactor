@@ -1301,7 +1301,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           {!activeCities(state.location_id)
             || state.location_id !== null &&
             !showDistrict && (
-              <p className="extra_text">{dynamicString([locationName], language.ADD_CAR_PAGE.districtNote)}</p>
+              <p className="extra_text">{dynamicString([locationName[activeLanguage]], language.ADD_CAR_PAGE.districtNote)}</p>
             )}
         </div>
         {showDistrict && (

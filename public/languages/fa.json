@@ -97,7 +97,7 @@
 		"carPrice": "ارزش خودرو",
 		"duration": "مدت اجاره",
 		"extensionDuration": "مدت تمدید",
-		"kmLimitInday": "محدودیت مسافت در روز",
+		"kmLimitInDay": "محدودیت مسافت در روز",
 		"kmInDay": "کیلومتر در روز",
 		"notValid": "ورودی نامعتبر",
 		"minLength": "حداقل ورودی باید",

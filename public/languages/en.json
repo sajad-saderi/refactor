@@ -97,7 +97,7 @@
 		"carPrice": "car price",
 		"duration": "Rental Period",
 		"extensionDuration": "Extension Period",
-		"kmLimitInday": "Allowed Mileage per Day",
+		"kmLimitInDay": "Allowed Mileage per Day",
 		"kmInDay": "kilometers per Day",
 		"notValid": "Please enter valid characters.",
 		"minLength": "The minimum Length is {value}",
