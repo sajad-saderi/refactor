@@ -161,7 +161,8 @@
 		"errorInUserCars": "There is an error in fetching user's car",
 		"invalidCharacters":"invalid Character",
 		"insertYourPhone": "insert your cellphone number",
-		"datesOfSearchIsChanges": "Dates of Rental Automatically have been changed"
+		"datesOfSearchIsChanges": "Dates of Rental Automatically have been changed",
+		"dateOfRequestIsNotValid":"The Date Of Request Is Not Valid, Please Change The date"
 	},
 	"INFORMATION": {
 		"text1": "in partnership with Saman' Car Insurance",

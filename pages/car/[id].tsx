@@ -144,6 +144,47 @@ let dateChanged=false
   try {
     const generated_start_date = initialDate(6, 3).from;
     const generated_end_date = initialDate(6, 3).to;
+		
+		if(start_date){
+		const temp_start_date = twoWayDateConvertor(start_date)
+		const temp_end_date = twoWayDateConvertor(end_date)
+		if (props.locale === 'fa') {			
+			if (temp_start_date.fa.dump.day >= moment().jDate()) {
+				if (temp_start_date.fa.dump.month >= moment().jMonth() + 1) {
+					
+				} else { 
+					dateChanged=true
+					start_date= generated_start_date.fa.name;
+					end_date= generated_end_date.fa.name
+				}
+			} else if (temp_start_date.fa.dump.month > moment().jMonth() + 1) {
+				 
+			} else {
+				dateChanged=true
+				start_date= generated_start_date.fa.name;
+					end_date= generated_end_date.fa.name
+			}
+		} else {
+			let date = new Date()
+			if (temp_start_date.en.dump.day >= date.getDate()) {
+				if (temp_start_date.en.dump.month >= date.getMonth() + 1) {
+				 
+				}
+				// id the day is smaller than the saved one but the current month is bigger then the month on storage
+				else {
+					dateChanged=true
+					start_date= generated_start_date.en.name;
+					end_date= generated_end_date.en.name
+				}
+			} else if (temp_start_date.en.dump.month > date.getMonth() + 1) {
+			 
+			} else {
+				dateChanged=true
+				start_date= generated_start_date.en.name;
+					end_date= generated_end_date.en.name
+			}
+		}
+	}
 
     if (owner_name) {
       return {
@@ -157,6 +198,7 @@ let dateChanged=false
           start_date: start_date ? twoWayDateConvertor(start_date) : generated_start_date,
           end_date: end_date ? twoWayDateConvertor(end_date) : generated_end_date,
           id,
+					dateChanged
         },
       };
     } else {
@@ -165,46 +207,6 @@ let dateChanged=false
         param = { search_id };
       } else {
         if (start_date) {
-					props.locale
-					const temp_start_date = twoWayDateConvertor(start_date)
-					const temp_end_date = twoWayDateConvertor(end_date)
-					if (props.locale === 'fa') {
-						if (temp_start_date.fa.dump.day >= moment().jDate()) {
-							if (temp_start_date.fa.dump.month >= moment().jMonth() + 1) {
-								
-							} else { 
-								dateChanged=true
-								start_date= generated_start_date.fa.name;
-								end_date= generated_end_date.fa.name
-							}
-						} else if (temp_start_date.fa.dump.month > moment().jMonth() + 1) {
-							 
-						} else {
-							dateChanged=true
-							start_date= generated_start_date.fa.name;
-								end_date= generated_end_date.fa.name
-						}
-					} else {
-						let date = new Date()
-						if (temp_start_date.en.dump.day >= date.getDate()) {
-							if (temp_start_date.en.dump.month >= date.getMonth() + 1) {
-							 
-							}
-							// id the day is smaller than the saved one but the current month is bigger then the month on storage
-							else {
-								dateChanged=true
-								start_date= generated_start_date.en.name;
-								end_date= generated_end_date.en.name
-							}
-						} else if (temp_start_date.en.dump.month > date.getMonth() + 1) {
-						 
-						} else {
-							dateChanged=true
-							start_date= generated_start_date.en.name;
-								end_date= generated_end_date.en.name
-						}
-					}
-
           param = {
             id,
             start_date: twoWayDateConvertor(start_date)[props.locale].name,

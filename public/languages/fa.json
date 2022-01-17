@@ -161,7 +161,8 @@
 		"errorInUserCars": "خطا در دریافت لیست خودروهای کاربر",
 		"invalidCharacters":"وردی نامعتبر",
 		"insertYourPhone": "شماره تلفن همراه‌تان را وارد  کنید.",
-		"datesOfSearchIsChanges":"تاریخ اجاره تغییر کرد"
+		"datesOfSearchIsChanges":"تاریخ اجاره تغییر کرد",
+		"dateOfRequestIsNotValid":"تاریخ اجاره معتبر نیست, لطفا تاریخ اجاره را تغییر دهید"
 	},
 	"INFORMATION": {
 		"text1": "با همکاری بیمه‌های اتومبیل سامان",

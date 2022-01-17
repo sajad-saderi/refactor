@@ -456,16 +456,58 @@ const CarPage = ({
     setTotal_discount_percent(res.total_discount_percent);
   };
 
+	const dateChecker = () =>{
+		if (activeLanguage === 'fa') {
+			if (dateObject.from.fa.dump.day >= moment().jDate()) {
+				if (dateObject.from.fa.dump.month >= moment().jMonth() + 1) {
+					return true
+				} else { 
+					return false
+				}
+			} else if (dateObject.from.fa.dump.month > moment().jMonth() + 1) {
+				return true
+			} else {
+				return false 
+			}
+		} else {
+			let date = new Date()
+			if (dateObject.from.en.dump.day >= date.getDate()) {
+				if (dateObject.from.en.dump.month >= date.getMonth() + 1) {
+					return true
+				 
+				}
+				else {
+					return false
+				}
+			} else if (dateObject.from.en.dump.month > date.getMonth() + 1) {
+				return true
+			} else {
+				return false
+			}
+		}
+	}
+
   const GoToCheckout = () => {
     setLoading(true);
     localStorage["date"] = JSON.stringify(dateObject);
-
+		if(dateChecker()){ 			
+			router.push({
+				pathname: "/checkout",
+				query: { search_id: search_id },
+			}, undefined, { locale: activeLanguage });
+		}else{
+			toastCTX.toast_option({
+				message: language.COMMON.dateOfRequestIsNotValid,
+				color: "#ec7f00",
+				time :10,
+				hideTimeBar:true,
+				autoClose:true,
+			});
+			setLoading(false);
+			return
+		}
     // localStorage["start"] = JSON.stringify(dayRange.from);
     // localStorage["end"] = JSON.stringify(dayRange.to);
-    router.push({
-      pathname: "/checkout",
-      query: { search_id: search_id },
-    }, undefined, { locale: activeLanguage });
   };
 
   useEffect(() => {

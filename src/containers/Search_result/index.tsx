@@ -235,9 +235,9 @@ const Search_result = ({
     };
   }, []);
 
-  useEffect(() => {
-    Location = appStore.store.location.id
-  }, [appStore.store.location.id])
+  // useEffect(() => {
+  //   Location = appStore.store.location.id
+  // }, [appStore.store.location.id])
 
   async function initSearch() {
 		setLoading(true)
