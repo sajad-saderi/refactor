@@ -55,8 +55,8 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
           setIs_out_of_service(data.is_out_of_service);
         } else if (!data.is_out_of_service) {
           setUncompletedCar(true);
-          setIs_out_of_service(false);
-          setServiceStatus(data.id);
+          // setIs_out_of_service(false);
+          // setServiceStatus(data.id);
         } else {
           setUncompletedCar(true);
           setIs_out_of_service(false);

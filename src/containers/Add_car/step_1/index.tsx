@@ -887,6 +887,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
          * if we are in edit mode go to profile
          */
         formSuccessfullySubmit = true;
+				jsCookie.remove("new_car");
         localStorage.removeItem("car_info");
         localStorage.removeItem("incompleteInfo");
         localStorage.removeItem("halfcompletecar");
