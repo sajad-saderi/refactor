@@ -36,8 +36,6 @@ const Rent_dynamic = ({ Landing_page, content, locale }) => {
           ? Landing_page.search_params?.location_name
           : 'all',
       });
-      console.log(Landing_page);
-
       if (Landing_page.search_params?.location_id) {
         setLocation({
           value: Landing_page.search_params.location_id,

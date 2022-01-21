@@ -78,7 +78,9 @@ const Recommendation_section = ({ language }) => {
             <Link
               href={`/search-result?location_id=${
                 appStore.store.location.id
-              }&location_name=تهران&start_date=${numberChanger(
+              }&location_name=${
+                appStore.store.location.fa
+              }&start_date=${numberChanger(
                 start_date,
                 'en'
               )}&end_date=${numberChanger(
@@ -99,7 +101,9 @@ const Recommendation_section = ({ language }) => {
             <Link
               href={`/search-result?location_id=${
                 appStore.store.location.id
-              }&location_name=تهران&start_date=${numberChanger(
+              }&location_name=${
+                appStore.store.location.fa
+              }&start_date=${numberChanger(
                 start_date,
                 'en'
               )}&end_date=${numberChanger(
@@ -120,7 +124,9 @@ const Recommendation_section = ({ language }) => {
             <Link
               href={`/search-result?location_id=${
                 appStore.store.location.id
-              }&location_name=تهران&start_date=${numberChanger(
+              }&location_name=${
+                appStore.store.location.fa
+              }&start_date=${numberChanger(
                 start_date,
                 'en'
               )}&end_date=${numberChanger(
