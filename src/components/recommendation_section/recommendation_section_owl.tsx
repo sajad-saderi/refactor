@@ -1,21 +1,21 @@
-import { useContext, useState } from "react";
-import { useEffect } from "react";
-import suv from "../../../public/image/suv.jpeg";
-import van from "../../../public/image/van.jpeg";
-import with_driver from "../../../public/image/with_driver.jpeg";
-import affordable from "../../../public/image/affordable.jpeg";
-import for_journey from "../../../public/image/for_journey.jpeg";
-import moment from "moment-jalaali";
-import Link from "next/link";
-import ScrollContainer from "react-indiana-drag-scroll";
-import AppStore from '../../context/app'
-import Icon from "../../../utils/Icon";
-import { numberChanger } from "../../../utils/numberChanger";
+import { useContext, useState } from 'react';
+import { useEffect } from 'react';
+import suv from '../../../public/image/suv.jpeg';
+import van from '../../../public/image/van.jpeg';
+import with_driver from '../../../public/image/with_driver.jpeg';
+import affordable from '../../../public/image/affordable.jpeg';
+import for_journey from '../../../public/image/for_journey.jpeg';
+import moment from 'moment-jalaali';
+import Link from 'next/link';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import AppStore from '../../context/app';
+import Icon from '../../../utils/Icon';
+import { numberChanger } from '../../../utils/numberChanger';
 
 const Recommendation_section = ({ language }) => {
   const [start_date, set_start_date] = useState('');
   const [end_date, set_end_date] = useState('');
-  const appStore = useContext(AppStore)
+  const appStore = useContext(AppStore);
   useEffect(() => {
     set_default_date_for_search();
   }, []);
@@ -24,26 +24,36 @@ const Recommendation_section = ({ language }) => {
     // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
     set_start_date(
       moment()
-        .add(3, "day")
-        .format("jYYYY/jMM/jDD")
+        .add(3, 'day')
+        .format('jYYYY/jMM/jDD')
     );
     set_end_date(
       moment()
-        .add(6, "day")
-        .format("jYYYY/jMM/jDD")
+        .add(6, 'day')
+        .format('jYYYY/jMM/jDD')
     );
   };
 
   return (
-    <div className="slider-wrapper">
+    <div className='slider-wrapper'>
       {/* <div className="recomendation-arrow_left">
         <Icon name="arrow_right" />
       </div> */}
-      <ScrollContainer className="recommendation_section">
-        <div className="inner-container">
-          <div className="suggestion_card">
+      <ScrollContainer className='recommendation_section'>
+        <div className='inner-container'>
+          <div className='suggestion_card'>
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&max_price=500000`}
+              href={`/search-result?location_id=${
+                appStore.store.location.id
+              }&location_name=${
+                appStore.store.location.fa
+              }&start_date=${numberChanger(
+                start_date,
+                'en'
+              )}&end_date=${numberChanger(
+                end_date,
+                'en'
+              )}&price_order=-price&page=1&limit=15&max_price=500000`}
               prefetch={false}
             >
               <a>
@@ -54,7 +64,7 @@ const Recommendation_section = ({ language }) => {
               </a>
             </Link>
           </div>
-          <div className="suggestion_card">
+          <div className='suggestion_card'>
             <Link href={`/rent/car-rental-for-travel`} prefetch={false}>
               <a>
                 <figure>
@@ -64,9 +74,17 @@ const Recommendation_section = ({ language }) => {
               </a>
             </Link>
           </div>
-          <div className="suggestion_card">
+          <div className='suggestion_card'>
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&with_driver=1`}
+              href={`/search-result?location_id=${
+                appStore.store.location.id
+              }&location_name=تهران&start_date=${numberChanger(
+                start_date,
+                'en'
+              )}&end_date=${numberChanger(
+                end_date,
+                'en'
+              )}&price_order=-price&page=1&limit=15&with_driver=1`}
               prefetch={false}
             >
               <a>
@@ -77,9 +95,17 @@ const Recommendation_section = ({ language }) => {
               </a>
             </Link>
           </div>
-          <div className="suggestion_card">
+          <div className='suggestion_card'>
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&body_style_id=2`}
+              href={`/search-result?location_id=${
+                appStore.store.location.id
+              }&location_name=تهران&start_date=${numberChanger(
+                start_date,
+                'en'
+              )}&end_date=${numberChanger(
+                end_date,
+                'en'
+              )}&price_order=-price&page=1&limit=15&body_style_id=2`}
               prefetch={false}
             >
               <a>
@@ -90,9 +116,17 @@ const Recommendation_section = ({ language }) => {
               </a>
             </Link>
           </div>
-          <div className="suggestion_card">
+          <div className='suggestion_card'>
             <Link
-              href={`/search-result?location_id=${appStore.store.location.id}&location_name=تهران&start_date=${numberChanger(start_date,'en')}&end_date=${numberChanger(end_date,'en')}&price_order=-price&page=1&limit=15&body_style_id=5`}
+              href={`/search-result?location_id=${
+                appStore.store.location.id
+              }&location_name=تهران&start_date=${numberChanger(
+                start_date,
+                'en'
+              )}&end_date=${numberChanger(
+                end_date,
+                'en'
+              )}&price_order=-price&page=1&limit=15&body_style_id=5`}
               prefetch={false}
             >
               <a>

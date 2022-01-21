@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState, useContext } from 'react';
 import Router from 'next/router';
 
-import { supportedLanguages } from '../../utils/types'
+import { supportedLanguages } from '../../utils/types';
 
 import dynamic from 'next/dynamic';
 // import Footer from "../components/Footer";
@@ -21,6 +21,7 @@ import auth_context from '../context/Auth_context';
 import toast_context from '../context/Toast_context';
 import net_CTX from '../context/internetConnectionCTX';
 import languageCTX from '../context/languageCTX';
+import AppState from '../context/app';
 
 // Toast Component
 const Toast = dynamic(() => import('../components/Toast'));
@@ -29,7 +30,6 @@ const Toast = dynamic(() => import('../components/Toast'));
 import * as Sentry from '@sentry/browser';
 import ErrorBounderies from '../../utils/error_bounderies';
 import InternetConnection from '../components/InternetConnection';
-
 
 const ShowModalReducer = (current, action) => {
   /* 
@@ -78,29 +78,37 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
   const TOAST_CONTEXT = useContext(toast_context);
   const netCTX = useContext(net_CTX);
   const localeCTX = useContext(languageCTX);
+  const { setLocation } = useContext(AppState);
 
   useEffect(() => {
     // checking internet connection
     if (!window.navigator.onLine) {
       netCTX.toggleTheContainer(true);
     }
-   
-try{
 
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  if (urlParams.has('utm_source')) {
-    localStorage['utm_source'] = urlParams.get('utm_source');
-    localStorage['utm_medium'] = urlParams.get('utm_medium');
-    localStorage['utm_campaign'] = urlParams.get('utm_campaign');
-    localStorage['utm_term'] = urlParams.get('utm_term');
-    localStorage['utm_content'] = urlParams.get('utm_content');
-  }
-}catch(e){
-  console.log('error in URLSearchParams, your browser is not supporting URLSearchParams');
-  
-}
-  
+    try {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      if (urlParams.has('utm_source')) {
+        localStorage['utm_source'] = urlParams.get('utm_source');
+        localStorage['utm_medium'] = urlParams.get('utm_medium');
+        localStorage['utm_campaign'] = urlParams.get('utm_campaign');
+        localStorage['utm_term'] = urlParams.get('utm_term');
+        localStorage['utm_content'] = urlParams.get('utm_content');
+      }
+    } catch (e) {
+      console.log(
+        'error in URLSearchParams, your browser is not supporting URLSearchParams'
+      );
+    }
+    if (localStorage['location']) {
+      const locationStorage = JSON.parse(localStorage['location']);
+      setLocation({
+        value: locationStorage.value,
+        text: locationStorage.name.fa,
+        en: locationStorage.name.en,
+      });
+    }
     if (localeCTX.activeLanguage !== Router.router.locale) {
       localeCTX.changingLanguage(Router.router.locale as supportedLanguages);
     }
@@ -213,9 +221,7 @@ try{
                 Show_Modal={Show_Modal}
                 // data information is just needed for owner and renter modals
                 data={data}
-                language={
-                  localeCTX.activeLanguage === 'fa' ? fa : en
-                }
+                language={localeCTX.activeLanguage === 'fa' ? fa : en}
               ></Header>
             </ErrorBounderies>
             <ErrorBounderies
@@ -225,11 +231,15 @@ try{
                   : en.COMMON.errorParagraph1
               }
             >
-              <main className="minHeight">{children}</main>
+              <main className='minHeight'>{children}</main>
             </ErrorBounderies>
           </auth_context.Provider>
         </modal_context.Provider>
-        {netCTX.showInternetConnectionNotification && <InternetConnection language={localeCTX.activeLanguage === 'fa' ? fa : en} />}
+        {netCTX.showInternetConnectionNotification && (
+          <InternetConnection
+            language={localeCTX.activeLanguage === 'fa' ? fa : en}
+          />
+        )}
         {toast && toastData ? (
           <Toast
             message={toastData.message}
@@ -239,7 +249,7 @@ try{
             }}
             time={toastData.time}
             color={toastData.color}
-						hideTimeBar={toastData.hideTimeBar}
+            hideTimeBar={toastData.hideTimeBar}
             autoClose={toastData.autoClose}
           />
         ) : null}

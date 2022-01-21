@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const Layout = dynamic(() => import('../../src/Layout'));
 const Landing_Page_Content = dynamic(() =>
-  import('../../src/containers/LandignPageContainer/landingPageContent'),
+  import('../../src/containers/LandignPageContainer/landingPageContent')
 );
 // import Layout from "../../src/Layout";
 import { REQUEST_GET_LANDING_PAGE } from '../../src/API';
@@ -18,11 +18,11 @@ import Router from 'next/router';
 import Landing_page_container from '../../src/containers/LandignPageContainer';
 import { guard_controller } from '../../utils/guard_controller';
 import ContentHomePage from '../../src/components/contentHomePage';
-// import ContentHomePage from "../../src/components/contentHomePage";
+import appState from '../../src/context/app';
 
 const Rent_dynamic = ({ Landing_page, content, locale }) => {
   const [authorize, set_authorize] = useState(true);
-
+  const { setLocation } = useContext(appState);
   useEffect(() => {
     if (!Landing_page) {
       Router.push('/404');
@@ -36,7 +36,15 @@ const Rent_dynamic = ({ Landing_page, content, locale }) => {
           ? Landing_page.search_params?.location_name
           : 'all',
       });
-      // logPageView();
+      console.log(Landing_page);
+
+      if (Landing_page.search_params?.location_id) {
+        setLocation({
+          value: Landing_page.search_params.location_id,
+          text: Landing_page.search_params.location_name,
+          en: Landing_page.search_params.location_name,
+        });
+      }
     }
     const guard = guard_controller();
     if (guard !== 'auth') {
@@ -67,7 +75,11 @@ const Rent_dynamic = ({ Landing_page, content, locale }) => {
         content={content === '0' ? false : true}
       />
       {content === '0' ? (
-        <ContentHomePage auth={authorize} differentStyle={true} language={locale} />
+        <ContentHomePage
+          auth={authorize}
+          differentStyle={true}
+          language={locale}
+        />
       ) : (
         <Landing_Page_Content data={Landing_page} language={locale} />
       )}

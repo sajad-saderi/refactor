@@ -25,14 +25,19 @@ import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { ICalender } from '../../../types';
 import { numberChanger } from '../../../utils/numberChanger';
 
-moment.loadPersian({ dialect: "persian-modern", usePersianDigits: false });
+moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: false });
 
-let dateObject: ICalender | null = { from: null, to: null }
+let dateObject: ICalender | null = { from: null, to: null };
 let initialCity = {
   key: 1,
-  name: { fa: "تهران", breadcrumb_fa: "تهران", en: "Tehran", breadcrumb_en: "Tehran" },
-  value: 1
-}
+  name: {
+    fa: 'تهران',
+    breadcrumb_fa: 'تهران',
+    en: 'Tehran',
+    breadcrumb_en: 'Tehran',
+  },
+  value: 1,
+};
 const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
   const [LocationName, setLocationName] = useState('');
@@ -41,7 +46,6 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [dayRange, setDayRange] = useState<DayRange>({
     to: null,
     from: null,
-
   });
 
   const [locationsList, setLocationsList] = useState([]);
@@ -82,15 +86,15 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   }, []);
 
   useEffect(() => {
-    if (activeLanguage === "fa") {
-      moment.locale("fa");
+    if (activeLanguage === 'fa') {
+      moment.locale('fa');
     } else {
-      moment.locale("en");
+      moment.locale('en');
     }
     if (localStorage['location']) {
       let location_storage = JSON.parse(localStorage['location']);
       if (!activeCities(location_storage.value))
-        setLocationName(location_storage.name[activeLanguage])
+        setLocationName(location_storage.name[activeLanguage]);
       else {
         setLocationId(initialCity.value);
         setLocationName(initialCity.name[activeLanguage]);
@@ -99,8 +103,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       setLocationId(initialCity.value);
       setLocationName(initialCity.name[activeLanguage]);
     }
-    setDateFromStorage()
-  }, [activeLanguage])
+    setDateFromStorage();
+  }, [activeLanguage]);
 
   // get a list of cities
   const get_car_location = async () => {
@@ -114,9 +118,9 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: language.COMMON.fetchCitiesError,
-            })
+                errorObj: error.response,
+                _400Message: language.COMMON.fetchCitiesError,
+              })
             : error,
           color: '#ed9026',
           time: 0,
@@ -127,13 +131,13 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
 
   // set the start and end date from storage if there are there
   const setDateFromStorage = () => {
-    let localStorageDate = localStorage['date']
+    let localStorageDate = localStorage['date'];
     if (localStorageDate) {
       let { from, to } = JSON.parse(localStorageDate);
       if (!from) {
         localStorage.removeItem('date');
         set_default_date_for_search();
-        return
+        return;
       }
       // if the start date on storage is bigger then today
       if (activeLanguage === 'fa') {
@@ -159,7 +163,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           set_default_date_for_search();
         }
       } else {
-        let date = new Date()
+        let date = new Date();
         if (from.en.dump.day > date.getDate()) {
           if (from.en.dump.month >= date.getMonth() + 1) {
             setDayRange({
@@ -216,7 +220,6 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] },
       });
     }
-
   };
 
   const GotoSearchResult = (e) => {
@@ -241,7 +244,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       // localStorage['end'] = JSON.stringify(dayRange.to);
       setLoading(true);
       router.push(
-        `/search-result?location_id=${LocationId}&location_name=${LocationName}&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15&without_driver=1`,
+        `/search-result?location_id=${LocationId}&location_name=${LocationName}&start_date=${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}&end_date=${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}&price_order=-price&page=1&limit=15&without_driver=1`
       );
     } else if (!dayRange.from) {
       setFromError({ status: true, message: language.COMMON.errorStartDate });
@@ -258,7 +261,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     } else {
       setFromDay(' ');
       setToDay(' ');
-      dateObject = { from: null, to: null }
+      dateObject = { from: null, to: null };
     }
     if (dayRange.to) {
       if (
@@ -275,8 +278,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           status: true,
           message: language.COMMON.errorEmptyDate,
         });
-        dateObject = { from: null, to: null }
-
+        dateObject = { from: null, to: null };
       } else {
         setToError({ status: false, message: '' });
         setShowBorder(false);
@@ -287,64 +289,78 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       setToDay(' ');
     }
     if (dateObject.from && dateObject.to) {
-      store.setDate(dateObject)
-      localStorage["date"] = JSON.stringify(dateObject)
+      store.setDate(dateObject);
+      localStorage['date'] = JSON.stringify(dateObject);
     }
   }, [dayRange]);
 
-  const convertDate = (v) => {
-    let value = null
-    if (activeLanguage === 'fa') {
+  useEffect(() => {
+    if (store.store.location.id !== LocationId) {
+      setLocationId(store.store.location.id);
+      setLocationName(store.store.location[activeLanguage]);
+    }
+  }, [store]);
 
+  const convertDate = (v) => {
+    let value = null;
+    if (activeLanguage === 'fa') {
       value = moment(`${v.year}/${v.month}/${v.day}`, 'jYYYY/jM/jD').format(
-        'dddd jDD jMMMM',
+        'dddd jDD jMMMM'
       );
     } else {
       value = moment(`${v.year}/${v.month}/${v.day}`, 'YYYY/M/D').format(
-        'ddd DD MMM',
+        'ddd DD MMM'
       );
     }
     return value;
   };
 
   return (
-    <section className="search_box">
+    <section className='search_box'>
       <form
-        data-test-id="GotoSearchResult"
+        data-test-id='GotoSearchResult'
         onSubmit={(e) => GotoSearchResult(e)}
       >
-        <div className="search_box_div">
-          <p className="label">{language.COMMON.pickupLocation}</p>
+        <div className='search_box_div'>
+          <p className='label'>{language.COMMON.pickupLocation}</p>
           <DropdownSearch
             language={language}
             data={locationsList}
             InputDisable={true}
             hardValue={LocationName}
-            search_place_holder={
-              language.COMMON.inCities
-            }
+            search_place_holder={language.COMMON.inCities}
             Select={(i) => {
               localStorage['location'] = JSON.stringify(i);
               if (activeCities(i.value)) {
                 MODAL_CONTEXT.modalHandler('TellMe');
               } else {
-                store.setLocation(i)
+                store.setLocation({
+                  value: i.value,
+                  text: i.name.fa,
+                  en: i.name.en,
+                });
                 setLocationId(i.value);
                 setLocationName(i.name[activeLanguage]);
               }
             }}
-          // clearField={() => setLocationId(1)}
+            // clearField={() => setLocationId(1)}
           />
         </div>
-        <div className="Date_picker_container">
+        <div className='Date_picker_container'>
           <div
             className={[
               'date_Input_Container',
               dayRange.from
                 ? dayRange.to
-                  ? activeLanguage === 'fa' ? 'PushToRight' : 'PushToLeft'
-                  : activeLanguage === 'fa' ? 'PushToLeft' : 'PushToRight'
-                : activeLanguage === 'fa' ? 'PushToRight' : 'PushToLeft',
+                  ? activeLanguage === 'fa'
+                    ? 'PushToRight'
+                    : 'PushToLeft'
+                  : activeLanguage === 'fa'
+                  ? 'PushToLeft'
+                  : 'PushToRight'
+                : activeLanguage === 'fa'
+                ? 'PushToRight'
+                : 'PushToLeft',
             ].join(' ')}
             onClick={() => setShowBorder(true)}
           >
@@ -354,23 +370,27 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               shouldHighlightWeekends
               minimumDate={utils(activeLanguage).getToday()}
               locale={activeLanguage}
-              colorPrimary="#4ba3ce"
-            // disabledDays={[utils("fa").getToday()]}
+              colorPrimary='#4ba3ce'
+              // disabledDays={[utils("fa").getToday()]}
             />
-            <div className={`${activeLanguage !== 'fa' ? 'en_input_container' : ''} input_container`}>
-              <p className="label">{language.COMMON.pickUpDate}</p>
+            <div
+              className={`${
+                activeLanguage !== 'fa' ? 'en_input_container' : ''
+              } input_container`}
+            >
+              <p className='label'>{language.COMMON.pickUpDate}</p>
               <input
                 data-hj-allow
                 className={
                   fromError.status
                     ? 'input_Error'
                     : showBorder
-                      ? dayRange.from
-                        ? dayRange.to
-                          ? 'activeBorder'
-                          : null
-                        : 'activeBorder'
-                      : null
+                    ? dayRange.from
+                      ? dayRange.to
+                        ? 'activeBorder'
+                        : null
+                      : 'activeBorder'
+                    : null
                 }
                 readOnly={true}
                 value={fromDay ? numberChanger(fromDay, activeLanguage) : ''}
@@ -378,8 +398,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               {/* appear the error for the start date here */}
               <span>{fromError.message}</span>
             </div>
-            <div className={`${activeLanguage !== 'fa' ? 'en_input_container' : ''} input_container`}>
-              <p className="label">{language.COMMON.dropOffDate}</p>
+            <div
+              className={`${
+                activeLanguage !== 'fa' ? 'en_input_container' : ''
+              } input_container`}
+            >
+              <p className='label'>{language.COMMON.dropOffDate}</p>
               <input
                 data-hj-allow
                 className={[
@@ -387,30 +411,30 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
                   toError.status
                     ? 'input_Error'
                     : showBorder
-                      ? dayRange.to
-                        ? dayRange.from
-                          ? null
-                          : null
-                        : dayRange.from
-                          ? 'activeBorder'
-                          : null
-                      : null,
+                    ? dayRange.to
+                      ? dayRange.from
+                        ? null
+                        : null
+                      : dayRange.from
+                      ? 'activeBorder'
+                      : null
+                    : null,
                 ].join(' ')}
                 readOnly={true}
-                value={toDay ? numberChanger(toDay , activeLanguage): ''}
+                value={toDay ? numberChanger(toDay, activeLanguage) : ''}
               />
               {/* appear the error for the end date here */}
               <span>{toError.message}</span>
             </div>
           </div>
         </div>
-        <div className="search_box_div">
-          <p className="Search_Text_transparent">search</p>
+        <div className='search_box_div'>
+          <p className='Search_Text_transparent'>search</p>
           <Button
             value={language.COMMON.search}
-            class="Blue_BTN search_Btn HEAP_Home_Btn_Search"
+            class='Blue_BTN search_Btn HEAP_Home_Btn_Search'
             loading={loading}
-            click={() => { }}
+            click={() => {}}
           />
         </div>
       </form>
