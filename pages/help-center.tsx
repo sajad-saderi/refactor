@@ -10,12 +10,12 @@ const HelpCenter = ({ locale }) => {
   const netCTX = useContext(net_CTX);
 
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/help-center',
-      pageTitle: locale.PAGE_HEADER.helpCenter.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/help-center',
+    //   pageTitle: locale.PAGE_HEADER.helpCenter.title,
+    // });
     // logPageView();
   }, []);
 
@@ -35,7 +35,7 @@ const HelpCenter = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <article className="responsive  minHeight help_center">
+      <article className='responsive  minHeight help_center'>
         <HelpCenterContainer />
       </article>
     </Layout>

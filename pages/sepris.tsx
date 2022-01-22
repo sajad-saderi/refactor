@@ -8,12 +8,12 @@ import { NextSeo } from 'next-seo';
 
 const AboutUs = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/sepris',
-      pageTitle: locale.PAGE_HEADER.sepris.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/sepris',
+    //   pageTitle: locale.PAGE_HEADER.sepris.title,
+    // });
     // logPageView();
   }, []);
   return (
@@ -33,11 +33,11 @@ const AboutUs = ({ locale }) => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight OTILI">
+      <section className='responsive static_pages minHeight OTILI'>
         <h1>{locale.SEPRIS_PAGE.text1}</h1>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
-            <h2 className="diff_color">{locale.SEPRIS_PAGE.text2}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
+            <h2 className='diff_color'>{locale.SEPRIS_PAGE.text2}</h2>
             <div>
               <h3>{locale.SEPRIS_PAGE.text3}</h3>
               <p>{locale.SEPRIS_PAGE.text4}</p>
@@ -55,7 +55,7 @@ const AboutUs = ({ locale }) => {
               <p>{locale.SEPRIS_PAGE.text10}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <h2>{locale.SEPRIS_PAGE.text11}</h2>
             <div>
               <h3>{locale.SEPRIS_PAGE.text12}</h3>
@@ -71,30 +71,30 @@ const AboutUs = ({ locale }) => {
             </div>
           </div>
         </div>
-        <h2 className="OTOLI_MIDDLE_Dif">{locale.SEPRIS_PAGE.text18}</h2>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
+        <h2 className='OTOLI_MIDDLE_Dif'>{locale.SEPRIS_PAGE.text18}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
             <div>
               <h3>{locale.SEPRIS_PAGE.text19}</h3>
               <p>{locale.SEPRIS_PAGE.text20}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <div>
               <h3>{locale.SEPRIS_PAGE.text21}</h3>
               <p>{locale.SEPRIS_PAGE.text22}</p>
             </div>
           </div>
         </div>
-        <h2 className="OTOLI_MIDDLE_Dif">{locale.SEPRIS_PAGE.text23}</h2>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
+        <h2 className='OTOLI_MIDDLE_Dif'>{locale.SEPRIS_PAGE.text23}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
             <div>
               <h3>{locale.SEPRIS_PAGE.text24}</h3>
               <p>{locale.SEPRIS_PAGE.text25}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <div>
               <h3>{locale.SEPRIS_PAGE.text26}</h3>
               <p>{locale.SEPRIS_PAGE.text27}</p>
@@ -105,15 +105,15 @@ const AboutUs = ({ locale }) => {
             </div>
           </div>
         </div>
-        <h2 className="OTOLI_MIDDLE_Dif">{locale.SEPRIS_PAGE.text30}</h2>
-        <div className="PartOne_OTOLI">
-          <div className="partOne_OTOLI_D1 D1_Left">
+        <h2 className='OTOLI_MIDDLE_Dif'>{locale.SEPRIS_PAGE.text30}</h2>
+        <div className='PartOne_OTOLI'>
+          <div className='partOne_OTOLI_D1 D1_Left'>
             <div>
               <h3>{locale.SEPRIS_PAGE.text31}</h3>
               <p>{locale.SEPRIS_PAGE.text32}</p>
             </div>
           </div>
-          <div className="partOne_OTOLI_D1 D1_Right">
+          <div className='partOne_OTOLI_D1 D1_Right'>
             <div>
               <h3>{locale.SEPRIS_PAGE.text33}</h3>
               <p>{locale.SEPRIS_PAGE.text34}</p>

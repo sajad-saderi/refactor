@@ -10,12 +10,12 @@ import ContentHomePage from '../src/components/contentHomePage';
 const HomePage = ({ locale }) => {
   const [authorize, set_authorize] = useState(true);
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/',
-      pageTitle: locale.PAGE_HEADER.home.title
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/',
+    //   pageTitle: locale.PAGE_HEADER.home.title
+    // });
     const guard = guard_controller();
     if (guard !== 'auth') {
       set_authorize(false);
@@ -39,11 +39,11 @@ const HomePage = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <article className="Homepage">
-        <div className="banner">
+      <article className='Homepage'>
+        <div className='banner'>
           <h1>{locale.HOME_PAGE.banner}</h1>
           <h2>{locale.HOME_PAGE.note}</h2>
-          <div className="search_container responsive">
+          <div className='search_container responsive'>
             <Search language={locale} />
           </div>
         </div>

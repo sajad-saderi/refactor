@@ -12,14 +12,14 @@ const AddCar = ({ edit, locale }) => {
   useEffect(() => {
     if (window['auth']) {
       // const edit = router.
-      window['dataLayer'].push({
-        event: 'page_view',
-        pageURL: window.location.href,
-        pagePath: '/add-car',
-        pageTitle: edit
-          ? locale.PAGE_HEADER.addCar.editTitle
-          : locale.PAGE_HEADER.addCar.title,
-      });
+      // window['dataLayer'].push({
+      //   event: 'page_view',
+      //   pageURL: window.location.href,
+      //   pagePath: '/add-car',
+      //   pageTitle: edit
+      //     ? locale.PAGE_HEADER.addCar.editTitle
+      //     : locale.PAGE_HEADER.addCar.title,
+      // });
     } else {
       Router.push('/login');
     }
@@ -28,11 +28,15 @@ const AddCar = ({ edit, locale }) => {
     <Layout LinkControl={true}>
       <NextSeo
         title={
-          edit ? locale.PAGE_HEADER.addCar.editTitle : locale.PAGE_HEADER.addCar.title
+          edit
+            ? locale.PAGE_HEADER.addCar.editTitle
+            : locale.PAGE_HEADER.addCar.title
         }
         description={locale.PAGE_HEADER.addCar.description}
         openGraph={{
-          title: edit ? locale.PAGE_HEADER.addCar.editTitle : locale.PAGE_HEADER.addCar.title,
+          title: edit
+            ? locale.PAGE_HEADER.addCar.editTitle
+            : locale.PAGE_HEADER.addCar.title,
           description: locale.PAGE_HEADER.addCar.description,
           site_name: locale.COMMON.sepris,
         }}

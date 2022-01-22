@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import dynamic from 'next/dynamic';
-import staticPage from '../public/languages/static.json'
+import staticPage from '../public/languages/static.json';
 
 const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
@@ -10,12 +10,12 @@ import { NextSeo } from 'next-seo';
 
 const guidePicture = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/guide-picture',
-      pageTitle: locale.PAGE_HEADER.guidePicture.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/guide-picture',
+    //   pageTitle: locale.PAGE_HEADER.guidePicture.title,
+    // });
     // logPageView();
   }, []);
   return (
@@ -35,10 +35,10 @@ const guidePicture = ({ locale }) => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{staticPage.guidePicture.h1}</h1>
         <p>{staticPage.guidePicture.p}</p>
-        <h2 id="guidePictureHowTakePicture">{staticPage.guidePicture.h2_1}</h2>
+        <h2 id='guidePictureHowTakePicture'>{staticPage.guidePicture.h2_1}</h2>
         <ul>
           <li>{staticPage.guidePicture.li_1}</li>
           <li>{staticPage.guidePicture.li_2}</li>
@@ -49,7 +49,7 @@ const guidePicture = ({ locale }) => {
           <li>{staticPage.guidePicture.li_7}</li>
           <li>{staticPage.guidePicture.li_8}</li>
         </ul>
-        <h2 id="guidePictureDontMakeMistake">{staticPage.guidePicture.h2_2}</h2>
+        <h2 id='guidePictureDontMakeMistake'>{staticPage.guidePicture.h2_2}</h2>
         <ul>
           <li>{staticPage.guidePicture.li_9}</li>
           <li>{staticPage.guidePicture.li_10}</li>

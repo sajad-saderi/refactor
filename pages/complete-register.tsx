@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 const Layout = dynamic(() => import('../src/Layout'));
 const Complete_register_container = dynamic(() =>
-  import('../src/containers/CompleteRegister'),
+  import('../src/containers/CompleteRegister')
 );
 // import Layout from "../src/Layout";
 // import Complete_register_container from "../src/containers/CompleteRegister";
@@ -12,12 +12,12 @@ import { NextSeo } from 'next-seo';
 
 const CompleteRegister = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/complete-register',
-      pageTitle: locale.PAGE_HEADER.completeRegister.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/complete-register',
+    //   pageTitle: locale.PAGE_HEADER.completeRegister.title,
+    // });
     // logPageView();
   }, []);
 

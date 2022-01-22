@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import staticPage from '../public/languages/static.json'
+import staticPage from '../public/languages/static.json';
 
 const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
@@ -8,12 +8,12 @@ import { NextSeo } from 'next-seo';
 // import { logPageView } from "../utils/analytics";
 const OtoliPolicies = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/our-policies',
-      pageTitle: locale.PAGE_HEADER.ourPolicies.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/our-policies',
+    //   pageTitle: locale.PAGE_HEADER.ourPolicies.title,
+    // });
     // logPageView();
   }, []);
   return (
@@ -33,7 +33,7 @@ const OtoliPolicies = ({ locale }) => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{staticPage.ourPolicies.h1}</h1>
         <p>
           <strong>{staticPage.ourPolicies.p_1}</strong>
@@ -307,11 +307,11 @@ const OtoliPolicies = ({ locale }) => {
           <li>
             <strong>{staticPage.ourPolicies.li_82}</strong>
           </li>
-          <p className="intends">{staticPage.ourPolicies.p_43}</p>
+          <p className='intends'>{staticPage.ourPolicies.p_43}</p>
           <li>
             <strong>{staticPage.ourPolicies.li_83} </strong>
           </li>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{staticPage.ourPolicies.li_84}</li>
             <li>{staticPage.ourPolicies.li_85}</li>
             <li>{staticPage.ourPolicies.li_86}</li>
@@ -344,7 +344,7 @@ const OtoliPolicies = ({ locale }) => {
             <strong>{staticPage.ourPolicies.li_94}</strong>
           </li>
           <p>{staticPage.ourPolicies.p_49}</p>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{staticPage.ourPolicies.li_95}</li>
             <li>{staticPage.ourPolicies.li_96}</li>
           </ul>
@@ -375,7 +375,7 @@ const OtoliPolicies = ({ locale }) => {
         <p>{staticPage.ourPolicies.p_58}</p>
         <h2>{staticPage.ourPolicies.h2_27}</h2>
         <p>{staticPage.ourPolicies.p_59}</p>
-        <ul className="intends">
+        <ul className='intends'>
           <li>{staticPage.ourPolicies.li_100}</li>
           <li>{staticPage.ourPolicies.li_101}</li>
           <li>{staticPage.ourPolicies.li_102}</li>

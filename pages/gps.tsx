@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import staticPage from '../public/languages/static.json'
+import staticPage from '../public/languages/static.json';
 
 const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
@@ -9,12 +9,12 @@ const Layout = dynamic(() => import('../src/Layout'));
 
 const gps = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/gps',
-      pageTitle: locale.PAGE_HEADER.gps.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/gps',
+    //   pageTitle: locale.PAGE_HEADER.gps.title,
+    // });
     // logPageView();
   }, []);
   return (
@@ -34,7 +34,7 @@ const gps = ({ locale }) => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <article className="responsive static_pages minHeight">
+      <article className='responsive static_pages minHeight'>
         <h1>{staticPage.gps.h1}</h1>
         <p>{staticPage.gps.p_1}</p>
         <ul>

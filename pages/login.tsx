@@ -14,10 +14,10 @@ import dynamic from 'next/dynamic';
 
 const Layout = dynamic(() => import('../src/Layout'));
 const ConfirmCode = dynamic(() =>
-  import('../src/containers/header/modals/ConfirmCode'),
+  import('../src/containers/header/modals/ConfirmCode')
 );
 const GetUserCellPhone = dynamic(() =>
-  import('../src/containers/header/modals/GetUserCellPhone'),
+  import('../src/containers/header/modals/GetUserCellPhone')
 );
 
 const LoginPage = ({ locale }) => {
@@ -32,12 +32,12 @@ const LoginPage = ({ locale }) => {
   };
 
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/login',
-      pageTitle: locale.LOGIN.login,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/login',
+    //   pageTitle: locale.LOGIN.login,
+    // });
 
     if (window['auth']) {
       set_deactivate_form(true);
@@ -68,7 +68,10 @@ const LoginPage = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <div className="Please_login_container minHeight" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+      <div
+        className='Please_login_container minHeight'
+        dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
+      >
         <div
           className={[
             'modal_box',
@@ -76,21 +79,21 @@ const LoginPage = ({ locale }) => {
           ].join(' ')}
         >
           {change ? (
-            <div className="login_modal_title_confirm_code">
+            <div className='login_modal_title_confirm_code'>
               <FaArrowRight
                 onClick={panelController}
-                size="2rem"
-                color="#4ba3ce"
-                className="login_person_icon"
+                size='2rem'
+                color='#4ba3ce'
+                className='login_person_icon'
               />
               <h2>{locale.LOGIN.title}</h2>
             </div>
           ) : (
-            <div className="login_modal_title">
+            <div className='login_modal_title'>
               <IoMdPerson
-                size="2rem"
-                color="#fff"
-                className="login_person_icon"
+                size='2rem'
+                color='#fff'
+                className='login_person_icon'
               />
               <h2>{locale.LOGIN.login}</h2>
             </div>
@@ -105,7 +108,7 @@ const LoginPage = ({ locale }) => {
           ) : (
             <GetUserCellPhone
               language={locale}
-              data-test-id="GetUserCellPhone"
+              data-test-id='GetUserCellPhone'
               panelController={panelController}
               deactivate_form={deactivate_form}
             />

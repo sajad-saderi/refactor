@@ -10,12 +10,12 @@ const Requests_page = dynamic(() => import('../src/containers/Requests_page'));
 
 const Request = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/requests',
-      pageTitle: locale.PAGE_HEADER.request.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/requests',
+    //   pageTitle: locale.PAGE_HEADER.request.title,
+    // });
     // logPageView();
   }, []);
   return (

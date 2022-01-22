@@ -55,9 +55,9 @@ class App_Otoli extends App {
         });
 
         Sentry.captureException(error);
-        window['ga']('send', 'exception', {
-          exDescription: error.message,
-        });
+        // window['ga']('send', 'exception', {
+        //   exDescription: error.message,
+        // });
       });
       super.componentDidCatch(error, errorInfo);
     }
@@ -78,11 +78,11 @@ class App_Otoli extends App {
                 .then((res) => {
                   this.setState({ BotScore: res.data.recaptcha.score });
                   scoreData = res;
-                  window['dataLayer'].push({
-                    event: 'recaptcha',
-                    recaptchaAnswer: res.data.status,
-                    recaptchaScore: res.data.recaptcha.score,
-                  });
+                  // window['dataLayer'].push({
+                  //   event: 'recaptcha',
+                  //   recaptchaAnswer: res.data.status,
+                  //   recaptchaScore: res.data.recaptcha.score,
+                  // });
                 })
                 .then(() => {
                   Axios.post('https://recaptchaotoli.herokuapp.com/verify/', {
@@ -176,14 +176,14 @@ class App_Otoli extends App {
   };
 
   AnalyticsEvent = (eventCategory, eventAction, eventLabel) => {
-    if (window['ga']) {
-      window['ga']('send', {
-        hitType: 'event',
-        eventCategory,
-        eventAction,
-        eventLabel,
-      });
-    }
+    // if (window['ga']) {
+    //   window['ga']('send', {
+    //     hitType: 'event',
+    //     eventCategory,
+    //     eventAction,
+    //     eventLabel,
+    //   });
+    // }
   };
 
   customPwaPrompt = () => {
@@ -194,21 +194,21 @@ class App_Otoli extends App {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the install prompt');
           this.AnalyticsEvent('pwa', 'install-prompt', 'accepted');
-          window['dataLayer'].push({
-            event: 'GAEvent',
-            eventCategory: 'pwa',
-            eventAction: 'install-prompt',
-            eventLabel: 'accepted',
-            eventValue: '',
-          });
+          // window['dataLayer'].push({
+          //   event: 'GAEvent',
+          //   eventCategory: 'pwa',
+          //   eventAction: 'install-prompt',
+          //   eventLabel: 'accepted',
+          //   eventValue: '',
+          // });
         } else {
-          window['dataLayer'].push({
-            event: 'GAEvent',
-            eventCategory: 'pwa',
-            eventAction: 'install-prompt',
-            eventLabel: 'rejected',
-            eventValue: '',
-          });
+          // window['dataLayer'].push({
+          //   event: 'GAEvent',
+          //   eventCategory: 'pwa',
+          //   eventAction: 'install-prompt',
+          //   eventLabel: 'rejected',
+          //   eventValue: '',
+          // });
           this.AnalyticsEvent('pwa', 'install-prompt', 'rejected');
         }
         pwa_flag = true;

@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import dynamic from "next/dynamic";
+import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
-const Layout = dynamic(() => import("../src/Layout"));
+const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import _404 from "../public/image/404.png";
+import { NextSeo } from 'next-seo';
+import Link from 'next/link';
+import _404 from '../public/image/404.png';
 // import { logPageView } from "../utils/analytics";
 
 const page_404 = ({ locale }) => {
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/404",
-      pageTitle: locale.PAGE_HEADER._404.title,
-    });
+    // window["dataLayer"].push({
+    //   event: "page_view",
+    //   pageURL: window.location.href,
+    //   pagePath: "/404",
+    //   pageTitle: locale.PAGE_HEADER._404.title,
+    // });
     // logPageView();
   }, []);
   return (
@@ -34,10 +34,10 @@ const page_404 = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <article className="minHeight">
-        <img src={_404} alt="404" className="_404PageImage" />
-        <Link href="/" prefetch={false}>
-          <a className="_404PageAnchor Blue_BTN">{locale.COMMON.backToHome}</a>
+      <article className='minHeight'>
+        <img src={_404} alt='404' className='_404PageImage' />
+        <Link href='/' prefetch={false}>
+          <a className='_404PageAnchor Blue_BTN'>{locale.COMMON.backToHome}</a>
         </Link>
       </article>
     </Layout>

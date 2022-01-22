@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import staticPage from '../public/languages/static.json'
+import staticPage from '../public/languages/static.json';
 
 const Layout = dynamic(() => import('../src/Layout'));
 // import Layout from "../src/Layout";
@@ -9,12 +9,12 @@ import { NextSeo } from 'next-seo';
 
 const InsurancePolicies = ({ locale }) => {
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/insurance-policies',
-      pageTitle: locale.PAGE_HEADER.insurancePolicies.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/insurance-policies',
+    //   pageTitle: locale.PAGE_HEADER.insurancePolicies.title,
+    // });
     // logPageView();
   }, []);
   return (
@@ -34,7 +34,7 @@ const InsurancePolicies = ({ locale }) => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <section className="responsive static_pages minHeight">
+      <section className='responsive static_pages minHeight'>
         <h1>{staticPage.insurancePolicies.h1}</h1>
         <p>{staticPage.insurancePolicies.p_1}</p>
         <p>
@@ -216,11 +216,11 @@ const InsurancePolicies = ({ locale }) => {
           <li>
             <strong>{staticPage.insurancePolicies.h2_14_li_1}</strong>
           </li>
-          <p className="intends">{staticPage.insurancePolicies.p_39}</p>
+          <p className='intends'>{staticPage.insurancePolicies.p_39}</p>
           <li>
             <strong>{staticPage.insurancePolicies.h2_14_li_2}</strong>
           </li>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{staticPage.insurancePolicies.h2_14_li_2_li_1}</li>
             <li>{staticPage.insurancePolicies.h2_14_li_2_li_2}</li>
             <li>{staticPage.insurancePolicies.h2_14_li_2_li_3}</li>
@@ -253,7 +253,7 @@ const InsurancePolicies = ({ locale }) => {
             <strong>{staticPage.insurancePolicies.h2_14_li_4}</strong>
           </li>
           <p>{staticPage.insurancePolicies.p_45}</p>
-          <ul className="intends">
+          <ul className='intends'>
             <li>{staticPage.insurancePolicies.p_45_li_1}</li>
             <li>{staticPage.insurancePolicies.p_45_li_2}</li>
           </ul>

@@ -152,14 +152,14 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
   };
 
   const AnalyticsEvent = (eventCategory, eventAction, eventLabel) => {
-    if (window['ga']) {
-      window['ga']('send', {
-        hitType: 'event',
-        eventCategory,
-        eventAction,
-        eventLabel,
-      });
-    }
+    // if (window['ga']) {
+    //   window['ga']('send', {
+    //     hitType: 'event',
+    //     eventCategory,
+    //     eventAction,
+    //     eventLabel,
+    //   });
+    // }
   };
 
   const customPwaPrompt = () => {

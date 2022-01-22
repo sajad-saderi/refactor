@@ -14,12 +14,12 @@ const Site_map = ({ locale }) => {
   const netCTX = useContext(net_CTX);
 
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/site-map',
-      pageTitle: locale.PAGE_HEADER.siteMap.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/site-map',
+    //   pageTitle: locale.PAGE_HEADER.siteMap.title,
+    // });
     // logPageView();
     fetchAPIs();
   }, []);
@@ -55,14 +55,14 @@ const Site_map = ({ locale }) => {
         }}
       />
       {/* Most of the static pages have a same class named 'static_pages' which set some common style for the main wrapper box*/}
-      <article className="responsive static_pages minHeight site_map_page">
+      <article className='responsive static_pages minHeight site_map_page'>
         {UrlList.length > 0 && (
           <ul>
             {UrlList.map((i) => {
               return (
                 <li style={{ margin: '5px 0' }} key={i.unique_id}>
                   <Link
-                    href="/rent/[id]"
+                    href='/rent/[id]'
                     as={`/rent/${i.unique_id}`}
                     prefetch={false}
                   >

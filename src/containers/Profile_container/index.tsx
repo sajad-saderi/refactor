@@ -35,17 +35,17 @@ const Profile_container = ({ language }: IProfile_container) => {
         id: Router.router.query.id
           ? Router.router.query.id
           : Router.router.locale !== 'fa'
-            ? location.pathname.split('/')[3]
-            : location.pathname.split('/')[2],
+          ? location.pathname.split('/')[3]
+          : location.pathname.split('/')[2],
       });
-      window['dataLayer'].push({
-        event: 'page_view',
-        pageURL: window.location.href,
-        pagePath: `/user/${user_cars_info.id}`,
-        pageTitle: dynamicString([user_cars_info.company_name
-          ? user_cars_info.company_name
-          : user_cars_info.name], language.PAGE_HEADER.user.title),
-      });
+      // window['dataLayer'].push({
+      //   event: 'page_view',
+      //   pageURL: window.location.href,
+      //   pagePath: `/user/${user_cars_info.id}`,
+      //   pageTitle: dynamicString([user_cars_info.company_name
+      //     ? user_cars_info.company_name
+      //     : user_cars_info.name], language.PAGE_HEADER.user.title),
+      // });
       if (user_id == user_cars_info.id) {
         setIs_mine(true);
         const guard = guard_controller();
@@ -63,9 +63,9 @@ const Profile_container = ({ language }: IProfile_container) => {
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: language.USER.error1,
-            })
+                errorObj: error.response,
+                _400Message: language.USER.error1,
+              })
             : error,
           color: '#ed9026',
           time: 0,
@@ -75,14 +75,20 @@ const Profile_container = ({ language }: IProfile_container) => {
   };
 
   return (
-    <article className="responsive minHeight profile_container">
+    <article className='responsive minHeight profile_container'>
       {data ? (
         <>
           <NextSeo
-            title={dynamicString([data.company_name ? data.company_name : data.name], language.PAGE_HEADER.user.title)}
+            title={dynamicString(
+              [data.company_name ? data.company_name : data.name],
+              language.PAGE_HEADER.user.title
+            )}
             description={language.PAGE_HEADER.user.description}
             openGraph={{
-              title: dynamicString([data.company_name ? data.company_name : data.name], language.PAGE_HEADER.user.title),
+              title: dynamicString(
+                [data.company_name ? data.company_name : data.name],
+                language.PAGE_HEADER.user.title
+              ),
               description: language.PAGE_HEADER.user.description,
               site_name: language.COMMON.sepris,
             }}
@@ -92,11 +98,7 @@ const Profile_container = ({ language }: IProfile_container) => {
               cardType: language.PAGE_HEADER.cardType,
             }}
           />
-          <Profile_info
-            data={data}
-            is_mine={is_mine}
-            language={language}
-          />
+          <Profile_info data={data} is_mine={is_mine} language={language} />
           <Profile_Cars
             is_mine={is_mine}
             profile_Id={profile_Id}

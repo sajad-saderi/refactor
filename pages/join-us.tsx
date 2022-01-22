@@ -23,12 +23,12 @@ const JoinUs = ({ BotScore, locale }) => {
   useEffect(() => {
     console.log(BotScore);
 
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/join-us',
-      pageTitle: locale.PAGE_HEADER.joinUs.title,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/join-us',
+    //   pageTitle: locale.PAGE_HEADER.joinUs.title,
+    // });
     setShouldHideCommnets(
       window.location.search.includes('show_comment') ? false : true
     );

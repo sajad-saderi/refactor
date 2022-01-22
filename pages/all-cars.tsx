@@ -17,18 +17,18 @@ const AllCars = ({ content, locale }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const searchedLocation = localStorage["searchedLocation"]
-      ? localStorage["searchedLocation"]
+    const searchedLocation = localStorage['searchedLocation']
+      ? localStorage['searchedLocation']
       : router.query?.location_name
-        ? router.query.location_name
-        : "all";
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/all-cars',
-      pageTitle: `${locale.PAGE_HEADER.search.title}`,
-      searchedLocation
-    });
+      ? router.query.location_name
+      : 'all';
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/all-cars',
+    //   pageTitle: `${locale.PAGE_HEADER.search.title}`,
+    //   searchedLocation
+    // });
     const guard = guard_controller();
     if (guard !== 'auth') {
       set_authorize(false);

@@ -1,6 +1,6 @@
-import { useEffect, useReducer, useState, useContext } from "react";
-import { IoIosCar, IoIosCalendar } from "react-icons/io";
-import dynamic from "next/dynamic";
+import { useEffect, useReducer, useState, useContext } from 'react';
+import { IoIosCar, IoIosCalendar } from 'react-icons/io';
+import dynamic from 'next/dynamic';
 
 // import "./step_2.scss";
 import {
@@ -10,194 +10,194 @@ import {
   REQUEST_SET_CAR_AVAILABILITY,
   REQUEST_SET_CAR_DISCOUNT,
   REQUEST_SET_CAR_PARTIAL,
-} from "../../../API";
-import net_CTX from "../../../context/internetConnectionCTX";
-import languageCTX from "../../../context/languageCTX";
+} from '../../../API';
+import net_CTX from '../../../context/internetConnectionCTX';
+import languageCTX from '../../../context/languageCTX';
 
-const Radio = dynamic(() => import("../../../components/form/Radio"));
-const Button = dynamic(() => import("../../../components/form/Button"));
-const Counter = dynamic(() => import("../../../components/Counter"));
-const DiscountBox = dynamic(() => import("../DiscountBox"));
+const Radio = dynamic(() => import('../../../components/form/Radio'));
+const Button = dynamic(() => import('../../../components/form/Button'));
+const Counter = dynamic(() => import('../../../components/Counter'));
+const DiscountBox = dynamic(() => import('../DiscountBox'));
 const DropdownSearch = dynamic(() =>
-  import("../../../components/form/Dropdown")
+  import('../../../components/form/Dropdown')
 );
 // import Radio from "../../../components/form/Radio";
-import TextInput from "../../../components/form/TextInput";
-import Checkbox from "../../../components/form/Checkbox";
+import TextInput from '../../../components/form/TextInput';
+import Checkbox from '../../../components/form/Checkbox';
 // import Button from "../../../components/form/Button";
-import { useRouter } from "next/router";
-import jsCookie from "js-cookie";
-import validator from "validator";
-import Spinner from "../../../components/Spinner";
-import Modal_context from "../../../context/Modal_context";
-import context_user from "../../../context/User_info";
+import { useRouter } from 'next/router';
+import jsCookie from 'js-cookie';
+import validator from 'validator';
+import Spinner from '../../../components/Spinner';
+import Modal_context from '../../../context/Modal_context';
+import context_user from '../../../context/User_info';
 // import Counter from "../../../components/Counter";
-import PriceBox from "../PriceBox";
+import PriceBox from '../PriceBox';
 // import DiscountBox from "../DiscountBox";
 // import DropdownSearch from "../../../components/form/Dropdown";
-import carThumbnail from "../../../../public/image/car-image-thumbnail.jpg";
-import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
-import roundup from "../../../../utils/roundup";
-import Toast_context from "../../../context/Toast_context";
-import ErrorHelper from "../../../../utils/error_helper";
+import carThumbnail from '../../../../public/image/car-image-thumbnail.jpg';
+import NumbersAndCurrencyUnit from '../../../../utils/NumbersAndCurrencyUnit';
+import roundup from '../../../../utils/roundup';
+import Toast_context from '../../../context/Toast_context';
+import ErrorHelper from '../../../../utils/error_helper';
 import { dynamicString } from '../../../helpers/dynamicString';
 
 const stateReducer = (current, action) => {
   switch (action.type) {
-    case "id":
+    case 'id':
       return { ...current, id: action.id };
-    case "location":
+    case 'location':
       return { ...current, location: action.location };
-    case "owner_id":
+    case 'owner_id':
       return { ...current, owner_id: action.owner_id };
-    case "days_to_get_reminded":
+    case 'days_to_get_reminded':
       return { ...current, days_to_get_reminded: action.days_to_get_reminded };
-    case "ADD_days_to_get_reminded":
+    case 'ADD_days_to_get_reminded':
       return {
         ...current,
         days_to_get_reminded: current.days_to_get_reminded + 1,
       };
-    case "REDUCE_days_to_get_reminded":
+    case 'REDUCE_days_to_get_reminded':
       return {
         ...current,
         days_to_get_reminded: current.days_to_get_reminded - 1,
       };
-    case "min_days_to_rent":
+    case 'min_days_to_rent':
       return { ...current, min_days_to_rent: action.min_days_to_rent };
-    case "ADD_min_days_to_rent":
+    case 'ADD_min_days_to_rent':
       return { ...current, min_days_to_rent: current.min_days_to_rent + 1 };
-    case "REDUCE_min_days_to_rent":
+    case 'REDUCE_min_days_to_rent':
       return { ...current, min_days_to_rent: current.min_days_to_rent - 1 };
-    case "max_km_per_day":
+    case 'max_km_per_day':
       return { ...current, max_km_per_day: action.max_km_per_day };
-    case "extra_km_price":
+    case 'extra_km_price':
       return { ...current, extra_km_price: action.extra_km_price };
-    case "extra_hour_price":
+    case 'extra_hour_price':
       return { ...current, extra_hour_price: action.extra_hour_price };
-    case "deliver_at_renters_place":
+    case 'deliver_at_renters_place':
       return {
         ...current,
         deliver_at_renters_place: action.deliver_at_renters_place,
       };
-    case "driver_status":
+    case 'driver_status':
       return { ...current, driver_status: action.driver_status };
-    case "with_driver":
+    case 'with_driver':
       return {
         ...current,
         with_driver: action.with_driver,
       };
-    case "price_per_day":
+    case 'price_per_day':
       return {
         ...current,
         price_per_day: action.price_per_day,
       };
-    case "cancellation_policy":
+    case 'cancellation_policy':
       return {
         ...current,
         cancellation_policy: action.cancellation_policy,
       };
-    case "registration_plate_first_part":
+    case 'registration_plate_first_part':
       return {
         ...current,
         registration_plate_first_part: action.registration_plate_first_part,
       };
-    case "registration_plate_second_part":
+    case 'registration_plate_second_part':
       return {
         ...current,
         registration_plate_second_part: action.registration_plate_second_part,
       };
-    case "registration_plate_third_part":
+    case 'registration_plate_third_part':
       return {
         ...current,
         registration_plate_third_part: action.registration_plate_third_part,
       };
-    case "registration_plate_forth_part":
+    case 'registration_plate_forth_part':
       return {
         ...current,
         registration_plate_forth_part: action.registration_plate_forth_part,
       };
-    case "is_out_of_service":
+    case 'is_out_of_service':
       return { ...current, is_out_of_service: action.is_out_of_service };
     default:
-      throw new Error("There is a problem!");
+      throw new Error('There is a problem!');
   }
 };
 
 const error_reducer = (current, action) => {
   switch (action.type) {
-    case "id":
+    case 'id':
       return {
         ...current,
         id: action.id,
         error_message: action.error_message,
       };
-    case "max_km_per_day":
+    case 'max_km_per_day':
       return {
         ...current,
         max_km_per_day: action.max_km_per_day,
         error_message: action.error_message,
       };
-    case "extra_km_price":
+    case 'extra_km_price':
       return {
         ...current,
         extra_km_price: action.extra_km_price,
         error_message: action.error_message,
       };
-    case "driver_status":
+    case 'driver_status':
       return {
         ...current,
         driver_status: action.driver_status,
         error_message: action.error_message,
       };
-    case "extra_hour_price":
+    case 'extra_hour_price':
       return {
         ...current,
         extra_hour_price: action.extra_hour_price,
         error_message: action.error_message,
       };
-    case "days_to_get_reminded":
+    case 'days_to_get_reminded':
       return {
         ...current,
         days_to_get_reminded: action.days_to_get_reminded,
         error_message: action.error_message,
       };
-    case "min_days_to_rent":
+    case 'min_days_to_rent':
       return {
         ...current,
         min_days_to_rent: action.min_days_to_rent,
         error_message: action.error_message,
       };
-    case "price_per_day":
+    case 'price_per_day':
       return {
         ...current,
         price_per_day: action.price_per_day,
         error_message: action.error_message,
       };
-    case "price_range":
+    case 'price_range':
       return {
         ...current,
         price_range: action.price_range,
         error_message: action.error_message,
       };
-    case "discount_error":
+    case 'discount_error':
       return {
         ...current,
         discount_error: action.discount_error,
         error_message: action.error_message,
       };
-    case "cancellation_policy":
+    case 'cancellation_policy':
       return {
         ...current,
         cancellation_policy: action.cancellation_policy,
         error_message: action.error_message,
       };
-    case "error_message":
+    case 'error_message':
       return {
         ...current,
         error_message: action.error_message,
       };
     default:
-      throw new Error("There is a problem!");
+      throw new Error('There is a problem!');
   }
 };
 
@@ -221,7 +221,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const [CarModelName, setCarModelName] = useState(null);
   const [recommendationPrice, setRecommendationPrice] = useState(null);
   const [year, setYear] = useState(null);
-  const [insurance_amount, setInsurance_amount] = useState("");
+  const [insurance_amount, setInsurance_amount] = useState('');
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
     id: false,
@@ -245,21 +245,21 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     id: null,
     location: null,
     owner_id: null,
-    registration_plate_first_part: "",
+    registration_plate_first_part: '',
     registration_plate_second_part: null,
-    registration_plate_third_part: "",
-    registration_plate_forth_part: "",
+    registration_plate_third_part: '',
+    registration_plate_forth_part: '',
     max_km_per_day: 250,
-    extra_km_price: "",
-    extra_hour_price: "",
+    extra_km_price: '',
+    extra_hour_price: '',
     driver_status: 1,
     days_to_get_reminded: 0,
     deliver_at_renters_place: 1,
     with_driver: 0,
     is_out_of_service: false,
     min_days_to_rent: 1,
-    price_per_day: "",
-    cancellation_policy: "",
+    price_per_day: '',
+    cancellation_policy: '',
   });
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
@@ -280,7 +280,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     if (token) {
       user_token = token;
     } else {
-      user_token = jsCookie.get("token");
+      user_token = jsCookie.get('token');
     }
     try {
       const car_info_res = await REQUEST_GET_RENTAL_CAR_SET_CAR_TIMING({
@@ -317,7 +317,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     if (data[0].is_all_time) {
       setDateAndPrice(1);
       dispatch({
-        type: "price_per_day",
+        type: 'price_per_day',
         price_per_day: data[0].price_per_day,
       });
     }
@@ -330,40 +330,40 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
   const SetCar = (car) => {
     // SET CAR ID
-    dispatch({ type: "id", id: car.id });
+    dispatch({ type: 'id', id: car.id });
 
-    dispatch({ type: "location", location: car.location.name });
+    dispatch({ type: 'location', location: car.location.name });
 
     // SET OWNER ID
-    dispatch({ type: "owner_id", owner_id: car.owner.id });
+    dispatch({ type: 'owner_id', owner_id: car.owner.id });
 
     // SET CAR DAYS TO GET REMINDED
     dispatch({
-      type: "days_to_get_reminded",
+      type: 'days_to_get_reminded',
       days_to_get_reminded: car.days_to_get_reminded,
     });
 
     // SET CAR MIN DAYS TO RENT
     dispatch({
-      type: "min_days_to_rent",
+      type: 'min_days_to_rent',
       min_days_to_rent: car.min_days_to_rent,
     });
 
     // SET CAR MAX km PER DAY
     if (car.max_km_per_day && car.extra_km_price) {
       dispatch({
-        type: "max_km_per_day",
+        type: 'max_km_per_day',
         max_km_per_day: car.max_km_per_day,
       });
       dispatch({
-        type: "extra_km_price",
+        type: 'extra_km_price',
         extra_km_price: car.extra_km_price,
       });
     }
     // SET CAR MAX km PER DAY
     if (car.extra_hour_price) {
       dispatch({
-        type: "extra_hour_price",
+        type: 'extra_hour_price',
         extra_hour_price: car.extra_hour_price,
       });
     }
@@ -376,7 +376,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     //   });
     // } else {
     dispatch({
-      type: "is_out_of_service",
+      type: 'is_out_of_service',
       is_out_of_service: car.is_out_of_service,
     });
     // }
@@ -388,47 +388,47 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
     if (car.with_driver && car.without_driver) {
       dispatch({
-        type: "driver_status",
+        type: 'driver_status',
         driver_status: 3,
       });
     } else if (car.with_driver) {
       dispatch({
-        type: "driver_status",
+        type: 'driver_status',
         driver_status: 2,
       });
     } else if (car.without_driver) {
       dispatch({
-        type: "driver_status",
+        type: 'driver_status',
         driver_status: 1,
       });
     } else {
       dispatch({
-        type: "driver_status",
+        type: 'driver_status',
         driver_status: 3,
       });
     }
 
     // SET CAR DELIVER AT RENTERS PLACE
     dispatch({
-      type: "deliver_at_renters_place",
+      type: 'deliver_at_renters_place',
       deliver_at_renters_place: car.deliver_at_renters_place ? 1 : 0,
     });
 
     // SET PELAK VALUES
     dispatch({
-      type: "registration_plate_first_part",
+      type: 'registration_plate_first_part',
       registration_plate_first_part: car.registration_plate_first_part,
     });
     dispatch({
-      type: "registration_plate_second_part",
+      type: 'registration_plate_second_part',
       registration_plate_second_part: car.registration_plate_second_part,
     });
     dispatch({
-      type: "registration_plate_third_part",
+      type: 'registration_plate_third_part',
       registration_plate_third_part: car.registration_plate_third_part,
     });
     dispatch({
-      type: "registration_plate_forth_part",
+      type: 'registration_plate_forth_part',
       registration_plate_forth_part: car.registration_plate_forth_part,
     });
 
@@ -448,7 +448,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
     // SET CAR CANCELLATION POLICY
     dispatch({
-      type: "cancellation_policy",
+      type: 'cancellation_policy',
       cancellation_policy: car.cancellation_policy,
     });
 
@@ -471,7 +471,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 rental_car_id: state.id,
                 is_all_time: 1,
                 price_per_day: state.price_per_day,
-                status_id: "available",
+                status_id: 'available',
               },
             ]),
           });
@@ -491,7 +491,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         });
         // }
         // remove the car id from storage
-        jsCookie.remove("new_car");
+        jsCookie.remove('new_car');
         const partial_car_res = await REQUEST_SET_CAR_PARTIAL({
           id: state.id,
           deliver_at_renters_place: state.deliver_at_renters_place,
@@ -512,27 +512,30 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           is_out_of_service: state.is_out_of_service,
           token: token,
         });
-        localStorage.removeItem("red_dot");
-        if (router.query?.newcaradded === "true") {
-          window["dataLayer"].push({
-            event: "conversions",
-            action: "new_car",
-            pagePath: "/set-car-timing",
-            pageURL: window.location.href,
-            car_id: state.id,
-            label: state.location,
-          });
+        localStorage.removeItem('red_dot');
+        if (router.query?.newcaradded === 'true') {
+          // window["dataLayer"].push({
+          //   event: "conversions",
+          //   action: "new_car",
+          //   pagePath: "/set-car-timing",
+          //   pageURL: window.location.href,
+          //   car_id: state.id,
+          //   label: state.location,
+          // });
           TOAST_CONTEXT.toast_option({
-            message: dynamicString([CarModelName[activeLanguage]], language.CAR_SETTING.toast),
+            message: dynamicString(
+              [CarModelName[activeLanguage]],
+              language.CAR_SETTING.toast
+            ),
             time: 20,
             autoClose: true,
           });
           router.push(
-            { pathname: "/user/[id]?newcaradded=true`" },
+            { pathname: '/user/[id]?newcaradded=true`' },
             `/user/${state.owner_id}?newcaradded=true`
           );
         } else {
-          router.push({ pathname: "/user/[id]" }, `/user/${state.owner_id}`);
+          router.push({ pathname: '/user/[id]' }, `/user/${state.owner_id}`);
         }
       } catch (error) {
         setLoading(false);
@@ -542,11 +545,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           TOAST_CONTEXT.toast_option({
             message: error.response
               ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: language.COMMON.errorInSubmittingCar,
-              })
+                  errorObj: error.response,
+                  _400Message: language.COMMON.errorInSubmittingCar,
+                })
               : error,
-            color: "#ed9026",
+            color: '#ed9026',
             time: 0,
             autoClose: false,
           });
@@ -556,7 +559,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
   // receive the Reducer type and reset the error status
   const resetTheErrorStatus = (value_name) => {
-    if (value_name === "error_message") {
+    if (value_name === 'error_message') {
       ErrorDispatch({
         type: value_name,
         error_message: null,
@@ -573,30 +576,30 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const validation = (state) => {
     if (!state.id) {
       ErrorDispatch({
-        type: "id",
+        type: 'id',
         id: true,
         error_message: language.CAR_SETTING.error1,
       });
       return false;
     } else {
-      resetTheErrorStatus("id");
+      resetTheErrorStatus('id');
     }
-    if (DateAndPrice === 1 && state.price_per_day === "") {
+    if (DateAndPrice === 1 && state.price_per_day === '') {
       ErrorDispatch({
-        type: "price_per_day",
+        type: 'price_per_day',
         price_per_day: true,
         error_message: language.CAR_SETTING.error2,
       });
       return false;
     } else if (DateAndPrice === 1 && +state.price_per_day < 50000) {
       ErrorDispatch({
-        type: "price_per_day",
+        type: 'price_per_day',
         price_per_day: true,
         error_message: language.CAR_SETTING.error3,
       });
       return false;
     } else {
-      resetTheErrorStatus("price_per_day");
+      resetTheErrorStatus('price_per_day');
     }
     // Commented for a while ***
     // if (DateAndPrice === 2 && availabilityList.length === 0) {
@@ -611,95 +614,95 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     // }
     if (state.days_to_get_reminded < 0) {
       ErrorDispatch({
-        type: "days_to_get_reminded",
+        type: 'days_to_get_reminded',
         days_to_get_reminded: true,
         error_message: language.CAR_SETTING.error4,
       });
       return false;
     } else {
-      resetTheErrorStatus("days_to_get_reminded");
+      resetTheErrorStatus('days_to_get_reminded');
     }
     if (state.min_days_to_rent === 0) {
       ErrorDispatch({
-        type: "min_days_to_rent",
+        type: 'min_days_to_rent',
         min_days_to_rent: true,
         error_message: language.CAR_SETTING.error5,
       });
       return false;
     } else {
-      resetTheErrorStatus("min_days_to_rent");
+      resetTheErrorStatus('min_days_to_rent');
     }
-    if (state.max_km_per_day === "") {
+    if (state.max_km_per_day === '') {
       ErrorDispatch({
-        type: "max_km_per_day",
+        type: 'max_km_per_day',
         max_km_per_day: true,
         error_message: language.CAR_SETTING.error6,
       });
       return false;
     } else {
-      resetTheErrorStatus("max_km_per_day");
+      resetTheErrorStatus('max_km_per_day');
     }
-    if (state.extra_km_price === "") {
+    if (state.extra_km_price === '') {
       ErrorDispatch({
-        type: "extra_km_price",
+        type: 'extra_km_price',
         extra_km_price: true,
         error_message: language.CAR_SETTING.error7,
       });
       return false;
     } else if (+state.extra_km_price < 100) {
       ErrorDispatch({
-        type: "extra_km_price",
+        type: 'extra_km_price',
         extra_km_price: true,
         error_message: language.CAR_SETTING.error8,
       });
       return false;
     } else {
-      resetTheErrorStatus("extra_km_price");
+      resetTheErrorStatus('extra_km_price');
     }
-    if (state.extra_hour_price === "") {
+    if (state.extra_hour_price === '') {
       ErrorDispatch({
-        type: "extra_hour_price",
+        type: 'extra_hour_price',
         extra_hour_price: true,
         error_message: language.CAR_SETTING.error12,
       });
       return false;
     } else if (+state.extra_hour_price < 100) {
       ErrorDispatch({
-        type: "extra_hour_price",
+        type: 'extra_hour_price',
         extra_hour_price: true,
         error_message: language.CAR_SETTING.error13,
       });
       return false;
     } else {
-      resetTheErrorStatus("extra_hour_price");
+      resetTheErrorStatus('extra_hour_price');
     }
     if (showDiscount !== 0 && discountList.length === 0) {
       ErrorDispatch({
-        type: "discount_error",
+        type: 'discount_error',
         discount_error: true,
         error_message: language.CAR_SETTING.error9,
       });
       return false;
     } else {
-      resetTheErrorStatus("discount_error");
+      resetTheErrorStatus('discount_error');
     }
 
     if (!state.cancellation_policy) {
       ErrorDispatch({
-        type: "cancellation_policy",
+        type: 'cancellation_policy',
         cancellation_policy: true,
         error_message: language.CAR_SETTING.error10,
       });
       return false;
-    } else if (state.cancellation_policy.trim() === "") {
+    } else if (state.cancellation_policy.trim() === '') {
       ErrorDispatch({
-        type: "cancellation_policy",
+        type: 'cancellation_policy',
         cancellation_policy: true,
         error_message: language.CAR_SETTING.error10,
       });
       return false;
     } else {
-      resetTheErrorStatus("cancellation_policy");
+      resetTheErrorStatus('cancellation_policy');
     }
     return true;
   };
@@ -719,7 +722,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           start_date: data.start_date,
           end_date: data.end_date,
           price_per_day: data.price_per_day,
-          status_id: "available",
+          status_id: 'available',
         })
       );
     }
@@ -759,23 +762,26 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   };
 
   return (
-    <article className="responsive step_2_form_container" dir={activeLanguage === "fa" ? 'rtl' : 'ltr'}>
-      <div className="step_2_main_container">
-        <div className="pageTitle">
+    <article
+      className='responsive step_2_form_container'
+      dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
+    >
+      <div className='step_2_main_container'>
+        <div className='pageTitle'>
           {/* <IoIosCalendar className="car_icon" size="3.3rem" color="#4ba3ce" /> */}
           <h3>{language.CAR_SETTING.title}</h3>
 
-          <div className="pelak_container">
-            <p className="car_name_brand">
-              <IoIosCar className="car_icon" size="2.3rem" color="#313131" />
+          <div className='pelak_container'>
+            <p className='car_name_brand'>
+              <IoIosCar className='car_icon' size='2.3rem' color='#313131' />
               {Brand_Name ? (
                 `${Brand_Name[activeLanguage]} - ${CarModelName[activeLanguage]}`
               ) : (
-                <span className="carName_placeHoler Gradient"></span>
+                <span className='carName_placeHoler Gradient'></span>
               )}
             </p>
             {/* {year && <p>{year}</p>} */}
-            <div className="licence_number">
+            <div className='licence_number'>
               <p>{state.registration_plate_forth_part}</p>
               <p>|</p>
               <p>{state.registration_plate_third_part}</p>
@@ -785,17 +791,17 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           </div>
         </div>
         <form onSubmit={(e) => submitHandler(e, state)}>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">
+          <div className='add_car_form_step_2'>
+            <h4 className='extra_text'>
               {language.CAR_SETTING.rentPrice}
               <span> {language.CAR_SETTING.daily}</span>
             </h4>
             <div
-              className="Set_Price_date_options"
-            //   className={[
-            //     "transition_type_Label",
-            //     ErrorState.transmission_type_id ? "Error_color" : null
-            //   ].join(" ")}
+              className='Set_Price_date_options'
+              //   className={[
+              //     "transition_type_Label",
+              //     ErrorState.transmission_type_id ? "Error_color" : null
+              //   ].join(" ")}
             >
               {/* toggle between same price for all time and custom range of price  */}
               {/* <Radio
@@ -825,20 +831,20 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             </div>
             {/* {DateAndPrice === 1 ? ( */}
             {/* <> */}
-            <div className="custom_input_container_step_2 daily_price_container">
+            <div className='custom_input_container_step_2 daily_price_container'>
               <TextInput
-                name="price_per_day"
+                name='price_per_day'
                 number={true}
                 onChangeHandler={(e) => {
                   if (ErrorState.price_per_day) {
                     ErrorDispatch({
-                      type: "price_per_day",
+                      type: 'price_per_day',
                       price_per_day: false,
-                      error_message: "",
+                      error_message: '',
                     });
                   }
                   dispatch({
-                    type: "price_per_day",
+                    type: 'price_per_day',
                     price_per_day: e,
                   });
                   let each_hour = roundup(e / 24);
@@ -852,26 +858,26 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     //   `${each_hour}`.length - 2
                     // )}`;
                     dispatch({
-                      type: "extra_hour_price",
+                      type: 'extra_hour_price',
                       extra_hour_price: each_hour,
                     });
                   }
                   if (state.max_km_per_day) {
                     dispatch({
-                      type: "extra_km_price",
+                      type: 'extra_km_price',
                       extra_km_price: roundup(+e / state.max_km_per_day),
                     });
                   }
                 }}
                 clearField={() =>
                   dispatch({
-                    type: "price_per_day",
-                    price_per_day: "",
+                    type: 'price_per_day',
+                    price_per_day: '',
                   })
                 }
                 error={{
                   status: ErrorState.price_per_day,
-                  message: "",
+                  message: '',
                 }}
                 autoFocus={false}
                 // min={4}
@@ -879,7 +885,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 showTail={true}
                 tail_value={`${NumbersAndCurrencyUnit({
                   value: state.price_per_day,
-                  locale: activeLanguage
+                  locale: activeLanguage,
                 })} ${language.COMMON.toman}`}
                 placeholder={language.CAR_SETTING.pricePlaceholder}
                 value={state.price_per_day}
@@ -894,13 +900,14 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 }}
               />
               {recommendationPrice ? (
-                <p className="our_recommendation">
-                  {`${language.CAR_SETTING.recommendation
-                    } ${recommendationPrice.toLocaleString()}`}{" "}
+                <p className='our_recommendation'>
+                  {`${
+                    language.CAR_SETTING.recommendation
+                  } ${recommendationPrice.toLocaleString()}`}{' '}
                   {language.COMMON.tomanPerDay}
                 </p>
               ) : (
-                <p className="our_recommendation_placeHoler Gradient"></p>
+                <p className='our_recommendation_placeHoler Gradient'></p>
               )}
             </div>
             {/* {state.price_per_day.length > 3 && (
@@ -921,7 +928,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
           )} */}
             {/* <h4 className="extra_text">شرایط اجاره</h4> */}
 
-            <div className="custom_input_container_step_2 DropDown_extra_km">
+            <div className='custom_input_container_step_2 DropDown_extra_km'>
               <DropdownSearch
                 language={language}
                 label={language.COMMON.kmLimitInDay}
@@ -948,12 +955,12 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 // }}
                 Select={(i) => {
                   dispatch({
-                    type: "max_km_per_day",
+                    type: 'max_km_per_day',
                     max_km_per_day: i.value,
                   });
                   if (DateAndPrice === 1 && state.price_per_day) {
                     dispatch({
-                      type: "extra_km_price",
+                      type: 'extra_km_price',
                       extra_km_price: Math.floor(
                         +state.price_per_day / i.value
                       ),
@@ -961,30 +968,30 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   }
                 }}
               />
-              <span className="tail_text">{language.COMMON.kmInDay}</span>
+              <span className='tail_text'>{language.COMMON.kmInDay}</span>
             </div>
-            <div className="custom_input_container_step_2 extra_km_price_container">
+            <div className='custom_input_container_step_2 extra_km_price_container'>
               <TextInput
-                name="extra_km_price"
+                name='extra_km_price'
                 number={true}
                 autoFocus={false}
                 onChangeHandler={(e) => {
                   if (ErrorState.extra_km_price) {
                     ErrorDispatch({
-                      type: "extra_km_price",
+                      type: 'extra_km_price',
                       extra_km_price: false,
-                      error_message: "",
+                      error_message: '',
                     });
                   }
                   dispatch({
-                    type: "extra_km_price",
+                    type: 'extra_km_price',
                     extra_km_price: e,
                   });
                 }}
                 clearField={() =>
                   dispatch({
-                    type: "extra_km_price",
-                    extra_km_price: "",
+                    type: 'extra_km_price',
+                    extra_km_price: '',
                   })
                 }
                 error={{
@@ -997,7 +1004,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 showTail={true}
                 tail_value={`${NumbersAndCurrencyUnit({
                   value: state.extra_km_price,
-                  locale: activeLanguage
+                  locale: activeLanguage,
                 })} ${language.COMMON.toman}`}
                 value={state.extra_km_price}
                 label={language.COMMON.extraKm}
@@ -1012,28 +1019,28 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 }}
               />
             </div>
-            <div className="custom_input_container_step_2 extra_km_price_container">
+            <div className='custom_input_container_step_2 extra_km_price_container'>
               <TextInput
-                name="extra_hour_price"
+                name='extra_hour_price'
                 number={true}
                 autoFocus={false}
                 onChangeHandler={(e) => {
                   if (ErrorState.extra_hour_price) {
                     ErrorDispatch({
-                      type: "extra_hour_price",
+                      type: 'extra_hour_price',
                       extra_hour_price: false,
-                      error_message: "",
+                      error_message: '',
                     });
                   }
                   dispatch({
-                    type: "extra_hour_price",
+                    type: 'extra_hour_price',
                     extra_hour_price: e,
                   });
                 }}
                 clearField={() =>
                   dispatch({
-                    type: "extra_hour_price",
-                    extra_hour_price: "",
+                    type: 'extra_hour_price',
+                    extra_hour_price: '',
                   })
                 }
                 error={{
@@ -1046,7 +1053,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 showTail={true}
                 tail_value={`${NumbersAndCurrencyUnit({
                   value: state.extra_hour_price,
-                  locale: activeLanguage
+                  locale: activeLanguage,
                 })} ${language.COMMON.toman}`}
                 value={state.extra_hour_price}
                 label={language.CAR_SETTING.extraHour}
@@ -1073,22 +1080,22 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             <Counter
               max={31}
               min={1}
-              AddTo={() => dispatch({ type: "ADD_min_days_to_rent" })}
-              reduceTo={() => dispatch({ type: "REDUCE_min_days_to_rent" })}
+              AddTo={() => dispatch({ type: 'ADD_min_days_to_rent' })}
+              reduceTo={() => dispatch({ type: 'REDUCE_min_days_to_rent' })}
               label={language.CAR_SETTING.minimumDuration}
               text={language.COMMON.day}
               value={state.min_days_to_rent}
             />
-            <div className="driver_satus">
+            <div className='driver_satus'>
               <label>{language.CAR_SETTING.rentCondition}</label>
               <p>{language.CAR_SETTING.note}</p>
               <Radio
-                name="driver_status"
+                name='driver_status'
                 error_status={ErrorState.driver_status}
                 SelectHandler={(i) => {
                   // setDriver_status(+i);
                   dispatch({
-                    type: "driver_status",
+                    type: 'driver_status',
                     driver_status: +i,
                   });
                 }}
@@ -1114,20 +1121,23 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               initialValue={[state.deliver_at_renters_place]}
               data={[
                 {
-                  name: { fa: language.CAR_SETTING.delivery, en: language.CAR_SETTING.delivery },
+                  name: {
+                    fa: language.CAR_SETTING.delivery,
+                    en: language.CAR_SETTING.delivery,
+                  },
                   value: state.deliver_at_renters_place,
                 },
               ]}
-              name="deliver_at_renters_place"
+              name='deliver_at_renters_place'
               clearField={() =>
                 dispatch({
-                  type: "deliver_at_renters_place",
+                  type: 'deliver_at_renters_place',
                   deliver_at_renters_place: 0,
                 })
               }
               Select={() => {
                 dispatch({
-                  type: "deliver_at_renters_place",
+                  type: 'deliver_at_renters_place',
                   deliver_at_renters_place: 1,
                 });
               }}
@@ -1155,8 +1165,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               }}
             /> */}
           </div>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">{language.CAR_SETTING.discounts}</h4>
+          <div className='add_car_form_step_2'>
+            <h4 className='extra_text'>{language.CAR_SETTING.discounts}</h4>
             {/* DiscountBox component  */}
             <DiscountBox
               language={language}
@@ -1169,9 +1179,9 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               error={ErrorState.discount_error}
             />
           </div>
-          <div className="add_car_form_step_2">
-            <h4 className="extra_text">{language.CAR_SETTING.conditions}</h4>
-            <div className="cancelation_items_container">
+          <div className='add_car_form_step_2'>
+            <h4 className='extra_text'>{language.CAR_SETTING.conditions}</h4>
+            <div className='cancelation_items_container'>
               {/* <div className="deposit_container">
               <p>ودیعه نقدی به مبلغ</p>
               <TextInput
@@ -1212,23 +1222,29 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 initialValue={checkbox_list}
                 data={[
                   {
-                    name: { fa: "گواهینامه معتبر", en: "Valid License Driver" },
+                    name: { fa: 'گواهینامه معتبر', en: 'Valid License Driver' },
                     value: 1,
                   },
                   {
-                    name: { fa: "بیمه‌نامه اجاره خودرو سپریس", en: 'Sepris Car Insurance' },
+                    name: {
+                      fa: 'بیمه‌نامه اجاره خودرو سپریس',
+                      en: 'Sepris Car Insurance',
+                    },
                     value: 2,
                   },
                   {
-                    name: { fa: "چک یا سفته به مبلغ ماشین", en: 'چک یا سفته به مبلغ ماشین' },
+                    name: {
+                      fa: 'چک یا سفته به مبلغ ماشین',
+                      en: 'چک یا سفته به مبلغ ماشین',
+                    },
                     value: 3,
                   },
                   {
-                    name: { fa: "ودیعه نقدی به مبلغ:", en: 'Cash deposit:' },
+                    name: { fa: 'ودیعه نقدی به مبلغ:', en: 'Cash deposit:' },
                     value: 4,
                   },
                 ]}
-                name="deliver_at_renters_place"
+                name='deliver_at_renters_place'
                 clearField={(item) => {
                   let checkListInstance = null;
                   setCheckbox_list((checkbox_list) => {
@@ -1236,12 +1252,18 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     return checkListInstance;
                   });
                   dispatch({
-                    type: "cancellation_policy",
+                    type: 'cancellation_policy',
                     cancellation_policy: state.cancellation_policy
-                      ? `${state.cancellation_policy}\n${checkListInstance[checkListInstance.length - 1].name[activeLanguage]
-                      }`
-                      : `${checkListInstance[checkListInstance.length - 1].name[activeLanguage]
-                      }`,
+                      ? `${state.cancellation_policy}\n${
+                          checkListInstance[checkListInstance.length - 1].name[
+                            activeLanguage
+                          ]
+                        }`
+                      : `${
+                          checkListInstance[checkListInstance.length - 1].name[
+                            activeLanguage
+                          ]
+                        }`,
                   });
                 }}
                 Select={(item) => {
@@ -1251,37 +1273,43 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     return checkListInstance;
                   });
                   dispatch({
-                    type: "cancellation_policy",
+                    type: 'cancellation_policy',
                     cancellation_policy: state.cancellation_policy
-                      ? `${state.cancellation_policy}\n${checkListInstance[checkListInstance.length - 1].name[activeLanguage]
-                      }`
-                      : `${checkListInstance[checkListInstance.length - 1].name[activeLanguage]
-                      }`,
+                      ? `${state.cancellation_policy}\n${
+                          checkListInstance[checkListInstance.length - 1].name[
+                            activeLanguage
+                          ]
+                        }`
+                      : `${
+                          checkListInstance[checkListInstance.length - 1].name[
+                            activeLanguage
+                          ]
+                        }`,
                   });
                 }}
               />
             </div>
             <textarea
               className={[
-                "text_area_step_2",
-                ErrorState.cancellation_policy ? "inputError" : null,
-              ].join(" ")}
+                'text_area_step_2',
+                ErrorState.cancellation_policy ? 'inputError' : null,
+              ].join(' ')}
               value={state.cancellation_policy}
               onChange={(e) => {
                 if (ErrorState.cancellation_policy) {
                   ErrorDispatch({
-                    type: "cancellation_policy",
+                    type: 'cancellation_policy',
                     cancellation_policy: false,
-                    error_message: "",
+                    error_message: '',
                   });
                 }
                 ErrorDispatch({
-                  type: "cancellation_policy",
+                  type: 'cancellation_policy',
                   cancellation_policy: false,
-                  error_message: "",
+                  error_message: '',
                 });
                 dispatch({
-                  type: "cancellation_policy",
+                  type: 'cancellation_policy',
                   cancellation_policy: e.target.value,
                 });
               }}
@@ -1289,8 +1317,8 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
             />
             <label>
               <span
-                onClick={() => MODAL_CONTEXT.modalHandler("Assurance")}
-                className="anchorTagInStep2"
+                onClick={() => MODAL_CONTEXT.modalHandler('Assurance')}
+                className='anchorTagInStep2'
               >
                 {language.CAR_SETTING.requirements}
               </span>
@@ -1299,11 +1327,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               value={language.COMMON.submit}
               loading={Loading}
               disable={Loading}
-              class="Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit"
-              click={() => { }}
+              class='Blue_BTN local_style HEAP_SetCarTiming_Btn_Submit'
+              click={() => {}}
             />
             {ErrorState.error_message ? (
-              <p className="Error_message_text">{ErrorState.error_message}</p>
+              <p className='Error_message_text'>{ErrorState.error_message}</p>
             ) : null}
           </div>
         </form>

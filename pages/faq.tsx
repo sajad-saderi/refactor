@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from "react";
-import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
-import net_CTX from "../src/context/internetConnectionCTX";
-import languageCTX from "../src/context/languageCTX";
+import { useState, useEffect, useContext } from 'react';
+import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
+import net_CTX from '../src/context/internetConnectionCTX';
+import languageCTX from '../src/context/languageCTX';
 
-const Layout = dynamic(() => import("../src/Layout"));
-const Accordion = dynamic(() => import("../src/components/Accordion"));
+const Layout = dynamic(() => import('../src/Layout'));
+const Accordion = dynamic(() => import('../src/components/Accordion'));
 
-const Spinner = dynamic(() => import("../src/components/Spinner"));
+const Spinner = dynamic(() => import('../src/components/Spinner'));
 // import Layout from "../src/Layout";
-import { REQUEST_GET_FAQ } from "../src/API";
+import { REQUEST_GET_FAQ } from '../src/API';
 // import Accordion from "../src/components/Accordion";
-// import Spinner from "../src/components/Spinner"; 
+// import Spinner from "../src/components/Spinner";
 // import { logPageView } from "../utils/analytics";
 
 const FAQ = ({ locale }) => {
@@ -19,12 +19,12 @@ const FAQ = ({ locale }) => {
   const netCTX = useContext(net_CTX);
   const { activeLanguage } = useContext(languageCTX);
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/faq",
-      pageTitle: locale.PAGE_HEADER.faq.title,
-    });
+    // window["dataLayer"].push({
+    //   event: "page_view",
+    //   pageURL: window.location.href,
+    //   pagePath: "/faq",
+    //   pageTitle: locale.PAGE_HEADER.faq.title,
+    // });
 
     // logPageView();
     fetchAPI();
@@ -55,21 +55,27 @@ const FAQ = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <article className="responsive minHeight FAQ_Page" dir={activeLanguage === 'fa' ? 'rtl' : 'lrt'}>
+      <article
+        className='responsive minHeight FAQ_Page'
+        dir={activeLanguage === 'fa' ? 'rtl' : 'lrt'}
+      >
         <h1>{locale.COMMON.faqTitle}</h1>
         {locale.FAQ_PAGE.items.length > 0 ? (
           locale.FAQ_PAGE.items.map((item, i) => {
             return (
-              <div className="FQ_WRAPPER" key={item.id}>
+              <div className='FQ_WRAPPER' key={item.id}>
                 {/* The first box shouldn't have title */}
                 {i === 0 ? null : <h2>{item.name.fa}</h2>}
-                <Accordion question_set={item.question_set} activeLanguage={activeLanguage} />
+                <Accordion
+                  question_set={item.question_set}
+                  activeLanguage={activeLanguage}
+                />
               </div>
             );
           })
         ) : (
-          <div className="load_content">
-            <Spinner display="inline-block" width={20} color="#737373" />
+          <div className='load_content'>
+            <Spinner display='inline-block' width={20} color='#737373' />
             <span>{locale.COMMON.loading}</span>
           </div>
         )}

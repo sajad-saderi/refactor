@@ -1,31 +1,31 @@
-import { useContext, useEffect } from "react";
-import dynamic from "next/dynamic";
+import { useContext, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
-const Layout = dynamic(() => import("../src/Layout"));
+const Layout = dynamic(() => import('../src/Layout'));
 // const Search_result = dynamic(() => import("../src/containers/Search_result"));
 // import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo';
 // import { logPageView } from "../utils/analytics";
-import { payBackInString } from "../utils/date-range-creator";
-import Search_result from "../src/containers/Search_result";
-import { useRouter } from "next/router";
+import { payBackInString } from '../utils/date-range-creator';
+import Search_result from '../src/containers/Search_result';
+import { useRouter } from 'next/router';
 
 const SearchResult = ({ page_title, locale }) => {
   const router = useRouter();
   useEffect(() => {
-    const searchedLocation = localStorage["searchedLocation"]
-      ? localStorage["searchedLocation"]
+    const searchedLocation = localStorage['searchedLocation']
+      ? localStorage['searchedLocation']
       : router.query?.location_name
-        ? router.query.location_name
-        : "all";
+      ? router.query.location_name
+      : 'all';
 
-    window["dataLayer"].push({
-      event: "page_view",
-      pageURL: window.location.href,
-      pagePath: "/search-result",
-      pageTitle: `${locale.PAGE_HEADER.search.title}`,
-      searchedLocation,
-    });
+    // window["dataLayer"].push({
+    //   event: "page_view",
+    //   pageURL: window.location.href,
+    //   pagePath: "/search-result",
+    //   pageTitle: `${locale.PAGE_HEADER.search.title}`,
+    //   searchedLocation,
+    // });
     // logPageView();
   }, []);
 

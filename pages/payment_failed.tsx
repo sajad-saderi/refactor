@@ -13,12 +13,12 @@ import { NextSeo } from 'next-seo';
 const Failed_payment = ({ locale }) => {
   const router = useRouter();
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
-      pageURL: window.location.href,
-      pagePath: '/payment-failed',
-      pageTitle: locale.PAGE_HEADER.payment.failTitle,
-    });
+    // window['dataLayer'].push({
+    //   event: 'page_view',
+    //   pageURL: window.location.href,
+    //   pagePath: '/payment-failed',
+    //   pageTitle: locale.PAGE_HEADER.payment.failTitle,
+    // });
     // logPageView();
   }, []);
   return (
@@ -37,13 +37,13 @@ const Failed_payment = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <article className="responsive minHeight failed_payment">
-        <section className="alarm_container">
-          <IoIosCloseCircleOutline size="10rem" color="a3678b" />
+      <article className='responsive minHeight failed_payment'>
+        <section className='alarm_container'>
+          <IoIosCloseCircleOutline size='10rem' color='a3678b' />
           <p>{locale.PAYMENT_PAGE.cancel}</p>
         </section>
         <Button
-          class="Blue_BTN local_style"
+          class='Blue_BTN local_style'
           click={() => router.push('/')}
           value={locale.COMMON.backToHome}
           loading={false}
