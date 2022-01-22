@@ -17,11 +17,11 @@ import CssController from '../src/containers/CssController';
 import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
-} from "react-google-recaptcha-v3";
-import Axios from "axios";
+} from 'react-google-recaptcha-v3';
+import Axios from 'axios';
 // import { initGA } from "../utils/analytics";
-import { AppStoreWrapper } from "../src/context/app";
-import axios from "axios";
+import { AppStoreWrapper } from '../src/context/app';
+import axios from 'axios';
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -64,37 +64,36 @@ class App_Otoli extends App {
   }
 
   Captcha = (token) => {
-
     let scoreData = null;
     try {
-      window["__recaptchaCallback"] = () => {
-        if (window["grecaptcha"]) {
-          window["grecaptcha"]
+      window['__recaptchaCallback'] = () => {
+        if (window['grecaptcha']) {
+          window['grecaptcha']
             .execute(process.env.GOOGLE_CAPTCHA, {
-              action: window.location.pathname.slice(1).replace(/-/, ""),
+              action: window.location.pathname.slice(1).replace(/-/, ''),
             })
             .then(() => {
-              var url = "https://recaptchaotoli.herokuapp.com/recaptcha/";
-              Axios.get(url + "?g-recaptcha-response=" + token)
+              var url = 'https://recaptchaotoli.herokuapp.com/recaptcha/';
+              Axios.get(url + '?g-recaptcha-response=' + token)
                 .then((res) => {
                   this.setState({ BotScore: res.data.recaptcha.score });
                   scoreData = res;
-                  window["dataLayer"].push({
-                    event: "recaptcha",
+                  window['dataLayer'].push({
+                    event: 'recaptcha',
                     recaptchaAnswer: res.data.status,
                     recaptchaScore: res.data.recaptcha.score,
                   });
                 })
                 .then(() => {
-                  Axios.post("https://recaptchaotoli.herokuapp.com/verify/", {
+                  Axios.post('https://recaptchaotoli.herokuapp.com/verify/', {
                     success: true, // whether this request was a valid reCAPTCHA token for your site
                     score: scoreData.data.recaptcha.score, // the score for this request (0.0 - 1.0)
-                    action: window.location.pathname.slice(1).replace(/-/, ""), // the action name for this request (important to verify)
+                    action: window.location.pathname.slice(1).replace(/-/, ''), // the action name for this request (important to verify)
                     hostname: window.location.href, // the hostname of the site where the reCAPTCHA was solved
                   })
                     .then((res) => {
-                      if (window["heap"]) {
-                        window["heap"].addUserProperties({
+                      if (window['heap']) {
+                        window['heap'].addUserProperties({
                           RecaptchaScore: scoreData.data.recaptcha.score,
                         });
                       }
@@ -112,30 +111,30 @@ class App_Otoli extends App {
             });
         }
       };
-      window["__recaptchaCallback"]();
+      window['__recaptchaCallback']();
     } catch (e) {
       console.log(e);
     }
   };
 
   componentDidMount = () => {
-    const userId = jsCookie.get("user_id");
-    const token = jsCookie.get("token");
-    const first_name = jsCookie.get("first_name");
+    const userId = jsCookie.get('user_id');
+    const token = jsCookie.get('token');
+    const first_name = jsCookie.get('first_name');
     window['locale'] = {
       fa: { textInputComponent: fa.COMMON.notValid },
       en: { textInputComponent: en.COMMON.notValid },
     };
     if (userId) {
       this.get_user_data(userId, token);
-      window["auth"] = true;
+      window['auth'] = true;
 
       if (first_name) {
-        window["complete_register"] = true;
+        window['complete_register'] = true;
       }
     } else {
-      window["auth"] = false;
-      window["complete_register"] = false;
+      window['auth'] = false;
+      window['complete_register'] = false;
     }
     /*
         It checks the current URL if there are any UTM values in there
@@ -150,7 +149,7 @@ class App_Otoli extends App {
       .btoa(
         Array.from(window.crypto.getRandomValues(new Uint8Array(20 * 2)))
           .map((b) => String.fromCharCode(b))
-          .join(''),
+          .join('')
       )
       .replace(/[+/]/g, '')
       .substring(0, 20);
@@ -231,9 +230,7 @@ class App_Otoli extends App {
       this.setState({ user_data: { ...response, token } });
     } catch (error) {
       if (error === 111) {
-        alert(
-          this.state.language.COMMON.internetConnectionError,
-        );
+        alert(this.state.language.COMMON.internetConnectionError);
       } else alert(this.state.language.COMMON.errorInUserInfo);
     }
   };
@@ -241,63 +238,68 @@ class App_Otoli extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
-        <ChangeLanguageContextProvider>
-          <LanguageCTX.Consumer>
-            {(value) => (
-              <>
-                {this.state.showPwaBanner ? (
-                  <section className={`pwa_invitation_banner ${Router.router.locale === 'fa' ? '' : 'pwaLtr'}`}>
-                    <div
-                      className="pwa_content HEAP_PWA_INVITATION"
-                      onClick={this.customPwaPrompt}
-                    >
-                      <img src={logo} alt="pwa logo icon" />
-                      {Router.router.locale === 'fa' ? fa.COMMON.installApp : en.COMMON.installApp}
-                    </div>
-                    <p
-                      className="close_pwa_invitation"
-                      onClick={() => {
-                        this.AnalyticsEvent('pwa', 'install-banner', 'closed');
+      <ChangeLanguageContextProvider>
+        <LanguageCTX.Consumer>
+          {(value) => (
+            <>
+              {this.state.showPwaBanner ? (
+                <section
+                  className={`pwa_invitation_banner ${
+                    Router.router.locale === 'fa' ? '' : 'pwaLtr'
+                  }`}
+                >
+                  <div
+                    className='pwa_content HEAP_PWA_INVITATION'
+                    onClick={this.customPwaPrompt}
+                  >
+                    <img src={logo} alt='pwa logo icon' />
+                    {Router.router.locale === 'fa'
+                      ? fa.COMMON.installApp
+                      : en.COMMON.installApp}
+                  </div>
+                  <p
+                    className='close_pwa_invitation'
+                    onClick={() => {
+                      this.AnalyticsEvent('pwa', 'install-banner', 'closed');
+                      this.setState({
+                        showPwaBanner: false,
+                      });
+                    }}
+                  >
+                    <IoIosClose color='#fff' size='2rem' />
+                    {Router.router.locale === 'fa'
+                      ? fa.COMMON.close
+                      : en.COMMON.close}
+                  </p>
+                </section>
+              ) : null}
+              <InternetConnectionContextProvider>
+                <AppStoreWrapper>
+                  <user_context.Provider
+                    value={{
+                      update_user_data: (v) => {
                         this.setState({
-                          showPwaBanner: false,
+                          user_data: v,
                         });
-                      }}
-                    >
-                      <IoIosClose color="#fff" size="2rem" />
-                      {Router.router.locale === 'fa' ? fa.COMMON.close : en.COMMON.close}
-                    </p>
-                  </section>
-                ) : null}
-                <InternetConnectionContextProvider>
-                  <AppStoreWrapper>
-                    <user_context.Provider
-                      value={{
-                        update_user_data: (v) => {
-                          this.setState({
-                            user_data: v,
-                          });
-                        },
-                        data: this.state.user_data,
-                        avatartBackgroundColor: this.state.backgroundColor,
-                      }}
-                    >
-                      <CssController locale={value.activeLanguage}>
-                        <Component
-                          {...pageProps}
-                          BotScore={this.state.BotScore}
-                          locale={this.props.router.locale === 'fa' ? fa : en}
-                        />
-                      </CssController>
-                    </user_context.Provider>
-                  </AppStoreWrapper>
-
-                </InternetConnectionContextProvider>
-              </>
-            )}
-          </LanguageCTX.Consumer>
-        </ChangeLanguageContextProvider>
-      </GoogleReCaptchaProvider >
+                      },
+                      data: this.state.user_data,
+                      avatartBackgroundColor: this.state.backgroundColor,
+                    }}
+                  >
+                    <CssController locale={value.activeLanguage}>
+                      <Component
+                        {...pageProps}
+                        BotScore={this.state.BotScore}
+                        locale={this.props.router.locale === 'fa' ? fa : en}
+                      />
+                    </CssController>
+                  </user_context.Provider>
+                </AppStoreWrapper>
+              </InternetConnectionContextProvider>
+            </>
+          )}
+        </LanguageCTX.Consumer>
+      </ChangeLanguageContextProvider>
     );
   }
 }
