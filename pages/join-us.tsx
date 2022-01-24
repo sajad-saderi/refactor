@@ -8,6 +8,8 @@ const Join_us_content = dynamic(() =>
 );
 // import Layout from "../src/Layout";
 import { NextSeo } from 'next-seo';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
+
 // import Calculator from "../src/components/calculator";
 // import Join_us_content from "../src/components/calculator/Join_us_content";
 import { captcha } from '../src/helpers/capchaHelper';
@@ -21,8 +23,6 @@ const JoinUs = ({ BotScore, locale }) => {
   const [token, setToken] = useState(null);
   const { activeLanguage } = useContext(languageCTX);
   useEffect(() => {
-    console.log(BotScore);
-
     // window['dataLayer'].push({
     //   event: 'page_view',
     //   pageURL: window.location.href,
@@ -59,6 +59,14 @@ const JoinUs = ({ BotScore, locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
+      {loadComplete && (
+        <GoogleReCaptcha
+          onVerify={(googletoken) => {
+            if (!token) setToken(googletoken);
+            setLoadComplete(false);
+          }}
+        />
+      )}
       <article
         className='join_us'
         dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
