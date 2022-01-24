@@ -82,7 +82,7 @@ const PriceSlider = ({ sliderRange, sliderPrice, language, locale,disable }: IPr
               {`${value[0] >= 1000000 ? language.COMMON.million : language.COMMON.thousand} ${language.COMMON.toman} `}
             </p>
             <p className='TA'> {language.COMMON.to} </p>
-            <p>
+            <p className="leftAlign">
               <span >{`${numberChanger(Number(
                 Number(
                   value[1] < 1000000 ? value[1] / 1000 : value[1] / 1000000

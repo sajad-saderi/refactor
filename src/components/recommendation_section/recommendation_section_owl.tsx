@@ -21,17 +21,26 @@ const Recommendation_section = ({ language }) => {
   }, []);
 
   const set_default_date_for_search = () => {
-    // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-    set_start_date(
-      moment()
-        .add(3, 'day')
-        .format('jYYYY/jMM/jDD')
-    );
-    set_end_date(
-      moment()
-        .add(6, 'day')
-        .format('jYYYY/jMM/jDD')
-    );
+    let storageDate = null;
+    if (localStorage['date']) {
+      storageDate = JSON.parse(localStorage['date']);
+    }
+    if (storageDate) {
+      set_start_date(storageDate.from.fa.name);
+      set_end_date(storageDate.to.fa.name);
+    } else {
+      // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
+      set_start_date(
+        moment()
+          .add(3, 'day')
+          .format('jYYYY/jMM/jDD')
+      );
+      set_end_date(
+        moment()
+          .add(6, 'day')
+          .format('jYYYY/jMM/jDD')
+      );
+    }
   };
 
   return (

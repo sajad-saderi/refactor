@@ -59,13 +59,13 @@ const AboutUs = ({ locale }) => {
             >
               {locale.COMMON.number1}
             </a>{' '}
-            ,
+            {/* ,
             <a
               href={`tel:${addingCountryCodeToNumber(locale.COMMON.number2)}`}
               className="HEAP_Aboutus_Link_Phone call_numbers"
             >
               {locale.COMMON.number2}
-            </a>{' '}
+            </a>{' '} */}
             ,
             <a
               href={`tel:${addingCountryCodeToNumber(locale.COMMON.number3)}`}

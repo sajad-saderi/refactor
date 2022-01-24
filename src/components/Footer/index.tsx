@@ -62,11 +62,11 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
       ) : null}
       <div className=" responsive plus_border">
         <ul className="links">
-          <li>
+          {/* <li>
             <Link href="/about-us" prefetch={false}>
               <a>{language.LINKS.aboutUs}</a>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href="/faq" prefetch={false}>
               <a>{language.LINKS.faq}</a>
@@ -143,13 +143,13 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
             >
               {numberChanger(language.COMMON.number1,locale)}
             </a>
-            -
+            {/* -
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number2)}`}
               className="HEAP_Footer_Link_Phone"
             >
               {numberChanger(language.COMMON.number2,locale)}
-            </a>
+            </a> */}
             -
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number3)}`}
