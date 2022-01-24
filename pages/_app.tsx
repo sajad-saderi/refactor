@@ -238,68 +238,70 @@ class App_Otoli extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ChangeLanguageContextProvider>
-        <LanguageCTX.Consumer>
-          {(value) => (
-            <>
-              {this.state.showPwaBanner ? (
-                <section
-                  className={`pwa_invitation_banner ${
-                    Router.router.locale === 'fa' ? '' : 'pwaLtr'
-                  }`}
-                >
-                  <div
-                    className='pwa_content HEAP_PWA_INVITATION'
-                    onClick={this.customPwaPrompt}
+      <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
+        <ChangeLanguageContextProvider>
+          <LanguageCTX.Consumer>
+            {(value) => (
+              <>
+                {this.state.showPwaBanner ? (
+                  <section
+                    className={`pwa_invitation_banner ${
+                      Router.router.locale === 'fa' ? '' : 'pwaLtr'
+                    }`}
                   >
-                    <img src={logo} alt='pwa logo icon' />
-                    {Router.router.locale === 'fa'
-                      ? fa.COMMON.installApp
-                      : en.COMMON.installApp}
-                  </div>
-                  <p
-                    className='close_pwa_invitation'
-                    onClick={() => {
-                      this.AnalyticsEvent('pwa', 'install-banner', 'closed');
-                      this.setState({
-                        showPwaBanner: false,
-                      });
-                    }}
-                  >
-                    <IoIosClose color='#fff' size='2rem' />
-                    {Router.router.locale === 'fa'
-                      ? fa.COMMON.close
-                      : en.COMMON.close}
-                  </p>
-                </section>
-              ) : null}
-              <InternetConnectionContextProvider>
-                <AppStoreWrapper>
-                  <user_context.Provider
-                    value={{
-                      update_user_data: (v) => {
+                    <div
+                      className='pwa_content HEAP_PWA_INVITATION'
+                      onClick={this.customPwaPrompt}
+                    >
+                      <img src={logo} alt='pwa logo icon' />
+                      {Router.router.locale === 'fa'
+                        ? fa.COMMON.installApp
+                        : en.COMMON.installApp}
+                    </div>
+                    <p
+                      className='close_pwa_invitation'
+                      onClick={() => {
+                        this.AnalyticsEvent('pwa', 'install-banner', 'closed');
                         this.setState({
-                          user_data: v,
+                          showPwaBanner: false,
                         });
-                      },
-                      data: this.state.user_data,
-                      avatartBackgroundColor: this.state.backgroundColor,
-                    }}
-                  >
-                    <CssController locale={value.activeLanguage}>
-                      <Component
-                        {...pageProps}
-                        BotScore={this.state.BotScore}
-                        locale={this.props.router.locale === 'fa' ? fa : en}
-                      />
-                    </CssController>
-                  </user_context.Provider>
-                </AppStoreWrapper>
-              </InternetConnectionContextProvider>
-            </>
-          )}
-        </LanguageCTX.Consumer>
-      </ChangeLanguageContextProvider>
+                      }}
+                    >
+                      <IoIosClose color='#fff' size='2rem' />
+                      {Router.router.locale === 'fa'
+                        ? fa.COMMON.close
+                        : en.COMMON.close}
+                    </p>
+                  </section>
+                ) : null}
+                <InternetConnectionContextProvider>
+                  <AppStoreWrapper>
+                    <user_context.Provider
+                      value={{
+                        update_user_data: (v) => {
+                          this.setState({
+                            user_data: v,
+                          });
+                        },
+                        data: this.state.user_data,
+                        avatartBackgroundColor: this.state.backgroundColor,
+                      }}
+                    >
+                      <CssController locale={value.activeLanguage}>
+                        <Component
+                          {...pageProps}
+                          BotScore={this.state.BotScore}
+                          locale={this.props.router.locale === 'fa' ? fa : en}
+                        />
+                      </CssController>
+                    </user_context.Provider>
+                  </AppStoreWrapper>
+                </InternetConnectionContextProvider>
+              </>
+            )}
+          </LanguageCTX.Consumer>
+        </ChangeLanguageContextProvider>
+      </GoogleReCaptchaProvider>
     );
   }
 }
