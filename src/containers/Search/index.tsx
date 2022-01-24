@@ -143,10 +143,16 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       if (activeLanguage === 'fa') {
         if (from.fa.dump.day > moment().jDate()) {
           if (from.fa.dump.month >= moment().jMonth() + 1) {
+          if (from.fa.dump.year >= moment().jYear()) {
             setDayRange({
               from: from.fa.dump,
               to: to.fa.dump,
             });
+          }
+          else {
+            localStorage.removeItem('date');
+            set_default_date_for_search();
+          }
           }
           // id the day is smaller than the saved one but the current month is bigger then the month on storage
           else {
@@ -154,11 +160,21 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             set_default_date_for_search();
           }
         } else if (from.fa.dump.month > moment().jMonth() + 1) {
+          if (from.fa.dump.year >= moment().jYear()) {
           setDayRange({
             from: from.fa.dump,
             to: to.fa.dump,
-          });
-        } else {
+          });}
+          else {
+            localStorage.removeItem('date');
+            set_default_date_for_search();
+          }
+        } else if (from.fa.dump.year > moment().jYear()) { 
+          setDayRange({
+            from: from.fa.dump,
+            to: to.fa.dump,
+          })
+        }else {
           localStorage.removeItem('date');
           set_default_date_for_search();
         }
@@ -166,17 +182,33 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         let date = new Date();
         if (from.en.dump.day > date.getDate()) {
           if (from.en.dump.month >= date.getMonth() + 1) {
+          if (from.en.dump.year >= date.getFullYear()) {
             setDayRange({
               from: from.en.dump,
               to: to.en.dump,
             });
           }
+          else {
+            localStorage.removeItem('date');
+            set_default_date_for_search();
+          }
+        }
           // id the day is smaller than the saved one but the current month is bigger then the month on storage
           else {
             localStorage.removeItem('date');
             set_default_date_for_search();
           }
         } else if (from.en.dump.month > date.getMonth() + 1) {
+          if (from.en.dump.year >= date.getFullYear()) {
+          setDayRange({
+            from: from.en.dump,
+            to: to.en.dump,
+          });
+        }else{
+          localStorage.removeItem('date');
+          set_default_date_for_search();
+        }
+        }else if (from.en.dump.year > date.getFullYear()) {
           setDayRange({
             from: from.en.dump,
             to: to.en.dump,

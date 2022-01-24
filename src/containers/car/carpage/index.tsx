@@ -460,28 +460,49 @@ const CarPage = ({
 		if (activeLanguage === 'fa') {
 			if (dateObject.from.fa.dump.day >= moment().jDate()) {
 				if (dateObject.from.fa.dump.month >= moment().jMonth() + 1) {
+          if (dateObject.from.fa.dump.year >= moment().jYear()) {
 					return true
+          } else { 
+            return false
+          }
 				} else { 
 					return false
 				}
 			} else if (dateObject.from.fa.dump.month > moment().jMonth() + 1) {
+        if (dateObject.from.fa.dump.year >= moment().jYear()) {
 				return true
-			} else {
+        }else {
+          return false 
+        }
+			}else if (dateObject.from.fa.dump.year > moment().jYear()) {
+				return true
+      } 
+      else {
 				return false 
 			}
 		} else {
 			let date = new Date()
 			if (dateObject.from.en.dump.day >= date.getDate()) {
 				if (dateObject.from.en.dump.month >= date.getMonth() + 1) {
+          if (dateObject.from.en.dump.year >= date.getFullYear()) {
 					return true
-				 
+          }else {
+            return false
+          }
 				}
 				else {
 					return false
 				}
 			} else if (dateObject.from.en.dump.month > date.getMonth() + 1) {
+        if (dateObject.from.en.dump.year >= date.getFullYear()) {
 				return true
-			} else {
+        }
+        else {
+          return false
+        }
+			} else if (dateObject.from.en.dump.year > date.getFullYear()) {
+        return true
+      }else {
 				return false
 			}
 		}
