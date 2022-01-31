@@ -458,14 +458,18 @@ const CarPage = ({
 
 	const dateChecker = () =>{
 		if (activeLanguage === 'fa') {
-			if (dateObject.from.fa.dump.day >= moment().jDate()) {
+			if (dateObject.from.fa.dump.day >= moment().jDate()) { 
+        
 				if (dateObject.from.fa.dump.month >= moment().jMonth() + 1) {
           if (dateObject.from.fa.dump.year >= moment().jYear()) {
-					return true
+            return true
           } else { 
             return false
           }
 				} else { 
+          if (dateObject.from.fa.dump.year >= moment().jYear()) { 
+            return true
+            }
 					return false
 				}
 			} else if (dateObject.from.fa.dump.month > moment().jMonth() + 1) {
@@ -491,6 +495,9 @@ const CarPage = ({
           }
 				}
 				else {
+          if (dateObject.from.en.dump.year >= date.getFullYear()) {
+            return true
+            }
 					return false
 				}
 			} else if (dateObject.from.en.dump.month > date.getMonth() + 1) {
@@ -817,7 +824,7 @@ const CarPage = ({
                         <div className="discount_part">
                           {total_discount_percent ? (
                             <span className="percentage">
-                              {total_discount_percent}%
+                              {numberChanger(total_discount_percent.toLocaleString(),activeLanguage)}%
                             </span>
                           ) : null}
                           <span
@@ -1129,7 +1136,7 @@ const CarPage = ({
                       </span>
                       {total_discount_percent ? (
                         <span className="percentage">
-                          {total_discount_percent}%
+                          {numberChanger(total_discount_percent.toLocaleString(),activeLanguage)}%
                         </span>
                       ) : null}
                     </div>

@@ -158,10 +158,14 @@ let dateChanged=false
             start_date= generated_start_date.fa.name;
             end_date= generated_end_date.fa.name
           }
-				} else { 
-					dateChanged=true
-					start_date= generated_start_date.fa.name;
-					end_date= generated_end_date.fa.name
+				} else {
+          if (temp_start_date.fa.dump.year >= moment().jYear()) {
+          }else{
+
+            dateChanged=true
+            start_date= generated_start_date.fa.name;
+            end_date= generated_end_date.fa.name
+          } 
 				}
 			} else if (temp_start_date.fa.dump.month > moment().jMonth() + 1) {
         if (temp_start_date.fa.dump.year >= moment().jYear()) {
@@ -187,12 +191,14 @@ let dateChanged=false
 					start_date= generated_start_date.en.name;
 					end_date= generated_end_date.en.name
           }
-				}
-				// id the day is smaller than the saved one but the current month is bigger then the month on storage
-				else {
-					dateChanged=true
-					start_date= generated_start_date.en.name;
-					end_date= generated_end_date.en.name
+				}else {
+          if (temp_start_date.en.dump.year >= date.getFullYear()) {
+          }else{
+
+            dateChanged=true
+            start_date= generated_start_date.en.name;
+            end_date= generated_end_date.en.name
+          }
 				}
 			} else if (temp_start_date.en.dump.month > date.getMonth() + 1) {
         if (temp_start_date.en.dump.year >= date.getFullYear()) {}
