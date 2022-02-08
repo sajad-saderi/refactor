@@ -10,7 +10,7 @@ const Join_us_content = dynamic(() =>
 import { NextSeo } from 'next-seo';
 // import Calculator from "../src/components/calculator";
 // import Join_us_content from "../src/components/calculator/Join_us_content";
-import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
+// import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { captcha } from '../src/helpers/capchaHelper';
 // import { logPageView } from "../utils/analytics";
 import languageCTX from '../src/context/languageCTX';
@@ -22,7 +22,7 @@ const JoinUs = ({ BotScore, locale }) => {
 	const [token, setToken] = useState(null);
 	const { activeLanguage } = useContext(languageCTX);
 	useEffect(() => {
-		console.log(BotScore);
+		// console.log(BotScore);
 
 		window['dataLayer'].push({
 			event: 'page_view',
@@ -37,12 +37,12 @@ const JoinUs = ({ BotScore, locale }) => {
 		setLoadComplete(true);
 	}, []);
 
-	useEffect(() => {
-		if (token && !isSent) {
-			captcha(token);
-			isSent = true;
-		}
-	});
+	// useEffect(() => {
+	// 	if (token && !isSent) {
+	// 		captcha(token);
+	// 		isSent = true;
+	// 	}
+	// });
 
 	return (
 		<Layout LinkControl={true}>
@@ -60,14 +60,14 @@ const JoinUs = ({ BotScore, locale }) => {
 					cardType: locale.PAGE_HEADER.cardType,
 				}}
 			/>
-			{loadComplete && (
+			{/* {loadComplete && (
 				<GoogleReCaptcha
 					onVerify={(googletoken) => {
 						if (!token) setToken(googletoken);
 						setLoadComplete(false);
 					}}
 				/>
-			)}
+			)} */}
 			<article
 				className='join_us'
 				dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}

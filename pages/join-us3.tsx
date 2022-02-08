@@ -25,11 +25,11 @@ const JoinUs1 = ({ BotScore, locale }) => {
     });
     // logPageView();
   }, []);
-  useEffect(() => {
-    if (BotScore) {
-      SetScore(BotScore);
-    }
-  }, [BotScore]);
+  // useEffect(() => {
+  //   if (BotScore) {
+  //     SetScore(BotScore);
+  //   }
+  // }, [BotScore]);
   return (
     <Layout LinkControl={true}>
       <NextSeo

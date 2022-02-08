@@ -14,10 +14,10 @@ import { InternetConnectionContextProvider } from '../src/context/internetConnec
 import fa from '../public/languages/fa.json';
 import en from '../public/languages/en.json';
 import CssController from '../src/containers/CssController';
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha,
-} from "react-google-recaptcha-v3";
+// import {
+//   GoogleReCaptchaProvider,
+//   GoogleReCaptcha,
+// } from "react-google-recaptcha-v3";
 import Axios from "axios";
 // import { initGA } from "../utils/analytics";
 import { AppStoreWrapper } from "../src/context/app";
@@ -241,7 +241,7 @@ class App_Otoli extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
+      // <GoogleReCaptchaProvider reCaptchaKey={process.env.GOOGLE_CAPTCHA}>
         <ChangeLanguageContextProvider>
           <LanguageCTX.Consumer>
             {(value) => (
@@ -297,7 +297,7 @@ class App_Otoli extends App {
             )}
           </LanguageCTX.Consumer>
         </ChangeLanguageContextProvider>
-      </GoogleReCaptchaProvider >
+      // </GoogleReCaptchaProvider >
     );
   }
 }

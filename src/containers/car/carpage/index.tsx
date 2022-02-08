@@ -458,8 +458,7 @@ const CarPage = ({
 
 	const dateChecker = () =>{
 		if (activeLanguage === 'fa') {
-			if (dateObject.from.fa.dump.day >= moment().jDate()) { 
-        
+			if (dateObject.from.fa.dump.day >= moment().jDate()) {
 				if (dateObject.from.fa.dump.month >= moment().jMonth() + 1) {
           if (dateObject.from.fa.dump.year >= moment().jYear()) {
             return true
