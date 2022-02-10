@@ -1447,11 +1447,11 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
               defaultCheck={state.transmission_type_id}
               data={[
                 {
-                  label: language.ADD_CAR_PAGE.transmissionType,
+                  label: language.ADD_CAR_PAGE.manualTransmission,
                   value: 2,
                 },
                 {
-                  label: language.ADD_CAR_PAGE.manualTransmission,
+                  label: language.ADD_CAR_PAGE.automaticTransmission,
                   value: 1,
                 },
               ]}
