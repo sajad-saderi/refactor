@@ -228,7 +228,7 @@ const PriceBox = (props: IPriceBox) => {
   }, [props.error]);
 
   return (
-    <div className="Price_form_container" ref={priceWrapper}>
+    <div className={`Price_form_container ${show_input_price ?  'removePadding' : ''}`} ref={priceWrapper}>
       {show_input_price ? (
         <div className="Price_container input_price_Box">
           <div

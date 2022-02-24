@@ -1,13 +1,16 @@
 @import "../../../styles/colors";
 
+.removePadding{
+  padding-bottom: 2.5rem !important;
+}
 .Price_form_container {
   width: auto;
   position: relative;
-  padding-bottom: 7rem;
+  padding-bottom: 8rem;
   .input_price_Box {
-    max-width: 32rem;
-    margin-top: 15px;
+    max-width: 32rem; 
     padding: 1.6rem;
+    margin-bottom: 10px;
     border: 1px solid $light_grey;
     border-radius: 4px;
     .tail {
@@ -81,7 +84,7 @@
     cursor: pointer;
     position: absolute;
     right: 0;
-    bottom: 2rem;
+    bottom: 3em;
     p {
       color: $blue;
       font-size: 1.4rem;
@@ -126,8 +129,10 @@
       .Date_list_item {
         border: 1px solid $light_grey;
         padding: 1.2rem;
-        margin-top: 2rem;
-        display: inline-block;
+        margin-bottom: 1rem;
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: center;
         border-radius: 4px;
         p {
           color: $almost_black;
