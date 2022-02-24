@@ -5,6 +5,7 @@ import moment from "moment-jalaali";
 // import "./PriceBox.scss";
 import TextInput from "../../../components/form/TextInput";
 import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
+import { numberChanger } from "../../../../cypress/utils/numberChanger";
 // moment.loadPersian({ dialect: "persian-modern" });
 
 const PriceBox = (props: IPriceBox) => {
@@ -265,6 +266,7 @@ const PriceBox = (props: IPriceBox) => {
               clearField={() => {
                 setPrice_per_day("");
               }}
+              HideClearIcon
               min={4}
               max={10}
               onChangeHandler={(e) => {
@@ -286,7 +288,7 @@ const PriceBox = (props: IPriceBox) => {
                 },
               }}
             />
-            <span>تومان</span>
+            <span className="tomanTail">تومان</span>
           </div>
           <div className="divs button_box">
             <p className="confirm" onClick={onConfirm}>
@@ -367,33 +369,34 @@ const PriceBox = (props: IPriceBox) => {
                             index: i,
                           });
                           setPrice_per_day(item.price_per_day);
+                          
                           setDayRange({
                             from: {
-                              year: +moment(
+                              year: +numberChanger(moment(
                                 item.start_date,
                                 "jYYYY/jM/jD"
-                              ).format("jYYYY"),
-                              month: +moment(
+                              ).format("jYYYY"),'en'),
+                              month: +numberChanger(moment(
                                 item.start_date,
                                 "jYYYY/jM/jD"
-                              ).format("jMM"),
-                              day: +moment(
+                              ).format("jMM"),'en'),
+                              day: +numberChanger(moment(
                                 item.start_date,
                                 "jYYYY/jM/jD"
-                              ).format("jDD"),
+                              ).format("jDD"),'en'),
                             },
                             to: {
-                              year: +moment(
+                              year: +numberChanger(moment(
                                 item.end_date,
                                 "jYYYY/jM/jD"
-                              ).format("jYYYY"),
-                              month: +moment(
+                              ).format("jYYYY"),'en'),
+                              month: +numberChanger(moment(
                                 item.end_date,
                                 "jYYYY/jM/jD"
-                              ).format("jMM"),
-                              day: +moment(item.end_date, "jYYYY/jM/jD").format(
+                              ).format("jMM"),'en'),
+                              day: +numberChanger(moment(item.end_date, "jYYYY/jM/jD").format(
                                 "jDD"
-                              ),
+                              ),'en'),
                             },
                           });
                           releaseDisableDays(i);

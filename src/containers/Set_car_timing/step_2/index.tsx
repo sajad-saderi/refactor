@@ -221,6 +221,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   const [CarModelName, setCarModelName] = useState(null);
   const [recommendationPrice, setRecommendationPrice] = useState(null);
   const [year, setYear] = useState(null);
+  const [Edit, setEdit] = useState(false);
   const [insurance_amount, setInsurance_amount] = useState("");
 
   const [ErrorState, ErrorDispatch] = useReducer(error_reducer, {
@@ -273,6 +274,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
   useEffect(() => {
     scrollTo(0, 0);
     getCarInfoToEdit(router.query.car_id);
+    setEdit(router.query.mode === 'edit' )
   }, []);
 
   const getCarInfoToEdit = async (id) => {
@@ -321,11 +323,11 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
         price_per_day: data[0].price_per_day,
       });
     }
-    //  else {
-    //   // if the car have a range for price
-    //   setDateAndPrice(2);
-    //   setInitialAvailabilityList(data);
-    // }
+     else {
+      // if the car have a range for price
+      setDateAndPrice(2);
+      setInitialAvailabilityList(data);
+    }
   };
 
   const SetCar = (car) => {
@@ -599,16 +601,16 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
       resetTheErrorStatus("price_per_day");
     }
     // Commented for a while ***
-    // if (DateAndPrice === 2 && availabilityList.length === 0) {
-    //   ErrorDispatch({
-    //     type: "price_range",
-    //     price_range: true,
-    //     error_message: "لطفا نرخ اجاره را وارد کنید",
-    //   });
-    //   return false;
-    // } else {
-    //   resetTheErrorStatus("price_range");
-    // }
+    if (DateAndPrice === 2 && availabilityList.length === 0) {
+      ErrorDispatch({
+        type: "price_range",
+        price_range: true,
+        error_message: "لطفا نرخ اجاره را وارد کنید",
+      });
+      return false;
+    } else {
+      resetTheErrorStatus("price_range");
+    }
     if (state.days_to_get_reminded < 0) {
       ErrorDispatch({
         type: "days_to_get_reminded",
@@ -791,14 +793,14 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
               <span> {language.CAR_SETTING.daily}</span>
             </h4>
             <div
-              className="Set_Price_date_options"
-            //   className={[
-            //     "transition_type_Label",
-            //     ErrorState.transmission_type_id ? "Error_color" : null
-            //   ].join(" ")}
+              // className="Set_Price_date_options"
+              className={ Edit?[
+                "transition_type_Label",
+                ErrorState.transmission_type_id ? "Error_color" : null
+              ].join(" ") : 'Set_Price_date_options'}
             >
               {/* toggle between same price for all time and custom range of price  */}
-              {/* <Radio
+              {Edit ?<Radio
               name="DateAndPrice"
               error_status={ErrorState.price_per_day}
               SelectHandler={(i) => {
@@ -821,10 +823,10 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                   value: 2,
                 },
               ]}
-            /> */}
+            />:null}
             </div>
-            {/* {DateAndPrice === 1 ? ( */}
-            {/* <> */}
+            {DateAndPrice === 1 ? (
+              <> 
             <div className="custom_input_container_step_2 daily_price_container">
               <TextInput
                 name="price_per_day"
@@ -903,22 +905,21 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 <p className="our_recommendation_placeHoler Gradient"></p>
               )}
             </div>
-            {/* {state.price_per_day.length > 3 && (
+            {state.price_per_day.length > 3 && (
                 <p>
                   اجاره خودرو شما در تمام روز ها با قیمت{" "}
                   {Number(state.price_per_day).toLocaleString()} تومان است
                 </p>
-              )} */}
-            {/* </> */}
-            {/* ) : (
-            //PriceBox component
-            <PriceBox
+              )}
+            </> 
+            ) : ( 
+            Edit ?<PriceBox
               initialAvailabilityList={initialAvailabilityList}
               addAvailList={addToAvailabilityList}
               removeAvailList={removeFromAvailabilityList}
               error={ErrorState.price_range}
-            />
-          )} */}
+            />:null
+          )}
             {/* <h4 className="extra_text">شرایط اجاره</h4> */}
 
             <div className="custom_input_container_step_2 DropDown_extra_km">
