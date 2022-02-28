@@ -20,6 +20,7 @@
     "Heroku": "https://github.com/Doctor-Strange/Refactor"
   },
   "dependencies": {
+    "@datadog/browser-rum": "^4.5.0",
     "@sentry/browser": "^5.17.0",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.21.1",

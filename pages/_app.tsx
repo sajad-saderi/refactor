@@ -22,6 +22,19 @@ import Axios from "axios";
 // import { initGA } from "../utils/analytics";
 import { AppStoreWrapper } from "../src/context/app";
 import axios from "axios";
+import { datadogRum } from '@datadog/browser-rum';
+
+datadogRum.init({
+  applicationId: '8b5855f3-ce65-4802-a4be-c37f101f3df5',
+  clientToken: 'pub8e0dc2924adb4083e2e3065cecf75058',
+  site: 'datadoghq.eu',
+  service:'sepris', 
+  sampleRate: 100,
+  trackInteractions: true,
+  defaultPrivacyLevel: 'mask-user-input'
+});
+
+datadogRum.startSessionReplayRecording();
 
 Sentry.init({
   dsn: process.env.SENTRY,
