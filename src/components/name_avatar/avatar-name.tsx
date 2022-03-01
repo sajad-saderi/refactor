@@ -50,7 +50,8 @@ const NameAvatar = ({
 
   useEffect(() => {
     if (name) {
-      console.log(`svgAlphabet/${letter_control(name).src}.svg`);
+      console.log(name);
+      // console.log(`svgAlphabet/${letter_control(name).src}.svg`);
       setLetter(letter_control(name).src);
     }
   }, [name]);

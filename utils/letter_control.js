@@ -10,7 +10,9 @@ export const letter_control = (word) => {
       language: 'fa',
       src: findSvgForFaChar(firstLetterOfWord),
     };
-  }
+  } else {
+  return { language: "fa", src: findSvgForFaChar("ا") };
+}
 };
 
 const findSvgForEnChar = (letter) => {
