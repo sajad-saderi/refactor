@@ -14,6 +14,8 @@ import { InternetConnectionContextProvider } from '../src/context/internetConnec
 import fa from '../public/languages/fa.json';
 import en from '../public/languages/en.json';
 import CssController from '../src/containers/CssController';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 // import {
 //   GoogleReCaptchaProvider,
 //   GoogleReCaptcha,

@@ -18,6 +18,8 @@ import languageCTX from '../../src/context/languageCTX';
 import { guard_controller } from '../../utils/guard_controller';
 import ContentHomePage from '../../src/components/contentHomePage';
 
+
+
 const Rent = ({ locale }) => {
   const [dynamicLinks, setDynamicLinks] = useState(null);
   const netCTX = useContext(net_CTX);

@@ -1,9 +1,24 @@
 import insurance from '../../../public/image/SamanInsurance.png';
 import Recommendation_section_owl from '../recommendation_section/recommendation_section_owl';
+import dynamic from 'next/dynamic';
+
 import Link from 'next/link';
 import languageCTX from '../../context/languageCTX'
-import { useContext } from 'react';
+import { useContext } from 'react'; 
+import quotation from '../../../public/image/svg/quotation.svg';
+const Slider = dynamic(() => import('react-slick'));
 
+let settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  rtl: true,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 15000,
+  arrows: false,
+};
 const ContentHomePage = ({
   auth,
   differentStyle,
@@ -80,6 +95,53 @@ const ContentHomePage = ({
             <Link href="/add-car" prefetch={false}>
               <a>{language.COMMON.addYourCar}</a>
             </Link>
+            <section className="slick_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+              <h2>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
+              <Slider {...settings} >
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest1}
+                  </p> 
+                </div>
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest2}
+                  </p> 
+                </div>
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest3}
+                  </p> 
+                </div>
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest4}
+                  </p> 
+                </div>
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest5}
+                  </p> 
+                </div>
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest6}
+                  </p> 
+                </div>
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest7}
+                  </p> 
+                </div> 
+              </Slider>
+            </section>
             {extraContent && extraContent}
           </div>
         }
