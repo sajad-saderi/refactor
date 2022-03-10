@@ -125,6 +125,7 @@ const Rent = ({ locale }) => {
           extraContent={extraContentRentPage}
           language={locale}
           showSlider
+          showLink
         />
         <div
           itemScope

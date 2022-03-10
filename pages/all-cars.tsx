@@ -63,6 +63,7 @@ const AllCars = ({ content, locale }) => {
           differentStyle={true}
           language={locale}
           showSlider
+          showLink 
         />
       )}
     </Layout>

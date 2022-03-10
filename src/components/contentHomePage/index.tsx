@@ -26,6 +26,7 @@ const ContentHomePage = ({
   abTest,
   language,
   showSlider,
+  showLink,
 }: IContentHomePage) => {
   const { activeLanguage } = useContext(languageCTX);
   return (
@@ -78,22 +79,65 @@ const ContentHomePage = ({
             <p>{language.INFORMATION.text17}</p>
           </section>
         </div>
-        <h2>{language.INFORMATION.text4}</h2>
-        <div className="three_columns">
-          <section>
-            <h3>{language.INFORMATION.text5}</h3>
-            <p>{language.INFORMATION.text6}</p>
+
+        {showSlider && (
+          <section
+            className="slick_container"
+            dir={activeLanguage === "fa" ? "rtl" : "ltr"}
+          >
+            <h2>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
+            <Slider {...settings}>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest7}</p>
+              </div>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest6}</p>
+              </div>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest5}</p>
+              </div>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest4}</p>
+              </div>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest3}</p>
+              </div>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest2}</p>
+              </div>
+              <div className="card_container">
+                <img src={quotation} alt="sign" />
+                <p>{language.JOIN_US_PAGE.reviews.guest1}</p>
+              </div>
+            </Slider>
           </section>
-          <section>
-            <h3>{language.INFORMATION.text7}</h3>
-            <p>{language.INFORMATION.text8}</p>
-          </section>
-          <section>
-            <h3>{language.INFORMATION.text12}</h3>
-            <p>{language.INFORMATION.text10}</p>
-          </section>
-        </div>
-        {activeLanguage === "fa" && (
+        )}
+        {showLink && (
+          <>
+            <h2>{language.INFORMATION.text4}</h2>
+            <div className="three_columns">
+              <section>
+                <h3>{language.INFORMATION.text5}</h3>
+                <p>{language.INFORMATION.text6}</p>
+              </section>
+              <section>
+                <h3>{language.INFORMATION.text7}</h3>
+                <p>{language.INFORMATION.text8}</p>
+              </section>
+              <section>
+                <h3>{language.INFORMATION.text12}</h3>
+                <p>{language.INFORMATION.text10}</p>
+              </section>
+            </div>
+          </>
+        )}
+        {activeLanguage === "fa" && showLink && (
           <div
             className="add_car_section"
             onClickCapture={() => {
@@ -110,44 +154,6 @@ const ContentHomePage = ({
             <Link href="/add-car" prefetch={false}>
               <a>{language.COMMON.addYourCar}</a>
             </Link>
-            {showSlider && (
-              <section
-                className="slick_container"
-                dir={activeLanguage === "fa" ? "rtl" : "ltr"}
-              >
-                <h2>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
-                <Slider {...settings}>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest7}</p>
-                  </div>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest6}</p>
-                  </div>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest5}</p>
-                  </div>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest4}</p>
-                  </div>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest3}</p>
-                  </div>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest2}</p>
-                  </div>
-                  <div className="card_container">
-                    <img src={quotation} alt="sign" />
-                    <p>{language.JOIN_US_PAGE.reviews.guest1}</p>
-                  </div>
-                </Slider>
-              </section>
-            )}
             {extraContent && extraContent}
           </div>
         )}
@@ -163,6 +169,7 @@ interface IContentHomePage {
   abTest?: boolean;
   showSlider: boolean;
   language: any;
+  showLink: boolean;
 }
 
 export default ContentHomePage;

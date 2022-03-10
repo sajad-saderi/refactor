@@ -47,7 +47,7 @@ const HomePage = ({ locale }) => {
             <Search language={locale} />
           </div>
         </div>
-        <ContentHomePage auth={authorize} language={locale} showSlider/>
+        <ContentHomePage auth={authorize} language={locale} showSlider showLink/>
       </article>
     </Layout>
   );
