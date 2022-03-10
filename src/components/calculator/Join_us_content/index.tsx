@@ -85,19 +85,19 @@ const Join_us_content = ({
         <div className="full_width">
           <p>{language.INFORMATION.text3}</p>
         </div>
-        <h2>{language.INFORMATION.text11}</h2>
+        <h2>{language.INFORMATION.text4}</h2>
         <div className="three_columns">
           <section>
             <h3>{language.INFORMATION.text5}</h3>
             <p>{language.INFORMATION.text6}</p>
           </section>
           <section>
-            <h3>{language.INFORMATION.text12}</h3>
-            <p>{language.INFORMATION.text13}</p>
-          </section>
-          <section>
             <h3>{language.INFORMATION.text7}</h3>
             <p>{language.INFORMATION.text8}</p>
+          </section>
+          <section>
+            <h3>{language.INFORMATION.text12}</h3>
+            <p>{language.INFORMATION.text10}</p>
           </section>
         </div>
         <div

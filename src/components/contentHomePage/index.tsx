@@ -140,6 +140,12 @@ const ContentHomePage = ({
                     {language.JOIN_US_PAGE.reviews.guest7}
                   </p> 
                 </div> 
+                <div className="card_container">
+                  <img src={quotation} alt="sign" />
+                  <p>
+                    {language.JOIN_US_PAGE.reviews.guest8}
+                  </p> 
+                </div> 
               </Slider>
             </section>
             {extraContent && extraContent}

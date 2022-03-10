@@ -28,6 +28,7 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width,initial-scale=1,shrink-to-fit=no"
           />
+          <meta name="enamad" content="145408"/>
           <meta name="thumbnail" content="../public/image/for_journey.jpeg" />
           {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
           <link rel="icon" type="image/svg+xml" href="/FaviconBlack.svg" />
