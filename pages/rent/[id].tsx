@@ -77,6 +77,7 @@ const Rent_dynamic = ({ Landing_page, content, locale }) => {
           auth={authorize}
           differentStyle={true}
           language={locale}
+          showSlider={false}
         />
       ) : (
         <Landing_Page_Content data={Landing_page} language={locale} />

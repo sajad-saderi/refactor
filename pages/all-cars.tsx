@@ -62,6 +62,7 @@ const AllCars = ({ content, locale }) => {
           auth={authorize}
           differentStyle={true}
           language={locale}
+          showSlider
         />
       )}
     </Layout>
