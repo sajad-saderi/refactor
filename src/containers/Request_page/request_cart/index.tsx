@@ -650,8 +650,8 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
         </div>
         {data.show_contract && status_id === "paid" && (
           <div className="contract_download">
-            <Link href={`/contract?id=${data.id}`} prefetch={false}>
-              <a>
+            <Link href={data.contract_url}  prefetch={false}>
+              <a target='_blank'>
                 <img src={download} alt={language.REQUEST_PAGE.downloadContact} />
                 <span>{language.REQUEST_PAGE.downloadContact}</span>
               </a>
