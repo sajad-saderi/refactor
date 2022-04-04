@@ -27,6 +27,7 @@ const ContentHomePage = ({
   language,
   showSlider,
   showLink,
+  showRentPageContent,
 }: IContentHomePage) => {
   const { activeLanguage } = useContext(languageCTX);
   return (
@@ -79,46 +80,47 @@ const ContentHomePage = ({
             <p>{language.INFORMATION.text17}</p>
           </section>
         </div>
-
-        {showSlider && (
-          <section
-            className="slick_container"
-            dir={activeLanguage === "fa" ? "rtl" : "ltr"}
-          >
-            <h2>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
-            <Slider {...settings}>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest7}</p>
-              </div>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest6}</p>
-              </div>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest5}</p>
-              </div>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest4}</p>
-              </div>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest3}</p>
-              </div>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest2}</p>
-              </div>
-              <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>{language.JOIN_US_PAGE.reviews.guest1}</p>
-              </div>
-            </Slider>
-          </section>
-        )}
-        {showLink && (
+        {activeLanguage === "fa"
+          ? showSlider && (
+              <section
+                className="slick_container"
+                dir={activeLanguage === "fa" ? "rtl" : "ltr"}
+              >
+                <h2>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
+                <Slider {...settings}>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest7}</p>
+                  </div>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest6}</p>
+                  </div>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest5}</p>
+                  </div>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest4}</p>
+                  </div>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest3}</p>
+                  </div>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest2}</p>
+                  </div>
+                  <div className="card_container">
+                    <img src={quotation} alt="sign" />
+                    <p>{language.JOIN_US_PAGE.reviews.guest1}</p>
+                  </div>
+                </Slider>
+              </section>
+            )
+          : null}
+        {activeLanguage === "fa" && (
           <>
             <h2>{language.INFORMATION.text4}</h2>
             <div className="three_columns">
@@ -136,6 +138,18 @@ const ContentHomePage = ({
               </section>
             </div>
           </>
+        )}
+        {showRentPageContent && activeLanguage === "en" && (
+          <div>
+            <h2>{language.RENT_PAGE.h2_3}</h2>
+            <div className="full_width">
+              <p>{language.RENT_PAGE.p2_1}</p>
+              <p>{language.RENT_PAGE.p2_2}</p>
+              <br />
+              <h2>{language.RENT_PAGE.h2_4}</h2>
+              <p>{language.RENT_PAGE.p3_1}</p>
+            </div>
+          </div>
         )}
         {activeLanguage === "fa" && showLink && (
           <div
@@ -170,6 +184,7 @@ interface IContentHomePage {
   showSlider: boolean;
   language: any;
   showLink: boolean;
+  showRentPageContent?: boolean;
 }
 
 export default ContentHomePage;

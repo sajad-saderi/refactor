@@ -121,6 +121,7 @@ const Rent = ({ locale }) => {
           </div>
         </div>
         <ContentHomePage
+          showRentPageContent={true}
           auth={authorize}
           extraContent={extraContentRentPage}
           language={locale}
