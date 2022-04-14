@@ -151,7 +151,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin-bottom:0;
+        margin-bottom: 0;
         span {
           font-size: 1.6rem;
           font-weight: normal;
@@ -283,6 +283,7 @@
       height: 100%;
       z-index: 100;
       bottom: 0;
+      opacity: 0;
       .drawer {
         position: absolute;
         width: 100%;
@@ -290,6 +291,7 @@
         background-color: rgba(0, 0, 0, 0.5);
       }
       .downloadLinks {
+        transition: 0.5s;
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -298,10 +300,29 @@
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         box-shadow: $box_shadow;
+        transform: translateY(100px);
+
+        .item1 {
+          padding: 0;
+        }
         a {
           display: block;
-          margin-block: 16px;
-          padding-block: 10px;
+          line-height: normal;
+          padding-top: 24px;
+        }
+      }
+    }
+    .containerAnimation {
+      opacity: 1;
+      .downloadLinks {
+        animation: showBox 0.1s linear 0.2s forwards;
+        @keyframes showBox {
+          0% {
+            transform: translateY(100px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
         }
       }
     }

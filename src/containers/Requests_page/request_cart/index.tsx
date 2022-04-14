@@ -656,10 +656,10 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               <Icons name="chevron" width="20px" height="20px" color="#3fa6da" />
               </span>
             </span>
-            {downloadBox&&<div className="downloadContainer">
+            {downloadBox&&<div className={['downloadContainer',downloadBox?'containerAnimation':''].join(' ')}>
               <div className="drawer"/>
               <div className="downloadLinks"> 
-             {data.contract_url && <a href={data.contract_url} target="_blank">
+             {data.contract_url && <a className="item1" href={data.contract_url} target="_blank">
                 <span>{language.REQUEST_PAGE.downloadContact}</span>
               </a> } 
              {data.insurance_document_url && <a href={data.insurance_document_url} target="_blank">
