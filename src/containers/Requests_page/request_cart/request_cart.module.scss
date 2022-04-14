@@ -3,7 +3,7 @@
 .Request_car {
   border-radius: 4px;
   margin: 0 0rem 2rem 0;
-  padding: 1.6rem 1.6rem 2.4rem;
+  padding: 16px;
   text-align: right;
   background: #fff;
   box-shadow: $box_shadow;
@@ -115,15 +115,16 @@
   .cart {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     // margin-top: 1.6rem;
     padding: 1.6rem 0;
-    padding-bottom: 0;
+    padding-bottom: 16px;
     .rent_info {
       h2 {
-        margin: 0 0 3.1rem 0;
+        margin: 0;
         font-size: 1.8rem;
         line-height: 31px;
+        margin-bottom: 16px;
       }
       hr {
         border-width: 0.1rem;
@@ -150,6 +151,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        margin-bottom:0;
         span {
           font-size: 1.6rem;
           font-weight: normal;
@@ -199,7 +201,7 @@
   }
   .invoice_and_insurance {
     font-size: 1.6rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.4rem;
     span {
       font-size: 1.8rem;
       font-weight: 500;
@@ -228,6 +230,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 24px;
     a {
       color: $blue;
       font-weight: normal;
@@ -263,7 +266,7 @@
   }
   .contract_download {
     cursor: pointer;
-    margin-top: 16px;
+    margin-top: 24px;
     background-color: #f4f4f4;
     display: inline-flex;
     padding: 6px;
@@ -298,6 +301,7 @@
         a {
           display: block;
           margin-block: 16px;
+          padding-block: 10px;
         }
       }
     }
@@ -311,16 +315,16 @@
     }
     .disable_rate_btn {
       color: #656565;
-      margin-top: 2rem;
+      margin-top: 2.4rem;
       font-family: inherit;
       background-color: #e6e6e6;
     }
     .request_car_accept {
-      margin-top: 2rem;
+      margin-top: 2.4rem;
       width: 48%;
     }
     .request_car_reject {
-      margin-top: 2rem;
+      margin-top: 2.4rem;
       width: 48%;
       background-color: transparent;
       border: 1px solid $light_grey;
@@ -331,7 +335,7 @@
     }
     .request_car_cancel {
       width: 14.5rem;
-      margin-top: 2rem;
+      margin-top: 2.4rem;
       background-color: transparent;
       border: 1px solid $light_grey;
       color: $gray;
@@ -340,15 +344,15 @@
       }
     }
     .request_car_pay {
-      margin-top: 2rem;
+      margin-top: 2.4rem;
       display: block;
     }
     .pelak_view_container {
       border: 1px solid $light_grey;
       background: $almost_white;
       margin-right: 2.4rem;
-      height: 2.8rem;
-      margin-top: 2rem;
+      height: 40px;
+      margin-top: 2.4rem;
       max-width: 14.5rem;
       border-radius: 0.4rem;
       img {
@@ -358,13 +362,13 @@
         position: absolute;
         width: auto;
         left: 13px;
-        top: 4px;
+        top: 10px;
         font-size: 1.4rem;
         color: $almost_black;
       }
       .second {
         position: absolute;
-        top: 4px;
+        top: 10px;
         right: 88px;
         line-height: 1.2;
         font-size: 1.4rem;
@@ -372,14 +376,14 @@
       }
       .third {
         position: absolute;
-        top: 4px;
+        top: 10px;
         right: 53px;
         font-size: 1.4rem;
         color: $almost_black;
       }
       .forth {
         position: absolute;
-        top: 4px;
+        top: 10px;
         right: 11px;
         font-size: 1.4rem;
         color: $almost_black;

@@ -86,7 +86,7 @@ const ContentHomePage = ({
                 className="slick_container"
                 dir={activeLanguage === "fa" ? "rtl" : "ltr"}
               >
-                <h2>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
+                <h2 style={{padding:'0', fontSize:'18px'}}>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
                 <Slider {...settings}>
                   <div className="card_container">
                     <img src={quotation} alt="sign" />
