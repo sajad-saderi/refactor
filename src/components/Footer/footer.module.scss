@@ -1,4 +1,4 @@
-@import '../../styles/colors';
+@import "../../styles/colors";
 
 footer {
   background-color: #ffffff;
@@ -81,6 +81,22 @@ footer {
         margin-top: 1.6rem;
         font-weight: 500;
       }
+      .enamadContainer {
+        display: flex;
+        a {
+          padding: 16px;
+          border-radius: 4px;
+          border: 1px solid #bfbfbf;
+          img {
+            cursor: pointer;
+            width: 90px;
+          }
+        }
+        @media (max-width:680px) {
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
     .brand_description {
       display: flex;
@@ -111,7 +127,7 @@ footer {
   }
 }
 
-footer[dir='ltr'] {
+footer[dir="ltr"] {
   .toTop {
     svg {
       left: auto;
