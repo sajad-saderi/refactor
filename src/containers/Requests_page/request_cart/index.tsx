@@ -13,6 +13,7 @@ import {
   IoMdPerson,
 } from "react-icons/io";
 import download from "../../../../public/image/download.png";
+import Icons from "../../../components/Icons";
 import dynamic from "next/dynamic";
 import toast_context from "../../../context/Toast_context";
 const Icon = dynamic(() => import("../../../../utils/Icon"));
@@ -82,6 +83,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [extensionInfo, setExtensionInfo] = useState(null);
   const [extensionSum, setExtensionSum] = useState(null);
   const [click_on_cancel, set_click_on_cancel] = useState(false);
+  const [downloadBox, setDownloadBox] = useState(false);
 
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
@@ -490,7 +492,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   useEffect(() => {
     moment.locale(activeLanguage)
   }, [activeLanguage])
-
+ 
+  
   return (
     media_set && (
       <>
@@ -641,13 +644,38 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
           )}
         </div>
         {data.show_contract && status_id === "paid" && (
-          <div className="contract_download">
-            <Link href={`/contract?id=${data.id}`} prefetch={false}>
+          <div className="contract_download" onClick={()=>
+    setDownloadBox(!downloadBox)
+    }>
+            <span style={{display:'flex',alignItems:'center'}}>
+            <span style={{marginInlineEnd:"4px",display:"flex"}}>
+            <Icons name="download" width="20px" height="20px" color="#3fa6da" />
+              </span>
+            {language.REQUEST_PAGE.contractDocuments}
+            <span style={{transform:"rotate(180deg)", display:"flex"}}>
+              <Icons name="chevron" width="20px" height="20px" color="#3fa6da" />
+              </span>
+            </span>
+            {downloadBox&&<div className="downloadContainer">
+              <div className="drawer"/>
+              <div className="downloadLinks"> 
+             {data.contract_url && <a href={data.contract_url} target="_blank">
+                <span>{language.REQUEST_PAGE.downloadContact}</span>
+              </a> } 
+             {data.insurance_document_url && <a href={data.insurance_document_url} target="_blank">
+                <span>{language.REQUEST_PAGE.rentInsurance}</span>
+              </a> } 
+             <a href='https://core.sepris.com/static/core/sepris_checklist.pdf' target="_blank">
+                <span>{language.REQUEST_PAGE.rentCheckList}</span>
+              </a>  
+            </div>
+              </div>}
+            {/* <Link href={`/contract?id=${data.id}`} prefetch={false}>
               <a>
                 <img src={download} alt={language.REQUEST_PAGE.downloadContact} />
                 <span>{language.REQUEST_PAGE.downloadContact}</span>
               </a>
-            </Link>
+            </Link> */}
           </div>
         )}
         <div className="Button_container">

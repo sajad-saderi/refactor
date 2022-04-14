@@ -484,7 +484,10 @@
     "withInsurance": "Insurance included",
     "withoutInsurance": "No insurance included",
     "invoice": "invoice",
-    "downloadContact": "Download the Contract",
+    "contractDocuments":"Download the Contract Documents",
+    "downloadContact": "Rent Contract",
+    "rentInsurance": "Rent Insurance",
+    "rentCheckList": "Rent Check List",
     "callGuest": "Contact the Guest",
     "error1": "You have already submitted a review for this car.",
     "error2": "an error occured in request"

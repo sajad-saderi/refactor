@@ -1,23 +1,28 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
-import * as car from '../../../public/car_logo_black.svg';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Router from "next/router";
+import * as car from "../../../public/car_logo_black.svg";
 import {
   IoIosArrowDropup,
   IoLogoTwitter,
   IoLogoInstagram,
-} from 'react-icons/io';
-import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
-import { supportedLanguages } from '../../../types';
-import { addingCountryCodeToNumber } from '../../helpers/addingCountryCodeToNumber';
-import { numberChanger } from '../../../utils/numberChanger';
+} from "react-icons/io";
+import { FaTelegram, FaWhatsapp } from "react-icons/fa";
+import { supportedLanguages } from "../../../types";
+import { addingCountryCodeToNumber } from "../../helpers/addingCountryCodeToNumber";
+import { numberChanger } from "../../../utils/numberChanger";
 
-const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => {
+const Footer = ({
+  hide,
+  showToTop,
+  LinkControl,
+  language,
+  locale,
+}: IFooter) => {
   const [hidden, setHidden] = useState(false);
   const [activeToTop, setActiveToTop] = useState(false);
   const [showTop, setShowTop] = useState(false);
-
 
   // Because the layout render once you should track the hide props for change
   useEffect(() => {
@@ -27,9 +32,9 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
 
   // Add an event listener on scroll to show the "Go To Top" button
   useEffect(() => {
-    document.addEventListener('scroll', scrollCheck);
+    document.addEventListener("scroll", scrollCheck);
     return () => {
-      document.removeEventListener('scroll', scrollCheck);
+      document.removeEventListener("scroll", scrollCheck);
     };
   }, []);
 
@@ -51,10 +56,14 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
   };
 
   return (
-    <footer data-test-id="footer" className={hidden ? 'hide_footer' : null} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+    <footer
+      data-test-id="footer"
+      className={hidden ? "hide_footer" : null}
+      dir={locale === "fa" ? "rtl" : "ltr"}
+    >
       {activeToTop ? (
         <div
-          className={['toTop', showTop ? 'showTop' : null].join(' ')}
+          className={["toTop", showTop ? "showTop" : null].join(" ")}
           onClick={toTop}
         >
           <IoIosArrowDropup size="4rem" color="#4ba3ce" />
@@ -72,7 +81,7 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
               <a>{language.LINKS.faq}</a>
             </Link>
           </li>
-          {locale === 'fa' &&
+          {locale === "fa" && (
             <>
               <li>
                 <Link href="/sepris" prefetch={false}>
@@ -118,7 +127,7 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
                 </li>
               )}
             </>
-          }
+          )}
         </ul>
 
         <div className="social_container_footer">
@@ -135,13 +144,13 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
             </a>
           </div>
           <p>
-            {' '}
+            {" "}
             {language.FOOTER.customerService}
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number1)}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {numberChanger(language.COMMON.number1,locale)}
+              {numberChanger(language.COMMON.number1, locale)}
             </a>
             {/* -
             <a
@@ -155,7 +164,7 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number3)}`}
               className="HEAP_Footer_Link_Phone"
             >
-              {numberChanger(language.COMMON.number3,locale)}
+              {numberChanger(language.COMMON.number3, locale)}
             </a>
           </p>
           <br />
@@ -164,6 +173,21 @@ const Footer = ({ hide, showToTop, LinkControl, language, locale }: IFooter) => 
             <img src={car} alt="logo image" />
             {language.COMMON.seprisDefinition}
           </p>
+          <br />
+          <br />
+          <a
+            referrerPolicy="origin"
+            target="_blank"
+            href="https://trustseal.enamad.ir/?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
+          >
+            <img
+              referrerPolicy="origin"
+              src="https://Trustseal.eNamad.ir/logo.aspx?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
+              alt=""
+              style={{ cursor: "pointer" }}
+              id="Qeni4CAkxd51laL0SZTW"
+            />
+          </a>
         </div>
       </div>
       <div className="signature">

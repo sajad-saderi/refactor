@@ -32,6 +32,7 @@ import net_CTX from "../../../context/internetConnectionCTX";
 
 const PelakView = dynamic(() => import("../../../components/pelak"));
 const Icon = dynamic(() => import("../../../../utils/Icon"));
+import Icons from "../../../components/Icons"
 // import Icon from "../../../../utils/Icon";
 
 const Button = dynamic(() => import("../../../components/form/Button"));
@@ -650,6 +651,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
         </div>
         {data.show_contract && status_id === "paid" && (
           <div className="contract_download">
+            <Icons name="download" width="20px" height="20px" color="#3fa6da" />
             <Link href={data.contract_url}  prefetch={false}>
               <a target='_blank'>
                 <img src={download} alt={language.REQUEST_PAGE.downloadContact} />

@@ -481,7 +481,10 @@
     "withInsurance": "بیمه دارد",
     "withoutInsurance": "بیمه ندارد",
     "invoice": "هزینه اجاره",
-    "downloadContact": "دانلود قرارداد",
+    "contractDocuments":"دریافت اسناد اجاره",
+    "downloadContact": "قرارداد اجاره",
+    "rentInsurance": "بیمه اجاره",
+    "rentCheckList": "چک‌لیست تحویل خودرو",
     "callGuest": ":تماس با اجاره گیرنده",
     "error1": "قبلا نظر ثبت کرده اید",
     "error2": "خطا در انجام عملیات بر روی سفارش اجاره"
