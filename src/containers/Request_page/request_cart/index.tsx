@@ -82,6 +82,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [click_on_cancel, set_click_on_cancel] = useState(false);
   const [extensionInfo, setExtensionInfo] = useState(null);
   const [extensionSum, setExtensionSum] = useState(null);
+  const [downloadBox, setDownloadBox] = useState(false);
 
   const MODAL_CONTEXT = useContext(Modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
@@ -650,14 +651,38 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
           )}
         </div>
         {data.show_contract && status_id === "paid" && (
-          <div className="contract_download">
+          <div className="contract_download" onClick={()=>
+    setDownloadBox(!downloadBox)
+    }>
+            <span style={{display:'flex',alignItems:'center'}}>
+            <span style={{marginInlineEnd:"4px",display:"flex"}}>
             <Icons name="download" width="20px" height="20px" color="#3fa6da" />
-            <Link href={data.contract_url}  prefetch={false}>
-              <a target='_blank'>
+              </span>
+            {language.REQUEST_PAGE.contractDocuments}
+            <span style={{transform:"rotate(180deg)", display:"flex"}}>
+              <Icons name="chevron" width="20px" height="20px" color="#3fa6da" />
+              </span>
+            </span>
+            {downloadBox &&<div className={['downloadContainer',downloadBox?'containerAnimation':''].join(' ')}>
+              <div className="drawer"/>
+              <div className="downloadLinks"> 
+             {data.contract_url && <a className="item1" href={data.contract_url} target="_blank">
+                <span>{language.REQUEST_PAGE.downloadContact}</span>
+              </a> } 
+             {data.insurance_document_url && <a href={data.insurance_document_url} target="_blank">
+                <span>{language.REQUEST_PAGE.rentInsurance}</span>
+              </a> } 
+             <a href='https://core.sepris.com/static/core/sepris_checklist.pdf' target="_blank">
+                <span>{language.REQUEST_PAGE.rentCheckList}</span>
+              </a>  
+            </div>
+              </div>}
+            {/* <Link href={`/contract?id=${data.id}`} prefetch={false}>
+              <a>
                 <img src={download} alt={language.REQUEST_PAGE.downloadContact} />
                 <span>{language.REQUEST_PAGE.downloadContact}</span>
               </a>
-            </Link>
+            </Link> */}
           </div>
         )}
         <div className="Button_container">
