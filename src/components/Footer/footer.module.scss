@@ -1,7 +1,8 @@
 @import "../../styles/colors";
 
 footer {
-  background-color: #ffffff;
+  background-color: #fefefe;
+  border-top: solid 1px #e5e5e5;
   &.hide_footer {
     display: none;
   }
@@ -29,13 +30,16 @@ footer {
   }
   .plus_border {
     display: flex;
-    align-items: flex-start;
-    align-items: center;
+    align-items: flex-start; 
+    padding: 0;
     padding-bottom: 2rem !important;
-    justify-content: flex-start;
+    justify-content: space-between;
+    @media (max-width: 1024px) {
+      padding-inline: 16px;
+    }
     ul {
-      width: 50%;
-      border-left: 1px solid #e8e8e8;
+      // width: 50%;
+      // border-left: 1px solid #e8e8e8;
       li {
         display: block;
         a {
@@ -81,21 +85,24 @@ footer {
         margin-top: 1.6rem;
         font-weight: 500;
       }
-      .enamadContainer {
-        display: flex;
-        a {
-          padding: 16px;
-          border-radius: 4px;
-          border: 1px solid #bfbfbf;
-          img {
-            cursor: pointer;
-            width: 90px;
-          }
+    }
+    .enamadContainer {
+      display: flex;
+      @media (max-width:680px) {
+        margin-top: 30px; 
+      }
+      a {
+        padding: 16px;
+        border-radius: 4px;
+        border: 1px solid #bfbfbf;
+        img {
+          cursor: pointer;
+          width: 90px;
         }
-        @media (max-width:680px) {
-          align-items: center;
-          justify-content: center;
-        }
+      }
+      @media (max-width: 680px) {
+        align-items: center;
+        justify-content: center;
       }
     }
     .brand_description {

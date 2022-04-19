@@ -283,7 +283,9 @@
       height: 100%;
       z-index: 100;
       bottom: 0;
-      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       .drawer {
         position: absolute;
         width: 100%;
@@ -292,16 +294,23 @@
       }
       .downloadLinks {
         transition: 0.5s;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        background-color: #fff;
-        padding: 16px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        box-shadow: $box_shadow;
-        transform: translateY(100px);
+        width: 50%;
 
+        border-radius: 10px;
+        background-color: #fff;
+        padding: 24px;
+        box-shadow: $box_shadow;
+        transform: translateY(1000px);
+
+        @media (max-width: 768px) {
+          position: absolute;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          padding: 16px;
+          bottom: 0;
+        width: 100%;
+
+        }
         .item1 {
           padding: 0;
         }
@@ -309,18 +318,27 @@
           display: block;
           line-height: normal;
           padding-top: 24px;
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            svg {
+              margin-inline-end: 6px;
+            }
+          }
         }
       }
     }
     .containerAnimation {
-      opacity: 1;
       .downloadLinks {
         animation: showBox 0.1s linear 0.2s forwards;
         @keyframes showBox {
           0% {
+            opacity: 0;
             transform: translateY(100px);
           }
           100% {
+            opacity: 1;
             transform: translateY(0px);
           }
         }

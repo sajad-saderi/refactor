@@ -175,20 +175,20 @@ const Footer = ({
           </p>
           <br />
           <br />
-          <div className="enamadContainer">
-            <a
+        </div>
+        <div className="enamadContainer">
+          <a
+            referrerPolicy="origin"
+            target="_blank"
+            href="https://trustseal.enamad.ir/?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
+          >
+            <img
               referrerPolicy="origin"
-              target="_blank"
-              href="https://trustseal.enamad.ir/?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
-            >
-              <img
-                referrerPolicy="origin"
-                src="https://Trustseal.eNamad.ir/logo.aspx?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
-                alt=""
-                id="Qeni4CAkxd51laL0SZTW"
-              />
-            </a>
-          </div>
+              src="https://Trustseal.eNamad.ir/logo.aspx?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
+              alt=""
+              id="Qeni4CAkxd51laL0SZTW"
+            />
+          </a>
         </div>
       </div>
       <div className="signature">
