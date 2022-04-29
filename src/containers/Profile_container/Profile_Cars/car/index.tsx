@@ -4,7 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const Spinner = dynamic(() => import("../../../../components/Spinner"));
-import { IoMdTrash, IoMdCreate } from "react-icons/io";
+import { IoMdTrash, IoMdCreate, IoMdClose } from "react-icons/io";
 import { useRouter } from "next/router";
 import context_user from "../../../../context/User_info";
 import jsCookie from "js-cookie";
@@ -19,6 +19,7 @@ import net_CTX from "../../../../context/internetConnectionCTX";
 import languageCTX from "../../../../context/languageCTX";
 import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
 import { dynamicString } from '../../../../helpers/dynamicString';
+import Button from "../../../../components/form/Button";
 
 const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [id, setId] = useState(null);
@@ -31,6 +32,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [is_out_of_service, setIs_out_of_service] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [click_on_trash, set_click_on_trash] = useState(false);
+  const [outOfServicePrompt, setOutOfServicePrompt] = useState(false);
   const [is_out_of_service_loading, setIs_out_of_service_loading] = useState(
     false
   );
@@ -92,6 +94,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
       });
       // hide the spinner
       setIs_out_of_service_loading(false);
+      setOutOfServicePrompt(false)
     } catch (error) {
       if (error === 111) {
         netCTX.toggleTheContainer(true);
@@ -105,6 +108,20 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
       model: data.car.name[activeLanguage],
       id: data.id,
       type: "delete_car",
+    });
+    // if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
+    //
+    // }
+  };
+
+  
+  const inactiveCar = () => {
+    MODAL_CONTEXT.modalHandler("outOfService", {
+      brand: data.car.brand.name[activeLanguage],
+      model: data.car.name[activeLanguage],
+      id: data.id,
+      active:!is_out_of_service,
+      type: "outOfService",
     });
     // if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
     //
@@ -137,6 +154,42 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   return (
     car && (
       <div className="carcard" dir={activeLanguage ? 'rtl' : 'ltr'}>
+        {outOfServicePrompt&& <div className="carProfileServiceModal">
+          <div className="carProfileServiceModalDrawer"
+          onClick={()=>setOutOfServicePrompt(false)}></div>
+        <div className="modalOutOfService">
+          <p className="close">
+          <IoMdClose
+                className="close_btn"
+                color="rgb(165, 165, 165)"
+                size="2rem"
+                onClick={() => setOutOfServicePrompt(false)}
+              />
+          </p>
+          {is_out_of_service ? (
+            <p className="modal_content_confirm_delete">{dynamicString([car.brand.name[activeLanguage], car.name[activeLanguage]], language.COMMON.activatingTheCar)}</p>
+          ) : (
+            <p className="modal_content_confirm_delete">{dynamicString([car.brand.name[activeLanguage], car.name[activeLanguage]], language.COMMON.inactivatingTheCar)}</p>
+          )}
+          {/* {error.status ? (
+            <span className="error_message">{error.message}</span>
+          ) : null} */}
+          <div className="button_container">
+            <Button
+              class="Blue_BTN "
+              value={language.COMMON.ok}
+              loading={is_out_of_service_loading}
+              click={setServiceStatus}
+            />
+            <Button
+              class="Blue_BTN cancel_btn"
+              value={language.COMMON.cancel}
+              loading={false}
+              click={() => setOutOfServicePrompt(false)}
+            />
+          </div>
+          </div>
+          </div>}
         <Link href={hrefProp} as={link} prefetch={false}>
           <a data-test-id="Link" className="HEAP_Profile_Card_Car">
             <figure
@@ -236,7 +289,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                 <p
                   data-test-id="OUT_OF_SERVICE"
                   className="HEAP_Profile_Btn_OutOfService"
-                  onClick={setServiceStatus}
+                  onClick={() => setOutOfServicePrompt(true)}
                 >
                   {is_out_of_service
                     ? language.USER.activatingCar

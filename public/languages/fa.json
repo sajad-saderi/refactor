@@ -131,6 +131,8 @@
     "enterCarValue": "لطفا ارزش خودرو را وارد کنید",
     "contract": "قرارداد اجاره",
     "comformCarDelete": "آیا می‌خواهید ماشین {value} {value} را حذف کنید؟",
+    "activatingTheCar": "آیا می‌خواهید ماشین {value} {value} را فعال کنید؟",
+    "inactivatingTheCar": "آیا می‌خواهید ماشین {value} {value} را غیر فعال کنید؟",
     "comformOrderDelete": "آیا می‌خواهید این سفارش را حذف کنید؟",
     "iAgree": "می‌پذیرم",
     "fetchCitiesError": "خطا در دریافت لیست شهر‌ها",
