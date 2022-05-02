@@ -15,8 +15,7 @@ let settings = {
   slidesToShow: 1,
   rtl: true,
   slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 15000,
+  autoplay: false, 
   arrows: false,
 };
 const ContentHomePage = ({

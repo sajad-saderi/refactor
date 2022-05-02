@@ -669,7 +669,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
              {data.contract_url && <a className="item1" href={data.contract_url} target="_blank">
                 <span><Icons name="contract" width="16px" height="16px" color="#3FA6DA"/>{language.REQUEST_PAGE.downloadContact}</span>
               </a> } 
-             {data.insurance_document_url && <a href={data.insurance_document_url} target="_blank">
+             {data.rent_search_dump.insurance_document_url && <a href={data.rent_search_dump.insurance_document_url} target="_blank">
                 <span><Icons name="shield" width="16px" height="16px" color="#3FA6DA"/>{language.REQUEST_PAGE.rentInsurance}</span>
               </a> } 
              <a href='https://core.sepris.com/static/core/sepris_checklist.pdf' target="_blank">

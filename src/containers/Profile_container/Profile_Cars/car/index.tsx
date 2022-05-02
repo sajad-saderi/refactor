@@ -115,18 +115,6 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   };
 
   
-  const inactiveCar = () => {
-    MODAL_CONTEXT.modalHandler("outOfService", {
-      brand: data.car.brand.name[activeLanguage],
-      model: data.car.name[activeLanguage],
-      id: data.id,
-      active:!is_out_of_service,
-      type: "outOfService",
-    });
-    // if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
-    //
-    // }
-  };
 
   const request_to_delete_the_car = async (id) => {
     try {

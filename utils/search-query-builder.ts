@@ -17,7 +17,7 @@ const search_query_builder = ({
   page,
   limit,
   result_key,
-}: ISearch_query_builder) => {
+}: ISearch_query_builder) => {  
   let query = "";
   if (result_key) {
     query = `result_key=${result_key}`;
