@@ -23,7 +23,7 @@ import { supportedLanguages } from "../../../utils/types";
 
 // import ShowResult from "./ShowResult/ShowResult";
 
-const Calculator = ({ AbText, language,locale }: ICalculator) => {
+const Calculator = ({ AbText, language, locale }: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
   const [modelList, setModelList] = useState([]);
   const [value, setValue] = useState("");
@@ -90,9 +90,9 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: language.COMMON.fetchingBrandsError,
-            })
+                errorObj: error.response,
+                _400Message: language.COMMON.fetchingBrandsError,
+              })
             : error,
           color: "#ed9026",
           time: 0,
@@ -117,9 +117,9 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: language.COMMON.fetchingModelError,
-            })
+                errorObj: error.response,
+                _400Message: language.COMMON.fetchingModelError,
+              })
             : error,
           color: "#ed9026",
           time: 0,
@@ -171,7 +171,8 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
       // Convert the car value to Numner
       let conToNum = Number(value);
       // Constant base for daily rent: 0.0022
-      let eachDaily = conToNum * 0.0015;
+      let eachDaily =
+        conToNum <= 400000000 ? conToNum * 0.0022 : conToNum * 0.0015;
       // #FIXME
       // Go to the set car and timing component and change the coefficient there to
       // #REVIEW
@@ -217,7 +218,7 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
                 // }
                 Select={(v) => {
                   console.log(v);
-                  
+
                   fetchModelList(v.value);
                   setSaveCarInfo((saveCarInfo) => {
                     return { ...saveCarInfo, brand: v };
@@ -309,7 +310,7 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
               data-test-id="local_Button_joinUs"
               // onClick on this button nothing happened, the event listening to submitting the form
               value={language.JOIN_US_PAGE.estimate}
-              click={() => { }}
+              click={() => {}}
               class="Blue_BTN local_Button_joinUs"
               loading={loading}
             />
@@ -370,7 +371,7 @@ const Calculator = ({ AbText, language,locale }: ICalculator) => {
 interface ICalculator {
   AbText?: string;
   language: any;
-  locale:supportedLanguages
+  locale: supportedLanguages;
 }
 
 export default Calculator;
