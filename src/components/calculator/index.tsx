@@ -172,7 +172,7 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
       let conToNum = Number(value);
       // Constant base for daily rent: 0.0022
       let eachDaily =
-        conToNum <= 400000000 ? conToNum * 0.0022 : conToNum * 0.0015;
+        conToNum < 200000000 ? conToNum * 0.0022 : conToNum <= 400000000 ? conToNum * 0.0019: conToNum * 0.0015;
       // #FIXME
       // Go to the set car and timing component and change the coefficient there to
       // #REVIEW
