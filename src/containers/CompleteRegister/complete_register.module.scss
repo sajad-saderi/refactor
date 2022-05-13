@@ -1,3 +1,4 @@
+@use '../../styles/variables' as var; 
 @import '../../styles/colors';
 
 .complete_register_container {
@@ -23,12 +24,12 @@
   .complete_register_form {
     width: 38rem;
     background: #fdfdfd;
-    border: 1px solid $light_grey;
+    border: 1px solid $_bfbfbf;
     font-size: 1.4rem;
     border-radius: 4px;
     padding: 1.6rem;
     border: none;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     .login_modal_title {
       position: relative;
       text-align: center;
@@ -40,8 +41,8 @@
         width: 2rem;
         top: 0;
         color: rgb(255, 255, 255);
-        background: $blue;
-        border: 3px solid $blue;
+        background: $_3fa6da;
+        border: 3px solid $_3fa6da;
         border-radius: 50%;
       }
       h2 {
@@ -73,14 +74,14 @@
     }
     .company_part {
       p {
-        color: $blue;
+        color: $_3fa6da;
         font-weight: 500;
         font-size: 1.4rem;
         margin-bottom: 2rem;
         cursor: pointer;
         span {
           font-size: 1.3rem;
-          color: $dark_gray;
+          color: $_525252;
         }
       }
       .add_company_input_container {
@@ -100,7 +101,7 @@
           display: inline-block;
           font-weight: 500;
           font-size: 1.6rem;
-          color: $blue;
+          color: $_3fa6da;
           padding: 0 1.4rem;
           cursor: pointer;
         }
@@ -135,18 +136,18 @@
       }
     }
     .red_check_box {
-      border-color: $Error_text_color;
+      border-color: $_d83030;
     }
     .local_BTN {
       display: block;
       width: 100%;
     }
     .disable_BTN {
-      color: $light_grey;
+      color: $_bfbfbf;
       font-family: inherit;
-      background-color: $ultimate_gray;
+      background-color: $_f4f4f4;
       cursor: not-allowed;
-      border: 1px solid $light_grey;
+      border: 1px solid $_bfbfbf;
     }
   }
 }

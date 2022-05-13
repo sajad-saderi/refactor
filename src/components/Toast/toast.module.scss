@@ -1,3 +1,4 @@
+@use "../../styles/variables" as var;
 @import "../../styles/colors";
 .toast_container {
   position: fixed;
@@ -8,15 +9,15 @@
   .toast_div {
     max-width: 55rem;
     margin: auto;
-    background-color: $back_ground_color;
-    box-shadow: $box_shadow;
+    background-color: $_03a596;
+    box-shadow: var.$boxShadow;
     border-radius: 4px 4px 0 0;
     .time_bar {
       display: block;
       border-radius: 4px 4px 0 0;
       height: 0.5rem;
       width: 0;
-      background-color: $progress_bar_color;
+      background-color: $_24bfb1;
       animation: progressBar 1s linear 0.5s forwards;
     }
     svg {

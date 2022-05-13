@@ -1,3 +1,4 @@
+@use "../../../styles/variables" as var;
 @import "../../../styles/colors";
 .slick_container {
   width: 680px;
@@ -15,7 +16,7 @@
   }
   .card_container {
     direction: rtl;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     padding: 1.6rem;
     margin: 0.5rem auto;
     border-radius: 10px;
@@ -47,7 +48,7 @@
       button {
         &::before {
           opacity: 1;
-          color: $dark_blue !important;
+          color: $_116b98 !important;
         }
       }
     }

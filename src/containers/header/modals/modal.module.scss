@@ -79,7 +79,7 @@
     flex-direction: column;
     .send_again {
       cursor: pointer;
-      color: $blue;
+      color: $_3fa6da;
       // text-align: right;
     }
     .modal_box_div {
@@ -97,8 +97,8 @@
           width: 2rem;
           top: 0;
           color: rgb(255, 255, 255);
-          background: $blue;
-          border: 3px solid $blue;
+          background: $_3fa6da;
+          border: 3px solid $_3fa6da;
           border-radius: 50%;
         }
         h2 {
@@ -113,7 +113,7 @@
       }
       .login_modal_title_confirm_code {
         .login_person_icon {
-          color: $blue;
+          color: $_3fa6da;
           background: transparent;
           border: none;
         }

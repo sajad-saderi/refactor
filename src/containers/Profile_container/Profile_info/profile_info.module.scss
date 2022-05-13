@@ -1,3 +1,4 @@
+@use '../../../styles/variables' as var;
 @import '../../../styles/colors';
 
 .Profile_info_container {
@@ -5,7 +6,7 @@
   background: #fff;
   border-radius: 4px;
   padding: 1.4rem;
-  box-shadow: $box_shadow;
+  box-shadow: var.$boxShadow;
   margin-bottom: 2rem;
   margin-left: 2rem;
   .user_information {
@@ -28,14 +29,14 @@
     }
     p {
       font-size: 1.4rem;
-      color: $blue;
+      color: $_3fa6da;
       cursor: pointer;
       font-size: 1.2rem;
     }
     .user_info {
       span,
       p {
-        color: $almost_black;
+        color: $_313131;
         font-size: 1.4rem;
         line-height: normal;
         margin-top: 1.6rem;
@@ -52,7 +53,7 @@
       cursor: pointer;
       p {
         display: inline-block;
-        color: $blue;
+        color: $_3fa6da;
         font-size: 1.6rem;
         vertical-align: middle;
       }

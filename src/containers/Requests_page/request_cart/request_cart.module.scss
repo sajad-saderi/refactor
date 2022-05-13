@@ -1,3 +1,4 @@
+@use "../../../styles/variables" as var;
 @import "../../../styles/colors";
 
 .Request_car {
@@ -6,7 +7,7 @@
   padding: 16px;
   text-align: right;
   background: #fff;
-  box-shadow: $box_shadow;
+  box-shadow: var.$boxShadow;
   .rent_status {
     border: none;
     width: auto;
@@ -30,7 +31,7 @@
     }
   }
   .extensionBadge {
-    background-color: $almost_gray;
+    background-color: $_efefef;
     border-radius: 4px;
     text-align: center;
     padding: 0.2rem 0.8rem;
@@ -44,10 +45,10 @@
   }
   .status_expired {
     display: inline-block;
-    background-color: $almost_gray;
+    background-color: $_efefef;
     padding: 0.2rem 0.8rem;
     span {
-      color: $almost_black;
+      color: $_313131;
     }
   }
   .status_paid {
@@ -59,9 +60,9 @@
   .status_on_trip {
     padding: 0.2rem 0.8rem;
     display: inline-block;
-    background-color: $almost_teal;
+    background-color: $_e7f6f7;
     span {
-      color: $teal;
+      color: $_37c4d7;
     }
   }
   .status_approved {
@@ -72,9 +73,9 @@
     .card_status {
       border-radius: 4px;
       padding: 0.2rem 0.8rem;
-      background-color: $almost_purple;
+      background-color: $_f4eef1;
       span {
-        color: $purple;
+        color: $_c06daa;
       }
     }
   }
@@ -86,9 +87,9 @@
     .card_status {
       border-radius: 4px;
       padding: 0.2rem 0.8rem;
-      background-color: $almost_orange;
+      background-color: $_fceddb;
       span {
-        color: $orange;
+        color: $_ed9026;
       }
     }
   }
@@ -99,7 +100,7 @@
     div {
       width: auto !important;
       font-size: 1.4rem !important;
-      color: $orange;
+      color: $_ed9026;
       font-weight: 500;
     }
     svg {
@@ -109,7 +110,7 @@
   }
   .timer_approved {
     div {
-      color: $purple;
+      color: $_c06daa;
     }
   }
   .cart {
@@ -232,7 +233,7 @@
     align-items: center;
     margin-top: 24px;
     a {
-      color: $blue;
+      color: $_3fa6da;
       font-weight: normal;
       font-size: 1.6rem;
       margin-right: -3px;
@@ -240,7 +241,7 @@
       .extra_Text {
         display: inline-block;
         vertical-align: middle;
-        color: $blue;
+        color: $_3fa6da;
         font-weight: 400;
       }
       svg {
@@ -252,11 +253,11 @@
       }
     }
     .renter_Cell {
-      background-color: $almost_blue;
+      background-color: $_eaf4f8;
       padding: 0.4rem 0.8rem;
       border-radius: 20px;
       font-weight: normal;
-      border: 1px solid $blue;
+      border: 1px solid $_3fa6da;
       svg {
         width: 1.6rem;
         height: 1.6rem;
@@ -299,7 +300,7 @@
         border-radius: 10px;
         background-color: #fff;
         padding: 24px;
-        box-shadow: $box_shadow;
+        box-shadow: var.$boxShadow;
         transform: translateY(1000px);
 
         @media (max-width: 768px) {
@@ -366,20 +367,20 @@
       margin-top: 2.4rem;
       width: 48%;
       background-color: transparent;
-      border: 1px solid $light_grey;
-      color: $gray;
+      border: 1px solid $_bfbfbf;
+      color: $_808080;
       .Loading {
-        border-right-color: $light_grey;
+        border-right-color: $_bfbfbf;
       }
     }
     .request_car_cancel {
       width: 14.5rem;
       margin-top: 2.4rem;
       background-color: transparent;
-      border: 1px solid $light_grey;
-      color: $gray;
+      border: 1px solid $_bfbfbf;
+      color: $_808080;
       .Loading {
-        border-right-color: $light_grey;
+        border-right-color: $_bfbfbf;
       }
     }
     .request_car_pay {
@@ -387,8 +388,8 @@
       display: block;
     }
     .pelak_view_container {
-      border: 1px solid $light_grey;
-      background: $almost_white;
+      border: 1px solid $_bfbfbf;
+      background: $_fafafa;
       margin-right: 2.4rem;
       height: 40px;
       margin-top: 2.4rem;
@@ -403,7 +404,7 @@
         left: 13px;
         top: 10px;
         font-size: 1.4rem;
-        color: $almost_black;
+        color: $_313131;
       }
       .second {
         position: absolute;
@@ -411,21 +412,21 @@
         right: 88px;
         line-height: 1.2;
         font-size: 1.4rem;
-        color: $almost_black;
+        color: $_313131;
       }
       .third {
         position: absolute;
         top: 10px;
         right: 53px;
         font-size: 1.4rem;
-        color: $almost_black;
+        color: $_313131;
       }
       .forth {
         position: absolute;
         top: 10px;
         right: 11px;
         font-size: 1.4rem;
-        color: $almost_black;
+        color: $_313131;
       }
       &::after {
         content: "";
@@ -437,8 +438,8 @@
         margin-top: -5px;
         border-width: 1px;
         border-style: solid;
-        background: $almost_white;
-        border-color: $light_grey $light_grey transparent transparent;
+        background: $_fafafa;
+        border-color: $_bfbfbf $_bfbfbf transparent transparent;
         transform: rotate(45deg);
       }
       &::before {
@@ -449,7 +450,7 @@
         height: 100%;
         border-width: 0;
         border-style: solid;
-        border-color: $light_grey;
+        border-color: $_bfbfbf;
         border-left-width: 1px;
       }
     }
@@ -556,8 +557,8 @@
         margin-top: -5px;
         border-width: 1px;
         border-style: solid;
-        background: $almost_white;
-        border-color: transparent transparent $light_grey $light_grey;
+        background: $_fafafa;
+        border-color: transparent transparent $_bfbfbf $_bfbfbf;
         transform: rotate(45deg);
       }
       &::before {
@@ -568,7 +569,7 @@
         height: 100%;
         border-width: 0;
         border-style: solid;
-        border-color: $light_grey;
+        border-color: $_bfbfbf;
         border-left-width: 1px;
       }
     }

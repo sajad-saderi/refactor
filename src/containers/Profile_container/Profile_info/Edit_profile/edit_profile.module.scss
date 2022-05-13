@@ -8,7 +8,7 @@
       font-size: 1.4rem;
       text-align: center;
       margin: 1rem 0;
-      color: $blue;
+      color: $_3fa6da;
       font-weight: 500;
     }
     input {
@@ -33,7 +33,7 @@
       .reactEasyCrop_Container {
         z-index: 11;
         .reactEasyCrop_CropArea {
-          color: rgba($almost_black, 0.9);
+          color: rgba($_313131, 0.9);
         }
         img {
           width: auto;
@@ -54,7 +54,7 @@
     margin: auto;
   }
   .link_text {
-    color: $blue;
+    color: $_3fa6da;
     font-size: 1.4rem;
     margin-bottom: 2rem;
     cursor: pointer;
@@ -75,8 +75,8 @@
     align-items: center;
     .cancel_class {
       background: transparent;
-      border: 1px solid $blue;
-      color: $blue;
+      border: 1px solid $_3fa6da;
+      color: $_3fa6da;
     }
     .cancel_class,
     .local_class {
@@ -97,8 +97,8 @@
       width: 32rem;
     }
     .cancel_class {
-      color: $light_grey;
-      border-color: $light_grey;
+      color: $_bfbfbf;
+      border-color: $_bfbfbf;
     }
   }
 }

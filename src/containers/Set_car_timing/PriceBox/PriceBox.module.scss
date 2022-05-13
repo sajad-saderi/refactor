@@ -11,7 +11,7 @@
     max-width: 32rem; 
     padding: 1.6rem;
     margin-bottom: 10px;
-    border: 1px solid $light_grey;
+    border: 1px solid $_bfbfbf;
     border-radius: 4px;
     .tail {
       position: relative;
@@ -45,13 +45,13 @@
     }
     .datePickerError {
       input {
-        border: 1px solid $Error_text_color !important;
+        border: 1px solid $_d83030 !important;
         background: rgba(216, 48, 48, 0.1) !important;
       }
 
       .input_error_message {
         font-size: 1.2rem;
-        color: $Error_text_color;
+        color: $_d83030;
       }
     }
     .divs {
@@ -86,10 +86,10 @@
     right: 0;
     bottom: 3em;
     p {
-      color: $blue;
+      color: $_3fa6da;
       font-size: 1.4rem;
       display: inline-block;
-      border: 1px solid $blue;
+      border: 1px solid $_3fa6da;
       border-radius: 4px;
       padding-left: 2rem;
       svg {
@@ -116,7 +116,7 @@
       line-height: 1;
       font-size: 1.4rem;
       background: #fff;
-      border: 1px solid $light_grey;
+      border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
       box-shadow: 0 0 0 0 transparent inset;
@@ -127,7 +127,7 @@
     .Date_list {
       display: block;
       .Date_list_item {
-        border: 1px solid $light_grey;
+        border: 1px solid $_bfbfbf;
         padding: 1.2rem;
         margin-bottom: 1rem;
         display: inline-flex;
@@ -135,7 +135,7 @@
         align-items: center;
         border-radius: 4px;
         p {
-          color: $almost_black;
+          color: $_313131;
           font-weight: 500;
           display: inline-block;
           vertical-align: middle;
@@ -152,7 +152,7 @@
             font-size: 1.2rem;
             margin: 0 1rem 0 0;
             padding-right: 2rem;
-            color: $almost_black;
+            color: $_313131;
             cursor: pointer;
             svg {
               width: 2rem;

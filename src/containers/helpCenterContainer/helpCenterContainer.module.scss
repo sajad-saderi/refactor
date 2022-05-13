@@ -1,3 +1,4 @@
+@use "../../styles/variables" as var;
 @import "../../styles/colors";
 .card_grid_contianer {
   display: grid;
@@ -5,7 +6,7 @@
   gap: 10px;
   .guide_card {
     background: #fff;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     padding: 1rem;
     position: relative;
     &:hover {

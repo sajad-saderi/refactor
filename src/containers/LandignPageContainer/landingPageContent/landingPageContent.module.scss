@@ -1,3 +1,4 @@
+@use "../../../styles/variables" as var;
 @import "../../../styles/colors";
 
 .search_result_section {
@@ -21,7 +22,7 @@
 
 .landing_dynamic_content {
   margin-top: 3rem;
-  box-shadow: $box_shadow;
+  box-shadow: var.$boxShadow;
   background: #fff;
   padding: 1.4rem;
   h2 {
@@ -42,7 +43,7 @@
           line-height: 1.5;
           font-weight: 500;
           font-size: 1.4rem;
-          color: $blue;
+          color: $_3fa6da;
           display: block;
         }
       }

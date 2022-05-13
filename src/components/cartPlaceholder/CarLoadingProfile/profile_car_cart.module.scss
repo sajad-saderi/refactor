@@ -1,3 +1,4 @@
+@use "../../../styles/variables" as var;
 @import "../../../styles/colors";
 
 .car_card_Loading_profile {
@@ -8,7 +9,7 @@
   background: #fff;
   border-radius: 4px;
   margin: 0 0 2% 0;
-  box-shadow: $box_shadow;
+  box-shadow: var.$boxShadow;
   direction: rtl;
   figure {
     position: relative;
@@ -29,7 +30,7 @@
     }
   }
   .price {
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     left: 0.8rem;
     text-align: center;
     width: 85px;

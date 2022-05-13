@@ -1,3 +1,4 @@
+@use "../../../styles/variables" as var;
 @import "../../../styles/colors";
 .slider {
   width: 100%;
@@ -11,7 +12,7 @@
   justify-content: space-between;
   align-items: self-start;
   .carInfo_container {
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     background: #fff;
     padding: 1.6rem;
     width: 63%;
@@ -34,7 +35,7 @@
       margin-top: 2.2rem;
       margin-bottom: 1.2rem;
       border-bottom-width: 0;
-      border-color: $light_grey;
+      border-color: $_bfbfbf;
     }
   }
   .onwnerInfo_container {
@@ -43,7 +44,7 @@
     background: #fff;
     border-radius: 4px;
     padding: 1.6rem;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     text-align: right;
     .avg_discounted_price_per_day {
       width: 12rem;

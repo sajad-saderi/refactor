@@ -1,3 +1,4 @@
+@use '../variables' as var;
 @import '../colors';
 .join_us {
   .banner {
@@ -17,7 +18,7 @@
       width: 100%;
       margin: 0;
       text-align: center;
-      text-shadow: $text_shadow;
+      text-shadow: var.$textShadow;
     }
     h2 {
       text-shadow: 0px 2px 5px black;
@@ -32,17 +33,17 @@
     .addCarnow {
       text-align: center;
       .addCar_bottom_joinus_b {
-        background-color: $purple;
-        border: 1px solid $purple;
+        background-color: $_c06daa;
+        border: 1px solid $_c06daa;
         margin: auto;
         width: 28rem;
         display: inline-block;
         margin-bottom: 1rem;
-        box-shadow: $box_shadow;
+        box-shadow: var.$boxShadow;
       }
       p {
         color: #fff;
-        text-shadow: $text_shadow;
+        text-shadow: var.$textShadow;
         font-weight: 500;
         font-size: 1.4rem;
       }
@@ -56,7 +57,7 @@
         text-align: right;
         display: block;
         text-shadow: none;
-        color: $almost_black;
+        color: $_313131;
         font-weight: 500;
       }
       p {
@@ -73,7 +74,7 @@
           .error_Field {
             position: absolute;
             margin-top: 0.3rem;
-            color: $Error_text_color;
+            color: $_d83030;
             font-weight: 500;
             font-size: 1rem;
           }
@@ -138,13 +139,13 @@
         text-align: center;
         margin-bottom: -2rem;
         .addCar_top_joinus_a {
-          background-color: $purple;
-          border: 1px solid $purple;
+          background-color: $_c06daa;
+          border: 1px solid $_c06daa;
         }
       }
       .tryAgainCalc {
         text-align: left;
-        color: $blue;
+        color: $_3fa6da;
         font-weight: 500;
         cursor: pointer;
       }

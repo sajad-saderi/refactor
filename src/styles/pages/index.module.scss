@@ -1,3 +1,4 @@
+@use "../variables" as var;
 @import "../colors";
 .Homepage {
   .banner {
@@ -16,12 +17,12 @@
       width: 100%;
       margin: 0;
       text-align: center;
-      text-shadow: $text_shadow;
+      text-shadow: var.$textShadow;
       padding-top: 14vh;
       line-height: 1.7;
     }
     h2 {
-      text-shadow: $text_shadow;
+      text-shadow: var.$textShadow;
       font-weight: 300;
       width: 100%;
       color: #fff;
@@ -39,7 +40,7 @@
   }
 
   .third_container {
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     background-color: #fff;
     margin-top: 3rem;
     padding: 1.5rem;
@@ -53,7 +54,7 @@
             font-weight: 500;
             transition: 0.25s;
             font-size: 1.4rem;
-            color: $blue;
+            color: $_3fa6da;
             display: block;
             &:hover {
               padding-right: 0.5rem;

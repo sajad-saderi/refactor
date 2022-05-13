@@ -6,7 +6,7 @@
   .add_car_form_step_1 {
     margin-top: $padding_top;
     background: #fdfdfd;
-    border: 1px solid $light_grey;
+    border: 1px solid $_bfbfbf;
     font-size: 1.4rem;
     border-radius: 4px;
     padding: 1.6rem;
@@ -23,7 +23,7 @@
       }
       h3 {
         font-weight: 500;
-        color: $purple;
+        color: $_c06daa;
         font-size: 1.8rem;
         margin-top: 0;
         display: inline-block;
@@ -75,7 +75,7 @@
         .container {
           margin-bottom: 2.2rem;
           font-weight: 400;
-          color: $almost_black;
+          color: $_313131;
         }
       }
       .gradient_transparent {
@@ -99,7 +99,7 @@
       }
       .show_more_facilities_button {
         width: 14rem;
-        border: 1px solid $blue;
+        border: 1px solid $_3fa6da;
         border-radius: 25px;
         margin: auto;
         position: absolute;
@@ -108,7 +108,7 @@
         bottom: 3.5rem;
         margin: auto;
         cursor: pointer;
-        color: $blue;
+        color: $_3fa6da;
         padding: 0.8rem 3rem 0.8rem 0;
         svg {
           width: 2rem;
@@ -121,12 +121,12 @@
     .extra_text {
       margin: 0.4rem 0 1.6rem 0;
       font-size: 1.4rem;
-      color: $almost_black;
+      color: $_313131;
       line-height: 2.7rem;
     }
     .form_title {
       border-bottom: 1px solid;
-      border-bottom: 1px solid $purple;
+      border-bottom: 1px solid $_c06daa;
       padding-bottom: 1rem;
       margin-top: 0rem;
       display: inline-block;
@@ -275,7 +275,7 @@
       font-size: 1.4rem;
       margin-top: 0.8rem;
       line-height: 2.7rem;
-      color: $almost_black;
+      color: $_313131;
     }
     .text_area_step_1 {
       min-height: 15rem;
@@ -289,7 +289,7 @@
       padding: 0.5rem;
       font-size: 1.4rem;
       background: transparent;
-      border: 1px solid $light_grey;
+      border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
       box-shadow: 0 0 0 0 transparent inset;

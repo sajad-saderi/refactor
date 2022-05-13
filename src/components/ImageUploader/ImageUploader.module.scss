@@ -3,11 +3,11 @@
 .image_upload_under_label {
   margin-bottom: 1.5rem;
   font-size: 1.4rem;
-  color: $almost_black;
+  color: $_313131;
   line-height: 2.7rem;
   margin-top: 0.8rem;
   u {
-    color: $almost_black;
+    color: $_313131;
     text-underline-position: under;
   }
 }
@@ -22,7 +22,7 @@
   .reactEasyCrop_Container {
     z-index: 11;
     .reactEasyCrop_CropArea {
-      color: rgba($almost_black, 0.9);
+      color: rgba($_313131, 0.9);
     }
     img {
       width: auto;
@@ -45,8 +45,8 @@
   z-index: 20;
   .cancel_class {
     background: transparent;
-    border: 1px solid $blue;
-    color: $blue;
+    border: 1px solid $_3fa6da;
+    color: $_3fa6da;
   }
   .cancel_class,
   .local_class {
@@ -57,8 +57,8 @@
     width: 32rem;
   }
   .cancel_class {
-    color: $light_grey;
-    border-color: $light_grey;
+    color: $_bfbfbf;
+    border-color: $_bfbfbf;
   }
 }
 
@@ -135,9 +135,9 @@
     .gallery_button {
       padding: 0.8rem 2rem;
       display: block;
-      border: 1px solid $blue;
+      border: 1px solid $_3fa6da;
       border-radius: 4px;
-      color: $blue;
+      color: $_3fa6da;
       margin-top: 2rem;
     }
   }

@@ -1,3 +1,4 @@
+@use '../../../styles/variables' as var;
 @import '../../../styles/colors';
 
 .Top_Rent_date {
@@ -14,9 +15,9 @@
   // z-index: 100;
   justify-content: space-between;
   align-items: self-start;
-  background-color: $white;
+  background-color: $_fefefe;
   .carInfo_container {
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     background: #fff;
     padding: 2.4rem;
     width: 63%;
@@ -43,12 +44,12 @@
       .discount_part {
         .percentage {
           padding: 0.4rem;
-          background-color: $dark_orange;
+          background-color: $_ec7f00;
           font-size: 1.4rem;
           line-height: 1.4rem;
         }
         .discount_price {
-          color: $dark_gray;
+          color: $_525252;
           text-decoration: line-through;
           font-size: 1.8rem;
           vertical-align: middle;
@@ -57,13 +58,13 @@
           font-weight: 500;
           font-size: 2rem;
           line-height: 1.6rem;
-          color: $almost_black;
+          color: $_313131;
           text-align: center;
           margin-bottom: 0.6rem;
         }
       }
       span {
-        color: $almost_black;
+        color: $_313131;
         line-height: 0.7;
       }
     }
@@ -73,16 +74,16 @@
       line-height: unset;
       margin: 0 0;
       // span {
-      //   color: $almost_black;
+      //   color: $_313131;
       //   font-size: 1.4rem;
       //   line-height: 1.4rem;
       //   display: inline-block;
       //   vertical-align: middle;
-      //   color: $dark_gray;
+      //   color: $_525252;
       //   margin-right: 0.6rem;
       // }
       .year_of_build {
-        color: $dark_gray;
+        color: $_525252;
         font-size: 1.6rem;
         margin-right: 0.4rem;
         display: inline-block;
@@ -100,9 +101,9 @@
           font-size: 1.4rem;
           line-height: 1.4rem;
           font-weight: 500;
-          color: $dark_blue;
+          color: $_116b98;
           .sum_rent {
-            color: $gray;
+            color: $_808080;
             font-weight: normal;
           }
         }
@@ -118,7 +119,7 @@
     .owner_name_carinfo {
       font-size: 1.2rem;
       line-height: 1.2rem;
-      color: $dark_gray;
+      color: $_525252;
       margin-bottom: 2.4rem;
     }
     .driver_and_verified {
@@ -139,7 +140,7 @@
       }
       span {
         display: inline-block;
-        color: $dark_gray;
+        color: $_525252;
       }
     }
     // h4 {
@@ -188,7 +189,7 @@
         }
         .change_date_in_car_page {
           cursor: pointer;
-          color: $blue;
+          color: $_3fa6da;
         }
       }
       .search_box_div {
@@ -234,8 +235,8 @@
               outline: 0;
               -webkit-appearance: none;
               line-height: 1.5;
-              border: 1px solid $light_grey;
-              border-left: 0px solid $light_grey;
+              border: 1px solid $_bfbfbf;
+              border-left: 0px solid $_bfbfbf;
               border-radius: 0.4rem;
               border-top-left-radius: 0px;
               border-bottom-left-radius: 0px;
@@ -245,17 +246,17 @@
               color: rgba(0, 0, 0, 0.87);
               box-shadow: 0 0 0 0 transparent inset;
               &.activeBorder {
-                border-color: $blue;
-                border-left: 1px solid $blue;
+                border-color: $_3fa6da;
+                border-left: 1px solid $_3fa6da;
                 border-bottom-right-radius: 0px;
                 border-bottom-left-radius: 0px;
                 box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
               }
             }
             .exception_input {
-              border: 1px solid $light_grey;
-              border-left: 1px solid $light_grey;
-              border-right: 1px solid $light_grey;
+              border: 1px solid $_bfbfbf;
+              border-left: 1px solid $_bfbfbf;
+              border-right: 1px solid $_bfbfbf;
               border-radius: 0.4rem;
               border-top-left-radius: 4px;
               border-top-right-radius: 0px;
@@ -289,7 +290,7 @@
               line-height: 1;
               font-size: 1.4rem;
               background: #fff;
-              border: 1px solid $light_grey;
+              border: 1px solid $_bfbfbf;
               color: rgba(0, 0, 0, 0.87);
               border-radius: 0.4rem;
               box-shadow: 0 0 0 0 transparent inset;
@@ -358,16 +359,16 @@
     }
     .info_container {
       width: 30rem;
-      border: 1px solid $lighter_grey;
+      border: 1px solid $_e5e5e5;
       p:last-child {
         border-bottom-color: transparent !important;
       }
       .alignThem {
         padding: 1rem;
-        border-bottom: 1px solid $lighter_grey;
-        background-color: $almost_white;
+        border-bottom: 1px solid $_e5e5e5;
+        background-color: $_fafafa;
         &:nth-child(even) {
-          background-color: $ultimate_gray;
+          background-color: $_f4f4f4;
         }
         .info_name {
           font-weight: 500;
@@ -403,7 +404,7 @@
     .car_Tags {
       cursor: pointer;
       display: inline-block;
-      color: $blue;
+      color: $_3fa6da;
       border: none;
       padding: 0.2rem 2.5rem;
       text-indent: -14px;
@@ -423,7 +424,7 @@
     background: #fff;
     border-radius: 4px;
     padding: 2.4rem;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     position: relative;
     .price_place_holder {
       height: 8.7rem;
@@ -438,15 +439,15 @@
           margin-right: 0.4rem;
           display: inline-block;
           width: auto;
-          color: $white;
+          color: $_fefefe;
           vertical-align: middle;
           padding: 0.4rem;
-          background-color: $dark_orange;
+          background-color: $_ec7f00;
           font-size: 1.4rem;
           line-height: 1.4rem;
         }
         .discount_price {
-          color: $dark_gray;
+          color: $_525252;
           display: inline-block;
           text-decoration: line-through;
           vertical-align: middle;
@@ -455,7 +456,7 @@
         .normal_price {
           font-weight: 500;
           font-size: 3rem;
-          color: $almost_black;
+          color: $_313131;
           line-height: 2.6rem;
           text-align: center;
           margin-bottom: 0.6rem;
@@ -474,7 +475,7 @@
       span {
         font-size: 1.4rem;
         display: block;
-        color: $dark_gray;
+        color: $_525252;
         text-align: center;
         line-height: 1.4rem;
       }
@@ -509,8 +510,8 @@
             outline: 0;
             -webkit-appearance: none;
             line-height: 1.5;
-            border: 1px solid $light_grey;
-            border-left: 0px solid $light_grey;
+            border: 1px solid $_bfbfbf;
+            border-left: 0px solid $_bfbfbf;
             border-radius: 0.4rem;
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
@@ -521,17 +522,17 @@
             box-shadow: 0 0 0 0 transparent inset;
             &.activeBorder {
               border-width: 1px;
-              border-color: $blue;
-              border-left: 1px solid $blue;
+              border-color: $_3fa6da;
+              border-left: 1px solid $_3fa6da;
               border-bottom-right-radius: 0px;
               border-bottom-left-radius: 0px;
               box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
             }
           }
           .exception_input {
-            border: 1px solid $light_grey;
-            border-left: 1px solid $light_grey;
-            border-right: 1px solid $light_grey;
+            border: 1px solid $_bfbfbf;
+            border-left: 1px solid $_bfbfbf;
+            border-right: 1px solid $_bfbfbf;
             border-radius: 0.4rem;
             border-top-left-radius: 4px;
             border-top-right-radius: 0px;
@@ -565,7 +566,7 @@
             line-height: 1;
             font-size: 1.4rem;
             background: #fff;
-            border: 1px solid $light_grey;
+            border: 1px solid $_bfbfbf;
             color: rgba(0, 0, 0, 0.87);
             border-radius: 0.4rem;
             box-shadow: 0 0 0 0 transparent inset;
@@ -613,7 +614,7 @@
       }
       .change_date_in_car_page {
         cursor: pointer;
-        color: $blue;
+        color: $_3fa6da;
       }
     }
     .owner_part {
@@ -670,7 +671,7 @@
       top: 45%;
       left: 1.6rem;
       p {
-        color: $blue;
+        color: $_3fa6da;
         font-size: 1.3rem;
         line-height: 1.3rem;
         position: relative;
@@ -681,8 +682,8 @@
           display: block;
           position: absolute;
           border: none;
-          border-left: 2px solid $blue;
-          border-bottom: 2px solid $blue;
+          border-left: 2px solid $_3fa6da;
+          border-bottom: 2px solid $_3fa6da;
           height: 0.5rem;
           width: 0.5rem;
           transform: rotate(45deg);
@@ -771,24 +772,24 @@
         .date_Input_Container {
           .input_container {
             input {
-              border: 1px solid $light_grey;
-              border-left: 1px solid $light_grey;
-              border-right: 0px solid $light_grey;
+              border: 1px solid $_bfbfbf;
+              border-left: 1px solid $_bfbfbf;
+              border-right: 0px solid $_bfbfbf;
               border-radius: 0.4rem;
               border-top-right-radius: 0px;
               border-bottom-right-radius: 0px;
               &.activeBorder {
-                border-color: $blue;
-                border-left: 1px solid $blue;
-                border-right: 1px solid $blue;
+                border-color: $_3fa6da;
+                border-left: 1px solid $_3fa6da;
+                border-right: 1px solid $_3fa6da;
                 border-bottom-right-radius: 0px;
                 border-bottom-left-radius: 0px;
               }
             }
             .exception_input {
-              border: 1px solid $light_grey;
-              border-left: 1px solid $light_grey;
-              border-right: 1px solid $light_grey;
+              border: 1px solid $_bfbfbf;
+              border-left: 1px solid $_bfbfbf;
+              border-right: 1px solid $_bfbfbf;
               border-radius: 0.4rem;
               border-top-left-radius: 0px;
               border-top-right-radius: 4px;
@@ -849,22 +850,22 @@
             font-size: 1.2rem;
           }
           input {
-            border-left: 1px solid $light_grey;
-            border-right: 0px solid $light_grey;
+            border-left: 1px solid $_bfbfbf;
+            border-right: 0px solid $_bfbfbf;
             border-radius: 0.4rem;
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
             &.activeBorder {
-              border-left: 1px solid $blue;
-              border-right: 1px solid $blue;
+              border-left: 1px solid $_3fa6da;
+              border-right: 1px solid $_3fa6da;
               border-bottom-right-radius: 0px;
               border-bottom-left-radius: 0px;
               box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
             }
           }
           .exception_input {
-            border-left: 1px solid $light_grey;
-            border-right: 1px solid $light_grey;
+            border-left: 1px solid $_bfbfbf;
+            border-right: 1px solid $_bfbfbf;
             border-radius: 0.4rem;
             border-top-left-radius: 0px;
             border-top-right-radius: 4px;
@@ -907,8 +908,8 @@
         padding-left: 0;
         padding-right: 0.9rem;
         &::before {
-          border-left: 2px solid $blue;
-          border-bottom: 2px solid $blue;
+          border-left: 2px solid $_3fa6da;
+          border-bottom: 2px solid $_3fa6da;
           height: 0.5rem;
           width: 0.5rem;
           transform: rotate(225deg);
@@ -1033,15 +1034,15 @@
             margin-right: 0.4rem;
             display: inline-block;
             width: auto;
-            color: $white;
+            color: $_fefefe;
             vertical-align: middle;
             padding: 0.4rem;
-            background-color: $dark_orange;
+            background-color: $_ec7f00;
             font-size: 1.4rem;
             line-height: 1.4rem;
           }
           .discount_price {
-            color: $dark_gray;
+            color: $_525252;
             display: inline-block;
             text-decoration: line-through;
             font-size: 1.8rem;
@@ -1091,7 +1092,7 @@
       .car_Tags {
         cursor: pointer;
         display: inline-block;
-        color: $blue;
+        color: $_3fa6da;
         border: none;
         padding: 0.2rem 2.5rem;
         text-indent: -14px;

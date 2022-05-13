@@ -5,7 +5,7 @@
   form {
     width: 100%;
     .error_message {
-      color: $Error_text_color;
+      color: $_d83030;
       font-size: 1.2rem;
     }
     .modal_content_confirm_delete {
@@ -18,14 +18,14 @@
       justify-content: center;
       align-items: center;
       .Blue_BTN {
-        border: 2px solid $blue;
+        border: 2px solid $_3fa6da;
         padding: 0.5rem 3rem;
         width: 10.3rem;
         margin: 0 1rem;
       }
       .cancel_btn {
         background-color: #fff;
-        color: $blue;
+        color: $_3fa6da;
       }
     }
   }

@@ -1,3 +1,4 @@
+@use "../variables" as var;
 @import "../colors";
 .contract_container {
   width: 190px;
@@ -5,8 +6,8 @@
     position: fixed;
     width: 100%;
     height: auto;
-    background-color: $white;
-    box-shadow: $box_shadow;
+    background-color: $_fefefe;
+    box-shadow: var.$boxShadow;
     bottom: 0;
     display: flex;
     justify-content: flex-start;

@@ -12,7 +12,7 @@
   line-height: 2;
 }
 .OTILI h2 {
-  color: $purple;
+  color: $_c06daa;
   font-weight: bold;
   text-align: center;
   font-size: 28px;
@@ -21,7 +21,7 @@
   font-weight: 500;
 }
 h2.diff_color {
-  color: $blue;
+  color: $_3fa6da;
 }
 .OTILI p {
   line-height: 2;
@@ -57,7 +57,7 @@ h2.diff_color {
   position: relative;
   padding: 15px;
   border-radius: 4px;
-  border: 1px solid $blue;
+  border: 1px solid $_3fa6da;
   margin-bottom: 60px;
 }
 .D1_Left div:nth-of-type(1) {
@@ -73,7 +73,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $blue;
+  border-color: $_3fa6da;
 }
 .D1_Left div:nth-of-type(1):after {
   content: " ";
@@ -83,7 +83,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $blue;
+  border-color: transparent transparent transparent $_3fa6da;
 }
 // ************div:nth-of-type(2)
 .D1_Left div:nth-of-type(2):before {
@@ -95,7 +95,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $blue;
+  border-color: $_3fa6da;
 }
 .D1_Left div:nth-of-type(2):after {
   content: " ";
@@ -105,7 +105,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $blue;
+  border-color: transparent transparent transparent $_3fa6da;
 }
 
 // ************div:nth-of-type(3)
@@ -118,7 +118,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $blue;
+  border-color: $_3fa6da;
 }
 .D1_Left div:nth-of-type(3):after {
   content: " ";
@@ -128,7 +128,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $blue;
+  border-color: transparent transparent transparent $_3fa6da;
 }
 
 // ************div:nth-of-type(4)
@@ -141,7 +141,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $blue;
+  border-color: $_3fa6da;
 }
 .D1_Left div:nth-of-type(4):after {
   content: " ";
@@ -151,7 +151,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $blue;
+  border-color: transparent transparent transparent $_3fa6da;
 }
 
 // ************div:nth-of-type(5)
@@ -164,7 +164,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $blue;
+  border-color: $_3fa6da;
 }
 .D1_Left div:nth-of-type(5):after {
   content: " ";
@@ -174,7 +174,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $blue;
+  border-color: transparent transparent transparent $_3fa6da;
 }
 
 // ************div:nth-of-type(6)
@@ -187,7 +187,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $blue;
+  border-color: $_3fa6da;
 }
 .D1_Left div:nth-of-type(6):after {
   content: " ";
@@ -197,7 +197,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent transparent transparent $blue;
+  border-color: transparent transparent transparent $_3fa6da;
 }
 
 // **********RIGHT
@@ -206,7 +206,7 @@ h2.diff_color {
   position: relative;
   padding: 15px;
   border-radius: 4px;
-  border: 1px solid $purple;
+  border: 1px solid $_c06daa;
   margin-bottom: 59px;
   margin-top: 15px;
 }
@@ -239,7 +239,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $purple;
+  border-color: $_c06daa;
 }
 .D1_Right div:nth-of-type(1):after {
   content: " ";
@@ -249,7 +249,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $purple transparent transparent;
+  border-color: transparent $_c06daa transparent transparent;
 }
 
 // ************div:nth-of-type(2)
@@ -263,7 +263,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $purple;
+  border-color: $_c06daa;
 }
 .D1_Right div:nth-of-type(2):after {
   content: " ";
@@ -273,7 +273,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $purple transparent transparent;
+  border-color: transparent $_c06daa transparent transparent;
 }
 
 // ************div:nth-of-type(3)
@@ -287,7 +287,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $purple;
+  border-color: $_c06daa;
 }
 .D1_Right div:nth-of-type(3):after {
   content: " ";
@@ -297,7 +297,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $purple transparent transparent;
+  border-color: transparent $_c06daa transparent transparent;
 }
 
 // ************div:nth-of-type(4)
@@ -311,7 +311,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $purple;
+  border-color: $_c06daa;
 }
 .D1_Right div:nth-of-type(4):after {
   content: " ";
@@ -321,7 +321,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $purple transparent transparent;
+  border-color: transparent $_c06daa transparent transparent;
 }
 
 // ************div:nth-of-type(5)
@@ -335,7 +335,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 6px;
   border-style: solid;
-  border-color: $purple;
+  border-color: $_c06daa;
 }
 .D1_Right div:nth-of-type(5):after {
   content: " ";
@@ -345,7 +345,7 @@ h2.diff_color {
   margin-top: -5px;
   border-width: 8px;
   border-style: solid;
-  border-color: transparent $purple transparent transparent;
+  border-color: transparent $_c06daa transparent transparent;
 }
 
 .OTOLI_MIDDLE_Dif {
@@ -393,7 +393,7 @@ h2.diff_color {
     right: 50%;
     margin: auto;
     margin-top: -5px;
-    border-color: $blue transparent transparent transparent !important;
+    border-color: $_3fa6da transparent transparent transparent !important;
   }
   .D1_Left div:last-child:after,
   .D1_Right div:last-child:after {
@@ -417,6 +417,6 @@ h2.diff_color {
     right: 50% !important;
     margin: auto;
     margin-top: -5px;
-    border-color: $purple transparent transparent transparent !important;
+    border-color: $_c06daa transparent transparent transparent !important;
   }
 }

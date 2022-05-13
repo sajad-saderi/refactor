@@ -10,17 +10,17 @@
     cursor: pointer;
     margin-top: 1.6rem;
     p {
-      color: $blue;
+      color: $_3fa6da;
       font-size: 1.4rem;
       display: inline-block;
-      border: 1px solid $blue;
+      border: 1px solid $_3fa6da;
       border-radius: 4px;
       padding-right: 1rem;
       svg {
         padding: 0.5rem;
         display: inline-block;
         vertical-align: middle;
-        background-color: rgba($blue, 0.07);
+        background-color: rgba($_3fa6da, 0.07);
         margin-right: 0.8rem;
         width: 2rem;
         border-radius: 4px 0 0 4px;
@@ -32,7 +32,7 @@
     margin-top: 1.6rem;
     max-width: 32rem;
     padding: 1.6rem;
-    border: 1px solid $light_grey;
+    border: 1px solid $_bfbfbf;
     border-radius: 4px;
     .DropDown_container,
     .text_input_container {
@@ -44,7 +44,7 @@
       margin-bottom: 1rem;
       .input_error_message {
         font-size: 1.2rem;
-        color: $Error_text_color;
+        color: $_d83030;
       }
       label {
         margin-bottom: 1rem;
@@ -73,7 +73,7 @@
         top: 3.2rem;
         left: 1rem;
         font-size: 2rem;
-        color: $almost_black;
+        color: $_313131;
       }
       input {
         text-indent: 5rem;
@@ -90,7 +90,7 @@
     .discount_item_container {
       display: block;
       .discount_item {
-        border: 1px solid $light_grey;
+        border: 1px solid $_bfbfbf;
         padding: 1.2rem;
         margin-top: 2rem;
         display: inline-block;
@@ -105,7 +105,7 @@
           display: inline-block;
           margin-left: 1rem;
           font-size: 1.2rem;
-          color: $almost_black;
+          color: $_313131;
           padding-right: 2rem;
           cursor: pointer;
           svg {

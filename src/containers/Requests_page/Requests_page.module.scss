@@ -1,3 +1,4 @@
+@use '../../styles/variables' as var;
 @import '../../styles/colors';
 @import '../../styles/units';
 
@@ -22,7 +23,7 @@
     display: inline-block;
     vertical-align: top;
     font-size: 1.4rem;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     border-radius: 4px;
     margin-top: 0;
     margin-left: 1rem;
@@ -64,14 +65,14 @@
       p {
         cursor: pointer;
         text-align: center;
-        color: $almost_black;
+        color: $_313131;
         font-size: 1.4rem;
         width: 50%;
         padding: 1rem 0;
       }
       .active {
-        color: $blue;
-        border-bottom: 2px solid $blue;
+        color: $_3fa6da;
+        border-bottom: 2px solid $_3fa6da;
       }
     }
     .active_tab_container {
@@ -125,17 +126,17 @@
       }
       /* Track */
       &::-webkit-scrollbar-track {
-        background: $scrollbar_track;
+        background: $_f1f1f1;
       }
 
       /* Handle */
       &::-webkit-scrollbar-thumb {
-        background: $scrollbar_thumb;
+        background: $_c6c6c6;
       }
 
       /* Handle on hover */
       &::-webkit-scrollbar-thumb:hover {
-        background: $scrollbar_thumb_hovor;
+        background: $_555555;
       }
     }
     .show_filter {

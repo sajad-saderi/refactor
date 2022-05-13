@@ -1,3 +1,4 @@
+@use "../../../../styles/variables" as var;
 @import "../../../../styles/colors";
 
 .Profile_car_container {
@@ -11,7 +12,7 @@
     border-radius: 4px;
     display: inline-block;
     vertical-align: top;
-    box-shadow: $box_shadow;
+    box-shadow: var.$boxShadow;
     direction: rtl;
     .carProfileServiceModal {
       width: 100%;
@@ -41,7 +42,7 @@
 cursor: pointer;
         } 
         .error_message {
-          color: $Error_text_color;
+          color: $_d83030;
           font-size: 1.2rem;
         }
         .modal_content_confirm_delete {
@@ -56,14 +57,14 @@ cursor: pointer;
           justify-content: center;
           align-items: center;
           .Blue_BTN {
-            border: 2px solid $blue;
+            border: 2px solid $_3fa6da;
             padding: 0.5rem 3rem;
             width: 10.3rem;
             margin: 0 1rem;
           }
           .cancel_btn {
             background-color: #fff;
-            color: $blue;
+            color: $_3fa6da;
           }
         }
       }
@@ -112,7 +113,7 @@ cursor: pointer;
           font-size: 1.2rem;
           background-color: #fff;
           span {
-            color: $blue;
+            color: $_3fa6da;
           }
         }
       }
@@ -148,7 +149,7 @@ cursor: pointer;
         cursor: pointer;
         font-weight: 500;
         font-size: 1.2rem;
-        color: $blue;
+        color: $_3fa6da;
       }
       .set_car_timing_btn {
         background: #038ed21c;

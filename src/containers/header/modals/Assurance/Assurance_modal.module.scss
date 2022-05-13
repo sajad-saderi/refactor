@@ -17,17 +17,17 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-      background: $scrollbar_track;
+      background: $_f1f1f1;
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: $scrollbar_thumb;
+      background: $_c6c6c6;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background: $scrollbar_thumb_hovor;
+      background: $_555555;
     }
     p {
       font-size: 1.4rem;

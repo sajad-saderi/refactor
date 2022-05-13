@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 @import './modals/modal.module.scss';
 .header {
-  background-color: $black;
+  background-color: $_1f1f1f;
   padding: 1.2rem 0;
   height: 4.8rem;
   font-family: dana_medium;
@@ -73,7 +73,7 @@
     ul {
       li {
         display: inline-block;
-        color: $white;
+        color: $_fefefe;
         font-size: 1.4rem;
         position: relative;
         line-height: 2;
@@ -128,7 +128,7 @@
             span,
             a {
               font-size: 1.1rem;
-              color: $almost_black;
+              color: $_313131;
               display: block;
               line-height: 1;
               border-bottom: 1px solid rgb(254, 254, 254);
@@ -143,7 +143,7 @@
         span {
           font-weight: 500;
           font-size: 1.4rem;
-          color: $white;
+          color: $_fefefe;
           padding-right: 1.6rem;
           display: block;
         }

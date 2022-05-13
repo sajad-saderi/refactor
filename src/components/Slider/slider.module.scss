@@ -9,8 +9,8 @@
   direction: ltr;
 }
 .border-gap {
-  border-left: 1.6rem solid $white;
-  border-right: 1.6rem solid $white;
+  border-left: 1.6rem solid $_fefefe;
+  border-right: 1.6rem solid $_fefefe;
 }
 .carousel_container .carousel_FrontImage {
   transition: 0.5s all;
@@ -58,7 +58,7 @@ img.TranslateLeft {
   width: 8px;
   height: 8px;
   border-radius: 50px;
-  background: $dark_blue;
+  background: $_116b98;
   margin: 6px;
   display: inline-block;
   vertical-align: middle;
@@ -68,7 +68,7 @@ img.TranslateLeft {
   width: 8px;
   height: 8px;
   border-radius: 50px;
-  background: $gray;
+  background: $_808080;
   margin: 6px;
   display: inline-block;
   vertical-align: middle;

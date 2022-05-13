@@ -36,7 +36,7 @@
       }
     }
     .error_message {
-      color: $Error_text_color;
+      color: $_d83030;
       font-size: 1.2rem;
     }
   }
@@ -46,10 +46,10 @@
     margin-top: 2rem;
   }
   .disable_BTN {
-    color: $light_grey;
+    color: $_bfbfbf;
     font-family: inherit;
-    background-color: $ultimate_gray;
+    background-color: $_f4f4f4;
     cursor: not-allowed;
-    border: 1px solid $light_grey;
+    border: 1px solid $_bfbfbf;
   }
 }

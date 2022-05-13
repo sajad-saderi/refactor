@@ -29,7 +29,7 @@
         bottom: 0;
         z-index: 1;
         line-height: 1.8;
-        background-color: $orange;
+        background-color: $_ed9026;
         display: inline-block;
         color: #fff;
         padding: 0px 6px;
@@ -115,17 +115,17 @@
           display: inline-block;
           margin-left: 0.8rem;
           .tags {
-            color: $dark_gray;
-            background: $ultimate_gray;
+            color: $_525252;
+            background: $_f4f4f4;
             padding: 0.2rem 0.4rem !important;
             border-radius: 5px;
             font-size: 1.1rem;
-            border: 1px solid $lighter_grey;
+            border: 1px solid $_e5e5e5;
           }
           .location_tag {
-            background: $ultimate_gray;
-            color: $almost_black;
-            border-color: $light_blue;
+            background: $_f4f4f4;
+            color: $_313131;
+            border-color: $_9bd4f1;
             font-weight: 500;
             img {
               width: 1rem;

@@ -29,7 +29,7 @@
       padding: 0.5rem;
       font-size: 1.4rem;
       background: #ffffff;
-      border: 1px solid $light_grey;
+      border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
       box-shadow: 0 0 0 0 transparent inset;
@@ -53,7 +53,7 @@
       top: 1.2rem;
       width: 2rem;
       height: 2rem;
-      border: 1px solid $light_grey;
+      border: 1px solid $_bfbfbf;
       border-radius: 4px;
       left: 5rem;
     }
@@ -106,7 +106,7 @@
         font-size: 1.3rem;
         background: #fff;
         border: none;
-        border: 1px solid $light_grey;
+        border: 1px solid $_bfbfbf;
         border-radius: 25px;
         color: rgba(0, 0, 0, 0.87);
         box-shadow: 0 0 0 0 transparent inset;
@@ -151,17 +151,17 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-      background: $scrollbar_track;
+      background: $_f1f1f1;
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: $scrollbar_thumb;
+      background: $_c6c6c6;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background: $scrollbar_thumb_hovor;
+      background: $_555555;
     }
   }
 }

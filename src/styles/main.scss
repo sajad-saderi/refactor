@@ -1,3 +1,4 @@
+@use './variables' as var;
 @import './units';
 @import './colors';
 @import './font';
@@ -92,7 +93,7 @@ video {
 	font-weight: normal;
 	vertical-align: baseline;
 	box-sizing: border-box;
-	color: $almost_black;
+	color: $_313131;
 }
 footer,
 header {
@@ -132,7 +133,7 @@ section {
 }
 body {
 	line-height: 1;
-	background-color: $white;
+	background-color: $_fefefe;
 }
 ol,
 ul {
@@ -156,7 +157,7 @@ table {
 
 // a
 a {
-	color: $white;
+	color: $_fefefe;
 	text-decoration: none;
 }
 
@@ -186,19 +187,19 @@ input {
 .Blue_BTN {
 	color: #fff;
 	font-family: inherit;
-	background-color: $blue;
+	background-color: $_3fa6da;
 	line-height: 1.6;
 	font-size: 14px;
 	font-weight: 500;
 	border-radius: 4px;
 	border: none;
 	padding: 0.8rem 2.1rem;
-	border: 1px solid $blue;
+	border: 1px solid $_3fa6da;
 	transition: 0.25s all;
 	cursor: pointer;
 	text-transform: capitalize;
 	&:hover {
-		background-color: $link_hover;
+		background-color: $_1e7cab;
 	}
 	&:focus {
 		outline: none;
@@ -207,9 +208,9 @@ input {
 
 // .Blue_BTN {
 //   &:disabled {
-//     background-color: $light_grey;
-//     border: 1px solid $gray;
-//     color: $gray;
+//     background-color: $_bfbfbf;
+//     border: 1px solid $_808080;
+//     color: $_808080;
 //     cursor: not-allowed;
 //   }
 // }
@@ -241,7 +242,7 @@ input {
 }
 // CONFIRM and CANCEL
 .confirm {
-	color: $blue;
+	color: $_3fa6da;
 	font-weight: bold;
 	cursor: pointer;
 	&::selection {
@@ -249,7 +250,7 @@ input {
 	}
 }
 .cancel {
-	color: $almost_black;
+	color: $_313131;
 	cursor: pointer;
 	&::selection {
 		background-color: transparent;
@@ -263,14 +264,14 @@ input {
 }
 
 .Error_message_text {
-	color: $Error_text_color;
+	color: $_d83030;
 	font-weight: 500;
 	line-height: 2;
 	font-size: 1.2rem;
 }
 
 .second_part_container {
-	box-shadow: $box_shadow;
+	box-shadow: var.$boxShadow;
 	padding: 0 !important;
 	@media screen and(max-width:1007px) {
 		box-shadow: none;
@@ -289,7 +290,7 @@ input {
 			font-size: 1.2rem;
 			margin-bottom: 1rem;
 			text-align: center;
-			color: $almost_black;
+			color: $_313131;
 		}
 		width: 23rem;
 		margin: auto;
@@ -343,7 +344,7 @@ input {
 			margin-bottom: 2.4rem;
 			text-align: center;
 			a {
-				color: $blue;
+				color: $_3fa6da;
 				font-size: 1.4rem;
 				display: block;
 			}
@@ -352,8 +353,8 @@ input {
 				padding: 1.1rem 3.1rem;
 				color: #fff;
 				margin-bottom: 1rem;
-				background: $purple;
-				border: 1px solid $purple;
+				background: $_c06daa;
+				border: 1px solid $_c06daa;
 			}
 			.call_us {
 				text-align: center;
@@ -461,7 +462,7 @@ input {
 }
 
 .Error_color {
-	color: $Error_text_color;
+	color: $_d83030;
 }
 
 // Responsive
@@ -522,7 +523,7 @@ input {
 		font-size: 1.4rem;
 		line-height: 1.8;
 		a {
-			color: $blue;
+			color: $_3fa6da;
 		}
 	}
 }
@@ -546,7 +547,7 @@ input {
 		font-weight: 500;
 		font-size: 1.4rem;
 		a {
-			color: $blue;
+			color: $_3fa6da;
 		}
 	}
 }
@@ -698,9 +699,9 @@ input {
 	padding: 0.6rem;
 	font-size: 1.4rem;
 	line-height: 1.4rem;
-	background-color: $ultimate_gray;
-	color: $dark_gray;
-	border: 1px solid $lighter_grey;
+	background-color: $_f4f4f4;
+	color: $_525252;
+	border: 1px solid $_e5e5e5;
 	border-radius: 5px;
 	display: inline-block;
 }
@@ -722,7 +723,7 @@ input {
 }
 
 .dark_gray {
-	color: $dark_gray;
+	color: $_525252;
 }
 
 .weight_500 {

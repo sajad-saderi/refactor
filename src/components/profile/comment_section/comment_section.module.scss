@@ -8,13 +8,13 @@
     width: 100%;
   }
   .tab_section {
-    border-bottom: 1px solid $light_grey;
+    border-bottom: 1px solid $_bfbfbf;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     div {
       font-size: 1.4rem;
-      color: $almost_black;
+      color: $_313131;
       line-height: 4rem;
       padding-left: 1rem;
       cursor: pointer;
@@ -23,7 +23,7 @@
       }
     }
     .active {
-      border-bottom: 2px solid $dark_gray;
+      border-bottom: 2px solid $_525252;
       font-weight: 600;
       margin-bottom: -1px;
     }
@@ -42,9 +42,9 @@
         font-size: 1.6rem;
         line-height: 1.6rem;
         font-weight: 500;
-        color: $dark_blue;
+        color: $_116b98;
         .sum_rent {
-          color: $gray;
+          color: $_808080;
           font-weight: normal;
         }
       }

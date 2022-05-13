@@ -15,7 +15,7 @@ footer {
     }
     svg {
       z-index: 9;
-      background: $blue;
+      background: $_3fa6da;
       position: fixed;
       left: 5rem;
       bottom: 6rem;
@@ -46,7 +46,7 @@ footer {
           transition: 0.25s all;
           line-height: 2;
           font-size: 1.4rem;
-          color: $blue;
+          color: $_3fa6da;
           margin-bottom: 0.5rem;
           display: inline-block;
           &:hover {
@@ -74,7 +74,7 @@ footer {
         }
       }
       a {
-        color: $blue;
+        color: $_3fa6da;
         font-size: 1.4rem;
         font-weight: 500;
       }

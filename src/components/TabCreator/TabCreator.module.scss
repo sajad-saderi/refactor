@@ -39,7 +39,7 @@
     }
     .active_tab {
       transition: 0.2s all;
-      background: $blue;
+      background: $_3fa6da;
       color: #fff;
     }
     .rotateIcon {
@@ -73,7 +73,7 @@
           font-weight: 400;
           font-size: 1.4rem;
           display: inline-block;
-          color: $blue;
+          color: $_3fa6da;
         }
         &:hover {
           list-style-type: disc;

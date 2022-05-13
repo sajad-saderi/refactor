@@ -21,7 +21,7 @@
         font-family: 'dana_medium';
         vertical-align: middle;
         font-size: 2.4rem;
-        color: $green;
+        color: $_528751;
         line-height: 1.6rem;
         margin: 0;
       }
@@ -31,7 +31,7 @@
       text-align: center;
       p {
         display: block;
-        color: $dark_gray;
+        color: $_525252;
         font-size: 1.6rem;
         line-height: 1.4rem;
       }
@@ -41,7 +41,7 @@
       align-items: flex-start;
       justify-content: space-between;
       margin-top: 4.8rem;
-      border-bottom: 1px solid $ultimate_gray;
+      border-bottom: 1px solid $_f4f4f4;
       padding-bottom: 2.4rem;
       .reserve_information {
         text-align: right;
@@ -52,7 +52,7 @@
           }
           p {
             display: inline-block;
-            color: $almost_black;
+            color: $_313131;
             font-family: 'dana_medium';
             font-size: 16px;
             line-height: 14px;
@@ -71,7 +71,7 @@
             span {
               font-size: 16px;
               line-height: 14px;
-              color: $almost_black;
+              color: $_313131;
             }
           }
         }
@@ -121,7 +121,7 @@
         }
         p {
           display: inline-block;
-          color: $almost_black;
+          color: $_313131;
           font-family: 'dana_medium';
           font-size: 16px;
           line-height: 14px;
@@ -145,7 +145,7 @@
         }
         p {
           display: inline-block;
-          color: $almost_black;
+          color: $_313131;
           font-family: 'dana_medium';
           font-size: 16px;
           line-height: 14px;
@@ -174,7 +174,7 @@
         }
         p {
           display: inline-block;
-          color: $almost_black;
+          color: $_313131;
           font-family: 'dana_medium';
           font-size: 16px;
           line-height: 14px;
@@ -208,13 +208,12 @@
     // border-radius: 4px;
     // background: #fff;
     // padding: 1.6rem;
-    // box-shadow: $box-shadow;
   }
   .loading_text {
     text-align: center;
     font-weight: 500;
     font-size: 1.6rem;
-    color: $blue;
+    color: $_3fa6da;
   }
 }
 
