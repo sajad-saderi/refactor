@@ -3,7 +3,7 @@
 @import '../units';
 
 .FAQ_Page {
-  background-color: #fff;
+  background-color: $_ffffff;
   box-shadow: var.$boxShadow;
   padding: 1.6rem;
   border-radius: 4px;
@@ -15,8 +15,8 @@
   .FQ_WRAPPER {
     margin-bottom: 50px;
     border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #fff;
+    border: 1px solid $_cccccc;
+    background: $_ffffff;
     h2 {
       font-size: 2rem;
       padding: 15px;

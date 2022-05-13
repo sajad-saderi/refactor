@@ -18,7 +18,7 @@
   background-color: $_fefefe;
   .carInfo_container {
     box-shadow: var.$boxShadow;
-    background: #fff;
+    background: $_ffffff;
     padding: 2.4rem;
     width: 63%;
     display: inline-block;
@@ -31,7 +31,7 @@
     .price_place_holder {
       display: none;
       // position: absolute;
-      background: #fff;
+      background: $_ffffff;
       top: 0rem;
       text-align: center;
       left: 1rem;
@@ -242,7 +242,7 @@
               border-bottom-left-radius: 0px;
               padding: 0.94rem;
               font-size: 1.4rem;
-              background: #fff;
+              background: $_ffffff;
               color: rgba(0, 0, 0, 0.87);
               box-shadow: 0 0 0 0 transparent inset;
               &.activeBorder {
@@ -289,7 +289,7 @@
               -webkit-appearance: none;
               line-height: 1;
               font-size: 1.4rem;
-              background: #fff;
+              background: $_ffffff;
               border: 1px solid $_bfbfbf;
               color: rgba(0, 0, 0, 0.87);
               border-radius: 0.4rem;
@@ -421,7 +421,7 @@
   .onwnerInfo_container {
     display: inline-block;
     width: 34%;
-    background: #fff;
+    background: $_ffffff;
     border-radius: 4px;
     padding: 2.4rem;
     box-shadow: var.$boxShadow;
@@ -517,7 +517,7 @@
             border-bottom-left-radius: 0px;
             padding: 0.94rem;
             font-size: 1.4rem;
-            background: #fff;
+            background: $_ffffff;
             color: rgba(0, 0, 0, 0.87);
             box-shadow: 0 0 0 0 transparent inset;
             &.activeBorder {
@@ -565,7 +565,7 @@
             -webkit-appearance: none;
             line-height: 1;
             font-size: 1.4rem;
-            background: #fff;
+            background: $_ffffff;
             border: 1px solid $_bfbfbf;
             color: rgba(0, 0, 0, 0.87);
             border-radius: 0.4rem;
@@ -946,13 +946,13 @@
 @media screen and(max-width:720px) {
   .Top_Rent_date {
     display: block;
-    background: #a3678b;
+    background: $_a3678b;
     text-align: center;
     padding: 0.5rem 0;
     p {
       font-weight: 500;
       font-size: 1.4rem;
-      color: #fff;
+      color: $_ffffff;
       line-height: normal;
     }
   }
@@ -1021,7 +1021,7 @@
       .avg_discounted_price_per_day {
         display: block;
         // float: left;
-        background: #fff;
+        background: $_ffffff;
         // top: 20%;
         text-align: center;
         // left: 0;
@@ -1167,7 +1167,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #fff;
+        background: $_ffffff;
         .localClass {
           max-width: 18rem;
           margin: 0;

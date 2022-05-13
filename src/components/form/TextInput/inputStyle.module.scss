@@ -24,7 +24,7 @@
       line-height: 1.5;
       padding: 1rem;
       font-size: 1.4em;
-      background: #ffffff;
+      background: $_ffffff;
       border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
       border-radius: 0.4rem;
@@ -34,7 +34,7 @@
       //   background: rgba(216, 48, 48, 0.1) !important;
       // }
       &:focus {
-        background-color: #ffffff;
+        background-color: $_ffffff;
       }
     }
     .change_direction_onfocus {
@@ -68,8 +68,8 @@
       white-space: nowrap;
     }
     .inputError_forTail {
-      border-color: #d83030;
-      color: #d83030;
+      border-color: $_d83030;
+      color: $_d83030;
     }
   }
   .input_error_message {

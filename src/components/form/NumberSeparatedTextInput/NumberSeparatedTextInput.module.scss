@@ -29,15 +29,15 @@
       text-align: left;
       letter-spacing: 24px;
       font-size: 2em;
-      background: #ffffff;
+      background: $_ffffff;
       border: none;
-      color: #737373;
+      color: $_737373;
       border-radius: 0;
       box-shadow: 0 0 0 0 transparent inset;
       -moz-appearance: textfield;
 
       &:focus {
-        background-color: #ffffff;
+        background-color: $_ffffff;
       }
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
@@ -66,7 +66,7 @@
     }
     .span_error {
       span {
-        border-bottom: 1px solid #d83030 !important;
+        border-bottom: 1px solid $_d83030 !important;
       }
     }
   }

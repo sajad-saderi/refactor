@@ -178,14 +178,14 @@ input {
 }
 
 .input_Error {
-	border: 1px solid #e0b4b4 !important;
+	border: 1px solid $_e0b4b4 !important;
 	background: rgb(255, 246, 246) !important;
 }
 
 // Button
 
 .Blue_BTN {
-	color: #fff;
+	color: $_ffffff;
 	font-family: inherit;
 	background-color: $_3fa6da;
 	line-height: 1.6;
@@ -216,7 +216,7 @@ input {
 // }
 // Load more
 .Load_more_car {
-	border: 1px solid #dadada;
+	border: 1px solid $_dadada;
 	position: relative;
 	width: 25rem;
 	color: rgba(0, 0, 0, 0.7);
@@ -259,7 +259,7 @@ input {
 
 // ERROR
 .inputError {
-	border: 1px solid #d83030 !important;
+	border: 1px solid $_d83030 !important;
 	background: rgba(216, 48, 48, 0.1) !important;
 }
 
@@ -297,7 +297,7 @@ input {
 		display: block;
 		padding: 1rem;
 		margin-top: -3rem;
-		background: #fff;
+		background: $_ffffff;
 		text-align: center;
 		border-top-left-radius: 30px;
 		border-top-right-radius: 30px;
@@ -307,7 +307,7 @@ input {
 		padding-left: 1.6rem;
 	}
 	.second_container {
-		background-color: #fff;
+		background-color: $_ffffff;
 		// margin-top: -6.3rem;
 		padding-top: 3rem;
 		padding-bottom: 1.5rem;
@@ -351,7 +351,7 @@ input {
 			.add_car_custom {
 				display: inline-block;
 				padding: 1.1rem 3.1rem;
-				color: #fff;
+				color: $_ffffff;
 				margin-bottom: 1rem;
 				background: $_c06daa;
 				border: 1px solid $_c06daa;
@@ -401,7 +401,7 @@ input {
 		cursor: pointer;
 		font-weight: 500;
 		font-size: 1.4rem;
-		color: #fff;
+		color: $_ffffff;
 		img {
 			border-radius: 1rem;
 			width: 3.6rem;
@@ -415,7 +415,7 @@ input {
 		border: 1px solid rgba(255, 255, 255, 0.5);
 		font-weight: 500;
 		font-size: 1.1rem;
-		color: #fff;
+		color: $_ffffff;
 		border-radius: 2rem;
 		padding: 0.3rem 0.5rem 0.3rem 1rem;
 		svg {
@@ -431,7 +431,7 @@ input {
 		justify-content: space-between;
 		width: 100%;
 		z-index: 999;
-		background: #313131;
+		background: $_313131;
 	}
 }
 
@@ -472,7 +472,7 @@ input {
 
 [dir='ltr']
 	.Calendar__day.-weekend:not(.-selected):not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween) {
-	color: #000;
+	color: $_000000;
 }
 
 .responsive {
@@ -560,7 +560,7 @@ input {
 
 .Gradient {
 	transition: 0.25s all;
-	background: linear-gradient(90deg, #f1f1f1, #f1f1f1, #e9e9e9, #f1f1f1);
+	background: linear-gradient(90deg, $_f1f1f1, $_f1f1f1, $_e9e9e9, $_f1f1f1);
 	background-size: 200% 200%;
 	animation: Gradient 2s ease infinite;
 }

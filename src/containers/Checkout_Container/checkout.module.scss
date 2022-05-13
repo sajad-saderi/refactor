@@ -18,7 +18,7 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: var.$boxShadow;
-      background: #fff;
+      background: $_ffffff;
       padding: 1.6rem;
       border-radius: 4px;
       margin-bottom: 1.6rem;
@@ -32,7 +32,7 @@
     }
     .car_info {
       box-shadow: var.$boxShadow;
-      background: #fff;
+      background: $_ffffff;
       padding: 1.6rem;
       font-size: 1.4rem;
       border-radius: 4px;
@@ -106,7 +106,7 @@
     }
     .insurance {
       box-shadow: var.$boxShadow;
-      background: #fff;
+      background: $_ffffff;
       padding: 1.6rem;
       font-size: 1.4rem;
       border-radius: 4px;
@@ -125,7 +125,7 @@
   .payment_info_container {
     display: inline-block;
     width: 34%;
-    background: #fff;
+    background: $_ffffff;
     border-radius: 4px;
     padding: 1.6rem;
     box-shadow: var.$boxShadow;
@@ -200,7 +200,7 @@
           }
         }
         .coupan_BTN {
-          background: #fff;
+          background: $_ffffff;
           border: 1px solid $_3fa6da;
           color: $_3fa6da;
           padding: 1rem 2.1rem;
@@ -343,7 +343,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #fff;
+        background: $_ffffff;
         .localClass {
           max-width: 18rem;
           margin: 0;

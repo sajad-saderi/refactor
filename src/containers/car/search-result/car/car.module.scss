@@ -4,7 +4,7 @@
   .carCart {
     width: 32%;
     height: 282px;
-    background: #fff;
+    background: $_ffffff;
     border-radius: 4px;
     display: inline-block;
     vertical-align: top;
@@ -31,7 +31,7 @@
         line-height: 1.8;
         background-color: $_ed9026;
         display: inline-block;
-        color: #fff;
+        color: $_ffffff;
         padding: 0px 6px;
         border-radius: 0px 3px 0px 0px;
         font-size: 1.3rem;
@@ -42,7 +42,7 @@
         font-size: 1.3rem;
         z-index: 1;
         line-height: 1.8;
-        background-color: #2cb8c2;
+        background-color: $_2cb8c2;
         display: inline-block;
         color: white;
         padding: 0px 10px;
@@ -52,8 +52,8 @@
       .read_more {
         display: none;
         top: 43%;
-        background-color: #f7f7f7;
-        color: #2a2a2a;
+        background-color: $_f7f7f7;
+        color: $_2a2a2a;
         font-size: 1rem;
         padding: 0.7rem 0;
         border-radius: 20px;

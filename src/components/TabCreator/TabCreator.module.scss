@@ -24,7 +24,7 @@
       position: relative;
       width: 15rem;
       padding: 0.8rem 0px;
-      border: 1px solid #ccc;
+      border: 1px solid $_cccccc;
       border-radius: 0.4rem;
       text-align: center;
       display: inline-block;
@@ -40,7 +40,7 @@
     .active_tab {
       transition: 0.2s all;
       background: $_3fa6da;
-      color: #fff;
+      color: $_ffffff;
     }
     .rotateIcon {
       transform: rotate(180deg);

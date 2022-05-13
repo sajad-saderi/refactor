@@ -8,7 +8,7 @@
     height: 300px;
     width: 49%;
     margin: 0 0 2% 0;
-    background: #fff;
+    background: $_ffffff;
     border-radius: 4px;
     display: inline-block;
     vertical-align: top;
@@ -35,7 +35,7 @@
       }
       .modalOutOfService {
         width: 300px;
-        background: #ffffff;
+        background: $_ffffff;
         padding: 16px;
         border-radius: 4px;
         .close{
@@ -63,7 +63,7 @@ cursor: pointer;
             margin: 0 1rem;
           }
           .cancel_btn {
-            background-color: #fff;
+            background-color: $_ffffff;
             color: $_3fa6da;
           }
         }
@@ -82,8 +82,8 @@ cursor: pointer;
       .read_more {
         display: none;
         top: 43%;
-        background-color: #f7f7f7;
-        color: #2a2a2a;
+        background-color: $_f7f7f7;
+        color: $_2a2a2a;
         font-size: 1rem;
         padding: 0.7rem 0;
         border-radius: 20px;
@@ -111,7 +111,7 @@ cursor: pointer;
         p {
           padding: 0.3rem;
           font-size: 1.2rem;
-          background-color: #fff;
+          background-color: $_ffffff;
           span {
             color: $_3fa6da;
           }
@@ -154,7 +154,7 @@ cursor: pointer;
       .set_car_timing_btn {
         background: #038ed21c;
         border-radius: 3px;
-        color: #007cb9;
+        color: $_007cb9;
         padding: 0.6rem 1rem;
         display: block;
         margin-top: -8px;

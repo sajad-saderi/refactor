@@ -84,11 +84,11 @@
         // }
         // img {
         //   width: 16rem;
-        //   background: #fafafa;
+        //   background: $_fafafa;
         // }
       }
     }
-    background: #fdfdfd;
+    background: $_fdfdfd;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
     padding-bottom: 1.6rem;
     .add_car_form_step_2 {
@@ -147,8 +147,8 @@
           height: 100%;
           display: inline-block;
           align-items: center;
-          color: #707070;
-          background-color: #fafafa;
+          color: $_707070;
+          background-color: $_fafafa;
           padding: 1.8rem 1rem;
           border-radius: 4px;
           white-space: nowrap;
@@ -215,7 +215,7 @@
           }
           label {
             margin-bottom: 0;
-            color: #707070;
+            color: $_707070;
             font-size: 1.3rem;
             font-weight: 400;
           }
@@ -286,7 +286,7 @@
             border-radius: 2rem;
             margin: 0 0 0 1rem;
             display: inline-block;
-            background: #fff;
+            background: $_ffffff;
             border: 1px solid $_3fa6da;
           }
           .checkmark {
@@ -345,7 +345,7 @@
           color: $_bfbfbf;
         }
         &:focus {
-          background: #fff;
+          background: $_ffffff;
           &::placeholder {
             color: transparent;
           }

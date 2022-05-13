@@ -6,7 +6,7 @@
   margin: 0 0rem 2rem 0;
   padding: 16px;
   text-align: right;
-  background: #fff;
+  background: $_ffffff;
   box-shadow: var.$boxShadow;
   .rent_status {
     border: none;
@@ -268,12 +268,12 @@
   .contract_download {
     cursor: pointer;
     margin-top: 24px;
-    background-color: #f4f4f4;
+    background-color: $_f4f4f4;
     display: inline-flex;
     padding: 6px;
     border-radius: 4px;
     span {
-      color: #3fa6da;
+      color: $_3fa6da;
       font-size: 14px;
     }
     .downloadContainer {
@@ -298,7 +298,7 @@
         width: 50%;
 
         border-radius: 10px;
-        background-color: #fff;
+        background-color: $_ffffff;
         padding: 24px;
         box-shadow: var.$boxShadow;
         transform: translateY(1000px);
@@ -354,10 +354,10 @@
       width: 14.5rem;
     }
     .disable_rate_btn {
-      color: #656565;
+      color: $_656565;
       margin-top: 2.4rem;
       font-family: inherit;
-      background-color: #e6e6e6;
+      background-color: $_e6e6e6;
     }
     .request_car_accept {
       margin-top: 2.4rem;

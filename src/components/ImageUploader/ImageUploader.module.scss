@@ -17,7 +17,7 @@
   height: 100%;
   top: 0px;
   right: 0;
-  background: #313131;
+  background: $_313131;
   z-index: 10;
   .reactEasyCrop_Container {
     z-index: 11;
@@ -82,7 +82,7 @@
   .uploadText {
     line-height: 2;
     text-align: justify;
-    color: #8f8f8f;
+    color: $_8f8f8f;
   }
   .vector_car_upload {
     max-width: 50%;
@@ -103,14 +103,14 @@
       img {
         width: 10rem;
         border-radius: 4px;
-        border: 1px solid #bdbdbd;
+        border: 1px solid $_bdbdbd;
       }
       svg {
         cursor: pointer;
         position: absolute;
         top: 0.6rem;
         right: 0.6rem;
-        background: #fff;
+        background: $_ffffff;
         border-radius: 4px;
         width: 2rem;
       }

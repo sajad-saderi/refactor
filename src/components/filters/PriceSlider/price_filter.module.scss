@@ -9,7 +9,7 @@
 		padding: 2px;
 		height: 100%;
 		width: 100%;
-		background-color: #ffffff;
+		background-color: $_ffffff;
 		opacity: 0.2;
 		cursor: not-allowed;
 		content: '';
@@ -30,7 +30,7 @@
 			padding: 2px;
 			height: 100%;
 			width: 100%;
-			background-color: #fcfcfc;
+			background-color: $_fcfcfc;
 			opacity: 0.3;
 			cursor: not-allowed;
 			content: '';
@@ -72,7 +72,7 @@
       right: -15px;
       .noUi-handle {
         border: 3px solid $_3fa6da;
-        background-color: #fff;
+        background-color: $_ffffff;
         box-shadow: none;
         border-radius: 50%;
         width: 24px;
@@ -98,11 +98,11 @@
     }
   }
 	.rc-slider-disabled .rc-slider-track {
-    background-color: #ccc;
-		border-color: #ccc;
+    background-color: $_cccccc;
+		border-color: $_cccccc;
 }
 .rc-slider-disabled .rc-slider-handle, .rc-slider-disabled .rc-slider-dot {
-	background-color: #ccc;
+	background-color: $_cccccc;
 }
   .rc-slider-handle {
     border: 3px solid $_3fa6da;
@@ -156,7 +156,7 @@
     &::before,
     &::after {
       position: absolute;
-      background-color: #fff;
+      background-color: $_ffffff;
       width: 1.8rem;
       height: 1.8rem;
       clear: both;

@@ -1,8 +1,8 @@
 @import "../../styles/colors";
 
 footer {
-  background-color: #fefefe;
-  border-top: solid 1px #e5e5e5;
+  background-color: $_fefefe;
+  border-top: solid 1px $_e5e5e5;
   &.hide_footer {
     display: none;
   }
@@ -23,7 +23,7 @@ footer {
       border-radius: 4px;
       path {
         &:first-child {
-          color: #fff;
+          color: $_ffffff;
         }
       }
     }
@@ -39,7 +39,7 @@ footer {
     }
     ul {
       // width: 50%;
-      // border-left: 1px solid #e8e8e8;
+      // border-left: 1px solid $_e8e8e8;
       li {
         display: block;
         a {
@@ -63,7 +63,7 @@ footer {
       align-items: center;
       h3 {
         width: 300px;
-        color: #929292;
+        color: $_929292;
         font-size: 1.4rem;
       }
       div {
@@ -81,7 +81,7 @@ footer {
       p {
         font-size: 1.4rem;
         width: 300px;
-        color: #929292;
+        color: $_929292;
         margin-top: 1.6rem;
         font-weight: 500;
       }
@@ -94,7 +94,7 @@ footer {
       a {
         padding: 16px;
         border-radius: 4px;
-        border: 1px solid #bfbfbf;
+        border: 1px solid $_bfbfbf;
         img {
           cursor: pointer;
           width: 90px;
@@ -143,8 +143,8 @@ footer[dir="ltr"] {
   }
   .plus_border {
     ul {
-      border-left: 0px solid #e8e8e8;
-      border-right: 1px solid #e8e8e8;
+      border-left: 0px solid $_e8e8e8;
+      border-right: 1px solid $_e8e8e8;
       li {
         a {
           &:hover {

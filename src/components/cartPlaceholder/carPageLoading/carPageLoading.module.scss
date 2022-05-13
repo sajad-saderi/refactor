@@ -13,7 +13,7 @@
   align-items: self-start;
   .carInfo_container {
     box-shadow: var.$boxShadow;
-    background: #fff;
+    background: $_ffffff;
     padding: 1.6rem;
     width: 63%;
     display: inline-block;
@@ -41,7 +41,7 @@
   .onwnerInfo_container {
     display: inline-block;
     width: 34%;
-    background: #fff;
+    background: $_ffffff;
     border-radius: 4px;
     padding: 1.6rem;
     box-shadow: var.$boxShadow;

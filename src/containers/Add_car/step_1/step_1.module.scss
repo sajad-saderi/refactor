@@ -5,7 +5,7 @@
   max-width: 68rem;
   .add_car_form_step_1 {
     margin-top: $padding_top;
-    background: #fdfdfd;
+    background: $_fdfdfd;
     border: 1px solid $_bfbfbf;
     font-size: 1.4rem;
     border-radius: 4px;
@@ -67,7 +67,7 @@
       }
     }
     .facilities_container {
-      background-color: #fafafa;
+      background-color: $_fafafa;
       margin-bottom: 3rem;
       position: relative;
       .check_box_container {
@@ -140,7 +140,7 @@
       margin-bottom: 0.8rem;
       display: block;
       span {
-        color: #bfbfbf;
+        color: $_bfbfbf;
       }
     }
     .add_car_Facilities_label {
@@ -295,7 +295,7 @@
       box-shadow: 0 0 0 0 transparent inset;
       box-sizing: border-box;
       &:focus {
-        background-color: #fff;
+        background-color: $_ffffff;
       }
     }
     .local_style {

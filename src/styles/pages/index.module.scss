@@ -11,7 +11,7 @@
     align-items: center;
     flex-direction: column;
     h1 {
-      color: #fff;
+      color: $_ffffff;
       font-size: 4rem;
       font-weight: 900;
       width: 100%;
@@ -25,7 +25,7 @@
       text-shadow: var.$textShadow;
       font-weight: 300;
       width: 100%;
-      color: #fff;
+      color: $_ffffff;
       font-size: 2.1rem;
       line-height: 1.5;
       margin: 0px 0px 26px;
@@ -33,7 +33,7 @@
     }
     .search_container {
       width: 100%;
-      background-color: #fff;
+      background-color: $_ffffff;
       border-radius: 0.4rem;
       padding: 3.2rem;
     }
@@ -41,7 +41,7 @@
 
   .third_container {
     box-shadow: var.$boxShadow;
-    background-color: #fff;
+    background-color: $_ffffff;
     margin-top: 3rem;
     padding: 1.5rem;
     .RentPage_Dynamic_links {
