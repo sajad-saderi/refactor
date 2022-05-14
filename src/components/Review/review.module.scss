@@ -1,4 +1,4 @@
-@import '../../styles/colors';
+@import "../../styles/colors";
 .review_article {
   .review_container_car_page {
     padding: 2.4rem;
@@ -18,7 +18,7 @@
       }
       span {
         display: inline-block;
-        font-family: danabold;
+        font-family: "danaXV", "dana";
         font-size: 1.4rem;
         line-height: 1.4rem;
       }
@@ -26,12 +26,12 @@
     .review_content {
       line-height: normal;
       font-size: 1.4rem;
-      font-family: 'iransans';
+      font-family: "iranSansXV", "iranSans";
       white-space: pre-line;
     }
   }
 }
-.review_article[dir='ltr'] {
+.review_article[dir="ltr"] {
   .review_container_car_page {
     h2 {
       img {

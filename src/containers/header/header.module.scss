@@ -4,7 +4,7 @@
   background-color: $_1f1f1f;
   padding: 1.2rem 0;
   height: 4.8rem;
-  font-family: dana_medium;
+  font-family: "danaXV", "dana";
   .header_container {
     display: flex;
     align-items: center;
@@ -150,7 +150,6 @@
         .user-name {
           padding: 0 !important;
           display: inline-block;
-          margin-bottom: -4px;
         }
         .login-out {
           padding: 0;
