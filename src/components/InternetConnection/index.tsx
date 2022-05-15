@@ -1,10 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import ReactDOM from "react-dom";
-import CountDown from "../countDown";
-import { IoMdRefresh } from "react-icons/io";
-import Icon from "../../../utils/Icon";
+import CountDown from "../countDown";  
 import toast_context from "../../context/Toast_context";
+import Icon from "../Icons";
 
 const InternetConnection = ({ language }) => {
   const [time, setTime] = useState(5);
@@ -38,21 +37,28 @@ const InternetConnection = ({ language }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className={`internet-connection ${router.locale === 'fa' ? '' : 'internetConnectionLtr'}`}>
-      <Icon name="warning" />
+    <div
+      className={`internet-connection ${
+        router.locale === "fa" ? "" : "internetConnectionLtr"
+      }`}
+    >
+      <Icon name="warning" width="20px" height="20px" color="" />
       <div>
         <p>{language.COMMON.youDeviceIsNotConnected}</p>
         {startTimer ? (
           <p className="automatic-retry">
             {language.COMMON.checkingConnectionLater}{" "}
-            {<CountDown time={time} Done={checkTheConnection} />} {language.COMMON.seconds}.
+            {<CountDown time={time} Done={checkTheConnection} />}{" "}
+            {language.COMMON.seconds}.
           </p>
         ) : (
-          <p className="automatic-retry">{language.COMMON.checkInternetConnection}...</p>
+          <p className="automatic-retry">
+            {language.COMMON.checkInternetConnection}...
+          </p>
         )}
       </div>
       <p className="retry" onClick={checkTheConnection}>
-        <IoMdRefresh size="20px" color="" />
+        <Icon name="refresh" width="20px" height="20px" color="#3fa6da" />
         {language.COMMON.checkConnection}
       </p>
     </div>,

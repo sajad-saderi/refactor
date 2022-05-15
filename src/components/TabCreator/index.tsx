@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
+
 // import "./TabCreator.scss";
 import Link from "next/link";
+import Icon from "../Icons";
 
 const TabCreator = (props: ITabCreator) => {
   const [active, setActive] = useState(null);
@@ -16,10 +17,10 @@ const TabCreator = (props: ITabCreator) => {
   const { data_arr } = props;
 
   return (
-    <div className='Tab_Accordion'>
+    <div className="Tab_Accordion">
       <div>
         <section>
-          <div className='Tab_father'>
+          <div className="Tab_father">
             {data_arr.map((item, i) => {
               return (
                 <span
@@ -27,11 +28,15 @@ const TabCreator = (props: ITabCreator) => {
                   onClick={() => TabClick(i)}
                   className={i === active ? "active_tab" : ""}
                 >
-                  {item.title}
-                  <IoIosArrowDown
-                    size='20px'
-                    className={active === i ? "rotateIcon" : ""}
-                  />
+                  <span className={active === i ? "rotateIcon" : ""}>
+                    {item.title}
+                    <Icon
+                      color="#7d7d7d"
+                      name="chevronUp"
+                      width="20px"
+                      height="20px"
+                    />
+                  </span>
                 </span>
               );
             })}
@@ -52,7 +57,7 @@ const TabCreator = (props: ITabCreator) => {
                   return (
                     <li key={index}>
                       {/* to change the route and don't give any 404 error before push */}
-                      <Link href='/rent/[id]' as={i.link} prefetch={false}>
+                      <Link href="/rent/[id]" as={i.link} prefetch={false}>
                         <a>{i.title}</a>
                       </Link>
                     </li>

@@ -1,5 +1,4 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import { IoIosCar, IoIosArrowDown } from "react-icons/io";
 // import "./step_1.scss";
 import dynamic from "next/dynamic";
 import net_CTX from "../../../context/internetConnectionCTX";
@@ -56,6 +55,7 @@ import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
 import ErrorHelper from "../../../../utils/error_helper";
 import { activeCities } from '../../../helpers/activeCities';
 import { dynamicString } from '../../../helpers/dynamicString';
+import Icon from "../../../components/Icons";
 // import { logPageView } from "../../../../utils/analytics";
 
 /**
@@ -1793,7 +1793,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
                   className="show_more_facilities_button"
                 >
                   {language.ADD_CAR_PAGE.facilitiesShowMore}
-                  <IoIosArrowDown size="20px" color="#4ba3ce" />
+                  <Icon name="chevronUp" color="#4ba3ce" width="20px" height="20px"/>
                 </p>
               </>
             )}

@@ -1,43 +1,38 @@
-import { useState, useEffect, useRef, useContext } from 'react';
-import filterContext from '../../context/filter-context';
-import dynamic from 'next/dynamic';
+import { useState, useEffect, useRef, useContext } from "react";
+import filterContext from "../../context/filter-context";
+import dynamic from "next/dynamic";
 
-const SearchResultList = dynamic(() => import('../car/search-result'));
+const SearchResultList = dynamic(() => import("../car/search-result"));
 
 // const Filters = dynamic(() => import("../Filters"));
-const Search = dynamic(() => import('../Search'));
-const Spinner = dynamic(() => import('../../components/Spinner'));
+const Search = dynamic(() => import("../Search"));
+const Spinner = dynamic(() => import("../../components/Spinner"));
 
 // import SearchResultList from "../car/search-result";
-import { REQUEST_GET_SEARCH_FOR_RENT } from '../../API';
-import { useRouter } from 'next/router';
-import moment from 'moment-jalaali';
+import { REQUEST_GET_SEARCH_FOR_RENT } from "../../API";
+import { useRouter } from "next/router";
+import moment from "moment-jalaali";
 // import "./Search_result.scss";
 // import Spinner from "../../components/Spinner";
-import {
-  IoMdClose,
-  IoIosArrowUp,
-  IoIosOptions,
-  IoIosArrowDown,
-} from 'react-icons/io';
-import UrlCreator from '../../../utils/UrlCreator';
-import UrlChecker from '../../../utils/UrlChecker';
-import search_query_builder from '../../../utils/search-query-builder';
-import net_CTX from '../../context/internetConnectionCTX';
-import languageCTX from '../../context/languageCTX';
-import AppStore from '../../context/app';
-import { twoWayDateConvertor } from '../../helpers/dateControler';
+import UrlCreator from "../../../utils/UrlCreator";
+import UrlChecker from "../../../utils/UrlChecker";
+import search_query_builder from "../../../utils/search-query-builder";
+import net_CTX from "../../context/internetConnectionCTX";
+import languageCTX from "../../context/languageCTX";
+import AppStore from "../../context/app";
+import { twoWayDateConvertor } from "../../helpers/dateControler";
 
-import Filters from '../Filters';
-import { dynamicString } from '../../helpers/dynamicString';
-import { numberChanger } from '../../../utils/numberChanger';
+import Filters from "../Filters";
+import { dynamicString } from "../../helpers/dynamicString";
+import { numberChanger } from "../../../utils/numberChanger";
+import Icon from "../../components/Icons";
 // import Search from "../Search";
 
 // let Glob_route = null;
 // default location is Tehran
 let staticRoute = null;
 let Location = 1;
-let location_n = '';
+let location_n = "";
 let Start_date = null;
 let End_date = null;
 // start page is 1
@@ -47,7 +42,7 @@ let price = {
   max: null,
 };
 // default price sort is form highest to lowest price  -> descending
-let o = '-price';
+let o = "-price";
 let loadMoreCar = false;
 let deliver_at_renters_place = 0;
 let with_driver = 0;
@@ -60,7 +55,7 @@ let car_id = null;
 let car_name = null;
 let result_key = null;
 let category_id = null;
-let category_name = '...';
+let category_name = "...";
 let inactive_the_category = null;
 
 // this object check which filter is activated
@@ -103,7 +98,7 @@ const Landing_page_container = ({
     car_id: false,
     category_id: false,
   });
-  const [carLocationName, setCarLocationName] = useState('');
+  const [carLocationName, setCarLocationName] = useState("");
   const new_search_ref = useRef(null);
   const router = useRouter();
   const netCTX = useContext(net_CTX);
@@ -118,7 +113,7 @@ const Landing_page_container = ({
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     // reset the data
     return () => {
       // Glob_route = null;
@@ -130,7 +125,7 @@ const Landing_page_container = ({
         min: null,
         max: null,
       };
-      o = '-price';
+      o = "-price";
       loadMoreCar = false;
       deliver_at_renters_place = 0;
       with_driver = 0;
@@ -155,7 +150,7 @@ const Landing_page_container = ({
         car_id: false,
         category_id: false,
       };
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -187,18 +182,18 @@ const Landing_page_container = ({
         max: url_checked.max_price,
       };
     }
-    if (router.query.deliver_at_renters_place === '1') {
+    if (router.query.deliver_at_renters_place === "1") {
       filtersChecker.deliver_at_renters_place = true;
     }
     deliver_at_renters_place = +url_checked.deliver_at_renters_place;
-    if (router.query.with_driver == '1' || url_checked.with_driver == '1') {
+    if (router.query.with_driver == "1" || url_checked.with_driver == "1") {
       filtersChecker.with_driver = true;
     }
     with_driver = +url_checked.with_driver;
 
     if (
-      router.query.without_driver == '1' ||
-      url_checked.without_driver == '1'
+      router.query.without_driver == "1" ||
+      url_checked.without_driver == "1"
     ) {
       filtersChecker.without_driver = true;
     }
@@ -209,29 +204,29 @@ const Landing_page_container = ({
     }
     category_id = +url_checked.category_id;
 
-    if (url_checked.body_style_id !== '') {
+    if (url_checked.body_style_id !== "") {
       filtersChecker.body_style_id = true;
       body_style_id = url_checked.body_style_id
         ? [url_checked.body_style_id]
         : [];
     }
-    if (url_checked.brand_id !== '') {
+    if (url_checked.brand_id !== "") {
       brand_id = +url_checked.brand_id;
       filtersChecker.brand_id = true;
     }
-    if (url_checked.car_id !== '') {
+    if (url_checked.car_id !== "") {
       car_id = +url_checked.car_id;
       filtersChecker.car_id = true;
     }
 
-    if (localStorage['start'] && localStorage['start'] !== 'null') {
-      let start = JSON.parse(localStorage['start']);
-      let end = JSON.parse(localStorage['end']);
+    if (localStorage["start"] && localStorage["start"] !== "null") {
+      let start = JSON.parse(localStorage["start"]);
+      let end = JSON.parse(localStorage["end"]);
       Start_date = `${start.year}/${start.month}/${start.day}`;
       End_date = `${end.year}/${end.month}/${end.day}`;
     } else {
       // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-      const Today = moment().format('jYYYY/jMM/jDD');
+      const Today = moment().format("jYYYY/jMM/jDD");
       Start_date = url_checked.start_date;
 
       End_date = url_checked.end_date;
@@ -246,7 +241,7 @@ const Landing_page_container = ({
     // setSliderRange([]);
     // const searchParamKey: any = Object.keys(landing_data.search_params);
     let activeParamsArray = Object.keys(landing_data.search_params);
-    if (activeParamsArray.includes('category_id') && !inactive_the_category) {
+    if (activeParamsArray.includes("category_id") && !inactive_the_category) {
       filtersChecker.category_id = true;
     }
 
@@ -316,7 +311,7 @@ const Landing_page_container = ({
           with_driver: filtersChecker.with_driver ? 1 : 0,
           without_driver: filtersChecker.without_driver ? 1 : 0,
           body_style_id: filtersChecker.body_style_id
-            ? body_style_id.join(',')
+            ? body_style_id.join(",")
             : null,
           brand_id: filtersChecker.brand_id ? brand_id : null,
           car_id: filtersChecker.car_id ? car_id : null,
@@ -412,24 +407,24 @@ const Landing_page_container = ({
       body_style_id = v.body_style_id.value;
       staticRoute.body_style_id =
         v.body_style_id.value.length === 0
-          ? ''
-          : v.body_style_id.value.join(',');
+          ? ""
+          : v.body_style_id.value.join(",");
     }
     if (v.brand_id) {
       filtersChecker.brand_id = v.brand_id.status;
       brand_id = v.brand_id.value;
       staticRoute.brand_name = v.brand_id.value
-        ? v.brand_id.name[activeLanguage].replace(/ +/g, '-')
-        : '';
-      staticRoute.brand_id = v.brand_id.value ? v.brand_id.value : '';
+        ? v.brand_id.name[activeLanguage].replace(/ +/g, "-")
+        : "";
+      staticRoute.brand_id = v.brand_id.value ? v.brand_id.value : "";
     }
     if (v.car_id) {
       filtersChecker.car_id = v.car_id.status;
       car_id = v.car_id.value;
       staticRoute.car_name = v.car_id.value
-        ? v.car_id.name[activeLanguage].replace(/ +/g, '-')
-        : '';
-      staticRoute.car_id = v.car_id.value ? v.car_id.value : '';
+        ? v.car_id.name[activeLanguage].replace(/ +/g, "-")
+        : "";
+      staticRoute.car_id = v.car_id.value ? v.car_id.value : "";
     }
     UrlCreator({
       query: staticRoute,
@@ -458,48 +453,48 @@ const Landing_page_container = ({
 
   const clearReset = (v) => {
     switch (v) {
-      case 'location':
+      case "location":
         setFilterReset((filterReset) => {
           return { ...filterReset, location: false };
         });
         break;
-      case 'price':
+      case "price":
         setFilterReset((filterReset) => {
           return { ...filterReset, price: false };
         });
         break;
-      case 'with_driver':
+      case "with_driver":
         setFilterReset((filterReset) => {
           return { ...filterReset, with_driver: false };
         });
         break;
-      case 'without_driver':
+      case "without_driver":
         setFilterReset((filterReset) => {
           return { ...filterReset, without_driver: false };
         });
         break;
-      case 'body_style_id':
+      case "body_style_id":
         setFilterReset((filterReset) => {
           return { ...filterReset, body_style_id: false };
         });
         break;
 
-      case 'deliver_at_renters_place':
+      case "deliver_at_renters_place":
         setFilterReset((filterReset) => {
           return { ...filterReset, deliver_at_renters_place: false };
         });
         break;
-      case 'brand_id':
+      case "brand_id":
         setFilterReset((filterReset) => {
           return { ...filterReset, brand_id: false, car_id: false };
         });
         break;
-      case 'car_id':
+      case "car_id":
         setFilterReset((filterReset) => {
           return { ...filterReset, car_id: false };
         });
         break;
-      case 'category_id':
+      case "category_id":
         setFilterReset((filterReset) => {
           return { ...filterReset, category_id: false };
         });
@@ -522,10 +517,10 @@ const Landing_page_container = ({
   };
 
   const searchIgniteByClickOnCardTags = (tag) => {
-    if (tag.type === 'location') {
+    if (tag.type === "location") {
       setCarLocationName(tag.name);
       appStore.setLocation({ value: tag.value, text: tag.name, en: tag.name });
-      clearReset('');
+      clearReset("");
       loadMoreCar = false;
       filtersChecker.Location = true;
       Location = tag.value;
@@ -591,7 +586,7 @@ const Landing_page_container = ({
     }
     if (params.body_style_id) {
       filtersChecker.body_style_id = true;
-      body_style_id = params.body_style_id.split(',');
+      body_style_id = params.body_style_id.split(",");
       body_style_names = body_style_names.concat(
         pre_loads.body_style_set.map((item) => {
           return item.name[activeLanguage];
@@ -632,23 +627,23 @@ const Landing_page_container = ({
 
   return (
     <article
-      className='search_result_page_container'
-      dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
+      className="search_result_page_container"
+      dir={activeLanguage === "fa" ? "rtl" : "ltr"}
     >
       {/* result count section */}
-      <div className='count_bar_container' ref={new_search_ref}>
+      <div className="count_bar_container" ref={new_search_ref}>
         <div
-          className='count_bar responsive'
+          className="count_bar responsive"
           onClick={() => {
             setShowSearch(!showSearch);
           }}
           style={{
-            height: showSearch ? 'auto' : '42px',
+            height: showSearch ? "auto" : "42px",
           }}
         >
           {result ? (
             result.length > 0 && !showSearch ? (
-              <p className='count_bar_count'>
+              <p className="count_bar_count">
                 {extra_info?.params?.start_date
                   ? numberChanger(
                       dynamicString(
@@ -670,11 +665,11 @@ const Landing_page_container = ({
               </p>
             ) : null
           ) : null}
-          <p className='change_search_btn HEAP_LandingPages_Btn_ChangeSearch'>
+          <p className="change_search_btn HEAP_LandingPages_Btn_ChangeSearch">
             {showSearch ? (
-              <span className='close_text_btn'>
+              <span className="close_text_btn">
                 {language.COMMON.close}
-                <IoMdClose size='20px' color='#dcdcdc' />
+                <Icon name="close" width="20px" height="20px" color="#dcdcdc" />
               </span>
             ) : (
               language.COMMON.changeSearch
@@ -684,11 +679,11 @@ const Landing_page_container = ({
         {/* search box */}
         <section
           className={[
-            'new_search_in_landing',
-            showSearch ? 'show_search_section' : null,
-          ].join(' ')}
+            "new_search_in_landing",
+            showSearch ? "show_search_section" : null,
+          ].join(" ")}
         >
-          <div className='responsive'>
+          <div className="responsive">
             <Search
               language={language}
               dynamic={true}
@@ -719,26 +714,23 @@ const Landing_page_container = ({
           </div>
         </section>
         {showSearch ? (
-          <IoIosArrowUp
-            className='Arrow_up_change_search'
-            color='#dcdcdc'
-            size='20px'
-            onClick={() => setShowSearch(false)}
-          />
+          <span onClick={() => setShowSearch(false)}>
+            <Icon name="chevronUp" width="20px" height="20px" color="#dcdcdc" />
+          </span>
         ) : null}
       </div>
       {content && (
-        <h1 className='responsive'>{landing_data.short_description}</h1>
+        <h1 className="responsive">{landing_data.short_description}</h1>
       )}
       {/* price sort part */}
-      <section className='responsive'>
-        <div className={`price_sort_container ${loading ? 'disableSort' : ''}`}>
+      <section className="responsive">
+        <div className={`price_sort_container ${loading ? "disableSort" : ""}`}>
           <span
-            className={o === '-price' ? 'active' : null}
+            className={o === "-price" ? "active" : null}
             onClick={() => {
-              o = '-price';
+              o = "-price";
               loadMoreCar = false;
-              staticRoute.price_order = '-price';
+              staticRoute.price_order = "-price";
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -750,11 +742,11 @@ const Landing_page_container = ({
             {language.COMMON.highToLow}
           </span>
           <span
-            className={o === 'price' ? 'active' : null}
+            className={o === "price" ? "active" : null}
             onClick={() => {
-              o = 'price';
+              o = "price";
               loadMoreCar = false;
-              staticRoute.price_order = 'price';
+              staticRoute.price_order = "price";
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -766,15 +758,15 @@ const Landing_page_container = ({
             {language.COMMON.lowToHigh}
           </span>
           {/* Trigger icon in mobile view */}
-          <p className='show_filter' onClick={() => setShow_filter(true)}>
+          <p className="show_filter" onClick={() => setShow_filter(true)}>
             {language.COMMON.advanceSearch}
-            <IoIosOptions size='14px' color='#656565' />
+            <Icon name="options" width="14px" height="14px" color="#656565" />
           </p>
         </div>
       </section>
       <section
         className={`responsive minimal_filters ${
-          loading ? 'disabledmMinimal_filters' : ''
+          loading ? "disabledmMinimal_filters" : ""
         }`}
       >
         {/* {filtersChecker.Location ? (
@@ -802,7 +794,7 @@ const Landing_page_container = ({
         ) : null} */}
         {filtersChecker.price ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, price: true };
@@ -820,7 +812,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
             {numberChanger(
               dynamicString(
                 [
@@ -839,7 +831,7 @@ const Landing_page_container = ({
         ) : null}
         {filtersChecker.deliver_at_renters_place ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, deliver_at_renters_place: true };
@@ -855,13 +847,14 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
             {language.COMMON.delivery}
           </p>
         ) : null}
         {filtersChecker.category_id ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               inactive_the_category = true;
               setFilterReset((filterReset) => {
@@ -877,14 +870,15 @@ const Landing_page_container = ({
               });
               initSearch();
             }}
-          >
-            <IoMdClose size='13px' color='#3fa6da' />
+          > 
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
             {category_name}
           </p>
         ) : null}
         {filtersChecker.with_driver ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, with_driver: true };
@@ -900,13 +894,14 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
             {language.COMMON.withDriver}
           </p>
         ) : null}
         {filtersChecker.without_driver ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, without_driver: true };
@@ -922,7 +917,8 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
             {language.COMMON.withoutDriver}
           </p>
         ) : null}
@@ -931,19 +927,19 @@ const Landing_page_container = ({
               return (
                 <p
                   key={i}
-                  className='minimal_filter_tags'
+                  className="minimal_filter_tags"
                   onClick={() => {
                     if (body_style_names.length === 1) {
                       setFilterReset((filterReset) => {
                         return { ...filterReset, body_style_id: true };
                       });
                       filtersChecker.body_style_id = false;
-                      staticRoute.body_style_id = '';
+                      staticRoute.body_style_id = "";
                     } else {
                       body_style_id = body_style_id.filter(
                         (_, index) => index !== i
                       );
-                      staticRoute.body_style_id = body_style_id.join(',');
+                      staticRoute.body_style_id = body_style_id.join(",");
                     }
                     loadMoreCar = false;
                     UrlCreator({
@@ -953,8 +949,9 @@ const Landing_page_container = ({
                     });
                     initSearch();
                   }}
-                >
-                  <IoMdClose size='13px' color='#3fa6da' />
+                > 
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
                   {/* {language.minimal_filters_body_style} */}
                   {name[activeLanguage]}
                 </p>
@@ -963,7 +960,7 @@ const Landing_page_container = ({
           : null}
         {!car_name && brand_name ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, brand_id: true };
@@ -972,7 +969,7 @@ const Landing_page_container = ({
               filtersChecker.brand_id = false;
               brand_name = null;
               filtersChecker.car_id = false;
-              staticRoute.brand_id = '';
+              staticRoute.brand_id = "";
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -981,14 +978,15 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#ababab' />
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
             {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
         ) : null}
         {car_name ? (
           <p
-            className='minimal_filter_tags'
+            className="minimal_filter_tags"
             onClick={() => {
               setFilterReset((filterReset) => {
                 return { ...filterReset, car_id: true };
@@ -996,7 +994,7 @@ const Landing_page_container = ({
               car_name = null;
               loadMoreCar = false;
               filtersChecker.car_id = false;
-              staticRoute.car_id = '';
+              staticRoute.car_id = "";
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
@@ -1005,14 +1003,15 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#ababab' />
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+
             {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
         ) : null}
       </section>
       {/* filters and result section */}
-      <section className=' responsive content_container'>
+      <section className=" responsive content_container">
         <filterContext.Provider
           value={{
             setDataForSearch: (v) => {
@@ -1043,7 +1042,7 @@ const Landing_page_container = ({
           tagClick={searchIgniteByClickOnCardTags}
           setFilterForSearch={(v) => {
             if (v.o) {
-              o = 'price';
+              o = "price";
             }
             filterResults(v);
           }}
@@ -1053,16 +1052,16 @@ const Landing_page_container = ({
       {remained_count > 0 && (
         <span
           className={[
-            'Load_more_car HEAP_LandingPages_Btn_ShowMore',
-            show_spinner_loadMore ? 'no_padding' : null,
-          ].join(' ')}
+            "Load_more_car HEAP_LandingPages_Btn_ShowMore",
+            show_spinner_loadMore ? "no_padding" : null,
+          ].join(" ")}
           onClick={() => loadMore()}
         >
           {show_spinner_loadMore ? (
-            <Spinner display='block' width={20} color='#9E9E9E' />
+            <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
             <>
-              <IoIosArrowDown color='#202020' size='18px' />
+            <Icon name="chevronUp" rotate={180} width="18px" height="18px" color="#202020" />
               {language.COMMON.loadMore}
             </>
           )}

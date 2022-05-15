@@ -1,5 +1,5 @@
-@import '../../styles/colors';
-@import './modals/modal.module.scss';
+@import "../../styles/colors";
+@import "./modals/modal.module.scss";
 .header {
   background-color: $_1f1f1f;
   padding: 12px 0;
@@ -176,18 +176,25 @@
         }
       }
       .Drop_Down {
-        .earthIcon{display: inherit;}
-        .localeDropDown{
+        .earthIcon {
+          display: inherit;
+          svg {
+            display: flex;
+          }
+        }
+        .localeDropDown {
           min-width: 105px;
-          width: auto; 
-          &::before {left: 24% !important; }
+          width: auto;
+          &::before {
+            left: 24% !important;
+          }
         }
         .Sub_Nav_Level_2 {
           // display: block;
           &::before {
             bottom: 100%;
             left: 13%;
-            content: '';
+            content: "";
             height: 0px;
             width: 0px;
             position: absolute;
@@ -199,15 +206,15 @@
             border-width: 5px;
           }
         }
-				.dropdownIsActive{
-					display: block;
-				}
+        .dropdownIsActive {
+          display: block;
+        }
       }
     }
   }
 }
 
-.header[dir='ltr'] {
+.header[dir="ltr"] {
   .Logo {
     .car_logo {
       height: 27px;
@@ -256,11 +263,13 @@
         }
       }
       .Drop_Down {
-        .localeDropDown{ 
-          &::before {left: auto !important;
-            right: 63% !important;}
+        .localeDropDown {
+          &::before {
+            left: auto !important;
+            right: 63% !important;
+          }
         }
-         .Sub_Nav_Level_2 { 
+        .Sub_Nav_Level_2 {
           &::before {
             left: auto;
             right: 81%;
@@ -291,7 +300,7 @@
           span {
             display: none;
           }
-          div{
+          div {
             margin: 0 !important;
           }
         }

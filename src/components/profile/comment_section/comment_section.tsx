@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { REQUEST_GET_CAR_REVIEW } from "../../../API";
-import Review from "../../Review";
-import Icon from "../../../../utils/Icon";
+import Review from "../../Review"; 
 import net_CTX from "../../../context/internetConnectionCTX";
 import languageCTX from "../../../context/languageCTX";
 import { supportedLanguages } from '../../../../types';
 import { numberChanger } from "../../../../utils/numberChanger";
+import Icon from "../../Icons";
 
 const Comment_section = ({ user_id, user_data, language }: IComment_section) => {
   const [active_tab, set_active_tab] = useState(true);
@@ -57,7 +57,7 @@ const Comment_section = ({ user_id, user_data, language }: IComment_section) => 
         {active_tab ? (
           user_data.rate?.no_of_received_rates_as_owner ? (
             <div className="rate_container">
-              <Icon name="star" />
+              <Icon name="star" width="16px" height="16px" color="#116B98" />
               <span>
                 {numberChanger((user_data.rate.avg_rate_as_owner).toString(),activeLanguage)}{" "}
                 <span className="sum_rent">
@@ -68,7 +68,7 @@ const Comment_section = ({ user_id, user_data, language }: IComment_section) => 
           ) : null
         ) : user_data.rate?.no_of_received_rates_as_renter ? (
           <div className="rate_container">
-            <Icon name="star" />
+            <Icon name="star" width="16px" height="16px" color="#116B98" />
             <span>
               {numberChanger((user_data.rate.avg_rate_as_renter).toString(),activeLanguage)}{" "}
               <span className="sum_rent">

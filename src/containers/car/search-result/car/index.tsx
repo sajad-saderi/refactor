@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
-import Link from "next/link";
-import Icon from '../../../../../utils/Icon';
+import Link from "next/link"; 
 import languageCTX from '../../../../context/languageCTX';
 import { numberChanger } from "../../../../../utils/numberChanger";
+import Icon from "../../../../components/Icons";
 // import "./car.scss";
 
 const Car = ({ data, showLocation, tagClick, language }: ICar) => {
@@ -189,7 +189,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                     }}
                   >
                     <span className="tags location_tag">
-                      <Icon name="location" />
+                      <Icon name="location" color="#116B98" width="20px" height="20px"/>
                       {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
                     </span>
                   </li>

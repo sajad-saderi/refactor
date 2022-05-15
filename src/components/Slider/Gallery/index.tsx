@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { IoMdClose, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import Icon from "../../Icons";
 // import "./Gallery.scss";
 
 const Gallery = (props: IGallery) => {
@@ -42,13 +42,13 @@ const Gallery = (props: IGallery) => {
   }, []);
 
   return (
-    <div className='Gallery_Container'>
+    <div className="Gallery_Container">
       {/* Close the gallery */}
-      <div className='closeButton' onClick={props.CloseGallery}>
-        <IoMdClose size='30px' />
+      <div className="closeButton" onClick={props.CloseGallery}>
+        <Icon name="close" width="30px" height="30px" color="#ffffff" />
       </div>
       {/* view part */}
-      <div className='show_part'>
+      <div className="show_part">
         {Feed.map((item, i) => {
           return (
             <img
@@ -125,7 +125,7 @@ const Gallery = (props: IGallery) => {
         })}
       </div>
       {/* Thumbnail part */}
-      <div className='thumbnail_part'>
+      <div className="thumbnail_part">
         {Feed.map((item, i) => {
           return (
             <img
@@ -144,11 +144,14 @@ const Gallery = (props: IGallery) => {
           {index < Feed.length - 1 && (
             <button
               onClick={() => SliderNav("right")}
-              className='NAVIGA arrow-right G_R'
+              className="NAVIGA arrow-right G_R"
             >
-              <IoIosArrowForward
-                // set the next right image to view
-                size='30px'
+              <Icon
+                name="chevronUp"
+                rotate={90} 
+                width="30px"
+                height="30px"
+                color="#7d7d7d"
               />
             </button>
           )}
@@ -156,12 +159,14 @@ const Gallery = (props: IGallery) => {
           {index > 0 && (
             <button
               onClick={() => SliderNav("left")}
-              className='NAVIGA arrow-left G_L'
+              className="NAVIGA arrow-left G_L"
             >
-              <IoIosArrowBack
-                // set the next right image to view
-
-                size='30px'
+              <Icon
+                name="chevronUp"
+                rotate={90} 
+                width="30px"
+                height="30px"
+                color="#7d7d7d"
               />
             </button>
           )}

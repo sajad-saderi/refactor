@@ -3,15 +3,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import * as car from "../../../public/car_logo_black.svg";
-import {
-  IoIosArrowDropup,
-  IoLogoTwitter,
-  IoLogoInstagram,
-} from "react-icons/io";
-import { FaTelegram, FaWhatsapp } from "react-icons/fa";
 import { supportedLanguages } from "../../../types";
 import { addingCountryCodeToNumber } from "../../helpers/addingCountryCodeToNumber";
 import { numberChanger } from "../../../utils/numberChanger";
+import Icon from "../Icons";
 
 const Footer = ({
   hide,
@@ -66,7 +61,7 @@ const Footer = ({
           className={["toTop", showTop ? "showTop" : null].join(" ")}
           onClick={toTop}
         >
-          <IoIosArrowDropup size="40px" color="#4ba3ce" />
+          <Icon name="chevronUp" width="40px" height="40px" color="#4ba3ce" />
         </div>
       ) : null}
       <div className=" responsive plus_border">
@@ -134,13 +129,23 @@ const Footer = ({
           <h3>{language.FOOTER.followUs}</h3>
           <div>
             <a target="_black" href="https://www.instagram.com/sepris.rent/">
-              <IoLogoInstagram size="30px" color="#4ba3ce" />
+              <Icon
+                name="instagram"
+                width="30px"
+                height="30px"
+                color="#4ba3ce"
+              />
             </a>
             <a target="_black" href="https://twitter.com/Seprisrent">
-              <IoLogoTwitter size="30px" color="#4ba3ce" />
+              <Icon name="twitter" width="30px" height="30px" color="#4ba3ce" />
             </a>
             <a target="_black" href="https://wa.me/message/C3U7RO7ADABWF1">
-              <FaWhatsapp size="30px" color="#4ba3ce" />
+              <Icon
+                name="whatsApp"
+                width="30px"
+                height="30px"
+                color="#4ba3ce"
+              />
             </a>
           </div>
           <p>

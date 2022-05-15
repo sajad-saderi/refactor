@@ -1,6 +1,9 @@
-export const ChevronUp = ({ color, height, width }) => (
+import { ISvg } from "../../../../types";
+
+export const ChevronUp = ({ color, height, width, rotate }:ISvg) => (
   <svg
     strokeWidth={0}
+    style={{ transform: `rotate(${rotate | 0}deg)` }}
     viewBox="0 0 512 512"
     height={height}
     width={width}

@@ -1,29 +1,29 @@
 // import "./Counter.scss";
-import { IoMdAdd, IoMdRemove } from "react-icons/io";
+import Icon from "../Icons";
 
 const Counter = (props: ICounter) => {
   return (
-    <div className='counter_container'>
-      <label data-test-id='label'>{props.label}</label>
-      <div className='counter_box'>
-        <div className='counter'>
-          <IoMdAdd
-            size='22px'
-            data-test-id='add'
+    <div className="counter_container">
+      <label data-test-id="label">{props.label}</label>
+      <div className="counter_box">
+        <div className="counter">
+          <span
             onClick={() => {
               if (props.value < props.max) props.AddTo();
             }}
-          />
-          <p data-test-id='value'>{props.value}</p>
-          <IoMdRemove
-            size='22px'
-            data-test-id='remove'
+          >
+            <Icon name="plus" width="22px" height="22px" color="#3fa6da" />
+          </span>
+          <p data-test-id="value">{props.value}</p>
+          <span
             onClick={() => {
               if (props.value > props.min) props.reduceTo();
             }}
-          />
+          >
+            <Icon name="dash" width="22px" height="22px" color="#3fa6da" />
+          </span>
         </div>
-        <span className='text_tail' data-test-id='tail'>
+        <span className="text_tail" data-test-id="tail">
           {props.text}
         </span>
       </div>
@@ -32,31 +32,12 @@ const Counter = (props: ICounter) => {
 };
 
 interface ICounter {
-  /**
-   * @max
-   * maximum value you can use
-   */
   max: number;
-
-  /**
-   * @min
-   * the smallest value a user can reach
-   */
   min: number;
-
-  // responsible to Increase the value by 1
   AddTo: any;
-
-  // responsible to Reduce the value to 1
   reduceTo: any;
-
-  // Custom label
   label: string;
-
-  // a small tail text after Counter
   text: string;
-
-  // Initial value
   value: number;
 }
 

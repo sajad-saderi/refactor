@@ -217,7 +217,7 @@
       display: inline-block;
       float: left;
       padding: 2px 0;
-      img {
+      svg {
         width: 20px;
         height: 20px;
         margin-left: 4px;
@@ -244,12 +244,23 @@
         color: $_3fa6da;
         font-weight: 400;
       }
+      .avatar{
+        background-color: $_3fa6da;
+        
+        display: inline-block;
+        margin-left: 4px; 
+        border: 2px solid $_3fa6da;
+        border-radius: 50%;
+        svg{
+          border-radius: 50%;
+  border: 2px solid $_3fa6da;
+  margin: 0;
+}
+      }
       svg {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 4px;
-        width: 30px;
-        height: 30px;
+        margin-left: 4px; 
       }
     }
     .renter_Cell {

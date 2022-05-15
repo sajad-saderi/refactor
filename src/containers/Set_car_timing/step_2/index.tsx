@@ -1,5 +1,4 @@
 import { useEffect, useReducer, useState, useContext } from "react";
-import { IoIosCar, IoIosCalendar } from "react-icons/io";
 import dynamic from "next/dynamic";
 
 // import "./step_2.scss";
@@ -12,6 +11,7 @@ import {
   REQUEST_SET_CAR_PARTIAL,
 } from "../../../API";
 import net_CTX from "../../../context/internetConnectionCTX";
+import Icon from '../../../components/Icons'
 import languageCTX from "../../../context/languageCTX";
 
 const Radio = dynamic(() => import("../../../components/form/Radio"));
@@ -769,7 +769,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
           <div className="pelak_container">
             <p className="car_name_brand">
-              <IoIosCar className="car_icon" size="23px" color="#313131" />
+            <Icon name="car" width='23px' height="23px" color="#313131" /> 
               {Brand_Name ? (
                 `${Brand_Name[activeLanguage]} - ${CarModelName[activeLanguage]}`
               ) : (

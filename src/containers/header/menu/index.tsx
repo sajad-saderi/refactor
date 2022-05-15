@@ -4,8 +4,8 @@ import context_user from '../../../context/User_info';
 import languageCTX from '../../../context/languageCTX';
 import Spinner from '../../../components/Spinner';
 import { useRouter } from 'next/router';
-import NameAvatar from '../../../components/name_avatar/avatar-name';
-import Icon from '../../../../utils/Icon';
+import NameAvatar from '../../../components/name_avatar/avatar-name'; 
+import Icon from '../../../components/Icons';
 
 let token = null;
 let complete_register = null;
@@ -106,7 +106,8 @@ const Menu = ({ language }: IMenu) => {
     <ul>
       {allowToShow &&
        <li className="Drop_Down">
-        <span className='earthIcon' onClick={() =>{setShowController(!ShowController);setShowControllerGuide(false)}}> <Icon name='earth'/></span> 
+        <span className='earthIcon' onClick={() =>{setShowController(!ShowController);setShowControllerGuide(false)}}> 
+        <Icon name='earth' width='20px' height='20px' color='#ffffff' /></span> 
       <ul className={`Sub_Nav_Level_2 localeDropDown ${ShowController ? "dropdownIsActive" : ''}`}  ref={wrapperRef}>
         <li
           onClick={() => {

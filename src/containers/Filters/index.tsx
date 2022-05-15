@@ -12,13 +12,13 @@ const Spinner = dynamic(() => import("../../components/Spinner"));
 // import Checkbox from "../../components/form/Checkbox";
 import filterContext from "../../context/filter-context";
 // import DropdownSearch from "../../components/form/Dropdown";
-import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API";
-import { IoIosArrowDown, IoIosOptions, IoMdClose } from "react-icons/io";
+import { REQUEST_GET_CAR_BRAND, REQUEST_GET_CAR_MODEL } from "../../API"; 
 // import Spinner from "../../components/Spinner";
 import PriceSlider from "../../components/filters/PriceSlider/PriceSlider";
 import net_CTX from "../../context/internetConnectionCTX";
 import languageCTX from "../../context/languageCTX";
 import { dynamicString } from '../../helpers/dynamicString';
+import Icon from "../../components/Icons";
 
 let body_style_list = [];
 
@@ -302,7 +302,8 @@ const Filters = ({
             }}
           >
             {/* <p>بستن</p> */}
-            <IoMdClose size="30px" color="#909090" />
+            
+            <Icon name="close" width="30px" height="30px" color="#909090" />
           </div>
         </div>
         {/* {hidePrice ? (
@@ -477,11 +478,17 @@ const Filters = ({
         {show_filter ? (
           <div className="result_count_wrapper">
             {!scroll_icon_to_hide ? (
-              <IoIosArrowDown
-                size="20px"
-                color="#909090"
-                onClick={scroll_handler}
-              />
+              <span
+              onClick={scroll_handler}>
+              <Icon 
+              name="chevronUp"
+              rotate={180}
+              width="20px"
+              height="20px"
+              color="#909090"
+              /> 
+
+              </span>
             ) : null}
             <h2
               className="ResultCount"

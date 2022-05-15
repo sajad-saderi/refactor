@@ -1,5 +1,6 @@
-import { IoIosArrowRoundBack } from "react-icons/io";
+
 import Link from "next/link";
+import Icon from "../../components/Icons";
 
 export const InsuranceGuide = () => (
   <>
@@ -15,7 +16,7 @@ export const InsuranceGuide = () => (
     <Link href="/car-insurance">
       <a className="guide-center__readMore">
         بیشتر
-        <IoIosArrowRoundBack size="30px" color="##3fa6da" />
+        <Icon name="arrow" width="30px" height="30px" color="#3fa6da" />
       </a>
     </Link>
   </>

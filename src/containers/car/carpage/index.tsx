@@ -15,7 +15,6 @@ import {
 import { useRouter } from "next/router";
 // import Slider from "../../../../src/components/Slider";
 import Button from "../../../components/form/Button";
-import { IoIosLink, IoIosArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
@@ -24,7 +23,6 @@ import jsCookie from "js-cookie";
 import moment from "moment-jalaali";
 // import Spinner from "../../../components/Spinner";
 import carImage from "../../../../public/image/car-image.jpg";
-import Icon from "../../../../utils/Icon";
 import { initialDate, payBackInObject } from "../../../../utils/date-range-creator";
 import { NextSeo } from "next-seo";
 import UrlCreator from "../../../../utils/UrlCreator";
@@ -40,6 +38,7 @@ import { dateSlicer } from '../../../helpers/dateSlicer';
 import { ICalender } from '../../../../types';
 import { twoWayDateConvertor } from '../../../helpers/dateControler';
 import { numberChanger } from "../../../../utils/numberChanger"; 
+import Icon from "../../../components/Icons";
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: "persian-modern" });
@@ -770,7 +769,7 @@ const CarPage = ({
                   {/* <p className='owner_name_carinfo'>{owner.name}</p> */}
                   {rate?.no_of_received_rates ? (
                     <div className="rate_container">
-                      <Icon name="star" />
+                      <Icon name="star" width="14px"  height="14px" color="#116b98"/>
                       <span>
                         {rate.avg_rate}{" "}
                         <span className="sum_rent">
@@ -807,7 +806,12 @@ const CarPage = ({
                     {is_audited && (
                       <div className="isverified_container tag_class">
                         <span>
-                          <Icon name="check" />
+                        <Icon
+                            name='check'
+                            width='13px'
+                            height='10px'
+                            color='#116B98'
+                          />
                           {language.COMMON.isAudited}
                         </span>
                       </div>
@@ -859,7 +863,12 @@ const CarPage = ({
                   <div className="calender_section_mobile_view">
                     <hr />
                     <h2>
-                      <Icon name="calendar" />
+                    <Icon
+                    name='calender'
+                    width='16'
+                    height='16'
+                    color='#116B98'
+                  />
                       <span>{language.CAR_PAGE.date}</span>
                     </h2>
                     {showDateText && dayRange.from ? (
@@ -873,7 +882,7 @@ const CarPage = ({
                             dayRange.from.month,
                             activeLanguage === 'fa' ? "jM" : "M"
                           ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
-                          <IoIosArrowRoundBack size="20px" color="#202020" />
+                          <Icon name='arrow' width='26px' height='26px' color='#202020' />
                           <span className="day_name">{`${moment(
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                             activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
@@ -974,7 +983,7 @@ const CarPage = ({
               ) : null}
               <hr />
               <h2>
-                <Icon name="pin" />
+              <Icon name='location' width='16' height='16' color='#116B98' />
                 <span>{language.COMMON.deliver}</span>
               </h2>
               <div className="car_delivery padding_right_24">
@@ -999,7 +1008,7 @@ const CarPage = ({
               </div>
               <hr />
               <h2>
-                <Icon name="document" />
+              <Icon name='document' width='16' height='16' color='#116B98' />
                 <span>{language.COMMON.cancellationPolicies}</span>
               </h2>
               <pre className="padding_right_24">{numberChanger(cancellation_policy,activeLanguage)}</pre>
@@ -1012,7 +1021,7 @@ const CarPage = ({
               )} */}
               <hr />
               <h2>
-                <Icon name="opposite_arrows" />
+              <Icon name='twoWayArrows' width='16' height='16' color='#116B98' />
                 <span>{language.COMMON.distance}</span>
               </h2>
               <p className="distance_limitation margin_bottom_16 padding_right_24">
@@ -1037,7 +1046,7 @@ const CarPage = ({
                 <>
                   <hr />
                   <h2>
-                    <Icon name="car" />
+                  <Icon name='car' width='16' height='16' color='#116B98' />
                     <span>{language.COMMON.aboutCar}</span>
                   </h2>
                   <pre className="padding_right_24">{description}</pre>
@@ -1047,7 +1056,7 @@ const CarPage = ({
                 <>
                   <hr />
                   <h2>
-                    <Icon name="boxes" />
+                  <Icon name='car' width='16' height='16' color='#116B98' />
                     <span>{language.CAR_PAGE.facilities}</span>
                   </h2>
                   <div className="facilities_container padding_right_24">
@@ -1061,7 +1070,7 @@ const CarPage = ({
               )}
               <hr />
               <h2>
-                <Icon name="gear" />
+              <Icon name='gear' width='16' height='16' color='#116B98' />
                 <span>{language.CAR_PAGE.features}</span>
               </h2>
               <div className="info_container margin_right_24 margin_bottom_24">
@@ -1168,7 +1177,7 @@ const CarPage = ({
                       dayRange.from.month,
                       activeLanguage === 'fa' ? "jM" : "M"
                     ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
-                    <IoIosArrowRoundBack size="20px" color="#202020" />
+                    <Icon name='arrow' width='26px' height='26px' color='#202020' />
                     <span className="day_name">{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                       activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
@@ -1293,7 +1302,12 @@ const CarPage = ({
                       )}
                       {owner.rate.avg_rate_as_owner ? (
                         <p>
-                          <Icon name="star" />
+                           <Icon
+                        name='star'
+                        height='16px'
+                        width='16px'
+                        color='#116B98'
+                      />
                           {numberChanger((owner.rate.avg_rate_as_owner).toString(),activeLanguage)}
                         </p>
                       ) : null}

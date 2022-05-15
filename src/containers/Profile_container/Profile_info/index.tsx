@@ -3,7 +3,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
 const Button = dynamic(() => import("../../../components/form/Button"));
-import { FiLogOut } from "react-icons/fi";
 // import Button from "../../../components/form/Button";
 import context_user from "../../../context/User_info";
 import modalContext from "../../../context/Modal_context";
@@ -17,6 +16,7 @@ import languageCTX from '../../../context/languageCTX';
 import { dynamicString } from '../../../helpers/dynamicString';
 import { dateSlicer } from '../../../helpers/dateSlicer';
 import { numberChanger } from "../../../../utils/numberChanger";
+import Icon from "../../../components/Icons";
 
 const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
   const [name, setName] = useState(null);
@@ -170,7 +170,12 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
             {is_mine && (
               <div className="profile_controls">
                 <div className="Exit" onClick={Exit}>
-                  <FiLogOut size="20px" color="#4ba3ce" />
+                <Icon
+                    name='logout'
+                    height='20px'
+                    width='20px'
+                    color='#4ba3ce'
+                  />
                   <p>{language.USER.exit}</p>
                 </div>
                 {activeLanguage === 'fa' &&

@@ -13,11 +13,11 @@ const Radio = dynamic(() => import("../../../components/form/Radio"));
 // import "./profile_car.scss";
 // import CarLoading from "../../../components/cartPlaceholder/CarLoadingProfile";
 // import Radio from "../../../components/form/Radio";
-import Button from "../../../components/form/Button";
-import { IoIosArrowDown } from "react-icons/io";
+import Button from "../../../components/form/Button"; 
 import ErrorHelper from "../../../../utils/error_helper";
 import net_CTX from "../../../context/internetConnectionCTX";
 import languageCTX from "../../../context/languageCTX";
+import Icon from "../../../components/Icons";
 
 let useFilter = false;
 let filterNumber = 0;
@@ -218,7 +218,7 @@ const Profile_Cars = ({
               fetchApi(page);
             }}
           >
-            <IoIosArrowDown color="#202020" size="18px" />
+            <Icon name="chevronUp" rotate={180} width="20px" height="20px" color="#202020"/>
             {language.COMMON.loadMore}
           </span>
         </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "../../../components/form/Checkbox";
-import { IoIosOptions } from "react-icons/io";
+import Checkbox from "../../../components/form/Checkbox"; 
 
 const Requests_filter = ({
   filter_list,
@@ -31,7 +30,7 @@ const Requests_filter = ({
       {/* filter mobile */}
       {/* {total_count === 0 && !result ? null : ( */}
       <span className="show_filter" onClick={() => setShow_filter(true)}>
-        <IoIosOptions size="20px" color="#656565" />
+        {/* <IoIosOptions size="20px" color="#656565" /> */}
         {language.show_filters}
       </span>
       {/* )} */}

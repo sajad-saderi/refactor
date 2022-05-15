@@ -8,8 +8,7 @@ import for_journey from '../../../public/image/for_journey.jpeg';
 import moment from 'moment-jalaali';
 import Link from 'next/link';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import AppStore from '../../context/app';
-import Icon from '../../../utils/Icon';
+import AppStore from '../../context/app'; 
 import { numberChanger } from '../../../utils/numberChanger';
 
 const Recommendation_section = ({ language }) => {

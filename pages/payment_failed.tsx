@@ -1,22 +1,22 @@
-import { useEffect } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
 
-const Layout = dynamic(() => import('../src/Layout'));
-const Button = dynamic(() => import('../src/components/form/Button'));
+const Layout = dynamic(() => import("../src/Layout"));
+const Button = dynamic(() => import("../src/components/form/Button"));
 // import Layout from "../src/Layout";
-import { useRouter } from 'next/router';
-import { IoIosCloseCircleOutline } from 'react-icons/io';
+import { useRouter } from "next/router";
 // import Button from "../src/components/form/Button";
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
+import Icon from "../src/components/Icons";
 // import { logPageView } from "../utils/analytics";
 
 const Failed_payment = ({ locale }) => {
   const router = useRouter();
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
+    window["dataLayer"].push({
+      event: "page_view",
       pageURL: window.location.href,
-      pagePath: '/payment-failed',
+      pagePath: "/payment-failed",
       pageTitle: locale.PAGE_HEADER.payment.failTitle,
     });
     // logPageView();
@@ -39,12 +39,12 @@ const Failed_payment = ({ locale }) => {
       />
       <article className="responsive minHeight failed_payment">
         <section className="alarm_container">
-          <IoIosCloseCircleOutline size="100px" color="a3678b" />
+          <Icon name="close" width="100px" height="100px" color="a3678b" />
           <p>{locale.PAYMENT_PAGE.cancel}</p>
         </section>
         <Button
           class="Blue_BTN local_style"
-          click={() => router.push('/')}
+          click={() => router.push("/")}
           value={locale.COMMON.backToHome}
           loading={false}
         />

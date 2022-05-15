@@ -14,12 +14,12 @@ const Requests_page_Loading = dynamic(() =>
 const Spinner = dynamic(() => import("../../components/Spinner"));
 const Request_cart = dynamic(() => import("./request_cart"));
 // import Requests_page_Loading from "../../components/cartPlaceholder/requestLoading";
-// import Spinner from "../../components/Spinner";
-import { IoIosArrowDown } from "react-icons/io";
+// import Spinner from "../../components/Spinner"; 
 import { guard_controller } from "../../../utils/guard_controller";
 import moment from "moment-jalaali";
 import toast_context from "../../context/Toast_context";
 import ErrorHelper from "../../../utils/error_helper";
+import Icon from "../../components/Icons";
 // import Request_cart from "./request_cart";
 
 let filter_id = [];
@@ -562,7 +562,7 @@ const Requests_page = ({ language }: IRequests_page) => {
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
             <>
-              <IoIosArrowDown color="#202020" size="18px" />
+            <Icon name="chevronUp" width="20px" height="20px" color="#202020"/>
               {language.COMMON.loadMore}
             </>
           )}

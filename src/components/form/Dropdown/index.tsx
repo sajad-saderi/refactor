@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { IoMdClose, IoIosArrowDown, IoIosSearch } from "react-icons/io";
 import dynamic from "next/dynamic";
 import languageCTX from '../../../context/languageCTX';
+import Icon from "../../Icons";
+import classNames from "classnames";
 
 const Spinner = dynamic(() => import("../../Spinner"));
 // import Spinner from "../../Spinner";
@@ -119,11 +120,16 @@ const DropdownSearch = (props: IDropDown) => {
       )}
       {props.browserDropdown ? (
         <div className='select_container'>
-          <IoIosArrowDown
-            color='rgb(165, 165, 165)'
-            size='20px'
-            className='ArrowDown'
-          />
+          <span className='ArrowDown'>
+
+          <Icon
+          name="chevronUp"
+            color='#a5a5a5'
+            width='20px'
+            height='20px'
+            rotate={180}
+            />
+            </span>
           <select
             className='default_select'
             onChange={(e) => {
@@ -174,12 +180,18 @@ const DropdownSearch = (props: IDropDown) => {
         {props.clearField ? (
           (InputValue.length > 0 || props.defaultVal) &&
             !props.hideClearField ? (
-            <IoMdClose
-              color='rgb(165, 165, 165)'
-              size='20px'
+              <span
               className='clean_icon'
-              onClick={clearField}
-            />
+                  onClick={clearField}>
+
+                <Icon
+                name="close"
+                  color="#a5a5a5"
+                  width='20px'
+                  height='20px'
+                  
+                />
+              </span>
           ) : null
         ) : null}
         {/* Show the selected color in color picker drop-down */}
@@ -197,15 +209,21 @@ const DropdownSearch = (props: IDropDown) => {
         )}
         {/* Arrow down icon */}
         {!props.hideArrowDown && (
-          <IoIosArrowDown
-            color='rgb(165, 165, 165)'
-            size='20px'
-            className={[
-              "ArrowDown",
-              ShowController ? "rotate_arrow_down_icon" : null,
-            ].join(" ")}
-            onClick={DropDownController}
+          <span
+          
+          className={classNames(
+            "ArrowDown",
+            ShowController && "rotate_arrow_down_icon" )}
+          onClick={DropDownController}>
+
+          <Icon
+          name="chevronUp"
+          color='#a5a5a5'
+          width='20px'
+          height='20px'
+          rotate={180}
           />
+          </span> 
         )}
       </div>
       {ShowController ? (
@@ -239,16 +257,21 @@ const DropdownSearch = (props: IDropDown) => {
                       searchHandler(e.target.value.trim());
                     }}
                   />
-                  {!search_value && <IoIosSearch size='20px' color='#737373' />}
+                  {!search_value && <Icon name='search' width="20px" height='20px' color='#737373' />}
                   {search_value && (
-                    <IoMdClose
-                      onClick={() => {
-                        setSearch_value("");
-                        searchHandler("");
-                      }}
-                      size='20px'
-                      color='#737373'
-                    />
+                    <span   onClick={() => {
+                      setSearch_value("");
+                      searchHandler("");
+                    }}>
+
+<Icon
+                name="close"
+                  color="#a5a5a5"
+                  width='20px'
+                  height='20px'
+                  
+                /> 
+                      </span>
                   )}
                 </div>
               )}

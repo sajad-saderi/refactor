@@ -13,12 +13,6 @@ import { REQUEST_GET_SEARCH_FOR_RENT } from '../../API';
 // import "./Search_result.scss";
 // import Spinner from "../../components/Spinner";
 import jsCookie from 'js-cookie';
-import {
-  IoMdClose,
-  IoIosOptions,
-  IoIosArrowUp,
-  IoIosArrowDown,
-} from 'react-icons/io';
 // import Search from "../Search";
 import UrlCreator from '../../../utils/UrlCreator';
 import UrlChecker from '../../../utils/UrlChecker';
@@ -31,6 +25,7 @@ import { dynamicString } from '../../helpers/dynamicString';
 import AppStore from '../../context/app';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { numberChanger } from '../../../utils/numberChanger';
+import Icon from '../../components/Icons';
 
 let JumpTo = null;
 
@@ -643,7 +638,8 @@ const Search_result = ({
             {showSearch ? (
               <span className='close_text_btn'>
                 {language.COMMON.close}
-                <IoMdClose size='20px' color='#dcdcdc' />
+                <Icon name="close" width="20px" height="20px" color="#dcdcdc" />
+ 
               </span>
             ) : (
               language.COMMON.changeSearch
@@ -684,12 +680,11 @@ const Search_result = ({
           </div>
         </section>
         {showSearch ? (
-          <IoIosArrowUp
-            className='Arrow_up_change_search'
-            color='#dcdcdc'
-            size='20px'
-            onClick={() => setShowSearch(false)}
-          />
+          <span
+          onClick={() => setShowSearch(false)}
+          className='Arrow_up_change_search'>
+                <Icon name="chevronUp" width="20px" height="20px" color="#dcdcdc" />
+</span>
         ) : null}
       </div>
       {/* search box */}
@@ -731,7 +726,8 @@ const Search_result = ({
           {/* Trigger icon in mobile view */}
           <p className='show_filter' onClick={() => setShow_filter(true)}>
             {language.COMMON.advanceSearch}
-            <IoIosOptions size='14px' color='#656565' />
+            <Icon name="options" width="14px" height="14px" color="#656565" />
+
           </p>
         </div>
       </section>
@@ -785,7 +781,8 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+                <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+       
             {numberChanger(
               dynamicString(
                 [
@@ -816,7 +813,8 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+                            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+ 
             {language.COMMON.delivery}
           </p>
         ) : null}
@@ -837,8 +835,8 @@ const Search_result = ({
               });
               initSearch();
             }}
-          >
-            <IoMdClose size='13px' color='#3fa6da' />
+          > 
+            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
             {language.COMMON.withDriver}
           </p>
         ) : null}
@@ -860,7 +858,7 @@ const Search_result = ({
               initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+                <Icon name="close" width="13px" height="13px" color="#3fa6da" />
             {language.COMMON.withoutDriver}
           </p>
         ) : null}
@@ -892,7 +890,7 @@ const Search_result = ({
                     initSearch();
                   }}
                 >
-                  <IoMdClose size='13px' color='#3fa6da' />
+                      <Icon name="close" width="13px" height="13px" color="#3fa6da" />
                   {/* {language.minimal_filters_body_style} */}
                   {name[activeLanguage]}
                 </p>
@@ -919,7 +917,7 @@ const Search_result = ({
               // initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+               <Icon name="close" width="13px" height="13px" color="#3fa6da" />
             {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
@@ -943,7 +941,7 @@ const Search_result = ({
               // initSearch();
             }}
           >
-            <IoMdClose size='13px' color='#3fa6da' />
+                <Icon name="close" width="13px" height="13px" color="#3fa6da" />
             {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
@@ -1002,7 +1000,8 @@ const Search_result = ({
             <Spinner display='block' width={20} color='#9E9E9E' />
           ) : (
             <>
-              <IoIosArrowDown color='#202020' size='18px' />
+                <Icon name="chevronUp" width="18px" height="18px" color="#202020" />
+               
               {language.COMMON.loadMore}
             </>
           )}

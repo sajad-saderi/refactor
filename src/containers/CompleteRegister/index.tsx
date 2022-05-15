@@ -9,14 +9,14 @@ const Button = dynamic(() => import("../../components/form/Button"));
 // import Button from "../../components/form/Button";
 import Modal_context from "../../context/Modal_context";
 import toast_context from "../../context/Toast_context";
-import context_user from "../../context/User_info";
-import { IoMdPerson, IoMdPersonAdd } from "react-icons/io";
+import context_user from "../../context/User_info"; 
 import { REQUEST_USER_INFO_UPDATE } from "../../API";
 import { useRouter } from "next/router";
 import jsCookie from "js-cookie";
 import ErrorHelper from "../../../utils/error_helper";
 import net_CTX from "../../context/internetConnectionCTX";
 import languageCTX from "../../context/languageCTX";
+import Icon from "../../components/Icons";
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -328,7 +328,7 @@ const Complete_register_container = ({
         onSubmit={(e) => submitHandler(e, state)}
       >
         <div className="login_modal_title">
-          <IoMdPerson size="20px" color="#fff" className="login_person_icon" />
+          <Icon name="avatar" width="20px" height="20px" color="#ffffff"/>
           <h2>{language.COMPLETE_REGISTER.title}</h2>
         </div>
         <div className="name_container">

@@ -7,8 +7,7 @@ import user_context from '../src/context/User_info';
 import LanguageCTX, {
   ChangeLanguageContextProvider,
 } from '../src/context/languageCTX';
-import logo from '../public/android-icon-48x48.png';
-import { IoIosClose } from 'react-icons/io';
+import logo from '../public/android-icon-48x48.png'; 
 import '../src/styles/main.scss';
 import { InternetConnectionContextProvider } from '../src/context/internetConnectionCTX';
 import fa from '../public/languages/fa.json';
@@ -24,6 +23,7 @@ import Axios from "axios";
 // import { initGA } from "../utils/analytics";
 import { AppStoreWrapper } from "../src/context/app";
 import axios from "axios";
+import Icon from '../src/components/Icons';
 
 Sentry.init({
   dsn: process.env.SENTRY,
@@ -266,7 +266,7 @@ class App_Otoli extends App {
                         });
                       }}
                     >
-                      <IoIosClose color="#fff" size="20px" />
+                      <Icon name='close' width='20px' height='20px' color='#ffffff' />
                       {Router.router.locale === 'fa' ? fa.COMMON.close : en.COMMON.close}
                     </p>
                   </section>

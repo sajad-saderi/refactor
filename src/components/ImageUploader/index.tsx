@@ -14,7 +14,6 @@ import carVector from "../../../public/image/car_vector.png";
  */
 import { useDropzone } from "react-dropzone";
 import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
-import { IoIosClose } from "react-icons/io";
 import Spinner from "../Spinner";
 import getCroppedImg from "../../../utils/cropImage";
 import Cropper from "react-easy-crop";
@@ -22,6 +21,7 @@ import ZoomSlider from "./ZoomSlider";
 import ErrorHelper from "../../../utils/error_helper";
 import toast_context from "../../context/Toast_context";
 import net_CTX from "../../context/internetConnectionCTX";
+import Icon from "../Icons";
 
 const ImageUploader = ({
   Upload_image,
@@ -205,7 +205,14 @@ const ImageUploader = ({
                   }}
                 >
                   {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                  <IoIosClose size="20px" color="#ea2d2d" />
+                  
+                <Icon
+                name="close"
+                  color="#ea2d2d"
+                  width='20px'
+                  height='20px'
+                  
+                /> 
                   <img src={i.img} alt={i.id} />
                 </div>
               );

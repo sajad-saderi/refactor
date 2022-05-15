@@ -3,8 +3,7 @@ import Link from "next/link";
 // import "./car.scss";
 import dynamic from "next/dynamic";
 
-const Spinner = dynamic(() => import("../../../../components/Spinner"));
-import { IoMdTrash, IoMdCreate, IoMdClose } from "react-icons/io";
+const Spinner = dynamic(() => import("../../../../components/Spinner")); 
 import { useRouter } from "next/router";
 import context_user from "../../../../context/User_info";
 import jsCookie from "js-cookie";
@@ -20,6 +19,7 @@ import languageCTX from "../../../../context/languageCTX";
 import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
 import { dynamicString } from '../../../../helpers/dynamicString';
 import Button from "../../../../components/form/Button";
+import Icon from "../../../../components/Icons";
 
 const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [id, setId] = useState(null);
@@ -146,13 +146,8 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
           <div className="carProfileServiceModalDrawer"
           onClick={()=>setOutOfServicePrompt(false)}></div>
         <div className="modalOutOfService">
-          <p className="close">
-          <IoMdClose
-                className="close_btn"
-                color="rgb(165, 165, 165)"
-                size="20px"
-                onClick={() => setOutOfServicePrompt(false)}
-              />
+          <p className="close" onClick={() => setOutOfServicePrompt(false)}>
+          <Icon name='close' width='20px' height='20px' color='#a5a5a5' />
           </p>
           {is_out_of_service ? (
             <p className="modal_content_confirm_delete">{dynamicString([car.brand.name[activeLanguage], car.name[activeLanguage]], language.COMMON.activatingTheCar)}</p>
@@ -286,34 +281,39 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
               )
             ) : null}
             <div className="icon_container">
-              <span className="HEAP_Profile_Btn_EditCarDetails">
-                <IoMdCreate
+              <span className="HEAP_Profile_Btn_EditCarDetails"
+                onClick={() => {
+                  router.push({
+                    pathname: "/add-car",
+                    query: {
+                      car_id: id,
+                      mode: "edit",
+                    },
+                  });
+                }}>
+                <Icon
+                name="pencil"
                   color="#4ba3ce"
-                  size="20px"
-                  onClick={() => {
-                    router.push({
-                      pathname: "/add-car",
-                      query: {
-                        car_id: id,
-                        mode: "edit",
-                      },
-                    });
-                  }}
+                  width="20px"
+                  height="20px"
                 />
               </span>
-              <span className="HEAP_Profile_Btn_Delete">
-                <IoMdTrash
-                  onClick={() => {
-                    set_click_on_trash(true);
-                    deleteTheCar();
-                    // MODAL_CONTEXT.modalHandler("ConfirmDelete", {
-                    // model: car.name.fa,
-                    // brand: car.brand.name.fa,
-                    // id: id,
-                    // })
-                  }}
+              <span className="HEAP_Profile_Btn_Delete"
+                onClick={() => {
+                  set_click_on_trash(true);
+                  deleteTheCar();
+                  // MODAL_CONTEXT.modalHandler("ConfirmDelete", {
+                  // model: car.name.fa,
+                  // brand: car.brand.name.fa,
+                  // id: id,
+                  // })
+                }}>
+                <Icon
+                name='trash'
+                
                   color="#4ba3ce"
-                  size="20px"
+                  width="20px"
+                  height="20px"
                 />
               </span>
             </div>

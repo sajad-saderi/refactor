@@ -1,16 +1,15 @@
 import React, { useContext, useState } from "react";
 import GetUserCellPhone from "./GetUserCellPhone";
 import ConfirmCode from "./ConfirmCode";
-import modal_context from "../../../context/Modal_context";
-import { IoMdClose, IoMdPerson } from "react-icons/io";
+import modal_context from "../../../context/Modal_context"; 
 import TellMe from "./Tell_me";
 import Renter from "./Renter";
 import Owner from "./Owner";
 import Law from "./Law";
 import ImageModal from "./imageModal/imageModal";
 import Assurance from "./Assurance";
-import ConfirmDelete from "./ConfirmDelete";
-import { FaArrowRight } from "react-icons/fa";
+import ConfirmDelete from "./ConfirmDelete"; 
+import Icon from "../../../components/Icons";
 const Modals = (props) => {
   const [change, setChange] = useState(false);
   const Modal_context = useContext(modal_context);
@@ -73,12 +72,17 @@ const Modals = (props) => {
             // ) : 
 
             props.modal_type === "ImageModal" ? null : (
-              <IoMdClose
-                className="close_btn"
-                color="rgb(165, 165, 165)"
-                size="20px"
-                onClick={() => Modal_context.modalHandler()}
+              <span
+              onClick={() => Modal_context.modalHandler()}
+              className="close_btn">
+
+              <Icon
+              name="close"
+              color="#a5a5a5"
+              width="20px"
+              height="20px"
               />
+              </span>
             )}
         </div>
         {/* model section */}

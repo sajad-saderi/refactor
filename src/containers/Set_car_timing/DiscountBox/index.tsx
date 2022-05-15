@@ -8,10 +8,10 @@ const DropdownSearch = dynamic(() =>
 // import TextInput from "../../../components/form/TextInput";
 // import DropdownSearch from "../../../components/form/Dropdown";
 import Checkbox from "../../../components/form/Checkbox";
-// import "./DiscountBox.scss";
-import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
+// import "./DiscountBox.scss"; 
 import { dynamicString } from '../../../helpers/dynamicString';
 import languageCTX from '../../../context/languageCTX'
+import Icon from "../../../components/Icons";
 
 const DiscountBox = ({
   initialDiscountList,
@@ -246,22 +246,28 @@ const DiscountBox = ({
               {language.COMMON.cancel}
             </p>
             {mode.status && (
-              <IoMdTrash
-                className='Trash_icon_in_price_cart'
-                onClick={() => {
-                  setMode({
-                    status: false,
-                    index: null,
-                  });
-                  setDiscount_percent("");
-                  setDays_limit_name(null);
-                  setDays_limit(null);
-                  setDiscountcheck(0);
-                  setShowBox(0);
-                }}
+              <span
+              className='Trash_icon_in_price_cart'
+              onClick={() => {
+                setMode({
+                  status: false,
+                  index: null,
+                });
+                setDiscount_percent("");
+                setDays_limit_name(null);
+                setDays_limit(null);
+                setDiscountcheck(0);
+                setShowBox(0);
+              }}>
+
+              <Icon
+              name="trash"
                 color='#737373'
-                size='20px'
+                width='20px'
+                height='20px'
               />
+              </span>
+
             )}
           </div>
         </div>
@@ -275,7 +281,7 @@ const DiscountBox = ({
         >
           <p>
             {language.CAR_SETTING.addingDiscount}
-            <IoMdAdd size='20px' color='#4ba3ce' />
+            <Icon name="plus" width="20px" height="20px" color="#4ba3ce" /> 
           </p>
         </div>
       )}
@@ -310,7 +316,8 @@ const DiscountBox = ({
                     removeDiscountList(i);
                   }}
                 >
-                  <IoMdCreate size='20px' />
+
+                  <Icon name="pencil" width='20px' height="20px" color="#313131" />
                 </span>
                 <span
                   // className="cancel"
@@ -325,7 +332,7 @@ const DiscountBox = ({
                     setShowBox(0);
                   }}
                 >
-                  <IoMdTrash size='20px' />
+                  <Icon name="trash" width='20px' height="20px" color="#313131" />
                 </span>
               </div>
             </div>

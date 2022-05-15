@@ -3,9 +3,9 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
 import moment from "moment-jalaali";
 // import "./PriceBox.scss";
-import TextInput from "../../../components/form/TextInput";
-import { IoMdAdd, IoMdTrash, IoMdCreate } from "react-icons/io";
+import TextInput from "../../../components/form/TextInput"; 
 import { numberChanger } from "../../../../cypress/utils/numberChanger";
+import Icon from "../../../components/Icons";
 // moment.loadPersian({ dialect: "persian-modern" });
 
 const PriceBox = (props: IPriceBox) => {
@@ -316,8 +316,8 @@ const PriceBox = (props: IPriceBox) => {
               لغو
             </p>
             {EditMode.status && (
-              <IoMdTrash
-                className="Trash_icon_in_price_cart"
+              <span
+              className="Trash_icon_in_price_cart"
                 onClick={() => {
                   setEditMode({
                     status: false,
@@ -329,10 +329,10 @@ const PriceBox = (props: IPriceBox) => {
                   });
                   setShow_input_price(false);
                   setPrice_per_day("");
-                }}
-                color="#737373"
-                size="20px"
-              />
+                }}>
+
+              <Icon name="trash" width='20px' height="20px" color="#737373" />
+                </span>
             )}
           </div>
         </div>
@@ -342,7 +342,7 @@ const PriceBox = (props: IPriceBox) => {
           onClick={() => setShow_input_price(true)}
         >
           <p>
-            <IoMdAdd size="20px" color="#4ba3ce" /> افزودن بازه جدید
+          <Icon name="plus" width='20px' height="20px" color="#4ba3ce" /> افزودن بازه جدید
           </p>
         </div>
       )}
@@ -408,7 +408,7 @@ const PriceBox = (props: IPriceBox) => {
                           props.removeAvailList(i);
                         }}
                       >
-                        <IoMdCreate size="20px" />
+                        <Icon name="pencil" width='20px' height="20px" color="#313131" /> 
                       </span>
                       <span
                         // className="cancel"
@@ -425,7 +425,8 @@ const PriceBox = (props: IPriceBox) => {
                           props.removeAvailList(i);
                         }}
                       >
-                        <IoMdTrash size="20px" />
+                        <Icon name="trash" width='20px' height="20px" color="#313131" /> 
+
                       </span>
                     </div>
                   </div>

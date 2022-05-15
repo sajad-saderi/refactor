@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-// import { IoIosArrowForward, IoIosArrowBack, IoMdExpand } from "react-icons/io";
-// import arrow_right from "../../../public/image/svg/arrow-right.svg";
-import Icon from "../../../utils/Icon";
+// import arrow_right from "../../../public/image/svg/arrow-right.svg"; 
 // import "./slider.scss";
 import dynamic from "next/dynamic";
+import Icon from "../Icons";
 
 const Gallery = dynamic(() => import("./Gallery"));
 // import Gallery from "./Gallery";
@@ -86,7 +85,7 @@ const Slider = (props: ISlider) => {
                 {/* Open the gallery */}
                 {carousel && (
                   <div className='FullScreen' onClick={CloseGallery}>
-                    <Icon name='fullscreen' />
+                    <Icon name='fullscreen' width="20px" height="20px" color="#ffffff" />
                   </div>
                 )}
                 {Feed.map((item, i) => {
@@ -228,7 +227,7 @@ const Slider = (props: ISlider) => {
                   className='NAVIGA arrow-right'
                   onClick={() => SliderNav("right")}
                 >
-                  <Icon name='arrow_right' />
+                  <Icon name='chevronUp' rotate={90} width="30px" height="30px" color="#ffffff" />
                 </button>
               )}
               {/* if there is no more image left to swipe to left, hide the left arrow icon */}
@@ -237,7 +236,7 @@ const Slider = (props: ISlider) => {
                   className='NAVIGA arrow-left'
                   onClick={() => SliderNav("left")}
                 >
-                  <Icon name='arrow_right' />
+                  <Icon name='chevronUp' rotate={90} width="30px" height="30px" color="#ffffff" />
                 </button>
               )}
             </>

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Icon from "../../../utils/Icon";
+import { useState, useEffect } from "react"; 
 import moment from "moment-jalaali";
 import dynamic from "next/dynamic";
 import { supportedLanguages } from '../../../utils/types'
 import { numberChanger } from "../../../utils/numberChanger";
+import Icon from "../Icons";
 
 const StarGenerator = dynamic(() => import("../StarGenerator"));
 // import StarGenerator from "../StarGenerator";
@@ -20,7 +20,7 @@ const Review = ({ review, language, without_title, profile, locale }: IReview) =
       <section className='review_container_car_page'>
         {!without_title ? (
           <h2>
-            <Icon name='balloon' />
+            <Icon name='chatBalloon' color="#116B98" width="16px" height="16px" />
             <span>{language.CAR_PAGE.reviews}</span>
           </h2>
         ) : null}

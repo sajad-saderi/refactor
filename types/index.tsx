@@ -1,15 +1,20 @@
 import {
     IAppStore,
     ILocation,
-    ICalender
+    ICalender,
+
 } from './appStore';
 
-import { supportedLanguages, dateObject } from './commonTypes'
+import { IIcon } from './components'
+
+import { supportedLanguages, dateObject, ISvg } from './commonTypes'
 
 export type {
     dateObject,
     ILocation,
     ICalender,
     IAppStore,
-    supportedLanguages
+    ISvg,
+    supportedLanguages,
+    IIcon
 }

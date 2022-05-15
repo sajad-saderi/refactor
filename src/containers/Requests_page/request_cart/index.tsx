@@ -1,40 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import moment from "moment-jalaali";
-import {
-  IoIosCheckboxOutline,
-  IoIosCard,
-  IoIosRemoveCircle,
-  IoIosEyeOff,
-  IoLogoModelS,
-  IoIosHand,
-  IoMdFlag,
-  IoIosDownload,
-  IoMdArrowRoundBack,
-  IoMdPerson,
-} from "react-icons/io";
 import download from "../../../../public/image/download.png";
 import Icons from "../../../components/Icons";
 import dynamic from "next/dynamic";
-import toast_context from "../../../context/Toast_context";
-const Icon = dynamic(() => import("../../../../utils/Icon"));
+import toast_context from "../../../context/Toast_context"; 
 import net_CTX from "../../../context/internetConnectionCTX";
 import languageCTX from "../../../context/languageCTX";
-
-// import Icon from "../../../../utils/Icon";
-import {
-  MdAccountCircle,
-  MdAlarm,
-  MdAlarmOff,
-  MdCall,
-  MdCallMissedOutgoing,
-  MdClear,
-  MdCreditCard,
-  MdDone,
-  MdDriveEta,
-  MdKeyboardBackspace,
-  MdKeyboardReturn,
-  MdVpnKey,
-} from "react-icons/md";
+ 
 const PelakView = dynamic(() => import("../../../components/pelak"));
 const Button = dynamic(() => import("../../../components/form/Button"));
 // import PelakView from "../../../components/pelak";
@@ -47,7 +19,6 @@ import jsCookie from "js-cookie";
 import Modal_context from "../../../context/Modal_context";
 import Toast_context from "../../../context/Toast_context";
 import carImage from "../../../../public/image/car-image-thumbnail.jpg";
-import { FiClock } from "react-icons/fi";
 import { useRouter } from "next/router";
 import ErrorHelper from "../../../../utils/error_helper";
 import appState from "../../../context/app";
@@ -55,6 +26,7 @@ import { twoWayDateConvertor } from '../../../helpers/dateControler';
 import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
 import { dynamicString } from '../../../helpers/dynamicString';
 import { numberChanger } from "../../../../utils/numberChanger";
+import Icon from "../../../components/Icons";
 
 let dateObject = { from: null, to: null }
 moment.loadPersian({ dialect: "persian-modern" });
@@ -213,7 +185,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
 <div className="rent_status">
 <div className="status_new">
   <div className="card_status">
-              <MdAlarm size="20px" color="#f7941d" />
+  <Icon
+                  name='alarmClock'
+                  width='20px'
+                  height='20px'
+                  color='#f7941d'
+                />
               <span>{language.REQUEST_PAGE.pending}</span>
               </div>
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -226,7 +203,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   }
                   completeCallback={() => CreateTheStatusForThisCard("expired")}
                 />
-                <FiClock size="20px" color="#f7941d" />
+               <Icon
+                  name='clock'
+                  height='20xpx'
+                  width='20px'
+                  color='#f7941d'
+                />
               </div>
             )}
           </div>
@@ -265,7 +247,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
 <div className="rent_status">
 <div className='status_approved'>
   <div className="card_status">
-              <MdCreditCard size="20px" color="#a3678b" />
+  <Icon
+                  name='creditCard'
+                  width='20px'
+                  height='20px'
+                  color='#a3678b'
+                />
               <span>{language.REQUEST_PAGE.approved}</span>
               </div>
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -278,7 +265,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   }
                   completeCallback={() => CreateTheStatusForThisCard("expired")}
                 />
-                <FiClock size="20px" color="#a3678b" />
+                <Icon
+                  name='clock'
+                  height='20xpx'
+                  width='20px'
+                  color='#a3678b'
+                />
               </div>
             )}
           </div>
@@ -299,7 +291,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "rejected":
         RentStatus = (
           <div className="rent_status status_expired">
-            <MdCallMissedOutgoing size="20px" color="#707070" />
+              <Icon name='reject' width='20px' height='20px' color='#707070' />
             <span>{language.REQUEST_PAGE.rejected}</span>
           </div>
         );
@@ -308,7 +300,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "expired":
         RentStatus = (
           <div className="rent_status status_expired">
-            <MdAlarmOff size="20px" color="#707070" />
+            <Icon name='outOfDate' height='2rem' width='20px' color='#707070' />
             <span>{language.REQUEST_PAGE.expired}</span>
           </div>
         );
@@ -317,7 +309,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "cancelled":
         RentStatus = (
           <div className="rent_status status_expired">
-            <Icon name="cancel" />
+         <Icon name='stopSign' width='20px' height='20px' color='#707070' />
             {/* <IoIosEyeOff size="1.4rem" color="#656565" /> */}
             <span>{language.REQUEST_PAGE.cancelled}</span>
           </div>
@@ -329,7 +321,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
 <div className="rent_status">
 <div>
   <div className="status_paid">
-            <MdVpnKey size="20px" color="#2cbbc2" />
+  <Icon name='key' height='20px' width='20px' color='#2cbbc2' />
             <span>{language.REQUEST_PAGE.paid}</span>
               </div>
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -354,7 +346,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <div className="inlineDisplay">
-            <IoIosHand size="14px" color="#656565" />
+            {/* <IoIosHand size="14px" color="#656565" /> */}
             <span>{data.status.name}</span>
             </div>
             {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -365,7 +357,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
 <div>
 <div className="rent_status status_on_trip">
-            <MdDriveEta size="20px" color="#2cbbc2" />
+<Icon name='car' width='20px' height='20px' color='#2cbbc2' />
             <span>{language.REQUEST_PAGE.delivered}</span>
             </div>
             {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -390,7 +382,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
 <div >
 <div className="rent_status status_returned">
-            <MdKeyboardReturn size="20px" color="#2cbbc2" />
+<Icon
+                    name='flashBack'
+                    height='20px'
+                    width='20px'
+                    color='#2cbbc2'
+                  />
             <span>{language.REQUEST_PAGE.returned}</span>
             </div>
             {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -439,7 +436,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       default:
         RentStatus = (
           <div className="rent_status">
-            <IoIosDownload size="14px" color="#656565" />
+             <Icon name='stopSign' height='20px' width='20px' color='#656565' />
             <span>{data.status.name}</span>
           </div>
         );
@@ -513,7 +510,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                     : moment(start_date[activeLanguage].name, "YYYY/MM/DD").format("dddd")}
                 </span>
               </span>
-              <MdKeyboardBackspace size="20px" color="#dcdcdc" />
+              <Icon name="arrow" width="20p" height="20px" color="#dcdcdc" />
               <span>
                 {
                   (extensionInfo && extensionSum.status.id === "extended") ?
@@ -588,13 +585,23 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
           {!extensionSum?.price&&<span className="insurance_badge">
             {has_Insurance ? (
               <>
-                <Icon name="active_shield" />
+                 <Icon
+                  name='activeShield'
+                  width='20px'
+                  height='20px'
+                  color='#37c4d7'
+                />
                 {/* <MdDone size='1.4rem' color='#2cbbc2' /> */}
                 {language.REQUEST_PAGE.withInsurance}
               </>
             ) : (
               <>
-                <Icon name="deactivate_shield" />
+                <Icon
+                  name='inactivatedShield'
+                  height='20px'
+                  width='20px'
+                  color='#707070'
+                />
                 {language.REQUEST_PAGE.withoutInsurance}
               </>
             )}
@@ -609,7 +616,13 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                 prefetch={false}
               >
                 <a>
-                  <MdAccountCircle size="24px" />
+                  <span className="avatar">
+                <Icon
+                  name='avatar'
+                  width='16px'
+                  height='16px'
+                  color='#ffffff'
+                /></span>
                   {owner_Info.name}
                 </a>
               </Link>
@@ -617,7 +630,12 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + owner_Info.cell)}`}>
                   <span className="extra_Text">{numberChanger(`0${owner_Info.cell}`,activeLanguage)}</span>
-                  <MdCall size="16px" color="#4ba3ce" />
+                  <Icon
+                    name='phone'
+                    width='16px'
+                    height='16px'
+                    color='#4ba3ce'
+                  />
                 </a>
               ) : null}
             </>
@@ -629,7 +647,13 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                 prefetch={false}
               >
                 <a>
-                  <MdAccountCircle size="24px" />
+                  <span className="avatar">
+                <Icon
+                  name='avatar'
+                  width='16px'
+                  height='16px'
+                  color='#ffffff'
+                /></span>
                   {renter_info.name}
                 </a>
               </Link>
@@ -637,7 +661,12 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + renter_info.cell)}`}>
                   <span className="extra_Text">{numberChanger(`0${renter_info.cell}`,activeLanguage)}</span>
-                  <MdCall size="16px" color="#4ba3ce" />
+                  <Icon
+                    name='phone'
+                    width='16px'
+                    height='16px'
+                    color='#4ba3ce'
+                  />
                 </a>
               ) : null}
             </>
@@ -653,7 +682,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               </span>
             {language.REQUEST_PAGE.contractDocuments}
             <span style={{transform:"rotate(180deg)", display:"flex"}}>
-              <Icons name="chevron" width="20px" height="20px" color="#3fa6da" />
+              <Icons name="chevronUp" width="20px" height="20px" color="#3fa6da" />
               </span>
             </span>
             {downloadBox&&<div className={['downloadContainer',downloadBox?'containerAnimation':''].join(' ')}>

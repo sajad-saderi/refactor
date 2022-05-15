@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
-import { supportedLanguages } from '../../../utils/types';
+import Icon from "../Icons";
+import { supportedLanguages } from "../../../utils/types";
+import classNames from "classnames";
 // import "./Accordion.scss";
 
 const Accordion = (props: IAccordion) => {
@@ -17,30 +18,31 @@ const Accordion = (props: IAccordion) => {
     return (
       <div
         key={i}
-        dir={props.activeLanguage === 'fa' ? 'rtl' : 'ltr'}
-        className='FQ_BOX'
+        dir={props.activeLanguage === "fa" ? "rtl" : "ltr"}
+        className="FQ_BOX"
         onClick={() => {
           ClickHandler(i);
         }}
-        itemProp='mainEntity'
+        itemProp="mainEntity"
         itemScope
-        itemType='https://schema.org/Question'
+        itemType="https://schema.org/Question"
       >
         <h3
           className={i === index ? "activeQA" : ""}
           dangerouslySetInnerHTML={{ __html: item.title }}
         ></h3>
-        <IoIosArrowDown
-          color='#202020'
-          size='20px'
-          className={["ICON_CHevron", i === index ? "ACTIVE_CHEVRON" : ""].join(
-            " "
+        <span
+          className={classNames(
+            "ICON_CHevron",
+            i === index && "ACTIVE_CHEVRON"
           )}
-        />
+        >
+          <Icon name="chevronUp" color="#202020" width="20px" height="20px" />
+        </span>
         <div
           itemScope
-          itemProp='acceptedAnswer'
-          itemType='https://schema.org/Answer'
+          itemProp="acceptedAnswer"
+          itemType="https://schema.org/Answer"
           className={["QuestionPart", i === index ? "activeQA" : ""].join(" ")}
           dangerouslySetInnerHTML={{ __html: item.content }}
         ></div>
@@ -49,13 +51,9 @@ const Accordion = (props: IAccordion) => {
   });
 };
 
-interface IAccordion {
-  /**
-   * @question_set
-   * A list of questions and answers
-   */
+interface IAccordion {  
   question_set: any;
-  activeLanguage: supportedLanguages
+  activeLanguage: supportedLanguages;
 }
 
 export default Accordion;

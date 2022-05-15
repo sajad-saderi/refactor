@@ -13,7 +13,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Nouislider from "nouislider-react";
 // Had to import noUiSlider and filter style file modular, to work correctly
 import "nouislider/distribute/nouislider.css";
-import { IoMdAdd, IoMdRemove } from "react-icons/io";
+import Icon from "../../Icons";
 
 const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
   /**
@@ -55,8 +55,8 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
   //   }, [sliderRange]);
 
   return (
-    <div className='zoom_slider'>
-      <IoMdAdd size='22px' color='#fff' className='zoom_plus_icon' />
+    <div className="zoom_slider">
+      <Icon name="plus" color="#ffffff" width="22px" height="22px" />
       <Nouislider
         /**
          * @range
@@ -67,7 +67,7 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
         onSlide={(zoom) => zoomChange(zoom)}
         step={0.1}
       />
-      <IoMdRemove size='22px' color='#fff' className='zoom_out_icon' />
+      <Icon name="minus" color="#ffffff" width="22px" height="22px" />
     </div>
   );
 };

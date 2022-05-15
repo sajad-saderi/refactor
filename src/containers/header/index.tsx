@@ -6,8 +6,7 @@ import Modal from './modals';
 import * as logo from '../../../public/logo.svg';
 import * as logo_en from '../../../public/logo_en.svg';
 import * as car from '../../../public/car_logo.svg';
-import Link from 'next/link';
-import { IoIosMenu } from 'react-icons/io';
+import Link from 'next/link'; 
 import languageCTX from '../../context/languageCTX'
 
 const Header = ({ language, Show_Modal, modalType, data }: IHeader) => {

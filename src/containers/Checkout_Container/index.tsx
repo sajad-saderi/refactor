@@ -11,8 +11,7 @@ const TextInput = dynamic(() => import("../../components/form/TextInput"));
 const Checkout_Container_Loader = dynamic(() =>
   import("../../components/cartPlaceholder/checkoutLoading")
 );
-// import Button from "../../components/form/Button";
-import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
+// import Button from "../../components/form/Button"; 
 import moment from "moment-jalaali";
 // import Insurance from "./insurance";
 // import TextInput from "../../components/form/TextInput";
@@ -31,6 +30,7 @@ import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { dynamicString } from '../../helpers/dynamicString';
 import { numberChanger } from "../../../utils/numberChanger";
 import { errorCodeFormatter } from "../../../utils/errorCodeFormatter";
+import Icon from "../../components/Icons";
 
 let dateObject: ICalender | null = { from: null, to: null }
 
@@ -295,7 +295,7 @@ const Checkout_Container = ({
               : numberChanger(moment(dateObject.from.en.name, "YYYY/M/DD").format("DD MMMM"),activeLanguage)
             }
           </p>
-          <IoMdArrowRoundBack size="30px" color="#707070" />
+          <Icon name='arrow' width='26px' height='26px' color='#202020' />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("dddd")
@@ -405,7 +405,7 @@ const Checkout_Container = ({
               : numberChanger(moment(dateObject.from.en.name, "YYYY/MM/DD").format("DD MMMM"),activeLanguage)
             }
           </p>
-          <IoMdArrowRoundBack size="30px" color="#707070" />
+          <Icon name='arrow' width='26px' height='26px' color='#202020' />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jMM/jDD").format("dddd")
@@ -486,15 +486,20 @@ const Checkout_Container = ({
                     HideClearIcon={true}
                   />
                   {/* {coupon && ( */}
-                  <IoMdClose
-                    className="close_icon"
-                    onClick={() => {
-                      setCoupon("");
-                      setShowcoupon(false);
-                    }}
-                    color="737373"
-                    size="20px"
-                  />
+                  <span
+                   className="close_icon"
+                   onClick={() => {
+                     setCoupon("");
+                     setShowcoupon(false);
+                   }}>
+
+                  <Icon
+                  name='close'
+                    color="#737373"
+                    width="20px"
+                    height="20px"
+                    />
+                    </span>
                   {/* )} */}
                 </div>
                 <Button

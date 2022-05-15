@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { supportedLanguages } from '../../../types';
+import Icon from "../Icons";
 
-const Icon = dynamic(() => import("../../../utils/Icon"));
-// import Icon from "../../../utils/Icon";
 
 const StarGenerator = ({ count, locale }: IReview) => {
   return (
@@ -11,7 +10,7 @@ const StarGenerator = ({ count, locale }: IReview) => {
       {Array(count)
         .fill("0")
         .map((i) => {
-          return <Icon name='star' />;
+          return <Icon name='star' width="16px" height="20px" color="#116B98"/>;
         })}
     </span>
   );

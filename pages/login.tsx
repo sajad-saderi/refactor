@@ -1,23 +1,24 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 
-import { useRouter } from 'next/router';
-import { IoMdPerson } from 'react-icons/io';
-import { NextSeo } from 'next-seo';
+import { useRouter } from "next/router";
 
-import { FaArrowRight } from 'react-icons/fa';
-import context_user from '../src/context/User_info';
-import languageCTX from '../src/context/languageCTX';
-import dynamic from 'next/dynamic';
+import { NextSeo } from "next-seo";
+
+import context_user from "../src/context/User_info";
+import languageCTX from "../src/context/languageCTX";
+import dynamic from "next/dynamic";
+import Icon from "../src/components/Icons";
+
 // import { logPageView } from "../utils/analytics";
 // import jsCookie from "js-cookie";
 // import Layout from "../src/Layout";
 
-const Layout = dynamic(() => import('../src/Layout'));
+const Layout = dynamic(() => import("../src/Layout"));
 const ConfirmCode = dynamic(() =>
-  import('../src/containers/header/modals/ConfirmCode'),
+  import("../src/containers/header/modals/ConfirmCode")
 );
 const GetUserCellPhone = dynamic(() =>
-  import('../src/containers/header/modals/GetUserCellPhone'),
+  import("../src/containers/header/modals/GetUserCellPhone")
 );
 
 const LoginPage = ({ locale }) => {
@@ -32,14 +33,14 @@ const LoginPage = ({ locale }) => {
   };
 
   useEffect(() => {
-    window['dataLayer'].push({
-      event: 'page_view',
+    window["dataLayer"].push({
+      event: "page_view",
       pageURL: window.location.href,
-      pagePath: '/login',
+      pagePath: "/login",
       pageTitle: locale.LOGIN.login,
     });
 
-    if (window['auth']) {
+    if (window["auth"]) {
       set_deactivate_form(true);
       // if (localStorage["history"] !== "/add-car") window.history.go(-1);
       // else router.push("/add-car");
@@ -68,30 +69,28 @@ const LoginPage = ({ locale }) => {
           cardType: locale.PAGE_HEADER.cardType,
         }}
       />
-      <div className="Please_login_container minHeight" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+      <div
+        className="Please_login_container minHeight"
+        dir={activeLanguage === "fa" ? "rtl" : "ltr"}
+      >
         <div
           className={[
-            'modal_box',
-            change ? 'confirm_code' : 'login_modal',
-          ].join(' ')}
+            "modal_box",
+            change ? "confirm_code" : "login_modal",
+          ].join(" ")}
         >
           {change ? (
             <div className="login_modal_title_confirm_code">
-              <FaArrowRight
-                onClick={panelController}
-                size="20px"
-                color="#4ba3ce"
-                className="login_person_icon"
-              />
+              <span className="login_person_icon" onClick={panelController}>
+                <Icon name="arrow" width="20px" height="20px" color="#4ba3ce" />
+              </span>
               <h2>{locale.LOGIN.title}</h2>
             </div>
           ) : (
             <div className="login_modal_title">
-              <IoMdPerson
-                size="20px"
-                color="#fff"
-                className="login_person_icon"
-              />
+              <span className="login_person_icon">
+                <Icon name="avatar" width="20px" height="20px" color="#fff" />
+              </span>
               <h2>{locale.LOGIN.login}</h2>
             </div>
           )}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IoIosArrowRoundBack } from "react-icons/io";
+import Icon from "../../components/Icons";
 export const HostGuide = () => (
   <>
     <h2>راهنمای کامل سپریس برای میزبان</h2>
@@ -36,7 +36,7 @@ export const HostGuide = () => (
     <Link href="/guide-renter">
       <a className="guide-center__readMore">
         بیشتر
-        <IoIosArrowRoundBack size="30px" color="##3fa6da" />
+        <Icon name="arrow" width="30px" height="30px" color="#3fa6da" />
       </a>
     </Link>
   </>
