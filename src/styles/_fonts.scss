@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iranSansXV';
-  src: url('../../public/fonts/iranSans/variable/iranSansXV.woff')
+  src: url('../../public/fonts/iranSans/iranSans.woff')
       format('woff-variations'),
     /* will be the standard and works in Safari now */
-      url('../../public/fonts/iranSans/variable/iranSansXV.woff2')
+      url('../../public/fonts/iranSans/iranSans.woff2')
       format('woff2-variations');
   /* for the other supporting browsers */
   font-weight: 100 900;
@@ -12,10 +12,10 @@
 
 @font-face {
   font-family: 'danaXV';
-  src: url('../../public/fonts/dana/variable/danaXV.woff')
+  src: url('../../public/fonts/dana/danaXV.woff')
       format('woff-variations'),
     /* will be the standard and works in Safari now */
-      url('../../public/fonts/dana/variable/danaXV.woff2')
+      url('../../public/fonts/dana/danaXV.woff2')
       format('woff2-variations');
   /* for the other supporting browsers */
   font-weight: 100 900;
@@ -24,24 +24,24 @@
 
 @font-face {
   font-family: iranSans;
-  src: url('../../public/fonts/iranSans/static/iranSansRegular.woff')
+  src: url('../../public/fonts/iranSans/iranSansRegular.woff')
     format('woff');
   font-weight: normal;
 }
 @font-face {
   font-family: iranSans;
-  src: url('../../public/fonts/iranSans/static/iranSansBold.woff')
+  src: url('../../public/fonts/iranSans/iranSansBold.woff')
     format('woff');
   font-weight: 700;
 }
 
 @font-face {
   font-family: dana;
-  src: url('../../public/fonts/dana/static/danaRegular.woff') format('woff');
+  src: url('../../public/fonts/dana/danaRegular.woff') format('woff');
   font-weight: normal;
 }
 @font-face {
   font-family: dana;
-  src: url('../../public/fonts/dana/static/danaBold.woff') format('woff');
+  src: url('../../public/fonts/dana/danaBold.woff') format('woff');
   font-weight: 700;
 }
