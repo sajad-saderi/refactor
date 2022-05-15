@@ -82,7 +82,7 @@ const LoginPage = ({ locale }) => {
           {change ? (
             <div className="login_modal_title_confirm_code">
               <span className="login_person_icon" onClick={panelController}>
-                <Icon name="arrow" width="20px" height="20px" color="#4ba3ce" />
+                <Icon name="arrow" width="30px" height="30px" color="#4ba3ce" rotate={180}/>
               </span>
               <h2>{locale.LOGIN.title}</h2>
             </div>

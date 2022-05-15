@@ -85,7 +85,7 @@ const Icon = ({ name, width, height, color, rotate }: IIcon) => {
     case "twoWayArrows":
       return <TwoWayArrows color={color} height={height} width={width} />;
     case "arrow":
-      return <Arrow color={color} height={height} width={width} />;
+      return <Arrow color={color} height={height} width={width} rotate={rotate}/>;
     case "document":
       return <DocumentIcon color={color} height={height} width={width} />;
     case "car":
