@@ -52,7 +52,7 @@ const InternetConnection = ({ language }) => {
         )}
       </div>
       <p className="retry" onClick={checkTheConnection}>
-        <IoMdRefresh size="2rem" color="" />
+        <IoMdRefresh size="20px" color="" />
         {language.COMMON.checkConnection}
       </p>
     </div>,

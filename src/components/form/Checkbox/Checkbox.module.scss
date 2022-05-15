@@ -22,15 +22,15 @@
 	justify-content: flex-start;
 	align-items: center;
 	flex-wrap: wrap;
-	margin-bottom: 0.5rem;
+	margin-bottom: 5px;
 	/* Customize the label (the container) */
 	.container {
 		display: block;
 		position: relative;
-		padding-right: 2.8rem;
-		margin-bottom: 2rem;
+		padding-right: 28px;
+		margin-bottom: 20px;
 		cursor: pointer;
-		font-size: 1.4rem;
+		font-size: 14px;
 		font-weight: 400;
 		min-width: 33%;
 		color: $_313131;
@@ -54,8 +54,8 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		height: 1.6rem;
-		width: 1.6rem;
+		height: 16px;
+		width: 16px;
 		background-color: $_ffffff;
 		border: 1px solid $_bfbfbf;
 		border-radius: 4px;
@@ -106,8 +106,8 @@
 	justify-content: flex-start;
 	/* Customize the label (the container) */
 	.container {
-		padding-right: 0rem;
-		padding-left: 2.8rem;
+		padding-right: 0;
+		padding-left: 28px;
 	}
 
 	/* Create a custom checkbox */

@@ -295,7 +295,7 @@ const Checkout_Container = ({
               : numberChanger(moment(dateObject.from.en.name, "YYYY/M/DD").format("DD MMMM"),activeLanguage)
             }
           </p>
-          <IoMdArrowRoundBack size="3rem" color="#707070" />
+          <IoMdArrowRoundBack size="30px" color="#707070" />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jM/jD").format("dddd")
@@ -405,7 +405,7 @@ const Checkout_Container = ({
               : numberChanger(moment(dateObject.from.en.name, "YYYY/MM/DD").format("DD MMMM"),activeLanguage)
             }
           </p>
-          <IoMdArrowRoundBack size="3rem" color="#707070" />
+          <IoMdArrowRoundBack size="30px" color="#707070" />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa' ? moment(dateObject.to.fa.name, "jYYYY/jMM/jDD").format("dddd")
@@ -493,7 +493,7 @@ const Checkout_Container = ({
                       setShowcoupon(false);
                     }}
                     color="737373"
-                    size="2rem"
+                    size="20px"
                   />
                   {/* )} */}
                 </div>

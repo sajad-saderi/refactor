@@ -218,7 +218,7 @@ const Profile_Cars = ({
               fetchApi(page);
             }}
           >
-            <IoIosArrowDown color="#202020" size="1.8rem" />
+            <IoIosArrowDown color="#202020" size="18px" />
             {language.COMMON.loadMore}
           </span>
         </div>

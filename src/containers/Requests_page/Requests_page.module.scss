@@ -16,32 +16,32 @@
     display: none !important;
   }
   .filter_section {
-    max-width: 27rem;
-    padding: 2rem;
+    max-width: 270px;
+    padding: 20px;
     width: 30%;
     background: $_ffffff;
     display: inline-block;
     vertical-align: top;
-    font-size: 1.4rem;
+    font-size: 14px;
     box-shadow: var.$boxShadow;
     border-radius: 4px;
     margin-top: 0;
-    margin-left: 1rem;
+    margin-left: 10px;
     .check_box_container {
       display: block;
     }
     h3 {
       font-weight: 500;
-      font-size: 1.4rem;
+      font-size: 14px;
       margin: 0;
-      margin-bottom: 1.4rem;
+      margin-bottom: 14px;
     }
   }
   .blockSection {
     text-align: center;
     display: block !important;
     width: 100% !important;
-    min-height: 30rem;
+    min-height: 300px;
   }
   .requests_section {
     display: inline-block;
@@ -56,19 +56,19 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      max-width: 55rem;
+      max-width: 550px;
       font-family: "danaXV", "dana";
       background: $_ffffff;
       box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
       margin: auto;
-      margin-bottom: 1.6rem;
+      margin-bottom: 16px;
       p {
         cursor: pointer;
         text-align: center;
         color: $_313131;
-        font-size: 1.4rem;
+        font-size: 14px;
         width: 50%;
-        padding: 1rem 0;
+        padding: 10px 0;
       }
       .active {
         color: $_3fa6da;
@@ -77,14 +77,14 @@
     }
     .active_tab_container {
       width: 100%;
-      max-width: 55rem;
+      max-width: 550px;
       margin: auto;
     }
   }
   .NoResult {
-    padding-top: 3rem;
+    padding-top: 30px;
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 16px;
   }
 }
 
@@ -97,8 +97,8 @@
         max-width: none;
       }
       .active_tab_container {
-        padding-right: 1.6rem;
-        padding-left: 1.6rem;
+        padding-right: 16px;
+        padding-left: 16px;
         margin-right: auto;
         margin-left: auto;
         max-width: none;
@@ -113,7 +113,7 @@
       transition: 0.25s all;
       transform: translateX(1000px);
       opacity: 0;
-      width: 26rem;
+      width: 260px;
       position: fixed;
       overflow-y: scroll;
       right: 0;
@@ -122,7 +122,7 @@
       margin-top: 0;
       border-radius: 0;
       &::-webkit-scrollbar {
-        width: 1rem;
+        width: 10px;
       }
       /* Track */
       &::-webkit-scrollbar-track {
@@ -141,18 +141,18 @@
     }
     .show_filter {
       position: absolute;
-      right: 1.5rem;
-      top: 2rem;
+      right: 15px;
+      top: 20px;
       display: block;
       cursor: pointer;
       svg {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 1rem;
-        width: 2rem;
+        margin-left: 10px;
+        width: 20px;
       }
       font-weight: 500;
-      font-size: 1.4rem;
+      font-size: 14px;
     }
     .with_drawer {
       top: 0;

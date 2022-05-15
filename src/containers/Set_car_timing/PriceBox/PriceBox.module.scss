@@ -1,15 +1,15 @@
 @import "../../../styles/colors";
 
 .removePadding{
-  padding-bottom: 2.5rem !important;
+  padding-bottom: 25px !important;
 }
 .Price_form_container {
   width: auto;
   position: relative;
-  padding-bottom: 8rem;
+  padding-bottom: 80px;
   .input_price_Box {
-    max-width: 32rem; 
-    padding: 1.6rem;
+    max-width: 320px; 
+    padding: 16px;
     margin-bottom: 10px;
     border: 1px solid $_bfbfbf;
     border-radius: 4px;
@@ -17,20 +17,20 @@
       position: relative;
       input {
         direction: ltr;
-        text-indent: 7rem;
+        text-indent: 70px;
         text-align: left;
-        padding: 0.94rem;
+        padding: 9px;
         font-family: inherit;
-        margin: 0.3rem auto 0.5rem;
+        margin: 03px auto 05px;
         display: block;
         width: 100%;
         outline: 0;
         -webkit-appearance: none;
         line-height: 1;
-        font-size: 1.4rem;
+        font-size: 14px;
         border: 1px solid rgba(34, 36, 38, 0.15);
         color: rgba(0, 0, 0, 0.87);
-        border-radius: 0.4rem;
+        border-radius: 04px;
       }
       .clean_icon {
         position: absolute;
@@ -39,8 +39,8 @@
       }
       span {
         position: absolute;
-        top: 3.4rem;
-        left: 1rem;
+        top: 34px;
+        left: 10px;
       }
     }
     .datePickerError {
@@ -50,18 +50,18 @@
       }
 
       .input_error_message {
-        font-size: 1.2rem;
+        font-size: 12px;
         color: $_d83030;
       }
     }
     .divs {
       width: 100%;
-      margin: 1rem 0;
+      margin: 10px 0;
       .Diff_margin {
-        margin-bottom: 0.3rem;
+        margin-bottom: 03px;
       }
       .tomanTail{
-        top: 4rem;
+        top: 40px;
       }
     }
     .button_box {
@@ -70,13 +70,13 @@
       justify-content: flex-start;
       p {
         cursor: pointer;
-        padding: 0 1.4rem;
+        padding: 0 14px;
       }
       .Trash_icon_in_price_cart {
         margin: auto;
         margin-left: 0;
         cursor: pointer;
-        width: 2rem;
+        width: 20px;
       }
     }
   }
@@ -84,41 +84,41 @@
     cursor: pointer;
     position: absolute;
     right: 0;
-    bottom: 3em;
+    bottom: 30px;
     p {
       color: $_3fa6da;
-      font-size: 1.4rem;
+      font-size: 14px;
       display: inline-block;
       border: 1px solid $_3fa6da;
       border-radius: 4px;
-      padding-left: 2rem;
+      padding-left: 20px;
       svg {
-        padding: 0.5rem;
+        padding: 05px;
         display: inline-block;
         vertical-align: middle;
         background-color: rgba(0, 0, 0, 0.05);
-        margin-left: 1rem;
-        width: 2rem;
+        margin-left: 10px;
+        width: 20px;
       }
     }
   }
   .DatePicker {
     width: 100%;
     input {
-      padding: 0.94rem;
+      padding: 9px;
       font-family: inherit;
       text-align: center;
-      margin: 0.3rem auto 0.5rem;
+      margin: 3px auto 5px;
       display: block;
       width: 100%;
       outline: 0;
       -webkit-appearance: none;
       line-height: 1;
-      font-size: 1.4rem;
+      font-size: 14px;
       background: $_ffffff;
       border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
-      border-radius: 0.4rem;
+      border-radius: 4px;
       box-shadow: 0 0 0 0 transparent inset;
       cursor: pointer;
     }
@@ -128,8 +128,8 @@
       display: block;
       .Date_list_item {
         border: 1px solid $_bfbfbf;
-        padding: 1.2rem;
-        margin-bottom: 1rem;
+        padding: 12px;
+        margin-bottom: 10px;
         display: inline-flex;
         justify-content: flex-start;
         align-items: center;
@@ -143,19 +143,19 @@
         }
         .nothing {
           color: rgba(34, 36, 38, 0.6);
-          margin-bottom: 1rem;
+          margin-bottom: 10px;
         }
         .button_box {
           display: inline-block;
           span {
             display: inline-block;
-            font-size: 1.2rem;
-            margin: 0 1rem 0 0;
-            padding-right: 2rem;
+            font-size: 12px;
+            margin: 0 10px 0 0;
+            padding-right: 20px;
             color: $_313131;
             cursor: pointer;
             svg {
-              width: 2rem;
+              width: 20px;
             }
           }
         }

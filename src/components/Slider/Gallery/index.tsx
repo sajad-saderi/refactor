@@ -45,7 +45,7 @@ const Gallery = (props: IGallery) => {
     <div className='Gallery_Container'>
       {/* Close the gallery */}
       <div className='closeButton' onClick={props.CloseGallery}>
-        <IoMdClose size='3rem' />
+        <IoMdClose size='30px' />
       </div>
       {/* view part */}
       <div className='show_part'>
@@ -148,7 +148,7 @@ const Gallery = (props: IGallery) => {
             >
               <IoIosArrowForward
                 // set the next right image to view
-                size='3rem'
+                size='30px'
               />
             </button>
           )}
@@ -161,7 +161,7 @@ const Gallery = (props: IGallery) => {
               <IoIosArrowBack
                 // set the next right image to view
 
-                size='3rem'
+                size='30px'
               />
             </button>
           )}

@@ -4,9 +4,7 @@
   position: relative;
   // .recomendation-arrow_left {
   //   position: absolute;
-  //   left: 0px;
-  //   width: 3rem;
-  //   height: 3rem;
+  //   left: 0px; 
   //   background-color: $_bfbfbf;
   //   transform: rotate(180deg);
   //   top: 45%;
@@ -17,7 +15,7 @@
   //   }
   // }
   .recommendation_section {
-    margin: 3rem auto 3rem auto;
+    margin: 30px auto 30px auto;
     width: 100%;
     overflow-y: hidden;
     overflow-x: scroll;
@@ -28,20 +26,20 @@
         display: inline-block;
         vertical-align: middle;
         figure {
-          margin: 3rem auto;
+          margin: 30px auto;
           box-shadow: var.$boxShadow;
-          border-radius: 1rem;
-          width: 14rem;
+          border-radius: 10px;
+          width: 140px;
           text-align: center;
           img {
             display: block;
             margin: auto;
-            width: 14rem;
-            height: 11.2rem;
+            width: 140px;
+            height: 110px;
             border-radius: 10px 10px 0 0;
           }
           p {
-            font-size: 1.4rem;
+            font-size: 12px;
             line-height: 1.5;
             padding: 16px;
             text-align: center;
@@ -79,17 +77,17 @@
 }
 @media screen and(max-width:480px) {
   .slider-wrapper {
-    padding-right: 1.6rem;
+    padding-right: 16px;
     .recommendation_section {
       .inner-container {
         width: 980px;
         .suggestion_card {
           margin: 0 0px 0 14px;
           figure {
-            width: 17rem;
+            width: 170px;
             img {
-              height:13.6rem;
-              width: 17rem;
+              height:130px;
+              width: 170px;
             }
           }
         }

@@ -331,7 +331,7 @@ const PriceBox = (props: IPriceBox) => {
                   setPrice_per_day("");
                 }}
                 color="#737373"
-                size="2rem"
+                size="20px"
               />
             )}
           </div>
@@ -342,7 +342,7 @@ const PriceBox = (props: IPriceBox) => {
           onClick={() => setShow_input_price(true)}
         >
           <p>
-            <IoMdAdd size="2rem" color="#4ba3ce" /> افزودن بازه جدید
+            <IoMdAdd size="20px" color="#4ba3ce" /> افزودن بازه جدید
           </p>
         </div>
       )}
@@ -408,7 +408,7 @@ const PriceBox = (props: IPriceBox) => {
                           props.removeAvailList(i);
                         }}
                       >
-                        <IoMdCreate size="2rem" />
+                        <IoMdCreate size="20px" />
                       </span>
                       <span
                         // className="cancel"
@@ -425,7 +425,7 @@ const PriceBox = (props: IPriceBox) => {
                           props.removeAvailList(i);
                         }}
                       >
-                        <IoMdTrash size="2rem" />
+                        <IoMdTrash size="20px" />
                       </span>
                     </div>
                   </div>

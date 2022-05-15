@@ -674,7 +674,7 @@ const Landing_page_container = ({
             {showSearch ? (
               <span className='close_text_btn'>
                 {language.COMMON.close}
-                <IoMdClose size='2rem' color='#dcdcdc' />
+                <IoMdClose size='20px' color='#dcdcdc' />
               </span>
             ) : (
               language.COMMON.changeSearch
@@ -722,7 +722,7 @@ const Landing_page_container = ({
           <IoIosArrowUp
             className='Arrow_up_change_search'
             color='#dcdcdc'
-            size='2rem'
+            size='20px'
             onClick={() => setShowSearch(false)}
           />
         ) : null}
@@ -768,7 +768,7 @@ const Landing_page_container = ({
           {/* Trigger icon in mobile view */}
           <p className='show_filter' onClick={() => setShow_filter(true)}>
             {language.COMMON.advanceSearch}
-            <IoIosOptions size='1.4rem' color='#656565' />
+            <IoIosOptions size='14px' color='#656565' />
           </p>
         </div>
       </section>
@@ -820,7 +820,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#3fa6da' />
+            <IoMdClose size='13px' color='#3fa6da' />
             {numberChanger(
               dynamicString(
                 [
@@ -855,7 +855,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#3fa6da' />
+            <IoMdClose size='13px' color='#3fa6da' />
             {language.COMMON.delivery}
           </p>
         ) : null}
@@ -878,7 +878,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#3fa6da' />
+            <IoMdClose size='13px' color='#3fa6da' />
             {category_name}
           </p>
         ) : null}
@@ -900,7 +900,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#3fa6da' />
+            <IoMdClose size='13px' color='#3fa6da' />
             {language.COMMON.withDriver}
           </p>
         ) : null}
@@ -922,7 +922,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#3fa6da' />
+            <IoMdClose size='13px' color='#3fa6da' />
             {language.COMMON.withoutDriver}
           </p>
         ) : null}
@@ -954,7 +954,7 @@ const Landing_page_container = ({
                     initSearch();
                   }}
                 >
-                  <IoMdClose size='1.3rem' color='#3fa6da' />
+                  <IoMdClose size='13px' color='#3fa6da' />
                   {/* {language.minimal_filters_body_style} */}
                   {name[activeLanguage]}
                 </p>
@@ -981,7 +981,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size='13px' color='#ababab' />
             {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
@@ -1005,7 +1005,7 @@ const Landing_page_container = ({
               initSearch();
             }}
           >
-            <IoMdClose size='1.3rem' color='#ababab' />
+            <IoMdClose size='13px' color='#ababab' />
             {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
@@ -1062,7 +1062,7 @@ const Landing_page_container = ({
             <Spinner display='block' width={20} color='#9E9E9E' />
           ) : (
             <>
-              <IoIosArrowDown color='#202020' size='1.8rem' />
+              <IoIosArrowDown color='#202020' size='18px' />
               {language.COMMON.loadMore}
             </>
           )}

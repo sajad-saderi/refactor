@@ -9,8 +9,8 @@
   direction: ltr;
 }
 .border-gap {
-  border-left: 1.6rem solid $_fefefe;
-  border-right: 1.6rem solid $_fefefe;
+  border-left: 16px solid $_fefefe;
+  border-right: 16px solid $_fefefe;
 }
 .carousel_container .carousel_FrontImage {
   transition: 0.5s all;
@@ -75,7 +75,7 @@ img.TranslateLeft {
   opacity: 0.3;
 }
 .NAVIGA {
-  padding: 2rem 1.6rem 2rem 4rem;
+  padding: 20px 16px 20px 40px;
   width: auto;
   height: 100%;
   transition: 0.2s;
@@ -102,7 +102,7 @@ img.TranslateLeft {
   position: absolute;
   svg {
     margin-top: 3px;
-    width: 3rem;
+    width: 30px;
   }
 }
 .NAVIGA.arrow-left {
@@ -113,7 +113,7 @@ img.TranslateLeft {
     transform: rotate(180deg);
     margin-left: -3px;
     margin-top: 3px;
-    width: 3rem;
+    width: 30px;
   }
 }
 .NavBotton {
@@ -127,17 +127,17 @@ img.TranslateLeft {
   padding-top: 8px;
   z-index: 4;
   text-align: center;
-  margin-bottom: 0.8rem;
+  margin-bottom: 8px;
 }
 .FullScreen {
-  padding: 1.6rem;
+  padding: 16px;
   cursor: pointer;
   position: absolute;
   bottom: 0px;
   right: 0px;
   z-index: 20;
   svg {
-    width: 4rem;
+    width: 40px;
   }
 }
 
@@ -148,7 +148,7 @@ img.TranslateLeft {
   .NAVIGA {
     // top: 38%;
     display: block;
-    padding: 2rem 1.2rem 2rem 4rem;
+    padding: 20px 12px 20px 40px;
   }
 
   // .G_R,
@@ -162,12 +162,12 @@ img.TranslateLeft {
     left: 0;
   }
   .FullScreen {
-    padding: 1.2rem;
+    padding: 12px;
   }
   .deactiveDot,
   .activeDot {
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 6px;
+    height: 6px;
     margin: 0 3px !important;
   }
 }

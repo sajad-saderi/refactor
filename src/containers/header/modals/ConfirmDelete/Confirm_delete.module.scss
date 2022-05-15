@@ -6,12 +6,12 @@
     width: 100%;
     .error_message {
       color: $_d83030;
-      font-size: 1.2rem;
+      font-size: 12px;
     }
     .modal_content_confirm_delete {
-      font-size: 1.4rem;
-      margin-bottom: 3rem;
-      margin-top: 1rem;
+      font-size: 14px;
+      margin-bottom: 30px;
+      margin-top: 10px;
     }
     .button_container {
       display: flex;
@@ -19,9 +19,9 @@
       align-items: center;
       .Blue_BTN {
         border: 2px solid $_3fa6da;
-        padding: 0.5rem 3rem;
-        width: 10.3rem;
-        margin: 0 1rem;
+        padding: 5px 30px;
+        width: 103px;
+        margin: 0 10px;
       }
       .cancel_btn {
         background-color: $_ffffff;

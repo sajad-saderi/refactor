@@ -19,29 +19,29 @@
       align-items: center;
       box-shadow: var.$boxShadow;
       background: $_ffffff;
-      padding: 1.6rem;
+      padding: 16px;
       border-radius: 4px;
-      margin-bottom: 1.6rem;
+      margin-bottom: 16px;
       p {
         font-weight: 500;
-        font-size: 1.4rem;
+        font-size: 14px;
       }
       svg {
-        width: 3rem;
+        width: 30px;
       }
     }
     .car_info {
       box-shadow: var.$boxShadow;
       background: $_ffffff;
-      padding: 1.6rem;
-      font-size: 1.4rem;
+      padding: 16px;
+      font-size: 14px;
       border-radius: 4px;
       .car_owner_part {
         display: flex;
         justify-content: space-between;
         align-items: center;
         h1 {
-          font-size: 2.4rem;
+          font-size: 24px;
           margin-bottom: 0;
         }
         h4 {
@@ -49,7 +49,7 @@
           font-weight: 400;
         }
         .car_image {
-          width: 17rem;
+          width: 170px;
           img {
             display: block;
             margin: auto;
@@ -60,9 +60,9 @@
       }
       h2 {
         margin: 0;
-        font-size: 1.8rem;
+        font-size: 18px;
         font-weight: 500;
-        margin-bottom: 1rem;
+        margin-bottom: 10px;
       }
       p,
       pre,
@@ -75,15 +75,15 @@
         white-space: pre-line;
       }
       hr {
-        border-width: 0.1rem;
-        margin-top: 2.2rem;
-        margin-bottom: 1.2rem;
+        border-width: 1px;
+        margin-top: 22px;
+        margin-bottom: 12px;
         border-bottom-width: 0;
         border-color: rgba($_bfbfbf, 0.1);
       }
       .owner_part {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
         .name_avatar__container {
           vertical-align: middle;
           span {
@@ -91,15 +91,15 @@
           }
         }
         img.avatar_image {
-          width: 3.2rem;
+          width: 32px;
           border-radius: 50%;
           display: inline-block;
           vertical-align: middle;
         }
         p {
           display: inline-block;
-          margin-right: 1.4rem;
-          font-size: 1.4rem;
+          margin-right: 14px;
+          font-size: 14px;
           font-weight: 500;
         }
       }
@@ -107,18 +107,18 @@
     .insurance {
       box-shadow: var.$boxShadow;
       background: $_ffffff;
-      padding: 1.6rem;
-      font-size: 1.4rem;
+      padding: 16px;
+      font-size: 14px;
       border-radius: 4px;
-      margin-top: 1.6rem;
+      margin-top: 16px;
       h2 {
         margin: 0;
-        font-size: 1.8rem;
+        font-size: 18px;
         font-weight: 500;
-        margin-bottom: 1rem;
+        margin-bottom: 10px;
       }
       .radio_container {
-        margin-bottom: 1.4rem;
+        margin-bottom: 14px;
       }
     }
   }
@@ -127,7 +127,7 @@
     width: 34%;
     background: $_ffffff;
     border-radius: 4px;
-    padding: 1.6rem;
+    padding: 16px;
     box-shadow: var.$boxShadow;
     .Date_container {
       display: flex;
@@ -135,17 +135,17 @@
       align-items: center;
       p {
         font-weight: 500;
-        font-size: 1.4rem;
+        font-size: 14px;
       }
       svg {
-        width: 3rem;
+        width: 30px;
       }
     }
     .number_of_days {
       text-align: center;
-      font-size: 1.4rem;
-      margin-bottom: 2rem;
-      margin-top: 1rem;
+      font-size: 14px;
+      margin-bottom: 20px;
+      margin-top: 10px;
     }
     .payment_information {
       .coupon_Text_show {
@@ -160,7 +160,7 @@
         }
       }
       p {
-        font-size: 1.4rem;
+        font-size: 14px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -168,34 +168,34 @@
         span {
           font-weight: 500;
           &:last-child {
-            font-size: 1.6rem;
+            font-size: 16px;
           }
           .Toman {
             font-weight: 400;
-            font-size: 1.2rem;
+            font-size: 12px;
           }
         }
       }
       .coupon_form {
-        margin-top: 0.8rem;
+        margin-top: 8px;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         .coupon_container {
           position: relative;
-          margin-left: 1rem;
+          margin-left: 10px;
           width: 100%;
           .close_icon {
             position: absolute;
             top: 11px;
-            left: 1rem;
+            left: 10px;
           }
           .text_input_container {
             input {
               margin: 0;
             }
             .input_error_message {
-              font-size: 1.2rem;
+              font-size: 12px;
             }
           }
         }
@@ -203,23 +203,23 @@
           background: $_ffffff;
           border: 1px solid $_3fa6da;
           color: $_3fa6da;
-          padding: 1rem 2.1rem;
+          padding: 10px 21px;
         }
       }
       .total_price {
-        margin-top: 1.4rem;
+        margin-top: 14px;
         border-top: 1px solid $_bfbfbf;
         .total_price_text {
-          font-size: 2rem;
+          font-size: 20px;
         }
         .total_price_number {
-          font-size: 2rem;
+          font-size: 20px;
         }
       }
     }
     .localClass {
       display: block;
-      margin-top: 1.6rem;
+      margin-top: 16px;
       width: 100%;
     }
     .error_message_link {
@@ -227,12 +227,12 @@
       color: $_3fa6da;
       font-weight: 500;
       line-height: 2;
-      font-size: 1.2rem;
+      font-size: 12px;
       display: block;
-      margin-top: 1.6rem;
+      margin-top: 16px;
     }
     .extra_info {
-      margin-top: 1.6rem;
+      margin-top: 16px;
       line-height: 1.5;
       text-align: center;
       display: block;
@@ -250,8 +250,8 @@
     .car_info {
       .owner_part {
         p {
-          margin-right: 0rem;
-          margin-left: 1.4rem;
+          margin-right: 0;
+          margin-left: 14px;
         }
       }
     }
@@ -265,17 +265,17 @@
     .payment_information {
       .coupon_form {
         .coupon_container {
-          margin-left: 0rem;
-          margin-right: 1rem;
+          margin-left: 0;
+          margin-right: 10px;
           .close_icon {
             left: auto;
-            right: 1rem;
+            right: 10px;
           }
         }
       }
     }
     .extra_info {
-      margin-top: 1.6rem;
+      margin-top: 16px;
       line-height: 1.5;
       text-align: center;
       display: block;
@@ -286,11 +286,11 @@
       .error_message_link {
         text-align: left;
         margin-left: 0;
-        margin-right: 1rem;
+        margin-right: 10px;
       }
       .extra_info {
         margin-left: 0;
-        margin-right: 1rem;
+        margin-right: 10px;
       }
     }
   }
@@ -299,7 +299,7 @@
 @media screen and(max-width:720px) {
   .Checkout_container {
     display: block;
-    padding-top: 0rem;
+    padding-top: 0;
     .car_info_insurance {
       width: 100%;
       display: block;
@@ -312,7 +312,7 @@
           justify-content: space-between;
           align-items: center;
           h1 {
-            font-size: 2rem;
+            font-size: 20px;
             width: 200px;
             display: inline-block;
             overflow: hidden;
@@ -324,8 +324,8 @@
     }
     .payment_info_container {
       width: 100%;
-      margin-top: 1.6rem;
-      margin-bottom: 6rem;
+      margin-top: 16px;
+      margin-bottom: 60px;
       .Date_container {
         display: none;
       }
@@ -339,27 +339,27 @@
         width: 100%;
         bottom: 0px;
         right: 0;
-        padding: 1.5rem;
+        padding: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: $_ffffff;
         .localClass {
-          max-width: 18rem;
+          max-width: 180px;
           margin: 0;
         }
         .error_message_link {
           text-align: right;
           margin-top: 0;
-          margin-right: 1rem;
+          margin-right: 10px;
           span {
             display: block;
           }
         }
         .extra_info {
-          margin-left: 1rem;
+          margin-left: 10px;
           text-align: justify;
-          font-size: 1.1rem;
+          font-size: 11px;
           font-weight: 500;
         }
       }
@@ -382,8 +382,8 @@
             text-overflow: ellipsis;
           }
           .car_image {
-            width: 13.6rem;
-            height: 9rem;
+            width: 136px;
+            height: 90px;
           }
         }
       }

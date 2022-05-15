@@ -5,16 +5,16 @@
 .radio_container {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 2rem;
+  margin-left: 2px;
   transition: 0.2s;
   /* Customize the label (the container) */
   .container {
     display: block;
     position: relative;
-    padding-right: 2.8rem;
+    padding-right: 28px;
     color: $_313131;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
     -webkit-user-select: none;
@@ -37,9 +37,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 2rem;
+    height: 20px;
     border: 1px solid rgba(34, 36, 38, 0.14);
-    width: 2rem;
+    width: 20px;
     background-color: transparent;
     border-radius: 50%;
   }
@@ -83,10 +83,10 @@
 
 .radio_container[dir='ltr'] {
   margin-left: 0;
-  margin-right: 2rem;
+  margin-right: 2px;
   .container {
     padding-right: 0;
-    padding-left: 2.8rem;
+    padding-left: 28px;
   }
 
   /* Create a custom radio button */

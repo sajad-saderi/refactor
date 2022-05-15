@@ -150,7 +150,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
           <IoMdClose
                 className="close_btn"
                 color="rgb(165, 165, 165)"
-                size="2rem"
+                size="20px"
                 onClick={() => setOutOfServicePrompt(false)}
               />
           </p>
@@ -289,7 +289,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
               <span className="HEAP_Profile_Btn_EditCarDetails">
                 <IoMdCreate
                   color="#4ba3ce"
-                  size="2rem"
+                  size="20px"
                   onClick={() => {
                     router.push({
                       pathname: "/add-car",
@@ -313,7 +313,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                     // })
                   }}
                   color="#4ba3ce"
-                  size="2rem"
+                  size="20px"
                 />
               </span>
             </div>

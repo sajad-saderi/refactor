@@ -39,7 +39,7 @@ const Failed_payment = ({ locale }) => {
       />
       <article className="responsive minHeight failed_payment">
         <section className="alarm_container">
-          <IoIosCloseCircleOutline size="10rem" color="a3678b" />
+          <IoIosCloseCircleOutline size="100px" color="a3678b" />
           <p>{locale.PAYMENT_PAGE.cancel}</p>
         </section>
         <Button

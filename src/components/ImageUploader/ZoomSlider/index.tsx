@@ -56,7 +56,7 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
 
   return (
     <div className='zoom_slider'>
-      <IoMdAdd size='2.2rem' color='#fff' className='zoom_plus_icon' />
+      <IoMdAdd size='22px' color='#fff' className='zoom_plus_icon' />
       <Nouislider
         /**
          * @range
@@ -67,7 +67,7 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
         onSlide={(zoom) => zoomChange(zoom)}
         step={0.1}
       />
-      <IoMdRemove size='2.2rem' color='#fff' className='zoom_out_icon' />
+      <IoMdRemove size='22px' color='#fff' className='zoom_out_icon' />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
 .DropDown_container {
   *::selection {
@@ -7,7 +7,7 @@
   width: 100%;
   position: relative;
   label {
-    font-size: 1.2rem;
+    font-size: 12px;
   }
   .Disable_color {
     cursor: not-allowed;
@@ -19,19 +19,19 @@
     position: relative;
     input {
       font-family: inherit;
-      margin: 0.3rem auto 0rem;
+      margin: 3px auto 0;
       display: block;
       width: 100%;
       outline: 0;
       -webkit-appearance: none;
-      height: 4.2rem;
+      height: 42px;
       line-height: 1;
-      padding: 0.5rem;
-      font-size: 1.4rem;
+      padding: 5px;
+      font-size: 14px;
       background: $_ffffff;
       border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
-      border-radius: 0.4rem;
+      border-radius: 4px;
       box-shadow: 0 0 0 0 transparent inset;
       cursor: pointer;
     }
@@ -43,27 +43,27 @@
     }
     .clean_icon {
       position: absolute;
-      top: 1.2rem;
-      left: 4.5rem;
+      top: 12px;
+      left: 45px;
       cursor: pointer;
-      width: 2rem;
+      width: 2px;
     }
     .color_Circle {
       position: absolute;
-      top: 1.2rem;
-      width: 2rem;
-      height: 2rem;
+      top: 12px;
+      width: 20px;
+      height: 20px;
       border: 1px solid $_bfbfbf;
       border-radius: 4px;
-      left: 5rem;
+      left: 50px;
     }
     .ArrowDown {
       position: absolute;
-      top: 1.3rem;
+      top: 13px;
       transition: 0.25s;
       cursor: pointer;
-      left: 1rem;
-      width: 2rem;
+      left: 10px;
+      width: 20px;
     }
     .rotate_arrow_down_icon {
       transition: 0.25s;
@@ -73,22 +73,21 @@
 
   .Locations_list_container {
     position: absolute;
-    padding: 0 1rem 1rem;
+    padding: 0 10px 10px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     z-index: 30;
     width: 100%;
-    max-height: 30rem;
-    min-height: 6rem;
+    max-height: 300px;
+    min-height: 60px;
     overflow-x: hidden;
     overflow-y: scroll;
     border: 1px solid rgba(34, 36, 38, 0.18);
-    border-top: none;
-    // top: 5rem;
+    border-top: none; 
     background: $_ffffff;
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
     .spinnerPlaceholder {
-      padding-top: 1.4rem;
+      padding-top: 14px;
     }
     .search_input_container {
       position: sticky;
@@ -96,14 +95,14 @@
       input {
         text-indent: 21px;
         font-family: inherit;
-        margin: 1rem auto 0rem;
+        margin: 10px auto 0;
         display: block;
         width: 100%;
         outline: 0;
         -webkit-appearance: none;
         line-height: 1;
-        padding: 1rem;
-        font-size: 1.3rem;
+        padding: 10px;
+        font-size: 13px;
         background: $_ffffff;
         border: none;
         border: 1px solid $_bfbfbf;
@@ -122,15 +121,15 @@
       }
       svg {
         position: absolute;
-        width: 2rem;
-        right: 0.84rem;
-        top: 1.2rem;
+        width: 20px;
+        right: 8px;
+        top: 12px;
         cursor: pointer;
       }
     }
     p {
       cursor: pointer;
-      padding: 1rem;
+      padding: 10px;
       border-bottom: 1px solid $_f9f9f9;
       text-transform: capitalize;
       &:last-child {
@@ -139,7 +138,7 @@
       .Color_box {
         border-radius: 4px;
         width: 100%;
-        height: 2rem;
+        height: 20px;
         display: inline-block;
         border: 1px solid $_eeeeee;
       }
@@ -165,26 +164,26 @@
     }
   }
 }
-.DropDown_container[dir='ltr'] {
+.DropDown_container[dir="ltr"] {
   .input_wrapper {
     .clean_icon {
       left: auto;
-      right: 4.5rem;
+      right: 45px;
     }
     .color_Circle {
       left: auto;
-      right: 5rem;
+      right: 50px;
     }
     .ArrowDown {
       left: auto;
-      right: 1rem;
+      right: 10px;
     }
   }
   .Locations_list_container {
     .search_input_container {
       svg {
         right: auto;
-        left: 0.84rem;
+        left: 84px;
       }
     }
   }
@@ -204,26 +203,26 @@
       position: relative;
       .ArrowDown {
         position: absolute;
-        top: 1.3rem;
+        top: 13px;
         cursor: pointer;
-        left: 1rem;
-        width: 2rem;
+        left: 10px;
+        width: 20px;
       }
       .default_select {
         font-family: inherit;
-        margin: 0.3rem auto 0.5rem;
+        margin: 3px auto 5px;
         display: block;
         width: 100%;
         outline: 0;
         -webkit-appearance: none;
-        height: 4.2rem;
+        height: 42px;
         line-height: 1.5;
-        padding: 0.5rem;
-        font-size: 1.4rem;
+        padding: 5px;
+        font-size: 14px;
         background: $_ffffff;
         border: 1px solid rgba(34, 36, 38, 0.15);
         color: rgba(0, 0, 0, 0.87);
-        border-radius: 0.4rem;
+        border-radius: 4px;
         box-shadow: 0 0 0 0 transparent inset;
       }
     }

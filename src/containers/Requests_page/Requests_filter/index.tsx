@@ -31,7 +31,7 @@ const Requests_filter = ({
       {/* filter mobile */}
       {/* {total_count === 0 && !result ? null : ( */}
       <span className="show_filter" onClick={() => setShow_filter(true)}>
-        <IoIosOptions size="2rem" color="#656565" />
+        <IoIosOptions size="20px" color="#656565" />
         {language.show_filters}
       </span>
       {/* )} */}

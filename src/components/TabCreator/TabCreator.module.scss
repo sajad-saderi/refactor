@@ -2,8 +2,8 @@
 
 .Tab_Accordion {
   transition: 0.2s;
-  margin-top: 3rem;
-  padding-bottom: 2rem;
+  margin-top: 30px;
+  padding-bottom: 20px;
   .Tab_father {
     direction: rtl;
     display: flex;
@@ -13,28 +13,28 @@
       flex-direction: column;
       span {
         width: 100% !important;
-        margin: 0.4rem;
+        margin: 4px;
       }
     }
 
     span {
       cursor: pointer;
       transition: 0.2s;
-      font-weight: 1.4rem;
+      font-weight: 14px;
       position: relative;
-      width: 15rem;
-      padding: 0.8rem 0px;
+      width: 150px;
+      padding: 8px 0px;
       border: 1px solid $_cccccc;
-      border-radius: 0.4rem;
+      border-radius: 4px;
       text-align: center;
       display: inline-block;
       vertical-align: middle;
-      font-size: 1.4rem;
+      font-size: 14px;
       svg {
         display: inline-block;
         vertical-align: middle;
-        margin-right: 1rem;
-        width: 2rem;
+        margin-right: 10px;
+        width: 20px;
       }
     }
     .active_tab {
@@ -49,7 +49,7 @@
   }
 
   .content_part_accordion {
-    margin-top: 2rem;
+    margin-top: 20px;
     ul {
       transition: 0.2s;
       display: block;
@@ -65,19 +65,19 @@
       }
       li {
         transition: 0.2s all;
-        padding: 1rem;
+        padding: 10px;
         list-style-type: circle;
         direction: rtl;
         list-style-position: inside;
         a {
           font-weight: 400;
-          font-size: 1.4rem;
+          font-size: 14px;
           display: inline-block;
           color: $_3fa6da;
         }
         &:hover {
           list-style-type: disc;
-          padding-right: 0.5rem;
+          padding-right: 5px;
         }
       }
     }

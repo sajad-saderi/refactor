@@ -79,7 +79,7 @@ const LoginPage = ({ locale }) => {
             <div className="login_modal_title_confirm_code">
               <FaArrowRight
                 onClick={panelController}
-                size="2rem"
+                size="20px"
                 color="#4ba3ce"
                 className="login_person_icon"
               />
@@ -88,7 +88,7 @@ const LoginPage = ({ locale }) => {
           ) : (
             <div className="login_modal_title">
               <IoMdPerson
-                size="2rem"
+                size="20px"
                 color="#fff"
                 className="login_person_icon"
               />

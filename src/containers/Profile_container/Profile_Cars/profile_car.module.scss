@@ -8,29 +8,29 @@
   align-items: flex-end;
   width: 100%;
   direction: ltr;
-  margin-right: 2rem;
+  margin-right: 20px;
   @media screen and(max-width:960px) {
-    margin-right: 0rem;
+    margin-right: 0;
   }
   .service_filer {
     width: 100%;
     text-align: left;
     direction: rtl;
-    margin-bottom: 1.6rem;
+    margin-bottom: 16px;
     .radio_container {
       border: 1px solid rgba(0, 0, 0, 0.08);
       border-right-color: transparent;
-      padding: 0.2rem;
-      padding-left: 1rem;
+      padding: 2px;
+      padding-left: 10px;
       margin-left: 0;
       color: rgba(0, 0, 0, 0.5);
       &:first-child {
         border-color: rgba(0, 0, 0, 0.08);
       }
       .container {
-        font-size: 1.2rem;
+        font-size: 12px;
         font-weight: 500;
-        padding: 0 1rem;
+        padding: 0 10px;
         .checkmark {
           display: none;
         }
@@ -50,16 +50,16 @@
     justify-content: space-between;
     align-items: flex-start;
     direction: rtl;
-    margin-bottom: 2.4rem;
+    margin-bottom: 24px;
   }
   .noCar_added {
-    margin-top: 2rem;
+    margin-top: 20px;
     text-align: center;
     width: 100%;
     p {
       font-weight: 500;
-      font-size: 1.4rem;
-      margin-bottom: 1.4rem;
+      font-size: 14px;
+      margin-bottom: 14px;
     }
   }
   .place_holder_div {
@@ -70,7 +70,7 @@
     align-items: flex-start;
   }
   .Load_more_car_container {
-    margin-bottom: 2.4rem;
+    margin-bottom: 24px;
     width: 100%;
   }
 }

@@ -20,7 +20,7 @@ export const GuestGuide = () => (
     <Link href="/guide-for-rent">
       <a className="guide-center__readMore">
         بیشتر
-        <IoIosArrowRoundBack size="3rem" color="##3fa6da" />
+        <IoIosArrowRoundBack size="30px" color="##3fa6da" />
       </a>
     </Link>
   </>

@@ -263,7 +263,7 @@ const TextInput = (props: ItextInput) => {
           <IoMdClose
             data-test-id="svg-icon"
             color="rgb(165, 165, 165)"
-            size="2rem"
+            size="20px"
             className="clean_icon"
             onClick={() => props.clearField()}
           />

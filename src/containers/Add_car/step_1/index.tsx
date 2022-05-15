@@ -1793,7 +1793,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
                   className="show_more_facilities_button"
                 >
                   {language.ADD_CAR_PAGE.facilitiesShowMore}
-                  <IoIosArrowDown size="2rem" color="#4ba3ce" />
+                  <IoIosArrowDown size="20px" color="#4ba3ce" />
                 </p>
               </>
             )}

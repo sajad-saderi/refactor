@@ -266,7 +266,7 @@ class App_Otoli extends App {
                         });
                       }}
                     >
-                      <IoIosClose color="#fff" size="2rem" />
+                      <IoIosClose color="#fff" size="20px" />
                       {Router.router.locale === 'fa' ? fa.COMMON.close : en.COMMON.close}
                     </p>
                   </section>

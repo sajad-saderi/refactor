@@ -1,30 +1,30 @@
-@import '../../../styles/units';
-@import '../../../styles/colors';
+@import "../../../styles/units";
+@import "../../../styles/colors";
 
 .add_car_form_container {
-  max-width: 68rem;
+  max-width: 680px;
   .add_car_form_step_1 {
     margin-top: $padding_top;
     background: $_fdfdfd;
     border: 1px solid $_bfbfbf;
-    font-size: 1.4rem;
+    font-size: 14px;
     border-radius: 4px;
-    padding: 1.6rem;
+    padding: 16px;
     border: none;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
     .pageTitle {
       position: relative;
       .car_icon {
-        margin: 1rem;
+        margin: 10px;
         margin-right: 0;
         display: inline-block;
         vertical-align: middle;
-        width: 3.3rem;
+        width: 33px;
       }
       h3 {
         font-weight: 500;
         color: $_c06daa;
-        font-size: 1.8rem;
+        font-size: 18px;
         margin-top: 0;
         display: inline-block;
         vertical-align: middle;
@@ -34,21 +34,21 @@
     .DropDown_container,
     .radio_father,
     .text_input_container {
-      margin: 0 0 3rem;
+      margin: 0 0 30px;
     }
     .car_location_district {
-      margin: 0 0 3rem;
+      margin: 0 0 30px;
       .DropDown_container {
-        margin: 0 0 0rem;
+        margin: 0 0 0;
       }
     }
     .DropDown_container {
       .input_wrapper {
         input {
-          height: 5rem;
+          height: 50px;
         }
         .ArrowDown {
-          top: 1.6rem;
+          top: 16px;
         }
       }
     }
@@ -68,18 +68,18 @@
     }
     .facilities_container {
       background-color: $_fafafa;
-      margin-bottom: 3rem;
+      margin-bottom: 30px;
       position: relative;
       .check_box_container {
-        padding: 1rem;
+        padding: 10px;
         .container {
-          margin-bottom: 2.2rem;
+          margin-bottom: 22px;
           font-weight: 400;
           color: $_313131;
         }
       }
       .gradient_transparent {
-        height: 13rem;
+        height: 130px;
         position: absolute;
         bottom: 0;
         right: 0;
@@ -94,79 +94,79 @@
         );
       }
       .show_partial_facilities {
-        height: 20rem;
+        height: 200px;
         overflow: hidden;
       }
       .show_more_facilities_button {
-        width: 14rem;
+        width: 140px;
         border: 1px solid $_3fa6da;
         border-radius: 25px;
         margin: auto;
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 3.5rem;
+        bottom: 35px;
         margin: auto;
         cursor: pointer;
         color: $_3fa6da;
-        padding: 0.8rem 3rem 0.8rem 0;
+        padding: 8px 30px 8px 0;
         svg {
-          width: 2rem;
+          width: 20px;
           position: absolute;
-          left: 1rem;
-          top: 0.9rem;
+          left: 10px;
+          top: 90px;
         }
       }
     }
     .extra_text {
-      margin: 0.4rem 0 1.6rem 0;
-      font-size: 1.4rem;
+      margin: 4px 0 16px 0;
+      font-size: 14px;
       color: $_313131;
-      line-height: 2.7rem;
+      line-height: 27px;
     }
     .form_title {
       border-bottom: 1px solid;
       border-bottom: 1px solid $_c06daa;
-      padding-bottom: 1rem;
-      margin-top: 0rem;
+      padding-bottom: 10px;
+      margin-top: 0;
       display: inline-block;
-      padding-left: 1.6rem;
-      margin-bottom: 4em;
+      padding-left: 16px;
+      margin-bottom: 40px;
     }
     .DropDown_container label,
     label {
       font-weight: 500;
-      font-size: 1.4rem;
-      margin-bottom: 0.8rem;
+      font-size: 14px;
+      margin-bottom: 8px;
       display: block;
       span {
         color: $_bfbfbf;
       }
     }
     .add_car_Facilities_label {
-      margin-bottom: 0.8rem;
+      margin-bottom: 8px;
     }
     .Step1_checkoout_placeholder {
       .CheckBox_Loader_placeHolder {
-        margin-bottom: 2rem !important;
+        margin-bottom: 20px !important;
         display: inline-block;
       }
     }
     .transition_type_Label {
       display: block;
-      margin-bottom: 0.8rem;
+      margin-bottom: 8px;
     }
     .Car_info_step_1 {
       display: flex;
       justify-content: center;
       align-items: center;
       .DropDown_container {
-        margin: 0 0.8rem 3rem;
+        margin: 0 8px 30px;
         &:first-child {
-          margin: 0 0rem 3rem 0.8rem;
+          margin: 0 0 30px 8px;
         }
         &:last-child {
-          margin: 0 0.8rem 3rem 0rem;
+          margin: 0 8px 30px 0;
         }
       }
     }
@@ -179,14 +179,14 @@
         }
         input {
           text-align: left;
-          text-indent: 1rem;
+          text-indent: 10px;
           direction: ltr;
         }
       }
     }
     .pelak_container {
       position: relative;
-      margin-bottom: 3rem;
+      margin-bottom: 30px;
       .license_palte_container {
         position: relative;
         .license_error {
@@ -225,22 +225,22 @@
               position: absolute;
               top: 4px;
               right: 144px;
-              width: 5rem;
+              width: 50px;
               input {
                 height: 51px;
                 text-align: center;
-                font-size: 1.6rem;
+                font-size: 16px;
                 font-weight: 500;
               }
               .resultList {
                 .Items {
-                  padding: 1rem 0;
+                  padding: 10px 0;
                 }
               }
             }
             .First_part_pelak {
               position: absolute;
-              width: 5rem;
+              width: 50px;
               left: 45px;
               top: -17px;
               input {
@@ -254,14 +254,14 @@
               label {
                 color: transparent;
               }
-              width: 5rem;
+              width: 50px;
             }
           }
         }
       }
     }
     .colorPicker_container {
-      width: 24rem;
+      width: 240px;
       .DropDown_container {
         .Locations_list_container {
           p {
@@ -271,27 +271,27 @@
       }
     }
     .step_one_under_label_descripe {
-      margin-bottom: 1.5rem;
-      font-size: 1.4rem;
-      margin-top: 0.8rem;
-      line-height: 2.7rem;
+      margin-bottom: 15px;
+      font-size: 14px;
+      margin-top: 8px;
+      line-height: 27px;
       color: $_313131;
     }
     .text_area_step_1 {
-      min-height: 15rem;
+      min-height: 150px;
       width: 100%;
       font-family: inherit;
-      margin: 0.3rem auto 3rem;
+      margin: 3px auto 30px;
       display: block;
       outline: 0;
       -webkit-appearance: none;
       line-height: 2;
-      padding: 0.5rem;
-      font-size: 1.4rem;
+      padding: 5px;
+      font-size: 14px;
       background: transparent;
       border: 1px solid $_bfbfbf;
       color: rgba(0, 0, 0, 0.87);
-      border-radius: 0.4rem;
+      border-radius: 4px;
       box-shadow: 0 0 0 0 transparent inset;
       box-sizing: border-box;
       &:focus {
@@ -303,12 +303,12 @@
       width: 100%;
       line-height: 1.5;
       font-size: 16px;
-      padding: 1.6rem 2.1rem;
+      padding: 16px 21px;
     }
   }
 }
 
-.add_car_form_container[dir='ltr'] {
+.add_car_form_container[dir="ltr"] {
   .add_car_form_step_1 {
     .radio_father {
       .radio_container {
@@ -325,16 +325,16 @@
     }
     .facilities_container {
       .show_more_facilities_button {
-        padding: 0.8rem 0rem 0.8rem 3rem;
+        padding: 8px 0 8px 30px;
         svg {
           left: auto;
-          right: 1rem;
+          right: 10px;
         }
       }
     }
     .form_title {
       padding-left: 0;
-      padding-right: 1.6rem;
+      padding-right: 16px;
     }
     .pelak_container {
       .license_palte_container {
@@ -366,7 +366,7 @@
 
 @media screen and(max-width:720px) {
   .add_car_form_container {
-    max-width: 68rem;
+    max-width: 680px;
     .add_car_form_step_1 {
       box-shadow: none;
       padding: 0;
@@ -374,18 +374,18 @@
       .DropDown_container,
       .radio_father,
       .text_input_container {
-        margin: 0 0 3rem;
+        margin: 0 0 30px;
       }
       .car_location_district {
-        margin: 0 0 3rem;
+        margin: 0 0 30px;
         .DropDown_container {
-          margin: 0 0 0rem;
+          margin: 0 0 0;
         }
       }
       .Car_info_step_1 {
         display: block;
         .DropDown_container {
-          margin: 0 0rem 3rem !important;
+          margin: 0 0 30px !important;
         }
       }
     }
@@ -397,7 +397,7 @@
     .add_car_form_step_1 {
       .value_container {
         .input_surround {
-          width: 17rem;
+          width: 170px;
         }
       }
       .facilities_container {
@@ -430,7 +430,7 @@
                 right: 8px;
                 input {
                   height: 30px;
-                  font-size: 1.6rem;
+                  font-size: 16px;
                 }
               }
               .Third_part_pelak {
@@ -438,21 +438,21 @@
                 right: 65px;
                 input {
                   height: 42px;
-                  font-size: 1.6rem;
+                  font-size: 16px;
                 }
               }
               .Second_part_pelak {
                 top: 2px;
                 right: 112px;
-                width: 5rem;
+                width: 50px;
                 input {
                   height: 42px;
-                  font-size: 1.6rem;
+                  font-size: 16px;
                   font-weight: 500;
                 }
               }
               .First_part_pelak {
-                width: 5rem;
+                width: 50px;
                 left: 21px;
                 top: -19px;
                 input {
@@ -464,7 +464,7 @@
                 label {
                   color: transparent;
                 }
-                width: 4rem;
+                width: 40px;
               }
             }
           }

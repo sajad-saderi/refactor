@@ -302,7 +302,7 @@ const Filters = ({
             }}
           >
             {/* <p>بستن</p> */}
-            <IoMdClose size="3rem" color="#909090" />
+            <IoMdClose size="30px" color="#909090" />
           </div>
         </div>
         {/* {hidePrice ? (
@@ -478,7 +478,7 @@ const Filters = ({
           <div className="result_count_wrapper">
             {!scroll_icon_to_hide ? (
               <IoIosArrowDown
-                size="2rem"
+                size="20px"
                 color="#909090"
                 onClick={scroll_handler}
               />

@@ -4,25 +4,25 @@
 .help_center {
   text-align: justify;
   margin-top: $padding_top;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-radius: 4px;
   h1 {
-    font-size: 2.6rem;
+    font-size: 26px;
   }
   h2 {
-    font-size: 2rem;
+    font-size: 20px;
   }
   h3 {
-    font-size: 1.8rem;
+    font-size: 18px;
     font-weight: 400;
   }
   h4 {
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 16px;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 2;
   }
   ul {
@@ -30,7 +30,7 @@
     list-style-position: inside;
     padding-right: 10px;
     li {
-      font-size: 1.4rem;
+      font-size: 14px;
       line-height: 2;
       margin-bottom: 8px;
     }
@@ -38,7 +38,7 @@
   a {
     color: $_3fa6da;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 2;
   }
 }

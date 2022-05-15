@@ -1,18 +1,18 @@
 .CheckBox_Loader_placeHolder {
-  width: 20rem;
-  margin-bottom: 0.8rem;
+  width: 200px;
+  margin-bottom: 8px;
   p {
     display: inline-block;
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 16px;
+    height: 16px;
     background: $_f1f1f1;
     border-radius: 4px;
-    margin-left: 1rem;
+    margin-left: 10px;
     vertical-align: middle;
   }
   span {
-    width: 12rem;
-    height: 1.4rem;
+    width: 120px;
+    height: 14px;
     display: inline-block;
     border-radius: 3px;
     vertical-align: middle;
@@ -21,9 +21,9 @@
 
 @media screen and(max-width:575px){
   .CheckBox_Loader_placeHolder {
-    width: 14rem; 
+    width: 140px; 
     span {
-      width: 10rem; 
+      width: 100px; 
     }
   }
 }

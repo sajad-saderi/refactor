@@ -260,7 +260,7 @@ const DiscountBox = ({
                   setShowBox(0);
                 }}
                 color='#737373'
-                size='2rem'
+                size='20px'
               />
             )}
           </div>
@@ -275,7 +275,7 @@ const DiscountBox = ({
         >
           <p>
             {language.CAR_SETTING.addingDiscount}
-            <IoMdAdd size='2rem' color='#4ba3ce' />
+            <IoMdAdd size='20px' color='#4ba3ce' />
           </p>
         </div>
       )}
@@ -310,7 +310,7 @@ const DiscountBox = ({
                     removeDiscountList(i);
                   }}
                 >
-                  <IoMdCreate size='2rem' />
+                  <IoMdCreate size='20px' />
                 </span>
                 <span
                   // className="cancel"
@@ -325,7 +325,7 @@ const DiscountBox = ({
                     setShowBox(0);
                   }}
                 >
-                  <IoMdTrash size='2rem' />
+                  <IoMdTrash size='20px' />
                 </span>
               </div>
             </div>

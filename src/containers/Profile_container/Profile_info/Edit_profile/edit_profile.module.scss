@@ -3,11 +3,11 @@
 .edit_profile_form {
   .change_image_container {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
     p {
-      font-size: 1.4rem;
+      font-size: 14px;
       text-align: center;
-      margin: 1rem 0;
+      margin: 10px 0;
       color: $_3fa6da;
       font-weight: 500;
     }
@@ -18,7 +18,7 @@
       display: block;
       right: 0;
       bottom: 0;
-      height: 12rem;
+      height: 120px;
       opacity: 0;
       margin: 0;
     }
@@ -48,24 +48,24 @@
   }
   .avatar_image,
   .name_avatar__container {
-    height: 15rem;
-    width: 15rem;
+    height: 150px;
+    width: 150px;
     display: block;
     margin: auto;
   }
   .link_text {
     color: $_3fa6da;
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
+    font-size: 14px;
+    margin-bottom: 20px;
     cursor: pointer;
   }
   .text_input_container {
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
     label {
       font-weight: 500;
     }
     input {
-      margin: 0.5rem 0;
+      margin: 5px 0;
     }
   }
   .Crop_BTN_container,
@@ -91,10 +91,10 @@
     left: 0;
     right: 0;
     margin: auto;
-    padding: 1.5rem;
+    padding: 15px;
     z-index: 20;
     @media screen and(min-width:557px) {
-      width: 32rem;
+      width: 320px;
     }
     .cancel_class {
       color: $_bfbfbf;

@@ -10,28 +10,28 @@
     svg {
       display: inline-block;
       vertical-align: sub;
-      width: 3rem;
+      width: 30px;
       transform: rotate(180deg);
     }
     p {
       display: inline-block;
       vertical-align: middle;
-      font-size: 1.4rem;
-      margin: 0 1rem 2rem;
+      font-size: 14px;
+      margin: 0 10px 20px;
       font-weight: 500;
     }
   }
   .modal_box {
     box-shadow: var.$boxShadow;
     width: 45%;
-    min-width: 30rem;
+    min-width: 300px;
     height: auto;
-    max-width: 40rem;
+    max-width: 400px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     background: $_ffffff;
-    padding: 2rem;
+    padding: 20px;
     margin: 0px auto;
     border-radius: 4px;
     flex-direction: column;
@@ -44,12 +44,12 @@
     .login_modal_title_confirm_code {
       position: relative;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 20px;
       width: 100%;
       .login_person_icon {
         position: absolute;
         right: 0;
-        width: 2rem;
+        width: 20px;
         top: 0;
         color: rgb(255, 255, 255);
         background: $_3fa6da;
@@ -60,7 +60,7 @@
         line-height: 23px;
         width: auto;
         display: inline-block;
-        font-size: 1.4rem;
+        font-size: 14px;
         font-weight: 500;
         margin: 0;
         text-align: center;
@@ -80,7 +80,7 @@
       width: auto;
       text-align: left;
       vertical-align: middle;
-      font-size: 1.1rem;
+      font-size: 11px;
       float: left;
       margin-bottom: 5px;
       // &:nth-of-type(3) {
@@ -98,7 +98,7 @@
   }
   .login_modal {
     .text_input_container {
-      padding-bottom: 4rem;
+      padding-bottom: 40px;
       position: relative;
       .input_error_message {
         position: absolute;
@@ -112,7 +112,7 @@
   .confirm_code {
     .text_input_container {
       position: relative;
-      padding-bottom: 3rem;
+      padding-bottom: 30px;
       .input_error_message {
         position: absolute;
         bottom: -16px;

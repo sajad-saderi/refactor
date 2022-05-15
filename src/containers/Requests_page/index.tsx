@@ -562,7 +562,7 @@ const Requests_page = ({ language }: IRequests_page) => {
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
             <>
-              <IoIosArrowDown color="#202020" size="1.8rem" />
+              <IoIosArrowDown color="#202020" size="18px" />
               {language.COMMON.loadMore}
             </>
           )}

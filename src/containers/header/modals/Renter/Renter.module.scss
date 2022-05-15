@@ -5,40 +5,40 @@
   .rate_to_owner_car {
     text-align: center;
     img {
-      max-width: 18rem;
-      max-height: 7rem;
-      margin-top: 1rem;
+      max-width: 180px;
+      max-height: 70px;
+      margin-top: 10px;
       border-radius: 4px;
     }
     h3 {
       font-weight: 500;
-      font-size: 1.6rem;
+      font-size: 16px;
       margin: 0;
     }
     p {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 12px;
+      margin-bottom: 5px;
     }
     .star-ratings {
       direction: ltr;
       display: block !important;
       svg {
-        width: 2rem;
+        width: 20px;
       }
     }
     label {
       text-align: right;
-      font-size: 1.4rem;
+      font-size: 14px;
       width: 100%;
       display: block;
-      margin-top: 0.5rem;
+      margin-top: 5px;
     }
     textarea {
       box-sizing: border-box;
       width: 100%;
-      margin-top: 0.5rem;
-      padding: 1.4rem;
-      height: 8rem;
+      margin-top: 5px;
+      padding: 14px;
+      height: 80px;
       border-radius: 4px;
       border: 1px solid $_bfbfbf;
       font-family: inherit;
@@ -46,7 +46,7 @@
     .rate_buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 1.4rem;
+      margin-top: 14px;
       align-items: center;
       .submit_submit {
         display: block;

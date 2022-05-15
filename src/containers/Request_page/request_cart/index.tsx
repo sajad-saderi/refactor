@@ -215,7 +215,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
 <div className="rent_status">
 <div className="status_new">
   <div className="card_status">
-              <MdAlarm size="2rem" color="#f7941d" />
+              <MdAlarm size="20px" color="#f7941d" />
               <span>{language.REQUEST_PAGE.pending}</span>
               </div>
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -228,7 +228,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   }
                   completeCallback={() => CreateTheStatusForThisCard("expired")}
                 />
-                <FiClock size="2rem" color="#f7941d" />
+                <FiClock size="20px" color="#f7941d" />
               </div>
             )}
           </div>
@@ -268,7 +268,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
 <div className='status_approved'>
 
   <div className="card_status">
-              <MdCreditCard size="2rem" color="#a3678b" />
+              <MdCreditCard size="20px" color="#a3678b" />
               <span>{language.REQUEST_PAGE.approved}</span>
               </div>
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -281,7 +281,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   }
                   completeCallback={() => CreateTheStatusForThisCard("expired")}
                 />
-                <FiClock size="2rem" color="#a3678b" />
+                <FiClock size="20px" color="#a3678b" />
               </div>
             )}
           </div>
@@ -302,7 +302,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "rejected":
         RentStatus = (
           <div className="rent_status status_expired">
-            <MdCallMissedOutgoing size="2rem" color="#707070" />
+            <MdCallMissedOutgoing size="20px" color="#707070" />
             <span>{language.REQUEST_PAGE.rejected}</span>
           </div>
         );
@@ -311,7 +311,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "expired":
         RentStatus = (
           <div className="rent_status status_expired">
-            <MdAlarmOff size="2rem" color="#707070" />
+            <MdAlarmOff size="20px" color="#707070" />
             <span>{language.REQUEST_PAGE.expired}</span>
           </div>
         );
@@ -332,7 +332,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
 <div className="rent_status ">
 <div>
   <div className="status_paid">
-            <MdVpnKey size="2rem" color="#2cbbc2" />
+            <MdVpnKey size="20px" color="#2cbbc2" />
             <span>{language.REQUEST_PAGE.paid}</span>
               </div>
               {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -357,7 +357,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
           <div className="rent_status">
             <div className="inlineDisplay">
-            <IoIosHand size="1.4rem" color="#656565" />
+            <IoIosHand size="14px" color="#656565" />
             <span>{data.status.name}</span>
             </div>
             {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -368,7 +368,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
 <div >
 <div className="rent_status status_on_trip">
-            <MdDriveEta size="2rem" color="#2cbbc2" />
+            <MdDriveEta size="20px" color="#2cbbc2" />
             <span>{language.REQUEST_PAGE.delivered}</span>
             </div>
             {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -393,7 +393,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         RentStatus = (
 <div >
 <div className="rent_status status_returned">
-            <MdKeyboardReturn size="2rem" color="#2cbbc2" />
+            <MdKeyboardReturn size="20px" color="#2cbbc2" />
             <span>{language.REQUEST_PAGE.returned}</span>
             </div>
             {extensionInfo && extensionSum.status.id === "extended" && <span className="extensionBadge">{language.REQUEST_PAGE.extended}</span>}
@@ -442,7 +442,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       default:
         RentStatus = (
           <div className="rent_status">
-            <IoIosDownload size="1.4rem" color="#656565" />
+            <IoIosDownload size="14px" color="#656565" />
             <span>{data.status.name}</span>
           </div>
         );
@@ -516,7 +516,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                     : moment(date.from[activeLanguage].name, "YYYY/MM/DD").format("dddd")}
                 </span>
               </span>
-              <MdKeyboardBackspace size="2rem" color="#dcdcdc" />
+              <MdKeyboardBackspace size="20px" color="#dcdcdc" />
               <span>
                 {
                   (extensionInfo && extensionSum.status.id === "extended") ?
@@ -616,7 +616,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                 prefetch={false}
               >
                 <a>
-                  <MdAccountCircle size="2rem" />
+                  <MdAccountCircle size="20px" />
                   {owner_Info.name}
                 </a>
               </Link>
@@ -624,7 +624,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + owner_Info.cell)}`}>
                   <span className="extra_Text">{numberChanger(`0${owner_Info.cell}`,activeLanguage)}</span>
-                  <MdCall size="2rem" color="#4ba3ce" />
+                  <MdCall size="20px" color="#4ba3ce" />
                 </a>
               ) : null}
             </>
@@ -636,7 +636,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                 prefetch={false}
               >
                 <a>
-                  <MdAccountCircle size="2rem" />
+                  <MdAccountCircle size="20px" />
                   {renter_info.name}
                 </a>
               </Link>
@@ -644,7 +644,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
               {status_id === "delivered" || status_id === "paid" ? (
                 <a className="renter_Cell" href={`tel:${addingCountryCodeToNumber('0' + renter_info.cell)}`}>
                   <span className="extra_Text">{numberChanger(`0${renter_info.cell}`,activeLanguage)}</span>
-                  <MdCall size="2rem" color="#4ba3ce" />
+                  <MdCall size="20px" color="#4ba3ce" />
                 </a>
               ) : null}
             </>

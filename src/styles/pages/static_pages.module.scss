@@ -7,25 +7,25 @@
   background-color: $_fdfdfd;
   box-shadow: var.$boxShadow;
   margin-top: $padding_top;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-radius: 4px;
   h1 {
-    font-size: 2.6rem;
+    font-size: 26px;
   }
   h2 {
-    font-size: 2rem;
+    font-size: 20px;
   }
   h3 {
-    font-size: 1.8rem;
+    font-size: 18px;
     font-weight: 400;
   }
   h4 {
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 16px;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: 2;
   }
   .intends {
@@ -35,7 +35,7 @@
     list-style-type: arabic-indic;
     list-style-position: inside;
     li {
-      font-size: 1.4rem;
+      font-size: 14px;
       line-height: 2;
       margin-bottom: 8px;
     }
@@ -46,16 +46,16 @@
     text-decoration: underline;
   }
   .indentation {
-    padding-right: 1.6rem;
+    padding-right: 16px;
   }
   .call_numbers {
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 14px;
   }
   .map-container {
     text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 2.4rem;
+    margin-top: 50px;
+    margin-bottom: 24px;
     @media screen and(max-width:720px) {
       iframe {
         width: 100%;

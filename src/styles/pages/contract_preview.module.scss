@@ -9,26 +9,26 @@
   .modal_box {
     box-shadow: var.$boxShadow;
     width: 45%;
-    min-width: 30rem;
+    min-width: 300px;
     height: auto;
-    max-width: 40rem;
+    max-width: 400px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     background: $_ffffff;
-    padding: 2rem;
+    padding: 20px;
     margin: 0px auto;
     border-radius: 4px;
     text-align: right;
     flex-direction: column;
 
     .text_input_container {
-      padding-bottom: 3rem;
+      padding-bottom: 30px;
       position: relative;
       .login_submit {
         display: block;
         width: 100%;
-        margin-top: 1.6rem;
+        margin-top: 16px;
       }
     }
   }

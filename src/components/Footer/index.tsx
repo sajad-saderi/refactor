@@ -66,7 +66,7 @@ const Footer = ({
           className={["toTop", showTop ? "showTop" : null].join(" ")}
           onClick={toTop}
         >
-          <IoIosArrowDropup size="4rem" color="#4ba3ce" />
+          <IoIosArrowDropup size="40px" color="#4ba3ce" />
         </div>
       ) : null}
       <div className=" responsive plus_border">
@@ -134,13 +134,13 @@ const Footer = ({
           <h3>{language.FOOTER.followUs}</h3>
           <div>
             <a target="_black" href="https://www.instagram.com/sepris.rent/">
-              <IoLogoInstagram size="3rem" color="#4ba3ce" />
+              <IoLogoInstagram size="30px" color="#4ba3ce" />
             </a>
             <a target="_black" href="https://twitter.com/Seprisrent">
-              <IoLogoTwitter size="3rem" color="#4ba3ce" />
+              <IoLogoTwitter size="30px" color="#4ba3ce" />
             </a>
             <a target="_black" href="https://wa.me/message/C3U7RO7ADABWF1">
-              <FaWhatsapp size="3rem" color="#4ba3ce" />
+              <FaWhatsapp size="30px" color="#4ba3ce" />
             </a>
           </div>
           <p>

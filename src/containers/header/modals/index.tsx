@@ -76,7 +76,7 @@ const Modals = (props) => {
               <IoMdClose
                 className="close_btn"
                 color="rgb(165, 165, 165)"
-                size="2rem"
+                size="20px"
                 onClick={() => Modal_context.modalHandler()}
               />
             )}

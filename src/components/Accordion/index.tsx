@@ -32,7 +32,7 @@ const Accordion = (props: IAccordion) => {
         ></h3>
         <IoIosArrowDown
           color='#202020'
-          size='2rem'
+          size='20px'
           className={["ICON_CHevron", i === index ? "ACTIVE_CHEVRON" : ""].join(
             " "
           )}

@@ -205,7 +205,7 @@ const ImageUploader = ({
                   }}
                 >
                   {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                  <IoIosClose size="2rem" color="#ea2d2d" />
+                  <IoIosClose size="20px" color="#ea2d2d" />
                   <img src={i.img} alt={i.id} />
                 </div>
               );

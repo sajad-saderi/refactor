@@ -18,7 +18,7 @@ const PleaseLogin = ({ language }: IPleaseLogin) => {
     <div className='Please_login_container minHeight'>
       {/* {!change ? (
         <div className="caption">
-          <FiLogIn color="#4ba3ce" size="3rem" />
+          <FiLogIn color="#4ba3ce" size="30px" />
           <p>برای دسترسی به این بخش، ابتدا وارد شوید.</p>
         </div>
       ) : null} */}
@@ -31,7 +31,7 @@ const PleaseLogin = ({ language }: IPleaseLogin) => {
           <div className='login_modal_title_confirm_code'>
             <FaArrowRight
               onClick={panelController}
-              size='2rem'
+              size='20px'
               color='#4ba3ce'
               className='login_person_icon'
             />
@@ -40,7 +40,7 @@ const PleaseLogin = ({ language }: IPleaseLogin) => {
         ) : (
           <div className='login_modal_title'>
             <IoMdPerson
-              size='2rem'
+              size='20px'
               color='#fff'
               className='login_person_icon'
             />

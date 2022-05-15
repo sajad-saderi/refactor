@@ -4,7 +4,7 @@
   .optional_caption {
     text-align: center;
     margin: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
   }
   &:nth-last-of-type(1) {
     height: 100%;
@@ -23,7 +23,7 @@
       input {
         text-align: left;
         direction: ltr;
-        margin-bottom: 0.3rem;
+        margin-bottom: 3px;
         &:focus::placeholder {
           color: transparent;
         }
@@ -37,13 +37,13 @@
     }
     .error_message {
       color: $_d83030;
-      font-size: 1.2rem;
+      font-size: 12px;
     }
   }
   .login_submit {
     display: block;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 20px;
   }
   .disable_BTN {
     color: $_bfbfbf;

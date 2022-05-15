@@ -19,7 +19,7 @@
 }
 
 .price_filter {
-  margin-bottom: 3rem;
+  margin-bottom: 30px;
 	.disablePriceFilter{
 		position: relative;
 		&::after {
@@ -42,9 +42,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
     .TA {
-      margin: 0 0.8rem;
+      margin: 0 8px;
       font-weight: 500;
       width: auto;
       overflow: unset;
@@ -66,7 +66,7 @@
     border: none;
     box-shadow: none;
     height: 5px;
-    margin: 1rem 0;
+    margin: 1px 0;
     .noUi-origin {
       left: -10px !important;
       right: -15px;
@@ -133,35 +133,35 @@
     display: flex;
     align-items: center;
     width: 100%;
-    margin: 1rem 0 1rem;
+    margin: 10px 0 10px;
     justify-content: space-between;
     p {
-      width: 5rem;
-      border-radius: 0.4rem;
-      height: 1.5rem;
+      width: 50px;
+      border-radius: 4px;
+      height: 15px;
     }
     span {
       text-align: center;
-      border-radius: 0.4rem;
-      width: 2rem;
-      height: 1.5rem;
+      border-radius: 4px;
+      width: 20px;
+      height: 15px;
     }
   }
   .fake_price_slider {
     position: relative;
     width: 100%;
-    height: 0.5rem;
+    height: 5px;
     background-color: $_3fa6da;
-    margin: 2rem 0;
+    margin: 20px 0;
     &::before,
     &::after {
       position: absolute;
       background-color: $_ffffff;
-      width: 1.8rem;
-      height: 1.8rem;
+      width: 18px;
+      height: 18px;
       clear: both;
       display: block;
-      top: -1rem;
+      top: -10px;
       border: 3px solid $_3fa6da;
       border-radius: 50%;
       content: '';
@@ -176,10 +176,10 @@
 }
 @media screen and(max-width:960px) {
   .price_filter {
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 20px;
+    padding-left: 20px;
     .noUi-target {
-      margin: 1rem 1.6rem;
+      margin: 10px 16px;
       .noUi-origin {
         .noUi-handle {
           right: auto;

@@ -121,7 +121,7 @@ const DropdownSearch = (props: IDropDown) => {
         <div className='select_container'>
           <IoIosArrowDown
             color='rgb(165, 165, 165)'
-            size='2rem'
+            size='20px'
             className='ArrowDown'
           />
           <select
@@ -176,7 +176,7 @@ const DropdownSearch = (props: IDropDown) => {
             !props.hideClearField ? (
             <IoMdClose
               color='rgb(165, 165, 165)'
-              size='2rem'
+              size='20px'
               className='clean_icon'
               onClick={clearField}
             />
@@ -199,7 +199,7 @@ const DropdownSearch = (props: IDropDown) => {
         {!props.hideArrowDown && (
           <IoIosArrowDown
             color='rgb(165, 165, 165)'
-            size='2rem'
+            size='20px'
             className={[
               "ArrowDown",
               ShowController ? "rotate_arrow_down_icon" : null,
@@ -239,14 +239,14 @@ const DropdownSearch = (props: IDropDown) => {
                       searchHandler(e.target.value.trim());
                     }}
                   />
-                  {!search_value && <IoIosSearch size='2rem' color='#737373' />}
+                  {!search_value && <IoIosSearch size='20px' color='#737373' />}
                   {search_value && (
                     <IoMdClose
                       onClick={() => {
                         setSearch_value("");
                         searchHandler("");
                       }}
-                      size='2rem'
+                      size='20px'
                       color='#737373'
                     />
                   )}

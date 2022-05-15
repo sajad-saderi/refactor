@@ -328,7 +328,7 @@ const Complete_register_container = ({
         onSubmit={(e) => submitHandler(e, state)}
       >
         <div className="login_modal_title">
-          <IoMdPerson size="2rem" color="#fff" className="login_person_icon" />
+          <IoMdPerson size="20px" color="#fff" className="login_person_icon" />
           <h2>{language.COMPLETE_REGISTER.title}</h2>
         </div>
         <div className="name_container">

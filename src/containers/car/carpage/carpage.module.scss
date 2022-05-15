@@ -8,7 +8,7 @@
 //   transition: all 0.25s linear;
 // }
 .Car_page_container {
-  margin-top: 0.1rem;
+  margin-top: 10px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -19,12 +19,12 @@
   .carInfo_container {
     box-shadow: var.$boxShadow;
     background: $_ffffff;
-    padding: 2.4rem;
+    padding: 24px;
     width: 63%;
     display: inline-block;
     vertical-align: top;
     border-radius: 4px;
-    font-size: 1.4rem;
+    font-size: 14px;
     .first_section_carpage {
       position: relative;
     }
@@ -32,35 +32,35 @@
       display: none;
       // position: absolute;
       background: $_ffffff;
-      top: 0rem;
+      top: 0;
       text-align: center;
-      left: 1rem;
-      width: 10.6rem;
-      height: 9rem;
-      padding-top: 3.54rem;
+      left: 10px;
+      width: 106px;
+      height: 90px;
+      padding-top: 35px;
     }
     .avg_discounted_price_per_day {
       display: none;
       .discount_part {
         .percentage {
-          padding: 0.4rem;
+          padding: 04px;
           background-color: $_ec7f00;
-          font-size: 1.4rem;
-          line-height: 1.4rem;
+          font-size: 14px;
+          line-height: 14px;
         }
         .discount_price {
           color: $_525252;
           text-decoration: line-through;
-          font-size: 1.8rem;
+          font-size: 18px;
           vertical-align: middle;
         }
         .normal_price {
           font-weight: 500;
-          font-size: 2rem;
-          line-height: 1.6rem;
+          font-size: 20px;
+          line-height: 16px;
           color: $_313131;
           text-align: center;
-          margin-bottom: 0.6rem;
+          margin-bottom: 6px;
         }
       }
       span {
@@ -69,37 +69,37 @@
       }
     }
     h1 {
-      font-size: 2.2rem;
-      line-height: 2.2rem;
+      font-size: 22px;
+      line-height: 22px;
       line-height: unset;
       margin: 0 0;
       // span {
       //   color: $_313131;
-      //   font-size: 1.4rem;
-      //   line-height: 1.4rem;
+      //   font-size: 1.40px;
+      //   line-height: 1.40px;
       //   display: inline-block;
       //   vertical-align: middle;
       //   color: $_525252;
-      //   margin-right: 0.6rem;
+      //   margin-right: 0.60px;
       // }
       .year_of_build {
         color: $_525252;
-        font-size: 1.6rem;
-        margin-right: 0.4rem;
+        font-size: 16px;
+        margin-right: 4px;
         display: inline-block;
         vertical-align: middle;
       }
       .rate_container {
-        margin-top: 1.4rem;
+        margin-top: 14px;
         img {
           display: inline-block;
           vertical-align: middle;
-          margin-left: 0.4rem;
+          margin-left: 4px;
         }
         span {
           display: inline-block;
-          font-size: 1.4rem;
-          line-height: 1.4rem;
+          font-size: 14px;
+          line-height: 14px;
           font-weight: 500;
           color: $_116b98;
           .sum_rent {
@@ -110,23 +110,23 @@
       }
     }
     .separate_info {
-      margin-top: 2.4rem;
+      margin-top: 24px;
       direction: rtl;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
     }
     .owner_name_carinfo {
-      font-size: 1.2rem;
-      line-height: 1.2rem;
+      font-size: 12px;
+      line-height: 12px;
       color: $_525252;
-      margin-bottom: 2.4rem;
+      margin-bottom: 24px;
     }
     .driver_and_verified {
       direction: rtl;
     }
     .driver_container {
-      margin-bottom: 1.6rem;
+      margin-bottom: 16px;
       span {
         display: inline-block;
       }
@@ -134,7 +134,7 @@
     .isverified_container {
       display: inline-block;
       img {
-        margin-left: 0.4rem;
+        margin-left: 4px;
         display: inline-block;
         vertical-align: middle;
       }
@@ -151,38 +151,38 @@
       display: none;
       // h2 {
       //   margin: 0;
-      //   margin-bottom: 1.6rem;
+      //   margin-bottom: 1.60px;
       //   line-height: unset;
       //   img {
-      //     margin-left: 0.9rem;
+      //     margin-left: 0.90px;
       //     display: inline-block;
       //     vertical-align: middle;
       //   }
       //   span {
       //     display: inline-block;
       //     font-family: danabold;
-      //     font-size: 1.4rem;
-      //     line-height: 1.4rem;
+      //     font-size: 1.40px;
+      //     line-height: 1.40px;
       //   }
       // }
       .Rent_date {
         text-align: right;
         font-weight: 500;
-        font-size: 1.4rem;
+        font-size: 14px;
         display: flex;
         justify-content: space-between;
-        padding-right: 2.4rem;
+        padding-right: 24px;
         p {
           line-height: normal;
           svg {
             display: inline-block;
             vertical-align: middle;
-            font-size: 1.3rem;
-            width: 2rem;
-            margin: 0 0.4rem;
+            font-size: 13px;
+            width: 20px;
+            margin: 0 4px;
           }
           .day_name {
-            line-height: 1.4rem;
+            line-height: 14px;
             display: inline-block;
             vertical-align: middle;
           }
@@ -224,12 +224,12 @@
             position: relative;
             width: 100%;
             .label {
-              font-size: 1.2rem;
+              font-size: 12px;
               text-align: right;
             }
             input {
               font-family: inherit;
-              margin: 0.3rem auto;
+              margin: 3px auto;
               display: block;
               width: 100%;
               outline: 0;
@@ -237,11 +237,11 @@
               line-height: 1.5;
               border: 1px solid $_bfbfbf;
               border-left: 0px solid $_bfbfbf;
-              border-radius: 0.4rem;
+              border-radius: 4px;
               border-top-left-radius: 0px;
               border-bottom-left-radius: 0px;
-              padding: 0.94rem;
-              font-size: 1.4rem;
+              padding: 9px;
+              font-size: 14px;
               background: $_ffffff;
               color: rgba(0, 0, 0, 0.87);
               box-shadow: 0 0 0 0 transparent inset;
@@ -257,7 +257,7 @@
               border: 1px solid $_bfbfbf;
               border-left: 1px solid $_bfbfbf;
               border-right: 1px solid $_bfbfbf;
-              border-radius: 0.4rem;
+              border-radius: 4px;
               border-top-left-radius: 4px;
               border-top-right-radius: 0px;
               border-bottom-left-radius: 4px;
@@ -265,7 +265,7 @@
             }
             span {
               position: absolute;
-              font-size: 1rem;
+              font-size: 10px;
               color: firebrick;
               font-weight: 500;
             }
@@ -279,20 +279,20 @@
               cursor: pointer;
               opacity: 0;
               text-align: right;
-              padding: 0.94rem;
+              padding: 9px;
               font-family: inherit;
-              margin: 0.3rem auto 0.5rem;
+              margin: 3px auto 5px;
               display: block;
               width: 100%;
               height: 100%;
               outline: 0;
               -webkit-appearance: none;
               line-height: 1;
-              font-size: 1.4rem;
+              font-size: 14px;
               background: $_ffffff;
               border: 1px solid $_bfbfbf;
               color: rgba(0, 0, 0, 0.87);
-              border-radius: 0.4rem;
+              border-radius: 4px;
               box-shadow: 0 0 0 0 transparent inset;
             }
           }
@@ -313,30 +313,30 @@
     }
     .car_delivery {
       p {
-        font-size: 1.6rem;
+        font-size: 16px;
       line-height: normal;
       }
     }
     .distance_limitation,
     .distance_limitation_penalty,
     .hour_limitation_penalty {
-      font-size: 1.6rem;
-      line-height: 1.4rem;
+      font-size: 16px;
+      line-height: 14px;
     }
     h2 {
       margin: 0;
-      margin-bottom: 1.6rem;
+      margin-bottom: 16px;
       line-height: unset;
       img {
-        margin-left: 0.9rem;
+        margin-left: 9px;
         display: inline-block;
         vertical-align: middle;
       }
       span {
         display: inline-block;
         font-family: "danaXV", "dana";
-        font-size: 1.6rem;
-        line-height: 1.4rem;
+        font-size: 16px;
+        line-height: 14px;
       }
     }
     p,
@@ -347,24 +347,24 @@
     }
     pre {
       white-space: pre-line;
-      font-size: 1.6rem;
+      font-size: 16px;
       line-height: normal;
     }
     hr {
-      border-width: 0.1rem;
-      margin-top: 2.4rem;
-      margin-bottom: 2.4rem;
+      border-width: 1px;
+      margin-top: 24px;
+      margin-bottom: 24px;
       border-bottom-width: 0;
       border-color: rgba(34, 36, 38, 0.1);
     }
     .info_container {
-      width: 30rem;
+      width: 300px;
       border: 1px solid $_e5e5e5;
       p:last-child {
         border-bottom-color: transparent !important;
       }
       .alignThem {
-        padding: 1rem;
+        padding: 10px;
         border-bottom: 1px solid $_e5e5e5;
         background-color: $_fafafa;
         &:nth-child(even) {
@@ -372,17 +372,17 @@
         }
         .info_name {
           font-weight: 500;
-          width: 9rem;
-          line-height: 1.4rem;
-          font-size: 1.6rem;
+          width: 90px;
+          line-height: 14px;
+          font-size: 16px;
           display: inline-block;
           vertical-align: middle;
         }
         .info_value {
-          line-height: 1.4rem;
-          font-size: 1.6rem;
+          line-height: 14px;
+          font-size: 16px;
           display: inline-block;
-          padding-right: 1rem;
+          padding-right: 10px;
           vertical-align: middle;
         }
       }
@@ -396,9 +396,9 @@
         display: inline-block;
         vertical-align: middle;
         width: auto;
-        margin-bottom: 1.6rem;
+        margin-bottom: 16px;
         text-align: center;
-        margin-left: 0.8rem;
+        margin-left: 8px;
       }
     }
     .car_Tags {
@@ -406,15 +406,15 @@
       display: inline-block;
       color: $_3fa6da;
       border: none;
-      padding: 0.2rem 2.5rem;
+      padding: 2px 25px;
       text-indent: -14px;
-      margin: 0 0.6rem;
-      font-size: 1.2rem;
+      margin: 0 6px;
+      font-size: 12px;
       font-weight: 500;
       svg {
         vertical-align: middle;
-        margin-left: 0.4rem;
-        width: 1.6rem;
+        margin-left: 4px;
+        width: 16px;
       }
     }
   }
@@ -423,61 +423,61 @@
     width: 34%;
     background: $_ffffff;
     border-radius: 4px;
-    padding: 2.4rem;
+    padding: 24px;
     box-shadow: var.$boxShadow;
     position: relative;
     .price_place_holder {
-      height: 8.7rem;
-      padding-top: 3rem;
+      height: 87px;
+      padding-top: 30px;
     }
     .avg_discounted_price_per_day {
       .discount_part {
         text-align: center;
-        margin-bottom: 0.8rem;
+        margin-bottom: 8px;
         .percentage {
-          border-radius: 0.5rem;
-          margin-right: 0.4rem;
+          border-radius: 5px;
+          margin-right: 4px;
           display: inline-block;
           width: auto;
           color: $_fefefe;
           vertical-align: middle;
-          padding: 0.4rem;
+          padding: 4px;
           background-color: $_ec7f00;
-          font-size: 1.4rem;
-          line-height: 1.4rem;
+          font-size: 14px;
+          line-height: 14px;
         }
         .discount_price {
           color: $_525252;
           display: inline-block;
           text-decoration: line-through;
           vertical-align: middle;
-          font-size: 1.8rem;
+          font-size: 18px;
         }
         .normal_price {
           font-weight: 500;
-          font-size: 3rem;
+          font-size: 30px;
           color: $_313131;
-          line-height: 2.6rem;
+          line-height: 26px;
           text-align: center;
-          margin-bottom: 0.6rem;
+          margin-bottom: 6px;
         }
       }
       p {
         font-weight: 500;
-        font-size: 2.4rem;
-        line-height: 2.4rem;
+        font-size: 24px;
+        line-height: 24px;
         text-align: center;
-        margin-bottom: 0.6rem;
+        margin-bottom: 6px;
       }
       span.unit_name {
-        font-size: 1.6rem;
+        font-size: 16px;
       }
       span {
-        font-size: 1.4rem;
+        font-size: 14px;
         display: block;
         color: $_525252;
         text-align: center;
-        line-height: 1.4rem;
+        line-height: 14px;
       }
       .unit_name {
         font-family: "danaXV", "dana";
@@ -485,7 +485,7 @@
     }
     .search_box_div {
       text-align: center;
-      margin-top: 2.5rem;
+      margin-top: 25px;
       // .DatePicker {
       //   input {
       //     border-radius: 4px;
@@ -499,12 +499,12 @@
           position: relative;
           width: 100%;
           .label {
-            font-size: 1.2rem;
+            font-size: 12px;
             text-align: right;
           }
           input {
             font-family: inherit;
-            margin: 0.3rem auto;
+            margin: 3px auto;
             display: block;
             width: 100%;
             outline: 0;
@@ -512,11 +512,11 @@
             line-height: 1.5;
             border: 1px solid $_bfbfbf;
             border-left: 0px solid $_bfbfbf;
-            border-radius: 0.4rem;
+            border-radius: 4px;
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
-            padding: 0.94rem;
-            font-size: 1.4rem;
+            padding: 9px;
+            font-size: 14px;
             background: $_ffffff;
             color: rgba(0, 0, 0, 0.87);
             box-shadow: 0 0 0 0 transparent inset;
@@ -533,7 +533,7 @@
             border: 1px solid $_bfbfbf;
             border-left: 1px solid $_bfbfbf;
             border-right: 1px solid $_bfbfbf;
-            border-radius: 0.4rem;
+            border-radius: 4px;
             border-top-left-radius: 4px;
             border-top-right-radius: 0px;
             border-bottom-left-radius: 4px;
@@ -541,7 +541,7 @@
           }
           span {
             position: absolute;
-            font-size: 1rem;
+            font-size: 10px;
             color: firebrick;
             font-weight: 500;
           }
@@ -555,20 +555,20 @@
             cursor: pointer;
             opacity: 0;
             text-align: right;
-            padding: 0.94rem;
+            padding: 9px;
             font-family: inherit;
-            margin: 0.3rem auto 0.5rem;
+            margin: 3px auto 5px;
             display: block;
             width: 100%;
             height: 100%;
             outline: 0;
             -webkit-appearance: none;
             line-height: 1;
-            font-size: 1.4rem;
+            font-size: 14px;
             background: $_ffffff;
             border: 1px solid $_bfbfbf;
             color: rgba(0, 0, 0, 0.87);
-            border-radius: 0.4rem;
+            border-radius: 4px;
             box-shadow: 0 0 0 0 transparent inset;
           }
           .Calendar {
@@ -587,25 +587,25 @@
       }
     }
     .profile_anchor_tag_container {
-      margin-bottom: 1.6rem;
-      margin-top: 2.4rem;
+      margin-bottom: 16px;
+      margin-top: 24px;
       display: flex;
       align-items: flex-start;
     }
     .Rent_date {
       text-align: right;
       font-weight: 500;
-      margin-top: 4.8rem;
-      margin-bottom: 4.8rem;
+      margin-top: 48px;
+      margin-bottom: 48px;
       display: flex;
       justify-content: space-between;
       p {
-        font-size: 1.4rem;
+        font-size: 14px;
         svg {
           display: inline-block;
           vertical-align: middle;
-          font-size: 1.3rem;
-          width: 2rem;
+          font-size: 13px;
+          width: 20px;
         }
         .day_name {
           display: inline-block;
@@ -622,60 +622,60 @@
       vertical-align: middle;
       .owner_part_avatar_container {
         .user_avatar {
-          width: 4.8rem;
-          height: 4.8rem;
+          width: 48px;
+          height: 48px;
           border-radius: 50%;
           display: inline-block;
           vertical-align: middle;
         }
         p {
-          margin-top: 0.8rem;
+          margin-top: 8px;
           text-align: center;
           display: flex;
           justify-content: center;
           align-items: flex-start;
-          font-size: 1.4rem;
+          font-size: 14px;
           img {
             display: inline-block;
             vertical-align: top;
-            margin-left: 0.4rem;
-            width: 1.5rem;
+            margin-left: 4px;
+            width: 15px;
           }
         }
       }
     }
     .owner_info {
       display: inline-block;
-      margin-right: 0.8rem;
+      margin-right: 8px;
       vertical-align: middle;
       .owner_name {
-        font-size: 1.4rem;
-        line-height: 1.4rem;
+        font-size: 14px;
+        line-height: 14px;
         font-weight: 500;
       }
       .since_from {
-        margin-top: 1.6rem;
-        font-size: 1.4rem;
-        line-height: 1.4rem;
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 14px;
       }
       span {
         display: inline-block;
-        margin-top: 1.6rem;
-        font-size: 1.4rem;
-        line-height: 1.4rem;
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 14px;
       }
     }
     .go_to_profile {
       display: none;
       position: absolute;
       top: 45%;
-      left: 1.6rem;
+      left: 16px;
       p {
         color: $_3fa6da;
-        font-size: 1.3rem;
-        line-height: 1.3rem;
+        font-size: 13px;
+        line-height: 13px;
         position: relative;
-        padding-left: 0.9rem;
+        padding-left: 9px;
         &::before {
           content: '';
           clear: both;
@@ -684,21 +684,21 @@
           border: none;
           border-left: 2px solid $_3fa6da;
           border-bottom: 2px solid $_3fa6da;
-          height: 0.5rem;
-          width: 0.5rem;
+          height: 5px;
+          width: 5px;
           transform: rotate(45deg);
           top: 3px;
-          left: 0rem;
+          left: 0;
         }
       }
     }
     .localClass {
       display: block;
       width: 100%;
-      margin-bottom: 1.6rem;
+      margin-bottom: 16px;
     }
     .extra_info {
-      font-size: 1rem;
+      font-size: 10px;
       margin-bottom: 8px;
       line-height: 1.5;
       text-align: center;
@@ -711,17 +711,17 @@
   .carInfo_container {
     .price_place_holder {
       left: auto;
-      right: 1rem;
+      right: 10px;
     }
     h1 {
       .year_of_build {
         margin-right: 0;
-        margin-left: 0.4rem;
+        margin-left: 4px;
       }
       .rate_container {
         img {
           margin-left: 0;
-          margin-right: 0.4rem;
+          margin-right: 4px;
         }
       }
     }
@@ -737,7 +737,7 @@
     .isverified_container {
       img {
         margin-left: 0;
-        margin-right: 0.4rem;
+        margin-right: 4px;
       }
       span {
         direction: ltr;
@@ -747,7 +747,7 @@
       .Rent_date {
         text-align: left;
         padding-right: 0;
-        padding-left: 2.4rem;
+        padding-left: 24px;
         p {
           line-height: normal;
           svg {
@@ -775,7 +775,7 @@
               border: 1px solid $_bfbfbf;
               border-left: 1px solid $_bfbfbf;
               border-right: 0px solid $_bfbfbf;
-              border-radius: 0.4rem;
+              border-radius: 4px;
               border-top-right-radius: 0px;
               border-bottom-right-radius: 0px;
               &.activeBorder {
@@ -790,7 +790,7 @@
               border: 1px solid $_bfbfbf;
               border-left: 1px solid $_bfbfbf;
               border-right: 1px solid $_bfbfbf;
-              border-radius: 0.4rem;
+              border-radius: 4px;
               border-top-left-radius: 0px;
               border-top-right-radius: 4px;
               border-bottom-left-radius: 0px;
@@ -810,27 +810,27 @@
     h2 {
       img {
         margin-left: 0;
-        margin-right: 0.9rem;
+        margin-right: 9px;
       }
     }
     .info_container {
       .alignThem {
         .info_value {
           padding-right: 0;
-          padding-left: 1rem;
+          padding-left: 10px;
         }
       }
     }
     .facilities_container {
       p {
         margin-left: 0;
-        margin-right: 0.8rem;
+        margin-right: 8px;
       }
     }
     .car_Tags {
       svg {
         margin-left: 0;
-        margin-right: 0.4rem;
+        margin-right: 4px;
       }
     }
   }
@@ -839,7 +839,7 @@
       .discount_part {
         .percentage {
           margin-right: 0;
-          margin-left: 0.4rem;
+          margin-left: 4px;
         }
       }
     }
@@ -847,12 +847,12 @@
       .date_Input_Container {
         .input_container {
           .label {
-            font-size: 1.2rem;
+            font-size: 12px;
           }
           input {
             border-left: 1px solid $_bfbfbf;
             border-right: 0px solid $_bfbfbf;
-            border-radius: 0.4rem;
+            border-radius: 4px;
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
             &.activeBorder {
@@ -866,7 +866,7 @@
           .exception_input {
             border-left: 1px solid $_bfbfbf;
             border-right: 1px solid $_bfbfbf;
-            border-radius: 0.4rem;
+            border-radius: 4px;
             border-top-left-radius: 0px;
             border-top-right-radius: 4px;
             border-bottom-left-radius: 0px;
@@ -892,29 +892,29 @@
         p {
           img {
             margin-left: 0;
-            margin-right: 0.4rem;
+            margin-right: 4px;
           }
         }
       }
     }
     .owner_info {
       margin-right: 0;
-      margin-left: 0.8rem;
+      margin-left: 8px;
     }
     .go_to_profile {
       left: auto;
-      right: 1.6rem;
+      right: 16px;
       p {
         padding-left: 0;
-        padding-right: 0.9rem;
+        padding-right: 9px;
         &::before {
           border-left: 2px solid $_3fa6da;
           border-bottom: 2px solid $_3fa6da;
-          height: 0.5rem;
-          width: 0.5rem;
+          height: 5px;
+          width: 5px;
           transform: rotate(225deg);
           left: auto;
-          right: 0rem;
+          right: 0;
         }
       }
     }
@@ -923,7 +923,7 @@
       right: 0;
       .extra_info {
         margin-left: 0;
-        margin-right: 1rem;
+        margin-right: 10px;
       }
     }
   }
@@ -948,16 +948,16 @@
     display: block;
     background: $_a3678b;
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 5px 0;
     p {
       font-weight: 500;
-      font-size: 1.4rem;
+      font-size: 14px;
       color: $_ffffff;
       line-height: normal;
     }
   }
   .Car_page_container {
-    margin-top: 0rem;
+    margin-top: 0;
     position: relative;
     padding: 0;
     z-index: 2;
@@ -966,23 +966,23 @@
       width: 100%;
       display: block;
       position: relative;
-      padding: 1.6rem;
+      padding: 16px;
       border-radius: 0;
       box-shadow: 0px 2px 2px -1px rgba(0, 0, 0, 0.1);
       h1 {
         .year_of_build {
-          font-size: 1.4rem;
+          font-size: 14px;
         }
         .rate_container {
           span {
-            font-size: 1.2rem;
-            line-height: 1.2rem;
+            font-size: 12px;
+            line-height: 12px;
           }
         }
       }
       .driver_container {
         span {
-          font-size: 1.4rem;
+          font-size: 14px;
         }
       }
       .price_place_holder {
@@ -990,26 +990,26 @@
       }
       h2 {
         span {
-          font-size: 1.4rem;
+          font-size: 14px;
         }
       }
       .car_delivery {
         p {
-          font-size: 1.4rem;
+          font-size: 14px;
           line-height: normal;
         }
       }
       pre {
-        font-size: 1.4rem;
+        font-size: 14px;
       }
       .distance_limitation,
       .distance_limitation_penalty,
       .hour_limitation_penalty {
-        font-size: 1.4rem;
+        font-size: 14px;
       }
       .facilities_container {
         p {
-          font-size: 1.4rem;
+          font-size: 14px;
         }
       }
       .calender_section_mobile_view {
@@ -1028,46 +1028,46 @@
         border-radius: 4px;
         .discount_part {
           text-align: left;
-          margin-bottom: 0.8rem;
+          margin-bottom: 8px;
           .percentage {
-            border-radius: 0.5rem;
-            margin-right: 0.4rem;
+            border-radius: 5px;
+            margin-right: 4px;
             display: inline-block;
             width: auto;
             color: $_fefefe;
             vertical-align: middle;
-            padding: 0.4rem;
+            padding: 4px;
             background-color: $_ec7f00;
-            font-size: 1.4rem;
-            line-height: 1.4rem;
+            font-size: 14px;
+            line-height: 14px;
           }
           .discount_price {
             color: $_525252;
             display: inline-block;
             text-decoration: line-through;
-            font-size: 1.8rem;
+            font-size: 18px;
           }
         }
         p {
-          font-size: 2rem;
-          line-height: 1.6rem;
-          margin-bottom: 0.6rem;
+          font-size: 20px;
+          line-height: 16px;
+          margin-bottom: 6px;
           text-align: left;
         }
         .unit_name {
           font-family: "danaXV", "dana";
-          font-size: 1.2rem;
+          font-size: 12px;
           text-align: left;
         }
       }
       .info_container {
         .alignThem {
           .info_value {
-            width: 14rem;
-            font-size: 1.4rem;
+            width: 140px;
+            font-size: 14px;
           }
           .info_name {
-            font-size: 1.4rem;
+            font-size: 14px;
           }
         }
       }
@@ -1083,9 +1083,9 @@
       //     width: 126px;
       //     border-radius: 4px;
       //     text-align: center;
-      //     padding: 0.2rem 0.5rem;
+      //     padding: 0.20px 0.50px;
       //     margin: 6px;
-      //     font-size: 1.2rem;
+      //     font-size: 1.20px;
       //     font-weight: 500;
       //   }
       // }
@@ -1094,35 +1094,35 @@
         display: inline-block;
         color: $_3fa6da;
         border: none;
-        padding: 0.2rem 2.5rem;
+        padding: 2px 25px;
         text-indent: -14px;
-        margin: 0 0.6rem;
-        font-size: 1.2rem;
+        margin: 0 6px;
+        font-size: 12px;
         font-weight: 500;
         svg {
           vertical-align: middle;
-          margin-left: 0.4rem;
+          margin-left: 4px;
         }
       }
     }
     .onwnerInfo_container {
       width: 100%;
-      margin-top: 0.8rem;
+      margin-top: 8px;
       border-radius: 0;
-      padding: 1.6rem;
-      padding-top: 1.6rem;
+      padding: 16px;
+      padding-top: 16px;
       .avg_discounted_price_per_day {
         display: none;
         p {
           font-weight: 500;
-          font-size: 2.8rem;
+          font-size: 28px;
           text-align: center;
         }
         span.unit_name {
-          font-size: 1.4rem;
+          font-size: 14px;
         }
         span {
-          font-size: 1.2rem;
+          font-size: 12px;
           display: block;
           text-align: center;
           line-height: 1.5;
@@ -1138,18 +1138,18 @@
         margin-bottom: 0;
       }
       // .owner_part {
-      //   margin-top: 2rem;
-      //   margin-bottom: 2rem;
+      //   margin-top: 20px;
+      //   margin-bottom: 20px;
       //   img {
-      //     width: 5.4rem;
+      //     width: 5.40px;
       //     border-radius: 4px;
       //     display: inline-block;
       //     vertical-align: middle;
       //   }
       //   p {
       //     display: inline-block;
-      //     margin-right: 1.4rem;
-      //     font-size: 1.4rem;
+      //     margin-right: 1.40px;
+      //     font-size: 1.40px;
       //     font-weight: 500;
       //   }
       // }
@@ -1163,18 +1163,18 @@
         width: 100%;
         bottom: 0px;
         left: 0;
-        padding: 1.5rem;
+        padding: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: $_ffffff;
         .localClass {
-          max-width: 18rem;
+          max-width: 180px;
           margin: 0;
         }
         .extra_info {
-          margin-left: 1rem;
-          font-size: 1.1rem;
+          margin-left: 10px;
+          font-size: 11px;
           text-align: justify;
           font-weight: 500;
         }

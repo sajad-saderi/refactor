@@ -31,7 +31,7 @@ const Toast = (props: IToast) => {
 			>
 				{/* close icon */}
 				<IoMdClose
-					size='2rem'
+					size='20px'
 					color='#fafafa'
 					onClick={() => props.closeHandler()}
 				/>

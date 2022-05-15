@@ -6,7 +6,7 @@ footer {
   &.hide_footer {
     display: none;
   }
-  padding-top: 2rem !important;
+  padding-top: 20px !important;
   .toTop {
     opacity: 0;
     z-index: -1;
@@ -17,9 +17,9 @@ footer {
       z-index: 9;
       background: $_3fa6da;
       position: fixed;
-      left: 5rem;
-      bottom: 6rem;
-      width: 4rem;
+      left: 50px;
+      bottom: 60px;
+      width: 40px;
       border-radius: 4px;
       path {
         &:first-child {
@@ -30,9 +30,9 @@ footer {
   }
   .plus_border {
     display: flex;
-    align-items: flex-start; 
+    align-items: flex-start;
     padding: 0;
-    padding-bottom: 2rem !important;
+    padding-bottom: 20px !important;
     justify-content: space-between;
     @media (max-width: 1024px) {
       padding-inline: 16px;
@@ -45,12 +45,12 @@ footer {
         a {
           transition: 0.25s all;
           line-height: 2;
-          font-size: 1.4rem;
+          font-size: 14px;
           color: $_3fa6da;
-          margin-bottom: 0.5rem;
+          margin-bottom: 5px;
           display: inline-block;
           &:hover {
-            padding-right: 0.5rem;
+            padding-right: 5px;
           }
         }
       }
@@ -64,32 +64,32 @@ footer {
       h3 {
         width: 300px;
         color: $_929292;
-        font-size: 1.4rem;
+        font-size: 14px;
       }
       div {
         width: 300px;
         svg {
-          margin-left: 1rem;
-          width: 3rem;
+          margin-left: 10px;
+          width: 30px;
         }
       }
       a {
         color: $_3fa6da;
-        font-size: 1.4rem;
+        font-size: 14px;
         font-weight: 500;
       }
       p {
-        font-size: 1.4rem;
+        font-size: 14px;
         width: 300px;
         color: $_929292;
-        margin-top: 1.6rem;
+        margin-top: 16px;
         font-weight: 500;
       }
     }
     .enamadContainer {
       display: flex;
-      @media (max-width:680px) {
-        margin-top: 30px; 
+      @media (max-width: 680px) {
+        margin-top: 30px;
       }
       a {
         padding: 16px;
@@ -110,7 +110,7 @@ footer {
       justify-content: flex-start;
       align-items: center;
       img {
-        margin-left: 1.4rem;
+        margin-left: 14px;
       }
     }
   }
@@ -121,14 +121,16 @@ footer {
     p {
       display: inline-block;
       vertical-align: middle;
-      margin-bottom: 1rem;
+      margin-bottom: 10px;
       font-weight: 500;
+      font-size: 12px;
       opacity: 0.6;
     }
     span {
       position: absolute;
-      left: 1.5rem;
-      top: 0.3rem;
+      left: 15px;
+      font-size: 12px;
+      top: 3px;
       opacity: 0.5;
     }
   }
@@ -138,7 +140,7 @@ footer[dir="ltr"] {
   .toTop {
     svg {
       left: auto;
-      right: 5rem;
+      right: 50px;
     }
   }
   .plus_border {
@@ -148,8 +150,8 @@ footer[dir="ltr"] {
       li {
         a {
           &:hover {
-            padding-right: 0rem;
-            padding-left: 0.5rem;
+            padding-right: 0;
+            padding-left: 5px;
           }
         }
       }
@@ -157,23 +159,23 @@ footer[dir="ltr"] {
     .social_container_footer {
       div {
         svg {
-          margin-left: 0rem;
-          margin-right: 1rem;
+          margin-left: 0;
+          margin-right: 10px;
         }
       }
     }
     .brand_description {
       img {
         transform: rotateY(180deg);
-        margin-left: 0rem;
-        margin-right: 1.4rem;
+        margin-left: 0;
+        margin-right: 14px;
       }
     }
   }
   .signature {
     span {
       left: auto;
-      right: 1.5rem;
+      right: 15px;
     }
   }
 }
@@ -185,8 +187,8 @@ footer[dir="ltr"] {
       svg {
         transition: 0.25s all;
         opacity: 0.5;
-        left: 2rem;
-        bottom: 4rem;
+        left: 20px;
+        bottom: 40px;
         &:hover {
           opacity: 1;
         }

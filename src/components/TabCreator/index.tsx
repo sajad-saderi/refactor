@@ -29,7 +29,7 @@ const TabCreator = (props: ITabCreator) => {
                 >
                   {item.title}
                   <IoIosArrowDown
-                    size='2rem'
+                    size='20px'
                     className={active === i ? "rotateIcon" : ""}
                   />
                 </span>

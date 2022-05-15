@@ -11,9 +11,9 @@
         justify-content: flex-start;
         align-items: flex-end;
         flex-wrap: wrap;
-        height: 5.5rem;
+        height: 55px;
         li {
-          margin-bottom: 2rem;
+          margin-bottom: 20px;
         }
       }
     }
@@ -21,19 +21,19 @@
 }
 
 .landing_dynamic_content {
-  margin-top: 3rem;
+  margin-top: 30px;
   box-shadow: var.$boxShadow;
   background: $_ffffff;
-  padding: 1.4rem;
+  padding: 14px;
   h2 {
-    font-size: 1.8rem;
+    font-size: 18px;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 14px;
   }
   .Landing_Links {
     h3 {
-      margin-top: 2rem;
+      margin-top: 20px;
     }
     ul {
       column-count: 3;
@@ -42,7 +42,7 @@
         a {
           line-height: 1.5;
           font-weight: 500;
-          font-size: 1.4rem;
+          font-size: 14px;
           color: $_3fa6da;
           display: block;
         }

@@ -7,7 +7,7 @@
   .guide_card {
     background: $_ffffff;
     box-shadow: var.$boxShadow;
-    padding: 1rem;
+    padding: 10px;
     position: relative;
     &:hover {
       box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
@@ -28,7 +28,7 @@
       svg {
         display: inline-block;
         vertical-align: middle;
-        width: 3rem;
+        width: 30px;
       }
     }
   }

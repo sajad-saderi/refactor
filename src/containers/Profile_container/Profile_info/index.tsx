@@ -170,7 +170,7 @@ const Profile_info = ({ is_mine, data, language }: IProfile_info) => {
             {is_mine && (
               <div className="profile_controls">
                 <div className="Exit" onClick={Exit}>
-                  <FiLogOut size="2rem" color="#4ba3ce" />
+                  <FiLogOut size="20px" color="#4ba3ce" />
                   <p>{language.USER.exit}</p>
                 </div>
                 {activeLanguage === 'fa' &&
