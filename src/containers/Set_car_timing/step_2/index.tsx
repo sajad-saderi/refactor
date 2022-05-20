@@ -769,7 +769,7 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
 
           <div className="pelak_container">
             <p className="car_name_brand">
-            <Icon name="car" width='23px' height="23px" color="#313131" /> 
+            <Icon name="car" width='18px' height="18px" color="#313131" /> 
               {Brand_Name ? (
                 `${Brand_Name[activeLanguage]} - ${CarModelName[activeLanguage]}`
               ) : (

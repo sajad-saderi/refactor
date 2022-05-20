@@ -9,12 +9,11 @@
       .tags_container {
         display: flex;
         justify-content: flex-start;
-        align-items: flex-end;
-        flex-wrap: wrap;
-        height: 55px;
-        li {
-          margin-bottom: 20px;
-        }
+        align-items: center;
+        flex-wrap: wrap; 
+        // li {
+        //   margin-bottom: 20px;
+        // }
       }
     }
   }

@@ -1,7 +1,10 @@
 {
   "editor.formatOnSave": false,
   "cSpell.words": [
+    "constances",
     "fefefe",
+    "Sepris",
     "wght"
-  ]
+  ],
+  "prettier.jsxSingleQuote": true
 }

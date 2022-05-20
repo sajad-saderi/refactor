@@ -1,12 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GET_ORDER_REQUEST } from '../../API';
 import jsCookie from 'js-cookie';
-import moment from 'moment-jalaali';
-import check_icon from '../../../public/image/check.png';
-import paper_check from '../../../public/image/paper_check.png';
-import return_icon from '../../../public/image/return.png';
-import key from '../../../public/image/key.png';
-import paper from '../../../public/image/paper.png';
+import moment from 'moment-jalaali'; 
+import Icon from '../Icons';    
 import carImage from '../../../public/image/car-image-thumbnail.jpg';
 import toast_context from '../../context/Toast_context';
 import ErrorHelper from '../../../utils/error_helper';
@@ -124,7 +120,9 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
       {renter ? (
         <section className="payment_cart">
           <div className="title  ">
-            <img src={check_icon} alt="check Icon" />
+            <span className='checkIcon'>
+            <Icon name="check" color='#528751' width='16px' height='16px'/>
+            </span>
             <h4>{extension ? language.PAYMENT_PAGE.successfullExtension : language.PAYMENT_PAGE.successfullPurchase}</h4>
           </div >
           <div className="bank_track_id ">
@@ -134,7 +132,7 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
             <div>
               <div className="reserve_information ">
                 <div className="section_title margin_bottom_24">
-                  <img src={paper_check} className={language.PAYMENT_PAGE.carOptions} />
+                  <Icon name='paper'   width="20px" height="20px" color='#116B98'/>
                   <p>{language.PAYMENT_PAGE.carOptions}</p>
                 </div >
                 <div className="car_info padding_right_24">
@@ -247,8 +245,9 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
           {
             !extension
             && <div className="delivery_section margin_top_24">
-              <div className="section_title margin_bottom_16">
-                <img src={key} className="icon" />
+              <div className="section_title margin_bottom_16"> 
+                <Icon name='key'   width="20px" height="20px" color='#116B98'/>
+
                 <p>{language.PAYMENT_PAGE.carDelivery}:</p>
               </div>
               <div className="delivery_condition">
@@ -267,8 +266,8 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
             </div>
           }
           <div className="return_section margin_top_24">
-            <div className="section_title margin_bottom_16">
-              <img src={return_icon} className="icon" />
+            <div className="section_title margin_bottom_16"> 
+              <Icon name='flashBack' width="20px" height="20px" color='#116B98'/>
               <p>{language.PAYMENT_PAGE.returningCar}:</p>
             </div>
             <div className="return_condition">
@@ -287,7 +286,8 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
           {!extension
             && <div className="contract_section margin_top_24">
               <div className="section_title margin_bottom_16">
-                <img src={paper} className="قرارداد اجاره" />
+              <Icon name='paste'   width="20px" height="20px" color='#116B98'/>
+ 
                 <p>{language.COMMON.contract}:</p>
               </div>
               <div className="return_condition">

@@ -10,11 +10,15 @@
     margin-top: 50px;
     .title {
       text-align: center;
-      img {
-        width: 20px;
-        margin-left: 8px;
-        display: inline-block;
-        vertical-align: middle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .checkIcon {
+        border-radius: 50px;
+        border: 2px solid $_528751; 
+        padding: 3px;
+        display: flex;
+        margin-left: 8px; 
       }
       h4 {
         display: inline-block;
@@ -46,9 +50,11 @@
       .reserve_information {
         text-align: right;
         .section_title {
-          img {
-            margin-left: 12px;
-            vertical-align: middle;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          svg {
+            margin-left: 12px; 
           }
           p {
             display: inline-block;
@@ -115,9 +121,11 @@
       text-align: right;
       .section_title {
         margin-top: 48px;
-        img {
-          margin-left: 12px;
-          vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        svg {
+          margin-left: 12px; 
         }
         p {
           display: inline-block;
@@ -139,9 +147,11 @@
       text-align: right;
       .section_title {
         margin-top: 48px;
-        img {
-          margin-left: 12px;
-          vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        svg {
+          margin-left: 12px; 
         }
         p {
           display: inline-block;
@@ -168,9 +178,11 @@
       text-align: right;
       .section_title {
         margin-top: 48px;
-        img {
-          margin-left: 12px;
-          vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        svg {
+          margin-left: 12px; 
         }
         p {
           display: inline-block;
@@ -220,7 +232,7 @@
 .local_payment[dir='ltr'] {
   .payment_cart {
     .title {
-      img {
+      .checkIcon {
         margin-left: 0;
         margin-right: 8px;
       }
@@ -230,7 +242,7 @@
       .reserve_information {
         text-align: left;
         .section_title {
-          img {
+          svg {
             margin-left: 0;
             margin-right: 12px;
           }
@@ -265,7 +277,7 @@
     .delivery_section {
       text-align: left;
       .section_title {
-        img {
+        svg {
           margin-left: 0;
           margin-right: 12px;
         }
@@ -280,7 +292,7 @@
     .return_section {
       text-align: left;
       .section_title {
-        img {
+        svg {
           margin-left: 0;
           margin-right: 12px;
         }
@@ -296,7 +308,7 @@
     .contract_section {
       text-align: left;
       .section_title {
-        img {
+        svg {
           margin-left: 0;
           margin-right: 12px;
         }

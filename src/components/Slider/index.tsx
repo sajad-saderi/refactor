@@ -227,7 +227,7 @@ const Slider = (props: ISlider) => {
                   className='NAVIGA arrow-right'
                   onClick={() => SliderNav("right")}
                 >
-                  <Icon name='chevronUp' rotate={90} width="30px" height="30px" color="#ffffff" />
+                  <Icon name='chevronUp' rotate={90} width="40px" height="40px" color="#ffffff" />
                 </button>
               )}
               {/* if there is no more image left to swipe to left, hide the left arrow icon */}
@@ -236,7 +236,7 @@ const Slider = (props: ISlider) => {
                   className='NAVIGA arrow-left'
                   onClick={() => SliderNav("left")}
                 >
-                  <Icon name='chevronUp' rotate={90} width="30px" height="30px" color="#ffffff" />
+                  <Icon name='chevronUp' rotate={90} width="40px" height="40px" color="#ffffff" />
                 </button>
               )}
             </>

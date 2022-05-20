@@ -45,6 +45,10 @@ import { Refresh } from "./svg/refresh";
 import { Warning } from "./svg/warning";
 import { Fullscreen } from "./svg/fullscreen";
 import { IIcon } from "../../../types";
+import { Quotation } from "./svg/quotation";
+import { Paper } from "./svg/paper";
+import { Paste } from "./svg/paste";
+import { CarOptions } from "./svg/carOptions";
 
 const Icon = ({ name, width, height, color, rotate }: IIcon) => {
   switch (name) {
@@ -140,6 +144,14 @@ const Icon = ({ name, width, height, color, rotate }: IIcon) => {
       return <Warning color={color} height={height} width={width} />;
     case "fullscreen":
       return <Fullscreen color={color} height={height} width={width} />;
+    case "quotation":
+      return <Quotation color={color} height={height} width={width} />;
+    case "paper":
+      return <Paper color={color} height={height} width={width} />;
+    case "paste":
+      return <Paste color={color} height={height} width={width} />;
+    case "carOptions":
+      return <CarOptions color={color} height={height} width={width} />;
     default:
       console.warn("Incorrect icon name specified");
       return null;

@@ -46,6 +46,10 @@ export interface IIcon {
     | "refresh"
     | "warning"
     | "fullscreen"
+    | "quotation"
+    | "paste"
+    | "carOptions"
+    | "paper"
     | "shield";
   width: string;
   height: string;

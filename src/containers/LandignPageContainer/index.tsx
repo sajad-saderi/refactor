@@ -1061,7 +1061,7 @@ const Landing_page_container = ({
             <Spinner display="block" width={20} color="#9E9E9E" />
           ) : (
             <>
-            <Icon name="chevronUp" rotate={180} width="18px" height="18px" color="#202020" />
+            <Icon name="chevronUp" rotate={180} width="20px" height="20px" color="#202020" />
               {language.COMMON.loadMore}
             </>
           )}

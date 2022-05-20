@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import moment from "moment-jalaali";
-import download from "../../../../public/image/download.png";
+import moment from "moment-jalaali"; 
 import Icons from "../../../components/Icons";
 import dynamic from "next/dynamic";
 import toast_context from "../../../context/Toast_context"; 
@@ -300,7 +299,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "expired":
         RentStatus = (
           <div className="rent_status status_expired">
-            <Icon name='outOfDate' height='2rem' width='20px' color='#707070' />
+            <Icon name='outOfDate' height='20px' width='20px' color='#707070' />
             <span>{language.REQUEST_PAGE.expired}</span>
           </div>
         );

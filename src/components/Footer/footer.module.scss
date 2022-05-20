@@ -1,5 +1,5 @@
 @import "../../styles/colors";
-
+ 
 footer {
   background-color: $_fefefe;
   border-top: solid 1px $_e5e5e5;
@@ -107,10 +107,21 @@ footer {
     }
     .brand_description {
       display: flex;
-      justify-content: flex-start;
+      color: $_929292;
+      justify-content: center;
       align-items: center;
-      img {
-        margin-left: 14px;
+      .imageWrapper
+      {
+
+        width: auto !important;
+      }
+      svg {
+      width: 38px !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50px;
+    margin-inline-end: 14px;
       }
     }
   }

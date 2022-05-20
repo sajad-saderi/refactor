@@ -1056,7 +1056,7 @@ const CarPage = ({
                 <>
                   <hr />
                   <h2>
-                  <Icon name='car' width='16' height='16' color='#116B98' />
+                  <Icon name='carOptions' width='16' height='16' color='#116B98' />
                     <span>{language.CAR_PAGE.facilities}</span>
                   </h2>
                   <div className="facilities_container padding_right_24">

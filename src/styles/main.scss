@@ -218,6 +218,9 @@ input {
 // }
 // Load more
 .Load_more_car {
+  display: flex;
+  align-items: center;
+  justify-content: ce;
   border: 1px solid $_dadada;
   position: relative;
   width: 250px;
@@ -231,11 +234,9 @@ input {
   font-weight: 500;
   border-radius: 20px;
   padding: 13px 10px;
-  svg {
-    width: 18px;
+  svg { 
     display: inline-block;
-    right: 15px;
-    top: 13px;
+    right: 15px; 
     position: absolute;
   }
 }
@@ -418,10 +419,9 @@ input {
     font-weight: 500;
     font-size: 11px;
     color: $_ffffff;
-    border-radius: 2px;
-    padding: 3px 5px 3px 1px;
-    svg {
-      width: 2px;
+    border-radius: 20px;
+    padding: 3px 5px 3px 10px;
+    svg { 
       display: inline-block;
       vertical-align: middle;
     }

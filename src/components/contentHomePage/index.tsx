@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import languageCTX from "../../context/languageCTX";
 import { useContext } from "react";
-import quotation from "../../../public/image/svg/quotation.svg";
+import Icon from "../Icons";
 const Slider = dynamic(() => import("react-slick"));
 
 let settings = {
@@ -15,7 +15,7 @@ let settings = {
   slidesToShow: 1,
   rtl: true,
   slidesToScroll: 1,
-  autoplay: false, 
+  autoplay: false,
   arrows: false,
 };
 const ContentHomePage = ({
@@ -85,34 +85,78 @@ const ContentHomePage = ({
                 className="slick_container"
                 dir={activeLanguage === "fa" ? "rtl" : "ltr"}
               >
-                <h2 style={{padding:'0', fontSize:'18px'}}>{language.JOIN_US_PAGE.reviews.titleGuests}</h2>
+                <h2 style={{ padding: "0", fontSize: "18px" }}>
+                  {language.JOIN_US_PAGE.reviews.titleGuests}
+                </h2>
                 <Slider {...settings}>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest7}</p>
                   </div>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest6}</p>
                   </div>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest5}</p>
                   </div>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest4}</p>
                   </div>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest3}</p>
                   </div>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest2}</p>
                   </div>
                   <div className="card_container">
-                    <img src={quotation} alt="sign" />
+                    <Icon
+                      name="quotation"
+                      width="24px"
+                      height="24px"
+                      color="#116b98"
+                    />
+
                     <p>{language.JOIN_US_PAGE.reviews.guest1}</p>
                   </div>
                 </Slider>

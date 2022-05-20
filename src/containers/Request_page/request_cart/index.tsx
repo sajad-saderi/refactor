@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import moment from "moment-jalaali";
-import dynamic from "next/dynamic";
-import download from "../../../../public/image/download.png";
+import dynamic from "next/dynamic"; 
 import net_CTX from "../../../context/internetConnectionCTX";
 
 const PelakView = dynamic(() => import("../../../components/pelak"));  

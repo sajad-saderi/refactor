@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"; 
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
@@ -7,6 +7,7 @@ import { supportedLanguages } from "../../../types";
 import { addingCountryCodeToNumber } from "../../helpers/addingCountryCodeToNumber";
 import { numberChanger } from "../../../utils/numberChanger";
 import Icon from "../Icons";
+import { SeprisCarLogo } from "../Icons/svg/seprisCarLogo";
 
 const Footer = ({
   hide,
@@ -174,10 +175,12 @@ const Footer = ({
           </p>
           <br />
           <br />
-          <p className="brand_description">
-            <img src={car} alt="logo image" />
-            {language.COMMON.seprisDefinition}
-          </p>
+          <div className="brand_description">
+            <p className="imageWrapper">
+              <SeprisCarLogo width='38px' height='26px' color='#929292' />
+            </p>
+            <p>{language.COMMON.seprisDefinition}</p>
+          </div> 
           <br />
           <br />
         </div>

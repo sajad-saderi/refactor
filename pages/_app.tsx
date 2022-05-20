@@ -266,7 +266,7 @@ class App_Otoli extends App {
                         });
                       }}
                     >
-                      <Icon name='close' width='20px' height='20px' color='#ffffff' />
+                      <Icon name='close' width='16px' height='16px' color='#ffffff' />
                       {Router.router.locale === 'fa' ? fa.COMMON.close : en.COMMON.close}
                     </p>
                   </section>

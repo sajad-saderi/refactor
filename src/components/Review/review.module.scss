@@ -11,7 +11,7 @@
       margin: 0;
       margin-bottom: 24px;
       line-height: unset;
-      img {
+      svg {
         margin-left: 9px;
         display: inline-block;
         vertical-align: middle;
@@ -34,7 +34,7 @@
 .review_article[dir="ltr"] {
   .review_container_car_page {
     h2 {
-      img {
+      svg {
         margin-left: 0;
         margin-right: 9px;
       }

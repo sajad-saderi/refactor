@@ -56,7 +56,10 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
 
   return (
     <div className="zoom_slider">
+      <span className="zoom_plus_icon">
+
       <Icon name="plus" color="#ffffff" width="22px" height="22px" />
+      </span>
       <Nouislider
         /**
          * @range
@@ -67,7 +70,10 @@ const ZoomSlider = ({ zoomChange, zoom }: IPriceSlider) => {
         onSlide={(zoom) => zoomChange(zoom)}
         step={0.1}
       />
+        <span className='zoom_out_icon'>
+
       <Icon name="minus" color="#ffffff" width="22px" height="22px" />
+        </span>
     </div>
   );
 };

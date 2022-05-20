@@ -149,8 +149,8 @@ const Gallery = (props: IGallery) => {
               <Icon
                 name="chevronUp"
                 rotate={90} 
-                width="30px"
-                height="30px"
+                width="40px"
+                height="40px"
                 color="#7d7d7d"
               />
             </button>
@@ -164,8 +164,8 @@ const Gallery = (props: IGallery) => {
               <Icon
                 name="chevronUp"
                 rotate={90} 
-                width="30px"
-                height="30px"
+                width="40px"
+                height="40px"
                 color="#7d7d7d"
               />
             </button>

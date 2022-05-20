@@ -9,7 +9,7 @@ const Slider = dynamic(() => import("react-slick"));
 // import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import quotation from "../../../../public/image/svg/quotation.svg";
+import Icon from "../../Icons";
 
 const Join_us_content_AB_test = ({
   AbText,
@@ -41,7 +41,7 @@ const Join_us_content_AB_test = ({
       <div className="insuranceBox">
         <p>{language.INFORMATION.text1}</p>
         <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
-      </div >
+      </div>
       <div className=" responsive second_container">
         <div className="full_width">
           <h2>{language.INFORMATION.text2}</h2>
@@ -90,34 +90,52 @@ const Join_us_content_AB_test = ({
             <h2>{language.JOIN_US_PAGE.reviews.title}</h2>
             <Slider {...settings}>
               <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>
-                  {language.JOIN_US_PAGE.reviews.review1}
-                </p>
+                <Icon
+                  name="quotation"
+                  width="24px"
+                  height="24px"
+                  color="#116b98"
+                />
+
+                <p>{language.JOIN_US_PAGE.reviews.review1}</p>
                 <h3>{language.COMMON.host}</h3>
-                <p className="user_name">{language.JOIN_US_PAGE.reviews.name1}</p>
+                <p className="user_name">
+                  {language.JOIN_US_PAGE.reviews.name1}
+                </p>
               </div>
               <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>
-                  {language.JOIN_US_PAGE.reviews.review2}
-                </p>
+                <Icon
+                  name="quotation"
+                  width="24px"
+                  height="24px"
+                  color="#116b98"
+                />
+
+                <p>{language.JOIN_US_PAGE.reviews.review2}</p>
                 <h3>{language.COMMON.host}</h3>
-                <p className="user_name">{language.JOIN_US_PAGE.reviews.name2}</p>
+                <p className="user_name">
+                  {language.JOIN_US_PAGE.reviews.name2}
+                </p>
               </div>
               <div className="card_container">
-                <img src={quotation} alt="sign" />
-                <p>
-                  {language.JOIN_US_PAGE.reviews.review3}
-                </p>
+                <Icon
+                  name="quotation"
+                  width="24px"
+                  height="24px"
+                  color="#116b98"
+                />
+
+                <p>{language.JOIN_US_PAGE.reviews.review3}</p>
                 <h3>{language.COMMON.host}</h3>
-                <p className="user_name">{language.JOIN_US_PAGE.reviews.name3}</p>
+                <p className="user_name">
+                  {language.JOIN_US_PAGE.reviews.name3}
+                </p>
               </div>
             </Slider>
           </section>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

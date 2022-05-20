@@ -145,7 +145,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
               </div>
               <div className="price">
                 <p className="Price_number">{price}</p>
-                <p>{`${unit} ${language.COMMON.tomanPerDay}`}</p>
+                <p>{`${unit} ${language.COMMON.toman}`}<br/>{`${language.COMMON.perDay}`}</p>
               </div>
               <ul className="tags_container">
                 {deliver_at_renters_place && (
@@ -189,7 +189,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                     }}
                   >
                     <span className="tags location_tag">
-                      <Icon name="location" color="#116B98" width="20px" height="20px"/>
+                      <Icon name="location" color="#3fa6da" width="14px" height="14px"/>
                       {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
                     </span>
                   </li>

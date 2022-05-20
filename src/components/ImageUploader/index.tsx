@@ -162,7 +162,7 @@ const ImageUploader = ({
             onZoomChange={setZoom}
             cropShape="rect"
           />
-          <ZoomSlider zoomChange={setZoom} zoom={zoom} />
+          {/* <ZoomSlider zoomChange={setZoom} zoom={zoom} /> */}
           <div className="Crop_BTN_container">
             <span className="Blue_BTN local_class" onClick={showCroppedImage}>
               تایید
