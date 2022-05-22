@@ -1,10 +1,12 @@
-export const SeprisTextEn = ({ color, height, width }) => (
+import { ISvg } from "../../../../types";
+export const SeprisTextEn = ({ color, height, width }: ISvg) => (
   <svg
     viewBox='62 6 130 33'
     fill='none'
     height={height}
     width={width}
-    xmlns='http://www.w3.org/2000/svg'>
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <path
       d='M148.4 23.8C148.4 23.8 148.4 18.7001 148.4 16.0001C148.4 13.9001 146.7 12.3 144.6 12.3C140 12.3 132.7 12.3 130.5 12.3C129.7 12.3 129 13 129 13.8V32.4001H134V27.3C134.1 27.3 136.9 27.3 138.2 27.3C139.1 27.3 139.9 27.6001 140.4 28.4001C141.1 29.6001 142.8 32.2001 142.9 32.4001H148.3C147.2 30.7001 146.2 29 145.1 27.3C147 27.1 148.4 25.6 148.4 23.8ZM143.4 22.5001H134.1V16.8H143.4V22.5001Z'
       fill={color}
