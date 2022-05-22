@@ -13,15 +13,14 @@
   .Logo {
     // float: left;
     margin-top: -1px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     a { 
       display: flex;
     align-items: center;
     justify-content: center;
-    span{
-      width: 10px;
-      display: inline-block;
-    }
+     
     }
     // &::after {
     //   display: block;
@@ -292,10 +291,11 @@
     .Logo {
       margin-top: -3px;
       .car_logo {
-        display: none;
+        display: none !important;
       }
       .text_logo {
         margin-bottom: -7px;
+        width:70px;
       }
     }
     .Nav {

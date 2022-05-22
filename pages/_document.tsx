@@ -18,32 +18,13 @@ export default class MyDocument extends Document {
     return (
       <Html lang={this.props.locale}>
         <Head>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          {/* <meta
-           name='viewport'
-           content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'
-         /> */}
-          <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1,shrink-to-fit=no"
-          />
-          <meta name="enamad" content="145408"/>
-          <meta name="thumbnail" content="../public/image/for_journey.jpeg" />
-          {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+        />
           <link rel="icon" type="image/svg+xml" href="/FaviconBlack.svg" />
           <link rel="shortcut alternate icon" href="/favicon.ico" />
-          {/* Android  */}
-          <meta name="theme-color" content="#000000" />
-          <meta name="mobile-web-app-capable" content="yes" />
-
-          {/* iOS */}
-          <meta name="apple-mobile-web-app-title" content="Sepris" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta
-            name="apple-mobile-web-app-status-bar-style"
-            content="default"
-          />
+          
           <link href="/apple-icon.png" rel="apple-touch-icon" />
           <link
             href="/apple-icon-72x72.png"
@@ -61,38 +42,7 @@ export default class MyDocument extends Document {
             sizes="152x152"
           />
 
-          {/* Windows   */}
-          <meta name="msapplication-navbutton-color" content="red" />
-          <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
-          <meta name="msapplication-config" content="browserconfig.xml" />
-
-          {/* Pinned Sites   */}
-          <meta name="application-name" content="Sepris" />
-          <meta name="msapplication-tooltip" content="Tooltip Text" />
-          <meta name="msapplication-starturl" content="/" />
-
-          {/* Tap highlighting   */}
-          <meta name="msapplication-tap-highlight" content="no" />
-
-          {/* UC Mobile Browser   */}
-          <meta name="full-screen" content="yes" />
-          <meta name="browsermode" content="application" />
-
-          {/* Disable night mode for this page   */}
-          <meta name="nightmode" content="enable/disable" />
-
-          {/* Fitscreen   */}
-          <meta name="viewport" content="uc-fitscreen=yes" />
-
-          {/* Layout mode  */}
-          <meta name="layoutmode" content="fitscreen/standard" />
-
-          {/* imagemode - show image even in text only mode   */}
-          <meta name="imagemode" content="force" />
-
-          {/* Orientation   */}
-          <meta name="screen-orientation" content="portrait" />
-
+         
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -162,8 +112,6 @@ export default class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <meta name="msapplication-TileColor" content="#000000" />
-
           {/* Main Link Tags   */}
           <link
             href="/favicon-16.png"

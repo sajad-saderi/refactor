@@ -1,31 +1,43 @@
-import React, { useContext, useState } from 'react';
-import Menu from './menu';
-import Modal from './modals';
+import React, { useContext, useState } from "react";
+import Menu from "./menu";
+import Modal from "./modals";
 // import "./header.scss";
 // import * as logo from "../../../public/logo_sticky.svg";
-import * as logo from '../../../public/logo.svg';
-import * as logo_en from '../../../public/logo_en.svg';
-import * as car from '../../../public/car_logo.svg';
-import Link from 'next/link'; 
-import languageCTX from '../../context/languageCTX'
-import Image from 'next/image';
+import * as logo from "../../../public/logo.svg";
+import logo_en from "../../../public/logo_en.svg";
+import car from "../../../public/car_logo.svg";
+import Link from "next/link";
+import languageCTX from "../../context/languageCTX";
+import Image from "next/image";
 
 const Header = ({ language, Show_Modal, modalType, data }: IHeader) => {
   const [showMenu, setShowMenu] = useState(false);
-  const { activeLanguage } = useContext(languageCTX)
+  const { activeLanguage } = useContext(languageCTX);
   return (
-    <header className="header" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
-      <article className="responsive header_container">
-        <section className="Logo">
-          <Link href="/" prefetch={false}>
+    <header className='header' dir={activeLanguage === "fa" ? "rtl" : "ltr"}>
+      <article className='responsive header_container'>
+        <section className='Logo'>
+          <Link href='/' prefetch={false}>
             <a>
-              <Image className={`car_logo ${activeLanguage === 'fa' ? null : `logo_ltr`}`} src={car} alt="سپریس لوگو خودکار" /><span/>
-              <Image className={`text_logo ${activeLanguage === 'fa' ? null : `text_logo_ltr`}`} src={activeLanguage === 'fa' ? logo : logo_en} alt="سپریس لوگو" />
+              <span
+                className={`car_logo ${
+                  activeLanguage === "fa" ? null : `logo_ltr`
+                }`}
+              >
+                <Image src={car} alt='سپریس لوگو خودکار' />
+              </span>
+              <Image
+                className={`text_logo ${
+                  activeLanguage === "fa" ? null : `text_logo_ltr`
+                }`}
+                src={activeLanguage === "fa" ? logo : logo_en}
+                alt='سپریس لوگو'
+              />
             </a>
           </Link>
         </section>
         {/* logo section */}
-        <section className={['Nav', showMenu ? 'showMenu' : null].join(' ')}>
+        <section className={["Nav", showMenu ? "showMenu" : null].join(" ")}>
           <Menu language={language} />
         </section>
         {/* <section className="header_menu_bar" onClick={() => setShowMenu(true)}>
