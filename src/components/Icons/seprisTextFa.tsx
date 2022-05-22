@@ -1,4 +1,4 @@
-import { ISvg } from "../../../../types";
+import { ISvg } from "../../../types";
 
 export const SeprisTextFa = ({ color, height, width }: ISvg) => (
   <svg

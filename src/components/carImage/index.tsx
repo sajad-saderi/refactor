@@ -4,8 +4,8 @@ import React from "react";
 import Icon from "../Icons";
 import { ImageUrl } from "../../../utils/constances";
 import SeprisCarLogo from "../../../public/image/seprisCarLogo.svg";
-import { SeprisTextFa } from "../Icons/svg/seprisTextFa";
-import { SeprisTextEn } from "../icons/svg/seprisTextEn";
+import { SeprisTextFa } from "../Icons/seprisTextFa";
+import { SeprisTextEn } from "../icons/seprisTextEn";
 import styles from "./carImage.module.scss";
 import { supportedLanguages } from "../../../types";
 

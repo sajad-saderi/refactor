@@ -1,4 +1,4 @@
-import { ISvg } from "../../../../types";
+import { ISvg } from "../../../types";
 export const SeprisTextEn = ({ color, height, width }: ISvg) => (
   <svg
     viewBox='62 6 130 33'
