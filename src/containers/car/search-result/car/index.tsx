@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
-import CarImage from "../../../../components/carImage";
-import { SeprisTextFa } from '../../../../components/Icons/svg/seprisTextFa';
-import { SeprisTextEn } from '../../../../components/icons/svg/seprisTextEn';
+import CarImage from "../../../../components/carImage";  
 
 import Link from "next/link"; 
 import languageCTX from '../../../../context/languageCTX';
@@ -36,8 +34,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     start_date,
     end_date,
   } = data;
-
-  let img = has_media ? media_set[0].thumbnail_url : SeprisTextFa;
+  
   // let imageWidth = has_media ? media_set[0].thumbnail_width : null;
   // let imageHeight = has_media ? media_set[0].thumbnail_height : null;
   let title = car.brand.name[activeLanguage] + " " + car.name[activeLanguage];
