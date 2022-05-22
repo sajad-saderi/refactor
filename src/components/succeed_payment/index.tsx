@@ -11,6 +11,7 @@ import languageCTX from '../../context/languageCTX';
 import { dynamicString } from '../../helpers/dynamicString';
 import Router from "next/router";
 import { numberChanger } from '../../../utils/numberChanger';
+import Image from 'next/image';
 moment.loadPersian({ dialect: 'persian-modern' });
 
 const SucceedPayment = ({ extension, language }:SuccessPayment) => {
@@ -232,13 +233,16 @@ const SucceedPayment = ({ extension, language }:SuccessPayment) => {
               </div >
             </div >
             <div className="figure_section">
-              <img
+              <Image
                 alt={language.PAYMENT_PAGE.image}
                 src={
                   rent_search_dump.media_set.length > 0
                     ? rent_search_dump.media_set[0].thumbnail_url
-                    : carImage
+                    :
+                    carImage
                 }
+                layout="fill"
+                objectFit='cover' 
               />
             </div>
           </div >

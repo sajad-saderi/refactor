@@ -22,6 +22,7 @@ import ErrorHelper from "../../../utils/error_helper";
 import toast_context from "../../context/Toast_context";
 import net_CTX from "../../context/internetConnectionCTX";
 import Icon from "../Icons";
+import Image from "next/image";
 
 const ImageUploader = ({
   Upload_image,
@@ -224,7 +225,7 @@ const ImageUploader = ({
         ) : loading ? (
           <Spinner display="block" width={20} color="#b5b5b5" />
         ) : (
-          <img
+          <Image
             className="vector_car_upload"
             src={carVector}
             alt="car vector image"

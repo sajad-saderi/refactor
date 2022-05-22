@@ -62,7 +62,7 @@ const Footer = ({
           className={["toTop", showTop ? "showTop" : null].join(" ")}
           onClick={toTop}
         >
-          <Icon name="chevronUp" width="40px" height="40px" color="#4ba3ce" />
+          <Icon name="chevronUp" width="40px" height="40px" color="#fafafa" />
         </div>
       ) : null}
       <div className=" responsive plus_border">

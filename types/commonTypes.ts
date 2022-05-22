@@ -1,4 +1,15 @@
 export type supportedLanguages = "fa" | "en" | "ar" | "tr";
+interface TLanguageFileStructure {
+  [key: string]: any | string;
+}
+export type ILocale = TLanguageFileStructure;
+declare global {
+  interface Window {
+    dataLayer: any;
+    auth: boolean;
+    registered: boolean;
+  }
+}
 export interface ISvg {
   color: string;
   width: string;

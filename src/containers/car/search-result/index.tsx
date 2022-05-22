@@ -12,6 +12,7 @@ import Car from "./car";
 import CarLoading from "../../../components/cartPlaceholder/CarLoading";
 import languageCTX from '../../../context/languageCTX'
 import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
+import Image from "next/image";
 let quickAccessClick = false;
 const SearchResultList = ({
   showLocation,
@@ -78,7 +79,7 @@ const SearchResultList = ({
                         });
                       }}
                     >
-                      <img src={offRoad} alt={language.COMMON.suvCars} />
+                      <Image width={88} height={50} src={offRoad} alt={language.COMMON.suvCars} />
                       <p>{language.COMMON.suvCars}</p>
                     </div>
                     <div
@@ -95,7 +96,7 @@ const SearchResultList = ({
                         });
                       }}
                     >
-                      <img src={economic} alt={language.COMMON.affordableCars} />
+                      <Image width={88} height={50} src={economic} alt={language.COMMON.affordableCars} />
                       <p>{language.COMMON.affordableCars}</p>
                     </div>
                   </div>
@@ -125,7 +126,7 @@ const SearchResultList = ({
           </p>
         )
       ) : (
-        <>
+        <> 
           <CarLoading />
           <CarLoading />
           <CarLoading />

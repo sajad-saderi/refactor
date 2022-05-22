@@ -49,6 +49,7 @@ import jsCookie from "js-cookie";
  * GIT
  * https://github.com/validatorjs/validator.js
  */
+// @ts-ignore
 import validator from "validator";
 import CheckBox_Loader from "../../../components/cartPlaceholder/checkBoxLoading";
 import NumbersAndCurrencyUnit from "../../../../utils/NumbersAndCurrencyUnit";
@@ -56,6 +57,7 @@ import ErrorHelper from "../../../../utils/error_helper";
 import { activeCities } from '../../../helpers/activeCities';
 import { dynamicString } from '../../../helpers/dynamicString';
 import Icon from "../../../components/Icons";
+import Image from "next/image";
 // import { logPageView } from "../../../../utils/analytics";
 
 /**
@@ -1608,7 +1610,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           <label>{language.ADD_CAR_PAGE.carLicenseLabel}</label>
           <p className="extra_text">{language.ADD_CAR_PAGE.carLicenseNote}</p>
           <div className="license_palte_container">
-            <img
+            <Image
               src={pelak}
               className={ErrorState.duplicate_plate ? "license_error" : null}
               alt={language.ADD_CAR_PAGE.carLicenseLabel}

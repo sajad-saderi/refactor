@@ -14,8 +14,14 @@
     // float: left;
     margin-top: -1px;
     display: block;
-    a {
-      display: block;
+    a { 
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    span{
+      width: 10px;
+      display: inline-block;
+    }
     }
     // &::after {
     //   display: block;
@@ -127,7 +133,7 @@
             }
             span,
             a {
-              font-size: 11px;
+              font-size: 12px;
               color: $_313131;
               display: block;
               line-height: 1;

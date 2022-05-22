@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 const Slider = dynamic(() => import("react-slick"));
 import Icon from "../../Icons";
 import languageCTX from "../../../context/languageCTX";
+import Image from "next/image";
 
 let percentageOfplayedVideo = 0;
 let pushControler = 1;
@@ -81,7 +82,9 @@ const Join_us_content = ({
     <div className="responsive second_part_container">
       <div className="insuranceBox">
         <p>{language.INFORMATION.text1}</p>
-        <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
+        <Image src={insurance} alt={language.COMMON.samanInsuranceImage} 
+         width={115}
+         height={47}/>
       </div>
       <div className=" responsive second_container">
         <h2>{language.INFORMATION.text2}</h2>

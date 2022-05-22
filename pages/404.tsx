@@ -1,47 +1,43 @@
-import { useEffect } from "react";
-import dynamic from "next/dynamic";
+import classNames from 'classnames';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect } from 'react';
+import image404 from '../public/image/404.png';
+import styles from '../src/styles/pagesStyle/400.module.scss';
+import { ILocale } from '../types';
+import { pageViewDataLayer } from '../utils/dataLayer';
+import { PageHeadBuilder } from '../src/components/pageHeadBuilder/pageHeadBuilder';
+import Layout from '../src/Layout';
 
-const Layout = dynamic(() => import("../src/Layout"));
-// import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import _404 from "../public/image/404.png";
-// import { logPageView } from "../utils/analytics";
-
-const page_404 = ({ locale }) => {
+const _404 = ({ locale }: ILocale) => {
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    pageViewDataLayer({
       pageURL: window.location.href,
-      pagePath: "/404",
-      pageTitle: locale.PAGE_HEADER._404.title,
+      pagePath: '/404',
+      pageTitle: locale.PAGE_HEADER._404.title
     });
-    // logPageView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Layout>
-      <NextSeo
+      <PageHeadBuilder
         title={locale.PAGE_HEADER._404.title}
         description={locale.PAGE_HEADER._404.description}
-        openGraph={{
-          title: locale.PAGE_HEADER._404.title,
-          description: locale.PAGE_HEADER._404.description,
-          site_name: locale.COMMON.sepris,
-        }}
-        twitter={{
-          handle: locale.PAGE_HEADER.handle,
-          site: locale.PAGE_HEADER.site,
-          cardType: locale.PAGE_HEADER.cardType,
-        }}
       />
-      <article className="minHeight">
-        <img src={_404} alt="404" className="_404PageImage" />
-        <Link href="/" prefetch={false}>
-          <a className="_404PageAnchor Blue_BTN">{locale.COMMON.backToHome}</a>
-        </Link>
+      <article className={classNames('responsive', styles.container)}>
+        <div className={styles.imageContainer}>
+          <Image src={image404} alt='404 Image' className={styles.image} />
+        </div>
+        <div className={styles.buttonContainer}>
+          <Link href='/' prefetch={false}>
+            <a className={classNames('actionButton', styles.backHome)}>
+              {locale.COMMON.backToHome}
+            </a>
+          </Link>
+        </div>
       </article>
     </Layout>
   );
 };
 
-export default page_404;
+export default _404;

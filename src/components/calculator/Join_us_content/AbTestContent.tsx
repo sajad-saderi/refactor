@@ -10,6 +10,7 @@ const Slider = dynamic(() => import("react-slick"));
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Icon from "../../Icons";
+import Image from "next/image";
 
 const Join_us_content_AB_test = ({
   AbText,
@@ -40,7 +41,9 @@ const Join_us_content_AB_test = ({
     <div className="responsive second_part_container">
       <div className="insuranceBox">
         <p>{language.INFORMATION.text1}</p>
-        <img src={insurance} alt={language.COMMON.samanInsuranceImage} />
+        <Image src={insurance} alt={language.COMMON.samanInsuranceImage} 
+         width={115}
+         height={47}/>
       </div>
       <div className=" responsive second_container">
         <div className="full_width">

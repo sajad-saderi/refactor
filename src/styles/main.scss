@@ -14,6 +14,13 @@ body {
   font-family: "iranSansXV", "iranSans", "danaXV", "dana", tahoma;
 }
 
+html[lang='fa'] {
+  // direction: rtl;
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
+}
+
 html,
 body,
 div,
@@ -736,6 +743,51 @@ input {
 .text_align_left {
   text-align: left;
 }
+
+
+.skeletonBackground {
+  transition: 0.25s all;
+  background: linear-gradient(90deg, #fafafa, #f9f9f9, #fafafa);
+  background-size: 200% 200%;
+  animation: gradientLoader 2s ease infinite;
+}
+
+@-webkit-keyframes gradientLoader {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes gradientLoader {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientLoader {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 // 3rd parties
 // @import "react-modern-calendar-datepicker/lib/DatePicker.css";

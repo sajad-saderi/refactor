@@ -415,6 +415,7 @@
     .add_car_form_step_1 {
       .pelak_container {
         .license_palte_container {
+          text-align: center;
           .pelak_input {
             position: absolute;
             width: 240px;
@@ -470,7 +471,7 @@
           img {
             margin: auto;
             display: block;
-            height: 52px;
+            height: 52px !important;
           }
         }
       }

@@ -16,10 +16,11 @@ import Toast_context from "../../../../context/Toast_context";
 import Modal_context from "../../../../context/Modal_context";
 import net_CTX from "../../../../context/internetConnectionCTX";
 import languageCTX from "../../../../context/languageCTX";
-import carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
+import * as carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
 import { dynamicString } from '../../../../helpers/dynamicString';
 import Button from "../../../../components/form/Button";
 import Icon from "../../../../components/Icons";
+import CarImage from "../../../../components/carImage";
 
 const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [id, setId] = useState(null);
@@ -176,11 +177,17 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
         <Link href={hrefProp} as={link} prefetch={false}>
           <a data-test-id="Link" className="HEAP_Profile_Card_Car">
             <figure
-              style={{
-                backgroundImage: `url(${hasMedia ? media_set[0].thumbnail_url : carThumbnail
-                  })`,
-              }}
+              // style={{
+              //   backgroundImage: `url(${hasMedia ? media_set[0].thumbnail_url : carThumbnail
+              //     })`,
+              // }}
             >
+              <CarImage
+                title={'car'}
+                hasMedia={hasMedia}
+                mediaSet={media_set}
+                activeLanguage = {activeLanguage}
+              />
               {/* {hasMedia ? (
                 <img
                   style={{

@@ -1,6 +1,4 @@
 // next.config.js
-
-const withImages = require('next-images');
 const withFonts = require('next-fonts');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
@@ -8,12 +6,14 @@ const runtimeCaching = require('next-pwa/cache');
 const dev = process.env.NODE_ENV === 'production';
 
 module.exports = withPWA(
-  withFonts(
-    withImages({
+  withFonts({
       i18n: {
         locales: ['en', 'fa'],
         defaultLocale: 'fa',
         localeDetection: false,
+      },
+      images: { 
+        domains: ['core.sepris.com']
       },
       pwa: {
         disable: dev ? false : true,
@@ -33,6 +33,6 @@ module.exports = withPWA(
         return config;
       },
       crossOrigin: 'anonymous',
-    }),
+    },
   ),
 );

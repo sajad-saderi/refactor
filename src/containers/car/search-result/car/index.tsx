@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
+import CarImage from "../../../../components/carImage";
+import { SeprisTextFa } from '../../../../components/Icons/svg/seprisTextFa';
+import { SeprisTextEn } from '../../../../components/icons/svg/seprisTextEn';
+
 import Link from "next/link"; 
 import languageCTX from '../../../../context/languageCTX';
 import { numberChanger } from "../../../../../utils/numberChanger";
@@ -33,7 +37,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     end_date,
   } = data;
 
-  let img = has_media ? media_set[0].thumbnail_url : carImage;
+  let img = has_media ? media_set[0].thumbnail_url : SeprisTextFa;
   // let imageWidth = has_media ? media_set[0].thumbnail_width : null;
   // let imageHeight = has_media ? media_set[0].thumbnail_height : null;
   let title = car.brand.name[activeLanguage] + " " + car.name[activeLanguage];
@@ -87,11 +91,15 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
       >
         <a className={`CAR_CART_${title}`}>
           <div className="card_wrapper">
-            <figure
-              style={{
-                backgroundImage: `url(${img})`,
-              }}
+            
+            <figure  
             >
+              <CarImage
+                title={title}
+                hasMedia={has_media}
+                mediaSet={media_set}
+                activeLanguage = {activeLanguage}
+              />
               {total_discount_percent > 0 && (
                 <span className="discount_badge">
                   {numberChanger((total_discount_percent).toString(),activeLanguage)}
@@ -148,6 +156,25 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                 <p>{`${unit} ${language.COMMON.toman}`}<br/>{`${language.COMMON.perDay}`}</p>
               </div>
               <ul className="tags_container">
+              {showLocation ? (
+                  <li
+                    onClick={(e) => {
+                      e.preventDefault();
+                      tagClick({
+                        type: "location",
+                        value: location.parent_id === 1 ? 1 : location.id,
+                        name:
+                          location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage],
+                      });
+                    }}
+                    className='location'
+                  >
+                    <span className="tags locationTag">
+                      <Icon name="location" color="#3fa6da" width="14px" height="14px"/>
+                      {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
+                    </span>
+                  </li>
+                ) : null}
                 {deliver_at_renters_place && (
                   <li>
                     <span className="tags">
@@ -176,24 +203,6 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                     </span>
                   </li>
                 )}
-                {showLocation ? (
-                  <li
-                    onClick={(e) => {
-                      e.preventDefault();
-                      tagClick({
-                        type: "location",
-                        value: location.parent_id === 1 ? 1 : location.id,
-                        name:
-                          location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage],
-                      });
-                    }}
-                  >
-                    <span className="tags location_tag">
-                      <Icon name="location" color="#3fa6da" width="14px" height="14px"/>
-                      {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
-                    </span>
-                  </li>
-                ) : null}
               </ul>
             </div>
           </div>

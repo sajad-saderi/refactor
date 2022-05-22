@@ -10,6 +10,7 @@ import Link from 'next/link';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import AppStore from '../../context/app'; 
 import { numberChanger } from '../../../utils/numberChanger';
+import Image from 'next/image';
 
 const Recommendation_section = ({ language }) => {
   const [start_date, set_start_date] = useState('');
@@ -66,7 +67,7 @@ const Recommendation_section = ({ language }) => {
             >
               <a>
                 <figure>
-                  <img src={affordable} />
+                  <Image src={affordable} />
                   <p>{language.COMMON.affordableCars}</p>
                 </figure>
               </a>
@@ -76,7 +77,7 @@ const Recommendation_section = ({ language }) => {
             <Link href={`/rent/car-rental-for-travel`} prefetch={false}>
               <a>
                 <figure>
-                  <img src={for_journey} />
+                  <Image src={for_journey} />
                   <p>{language.COMMON.goodForTravel}</p>
                 </figure>
               </a>
@@ -99,7 +100,7 @@ const Recommendation_section = ({ language }) => {
             >
               <a>
                 <figure>
-                  <img src={with_driver} />
+                  <Image src={with_driver} />
                   <p>{language.COMMON.withDriver}</p>
                 </figure>
               </a>
@@ -122,7 +123,7 @@ const Recommendation_section = ({ language }) => {
             >
               <a>
                 <figure>
-                  <img src={suv} />
+                  <Image src={suv} />
                   <p>{language.COMMON.suvCars}</p>
                 </figure>
               </a>
@@ -145,7 +146,7 @@ const Recommendation_section = ({ language }) => {
             >
               <a>
                 <figure>
-                  <img src={van} />
+                  <Image src={van} />
                   <p>{language.COMMON.vans}</p>
                 </figure>
               </a>

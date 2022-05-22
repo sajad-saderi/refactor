@@ -1,53 +1,54 @@
-import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect } from 'react';
+// import Layout from '../src/Layout';
+import Link from 'next/link';
+import Image from 'next/image';
+import cn from 'classnames';
+import image500 from '../public/image/500.png';
+import { ILocale } from '../types';
+import { pageViewDataLayer } from '../utils/dataLayer';
+import { PageHeadBuilder } from '../src/components/pageHeadBuilder/pageHeadBuilder';
+import styles from '../src/styles/pagesStyle/500.module.scss';
+import { addingCountryCodeToNumber } from '../utils/common';
+import Layout from '../src/Layout';
 
-const Layout = dynamic(() => import("../src/Layout"));
-// import Layout from "../src/Layout";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import _500 from "../public/image/500.png";
-import { addingCountryCodeToNumber } from '../src/helpers/addingCountryCodeToNumber';
-// import { logPageView } from "../utils/analytics";
-
-const page_500 = ({ locale }) => {
+const _500 = ({ locale }: ILocale) => {
   useEffect(() => {
-    window["dataLayer"].push({
-      event: "page_view",
+    pageViewDataLayer({
       pageURL: window.location.href,
-      pagePath: "/500",
-      pageTitle: locale.PAGE_HEADER._500.title,
+      pagePath: '/500',
+      pageTitle: locale.PAGE_HEADER._404.title
     });
-    // logPageView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Layout>
-      <NextSeo
+      <PageHeadBuilder
         title={locale.PAGE_HEADER._500.title}
         description={locale.PAGE_HEADER._500.title}
-        openGraph={{
-          title: locale.PAGE_HEADER._500.title,
-          description: locale.PAGE_HEADER._500.title,
-          site_name: locale.COMMON.sepris
-        }}
-        twitter={{
-          handle: locale.PAGE_HEADER.handle,
-          site: locale.PAGE_HEADER.site,
-          cardType: locale.PAGE_HEADER.cardType,
-        }}
       />
-      <article className="minHeight _500container">
-        <img src={_500} alt={locale.PAGE_HEADER._500.title} className="_404PageImage" />
-        <span>{locale._500_PAGE.span}</span>
-        <p>{locale._500_PAGE.p1}</p>
-        <p>
-          <a href={`tel:${addingCountryCodeToNumber(locale.COMMON.number1)}`}>{locale.COMMON.number1}</a>
-        </p>
-        <Link href="/" prefetch={false}>
-          <a className="_404PageAnchor Blue_BTN">{locale.COMMON.backToHome}</a>
-        </Link>
+      <article className={cn('responsive', styles.container)}>
+        <div className={styles.imageContainer}>
+          <Image src={image500} alt={locale.PAGE_HEADER._500.title} />
+        </div>
+        <span className={styles.imageCaption}>{locale._500_PAGE.span}</span>
+        <p className={styles.contactInformation}>{locale._500_PAGE.p1}</p>
+        <br />
+        <a
+          className={styles.contactNumber}
+          href={`tel:${addingCountryCodeToNumber(locale.COMMON.number1)}`}>
+          {locale.COMMON.number1}
+        </a>
+        <br />
+        <div className={styles.buttonContainer}>
+          <Link href='/' prefetch={false}>
+            <a className={cn('actionButton', styles.backHome)}>
+              {locale.COMMON.backToHome}
+            </a>
+          </Link>
+        </div>
       </article>
     </Layout>
   );
 };
 
-export default page_500;
+export default _500;

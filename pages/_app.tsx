@@ -2,6 +2,7 @@ import App from 'next/app';
 import Router from 'next/router';
 import * as Sentry from '@sentry/browser';
 import { REQUEST_GET_USER_INFO } from '../src/API';
+import Image from 'next/image';
 import jsCookie from 'js-cookie';
 import user_context from '../src/context/User_info';
 import LanguageCTX, {
@@ -21,8 +22,7 @@ import 'slick-carousel/slick/slick-theme.css';
 // } from "react-google-recaptcha-v3";
 import Axios from "axios";
 // import { initGA } from "../utils/analytics";
-import { AppStoreWrapper } from "../src/context/app";
-import axios from "axios";
+import { AppStoreWrapper } from "../src/context/app"; 
 import Icon from '../src/components/Icons';
 
 Sentry.init({
@@ -254,7 +254,7 @@ class App_Otoli extends App {
                       className="pwa_content HEAP_PWA_INVITATION"
                       onClick={this.customPwaPrompt}
                     >
-                      <img src={logo} alt="pwa logo icon" />
+                      <Image src={logo} alt="pwa logo icon" height={36} width={36}/>
                       {Router.router.locale === 'fa' ? fa.COMMON.installApp : en.COMMON.installApp}
                     </div>
                     <p

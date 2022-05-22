@@ -12,6 +12,7 @@ import Link from "next/link";
 const Slider = dynamic(() => import("react-slick"));
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 let settings = {
   dots: true,
   infinite: true,
@@ -80,7 +81,11 @@ const Recommendation_section = (props) => {
           <Link href={`/rent/car-rental-for-travel`} prefetch={false}>
             <a>
               <figure>
-                <img src={for_journey} />
+                <Image src={for_journey} 
+                placeholder='blur'
+                width={170}
+                height={136}
+                alt='perfect cars for travel'/>
                 <p>مناسب سفر </p>
               </figure>
             </a>
@@ -93,7 +98,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={van} />
+                <Image src={van} />
                 <p>ون</p>
               </figure>
             </a>
@@ -106,7 +111,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={with_driver} />
+                <Image src={with_driver} />
                 <p>با راننده</p>
               </figure>
             </a>
@@ -119,7 +124,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={suv} />
+                <Image src={suv} />
                 <p>شاسی بلند </p>
               </figure>
             </a>
@@ -132,7 +137,7 @@ const Recommendation_section = (props) => {
           >
             <a>
               <figure>
-                <img src={affordable} />
+                <Image src={affordable} />
                 <p>اقتصادی </p>
               </figure>
             </a>

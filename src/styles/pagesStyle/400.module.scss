@@ -1,0 +1,20 @@
+@use '../newStyles/variables' as var;
+@use '../mixins' as mixin;
+.container {
+  .imageContainer {
+    display: block;
+    padding-block-start: 30px;
+    width: 100%;
+    text-align: center;
+    @media (max-width: var.$screenMin601) {
+      width: auto;
+    }
+  }
+  .buttonContainer {
+    display: block;
+    text-align: center;
+    .backHome {
+      @include mixin.backToHomeAction;
+    }
+  }
+}

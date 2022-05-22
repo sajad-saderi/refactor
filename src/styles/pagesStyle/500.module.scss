@@ -1,0 +1,42 @@
+@use '../newStyles/variables' as var; 
+@use '../mixins' as mixin;
+@import '../colors';
+
+.container {
+  .imageContainer {
+    display: block;
+    padding-block-start: 30px;
+    width: 100%;
+    text-align: center;
+    @media (max-width: var.$screenMin601) {
+      width: auto;
+    }
+  }
+  .imageCaption {
+    display: block;
+    text-align: center;
+    margin-block-end: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    font-variation-settings: 'wght' 500;
+  }
+  .contactInformation {
+    text-align: center;
+    font-weight: 500;
+    font-variation-settings: 'wght' 500;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .contactNumber {
+    display: block;
+    text-align: center;
+    color: $_3fa6da;
+  }
+  .buttonContainer {
+    display: block;
+    text-align: center;
+    .backHome {
+      @include mixin.backToHomeAction;
+    }
+  }
+}

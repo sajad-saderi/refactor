@@ -111,8 +111,10 @@
         }
       }
       .figure_section {
+        position: relative;
+        width: 328px;
+        height: 185px;
         img {
-          width: 328px;
           border-radius: 5px;
         }
       }

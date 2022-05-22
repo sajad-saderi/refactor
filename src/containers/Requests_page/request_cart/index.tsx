@@ -9,6 +9,7 @@ import languageCTX from "../../../context/languageCTX";
 const PelakView = dynamic(() => import("../../../components/pelak"));
 const Button = dynamic(() => import("../../../components/form/Button"));
 // import PelakView from "../../../components/pelak";
+// @ts-ignore
 import CountdownTimer from "timer-countdown";
 // import "./request_cart.scss";
 import Link from "next/link";
@@ -26,6 +27,8 @@ import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToN
 import { dynamicString } from '../../../helpers/dynamicString';
 import { numberChanger } from "../../../../utils/numberChanger";
 import Icon from "../../../components/Icons";
+import Image from "next/image";
+import CarImage from "../../../components/carImage";
 
 let dateObject = { from: null, to: null }
 moment.loadPersian({ dialect: "persian-modern" });
@@ -509,7 +512,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                     : moment(start_date[activeLanguage].name, "YYYY/MM/DD").format("dddd")}
                 </span>
               </span>
-              <Icon name="arrow" width="20p" height="20px" color="#dcdcdc" />
+              <Icon name="arrow" width="24p" height="24px" color="#dcdcdc" />
               <span>
                 {
                   (extensionInfo && extensionSum.status.id === "extended") ?
@@ -532,13 +535,22 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </p>
           </div>
           <div className="image_pelak">
-            <figure
+            {/* <figure
               style={{
                 backgroundImage: `url(${media_set.thumbnail_url})`,
                 backgroundPositionY: `-${heightController}px`,
               }}
-            >
-              <img
+            > */}
+              <div className="imageContainer">
+              <CarImage
+            title={`${car.brand.name[activeLanguage]} ${car.name[activeLanguage]}`}
+            hasMedia={data.rent_search_dump.has_media }
+            mediaSet={[media_set]}
+            // hasMedia={false}
+            // mediaSet={[media_set]}
+            activeLanguage={activeLanguage}
+          /></div>
+              {/* <img
                 // style={{
                 //   position: "absolute",
                 //   // control the top position of the image by "setheightController()"
@@ -554,8 +566,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               //     setheightController(84 / 4);
               //   }
               // }}
-              />
-            </figure>
+              /> */}
+            {/* </figure> */}
           </div>
         </div>
         {/* </div> */}
@@ -671,7 +683,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
             </>
           )}
         </div>
-        {data.show_contract && status_id === "paid" && (
+        {data.show_contract && (status_id === "paid" ||status_id === "delivered" || status_id === "returned") && (
           <div className="contract_download" onClick={()=>
     setDownloadBox(!downloadBox)
     }>

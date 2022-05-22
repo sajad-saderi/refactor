@@ -1,0 +1,12 @@
+@import "./colors";
+@mixin backToHomeAction {
+  display: inline-block;
+  width: auto;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+  background-color: $_3fa6da;
+  padding: 8px 21px;
+  border-radius: 4px;
+  line-height: normal;
+}

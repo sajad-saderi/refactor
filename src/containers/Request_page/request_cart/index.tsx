@@ -7,6 +7,7 @@ const PelakView = dynamic(() => import("../../../components/pelak"));
 
 const Button = dynamic(() => import("../../../components/form/Button"));
 // import PelakView from "../../../components/pelak";
+// @ts-ignore
 import CountdownTimer from "timer-countdown";
 // import "./request_cart.scss";
 import Link from "next/link";
@@ -25,6 +26,7 @@ import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToN
 import { dynamicString } from '../../../helpers/dynamicString';
 import { numberChanger } from "../../../../utils/numberChanger";
 import Icon from "../../../components/Icons";
+import CarImage from "../../../components/carImage";
 
 moment.loadPersian({ dialect: "persian-modern" });
 
@@ -511,7 +513,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                     : moment(date.from[activeLanguage].name, "YYYY/MM/DD").format("dddd")}
                 </span>
               </span>
-              <Icon name='arrow' height='20px' width='20px' color='#dcdcdc' /> 
+              <Icon name='arrow' height='24px' width='24px' color='#dcdcdc' /> 
               <span>
                 {
                   (extensionInfo && extensionSum.status.id === "extended") ?
@@ -538,7 +540,16 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
             </p>
           </div>
           <div className="image_pelak">
-            <figure
+          <div className="imageContainer">
+              <CarImage
+            title={`${car.brand.name[activeLanguage]} ${car.name[activeLanguage]}`}
+            hasMedia={data.rent_search_dump.has_media }
+            mediaSet={[media_set]}
+            // hasMedia={false}
+            // mediaSet={[media_set]}
+            activeLanguage={activeLanguage}
+          /></div>
+            {/* <figure
               style={{
                 backgroundImage: `url(${media_set.thumbnail_url})`,
                 backgroundPositionY: `-${heightController}px`,
@@ -551,7 +562,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                 //   top: -heightController + "px",
                 // }}
                 src={media_set.thumbnail_url}
-                alt={`${car.brand.name[activeLanguage]} ${car.name[activeLanguage]}`}
+                alt=
               // onLoadCapture={(e) => {
               //   e.persist();
               //   // adjust the image at the center of division container
@@ -560,7 +571,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               //   }
               // }}
               />
-            </figure>
+            </figure> */}
           </div>
         </div>
         {/* </div> */}
@@ -675,7 +686,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
             </>
           )}
         </div>
-        {data.show_contract && status_id === "paid" && (
+        {data.show_contract && (status_id === "paid" ||status_id === "delivered" || status_id === "returned")&& (
           <div className="contract_download" onClick={()=>
     setDownloadBox(!downloadBox)
     }>

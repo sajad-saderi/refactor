@@ -9,6 +9,7 @@ import jsCookie from "js-cookie";
 import { REQUEST_REQUEST_ACTION } from "../../../../API";
 import Router from "next/router";
 import car_image from "../../../../../public/image/car-image-thumbnail.jpg";
+import Image from "next/image";
 
 const Renter = (props: IRenter) => {
   const [rent_search_dump, setRent_search_dump] = useState(null);
@@ -103,14 +104,18 @@ const Renter = (props: IRenter) => {
             }}
           >
             {/* a image of the order */}
-            <img
-              src={
-                rent_search_dump.media_set.length > 0
-                  ? rent_search_dump.media_set[0].thumbnail_url
-                  : car_image
-              }
-              alt={rent_search_dump.car.name[activeLanguage]}
+            <div className="imageContainer">
+            <Image 
+            layout="fill"
+            src={
+              rent_search_dump.media_set.length > 0
+              ? rent_search_dump.media_set[0].thumbnail_url
+              : 
+              car_image
+            }
+            alt={rent_search_dump.car.name[activeLanguage]}
             />
+            </div>
             <h3>
               {rent_search_dump.car.brand.name[activeLanguage]}{" "}
               {rent_search_dump.car.name[activeLanguage]}

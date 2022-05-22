@@ -1,0 +1,62 @@
+// // Media queries breakpoints
+// 320px — 480px: Mobile devices.
+//  481px — 600px: Mobile devices landscape orientation.
+// 601px — 768px: iPads, Tablets.
+// 769px — 992px: iPads, Tablets landscape orientation.
+// 993px — 1024px: Small screens, laptops.
+// 1025px — 1200px: Desktops, large screens.
+// 1201px and more — Extra large screens, TV.
+
+/* Mobile devices */
+$screenMin320: 320px;
+$screenMax480: 480px;
+
+/* Mobile devices landscape orientation */
+$screenMin481: 481px;
+$screenMin600: 600px;
+
+/* iPads, Tablets */
+$screenMin601: 601px;
+$screenMax768: 768px;
+
+/* iPads, Tablets landscape orientation */
+$screenMin769: 769px;
+$screenMax992: 992px;
+
+/* Small screens, laptops */
+$screenMin993: 993px;
+$screenMax1024: 1024px;
+
+/* Desktops, large screens */
+$screenMin1025: 1025px;
+$screenMax1200: 1200px;
+
+/*  and more — Extra large screens, TV */
+$screenMin1201: 1201px;
+
+:export {
+  screenMin320: $screenMin320;
+  screenMax480: $screenMax480;
+  screenMin481: $screenMin481;
+  screenMin600: $screenMin600;
+  screenMin601: $screenMin601;
+  screenMax768: $screenMax768;
+  screenMin769: $screenMin769;
+  screenMax992: $screenMax992;
+  screenMin993: $screenMin993;
+  screenMax1024: $screenMax1024;
+  screenMin1025: $screenMin1025;
+  screenMax1200: $screenMax1200;
+  screenMin1201: $screenMin1201;
+}
+
+// Shadows
+// box shadow
+$boxShadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+
+// Sub Menu Box Shadow
+$subMenuBoxShadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.176);
+
+// text shadow
+$textShadow: 0px 1px 5px rgb(0, 0, 0);
+$boxShadowCarPageMobile: 0 2px 2px 1px rgb(0 0 0 / 10%);
