@@ -1,10 +1,9 @@
 @use "../../../styles/variables" as var;
 @import "../../../styles/colors";
 
-.car_card_Loading { 
+.car_card_Loading {
   display: inline-block;
   width: 32%;
-  height: 282px;
   margin: 0 1.3% 1.3% 0;
   background: $_ffffff;
   border-radius: 4px;
@@ -12,7 +11,7 @@
   direction: rtl;
   figure {
     position: relative;
-    height: 200px;
+    height: 175px;
     overflow: hidden;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
@@ -23,33 +22,48 @@
   .info_box {
     position: relative;
     padding: 0 8px;
-    .car_brand {
-      margin-bottom: 0;
-      width: 180px;
-      margin-top: 20px;
-      height: 20px;
-      display: inline-block;
+    .details {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .priceAndDate {
+        width:60%;
+        .car_brand {
+          margin-bottom: 0;
+          width: 100%;
+          margin-top: 10px;
+          height: 20px;
+          display: inline-block;
+        }
+        .yearRepresentative {
+          display: block;
+          margin-top: 8px;
+          width: 60%;
+          height: 10px;
+        }
+      }
+      .price {
+        box-shadow: var.$boxShadow;
+        width: 69px;
+        height: 62px;
+        border-radius: 4px;
+          margin-top: 10px;
+          padding: 5px; 
+      }
     }
   }
-  .price {
-    box-shadow: var.$boxShadow;
-    left: 8px;
-    text-align: center;
-    width: 85px;
-    height: 80px;
-    border-radius: 4px;
-    padding: 5px;
-    margin: 0px auto;
-    top: -40px;
-    position: absolute;
-  }
+
   .tags_container {
-    margin-top: 12px;
+    margin-top: 24px;
+    display: flex;
+    justify-content:flex-start;
+    align-items:center;
+    margin-bottom:8px;
     li {
-      width: 120px;
-      height: 10px;
-      margin-left: 10px;
-      display: inline-block;
+      width: 55px;
+      height: 22px;
+      border-radius:4px;
+      margin-left: 10px; 
     }
   }
 }
@@ -58,6 +72,9 @@
   .car_card_Loading {
     width: 49%;
     margin: 0 0 2% 0;
+    figure {
+      height: 200px;
+    }
   }
 }
 

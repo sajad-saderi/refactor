@@ -32,8 +32,8 @@ const CarImage: React.FC<{
         objectPosition='center'
         layout='fill'
         alt={title}
-        placeholder='blur'
-        blurDataURL={ImageUrl}
+        // placeholder='blur'
+        // blurDataURL={ImageUrl}
       />
     </>
   ) : activeLanguage === "fa" ? (

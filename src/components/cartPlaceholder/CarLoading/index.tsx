@@ -8,8 +8,13 @@ const CarLoading = () => {
         <SeprisCarLogo width='150px' height='80px' color='#dfdfdf' />
       </figure>
       <div className='info_box'>
-        <div className='car_brand Gradient'></div>
-        <div className='price Gradient'></div>
+        <div className='details'>
+          <div className="priceAndDate">
+            <div className='car_brand Gradient'></div>
+            <span className='yearRepresentative Gradient'></span>
+          </div>
+          <div className='price Gradient'></div>
+        </div>
         <ul className='tags_container'>
           <li className='Gradient'>
             <span></span>
