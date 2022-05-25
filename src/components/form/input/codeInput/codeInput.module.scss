@@ -1,0 +1,21 @@
+@import '../../../../styles/colors';
+.container {
+  .codeInput {
+    border-bottom: 1px solid $_3fa6da;
+    width: 30px;
+    text-align: center;
+    direction: ltr;
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  [type='number'] {
+    -moz-appearance: textfield;
+  }
+  .activeInput {
+    border-width: 2px;
+  }
+}

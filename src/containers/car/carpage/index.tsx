@@ -882,7 +882,7 @@ const CarPage = ({
                             dayRange.from.month,
                             activeLanguage === 'fa' ? "jM" : "M"
                           ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
-                          <Icon name='arrow' width='26px' height='26px' color='#202020' />
+                          <Icon name='arrow' width='22px' height='22px' color='#202020' />
                           <span className="day_name">{`${moment(
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                             activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"
@@ -1177,7 +1177,7 @@ const CarPage = ({
                       dayRange.from.month,
                       activeLanguage === 'fa' ? "jM" : "M"
                     ).format(activeLanguage === 'fa' ? "jMMMM" : "MMMM")}`}
-                    <Icon name='arrow' width='26px' height='26px' color='#202020' />
+                    <Icon name='arrow' width='22px' height='22px' color='#202020' />
                     <span className="day_name">{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
                       activeLanguage === 'fa' ? "jYYYY/jM/jD" : "YYYY/M/D"

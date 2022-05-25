@@ -5,7 +5,7 @@ import {
 
 } from './appStore';
 
-import { IIcon } from './components'
+import { IIcon, IInput, IInputValidationItems } from './components'
 import { IPageHeadBuilder, IPageViewDataLayer } from './Tutils/pageHeadBuilder'
 
 import { supportedLanguages, dateObject, ISvg, ILocale } from './commonTypes'
@@ -20,5 +20,6 @@ export type {
     supportedLanguages,
     IIcon,
     IPageHeadBuilder,
-    IPageViewDataLayer
+    IPageViewDataLayer,
+    IInput, IInputValidationItems
 }

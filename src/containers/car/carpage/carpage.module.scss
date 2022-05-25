@@ -1,5 +1,5 @@
 @use '../../../styles/variables' as var;
-@import '../../../styles/colors';
+@import "../../../styles/colors";
 
 .Top_Rent_date {
   display: none;
@@ -314,7 +314,7 @@
     .car_delivery {
       p {
         font-size: 16px;
-      line-height: normal;
+        line-height: normal;
       }
     }
     .distance_limitation,
@@ -328,7 +328,7 @@
       margin-bottom: 16px;
       line-height: unset;
       svg {
-        margin-left: 9px;
+        margin-inline-end: 9px;
         display: inline-block;
         vertical-align: middle;
       }
@@ -593,6 +593,9 @@
       align-items: flex-start;
     }
     .Rent_date {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       text-align: right;
       font-weight: 500;
       margin-top: 48px;
@@ -605,7 +608,6 @@
           display: inline-block;
           vertical-align: middle;
           font-size: 13px;
-          width: 20px;
         }
         .day_name {
           display: inline-block;
@@ -677,7 +679,7 @@
         position: relative;
         padding-left: 9px;
         &::before {
-          content: '';
+          content: "";
           clear: both;
           display: block;
           position: absolute;
@@ -707,7 +709,7 @@
   }
 }
 
-.Car_page_container[dir='ltr'] {
+.Car_page_container[dir="ltr"] {
   .carInfo_container {
     .price_place_holder {
       left: auto;
@@ -1174,7 +1176,7 @@
           margin: 0;
         }
         .extra_info {
-         width: 49%;
+          width: 49%;
           font-size: 11px;
           text-align: justify;
           font-weight: 500;

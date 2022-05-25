@@ -14,11 +14,11 @@ body {
   font-family: "iranSansXV", "iranSans", "danaXV", "dana", tahoma;
 }
 
-html[lang='fa'] {
-  // direction: rtl;
-  -moz-font-feature-settings: 'ss02';
-  -webkit-font-feature-settings: 'ss02';
-  font-feature-settings: 'ss02';
+html[lang="fa"] {
+  direction: rtl;
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
 }
 
 html,
@@ -241,9 +241,9 @@ input {
   font-weight: 500;
   border-radius: 20px;
   padding: 13px 10px;
-  svg { 
+  svg {
     display: inline-block;
-    right: 15px; 
+    right: 15px;
     position: absolute;
   }
 }
@@ -428,7 +428,7 @@ input {
     color: $_ffffff;
     border-radius: 20px;
     padding: 3px 5px 3px 10px;
-    svg { 
+    svg {
       display: inline-block;
       vertical-align: middle;
     }
@@ -744,6 +744,23 @@ input {
   text-align: left;
 }
 
+// #NEW Styles
+.actionButton {
+  color: #fff;
+  font-family: inherit;
+  background-color: $_3fa6da;
+  line-height: 1.6;
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+  border-radius: 4px;
+  padding: 8px 21px;
+  border: 1px solid $_3fa6da;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-transform: capitalize;
+}
 
 .skeletonBackground {
   transition: 0.25s all;
@@ -787,7 +804,6 @@ input {
     background-position: 0% 50%;
   }
 }
-
 
 // 3rd parties
 // @import "react-modern-calendar-datepicker/lib/DatePicker.css";
