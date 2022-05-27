@@ -8,6 +8,11 @@
   text-align: right;
   background: $_ffffff;
   box-shadow: var.$boxShadow;
+  .badgesIsStatusBar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
   .rent_status {
     border: none;
     width: auto;
@@ -18,15 +23,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .badgesIsStatusBar{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     svg,
     img {
-      display: inline-block;
+      // display: inline-block;
       margin-left: 4px;
-      vertical-align: middle;
+      // vertical-align: middle;
       width: 20px;
     }
     span {
       font-weight: 500;
+      line-height:normal;
       display: inline-block;
     }
   }
@@ -44,7 +55,9 @@
     align-items: center;
   }
   .status_expired {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: $_efefef;
     padding: 2px 8px;
     span {
@@ -59,10 +72,13 @@
   .status_paid,
   .status_on_trip {
     padding: 2px 8px;
-    display: inline-block;
+    display: inline-flex;
+    justify-content:center;
+    align-items:center;
     background-color: $_e7f6f7;
     span {
       color: $_37c4d7;
+      line-height:normal
     }
   }
   .status_approved {
@@ -74,6 +90,9 @@
       border-radius: 4px;
       padding: 2px 8px;
       background-color: $_f4eef1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       span {
         color: $_c06daa;
       }
@@ -85,6 +104,9 @@
     padding: 0;
     justify-content: space-between;
     .card_status {
+      display: flex;
+      align-content: center;
+      align-items: center;
       border-radius: 4px;
       padding: 2px 8px;
       background-color: $_fceddb;
@@ -222,14 +244,16 @@
       }
     }
     .insurance_badge {
-      font-size: 14px;
-      display: inline-block;
+      display:flex; 
+      justify-content: center;
+      font-size: 14px; 
       float: left;
       padding: 2px 0;
-      svg {
-        width: 20px;
-        height: 20px;
-        margin-left: 4px;
+      span{
+        font-size:14px;
+      }
+      svg { 
+        margin-inline-end: 4px;
         display: inline-block;
         vertical-align: middle;
       }
@@ -254,14 +278,15 @@
         font-weight: 400;
       }
       .avatar{
-        background-color: $_3fa6da;
         
         display: inline-block;
-        margin-left: 4px; 
-        border: 2px solid $_3fa6da;
-        border-radius: 50%;
+        margin-inline-end: 4px; 
         svg{
+          background-color: $_3fa6da;
+          border: 2px solid $_3fa6da;
           border-radius: 50%;
+          border-radius: 50%;
+          padding:2px;
   border: 2px solid $_3fa6da;
   margin: 0;
 }
@@ -479,6 +504,7 @@
 .Request_car[dir="ltr"] {
   text-align: left;
   .rent_status {
+    div
     .extensionBadge {
       margin-left: 8px;
     }
@@ -494,7 +520,7 @@
       margin-left: 4px;
     }
   }
-  .status_approved {
+  .status_approved { 
     .timer {
       svg {
         margin-right: 40px;
@@ -544,10 +570,10 @@
     a {
       margin-right: 0;
       margin-left: -3px;
-      svg {
-        margin-left: 4px;
-        margin-right: 4px;
-      }
+      // svg {
+      //   margin-left: 4px;
+      //   margin-right: 4px;
+      // }
     }
   }
   .Button_container {
@@ -601,19 +627,19 @@
     margin: 0 auto 20px;
     .Role_container {
       a {
-        svg {
-          width: 24px;
-          height: 24px;
-        }
+        // svg {
+        //   width: 24px;
+        //   height: 24px;
+        // }
       }
     }
     .invoice_and_insurance {
       font-size: 12px;
       .insurance_badge {
-        svg {
-          width: 14px;
-          height: 14px;
-        }
+        // svg {
+        //   width: 14px;
+        //   height: 14px;
+        // }
       }
     }
   }

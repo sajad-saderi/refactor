@@ -1,3 +1,4 @@
+@use "../../styles/newStyles/variables" as var;
 @import "../../styles/colors";
 @import "./modals/modal.module.scss";
 .header {
@@ -15,34 +16,33 @@
     margin-top: -1px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    a { 
+    justify-content: center; 
+    .homeLink {
       display: flex;
-    align-items: center;
-    justify-content: center;
-     
+      align-items: center;
+      justify-content: flex-start;
+      .carLogo {
+        display: inherit;
+        @media screen and (min-width: 360px) {
+          display: none;
+        }
+        @media screen and (min-width: var.$screenMax480) {
+          display: inherit;
+          margin-inline-end: 12px;
+        }
+      }
+      .textLogo {
+        display: none;
+        @media screen and (min-width: 360px) {
+          display: flex;
+        }
+      }
     }
     // &::after {
     //   display: block;
     //   clear: both;
     //   content: "";
-    // }
-    .car_logo {
-      height: 27px;
-      margin-left: 12px;
-    }
-    .logo_ltr {
-      transform: rotateY(180deg);
-    }
-    .text_logo {
-      margin-bottom: 2px;
-      height: 14px;
-    }
-    .text_logo_ltr {
-      margin-bottom: 1px;
-      width: 98px;
-      height: 25px;
-    }
+    // } 
   }
 
   // @disable the hamburger menu
@@ -219,13 +219,7 @@
 }
 
 .header[dir="ltr"] {
-  .Logo {
-    .car_logo {
-      height: 27px;
-      margin-left: 0;
-      margin-right: 12px;
-    }
-  }
+ 
   .Nav {
     ul {
       li {
@@ -289,14 +283,7 @@
 @media screen and(max-width:480px) {
   .header {
     .Logo {
-      margin-top: -3px;
-      .car_logo {
-        display: none !important;
-      }
-      .text_logo {
-        margin-bottom: -7px;
-        width:70px;
-      }
+      margin-top: -3px;  
     }
     .Nav {
       margin-top: -2px;

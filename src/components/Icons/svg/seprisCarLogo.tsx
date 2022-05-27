@@ -1,9 +1,10 @@
 import { ISvg } from '../../../../types';
-export const SeprisCarLogo = ({ color, height, width }: ISvg) => (
+export const SeprisCarLogo = ({ color, height, width, rotate }: ISvg) => (
   <svg
     width={width}
     height={height}
     viewBox='0 0 38 26'
+    style={{ transform: `rotateY(${rotate | 0}deg)` }}
     fill='none'
     xmlns='http://www.w3.org/2000/svg'>
     <path

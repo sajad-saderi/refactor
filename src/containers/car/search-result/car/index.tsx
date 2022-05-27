@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import carImage from "../../../../../public/image/car-image-thumbnail.jpg";
-import CarImage from "../../../../components/carImage";  
-
-import Link from "next/link"; 
+import CarImage from "../../../../components/carImage"; 
+import Link from "next/link";
 import languageCTX from '../../../../context/languageCTX';
 import { numberChanger } from "../../../../../utils/numberChanger";
 import Icon from "../../../../components/Icons";
@@ -34,7 +33,7 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     start_date,
     end_date,
   } = data;
-  
+
   // let imageWidth = has_media ? media_set[0].thumbnail_width : null;
   // let imageHeight = has_media ? media_set[0].thumbnail_height : null;
   let title = car.brand.name[activeLanguage] + " " + car.name[activeLanguage];
@@ -42,15 +41,15 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
   let price =
     avg_discounted_price_per_day >= 10000000
       ? avg_discounted_price_per_day >= 10100000
-        ? numberChanger((avg_discounted_price_per_day / 1000000).toString(),activeLanguage)
-        : numberChanger((avg_discounted_price_per_day / 10000000).toString(),activeLanguage)
+        ? numberChanger((avg_discounted_price_per_day / 1000000).toString(), activeLanguage)
+        : numberChanger((avg_discounted_price_per_day / 10000000).toString(), activeLanguage)
       : avg_discounted_price_per_day >= 1000000
         ? avg_discounted_price_per_day_name.slice(2, 3) === "."
-          ? numberChanger((avg_discounted_price_per_day / 1000000).toString(),activeLanguage)
-          : numberChanger((avg_discounted_price_per_day / 1000000).toString(),activeLanguage)
+          ? numberChanger((avg_discounted_price_per_day / 1000000).toString(), activeLanguage)
+          : numberChanger((avg_discounted_price_per_day / 1000000).toString(), activeLanguage)
         : avg_discounted_price_per_day < 100000
-          ? numberChanger((avg_discounted_price_per_day.toString().slice(0, 2)).toString(),activeLanguage)
-          : numberChanger((avg_discounted_price_per_day.toString().slice(0, 3)).toString(),activeLanguage);
+          ? numberChanger((avg_discounted_price_per_day.toString().slice(0, 2)).toString(), activeLanguage)
+          : numberChanger((avg_discounted_price_per_day.toString().slice(0, 3)).toString(), activeLanguage);
 
   let unit =
     avg_discounted_price_per_day >= 1000000
@@ -64,10 +63,10 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
     let aThirdOfTheContainerWidth = Math.ceil(containerWidth / 3);
     let twoThirdsOfTheContainerWidth =
       containerWidth - aThirdOfTheContainerWidth;
-    let carNameWidth = h3Ref.current.clientWidth;
+    // let carNameWidth = h3Ref.current.clientWidth;
 
-    if (carNameWidth > twoThirdsOfTheContainerWidth)
-      setH3Width(twoThirdsOfTheContainerWidth);
+    // if (carNameWidth > twoThirdsOfTheContainerWidth)
+    //   setH3Width(twoThirdsOfTheContainerWidth);
   }, []);
   return (
     <div className="carCart HEAP_SearchResult_Card_Car" ref={cardRef}>
@@ -88,18 +87,18 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
       >
         <a className={`CAR_CART_${title}`}>
           <div className="card_wrapper">
-            
-            <figure  
+
+            <figure
             >
               <CarImage
                 title={title}
                 hasMedia={has_media}
                 mediaSet={media_set}
-                activeLanguage = {activeLanguage}
+                activeLanguage={activeLanguage}
               />
               {total_discount_percent > 0 && (
                 <span className="discount_badge">
-                  {numberChanger((total_discount_percent).toString(),activeLanguage)}
+                  {numberChanger((total_discount_percent).toString(), activeLanguage)}
                   {language.COMMON.carCard.discount}
                 </span>
               )}
@@ -138,22 +137,24 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
             </figure>
             <div className="info_box">
               <div className="car_brand">
-                <h3
-                  ref={h3Ref}
-                  style={{
-                    width: h3Width ? h3Width : "auto",
-                  }}
-                >
-                  {title}
-                </h3>
-                <p>{year.name[activeLanguage]}</p>
-              </div>
-              <div className="price">
-                <p className="Price_number">{price}</p>
-                <p>{`${unit} ${language.COMMON.toman}`}<br/>{`${language.COMMON.perDay}`}</p>
+                <div className="carDetail">  
+                  <h3
+                    // ref={h3Ref}
+                    // style={{
+                    //   width: h3Width ? h3Width : "auto",
+                    // }}
+                  >
+                    {title}
+                  </h3>
+                  <small>{year.name[activeLanguage]}</small>
+                </div>
+                <div className="price">
+                  <p className="Price_number">{price}</p>
+                  <p>{`${unit} ${language.COMMON.toman}`}<br />{`${language.COMMON.perDay}`}</p>
+                </div>
               </div>
               <ul className="tags_container">
-              {showLocation ? (
+                {showLocation ? (
                   <li
                     onClick={(e) => {
                       e.preventDefault();
@@ -167,8 +168,10 @@ const Car = ({ data, showLocation, tagClick, language }: ICar) => {
                     className='location'
                   >
                     <span className="tags locationTag">
-                      <Icon name="location" color="#3fa6da" width="14px" height="14px"/>
-                      {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
+                      <Icon name="location" color="#3fa6da" width="14px" height="14px" />
+                      <span>
+                        {location.parent_id === 1 ? activeLanguage === 'fa' ? "تهران" : 'tehran' : location.name[activeLanguage]}
+                        </span>
                     </span>
                   </li>
                 ) : null}

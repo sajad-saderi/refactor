@@ -247,7 +247,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "approved":
         RentStatus = (
 <div className="rent_status">
-<div className='status_approved'>
+<div className='status_approved badgesIsStatusBar'>
 
   <div className="card_status">
   <Icon
@@ -322,7 +322,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "paid":
         RentStatus = (
 <div className="rent_status ">
-<div>
+<div className="badgesIsStatusBar" >
   <div className="status_paid">
   <Icon name='key' height='20px' width='20px' color='#2cbbc2' />
             <span>{language.REQUEST_PAGE.paid}</span>
@@ -358,7 +358,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "delivered":
         RentStatus = (
-<div >
+<div className="badgesIsStatusBar">
 <div className="rent_status status_on_trip">
 <Icon name='car' width='20px' height='20px' color='#2cbbc2' />
             <span>{language.REQUEST_PAGE.delivered}</span>
@@ -383,7 +383,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "returned":
         RentStatus = (
-<div >
+<div className="badgesIsStatusBar" >
 <div className="rent_status status_returned">
 <Icon
                     name='flashBack'
@@ -740,6 +740,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
             // status_id === "delivered" ||
             // status_id === "returned"
             <PelakView
+            noImage={true}
               registration_plate_first_part={
                 pelak.registration_plate_first_part
               }

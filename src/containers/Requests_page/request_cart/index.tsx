@@ -321,7 +321,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       case "paid":
         RentStatus = (
 <div className="rent_status">
-<div>
+<div className="badgesIsStatusBar" >
   <div className="status_paid">
   <Icon name='key' height='20px' width='20px' color='#2cbbc2' />
             <span>{language.REQUEST_PAGE.paid}</span>
@@ -357,7 +357,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "delivered":
         RentStatus = (
-<div>
+<div className="badgesIsStatusBar" >
 <div className="rent_status status_on_trip">
 <Icon name='car' width='20px' height='20px' color='#2cbbc2' />
             <span>{language.REQUEST_PAGE.delivered}</span>
@@ -382,7 +382,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         break;
       case "returned":
         RentStatus = (
-<div >
+<div className="badgesIsStatusBar" >
 <div className="rent_status status_returned">
 <Icon
                     name='flashBack'
@@ -603,7 +603,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                   color='#37c4d7'
                 />
                 {/* <MdDone size='1.4rem' color='#2cbbc2' /> */}
-                {language.REQUEST_PAGE.withInsurance}
+                <span>{language.REQUEST_PAGE.withInsurance}</span>
               </>
             ) : (
               <>
@@ -613,7 +613,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
                   width='20px'
                   color='#707070'
                 />
-                {language.REQUEST_PAGE.withoutInsurance}
+                <span>{language.REQUEST_PAGE.withoutInsurance}</span>
               </>
             )}
           </span>}
@@ -737,6 +737,7 @@ discounted_total_price + (extensionSum ? extensionSum.price : 0) + insurance_tot
             // status_id === "delivered" ||
             // status_id === "returned"
             <PelakView
+            noImage={true}
               registration_plate_first_part={
                 pelak.registration_plate_first_part
               }

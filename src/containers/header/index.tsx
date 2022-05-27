@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import Menu from "./menu";
 import Modal from "./modals";
 // import "./header.scss";
-// import * as logo from "../../../public/logo_sticky.svg";
-import * as logo from "../../../public/logo.svg";
-import logo_en from "../../../public/logo_en.svg";
-import car from "../../../public/car_logo.svg";
+// import * as logo from "../../../public/logo_sticky.svg"; 
 import Link from "next/link";
 import languageCTX from "../../context/languageCTX";
-import Image from "next/image";
+import { SeprisCarLogo } from "../../components/Icons/svg/seprisCarLogo";
+import { SeprisTextFa } from "../../components/Icons/svg/seprisTextFa";
+import { SeprisTextEn } from "../../components/Icons/svg/seprisTextEn";
 
 const Header = ({ language, Show_Modal, modalType, data }: IHeader) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,21 +17,17 @@ const Header = ({ language, Show_Modal, modalType, data }: IHeader) => {
       <article className='responsive header_container'>
         <section className='Logo'>
           <Link href='/' prefetch={false}>
-            <a>
-              <span
-                className={`car_logo ${
-                  activeLanguage === "fa" ? null : `logo_ltr`
-                }`}
-              >
-                <Image src={car} alt='سپریس لوگو خودکار' />
+            <a className='homeLink'>
+              <span className="carLogo">
+                <SeprisCarLogo width='40px' height='26px' color='#ffffff' rotate={activeLanguage === 'fa' ? 0 : -180} />
               </span>
-              <Image
-                className={`text_logo ${
-                  activeLanguage === "fa" ? null : `text_logo_ltr`
-                }`}
-                src={activeLanguage === "fa" ? logo : logo_en}
-                alt='سپریس لوگو'
-              />
+              <span className="textLogo">
+                {activeLanguage === 'fa' ? (
+                  <SeprisTextFa width='93px' height='15px' color='#ffffff' />
+                ) : (
+                  <SeprisTextEn width='98px' height='25px' color='#ffffff' />
+                )}
+              </span>
             </a>
           </Link>
         </section>
