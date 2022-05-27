@@ -871,8 +871,7 @@ input {
 // Header
 @import "../containers/header/header.module.scss";
 // Modals
-@import "../containers/header/modals/modal.module.scss";
-@import "../containers/header/modals/GetUserCellPhone/userCellphone.module.scss";
+@import "../containers/header/modals/modal.module.scss"; 
 @import "../containers/header/modals/Law/Law.module.scss";
 @import "../containers/header/modals/Owner/Owner.module.scss";
 @import "../containers/header/modals/Renter/Renter.module.scss";
