@@ -17,12 +17,7 @@ const CarImage: React.FC<{
   // } = useStore();
 
   return hasMedia ? (
-    <>
-      {mediaSet.length > 1 && (
-        <div className={styles.imageCounter}>
-          <Icon name='pictures' height='20px' width='20px' color='#fafafa' />
-        </div>
-      )}
+    <> 
       <Image
         src={hasMedia ? mediaSet[0].thumbnail_url : SeprisCarLogo}
         objectFit='cover'
