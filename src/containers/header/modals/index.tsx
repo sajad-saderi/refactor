@@ -1,6 +1,4 @@
-import React, { useContext, useState } from "react";
-import GetUserCellPhone from "./GetUserCellPhone";
-import ConfirmCode from "./ConfirmCode";
+import React, { useContext, useState } from "react"; 
 import modal_context from "../../../context/Modal_context"; 
 import TellMe from "./Tell_me";
 import Renter from "./Renter";
