@@ -2,16 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import languageCTX from "../src/context/languageCTX";
 import { PageHeadBuilder } from "../src/components/pageHeadBuilder/pageHeadBuilder";
 import Layout from "../src/Layout";
-import ConfirmCode from "../src/containers/header/modals/ConfirmCode";
-import GetUserCellPhone from "../src/containers/header/modals/GetUserCellPhone";
+import ConfirmCode from "../src/containers/login/ConfirmCode";
+import GetUserCellPhone from "../src/containers/login/GetUserCellPhone";
 import { pageViewDataLayer } from "../utils/dataLayer";
 import styles from "../src/styles/pages/login.module.scss";
 
 const LoginPage = ({ locale }) => {
   const [cellPhone, setCellPhone] = useState("");
   const [getCell, setGetCell] = useState(true);
-  const [deactivate_form, set_deactivate_form] = useState(false);
-  const { activeLanguage } = useContext(languageCTX);
+  const [deactivate_form, set_deactivate_form] = useState(false); 
 
   const panelController = () => {
     setGetCell(!getCell);

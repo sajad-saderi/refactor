@@ -1,19 +1,19 @@
 import { useState, useContext, useRef } from "react";
-import toast_context from "../../../../context/Toast_context";
+import toast_context from "../../../context/Toast_context";
 import { useRouter } from "next/router";
-import Button from "../../../../components/form/Button";
-import NumberSeparatedTextInput from "../../../../components/form/NumberSeparatedTextInput";
-import context_user from "../../../../context/User_info";
+import Button from "../../../components/form/Button";
+import NumberSeparatedTextInput from "../../../components/form/NumberSeparatedTextInput";
+import context_user from "../../../context/User_info";
 import jsCookie from "js-cookie";
-import Error_middleware from "../../../../API/ApiUtils";
-import ErrorHelper from "../../../../../utils/error_helper";
-import { dynamicString } from '../../../../helpers/dynamicString';
-import languageCTX from "../../../../context/languageCTX";
-import { numberChanger } from "../../../../../utils/numberChanger";
-import { errorCodeFormatter } from "../../../../../utils/errorCodeFormatter";
-import { axiosInstance } from "../../../../../utils/axiosInstance";
+import Error_middleware from "../../../API/ApiUtils";
+import ErrorHelper from "../../../../utils/error_helper";
+import { dynamicString } from '../../../helpers/dynamicString';
+import languageCTX from "../../../context/languageCTX";
+import { numberChanger } from "../../../../utils/numberChanger";
+import { errorCodeFormatter } from "../../../../utils/errorCodeFormatter";
+import { axiosInstance } from "../../../../utils/axiosInstance";
 import styles from "./confirmCode.module.scss"
-import Icon from "../../../../components/Icons";
+import Icon from "../../../components/Icons";
 import classNames from "classnames";
 
 const ConfirmCode: React.FC<{
