@@ -1,83 +1,84 @@
-import { useReducer, useState, useContext, useEffect } from "react";
+import { useReducer, useState, useContext, useEffect } from 'react';
 // import "./complete_register.scss";
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
-const TextInput = dynamic(() => import("../../components/form/TextInput"));
-const Button = dynamic(() => import("../../components/form/Button"));
+const TextInput = dynamic(() => import('../../components/form/TextInput'));
+const Button = dynamic(() => import('../../components/form/Button'));
 // import DropdownSearch from "../../components/form/Dropdown";
 // import TextInput from "../../components/form/TextInput";
 // import Button from "../../components/form/Button";
-import Modal_context from "../../context/Modal_context";
-import toast_context from "../../context/Toast_context";
-import context_user from "../../context/User_info"; 
-import { REQUEST_USER_INFO_UPDATE } from "../../API";
-import { useRouter } from "next/router";
-import jsCookie from "js-cookie";
-import ErrorHelper from "../../../utils/error_helper";
-import net_CTX from "../../context/internetConnectionCTX";
-import languageCTX from "../../context/languageCTX";
-import Icon from "../../components/Icons";
+import Modal_context from '../../context/Modal_context';
+import toast_context from '../../context/Toast_context';
+import context_user from '../../context/User_info';
+import { REQUEST_USER_INFO_UPDATE } from '../../API';
+import { useRouter } from 'next/router';
+import jsCookie from 'js-cookie';
+import ErrorHelper from '../../../utils/error_helper';
+import net_CTX from '../../context/internetConnectionCTX';
+import languageCTX from '../../context/languageCTX';
+import Icon from '../../components/Icons';
+import Input from '../../components/form/input';
 
 const stateReducer = (current, action) => {
   switch (action.type) {
-    case "first_name":
+    case 'first_name':
       return { ...current, first_name: action.first_name };
-    case "last_name":
+    case 'last_name':
       return { ...current, last_name: action.last_name };
-    case "company_name":
+    case 'company_name':
       return { ...current, company_name: action.company_name };
-    case "day":
+    case 'day':
       return { ...current, day: action.day };
-    case "month":
+    case 'month':
       return { ...current, month: action.month };
-    case "year":
+    case 'year':
       return { ...current, year: action.year };
     default:
-      throw new Error("Something is wrong");
+      throw new Error('Something is wrong');
   }
 };
 
 const stateErrorReducer = (current, action) => {
   switch (action.type) {
-    case "first_name":
+    case 'first_name':
       return {
         ...current,
         first_name: action.first_name,
-        message: action.message,
+        message: action.message
       };
-    case "last_name":
+    case 'last_name':
       return {
         ...current,
         last_name: action.last_name,
-        message: action.message,
+        message: action.message
       };
-    case "company_name":
+    case 'company_name':
       return {
         ...current,
         company_name: action.company_name,
-        message: action.message,
+        message: action.message
       };
-    case "day":
+    case 'day':
       return { ...current, day: action.day, message: action.message };
-    case "month":
+    case 'month':
       return { ...current, month: action.month, message: action.message };
-    case "year":
+    case 'year':
       return { ...current, year: action.year, message: action.message };
-    case "condition":
+    case 'condition':
       return {
         ...current,
         condition: action.condition,
-        message: action.message,
+        message: action.message
       };
-    case "message":
+    case 'message':
       return { ...current, year: action.year, message: action.message };
     default:
-      throw new Error("Something is wrong");
+      throw new Error('Something is wrong');
   }
 };
 
 const Complete_register_container = ({
-  language,
+  language
 }: IComplete_register_container) => {
   const [rolesCheck, setRolesCheck] = useState(false);
   const [showCompanyName, setShowCompanyName] = useState(false);
@@ -87,9 +88,9 @@ const Complete_register_container = ({
   const router = useRouter();
 
   const [state, dispatch] = useReducer(stateReducer, {
-    first_name: "",
-    last_name: "",
-    company_name: "",
+    first_name: '',
+    last_name: '',
+    company_name: ''
     // day: "",
     // month: null,
     // year: "",
@@ -103,22 +104,22 @@ const Complete_register_container = ({
     month: false,
     year: false,
     condition: false,
-    message: null,
+    message: null
   });
 
   const monthsFarsi = [
-    { key: "1", value: "1", text: "فروردین" },
-    { key: "2", value: "2", text: "اردیبهشت" },
-    { key: "3", value: "3", text: "خرداد" },
-    { key: "4", value: "4", text: "تیر" },
-    { key: "5", value: "5", text: "مرداد" },
-    { key: "6", value: "6", text: "شهریور" },
-    { key: "7", value: "7", text: "مهر" },
-    { key: "8", value: "8", text: "آبان" },
-    { key: "9", value: "9", text: "آذر" },
-    { key: "10", value: "10", text: "دی" },
-    { key: "11", value: "11", text: "بهمن" },
-    { key: "12", value: "12", text: "اسفند" },
+    { key: '1', value: '1', text: 'فروردین' },
+    { key: '2', value: '2', text: 'اردیبهشت' },
+    { key: '3', value: '3', text: 'خرداد' },
+    { key: '4', value: '4', text: 'تیر' },
+    { key: '5', value: '5', text: 'مرداد' },
+    { key: '6', value: '6', text: 'شهریور' },
+    { key: '7', value: '7', text: 'مهر' },
+    { key: '8', value: '8', text: 'آبان' },
+    { key: '9', value: '9', text: 'آذر' },
+    { key: '10', value: '10', text: 'دی' },
+    { key: '11', value: '11', text: 'بهمن' },
+    { key: '12', value: '12', text: 'اسفند' }
   ];
   const MODAL_CONTEXT = useContext(Modal_context);
   const toastCTX = useContext(toast_context);
@@ -128,8 +129,8 @@ const Complete_register_container = ({
 
   useEffect(() => {
     // if the user is not register the login modal will show up
-    if (window["auth"]) {
-      if (window["complete_register"]) {
+    if (window['auth']) {
+      if (window['complete_register']) {
         set_deactivate_form(true);
         // router.push("/");
       }
@@ -151,7 +152,7 @@ const Complete_register_container = ({
     setLoading(true);
     const userReplica = { ...user.data };
     const image_url =
-      "https://core.sepris.com/static/core/default_profile_pic.png";
+      'https://core.sepris.com/static/core/default_profile_pic.png';
     // if all the validation is true
     if (validation(state)) {
       try {
@@ -160,33 +161,40 @@ const Complete_register_container = ({
           first_name: state.first_name,
           last_name: state.last_name,
           // company_name is optional
-          company_name: state.company_name === "" ? null : state.company_name,
+          company_name: state.company_name === '' ? null : state.company_name
           // birth_date constructor 1399/01/01
           // birth_date: `${state.year}/${state.month}/${state.day}`,
         });
         // cache expire after 100 days
-        jsCookie.set("first_name", state.first_name, {
-          expires: 100,
+        jsCookie.set('first_name', state.first_name, {
+          expires: 100
         });
-        window["complete_register"] = true;
+        window['complete_register'] = true;
         user.update_user_data({
           ...userReplica,
           first_name: state.first_name,
           last_name: state.last_name,
-          company_name: state.company_name === "" ? null : state.company_name,
+          company_name: state.company_name === '' ? null : state.company_name,
           thumbnail_url: image_url,
           image_url,
-          name: `${state.first_name} ${state.last_name}`,
+          name: `${state.first_name} ${state.last_name}`
         });
-        if (localStorage["last_location"]) {
-
-          router.replace(decodeURIComponent(localStorage["last_location"]), undefined, { locale: activeLanguage });
+        if (localStorage['last_location']) {
+          router.replace(
+            decodeURIComponent(localStorage['last_location']),
+            undefined,
+            { locale: activeLanguage }
+          );
 
           // router.push(localStorage["last_location"]);
         } else {
-          router.replace({
-            pathname: `/user/${user.data?.id}`,
-          }, undefined, { locale: activeLanguage });
+          router.replace(
+            {
+              pathname: `/user/${user.data?.id}`
+            },
+            undefined,
+            { locale: activeLanguage }
+          );
         }
       } catch (error) {
         setLoading(false);
@@ -196,13 +204,13 @@ const Complete_register_container = ({
           toastCTX.toast_option({
             message: error.response
               ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: language.COMMON.errorInRegistery,
-              })
+                  errorObj: error.response,
+                  _400Message: language.COMMON.errorInRegistery
+                })
               : error,
-            color: "#ed9026",
+            color: '#ed9026',
             time: 0,
-            autoClose: false,
+            autoClose: false
           });
       }
     } else {
@@ -212,50 +220,50 @@ const Complete_register_container = ({
 
   // receive the Reducer type and reset the error status
   const resetTheErrorStatus = (value_name) => {
-    if (value_name === "message") {
+    if (value_name === 'message') {
       errorDispatch({
         type: value_name,
-        message: null,
+        message: null
       });
     } else {
       errorDispatch({
         type: value_name,
         [value_name]: null,
-        message: null,
+        message: null
       });
     }
   };
 
   const validation = (state) => {
-    if (state.first_name.trim() === "") {
+    if (state.first_name.trim() === '') {
       errorDispatch({
-        type: "first_name",
+        type: 'first_name',
         first_name: true,
-        message: language.COMPLETE_REGISTER.errorName,
+        message: language.COMPLETE_REGISTER.errorName
       });
       return;
     } else {
-      resetTheErrorStatus("first_name");
+      resetTheErrorStatus('first_name');
     }
-    if (state.last_name.trim() === "") {
+    if (state.last_name.trim() === '') {
       errorDispatch({
-        type: "last_name",
+        type: 'last_name',
         last_name: true,
-        message: language.COMPLETE_REGISTER.errorLastname,
+        message: language.COMPLETE_REGISTER.errorLastname
       });
       return;
     } else {
-      resetTheErrorStatus("last_name");
+      resetTheErrorStatus('last_name');
     }
-    if (showCompanyName && state.company_name === "") {
+    if (showCompanyName && state.company_name === '') {
       errorDispatch({
-        type: "company_name",
+        type: 'company_name',
         company_name: true,
-        message: "لطفاً نام شرکت را وارد کنید",
+        message: 'لطفاً نام شرکت را وارد کنید'
       });
       return;
     } else {
-      resetTheErrorStatus("company_name");
+      resetTheErrorStatus('company_name');
     }
     // if (state.day.trim() === "") {
     //   errorDispatch({
@@ -296,13 +304,13 @@ const Complete_register_container = ({
     // }
     if (!rolesCheck) {
       errorDispatch({
-        type: "condition",
+        type: 'condition',
         condition: true,
-        message: language.COMPLETE_REGISTER.errorPolicies,
+        message: language.COMPLETE_REGISTER.errorPolicies
       });
       return;
     } else {
-      resetTheErrorStatus("message");
+      resetTheErrorStatus('message');
     }
     return true;
   };
@@ -310,72 +318,106 @@ const Complete_register_container = ({
   useEffect(() => {
     if (rolesCheck) {
       errorDispatch({
-        type: "condition",
+        type: 'condition',
         condition: false,
-        message: "",
+        message: ''
       });
     }
   }, [rolesCheck]);
 
   return show ? (
-    <article className="responsive  complete_register_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+    <article
+      className='responsive  complete_register_container'
+      dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       {/* <div className='pageTitle'>
         <IoMdPersonAdd className='Person_icon' size='6rem' color='#4ba3ce' />
         <h3>{language.complete_register}</h3>
       </div> */}
       <form
-        className="complete_register_form"
-        onSubmit={(e) => submitHandler(e, state)}
-      >
-        <div className="login_modal_title">
-          <Icon name="avatar" width="20px" height="20px" color="#ffffff"/>
+        className='complete_register_form'
+        onSubmit={(e) => submitHandler(e, state)}>
+        <div className='login_modal_title'>
+          <Icon name='avatar' width='20px' height='20px' color='#ffffff' />
           <h2>{language.COMPLETE_REGISTER.title}</h2>
         </div>
-        <div className="name_container">
-          <TextInput
-            name="first_name"
+        <div className='name_container'>
+          <Input
+            name='first_name'
+            label={language.COMMON.name}
+            onClear={() => dispatch({ type: 'first_name', first_name: '' })}
+            onChange={(e) => dispatch({ type: 'first_name', first_name: e })}
+            value={state.first_name}
+            error={{
+              status: stateError.first_name,
+              message: ''
+            }}
+            validationItems={{
+              max: 50,
+              require: true,
+              messages: {
+                require: language.COMPLETE_REGISTER.name
+              }
+            }}
+          />
+          {/* <TextInput
+            name='first_name'
             label={language.COMMON.name}
             // min={2}
             max={50}
-            clearField={() => dispatch({ type: "first_name", first_name: "" })}
+            clearField={() => dispatch({ type: 'first_name', first_name: '' })}
             onChangeHandler={(e) =>
-              dispatch({ type: "first_name", first_name: e })
+              dispatch({ type: 'first_name', first_name: e })
             }
             value={state.first_name}
             autoFocus={false}
             error={{
               status: stateError.first_name,
-              message: null,
+              message: null
             }}
             validation={{
               required: true,
               messages: {
-                required: language.COMPLETE_REGISTER.name,
-              },
+                required: language.COMPLETE_REGISTER.name
+              }
+            }}
+          /> */}
+          <Input
+            name='last_name'
+            label={language.COMMON.lastName}
+            onClear={() => dispatch({ type: 'last_name', last_name: '' })}
+            onChange={(e) => dispatch({ type: 'last_name', last_name: e })}
+            value={state.last_name}
+            error={{
+              status: stateError.last_name,
+              message: ''
+            }}
+            validationItems={{
+              require: true,
+              messages: {
+                require: language.COMPLETE_REGISTER.lastName
+              }
             }}
           />
-          <TextInput
-            name="last_name"
+          {/* <TextInput
+            name='last_name'
             // min={2}
             label={language.COMMON.lastName}
             max={50}
-            clearField={() => dispatch({ type: "last_name", last_name: "" })}
-            onChangeHandler={(e) =>
-              dispatch({ type: "last_name", last_name: e })
-            }
+            clearField=
+            onChangeHandler=
             value={state.last_name}
             autoFocus={false}
             error={{
               status: stateError.last_name,
-              message: null,
+              message: null
             }}
             validation={{
               required: true,
               messages: {
-                required: language.COMPLETE_REGISTER.lastname,
-              },
+                required: language.COMPLETE_REGISTER.lastname
+              }
             }}
-          />
+          /> */}
         </div>
         {/* <div className='company_part'>
           {!showCompanyName ? (
@@ -475,24 +517,28 @@ const Complete_register_container = ({
             }}
           />
         </div> */}
-        <div className="check_box_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
-          <label className="container">
+        <div
+          className='check_box_container'
+          dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+          <label className='container'>
             <span
-              onClick={() => MODAL_CONTEXT.modalHandler("Law")}
+              onClick={() => MODAL_CONTEXT.modalHandler('Law')}
               style={{
-                textDecoration: "underline",
-                color: "#3fa6da",
-                cursor: "pointer",
-                display: "inline-block",
-                marginBottom: "11px",
-              }}
-            >
-              {" "}
+                textDecoration: 'underline',
+                color: '#3fa6da',
+                cursor: 'pointer',
+                display: 'inline-block',
+                marginBottom: '11px'
+              }}>
+              {' '}
               {language.COMPLETE_REGISTER.policies}
             </span>
-            <span onClick={() => setRolesCheck(true)}> {language.COMPLETE_REGISTER.iAgree}</span>
+            <span onClick={() => setRolesCheck(true)}>
+              {' '}
+              {language.COMPLETE_REGISTER.iAgree}
+            </span>
             <input
-              type="checkbox"
+              type='checkbox'
               onChange={(e) => {
                 e.persist();
                 if (e.target.checked) {
@@ -501,34 +547,33 @@ const Complete_register_container = ({
                   setRolesCheck(false);
                 }
               }}
-              name="roles"
+              name='roles'
             />
             <span
               className={[
-                "checkmark",
-                stateError.condition ? "red_check_box" : null,
-              ].join(" ")}
-            ></span>
+                'checkmark',
+                stateError.condition ? 'red_check_box' : null
+              ].join(' ')}></span>
           </label>
         </div>
         <Button
-          class={[
-            "Blue_BTN local_BTN HEAP_CompleteRegister_Btn_Submit",
+          customClass={[
+            'local_BTN HEAP_CompleteRegister_Btn_Submit',
             ,
-            deactivate_form ? "disable_BTN" : null,
-          ].join(" ")}
+            deactivate_form ? 'disable_BTN' : null
+          ].join(' ')}
           value={language.COMMON.ok}
           disable={deactivate_form}
-          click={() => { }}
+          click={() => {}}
           loading={loading}
         />
         {stateError.message ? (
-          <p className="Error_message_text"> {stateError.message}</p>
+          <p className='Error_message_text'> {stateError.message}</p>
         ) : null}
       </form>
     </article>
   ) : (
-    <article className="minHeight"></article>
+    <article className='minHeight'></article>
   );
 };
 

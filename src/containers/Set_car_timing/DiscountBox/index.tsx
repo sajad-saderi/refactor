@@ -1,17 +1,18 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import dynamic from "next/dynamic";
+import { useState, useEffect, useRef, useContext } from 'react';
+import dynamic from 'next/dynamic';
 
-const TextInput = dynamic(() => import("../../../components/form/TextInput"));
+const TextInput = dynamic(() => import('../../../components/form/TextInput'));
 const DropdownSearch = dynamic(() =>
-  import("../../../components/form/Dropdown")
+  import('../../../components/form/Dropdown')
 );
 // import TextInput from "../../../components/form/TextInput";
 // import DropdownSearch from "../../../components/form/Dropdown";
-import Checkbox from "../../../components/form/Checkbox";
-// import "./DiscountBox.scss"; 
+import Checkbox from '../../../components/form/Checkbox';
+// import "./DiscountBox.scss";
 import { dynamicString } from '../../../helpers/dynamicString';
-import languageCTX from '../../../context/languageCTX'
-import Icon from "../../../components/Icons";
+import languageCTX from '../../../context/languageCTX';
+import Icon from '../../../components/Icons';
+import Input from '../../../components/form/input';
 
 const DiscountBox = ({
   initialDiscountList,
@@ -21,57 +22,57 @@ const DiscountBox = ({
   showDiscount,
   setShowBox,
   error,
-  language,
+  language
 }: IDiscountBox) => {
-  const [discount_percent, setDiscount_percent] = useState("");
+  const [discount_percent, setDiscount_percent] = useState('');
   const [Error_discount_percent, setError_discount_percent] = useState({
     status: false,
-    message: "",
+    message: ''
   });
   const [DiscountList, setDiscountList] = useState([]);
   const [days_limit, setDays_limit] = useState(null);
   const [days_limit_name, setDays_limit_name] = useState(null);
   const [Error_days_limit, setError_days_limit] = useState({
     status: false,
-    message: "",
+    message: ''
   });
   const [Discountcheck, setDiscountcheck] = useState(0);
   const [mode, setMode] = useState({
     status: false,
-    index: null,
+    index: null
   });
-  const { activeLanguage } = useContext(languageCTX)
+  const { activeLanguage } = useContext(languageCTX);
   const daysFarsi = [
-    { key: "1", value: "1", name: { fa: "۱ روز", en: '1 day' } },
-    { key: "2", value: "2", name: { fa: "۲ روز", en: '2 days' } },
-    { key: "3", value: "3", name: { fa: "۳ روز", en: '3 days' } },
-    { key: "4", value: "4", name: { fa: "۴ روز", en: '4 days' } },
-    { key: "5", value: "5", name: { fa: "۵ روز", en: '5 days' } },
-    { key: "6", value: "6", name: { fa: "۶ روز", en: '6 days' } },
-    { key: "7", value: "7", name: { fa: "۷ روز", en: '7 days' } },
-    { key: "8", value: "8", name: { fa: "۸ روز", en: '8 days' } },
-    { key: "9", value: "9", name: { fa: "۹ روز", en: '9 days' } },
-    { key: "10", value: "10", name: { fa: "۱۰ روز", en: '10 days' } },
-    { key: "11", value: "11", name: { fa: "۱۱ روز", en: '11 days' } },
-    { key: "12", value: "12", name: { fa: "۱۲ روز", en: '12 days' } },
-    { key: "13", value: "13", name: { fa: "۱۳ روز", en: '13 days' } },
-    { key: "14", value: "14", name: { fa: "۱۴ روز", en: '14 days' } },
-    { key: "15", value: "15", name: { fa: "۱۵ روز", en: '15 days' } },
-    { key: "16", value: "16", name: { fa: "۱۶ روز", en: '16 days' } },
-    { key: "17", value: "17", name: { fa: "۱۷ روز", en: '17 days' } },
-    { key: "18", value: "18", name: { fa: "۱۸ روز", en: '18 days' } },
-    { key: "19", value: "19", name: { fa: "۱۹ روز", en: '19 days' } },
-    { key: "20", value: "20", name: { fa: "۲۰ روز", en: '20 days' } },
-    { key: "21", value: "21", name: { fa: "۲۱ روز", en: '21 days' } },
-    { key: "22", value: "22", name: { fa: "۲۲ روز", en: '22 days' } },
-    { key: "23", value: "23", name: { fa: "۲۳ روز", en: '23 days' } },
-    { key: "24", value: "24", name: { fa: "۲۴ روز", en: '24 days' } },
-    { key: "25", value: "25", name: { fa: "۲۵ روز", en: '25 days' } },
-    { key: "26", value: "26", name: { fa: "۲۶ روز", en: '26 days' } },
-    { key: "27", value: "27", name: { fa: "۲۷ روز", en: '27 days' } },
-    { key: "28", value: "28", name: { fa: "۲۸ روز", en: '28 days' } },
-    { key: "29", value: "29", name: { fa: "۲۹ روز", en: '29 days' } },
-    { key: "30", value: "30", name: { fa: "۳۰ روز", en: '30 days' } },
+    { key: '1', value: '1', name: { fa: '۱ روز', en: '1 day' } },
+    { key: '2', value: '2', name: { fa: '۲ روز', en: '2 days' } },
+    { key: '3', value: '3', name: { fa: '۳ روز', en: '3 days' } },
+    { key: '4', value: '4', name: { fa: '۴ روز', en: '4 days' } },
+    { key: '5', value: '5', name: { fa: '۵ روز', en: '5 days' } },
+    { key: '6', value: '6', name: { fa: '۶ روز', en: '6 days' } },
+    { key: '7', value: '7', name: { fa: '۷ روز', en: '7 days' } },
+    { key: '8', value: '8', name: { fa: '۸ روز', en: '8 days' } },
+    { key: '9', value: '9', name: { fa: '۹ روز', en: '9 days' } },
+    { key: '10', value: '10', name: { fa: '۱۰ روز', en: '10 days' } },
+    { key: '11', value: '11', name: { fa: '۱۱ روز', en: '11 days' } },
+    { key: '12', value: '12', name: { fa: '۱۲ روز', en: '12 days' } },
+    { key: '13', value: '13', name: { fa: '۱۳ روز', en: '13 days' } },
+    { key: '14', value: '14', name: { fa: '۱۴ روز', en: '14 days' } },
+    { key: '15', value: '15', name: { fa: '۱۵ روز', en: '15 days' } },
+    { key: '16', value: '16', name: { fa: '۱۶ روز', en: '16 days' } },
+    { key: '17', value: '17', name: { fa: '۱۷ روز', en: '17 days' } },
+    { key: '18', value: '18', name: { fa: '۱۸ روز', en: '18 days' } },
+    { key: '19', value: '19', name: { fa: '۱۹ روز', en: '19 days' } },
+    { key: '20', value: '20', name: { fa: '۲۰ روز', en: '20 days' } },
+    { key: '21', value: '21', name: { fa: '۲۱ روز', en: '21 days' } },
+    { key: '22', value: '22', name: { fa: '۲۲ روز', en: '22 days' } },
+    { key: '23', value: '23', name: { fa: '۲۳ روز', en: '23 days' } },
+    { key: '24', value: '24', name: { fa: '۲۴ روز', en: '24 days' } },
+    { key: '25', value: '25', name: { fa: '۲۵ روز', en: '25 days' } },
+    { key: '26', value: '26', name: { fa: '۲۶ روز', en: '26 days' } },
+    { key: '27', value: '27', name: { fa: '۲۷ روز', en: '27 days' } },
+    { key: '28', value: '28', name: { fa: '۲۸ روز', en: '28 days' } },
+    { key: '29', value: '29', name: { fa: '۲۹ روز', en: '29 days' } },
+    { key: '30', value: '30', name: { fa: '۳۰ روز', en: '30 days' } }
   ];
   // const DiscountWrapper = useRef(null);
 
@@ -81,31 +82,31 @@ const DiscountBox = ({
       setDiscountList((DiscountList) =>
         DiscountList.concat({
           days_limit: data.days_limit,
-          discount_percent: data.discount_percent,
+          discount_percent: data.discount_percent
         })
       );
     } else {
       if (!days_limit) {
         setError_days_limit({
           status: true,
-          message: language.CAR_SETTING.error20,
+          message: language.CAR_SETTING.error20
         });
         return;
       }
       setError_days_limit({
         status: false,
-        message: "",
+        message: ''
       });
-      if (discount_percent === "") {
+      if (discount_percent === '') {
         setError_discount_percent({
           status: true,
-          message: language.CAR_SETTING.error21,
+          message: language.CAR_SETTING.error21
         });
         return;
       }
       setError_discount_percent({
         status: false,
-        message: "",
+        message: ''
       });
       // if (mode.status) {
       //   let temp = [...DiscountList];
@@ -123,15 +124,15 @@ const DiscountBox = ({
       setDiscountList((DiscountList) =>
         DiscountList.concat({
           days_limit: days_limit,
-          discount_percent: discount_percent,
+          discount_percent: discount_percent
         })
       );
       addDiscount({
         days_limit: days_limit,
-        discount_percent: discount_percent,
+        discount_percent: discount_percent
       });
       // }
-      setDiscount_percent("");
+      setDiscount_percent('');
       setDays_limit_name(null);
       setDays_limit(null);
       setDiscountcheck(0);
@@ -155,7 +156,9 @@ const DiscountBox = ({
   // }, [error]);
 
   return (
-    <div className='Discount_form_container' dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+    <div
+      className='Discount_form_container'
+      dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       <p>{language.CAR_SETTING.discountNote}</p>
       {Discountcheck === 1 ? (
         <div className='Discount_Controller'>
@@ -176,7 +179,7 @@ const DiscountBox = ({
                 if (Error_days_limit.status) {
                   setError_days_limit({
                     status: false,
-                    message: "",
+                    message: ''
                   });
                 }
                 setDays_limit_name(e.text);
@@ -188,38 +191,37 @@ const DiscountBox = ({
             )}
           </div>
           <div className='tail containers'>
-            <TextInput
+            <Input
               name='price'
-              label={language.CAR_SETTING.percentage}
-              error={{
-                status: Error_discount_percent.status || error,
-                message: Error_discount_percent.message,
-              }}
-              value={discount_percent}
-              number={true}
-              autoFocus={false}
-              clearField={() => {
-                setDiscount_percent("");
-              }}
-              min={1}
-              max={2}
-              onChangeHandler={(e) => {
+              number
+              onChange={(e) => {
                 if (Error_discount_percent.status) {
                   setError_discount_percent({
                     status: false,
-                    message: "",
+                    message: ''
                   });
                 }
                 setDiscount_percent(e);
               }}
-              validation={{
-                required: true,
-                messages: {
-                  required: language.CAR_SETTING.error22,
-                },
+              onClear={() => {
+                setDiscount_percent('');
               }}
+              error={{
+                status: Error_discount_percent.status || error,
+                message: Error_discount_percent.message
+              }}
+              value={discount_percent}
+              validationItems={{
+                require: true,
+                number: true,
+                min: 1,
+                max: 99,
+                messages: {
+                  require: language.CAR_SETTING.error22
+                }
+              }}
+              tailValue={`% ${language.CAR_SETTING.percentage}`}
             />
-            <span> %</span>
           </div>
           <div className='divs button_box'>
             <p className='confirm' onClick={onConfirm}>
@@ -233,41 +235,33 @@ const DiscountBox = ({
                 } else {
                   setMode({
                     status: false,
-                    index: null,
+                    index: null
                   });
-                  setDiscount_percent("");
+                  setDiscount_percent('');
                   setDays_limit_name(null);
                   setDays_limit(null);
                   setDiscountcheck(0);
                 }
                 setShowBox(0);
-              }}
-            >
+              }}>
               {language.COMMON.cancel}
             </p>
             {mode.status && (
               <span
-              className='Trash_icon_in_price_cart'
-              onClick={() => {
-                setMode({
-                  status: false,
-                  index: null,
-                });
-                setDiscount_percent("");
-                setDays_limit_name(null);
-                setDays_limit(null);
-                setDiscountcheck(0);
-                setShowBox(0);
-              }}>
-
-              <Icon
-              name="trash"
-                color='#737373'
-                width='20px'
-                height='20px'
-              />
+                className='Trash_icon_in_price_cart'
+                onClick={() => {
+                  setMode({
+                    status: false,
+                    index: null
+                  });
+                  setDiscount_percent('');
+                  setDays_limit_name(null);
+                  setDays_limit(null);
+                  setDiscountcheck(0);
+                  setShowBox(0);
+                }}>
+                <Icon name='trash' color='#737373' width='20px' height='20px' />
               </span>
-
             )}
           </div>
         </div>
@@ -277,11 +271,10 @@ const DiscountBox = ({
           onClick={() => {
             setShowBox(1);
             setDiscountcheck(1);
-          }}
-        >
+          }}>
           <p>
             {language.CAR_SETTING.addingDiscount}
-            <Icon name="plus" width="20px" height="20px" color="#4ba3ce" /> 
+            <Icon name='plus' width='20px' height='20px' color='#4ba3ce' />
           </p>
         </div>
       )}
@@ -301,7 +294,7 @@ const DiscountBox = ({
                   onClick={() => {
                     setMode({
                       status: true,
-                      index: i,
+                      index: i
                     });
                     setDays_limit(item.days_limit);
                     setDays_limit_name(`${item.days_limit} روز`);
@@ -314,10 +307,13 @@ const DiscountBox = ({
                       })
                     );
                     removeDiscountList(i);
-                  }}
-                >
-
-                  <Icon name="pencil" width='20px' height="20px" color="#313131" />
+                  }}>
+                  <Icon
+                    name='pencil'
+                    width='20px'
+                    height='20px'
+                    color='#313131'
+                  />
                 </span>
                 <span
                   // className="cancel"
@@ -330,9 +326,13 @@ const DiscountBox = ({
                     setDiscountcheck(0);
                     removeDiscountList(i);
                     setShowBox(0);
-                  }}
-                >
-                  <Icon name="trash" width='20px' height="20px" color="#313131" />
+                  }}>
+                  <Icon
+                    name='trash'
+                    width='20px'
+                    height='20px'
+                    color='#313131'
+                  />
                 </span>
               </div>
             </div>

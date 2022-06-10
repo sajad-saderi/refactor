@@ -59,8 +59,8 @@ const Input = ({
               ? value === ''
                 ? value.toLocaleString()
                 : withSeparator
-                  ? Number(value).toLocaleString()
-                  : value
+                ? Number(value).toLocaleString()
+                : value
               : value
           }
           onChange={valueHandler}

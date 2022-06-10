@@ -3,21 +3,21 @@ import TextInput from '../../../../components/form/TextInput';
 import axios from 'axios';
 // import "./Tell_me.scss";
 
-
-import Button from "../../../../components/form/Button";
-import modal_context from "../../../../context/Modal_context";
-import languageCTX from "../../../../context/languageCTX";
+import Button from '../../../../components/form/Button';
+import modal_context from '../../../../context/Modal_context';
+import languageCTX from '../../../../context/languageCTX';
 import { dynamicString } from '../../../../helpers/dynamicString';
+import Input from '../../../../components/form/input';
 
 let location_id = null;
 
 const TellMe = ({ language }) => {
-  const [cellPhone, setCellPhone] = useState("");
-  const [locationName, setLocationName] = useState("");
+  const [cellPhone, setCellPhone] = useState('');
+  const [locationName, setLocationName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
-    message: '',
+    message: ''
   });
   const Modal_context = useContext(modal_context);
   const localeCTX = useContext(languageCTX);
@@ -28,7 +28,7 @@ const TellMe = ({ language }) => {
     if (cellPhone.length < 11) {
       setError({
         status: true,
-        message: language.LOGIN.error2,
+        message: language.LOGIN.error2
       });
       return;
     }
@@ -39,7 +39,7 @@ const TellMe = ({ language }) => {
     axios
       .post(DOMAIN + SEND_CONFIRM_CODE, {
         cell: cellPhone,
-        location_id: location_id,
+        location_id: location_id
       })
       .then((response) => {
         if (response.data.success) {
@@ -51,13 +51,13 @@ const TellMe = ({ language }) => {
         setLoading(false);
         console.error(
           '!Error',
-          error.response ? error.response.data.message : error.message,
+          error.response ? error.response.data.message : error.message
         );
         if (error.response) {
           if (error.response.data) {
             setError({
               status: true,
-              message: error.response.data.message,
+              message: error.response.data.message
             });
           }
         }
@@ -79,45 +79,62 @@ const TellMe = ({ language }) => {
 
   return (
     <>
-      <div className="modal_box_div">
+      <div className='modal_box_div'>
         <form onSubmit={sendCellPhonenumber}>
-          <p className="p1">
-            {language.COMMON.tellMeModal}
-          </p>
+          <p className='p1'>{language.COMMON.tellMeModal}</p>
           {/* <p className="p2"></p> */}
-          <TextInput
-            error={{ status: error.status, message: error.message }}
-            name="cell Phone"
-            onChangeHandler={(e) => {
+          <Input
+            name='cell Phone'
+            labelColor='#737373'
+            label={language.LOGIN.error1}
+            placeholder={language.LOGIN.cellPhone}
+            onClear={clearField}
+            number
+            onChange={(e) => {
               setCellPhone(e);
             }}
+            value={cellPhone}
+            error={error}
+            validationItems={{
+              require: true,
+              messages: {
+                require: language.LOGIN.error1
+              }
+            }}
+          />
+          {/* <TextInput
+            error={{ status: error.status, message: error.message }}
+            name='cell Phone'
+            onChangeHandler={}
             value={cellPhone}
             min={11}
             max={11}
             autoFocus={false}
-            LabelColor="#737373"
+            LabelColor='#737373'
             label={language.LOGIN.error1}
-            placeholder={language.LOGIN.cellPhone}
+            
             clearField={clearField}
             validation={{
               required: true,
               messages: {
-                required: language.LOGIN.error1,
-              },
+                required: language.LOGIN.error1
+              }
             }}
-          />
+          /> */}
           {/* show error message */}
           {/* <span className="error_message">{error.message}</span> */}
           {/* Sepris Currently Is Not Covering {value} */}
-          <p className="p3">{dynamicString([locationName], language.COMMON.tellMeNote)}</p>
+          <p className='p3'>
+            {dynamicString([locationName], language.COMMON.tellMeNote)}
+          </p>
           <Button
-            class="Blue_BTN login_submit HEAP_ModalInformMeMyCity_Btn_Submit"
+            customClass='login_submit HEAP_ModalInformMeMyCity_Btn_Submit'
             value={language.COMMON.ok}
             loading={loading}
-            click={() => { }}
+            click={() => {}}
           />
-        </form >
-      </div >
+        </form>
+      </div>
     </>
   );
 };

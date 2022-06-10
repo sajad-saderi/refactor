@@ -1,51 +1,52 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from 'react';
 
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import DatePicker, { DayRange, utils } from "react-modern-calendar-datepicker";
-import moment from "moment-jalaali";
-import dynamic from "next/dynamic";
-import net_CTX from "../../context/internetConnectionCTX";
-import languageCTX from "../../context/languageCTX";
-const Button = dynamic(() => import("../../components/form/Button"));
-import toast_context from "../../context/Toast_context";
-import DropdownSearch from "../../components/form/Dropdown";
-import { REQUEST_GET_LOCATION } from "../../API/index";
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker, { DayRange, utils } from 'react-modern-calendar-datepicker';
+import moment from 'moment-jalaali';
+import dynamic from 'next/dynamic';
+import net_CTX from '../../context/internetConnectionCTX';
+import languageCTX from '../../context/languageCTX';
+const Button = dynamic(() => import('../../components/form/Button'));
+import toast_context from '../../context/Toast_context';
+import DropdownSearch from '../../components/form/Dropdown';
+import { REQUEST_GET_LOCATION } from '../../API/index';
 
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 // import "./search.scss";
 // import Button from "../../components/form/Button";
 
-import modal_context from "../../context/Modal_context";
-import AppStore from "../../context/app";
-import ErrorHelper from "../../../utils/error_helper";
-import { activeCities } from "../../helpers/activeCities";
-import { twoWayDateConvertor } from "../../helpers/dateControler";
-import { ICalender } from "../../../types";
-import { numberChanger } from "../../../utils/numberChanger";
-import { limitForSearchResult } from "../../../utils/constances";
+import modal_context from '../../context/Modal_context';
+import AppStore from '../../context/app';
+import ErrorHelper from '../../../utils/error_helper';
+import { activeCities } from '../../helpers/activeCities';
+import { twoWayDateConvertor } from '../../helpers/dateControler';
+import { ICalender } from '../../../types';
+import { numberChanger } from '../../../utils/numberChanger';
+import { limitForSearchResult } from '../../../utils/constances';
+import classNames from 'classnames';
 
-moment.loadPersian({ dialect: "persian-modern", usePersianDigits: false });
+moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: false });
 
 let dateObject: ICalender | null = { from: null, to: null };
 let initialCity = {
   key: 1,
   name: {
-    fa: "تهران",
-    breadcrumb_fa: "تهران",
-    en: "Tehran",
-    breadcrumb_en: "Tehran",
+    fa: 'تهران',
+    breadcrumb_fa: 'تهران',
+    en: 'Tehran',
+    breadcrumb_en: 'Tehran'
   },
-  value: 1,
+  value: 1
 };
 const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [LocationId, setLocationId] = useState(1);
-  const [LocationName, setLocationName] = useState("");
-  const [fromDay, setFromDay] = useState("");
-  const [toDay, setToDay] = useState("");
+  const [LocationName, setLocationName] = useState('');
+  const [fromDay, setFromDay] = useState('');
+  const [toDay, setToDay] = useState('');
   const [dayRange, setDayRange] = useState<DayRange>({
     to: null,
-    from: null,
+    from: null
   });
 
   const [locationsList, setLocationsList] = useState([]);
@@ -53,11 +54,11 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const [showBorder, setShowBorder] = useState(false);
   const [fromError, setFromError] = useState({
     status: false,
-    message: "",
+    message: ''
   });
   const [toError, setToError] = useState({
     status: false,
-    message: "",
+    message: ''
   });
 
   const MODAL_CONTEXT = useContext(modal_context);
@@ -68,8 +69,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   const { activeLanguage } = useContext(languageCTX);
 
   useEffect(() => {
-    if (localStorage["location"]) {
-      let location_storage = JSON.parse(localStorage["location"]);
+    if (localStorage['location']) {
+      let location_storage = JSON.parse(localStorage['location']);
       if (!activeCities(location_storage.value)) {
         setLocationId(location_storage.value);
         setLocationName(location_storage.name[activeLanguage]);
@@ -86,13 +87,13 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
   }, []);
 
   useEffect(() => {
-    if (activeLanguage === "fa") {
-      moment.locale("fa");
+    if (activeLanguage === 'fa') {
+      moment.locale('fa');
     } else {
-      moment.locale("en");
+      moment.locale('en');
     }
-    if (localStorage["location"]) {
-      let location_storage = JSON.parse(localStorage["location"]);
+    if (localStorage['location']) {
+      let location_storage = JSON.parse(localStorage['location']);
       if (!activeCities(location_storage.value))
         setLocationName(location_storage.name[activeLanguage]);
       else {
@@ -119,62 +120,62 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           message: error.response
             ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: language.COMMON.fetchCitiesError,
+                _400Message: language.COMMON.fetchCitiesError
               })
             : error,
-          color: "#ed9026",
+          color: '#ed9026',
           time: 0,
-          autoClose: false,
+          autoClose: false
         });
     }
   };
 
   // set the start and end date from storage if there are there
   const setDateFromStorage = () => {
-    let localStorageDate = localStorage["date"];
+    let localStorageDate = localStorage['date'];
     if (localStorageDate) {
       let { from, to } = JSON.parse(localStorageDate);
       if (!from) {
-        localStorage.removeItem("date");
+        localStorage.removeItem('date');
         set_default_date_for_search();
         return;
       }
       // if the start date on storage is bigger then today
-      if (activeLanguage === "fa") {
+      if (activeLanguage === 'fa') {
         if (from.fa.dump.day > moment().jDate()) {
           if (from.fa.dump.month >= moment().jMonth() + 1) {
             if (from.fa.dump.year >= moment().jYear()) {
               setDayRange({
                 from: from.fa.dump,
-                to: to.fa.dump,
+                to: to.fa.dump
               });
             } else {
-              localStorage.removeItem("date");
+              localStorage.removeItem('date');
               set_default_date_for_search();
             }
           }
           // id the day is smaller than the saved one but the current month is bigger then the month on storage
           else {
-            localStorage.removeItem("date");
+            localStorage.removeItem('date');
             set_default_date_for_search();
           }
         } else if (from.fa.dump.month > moment().jMonth() + 1) {
           if (from.fa.dump.year >= moment().jYear()) {
             setDayRange({
               from: from.fa.dump,
-              to: to.fa.dump,
+              to: to.fa.dump
             });
           } else {
-            localStorage.removeItem("date");
+            localStorage.removeItem('date');
             set_default_date_for_search();
           }
         } else if (from.fa.dump.year > moment().jYear()) {
           setDayRange({
             from: from.fa.dump,
-            to: to.fa.dump,
+            to: to.fa.dump
           });
         } else {
-          localStorage.removeItem("date");
+          localStorage.removeItem('date');
           set_default_date_for_search();
         }
       } else {
@@ -184,35 +185,35 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             if (from.en.dump.year >= date.getFullYear()) {
               setDayRange({
                 from: from.en.dump,
-                to: to.en.dump,
+                to: to.en.dump
               });
             } else {
-              localStorage.removeItem("date");
+              localStorage.removeItem('date');
               set_default_date_for_search();
             }
           }
           // id the day is smaller than the saved one but the current month is bigger then the month on storage
           else {
-            localStorage.removeItem("date");
+            localStorage.removeItem('date');
             set_default_date_for_search();
           }
         } else if (from.en.dump.month > date.getMonth() + 1) {
           if (from.en.dump.year >= date.getFullYear()) {
             setDayRange({
               from: from.en.dump,
-              to: to.en.dump,
+              to: to.en.dump
             });
           } else {
-            localStorage.removeItem("date");
+            localStorage.removeItem('date');
             set_default_date_for_search();
           }
         } else if (from.en.dump.year > date.getFullYear()) {
           setDayRange({
             from: from.en.dump,
-            to: to.en.dump,
+            to: to.en.dump
           });
         } else {
-          localStorage.removeItem("date");
+          localStorage.removeItem('date');
           set_default_date_for_search();
         }
       }
@@ -223,31 +224,31 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
 
   const set_default_date_for_search = () => {
     // if start date and end date is not set, automatically show the result for 3 to 6 days ahead
-    if (activeLanguage === "fa") {
+    if (activeLanguage === 'fa') {
       let from_date = moment()
-        .add(3, "day")
-        .format("jYYYY/jMM/jDD")
-        .split("/");
+        .add(3, 'day')
+        .format('jYYYY/jMM/jDD')
+        .split('/');
       let to_date = moment()
-        .add(6, "day")
-        .format("jYYYY/jMM/jDD")
-        .split("/");
+        .add(6, 'day')
+        .format('jYYYY/jMM/jDD')
+        .split('/');
       setDayRange({
         from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },
-        to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] },
+        to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] }
       });
     } else {
       let from_date = moment()
-        .add(3, "day")
-        .format("YYYY/MM/DD")
-        .split("/");
+        .add(3, 'day')
+        .format('YYYY/MM/DD')
+        .split('/');
       let to_date = moment()
-        .add(6, "day")
-        .format("YYYY/MM/DD")
-        .split("/");
+        .add(6, 'day')
+        .format('YYYY/MM/DD')
+        .split('/');
       setDayRange({
         from: { day: +from_date[2], month: +from_date[1], year: +from_date[0] },
-        to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] },
+        to: { day: +to_date[2], month: +to_date[1], year: +to_date[0] }
       });
     }
   };
@@ -256,7 +257,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     e.preventDefault();
     if (dayRange.from && dayRange.to) {
       // if we are on dynamic page don't change the route
-      localStorage["searchedLocation"] = LocationName;
+      localStorage['searchedLocation'] = LocationName;
       if (dynamic) {
         searchSubmit({
           location_id: LocationId,
@@ -264,8 +265,8 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           date: {
             // convert dates to standard structure
             Start_date: `${dayRange.from.year}/${dayRange.from.month}/${dayRange.from.day}`,
-            End_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
-          },
+            End_date: `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`
+          }
         });
         return;
       }
@@ -285,12 +286,12 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
 
   useEffect(() => {
     if (dayRange.from) {
-      setFromError({ status: false, message: "" });
+      setFromError({ status: false, message: '' });
       setFromDay(convertDate(dayRange.from));
       dateObject = { from: twoWayDateConvertor(dayRange.from), to: null };
     } else {
-      setFromDay(" ");
-      setToDay(" ");
+      setFromDay(' ');
+      setToDay(' ');
       dateObject = { from: null, to: null };
     }
     if (dayRange.to) {
@@ -299,28 +300,28 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         dayRange.to.month === dayRange.from.month &&
         dayRange.to.year === dayRange.from.year
       ) {
-        setFromDay("");
+        setFromDay('');
         setDayRange({
           from: null,
-          to: null,
+          to: null
         });
         setToError({
           status: true,
-          message: language.COMMON.errorEmptyDate,
+          message: language.COMMON.errorEmptyDate
         });
         dateObject = { from: null, to: null };
       } else {
-        setToError({ status: false, message: "" });
+        setToError({ status: false, message: '' });
         setShowBorder(false);
         setToDay(convertDate(dayRange.to));
         dateObject.to = twoWayDateConvertor(dayRange.to);
       }
     } else {
-      setToDay(" ");
+      setToDay(' ');
     }
     if (dateObject.from && dateObject.to) {
       store.setDate(dateObject);
-      localStorage["date"] = JSON.stringify(dateObject);
+      localStorage['date'] = JSON.stringify(dateObject);
     }
   }, [dayRange]);
 
@@ -333,13 +334,13 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
 
   const convertDate = (v) => {
     let value = null;
-    if (activeLanguage === "fa") {
-      value = moment(`${v.year}/${v.month}/${v.day}`, "jYYYY/jM/jD").format(
-        "dddd jDD jMMMM"
+    if (activeLanguage === 'fa') {
+      value = moment(`${v.year}/${v.month}/${v.day}`, 'jYYYY/jM/jD').format(
+        'dddd jDD jMMMM'
       );
     } else {
-      value = moment(`${v.year}/${v.month}/${v.day}`, "YYYY/M/D").format(
-        "ddd DD MMM"
+      value = moment(`${v.year}/${v.month}/${v.day}`, 'YYYY/M/D').format(
+        'ddd DD MMM'
       );
     }
     return value;
@@ -349,8 +350,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     <section className='search_box'>
       <form
         data-test-id='GotoSearchResult'
-        onSubmit={(e) => GotoSearchResult(e)}
-      >
+        onSubmit={(e) => GotoSearchResult(e)}>
         <div className='search_box_div'>
           <p className='label'>{language.COMMON.pickupLocation}</p>
           <DropdownSearch
@@ -360,14 +360,14 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             hardValue={LocationName}
             search_place_holder={language.COMMON.inCities}
             Select={(i) => {
-              localStorage["location"] = JSON.stringify(i);
+              localStorage['location'] = JSON.stringify(i);
               if (activeCities(i.value)) {
-                MODAL_CONTEXT.modalHandler("TellMe");
+                MODAL_CONTEXT.modalHandler('TellMe');
               } else {
                 store.setLocation({
                   value: i.value,
                   text: i.name.fa,
-                  en: i.name.en,
+                  en: i.name.en
                 });
                 setLocationId(i.value);
                 setLocationName(i.name[activeLanguage]);
@@ -379,21 +379,20 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         <div className='Date_picker_container'>
           <div
             className={[
-              "date_Input_Container",
+              'date_Input_Container',
               dayRange.from
                 ? dayRange.to
-                  ? activeLanguage === "fa"
-                    ? "PushToRight"
-                    : "PushToLeft"
-                  : activeLanguage === "fa"
-                  ? "PushToLeft"
-                  : "PushToRight"
-                : activeLanguage === "fa"
-                ? "PushToRight"
-                : "PushToLeft",
-            ].join(" ")}
-            onClick={() => setShowBorder(true)}
-          >
+                  ? activeLanguage === 'fa'
+                    ? 'PushToRight'
+                    : 'PushToLeft'
+                  : activeLanguage === 'fa'
+                  ? 'PushToLeft'
+                  : 'PushToRight'
+                : activeLanguage === 'fa'
+                ? 'PushToRight'
+                : 'PushToLeft'
+            ].join(' ')}
+            onClick={() => setShowBorder(true)}>
             <DatePicker
               value={dayRange}
               onChange={setDayRange}
@@ -405,53 +404,51 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             />
             <div
               className={`${
-                activeLanguage !== "fa" ? "en_input_container" : ""
-              } input_container`}
-            >
+                activeLanguage !== 'fa' ? 'en_input_container' : ''
+              } input_container`}>
               <p className='label'>{language.COMMON.pickUpDate}</p>
               <input
                 data-hj-allow
                 className={
                   fromError.status
-                    ? "input_Error"
+                    ? 'input_Error'
                     : showBorder
                     ? dayRange.from
                       ? dayRange.to
-                        ? "activeBorder"
+                        ? 'activeBorder'
                         : null
-                      : "activeBorder"
+                      : 'activeBorder'
                     : null
                 }
                 readOnly={true}
-                value={fromDay ? numberChanger(fromDay, activeLanguage) : ""}
+                value={fromDay ? numberChanger(fromDay, activeLanguage) : ''}
               />
               {/* appear the error for the start date here */}
               <span>{fromError.message}</span>
             </div>
             <div
               className={`${
-                activeLanguage !== "fa" ? "en_input_container" : ""
-              } input_container`}
-            >
+                activeLanguage !== 'fa' ? 'en_input_container' : ''
+              } input_container`}>
               <p className='label'>{language.COMMON.dropOffDate}</p>
               <input
                 data-hj-allow
                 className={[
-                  "exception_input",
+                  'exception_input',
                   toError.status
-                    ? "input_Error"
+                    ? 'input_Error'
                     : showBorder
                     ? dayRange.to
                       ? dayRange.from
                         ? null
                         : null
                       : dayRange.from
-                      ? "activeBorder"
+                      ? 'activeBorder'
                       : null
-                    : null,
-                ].join(" ")}
+                    : null
+                ].join(' ')}
                 readOnly={true}
-                value={toDay ? numberChanger(toDay, activeLanguage) : ""}
+                value={toDay ? numberChanger(toDay, activeLanguage) : ''}
               />
               {/* appear the error for the end date here */}
               <span>{toError.message}</span>
@@ -462,7 +459,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
           <p className='Search_Text_transparent'>search</p>
           <Button
             value={language.COMMON.search}
-            class='Blue_BTN search_Btn HEAP_Home_Btn_Search'
+            customClass={classNames('searchButton', 'HEAP_Home_Btn_Search')}
             loading={loading}
             click={() => {}}
           />

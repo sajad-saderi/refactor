@@ -1,4 +1,4 @@
-@import "../../../styles/colors";
+@import '../../../styles/colors';
 
 .DropDown_container {
   *::selection {
@@ -19,7 +19,6 @@
     position: relative;
     input {
       font-family: inherit;
-      margin: 3px auto 0;
       display: block;
       width: 100%;
       outline: 0;
@@ -62,7 +61,7 @@
       top: 13px;
       transition: 0.25s;
       cursor: pointer;
-      left: 10px; 
+      left: 10px;
     }
     .rotate_arrow_down_icon {
       display: flex;
@@ -83,7 +82,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
     border: 1px solid rgba(34, 36, 38, 0.18);
-    border-top: none; 
+    border-top: none;
     background: $_ffffff;
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.11);
     .spinnerPlaceholder {
@@ -164,7 +163,7 @@
     }
   }
 }
-.DropDown_container[dir="ltr"] {
+.DropDown_container[dir='ltr'] {
   .input_wrapper {
     .clean_icon {
       left: auto;

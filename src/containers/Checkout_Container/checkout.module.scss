@@ -1,6 +1,6 @@
 @use '../../styles/variables' as var;
-@import "../../styles/colors";
-@import "../../styles/units";
+@import '../../styles/colors';
+@import '../../styles/units';
 
 .Checkout_container {
   position: relative;
@@ -207,7 +207,6 @@
         }
       }
       .total_price {
-        margin-top: 14px;
         border-top: 1px solid $_bfbfbf;
         .total_price_text {
           font-size: 20px;
@@ -241,7 +240,7 @@
   }
 }
 
-.Checkout_container[dir="ltr"] {
+.Checkout_container[dir='ltr'] {
   .car_info_insurance {
     .Date_container {
       svg {
@@ -353,13 +352,13 @@
         .error_message_link {
           width: 49%;
           text-align: right;
-          margin-top: 0; 
+          margin-top: 0;
           span {
             display: block;
           }
         }
         .extra_info {
-          width: 49%; 
+          width: 49%;
           margin-top: 0;
           text-align: justify;
           font-size: 11px;

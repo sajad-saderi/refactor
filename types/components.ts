@@ -61,12 +61,27 @@ export interface ISelect {
   language: ILocale;
   activeLanguage: supportedLanguages
 }
+export interface IButton {
+  value: string;
+  customClass: string;
+  loading: boolean | undefined;
+  disable?: boolean;
+  click?: () => void;
+  reference?: any;
+  loadingColor?: string;
+}
 
 export interface IAccordion {
   questions: {
     title: string;
     content: string;
   }[];
+}
+
+export interface ISpinner {
+  display: 'block' | 'inline-block' | 'inline-flex';
+  width: number;
+  color: string;
 }
 
 export interface IIcon {

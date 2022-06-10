@@ -1,26 +1,26 @@
-import { useState, useEffect, useContext } from "react";
-import Link from "next/link";
+import { useState, useEffect, useContext } from 'react';
+import Link from 'next/link';
 // import "./car.scss";
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
-const Spinner = dynamic(() => import("../../../../components/Spinner")); 
-import { useRouter } from "next/router";
-import context_user from "../../../../context/User_info";
-import jsCookie from "js-cookie";
+const Spinner = dynamic(() => import('../../../../components/Spinner'));
+import { useRouter } from 'next/router';
+import context_user from '../../../../context/User_info';
+import jsCookie from 'js-cookie';
 import {
   REQUEST_SET_OUT_OF_SERVICE,
-  REQUEST_DELETE_CAR,
-} from "../../../../API";
+  REQUEST_DELETE_CAR
+} from '../../../../API';
 // import Spinner from "../../../../components/Spinner";
-import Toast_context from "../../../../context/Toast_context";
-import Modal_context from "../../../../context/Modal_context";
-import net_CTX from "../../../../context/internetConnectionCTX";
-import languageCTX from "../../../../context/languageCTX";
-import * as carThumbnail from "../../../../../public/image/car-image-thumbnail.jpg";
+import Toast_context from '../../../../context/Toast_context';
+import Modal_context from '../../../../context/Modal_context';
+import net_CTX from '../../../../context/internetConnectionCTX';
+import languageCTX from '../../../../context/languageCTX';
+import * as carThumbnail from '../../../../../public/image/car-image-thumbnail.jpg';
 import { dynamicString } from '../../../../helpers/dynamicString';
-import Button from "../../../../components/form/Button";
-import Icon from "../../../../components/Icons";
-import CarImage from "../../../../components/carImage";
+import Button from '../../../../components/form/Button';
+import Icon from '../../../../components/Icons';
+import CarImage from '../../../../components/carImage';
 
 const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   const [id, setId] = useState(null);
@@ -82,20 +82,23 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
         token: user.data?.token,
         id: id || localId,
         // send apposite of current status
-        value: !is_out_of_service,
+        value: !is_out_of_service
       });
       setIs_out_of_service(service_res);
       // show toast
       TOAST_CONTEXT.toast_option({
         message: service_res
           ? dynamicString([car.name[activeLanguage]], language.USER.activeCar)
-          : dynamicString([car.name[activeLanguage]], language.USER.inactiveCar),
+          : dynamicString(
+              [car.name[activeLanguage]],
+              language.USER.inactiveCar
+            ),
         time: 15,
-        autoClose: true,
+        autoClose: true
       });
       // hide the spinner
       setIs_out_of_service_loading(false);
-      setOutOfServicePrompt(false)
+      setOutOfServicePrompt(false);
     } catch (error) {
       if (error === 111) {
         netCTX.toggleTheContainer(true);
@@ -104,26 +107,24 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   };
 
   const deleteTheCar = () => {
-    MODAL_CONTEXT.modalHandler("ConfirmDelete", {
+    MODAL_CONTEXT.modalHandler('ConfirmDelete', {
       brand: data.car.brand.name[activeLanguage],
       model: data.car.name[activeLanguage],
       id: data.id,
-      type: "delete_car",
+      type: 'delete_car'
     });
     // if (confirm(`آیا می‌خواهید ماشین ${brand} ${model} را حذف کنید؟`)) {
     //
     // }
   };
 
-  
-
   const request_to_delete_the_car = async (id) => {
     try {
       const delete_res = await REQUEST_DELETE_CAR({
         token: user.data?.token,
-        id,
+        id
       });
-      jsCookie.remove("new_car");
+      jsCookie.remove('new_car');
       getListAgain();
     } catch (error) {
       if (error === 111) {
@@ -142,51 +143,64 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
   let hrefProp = is_mine ? `/car/[id]?owner=true` : `/car/[id]`;
   return (
     car && (
-      <div className="carcard" dir={activeLanguage ? 'rtl' : 'ltr'}>
-        {outOfServicePrompt&& <div className="carProfileServiceModal">
-          <div className="carProfileServiceModalDrawer"
-          onClick={()=>setOutOfServicePrompt(false)}></div>
-        <div className="modalOutOfService">
-          <p className="close" onClick={() => setOutOfServicePrompt(false)}>
-          <Icon name='close' width='20px' height='20px' color='#a5a5a5' />
-          </p>
-          {is_out_of_service ? (
-            <p className="modal_content_confirm_delete">{dynamicString([car.brand.name[activeLanguage], car.name[activeLanguage]], language.COMMON.activatingTheCar)}</p>
-          ) : (
-            <p className="modal_content_confirm_delete">{dynamicString([car.brand.name[activeLanguage], car.name[activeLanguage]], language.COMMON.inactivatingTheCar)}</p>
-          )}
-          {/* {error.status ? (
+      <div className='carcard' dir={activeLanguage ? 'rtl' : 'ltr'}>
+        {outOfServicePrompt && (
+          <div className='carProfileServiceModal'>
+            <div
+              className='carProfileServiceModalDrawer'
+              onClick={() => setOutOfServicePrompt(false)}></div>
+            <div className='modalOutOfService'>
+              <p className='close' onClick={() => setOutOfServicePrompt(false)}>
+                <Icon name='close' width='20px' height='20px' color='#a5a5a5' />
+              </p>
+              {is_out_of_service ? (
+                <p className='modal_content_confirm_delete'>
+                  {dynamicString(
+                    [car.brand.name[activeLanguage], car.name[activeLanguage]],
+                    language.COMMON.activatingTheCar
+                  )}
+                </p>
+              ) : (
+                <p className='modal_content_confirm_delete'>
+                  {dynamicString(
+                    [car.brand.name[activeLanguage], car.name[activeLanguage]],
+                    language.COMMON.inactivatingTheCar
+                  )}
+                </p>
+              )}
+              {/* {error.status ? (
             <span className="error_message">{error.message}</span>
           ) : null} */}
-          <div className="button_container">
-            <Button
-              class="Blue_BTN "
-              value={language.COMMON.ok}
-              loading={is_out_of_service_loading}
-              click={setServiceStatus}
-            />
-            <Button
-              class="Blue_BTN cancel_btn"
-              value={language.COMMON.cancel}
-              loading={false}
-              click={() => setOutOfServicePrompt(false)}
-            />
+              <div className='button_container'>
+                <Button
+                  customClass=''
+                  value={language.COMMON.ok}
+                  loading={is_out_of_service_loading}
+                  click={setServiceStatus}
+                />
+                <Button
+                  customClass='cancel_btn'
+                  value={language.COMMON.cancel}
+                  loading={false}
+                  click={() => setOutOfServicePrompt(false)}
+                />
+              </div>
+            </div>
           </div>
-          </div>
-          </div>}
+        )}
         <Link href={hrefProp} as={link} prefetch={false}>
-          <a data-test-id="Link" className="HEAP_Profile_Card_Car">
+          <a data-test-id='Link' className='HEAP_Profile_Card_Car'>
             <figure
-              // style={{
-              //   backgroundImage: `url(${hasMedia ? media_set[0].thumbnail_url : carThumbnail
-              //     })`,
-              // }}
+            // style={{
+            //   backgroundImage: `url(${hasMedia ? media_set[0].thumbnail_url : carThumbnail
+            //     })`,
+            // }}
             >
               <CarImage
                 title={'car'}
                 hasMedia={hasMedia}
                 mediaSet={media_set}
-                activeLanguage = {activeLanguage}
+                activeLanguage={activeLanguage}
               />
               {/* {hasMedia ? (
                 <img
@@ -214,23 +228,22 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
               ) : (
                 <img src={carThumbnail} alt={language.default_image} />
               )} */}
-              <div className="read_more">
+              <div className='read_more'>
                 <span>{language.USER.details}</span>
               </div>
               {uncompletedCar && is_mine ? (
-                <div className="alert_for_car">
+                <div className='alert_for_car'>
                   <p
                     onClick={(e) => {
                       e.preventDefault();
                       router.push({
-                        pathname: "/set-car-timing",
+                        pathname: '/set-car-timing',
                         query: {
                           car_id: id,
-                          mode: "edit",
-                        },
+                          mode: 'edit'
+                        }
                       });
-                    }}
-                  >
+                    }}>
                     {language.USER.text1}
                     <span>{language.USER.text2}</span>
                     {language.USER.text3}
@@ -238,74 +251,72 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                 </div>
               ) : null}
               {!isVerified && !uncompletedCar && is_mine ? (
-                <div className="alert_for_car">
+                <div className='alert_for_car'>
                   <p>{language.USER.waiting}</p>
                 </div>
               ) : null}
             </figure>
-            <div className="info_box">
-              <div className="car_brand">
-                <h3 data-test-id="car_brand_h3">{`${car.brand.name[activeLanguage]} ${car.name[activeLanguage]}`}</h3>
+            <div className='info_box'>
+              <div className='car_brand'>
+                <h3 data-test-id='car_brand_h3'>{`${car.brand.name[activeLanguage]} ${car.name[activeLanguage]}`}</h3>
                 <p>{year.name[activeLanguage]}</p>
               </div>
             </div>
           </a>
         </Link>
         {is_mine && (
-          <div className="edit_part">
+          <div className='edit_part'>
             <p
               onClick={() => {
                 router.push({
-                  pathname: "/set-car-timing",
+                  pathname: '/set-car-timing',
                   query: {
                     car_id: id,
-                    mode: "edit",
-                  },
+                    mode: 'edit'
+                  }
                 });
               }}
               className={[
-                "HEAP_Profile_Btn_ChangeCarTiming",
-                uncompletedCar ? "set_car_timing_btn" : null,
-              ].join(" ")}
-            >
-              {uncompletedCar
-                ? language.USER.text2
-                : language.USER.carSetting}
+                'HEAP_Profile_Btn_ChangeCarTiming',
+                uncompletedCar ? 'set_car_timing_btn' : null
+              ].join(' ')}>
+              {uncompletedCar ? language.USER.text2 : language.USER.carSetting}
             </p>
             {uncompletedCar ? null : isVerified ? (
               is_out_of_service_loading ? (
-                <Spinner display="inline-block" width={20} color="#4ba3ce" />
+                <Spinner display='inline-block' width={20} color='#4ba3ce' />
               ) : (
                 <p
-                  data-test-id="OUT_OF_SERVICE"
-                  className="HEAP_Profile_Btn_OutOfService"
-                  onClick={() => setOutOfServicePrompt(true)}
-                >
+                  data-test-id='OUT_OF_SERVICE'
+                  className='HEAP_Profile_Btn_OutOfService'
+                  onClick={() => setOutOfServicePrompt(true)}>
                   {is_out_of_service
                     ? language.USER.activatingCar
                     : language.USER.inactivatingCar}
                 </p>
               )
             ) : null}
-            <div className="icon_container">
-              <span className="HEAP_Profile_Btn_EditCarDetails"
+            <div className='icon_container'>
+              <span
+                className='HEAP_Profile_Btn_EditCarDetails'
                 onClick={() => {
                   router.push({
-                    pathname: "/add-car",
+                    pathname: '/add-car',
                     query: {
                       car_id: id,
-                      mode: "edit",
-                    },
+                      mode: 'edit'
+                    }
                   });
                 }}>
                 <Icon
-                name="pencil"
-                  color="#4ba3ce"
-                  width="20px"
-                  height="20px"
+                  name='pencil'
+                  color='#4ba3ce'
+                  width='20px'
+                  height='20px'
                 />
               </span>
-              <span className="HEAP_Profile_Btn_Delete"
+              <span
+                className='HEAP_Profile_Btn_Delete'
                 onClick={() => {
                   set_click_on_trash(true);
                   deleteTheCar();
@@ -315,13 +326,7 @@ const Car = ({ is_mine, data, getListAgain, language }: ICar) => {
                   // id: id,
                   // })
                 }}>
-                <Icon
-                name='trash'
-                
-                  color="#4ba3ce"
-                  width="20px"
-                  height="20px"
-                />
+                <Icon name='trash' color='#4ba3ce' width='20px' height='20px' />
               </span>
             </div>
           </div>

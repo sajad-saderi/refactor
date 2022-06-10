@@ -1,5 +1,5 @@
-@import "../../../styles/units";
-@import "../../../styles/colors";
+@import '../../../styles/units';
+@import '../../../styles/colors';
 
 .add_car_form_container {
   max-width: 680px;
@@ -113,7 +113,7 @@
         svg {
           width: 20px;
           position: absolute;
-          left: 10px; 
+          left: 10px;
         }
       }
     }
@@ -171,6 +171,7 @@
     }
     .value_container {
       position: relative;
+      padding: 8px;
       .input_surround {
         width: 50%;
         .clean_icon {
@@ -203,26 +204,31 @@
             position: relative;
             .Fourth_part_pelak {
               position: absolute;
-              top: -3px;
+              top: 20px;
+              width: 50px;
               right: 10px;
               input {
                 height: 39px;
                 text-align: center;
+                font-size: 16px;
               }
             }
             .Third_part_pelak {
               position: absolute;
-              top: -17px;
+              top: 7px;
               right: 83px;
+              width: 50px;
+
               input {
                 padding: 0;
                 text-align: center;
                 height: 51px;
+                font-size: 16px;
               }
             }
             .Second_part_pelak {
               position: absolute;
-              top: 4px;
+              top: 7px;
               right: 144px;
               width: 50px;
               input {
@@ -241,11 +247,12 @@
               position: absolute;
               width: 50px;
               left: 45px;
-              top: -17px;
+              top: 7px;
               input {
                 padding: 0;
                 text-align: center;
                 height: 51px;
+                font-size: 16px;
               }
             }
             .text_input_container {
@@ -307,7 +314,7 @@
   }
 }
 
-.add_car_form_container[dir="ltr"] {
+.add_car_form_container[dir='ltr'] {
   .add_car_form_step_1 {
     .radio_father {
       .radio_container {

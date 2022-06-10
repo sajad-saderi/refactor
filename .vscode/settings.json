@@ -1,10 +1,30 @@
 {
-  "editor.formatOnSave": false,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.run": "onSave",
+  "prettier.jsxSingleQuote": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "editor.formatOnSave": true,
   "cSpell.words": [
-    "constances",
+    "bfbfbf",
+    "dadada",
+    "Datepicker",
+    "dcdcdc",
+    "efefef",
+    "fafafa",
+    "fceddb",
+    "fcfcfc",
     "fefefe",
-    "Sepris",
+    "jalaali",
+    "jalali",
+    "pelak",
+    "prefetch",
+    "Saman",
+    "sepris",
+    "toman",
     "wght"
   ],
-  "prettier.jsxSingleQuote": true
+  "compile-hero.disable-compile-files-on-did-save-code": true
 }

@@ -1,7 +1,7 @@
 @use './variables' as var;
-@import "./fonts";
-@import "./units";
-@import "./colors";
+@import './fonts';
+@import './units';
+@import './colors';
 
 html,
 body {
@@ -11,14 +11,14 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   background-color: $_fefefe;
-  font-family: "iranSansXV", "iranSans", "danaXV", "dana", tahoma;
+  font-family: 'iranSansXV', 'iranSans', 'danaXV', 'dana', tahoma;
 }
 
-html[lang="fa"] {
+html[lang='fa'] {
   direction: rtl;
-  -moz-font-feature-settings: "ss02";
-  -webkit-font-feature-settings: "ss02";
-  font-feature-settings: "ss02";
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
 }
 
 html,
@@ -156,7 +156,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -183,7 +183,7 @@ main {
 // INPUT
 input {
   box-sizing: border-box;
-  margin: 0.8em auto;
+  // margin: 8px auto;
 }
 
 .input_Error {
@@ -382,7 +382,7 @@ input {
         padding: 0;
       }
     }
-    .rent_contnet[dir="ltr"] {
+    .rent_contnet[dir='ltr'] {
       text-align: left;
     }
     @media (max-width: 720px) {
@@ -414,7 +414,7 @@ input {
     cursor: pointer;
     font-weight: 500;
     font-size: 14px;
-    color: $_ffffff; 
+    color: $_ffffff;
     img {
       border-radius: 10px;
       width: 36px;
@@ -481,7 +481,7 @@ input {
   min-height: 500px;
 }
 
-[dir="ltr"]
+[dir='ltr']
   .Calendar__day.-weekend:not(.-selected):not(.-blank):not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween) {
   color: $_000000;
 }
@@ -754,7 +754,7 @@ input {
   line-height: 1.6;
   font-size: 14px;
   font-weight: 500;
-  font-variation-settings: "wght" 500;
+  font-variation-settings: 'wght' 500;
   border-radius: 4px;
   padding: 8px 21px;
   border: 1px solid $_3fa6da;
@@ -812,95 +812,93 @@ input {
 // @import "nouislider/distribute/nouislider.css";
 
 // Pages
-@import "./pages/index.module.scss";
-@import "./pages/Failed_payment.module.scss";
-@import "./pages/faq.module.scss";
-@import "./pages/join-us.module.scss";
-@import "./pages/otoli.module.scss";
-@import "./pages/search_result.module.scss";
-@import "./pages/static_pages.module.scss";
-@import "./pages/Success_payment.module.scss";
-@import "./pages/help_center.module.scss";
+@import './pages/index.module.scss';
+@import './pages/Failed_payment.module.scss';
+@import './pages/faq.module.scss';
+@import './pages/join-us.module.scss';
+@import './pages/otoli.module.scss';
+@import './pages/search_result.module.scss';
+@import './pages/static_pages.module.scss';
+@import './pages/Success_payment.module.scss';
+@import './pages/help_center.module.scss';
 
 // Components
 // Form
-@import "../components/form/Dropdown/DropDown.module.scss";
-@import "../components/form/Checkbox/Checkbox.module.scss";
-@import "../components/form/Radio/radio.module.scss";
-@import "../components/form/NumberSeparatedTextInput/NumberSeparatedTextInput.module.scss";
-@import "../components/form/TextInput/inputStyle.module.scss";
-@import "../components/form/Button/Button.module.scss";
-@import "../components/Accordion/Accordion.module.scss";
+@import '../components/form/Dropdown/DropDown.module.scss';
+@import '../components/form/Checkbox/Checkbox.module.scss';
+@import '../components/form/Radio/radio.module.scss';
+@import '../components/form/NumberSeparatedTextInput/NumberSeparatedTextInput.module.scss';
+@import '../components/form/TextInput/inputStyle.module.scss';
+@import '../components/Accordion/Accordion.module.scss';
 
 // component
-@import "../components/cartPlaceholder/CarLoading/car_cart.module.scss";
+@import '../components/cartPlaceholder/CarLoading/car_cart.module.scss';
 
 // Loaders
-@import "../components/loaders/PriceSliderLoader/PriceSliderLoader.module.scss";
+@import '../components/loaders/PriceSliderLoader/PriceSliderLoader.module.scss';
 
 // Place holders
-@import "../components/cartPlaceholder/carPageLoading/carPageLoading.module.scss";
-@import "../components/cartPlaceholder/CarLoadingProfile/profile_car_cart.module.scss";
-@import "../components/cartPlaceholder/checkoutLoading/checkoutLoading.module.scss";
-@import "../components/cartPlaceholder/requestLoading/requestLoading.module.scss";
-@import "../components/cartPlaceholder/checkBoxLoading/checkBoxLoading.module.scss";
+@import '../components/cartPlaceholder/carPageLoading/carPageLoading.module.scss';
+@import '../components/cartPlaceholder/CarLoadingProfile/profile_car_cart.module.scss';
+@import '../components/cartPlaceholder/checkoutLoading/checkoutLoading.module.scss';
+@import '../components/cartPlaceholder/requestLoading/requestLoading.module.scss';
+@import '../components/cartPlaceholder/checkBoxLoading/checkBoxLoading.module.scss';
 
-@import "../components/Counter/Counter.module.scss";
-@import "../components/Footer/footer.module.scss";
-@import "../components/ImageUploader/ImageUploader.module.scss";
-@import "../components/pelak/pelak.module.scss"; 
-@import "../components/Review/review.module.scss";
-@import "../components/StarGenerator/starGenerator.module.scss";
-@import "../components/Slider/slider.module.scss";
-@import "../components/Slider/Gallery/Gallery.module.scss";
-@import "../components/Spinner/spinner.module.scss";
-@import "../components/TabCreator/TabCreator.module.scss";
-@import "../components/Toast/toast.module.scss";
-@import "../components/InternetConnection/internetConnection.module.scss";
+@import '../components/Counter/Counter.module.scss';
+@import '../components/Footer/footer.module.scss';
+@import '../components/ImageUploader/ImageUploader.module.scss';
+@import '../components/pelak/pelak.module.scss';
+@import '../components/Review/review.module.scss';
+@import '../components/StarGenerator/starGenerator.module.scss';
+@import '../components/Slider/slider.module.scss';
+@import '../components/Slider/Gallery/Gallery.module.scss';
+@import '../components/TabCreator/TabCreator.module.scss';
+@import '../components/Toast/toast.module.scss';
+@import '../components/InternetConnection/internetConnection.module.scss';
 
 // Containers
-@import "../containers/Add_car/Add_car.module.scss";
-@import "../containers/Add_car/step_1/step_1.module.scss";
-@import "../containers/car/carpage/carpage.module.scss";
-@import "../containers/car/search-result/search_result.module.scss";
-@import "../containers/car/search-result/car/car.module.scss";
-@import "../containers/Checkout_Container/checkout.module.scss";
-@import "../containers/Checkout_Container/insurance/insurance.module.scss";
-@import "../containers/CompleteRegister/complete_register.module.scss";
-@import "../containers/Filters/Filter.module.scss";
+@import '../containers/Add_car/Add_car.module.scss';
+@import '../containers/Add_car/step_1/step_1.module.scss';
+@import '../containers/car/carpage/carpage.module.scss';
+@import '../containers/car/search-result/search_result.module.scss';
+@import '../containers/car/search-result/car/car.module.scss';
+@import '../containers/Checkout_Container/checkout.module.scss';
+@import '../containers/Checkout_Container/insurance/insurance.module.scss';
+@import '../containers/CompleteRegister/complete_register.module.scss';
+@import '../containers/Filters/Filter.module.scss';
 // Header
-@import "../containers/header/header.module.scss";
+@import '../containers/header/header.module.scss';
 // Modals
-@import "../containers/header/modals/modal.module.scss"; 
-@import "../containers/header/modals/Law/Law.module.scss";
-@import "../containers/header/modals/Owner/Owner.module.scss";
-@import "../containers/header/modals/Renter/Renter.module.scss";
-@import "../containers/header/modals/Tell_me/Tell_me.module.scss";
-@import "../containers/header/modals/ConfirmDelete/Confirm_delete.module.scss";
-@import "../containers/header/modals/Assurance/Assurance_modal.module.scss";
+@import '../containers/header/modals/modal.module.scss';
+@import '../containers/header/modals/Law/Law.module.scss';
+@import '../containers/header/modals/Owner/Owner.module.scss';
+@import '../containers/header/modals/Renter/Renter.module.scss';
+@import '../containers/header/modals/Tell_me/Tell_me.module.scss';
+@import '../containers/header/modals/ConfirmDelete/Confirm_delete.module.scss';
+@import '../containers/header/modals/Assurance/Assurance_modal.module.scss';
 
-@import "../containers/LandignPageContainer/Search_result.module.scss";
-@import "../containers/LandignPageContainer/landingPageContent/landingPageContent.module.scss";
-@import "../containers/Profile_container/Profile_container.module.scss";
-@import "../containers/Profile_container/Profile_Cars/profile_car.module.scss";
-@import "../containers/Profile_container/Profile_Cars/car/car.module.scss";
-@import "../containers/Profile_container/Profile_info/profile_info.module.scss";
-@import "../containers/Profile_container/Profile_info/Edit_profile/edit_profile.module.scss";
-@import "../containers/Request_page/Requests_page.module.scss";
-@import "../containers/Request_page/request_cart/request_cart.module.scss";
-@import "../containers/Requests_page/Requests_page.module.scss";
-@import "../containers/Requests_page/request_cart/request_cart.module.scss";
-@import "../containers/Search/search.module.scss";
-@import "../containers/Search_result/Search_result.module.scss";
-@import "../containers/Set_car_timing/set_car.module.scss";
-@import "../containers/Set_car_timing/step_2/step_2.module.scss";
-@import "../containers/Set_car_timing/PriceBox/PriceBox.module.scss";
-@import "../containers/Set_car_timing/DiscountBox/DiscountBox.module.scss";
-@import "../containers/helpCenterContainer/helpCenterContainer.module.scss";
+@import '../containers/LandignPageContainer/Search_result.module.scss';
+@import '../containers/LandignPageContainer/landingPageContent/landingPageContent.module.scss';
+@import '../containers/Profile_container/Profile_container.module.scss';
+@import '../containers/Profile_container/Profile_Cars/profile_car.module.scss';
+@import '../containers/Profile_container/Profile_Cars/car/car.module.scss';
+@import '../containers/Profile_container/Profile_info/profile_info.module.scss';
+@import '../containers/Profile_container/Profile_info/Edit_profile/edit_profile.module.scss';
+@import '../containers/Request_page/Requests_page.module.scss';
+@import '../containers/Request_page/request_cart/request_cart.module.scss';
+@import '../containers/Requests_page/Requests_page.module.scss';
+@import '../containers/Requests_page/request_cart/request_cart.module.scss';
+@import '../containers/Search/search.module.scss';
+@import '../containers/Search_result/Search_result.module.scss';
+@import '../containers/Set_car_timing/set_car.module.scss';
+@import '../containers/Set_car_timing/step_2/step_2.module.scss';
+@import '../containers/Set_car_timing/PriceBox/PriceBox.module.scss';
+@import '../containers/Set_car_timing/DiscountBox/DiscountBox.module.scss';
+@import '../containers/helpCenterContainer/helpCenterContainer.module.scss';
 
-@import "../components/recommendation_section/recommendation_section.module.scss";
-@import "../components/filters/PriceSlider/price_filter.module.scss";
-@import "../components/profile/comment_section/comment_section.module.scss";
-@import "../components/ImageUploader/ZoomSlider/ZoomSlider.module.scss";
-@import "../components/calculator/Join_us_content/join_us_content.module.scss";
-@import "../components/name_avatar/avatar-name.module.scss";
+@import '../components/recommendation_section/recommendation_section.module.scss';
+@import '../components/filters/PriceSlider/price_filter.module.scss';
+@import '../components/profile/comment_section/comment_section.module.scss';
+@import '../components/ImageUploader/ZoomSlider/ZoomSlider.module.scss';
+@import '../components/calculator/Join_us_content/join_us_content.module.scss';
+@import '../components/name_avatar/avatar-name.module.scss';

@@ -1,16 +1,17 @@
-import { useState, useContext } from "react";
-import TextInput from "../../../components/form/TextInput";
-import Button from "../../../components/form/Button";
-import Error_middleware from "../../../API/ApiUtils";
-import toast_context from "../../../context/Toast_context";
-import languageCTX from "../../../context/languageCTX";
-import ErrorHelper from "../../../../utils/error_helper";
-import { errorCodeFormatter } from "../../../../utils/errorCodeFormatter";
-import Icon from "../../../components/Icons";
-import { ILocale } from "../../../../types";
-import { axiosInstance } from "../../../../utils/axiosInstance";
-import classNames from "classnames";
-import styles from "./userCellPhone.module.scss";
+import { useState, useContext } from 'react';
+import TextInput from '../../../components/form/TextInput';
+import Button from '../../../components/form/Button';
+import Error_middleware from '../../../API/ApiUtils';
+import toast_context from '../../../context/Toast_context';
+import languageCTX from '../../../context/languageCTX';
+import ErrorHelper from '../../../../utils/error_helper';
+import { errorCodeFormatter } from '../../../../utils/errorCodeFormatter';
+import Icon from '../../../components/Icons';
+import { ILocale } from '../../../../types';
+import { axiosInstance } from '../../../../utils/axiosInstance';
+import classNames from 'classnames';
+import styles from './userCellPhone.module.scss';
+import Input from '../../../components/form/input';
 
 const GetUserCellPhone: React.FC<{
   cellPhone: string;
@@ -23,12 +24,12 @@ const GetUserCellPhone: React.FC<{
   language,
   inactivateForm,
   setCellPhone,
-  panelController,
+  panelController
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     status: false,
-    message: "",
+    message: ''
   });
   const toastCTX = useContext(toast_context);
   const { activeLanguage } = useContext(languageCTX);
@@ -38,34 +39,34 @@ const GetUserCellPhone: React.FC<{
     if (!cellPhone) {
       setError({
         status: true,
-        message: language.COMMON.insertYourPhone,
+        message: language.COMMON.insertYourPhone
       });
       return;
     }
     if (/[^0-9۰-۹]/g.test(cellPhone.toString())) {
       setError({
         status: true,
-        message: language.COMMON.invalidCharacters,
+        message: language.COMMON.invalidCharacters
       });
       return;
     }
     setLoading(true);
-    const SEND_CONFIRM_CODE = "/core/device/send-code";
+    const SEND_CONFIRM_CODE = '/core/device/send-code';
     let CellNumber = cellPhone;
     if (/^[9][0-9][0-9]{8,8}$/.test(cellPhone)) {
-      CellNumber = "0" + cellPhone;
+      CellNumber = '0' + cellPhone;
     }
     axiosInstance({
-      method: "post",
+      method: 'post',
       url: process.env.PRODUCTION_ENDPOINT + SEND_CONFIRM_CODE,
       data: {
-        cell: CellNumber,
-      },
+        cell: CellNumber
+      }
     })
       .then((response) => {
         if (response.data.success) {
           if (!response.data.has_utm_data) {
-            sessionStorage["send_utm_data"] = true;
+            sessionStorage['send_utm_data'] = true;
           }
           setLoading(false);
           panelController();
@@ -74,25 +75,25 @@ const GetUserCellPhone: React.FC<{
       .catch((error) => {
         Error_middleware(e);
         setLoading(false);
-        if (error.response.data.error === "INVALID_CELL") {
+        if (error.response.data.error === 'INVALID_CELL') {
           setError({
             status: true,
             message:
-              activeLanguage === "fa"
+              activeLanguage === 'fa'
                 ? error.response.data.message
-                : errorCodeFormatter(error.response.data.error),
+                : errorCodeFormatter(error.response.data.error)
           });
         } else {
           toastCTX.toast_option({
             message: error.response
               ? ErrorHelper({
                   errorObj: error.response,
-                  _400Message: language.COMMON.errorInLogin,
+                  _400Message: language.COMMON.errorInLogin
                 })
               : error,
-            color: "#ed9026",
+            color: '#ed9026',
             time: 0,
-            autoClose: false,
+            autoClose: false
           });
         }
       });
@@ -107,46 +108,65 @@ const GetUserCellPhone: React.FC<{
         <h2>{language.LOGIN.login}</h2>
       </div>
       <form onSubmit={sendConfirmCode} className={styles.form}>
-        <TextInput
+        <Input
+          labelCustomClass={styles.labelCustomClass}
           type='text'
           error={error}
+          // onError={(e) => setInputError(e)}
           name='cell Phone'
-          onChangeHandler={(e) => {
+          onChange={(e) => {
             if (error.status) {
               setError({
                 status: false,
-                message: "",
+                message: ''
               });
             }
             setCellPhone(e);
           }}
+          number
+          noClear
+          value={cellPhone}
+          label={language.LOGIN.cellPhone}
+          onClear={() => setCellPhone('')}
+          validationItems={{
+            require: true,
+            messages: {
+              require: language.LOGIN.error1
+            }
+          }}
+        />
+        {/* <TextInput
+          type='text'
+          error={error}
+          name='cell Phone'
+          onChangeHandler={}
           autoFocus={false}
           localeString={false}
           HideClearIcon={true}
           value={cellPhone}
           label={language.LOGIN.cellPhone}
-          clearField={() => setCellPhone("")}
+          clearField={}
           validation={{
             number: true,
             LengthControl: {
               minLen: 10,
-              maxLen: 11,
+              maxLen: 11
             },
             messages: {
               required: language.LOGIN.error1,
               length: language.LOGIN.error2,
               minLen: language.LOGIN.error_3,
-              maxLen: language.LOGIN.error_3,
+              maxLen: language.LOGIN.error_3
             },
-            required: true,
+            required: true
           }}
-        />
+        /> */}
         <Button
           disable={inactivateForm}
-          class={classNames(
+          customClass={classNames(
             styles.localClass,
-            "actionButton",
-            inactivateForm && "disable_BTN"
+            'actionButton',
+            inactivateForm && 'disable_BTN'
           )}
           value={language.LOGIN.send}
           loading={loading}

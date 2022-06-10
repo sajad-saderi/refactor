@@ -122,6 +122,12 @@
       .custom_input_container_step_2 {
         max-width: 380px;
         margin-bottom: 30px;
+        & > div {
+          padding: 0;
+        }
+        input {
+          width: 150px;
+        }
         .text_input_container {
           display: inline-block;
           vertical-align: middle;
@@ -244,15 +250,15 @@
           font-weight: 400;
         }
       }
-      .transition_type_Label{
+      .transition_type_Label {
         align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 4px;
-    label{
-      line-height: 1.5;
-    }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 4px;
+        label {
+          line-height: 1.5;
+        }
       }
       .Set_Price_date_options {
         .radio_container {

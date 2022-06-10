@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from 'react';
 // import "./Owner.scss";
-import Button from "../../../../components/form/Button";
-import modal_context from "../../../../context/Modal_context";
-import Toast_context from "../../../../context/Toast_context";
+import Button from '../../../../components/form/Button';
+import modal_context from '../../../../context/Modal_context';
+import Toast_context from '../../../../context/Toast_context';
 /**
  * React Star Ratings
  *
@@ -12,23 +12,23 @@ import Toast_context from "../../../../context/Toast_context";
  *
  * https://github.com/ekeric13/react-star-ratings
  */
-import StarRatings from "react-star-ratings";
-import jsCookie from "js-cookie";
-import { REQUEST_REQUEST_ACTION } from "../../../../API";
-import Router from "next/router";
-import car_image from "../../../../../public/image/car-image-thumbnail.jpg";
-import Image from "next/image";
+import StarRatings from 'react-star-ratings';
+import jsCookie from 'js-cookie';
+import { REQUEST_REQUEST_ACTION } from '../../../../API';
+import Router from 'next/router';
+import car_image from '../../../../../public/image/car-image-thumbnail.jpg';
+import Image from 'next/image';
 
 const Owner = (props: IRenter) => {
   const [renter, setRenter] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [textareaValue, setTextareaValue] = useState("");
+  const [textareaValue, setTextareaValue] = useState('');
   const [ownerRate, setOwnerRate] = useState(0);
   const [star_error, set_star_error] = useState(false);
   const Modal_context = useContext(modal_context);
   const TOAST_CONTEXT = useContext(Toast_context);
 
-  const token = jsCookie.get("token");
+  const token = jsCookie.get('token');
 
   useEffect(() => {
     setRenter(props.data.renter);
@@ -49,27 +49,27 @@ const Owner = (props: IRenter) => {
         id: data.id,
         action: data.action,
         payload: {
-          toRate: "renter",
-          type: "user",
+          toRate: 'renter',
+          type: 'user',
           user_profile_id: renter.id,
           rate: ownerRate,
-          review: textareaValue,
-        },
-      }),
+          review: textareaValue
+        }
+      })
     ])
       .then((response) => {
         console.log(response);
         TOAST_CONTEXT.toast_option({
           message: props.language.REQUEST_PAGE.isSuccessful,
           time: 15,
-          autoClose: true,
+          autoClose: true
         });
         setLoading(false);
-        Modal_context.modalHandler("SET");
+        Modal_context.modalHandler('SET');
         Router.reload();
       })
       .catch((e) => {
-        console.log("!Error", e);
+        console.log('!Error', e);
         setLoading(false);
       });
   };
@@ -83,16 +83,16 @@ const Owner = (props: IRenter) => {
             onSubmit={(e) => {
               setForRequest(e, {
                 id: props.data.id,
-                action: "rate",
+                action: 'rate'
               });
-            }}
-          >
-            <Image
-              src={
-                renter.thumbnail_url ? renter.thumbnail_url :
-                 car_image}
-              alt={renter.name}
-            />
+            }}>
+            <div className='imageContainer'>
+              <Image
+                layout='fill'
+                src={renter.thumbnail_url ? renter.thumbnail_url : car_image}
+                alt={renter.name}
+              />
+            </div>
             <h3>{renter.name}</h3>
             <p>{props.language.REQUEST_PAGE.rateGuest}</p>
             <StarRatings
@@ -100,7 +100,7 @@ const Owner = (props: IRenter) => {
               starRatedColor='rgb(255, 204, 0)'
               starHoverColor='rgb(255, 204, 0)'
               starEmptyColor={
-                star_error ? "rgb(255 54 122)" : "rgb(203, 211, 227)"
+                star_error ? 'rgb(255 54 122)' : 'rgb(203, 211, 227)'
               }
               starDimension='20px'
               starSpacing='5px'
@@ -112,7 +112,9 @@ const Owner = (props: IRenter) => {
               name='ownerRate'
             />
             {star_error && (
-              <span className='Error_color'>{props.language.REQUEST_PAGE.insertYourRate}</span>
+              <span className='Error_color'>
+                {props.language.REQUEST_PAGE.insertYourRate}
+              </span>
             )}
             <label>{props.language.REQUEST_PAGE.note}:</label>
             <textarea
@@ -124,18 +126,18 @@ const Owner = (props: IRenter) => {
             />
             <div className='rate_buttons'>
               <Button
-                class='Blue_BTN submit_submit HEAP_ModalReviewOwnerToRenter_Btn_Submit'
+                customClass='submit_submit HEAP_ModalReviewOwnerToRenter_Btn_Submit'
                 value={props.language.COMMON.ok}
                 loading={loading}
-                click={() => { }}
+                click={() => {}}
               />
               <Button
-                class='Blue_BTN cancel_submit'
+                customClass='cancel_submit'
                 value={props.language.COMMON.cancel}
                 loading={loading}
                 click={() => {
                   // close the modal
-                  Modal_context.modalHandler("SET");
+                  Modal_context.modalHandler('SET');
                 }}
               />
             </div>
@@ -148,7 +150,7 @@ const Owner = (props: IRenter) => {
 
 interface IRenter {
   data: any;
-  language: any
+  language: any;
 }
 
 export default Owner;

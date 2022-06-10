@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
-import Button from "../../../../components/form/Button";
-import Modal_context from "../../../../context/Modal_context";
-import languageCTX from "../../../../context/languageCTX";
+import React, { useState, useContext, useEffect } from 'react';
+import Button from '../../../../components/form/Button';
+import Modal_context from '../../../../context/Modal_context';
+import languageCTX from '../../../../context/languageCTX';
 // import "./Law.scss";
-import staticPage from '../../../../../public/languages/static.json'
+import staticPage from '../../../../../public/languages/static.json';
 
 const Law = ({ language }) => {
   const [renter, setRenter] = useState(null);
@@ -288,11 +288,11 @@ const Law = ({ language }) => {
               <li>
                 <strong>{staticPage.ourPolicies.li_82}</strong>
               </li>
-              <p className="intends">{staticPage.ourPolicies.p_43}</p>
+              <p className='intends'>{staticPage.ourPolicies.p_43}</p>
               <li>
                 <strong>{staticPage.ourPolicies.li_83} </strong>
               </li>
-              <ul className="intends">
+              <ul className='intends'>
                 <li>{staticPage.ourPolicies.li_84}</li>
                 <li>{staticPage.ourPolicies.li_85}</li>
                 <li>{staticPage.ourPolicies.li_86}</li>
@@ -325,7 +325,7 @@ const Law = ({ language }) => {
                 <strong>{staticPage.ourPolicies.li_94}</strong>
               </li>
               <p>{staticPage.ourPolicies.p_49}</p>
-              <ul className="intends">
+              <ul className='intends'>
                 <li>{staticPage.ourPolicies.li_95}</li>
                 <li>{staticPage.ourPolicies.li_96}</li>
               </ul>
@@ -356,7 +356,7 @@ const Law = ({ language }) => {
             <p>{staticPage.ourPolicies.p_58}</p>
             <h2>{staticPage.ourPolicies.h2_27}</h2>
             <p>{staticPage.ourPolicies.p_59}</p>
-            <ul className="intends">
+            <ul className='intends'>
               <li>{staticPage.ourPolicies.li_100}</li>
               <li>{staticPage.ourPolicies.li_101}</li>
               <li>{staticPage.ourPolicies.li_102}</li>
@@ -469,7 +469,7 @@ const Law = ({ language }) => {
         </div>
         <Button
           value={language.COMMON.iAgree}
-          class='Blue_BTN local_Style HEAP_ModalLaws_Btn_Accept'
+          customClass='local_Style HEAP_ModalLaws_Btn_Accept'
           loading={false}
           // close the modal
           click={() => MODAL_CONTEXT.modalHandler()}
@@ -478,6 +478,5 @@ const Law = ({ language }) => {
     </>
   );
 };
-
 
 export default Law;
