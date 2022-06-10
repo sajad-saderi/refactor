@@ -1,7 +1,7 @@
-import classNames from "classnames";
-import { IButton } from "../../../../types";
-import Spinner from "../../Spinner";
-import styles from "./button.module.scss";
+import classNames from 'classnames';
+import { IButton } from '../../../../types';
+import Spinner from '../../Spinner';
+import styles from './button.module.scss';
 
 const Button = ({
   value,
@@ -9,15 +9,14 @@ const Button = ({
   loading,
   disable,
   click,
-  reference,
+  reference
 }: IButton) => {
   return (
     <button
       ref={reference}
       className={classNames(styles.button, customClass)}
       disabled={disable || loading}
-      onClick={click}
-    >
+      onClick={click}>
       {loading ? <Spinner display='block' width={20} color='#fefefe' /> : value}
     </button>
   );
