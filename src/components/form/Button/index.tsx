@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { IButton } from '../../../../types';
 import Spinner from '../../Spinner';
-import styles from './button.module.scss';
+import styles from './buttons.module.scss';
 
 const Button = ({
   value,
