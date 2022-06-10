@@ -142,6 +142,11 @@ const SearchResultList = ({
           <CarLoading />
           <CarLoading />
           <CarLoading />
+          <CarLoading />
+          <CarLoading />
+          <CarLoading />
+          <CarLoading />
+          <CarLoading />
         </>
       )}
     </section>

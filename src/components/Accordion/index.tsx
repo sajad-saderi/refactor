@@ -1,59 +1,63 @@
 import { useState } from "react";
-import Icon from "../Icons";
-import { supportedLanguages } from "../../../utils/types";
 import classNames from "classnames";
-// import "./Accordion.scss";
+import Icon from "../Icons";
+import { IAccordion } from "../../../types";
+import styles from "./Accordion.module.scss";
 
-const Accordion = (props: IAccordion) => {
-  const [index, setIndex] = useState(0);
+const Accordion = ({ questions }: IAccordion) => {
+  const [index, setIndex] = useState<null | number>(0);
 
-  const ClickHandler = (i) => {
-    // If the given index is equal to the current index thi tab will be closing
+  const clickHandler = (i: number) => {
     if (i === index) {
-      setIndex(undefined);
+      setIndex(null);
     } else setIndex(i);
   };
-
-  return props.question_set.map((item, i) => {
-    return (
-      <div
-        key={i}
-        dir={props.activeLanguage === "fa" ? "rtl" : "ltr"}
-        className="FQ_BOX"
-        onClick={() => {
-          ClickHandler(i);
-        }}
-        itemProp="mainEntity"
-        itemScope
-        itemType="https://schema.org/Question"
-      >
-        <h3
-          className={i === index ? "activeQA" : ""}
-          dangerouslySetInnerHTML={{ __html: item.title }}
-        ></h3>
-        <span
-          className={classNames(
-            "ICON_CHevron",
-            i === index && "ACTIVE_CHEVRON"
-          )}
-        >
-          <Icon name="chevronUp" color="#202020" width="20px" height="20px" />
-        </span>
+  return (
+    <div
+      itemScope
+      itemType='https://schema.org/FAQPage'
+      className={classNames("responsive", styles.AccordionContainer)}
+    >
+      {questions.map((item, i) => (
         <div
+          key={i}
+          onClick={() => {
+            clickHandler(i);
+          }}
+          className={styles.singleItem}
+          itemProp='mainEntity'
           itemScope
-          itemProp="acceptedAnswer"
-          itemType="https://schema.org/Answer"
-          className={["QuestionPart", i === index ? "activeQA" : ""].join(" ")}
-          dangerouslySetInnerHTML={{ __html: item.content }}
-        ></div>
-      </div>
-    );
-  });
+          itemType='https://schema.org/Question'
+        >
+          <div
+            className={classNames(
+              i === index ? styles.activeQuestion : "",
+              styles.question
+            )}
+          >
+            <h3 dangerouslySetInnerHTML={{ __html: item.title }}></h3>
+            <Icon
+              name='chevronUp'
+              color='#929292'
+              width='2rem'
+              height='2rem'
+              rotate={i === index ? 0 : 180}
+            />
+          </div>
+          <div
+            itemScope
+            itemProp='acceptedAnswer'
+            itemType='https://schema.org/Answer'
+            className={classNames(
+              styles.answer,
+              i === index && styles.activeItem
+            )}
+            dangerouslySetInnerHTML={{ __html: item.content }}
+          ></div>
+        </div>
+      ))}
+    </div>
+  );
 };
-
-interface IAccordion {  
-  question_set: any;
-  activeLanguage: supportedLanguages;
-}
 
 export default Accordion;

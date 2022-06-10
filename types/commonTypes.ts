@@ -21,3 +21,12 @@ export type dateObject = {
   month: number;
   day: number;
 };
+
+export interface IItemScheme {
+  id: number;
+  name: { fa: string; en: string };
+}
+
+export interface ISelectedItem extends IItemScheme {
+  code?: string;
+}

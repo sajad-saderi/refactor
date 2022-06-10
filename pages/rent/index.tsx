@@ -26,21 +26,21 @@ const Rent = ({ locale }) => {
   const question_set =
     activeLanguage === "fa"
       ? [
-          {
-            title: `<p itemprop='name'>${locale.RENT_PAGE.question1}</p>`,
-            content: `<p  itemprop='text'>${locale.RENT_PAGE.answer1}</p>`,
-          },
-          {
-            title: `<p itemprop='name'>${locale.RENT_PAGE.question2}</p>`,
-            content: `<p itemprop='text'>${locale.RENT_PAGE.answer2}</p>`,
-          },
-        ]
+        {
+          title: `<p itemprop='name'>${locale.RENT_PAGE.question1}</p>`,
+          content: `<p  itemprop='text'>${locale.RENT_PAGE.answer1}</p>`,
+        },
+        {
+          title: `<p itemprop='name'>${locale.RENT_PAGE.question2}</p>`,
+          content: `<p itemprop='text'>${locale.RENT_PAGE.answer2}</p>`,
+        },
+      ]
       : [
-          {
-            title: `<p itemprop='name'>${locale.RENT_PAGE.question1}</p>`,
-            content: `<p  itemprop='text'>${locale.RENT_PAGE.answer1}</p>`,
-          },
-        ];
+        {
+          title: `<p itemprop='name'>${locale.RENT_PAGE.question1}</p>`,
+          content: `<p  itemprop='text'>${locale.RENT_PAGE.answer1}</p>`,
+        },
+      ];
   const extraContentRentPage = (
     <div className="rent_contnet" dir={activeLanguage === "fa" ? "rtl" : "ltr"}>
       <h2>{locale.INFORMATION.text18}</h2>
@@ -135,8 +135,7 @@ const Rent = ({ locale }) => {
           data-test-id="QA_schema"
         >
           <Accordion
-            question_set={question_set}
-            activeLanguage={activeLanguage}
+            questions={question_set}
           />
         </div>
         <section className="responsive third_container">

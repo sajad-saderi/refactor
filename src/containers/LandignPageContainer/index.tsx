@@ -26,6 +26,7 @@ import Filters from "../Filters";
 import { dynamicString } from "../../helpers/dynamicString";
 import { numberChanger } from "../../../utils/numberChanger";
 import Icon from "../../components/Icons";
+import { limitForSearchResult } from "../../../utils/constances";
 // import Search from "../Search";
 
 // let Glob_route = null;
@@ -286,7 +287,7 @@ const Landing_page_container = ({
         searchQuery = search_query_builder({
           result_key,
           page,
-          limit: 15,
+          limit: limitForSearchResult,
           price_order: o,
         });
       } else {
@@ -320,7 +321,7 @@ const Landing_page_container = ({
           //   ? landing_data.search_params[searchParamKey]
           //   : null,
           page,
-          limit: 15,
+          limit: limitForSearchResult,
         });
       }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({

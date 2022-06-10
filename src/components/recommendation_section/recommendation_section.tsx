@@ -13,6 +13,7 @@ const Slider = dynamic(() => import("react-slick"));
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import { limitForSearchResult } from "../../../utils/constances";
 let settings = {
   dots: true,
   infinite: true,
@@ -93,7 +94,7 @@ const Recommendation_section = (props) => {
         </div>
         <div className='suggestion_card'>
           <Link
-            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=5`}
+            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=5`}
             prefetch={false}
           >
             <a>
@@ -106,7 +107,7 @@ const Recommendation_section = (props) => {
         </div>
         <div className='suggestion_card'>
           <Link
-            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&with_driver=1`}
+            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=${limitForSearchResult}&with_driver=1`}
             prefetch={false}
           >
             <a>
@@ -119,7 +120,7 @@ const Recommendation_section = (props) => {
         </div>
         <div className='suggestion_card'>
           <Link
-            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&body_style_id=2`}
+            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=2`}
             prefetch={false}
           >
             <a>
@@ -132,7 +133,7 @@ const Recommendation_section = (props) => {
         </div>
         <div className='suggestion_card'>
           <Link
-            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=15&max_price=500000`}
+            href={`/search-result?location_id=1&location_name=تهران&start_date=${start_date}&end_date=${end_date}&price_order=-price&page=1&limit=${limitForSearchResult}&max_price=500000`}
             prefetch={false}
           >
             <a>

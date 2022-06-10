@@ -5,10 +5,11 @@ import {
 
 } from './appStore';
 
-import { IIcon, IInput, IInputValidationItems } from './components'
+import { IIcon, IInput, IInputValidationItems, IAccordion } from './components'
 import { IPageHeadBuilder, IPageViewDataLayer } from './Tutils/pageHeadBuilder'
 
-import { supportedLanguages, dateObject, ISvg, ILocale } from './commonTypes'
+import { supportedLanguages, dateObject, ISvg, ILocale,IItemScheme,
+    ISelectedItem } from './commonTypes'
 
 export type {
     ILocale,
@@ -21,5 +22,7 @@ export type {
     IIcon,
     IPageHeadBuilder,
     IPageViewDataLayer,
-    IInput, IInputValidationItems
+    IInput, IInputValidationItems, IAccordion,
+    ISelectedItem,
+IItemScheme
 }

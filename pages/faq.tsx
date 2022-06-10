@@ -63,7 +63,7 @@ const FAQ = ({ locale }) => {
               <div className="FQ_WRAPPER" key={item.id}>
                 {/* The first box shouldn't have title */}
                 {i === 0 ? null : <h2>{item.name.fa}</h2>}
-                <Accordion question_set={item.question_set} activeLanguage={activeLanguage} />
+                <Accordion questions={item.question_set} />
               </div>
             );
           })

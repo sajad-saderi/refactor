@@ -1,13 +1,16 @@
+import { supportedLanguages } from './../utils/types/commonTypes';
+import { IItemScheme, ILocale } from './commonTypes';
+
 export interface IInputValidationItems {
   require?: boolean;
   number?: boolean;
   min?: number;
   max?: number;
   messages?: {
-      require?: string;
-      number?: string;
-      min?: string;
-      max?: string;
+    require?: string;
+    number?: string;
+    min?: string;
+    max?: string;
   };
 }
 
@@ -36,6 +39,34 @@ export interface IInput {
   onError?: (data: IInputError) => void;
   tailValue?: string;
   type?: string;
+}
+
+export interface ISelect {
+  inputValue: string;
+  onError?: { status: boolean; message?: string };
+  disable?: boolean;
+  placeholder?: string;
+  data: IItemScheme[] | null;
+  label?: string;
+  customInputClass?: string;
+  onClear: () => void;
+  onSelect: (selectedItem: IItemScheme) => void;
+  noSearch?: boolean;
+  noArrow?: boolean;
+  noClear?: boolean;
+  colorPicker?: boolean;
+  nativeSelect?: boolean;
+  resetDropdown?: boolean;
+  searchPlaceHolder?: string;
+  language: ILocale;
+  activeLanguage: supportedLanguages
+}
+
+export interface IAccordion {
+  questions: {
+    title: string;
+    content: string;
+  }[];
 }
 
 export interface IIcon {

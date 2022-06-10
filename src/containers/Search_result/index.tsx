@@ -26,6 +26,7 @@ import AppStore from '../../context/app';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { numberChanger } from '../../../utils/numberChanger';
 import Icon from '../../components/Icons';
+import { limitForSearchResult } from '../../../utils/constances';
 
 let JumpTo = null;
 
@@ -245,9 +246,9 @@ const Search_result = ({
     // reset the filter
     setExtra_info([]);
     try {
-      let limit = 15;
+      let limit = limitForSearchResult;
       if (JumpTo === '1') {
-        limit = 15 * +jsCookie.get('page');
+        limit = limitForSearchResult * +jsCookie.get('page');
       }
       let searchQuery = null;
       if (loadMoreCar) {

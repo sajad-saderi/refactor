@@ -1,3 +1,4 @@
+import { limitForSearchResult } from './constances';
 import { payBackInString } from "./date-range-creator";
 
 const search_query_builder = ({
@@ -52,7 +53,7 @@ const search_query_builder = ({
   }
   query += `&o=${price_order ? price_order : "-price"}`;
   query += `&page=${page ? page : 1}`;
-  query += `&limit=${limit ? limit : 15}`;
+  query += `&limit=${limit ? limit : limitForSearchResult}`;
   return query;
 };
 

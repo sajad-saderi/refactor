@@ -11,6 +11,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import AppStore from '../../context/app'; 
 import { numberChanger } from '../../../utils/numberChanger';
 import Image from 'next/image';
+import { limitForSearchResult } from '../../../utils/constances';
 
 const Recommendation_section = ({ language }) => {
   const [start_date, set_start_date] = useState('');
@@ -62,7 +63,7 @@ const Recommendation_section = ({ language }) => {
               )}&end_date=${numberChanger(
                 end_date,
                 'en'
-              )}&price_order=-price&page=1&limit=15&max_price=500000`}
+              )}&price_order=-price&page=1&limit=${limitForSearchResult}&max_price=500000`}
               prefetch={false}
             >
               <a>
@@ -95,7 +96,7 @@ const Recommendation_section = ({ language }) => {
               )}&end_date=${numberChanger(
                 end_date,
                 'en'
-              )}&price_order=-price&page=1&limit=15&with_driver=1`}
+              )}&price_order=-price&page=1&limit=${limitForSearchResult}&with_driver=1`}
               prefetch={false}
             >
               <a>
@@ -118,7 +119,7 @@ const Recommendation_section = ({ language }) => {
               )}&end_date=${numberChanger(
                 end_date,
                 'en'
-              )}&price_order=-price&page=1&limit=15&body_style_id=2`}
+              )}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=2`}
               prefetch={false}
             >
               <a>
@@ -141,7 +142,7 @@ const Recommendation_section = ({ language }) => {
               )}&end_date=${numberChanger(
                 end_date,
                 'en'
-              )}&price_order=-price&page=1&limit=15&body_style_id=5`}
+              )}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=5`}
               prefetch={false}
             >
               <a>
