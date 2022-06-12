@@ -84,6 +84,7 @@
       cursor: pointer;
     }
     .withArrow {
+      display: flex;
       transition: 0.25s;
       transform: rotate(180deg);
     }
@@ -133,6 +134,7 @@
         z-index: -1;
       }
       input {
+        font-family: inherit;
         text-indent: 22px;
         margin: 10px auto 0;
         display: block;
@@ -146,6 +148,9 @@
         border-radius: 25px;
         color: rgba($color: $_000000, $alpha: 0.87);
         box-shadow: 0 0 0 0 transparent inset;
+        &:focus {
+          outline: none;
+        }
         &:focus::placeholder {
           color: transparent;
         }

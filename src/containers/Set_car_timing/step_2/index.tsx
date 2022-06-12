@@ -42,6 +42,7 @@ import Toast_context from '../../../context/Toast_context';
 import ErrorHelper from '../../../../utils/error_helper';
 import { dynamicString } from '../../../helpers/dynamicString';
 import Input from '../../../components/form/input';
+import PriceCalculator from '../../../../utils/priceCalculator';
 
 const stateReducer = (current, action) => {
   switch (action.type) {
@@ -440,13 +441,15 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
     } else setInitialImage(carThumbnail);
 
     // estimate the daily price for rent base on car value
-    let eachDaily = car.value * 0.0015;
+    // let eachDaily = car.value * 0.0015;
     // #FIXME
     // Go to the join us calender and timing component and change the coefficient there to
     // #REVIEW
     //  Round the daily value before calculating monthly and weekly income
-    let Round = Math.ceil(eachDaily / 10) * 10;
-    setRecommendationPrice(Round);
+    // let Round = Math.ceil(eachDaily / 10) * 10;
+    setRecommendationPrice(
+      new PriceCalculator(car.value).getDailyPrice().dailyPrice
+    );
 
     // SET CAR CANCELLATION POLICY
     dispatch({

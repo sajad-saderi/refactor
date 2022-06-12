@@ -15,6 +15,7 @@ import { axiosInstance } from '../../../../utils/axiosInstance';
 import styles from './confirmCode.module.scss';
 import Icon from '../../../components/Icons';
 import classNames from 'classnames';
+import CodeInput from '../../../components/form/input/codeInput';
 
 const ConfirmCode: React.FC<{
   cellPhone: string;
@@ -198,7 +199,16 @@ const ConfirmCode: React.FC<{
         <h2>{language.LOGIN.title}</h2>
       </div>
       <form className={styles.form} onSubmit={sendConfirmCode}>
-        <NumberSeparatedTextInput
+        <CodeInput
+          setCode={(e) => {
+            if (error.status) {
+              setError({ status: false, message: '' });
+            }
+            setCode(e);
+          }}
+        />
+        {error.status && <p className={styles.errorMessage}>{error.message}</p>}
+        {/* <NumberSeparatedTextInput
           error={error}
           name='code'
           onChangeHandler={(e) => {
@@ -221,7 +231,7 @@ const ConfirmCode: React.FC<{
           tabToButton={() => buttonRef.current.focus()}
           language={language}
           locale={activeLanguage}
-        />
+        /> */}
         <Button
           reference={buttonRef}
           disable={inactivateForm}

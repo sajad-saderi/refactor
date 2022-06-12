@@ -23,7 +23,7 @@ export type dateObject = {
 };
 
 export interface IItemScheme {
-  id: number;
+  value: number;
   name: { fa: string; en: string };
 }
 

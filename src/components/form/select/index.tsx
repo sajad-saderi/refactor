@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import classNames from "classnames";
-import Icon from "../../Icons";
-import useClickAway from "../../../../utils/hooks/useClickAway";
-import Spinner from "../../Spinner";
-import styles from "./select.module.scss";
-import { ISelect } from "../../../../types/components";
-import { ISelectedItem } from "../../../../types";
+import { useState, useEffect, useRef, useContext } from 'react';
+import classNames from 'classnames';
+import Icon from '../../Icons';
+import useClickAway from '../../../../utils/hooks/useClickAway';
+import Spinner from '../../Spinner';
+import styles from './select.module.scss';
+import { ISelect } from '../../../../types/components';
+import { ISelectedItem } from '../../../../types';
 
 const Select = ({
   inputValue,
@@ -25,9 +25,9 @@ const Select = ({
   resetDropdown,
   searchPlaceHolder,
   language,
-  activeLanguage,
+  activeLanguage
 }: ISelect) => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [localData, setLocalData] = useState<null | ISelectedItem[]>([]);
   const [colorCode, setColorCode] = useState<null | string>(null);
@@ -36,7 +36,7 @@ const Select = ({
   const wrapperRef = useRef(null);
 
   useClickAway(wrapperRef, () => {
-    setSearchValue("");
+    setSearchValue('');
     setShowDropdown(false);
   });
 
@@ -52,13 +52,13 @@ const Select = ({
   }, [resetDropdown]);
 
   const dropDownController = () => {
-    setSearchValue("");
+    setSearchValue('');
     setLocalData(data);
     setShowDropdown(!showDropdown);
   };
 
   const searchHandler = (e: string) => {
-    if (e === "") {
+    if (e === '') {
       setLocalData(data);
     }
     if (!/[\(\)\/\\\?\+\*]/g.test(e)) {
@@ -72,12 +72,12 @@ const Select = ({
         if (filter.length === 0)
           filter = [
             {
-              id: -1,
+              value: -1,
               name: {
                 fa: language.COMMON.inputSearchNoResult,
-                en: language.COMMON.inputSearchNoResult,
-              },
-            },
+                en: language.COMMON.inputSearchNoResult
+              }
+            }
           ];
         setLocalData(filter);
       }
@@ -93,10 +93,9 @@ const Select = ({
     <div
       className={classNames(
         styles.container,
-        disable ? styles.disableContainer : ""
+        disable ? styles.disableContainer : ''
       )}
-      ref={wrapperRef}
-    >
+      ref={wrapperRef}>
       {label && <label className={styles.label}>{label}</label>}
       {nativeSelect && isAllowedToShowNative ? (
         <div className={styles.nativeSelect}>
@@ -114,8 +113,7 @@ const Select = ({
               } else {
                 onSelect(selectedValue);
               }
-            }}
-          >
+            }}>
             <option value={JSON.stringify({ value: -1 })}></option>
             {localData?.map((i: any, index) => (
               <option key={index} value={JSON.stringify(i)}>
@@ -153,7 +151,7 @@ const Select = ({
                   ? colorCode
                   : colorPicker
                   ? inputValue
-                  : undefined,
+                  : undefined
               }}
             />
           ) : inputValue.length > 0 && !noClear ? (
@@ -164,10 +162,9 @@ const Select = ({
             <span
               className={[
                 styles.withArrow,
-                showDropdown ? styles.rotateArrow : null,
-              ].join(" ")}
-              onClick={dropDownController}
-            >
+                showDropdown ? styles.rotateArrow : null
+              ].join(' ')}
+              onClick={dropDownController}>
               <Icon
                 name='chevronUp'
                 color='#737373'
@@ -203,9 +200,8 @@ const Select = ({
                   ) : (
                     <span
                       onClick={() => {
-                        searchHandler("");
-                      }}
-                    >
+                        searchHandler('');
+                      }}>
                       <Icon
                         name='close'
                         width='20px'
@@ -220,15 +216,14 @@ const Select = ({
                 <p
                   className={styles.items}
                   onClick={() => {
-                    if (i.id === -1) return;
+                    if (i.value === -1) return;
                     if (i.code) {
                       setColorCode(i.code);
                     }
                     onSelect(i);
                     dropDownController();
                   }}
-                  key={i.id}
-                >
+                  key={i.value}>
                   {i.name[activeLanguage]}
                   {i.code && (
                     <span

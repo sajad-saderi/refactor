@@ -21,22 +21,28 @@ import ErrorHelper from '../../../utils/error_helper';
 import net_CTX from '../../context/internetConnectionCTX';
 import { supportedLanguages } from '../../../utils/types';
 import Input from '../form/input';
-
+import PriceCalculator from '../../../utils/priceCalculator';
+import Select from '../form/select';
 // import ShowResult from "./ShowResult/ShowResult";
 
-const Calculator = ({ AbText, language, locale }: ICalculator) => {
+const Calculator = ({
+  AbText,
+  language,
+  locale,
+  activeLanguage
+}: ICalculator) => {
   const [brandList, setBrandList] = useState([]);
   const [modelList, setModelList] = useState([]);
   const [value, setValue] = useState('');
   const [valueError, setValueError] = useState({ status: false, message: '' });
   const [loading, setLoading] = useState(false);
   const [brand, setBrand] = useState({
-    name: null,
+    name: '',
     id: null
   });
   const [brandError, setBrandError] = useState({ status: false, message: '' });
   const [model, setModel] = useState({
-    name: null,
+    name: '',
     id: null
   });
   const [modelError, setModelError] = useState({ status: false, message: '' });
@@ -52,6 +58,7 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
   const [authorize, set_authorize] = useState(true);
   const toastCTX = useContext(toast_context);
   const netCTX = useContext(net_CTX);
+  console.log(model.name);
 
   useEffect(() => {
     const guard = guard_controller();
@@ -172,28 +179,28 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
       // Convert the car value to Numner
       let conToNum = Number(value);
       // Constant base for daily rent: 0.0022
-      let eachDaily =
-        conToNum < 200000000
-          ? conToNum * 0.0022
-          : conToNum <= 400000000
-          ? conToNum * 0.0019
-          : conToNum * 0.0015;
+      // let eachDaily =
+      //   conToNum < 200000000
+      //     ? conToNum * 0.0022
+      //     : conToNum <= 400000000
+      //     ? conToNum * 0.0019
+      //     : conToNum * 0.0015;
       // #FIXME
       // Go to the set car and timing component and change the coefficient there to
       // #REVIEW
 
       //  Round the daily value before calculating monthly and weekly income
-      let Round = Math.ceil(eachDaily / 10) * 10;
+      // let Round = Math.ceil(eachDaily / 10) * 10;
 
-      // Multiply by 7 for weekly income
-      let eachWeek = Round * 7;
+      // // Multiply by 7 for weekly income
+      // let eachWeek = Round * 7;
 
-      // Multiply by 30 for monthly income
-      let eachMonth = Round * 30;
+      // // Multiply by 30 for monthly income
+      // let eachMonth = Round * 30;
 
-      setDaily(eachDaily);
-      setWeekly(eachWeek);
-      setMonthly(eachMonth);
+      setDaily(new PriceCalculator(conToNum).getDailyPrice().dailyPrice);
+      setWeekly(new PriceCalculator(conToNum).getWeeklyPrice().weeklyPrice);
+      setMonthly(new PriceCalculator(conToNum).getMonthlyPrice().monthlyPrice);
     } catch (error) {
       if (error === 111) {
         netCTX.toggleTheContainer(true);
@@ -209,7 +216,40 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
           <h3 className='title'>{language.JOIN_US_PAGE.formTitle}</h3>
           <form data-test-id='form' onSubmit={calculator}>
             <div className='calculator_dropDown'>
-              <DropdownSearch
+              <Select
+                activeLanguage={activeLanguage}
+                inputValue={brand.name}
+                onClear={() => {}}
+                language={language}
+                data={brandList}
+                noClear
+                placeholder={language.JOIN_US_PAGE.brand}
+                searchPlaceHolder={language.JOIN_US_PAGE.brand}
+                onSelect={(v) => {
+                  fetchModelList(v.value);
+                  setSaveCarInfo((saveCarInfo) => {
+                    return { ...saveCarInfo, brand: v };
+                  });
+                  setBrand({
+                    id: v.value,
+                    name: v.name[locale]
+                  });
+                  setModel({
+                    id: null,
+                    name: ''
+                  });
+                  try {
+                    if (window['heap']) {
+                      window['heap'].addUserProperties({
+                        Calc_Car_Brand: `${v.name}`
+                      });
+                    }
+                  } catch (e) {
+                    console.log('Em...I think heap is not work correctly :/');
+                  }
+                }}
+              />
+              {/* <DropdownSearch
                 language={language}
                 data-test-id='brand'
                 search_place_holder={language.JOIN_US_PAGE.inBrand}
@@ -222,8 +262,6 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
                 //   })
                 // }
                 Select={(v) => {
-                  console.log(v);
-
                   fetchModelList(v.value);
                   setSaveCarInfo((saveCarInfo) => {
                     return { ...saveCarInfo, brand: v };
@@ -245,21 +283,21 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
                 placeholder={language.JOIN_US_PAGE.brand}
                 InputDisable={true}
                 error_status={brandError.status}
-              />
+              /> */}
               <span className='error_Field'>{brandError.message}</span>
             </div>
             <div className='calculator_dropDown'>
-              <DropdownSearch
+              <Select
+                activeLanguage={activeLanguage}
+                inputValue={model.name}
+                onClear={() => {}}
                 language={language}
-                defaultVal={model.name}
                 data={modelList}
-                search_place_holder={language.COMMON.inModel}
-                // clearField={() => {
-                //   setModel({ id: null, name: null });
-                // }}
-                disabled={!brand.id ? true : false}
-                InputDisable={true}
-                Select={(v) => {
+                disable={!brand.id ? true : false}
+                noClear
+                placeholder={language.JOIN_US_PAGE.model}
+                searchPlaceHolder={language.COMMON.inModel}
+                onSelect={(v) => {
                   setSaveCarInfo((saveCarInfo) => {
                     return { ...saveCarInfo, model: v };
                   });
@@ -274,9 +312,20 @@ const Calculator = ({ AbText, language, locale }: ICalculator) => {
                   }
                   setModel({ id: v.value, name: v.name[locale] });
                 }}
-                placeholder={language.JOIN_US_PAGE.model}
-                error_status={modelError.status}
               />
+              {/* <DropdownSearch
+                language={language}
+                defaultVal={model.name}
+                data={modelList}
+                search_place_holder={language.COMMON.inModel}
+                // clearField={() => {
+                //   setModel({ id: null, name: null });
+                // }}
+                disabled={!brand.id ? true : false}
+                InputDisable={true}
+                Select={}
+                error_status={modelError.status}
+              /> */}
               <span className='error_Field'>{modelError.message}</span>
             </div>
             <div className='value_container'>
@@ -401,6 +450,7 @@ interface ICalculator {
   AbText?: string;
   language: any;
   locale: supportedLanguages;
+  activeLanguage: supportedLanguages;
 }
 
 export default Calculator;

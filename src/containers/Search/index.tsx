@@ -25,6 +25,7 @@ import { ICalender } from '../../../types';
 import { numberChanger } from '../../../utils/numberChanger';
 import { limitForSearchResult } from '../../../utils/constances';
 import classNames from 'classnames';
+import Select from '../../components/form/select';
 
 moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: false });
 
@@ -49,7 +50,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     from: null
   });
 
-  const [locationsList, setLocationsList] = useState([]);
+  const [locationsList, setLocationsList] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
   const [fromError, setFromError] = useState({
@@ -353,7 +354,30 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
         onSubmit={(e) => GotoSearchResult(e)}>
         <div className='search_box_div'>
           <p className='label'>{language.COMMON.pickupLocation}</p>
-          <DropdownSearch
+          <Select
+            activeLanguage={activeLanguage}
+            inputValue={LocationName}
+            onClear={() => {}}
+            language={language}
+            data={locationsList}
+            noClear
+            searchPlaceHolder={language.COMMON.inCities}
+            onSelect={(i) => {
+              localStorage['location'] = JSON.stringify(i);
+              if (activeCities(i.value)) {
+                MODAL_CONTEXT.modalHandler('TellMe');
+              } else {
+                store.setLocation({
+                  value: i.value,
+                  text: i.name.fa,
+                  en: i.name.en
+                });
+                setLocationId(i.value);
+                setLocationName(i.name[activeLanguage]);
+              }
+            }}
+          />
+          {/* <DropdownSearch
             language={language}
             data={locationsList}
             InputDisable={true}
@@ -374,7 +398,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               }
             }}
             // clearField={() => setLocationId(1)}
-          />
+          /> */}
         </div>
         <div className='Date_picker_container'>
           <div

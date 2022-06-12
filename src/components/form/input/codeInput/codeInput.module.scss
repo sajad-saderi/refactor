@@ -1,10 +1,21 @@
 @import '../../../../styles/colors';
 .container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 24px;
   .codeInput {
+    font-family: inherit;
+    margin-inline: 8px;
+    border: none;
     border-bottom: 1px solid $_3fa6da;
-    width: 30px;
+    width: 35px;
     text-align: center;
-    direction: ltr;
+    font-size: 30px;
+    outline: none;
+    &:active {
+      outline: none;
+    }
     /* Chrome, Safari, Edge, Opera */
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
