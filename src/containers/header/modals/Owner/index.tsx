@@ -86,13 +86,12 @@ const Owner = (props: IRenter) => {
                 action: 'rate'
               });
             }}>
-            <div className='imageContainer'>
-              <Image
-                layout='fill'
-                src={renter.thumbnail_url ? renter.thumbnail_url : car_image}
-                alt={renter.name}
-              />
-            </div>
+            <Image
+              width={70}
+              height={70}
+              src={renter.thumbnail_url ? renter.thumbnail_url : car_image}
+              alt={renter.name}
+            />
             <h3>{renter.name}</h3>
             <p>{props.language.REQUEST_PAGE.rateGuest}</p>
             <StarRatings

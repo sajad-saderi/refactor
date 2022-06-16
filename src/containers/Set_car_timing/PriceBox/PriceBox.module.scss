@@ -1,6 +1,6 @@
-@import "../../../styles/colors";
+@import '../../../styles/colors';
 
-.removePadding{
+.removePadding {
   padding-bottom: 25px !important;
 }
 .Price_form_container {
@@ -8,39 +8,37 @@
   position: relative;
   padding-bottom: 80px;
   .input_price_Box {
-    max-width: 320px; 
+    max-width: 320px;
     padding: 16px;
     margin-bottom: 10px;
     border: 1px solid $_bfbfbf;
     border-radius: 4px;
     .tail {
       position: relative;
-      input {
-        direction: ltr;
-        text-indent: 70px;
-        text-align: left;
-        padding: 9px;
-        font-family: inherit;
-        margin: 03px auto 05px;
-        display: block;
-        width: 100%;
-        outline: 0;
-        -webkit-appearance: none;
-        line-height: 1;
-        font-size: 14px;
-        border: 1px solid rgba(34, 36, 38, 0.15);
-        color: rgba(0, 0, 0, 0.87);
-        border-radius: 04px;
-      }
-      .clean_icon {
-        position: absolute;
-        left: 49px;
-        top: 31px;
-      }
+      // input {
+      //   direction: ltr;
+      //   text-indent: 70px;
+      //   text-align: left;
+      //   padding: 9px;
+      //   font-family: inherit;
+      //   margin: 03px auto 05px;
+      //   display: block;
+      //   width: 100%;
+      //   outline: 0;
+      //   -webkit-appearance: none;
+      //   line-height: 1;
+      //   font-size: 14px;
+      //   border: 1px solid rgba(34, 36, 38, 0.15);
+      //   color: rgba(0, 0, 0, 0.87);
+      //   border-radius: 04px;
+      // }
+      // .clean_icon {
+      //   position: absolute;
+      //   left: 49px;
+      //   top: 31px;
+      // }
       span {
-        position: absolute;
-        top: 34px;
-        left: 10px;
+        inset-inline-end: 80px;
       }
     }
     .datePickerError {
@@ -60,7 +58,7 @@
       .Diff_margin {
         margin-bottom: 03px;
       }
-      .tomanTail{
+      .tomanTail {
         top: 40px;
       }
     }

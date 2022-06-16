@@ -54,6 +54,7 @@
     }
     .radio_father {
       .radio_container {
+        margin-inline-end: 16px;
         .container {
           font-weight: 300;
           .checkmark {
@@ -433,23 +434,20 @@
             .pelak_input_box_controller {
               position: relative;
               .Fourth_part_pelak {
-                top: -7px;
-                right: 8px;
+                right: 3px;
                 input {
                   height: 30px;
                   font-size: 16px;
                 }
               }
               .Third_part_pelak {
-                top: -19px;
-                right: 65px;
+                right: 60px;
                 input {
                   height: 42px;
                   font-size: 16px;
                 }
               }
               .Second_part_pelak {
-                top: 2px;
                 right: 112px;
                 width: 50px;
                 input {
@@ -459,9 +457,7 @@
                 }
               }
               .First_part_pelak {
-                width: 50px;
-                left: 21px;
-                top: -19px;
+                left: 26px;
                 input {
                   height: 42px;
                 }

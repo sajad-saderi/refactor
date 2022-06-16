@@ -1,11 +1,11 @@
 @use "../../../../styles/variables" as var;
-@import "../../../../styles/colors";
+@import '../../../../styles/colors';
 
 .Profile_car_container {
   .carcard {
     // min-width: 32rem;
     // max-width: 34rem;
-    height: 300px;
+    // height: 300px;
     width: 49%;
     margin: 0 0 2% 0;
     background: $_ffffff;
@@ -38,9 +38,9 @@
         background: $_ffffff;
         padding: 16px;
         border-radius: 4px;
-        .close{
-cursor: pointer;
-        } 
+        .close {
+          cursor: pointer;
+        }
         .error_message {
           color: $_d83030;
           font-size: 12px;
@@ -49,7 +49,7 @@ cursor: pointer;
           line-height: 2;
           font-size: 14px;
           margin-bottom: 30px;
-          font-family: "danaXV", "dana";
+          font-family: 'danaXV', 'dana';
           margin-top: 10px;
         }
         .button_container {
@@ -80,8 +80,8 @@ cursor: pointer;
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
       display: flex;
-    align-items: center;
-    justify-content: center;
+      align-items: center;
+      justify-content: center;
       .read_more {
         display: none;
         top: 43%;
@@ -112,7 +112,7 @@ cursor: pointer;
         bottom: 0;
         right: 0;
         p {
-          padding: 3px;
+          padding: 3px 8px;
           font-size: 12px;
           background-color: $_ffffff;
           span {
@@ -144,7 +144,7 @@ cursor: pointer;
       display: flex;
       justify-content: space-between;
       padding: 0 8px;
-      margin-top: 15px;
+      margin-block: 15px 8px;
       .Loading {
         margin: 0 10px;
       }
@@ -168,7 +168,11 @@ cursor: pointer;
         width: 20px;
       }
       .icon_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         span {
+          display: flex;
           margin-right: 16px;
         }
       }
@@ -176,7 +180,7 @@ cursor: pointer;
   }
 }
 
-.Profile_car_container[dir="ltr"] {
+.Profile_car_container[dir='ltr'] {
   .carcard {
     direction: ltr;
     figure {

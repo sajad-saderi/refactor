@@ -312,7 +312,13 @@ const Checkout_Container = ({
                   activeLanguage
                 )}
           </p>
-          <Icon name='arrow' width='26px' height='26px' color='#202020' />
+          <Icon
+            name='arrow'
+            width='26px'
+            height='26px'
+            color='#202020'
+            rotate={activeLanguage == 'fa' ? 0 : 182}
+          />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa'
@@ -451,7 +457,13 @@ const Checkout_Container = ({
                   activeLanguage
                 )}
           </p>
-          <Icon name='arrow' width='26px' height='26px' color='#202020' />
+          <Icon
+            name='arrow'
+            width='26px'
+            height='26px'
+            color='#202020'
+            rotate={activeLanguage == 'fa' ? 0 : 182}
+          />
           <p>
             {/* convert date to days name */}
             {activeLanguage === 'fa'

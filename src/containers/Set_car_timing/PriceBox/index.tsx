@@ -279,6 +279,8 @@ const PriceBox = (props: IPriceBox) => {
               }}
               label={props.language.COMMON.price}
               value={price_per_day}
+              withSeparator
+              tailValue='تومان'
               validationItems={{
                 number: true,
                 require: true,
@@ -308,7 +310,7 @@ const PriceBox = (props: IPriceBox) => {
                 
               }}
             /> */}
-            <span className='tomanTail'>تومان</span>
+            {/* <span className='tomanTail'></span> */}
           </div>
           <div className='divs button_box'>
             <p className='confirm' onClick={onConfirm}>

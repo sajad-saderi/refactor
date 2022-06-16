@@ -580,7 +580,13 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                       ).format('dddd')}
                 </span>
               </span>
-              <Icon name='arrow' width='24p' height='24px' color='#dcdcdc' />
+              <Icon
+                name='arrow'
+                width='24p'
+                height='24px'
+                color='#dcdcdc'
+                rotate={activeLanguage == 'fa' ? 0 : 182}
+              />
               <span>
                 {extensionInfo && extensionSum.status.id === 'extended'
                   ? activeLanguage === 'fa'

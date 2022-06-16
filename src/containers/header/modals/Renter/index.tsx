@@ -105,7 +105,8 @@ const Renter = (props: IRenter) => {
             {/* a image of the order */}
             <div className='imageContainer'>
               <Image
-                layout='fill'
+                width={70}
+                height={70}
                 src={
                   rent_search_dump.media_set.length > 0
                     ? rent_search_dump.media_set[0].thumbnail_url
@@ -143,7 +144,9 @@ const Renter = (props: IRenter) => {
             )}
             <br />
             {/* the owner image */}
-            <img
+            <Image
+              width={70}
+              height={70}
               src={rent_search_dump.owner.thumbnail_url}
               alt={rent_search_dump.owner.name}
             />

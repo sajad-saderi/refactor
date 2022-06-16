@@ -14,7 +14,7 @@ const CodeInput: React.FC<{
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
   const [value3, setValue3] = useState('');
-  const [activeInput, setActiveInput] = useState([false, false, false, false]);
+  const [activeInput, setActiveInput] = useState([true, false, false, false]);
 
   const characterHandler = (
     e: React.KeyboardEvent<HTMLInputElement>,
@@ -141,6 +141,7 @@ const CodeInput: React.FC<{
         )}
         onFocus={() => setActiveInput([true, false, false, false])}
         autoComplete='false'
+        autoFocus
       />
     </div>
   );

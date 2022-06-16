@@ -1,9 +1,13 @@
 // import "./carPageLoading.scss";
 
+import { SeprisCarLogo } from '../../Icons/svg/seprisCarLogo';
+
 const CarPageLoading = () => {
   return (
     <>
-      <div className='slider Gradient' />
+      <div className='slider Gradient'>
+        <SeprisCarLogo width='180px' height='120px' color='#dfdfdf' />
+      </div>
       <article className='responsive Car_page_container_loading'>
         <section className='carInfo_container'>
           <h1 className='Gradient'></h1>

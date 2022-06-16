@@ -40,7 +40,7 @@ let End_date = null;
 let page = 1;
 let price = {
   min: null,
-  max: null,
+  max: null
 };
 // default price sort is form highest to lowest price  -> descending
 let o = '-price';
@@ -68,7 +68,7 @@ let filtersChecker = {
   deliver_at_renters_place: false,
   brand_id: false,
   car_id: false,
-  category_id: false,
+  category_id: false
 };
 
 // Set position
@@ -77,7 +77,7 @@ let position = 0;
 const Search_result = ({
   language,
   revealRsearchbBox,
-  showLocationTag,
+  showLocationTag
 }: ISearch_result) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -98,7 +98,7 @@ const Search_result = ({
     deliver_at_renters_place: false,
     brand_id: false,
     car_id: false,
-    category_id: false,
+    category_id: false
   });
   const [carLocationName, setCarLocationName] = useState('');
   const toastCTX = useContext(toast_context);
@@ -137,7 +137,7 @@ const Search_result = ({
       filtersChecker.price = true;
       price = {
         min: url_checked.min_price,
-        max: url_checked.max_price,
+        max: url_checked.max_price
       };
     }
     if (router.query.deliver_at_renters_place === '1') {
@@ -201,7 +201,7 @@ const Search_result = ({
       page = 1;
       price = {
         min: null,
-        max: null,
+        max: null
       };
       o = '-price';
       loadMoreCar = false;
@@ -224,7 +224,7 @@ const Search_result = ({
         deliver_at_renters_place: false,
         brand_id: false,
         car_id: false,
-        category_id: false,
+        category_id: false
       };
     };
   }, []);
@@ -256,7 +256,7 @@ const Search_result = ({
           result_key,
           price_order: o,
           page,
-          limit,
+          limit
         });
       } else {
         searchQuery = search_query_builder({
@@ -286,11 +286,11 @@ const Search_result = ({
           car_id: filtersChecker.car_id ? car_id : null,
           category_id: filtersChecker.category_id ? category_id : null,
           page,
-          limit,
+          limit
         });
       }
       const res: any = await REQUEST_GET_SEARCH_FOR_RENT({
-        searchQuery,
+        searchQuery
       });
       setLoading(false);
       setTotal_count(res.total_count);
@@ -300,7 +300,7 @@ const Search_result = ({
         params: res.extra_info.params,
         pre_loads: res.extra_info.pre_loads,
         sliderMin: res.extra_info.avg_price_per_day_min,
-        sliderMax: res.extra_info.avg_price_per_day_max,
+        sliderMax: res.extra_info.avg_price_per_day_max
       });
       setExtra_info(res.extra_info);
       if (loadMoreCar) {
@@ -325,12 +325,12 @@ const Search_result = ({
           message: error.response
             ? ErrorHelper({
                 errorObj: error.response,
-                _400Message: language.COMMON.errorInSearchResult,
+                _400Message: language.COMMON.errorInSearchResult
               })
             : error,
           color: '#ed9026',
           time: 0,
-          autoClose: false,
+          autoClose: false
         });
     }
   }
@@ -346,7 +346,7 @@ const Search_result = ({
       filtersChecker.price = v.price.status;
       price = {
         min: +v.price.value[0],
-        max: +v.price.value[1],
+        max: +v.price.value[1]
       };
       staticRoute.min_price = +v.price.value[0];
       staticRoute.max_price = +v.price.value[1];
@@ -404,7 +404,7 @@ const Search_result = ({
     UrlCreator({
       query: staticRoute,
       route: router.route,
-      cb: UrlUpdater,
+      cb: UrlUpdater
     });
     page = 1;
     initSearch();
@@ -481,7 +481,7 @@ const Search_result = ({
           deliver_at_renters_place: false,
           brand_id: false,
           car_id: false,
-          category_id: false,
+          category_id: false
         });
         break;
     }
@@ -491,7 +491,7 @@ const Search_result = ({
     params,
     pre_loads,
     sliderMin,
-    sliderMax,
+    sliderMax
   }) => {
     let min = params.min_price ? params.min_price : sliderMin;
     let max = params.max_price ? params.max_price : sliderMax;
@@ -563,7 +563,7 @@ const Search_result = ({
     router.replace(
       {
         pathname: pathname,
-        query: query,
+        query: query
       },
       undefined,
       { shallow: true }
@@ -582,12 +582,12 @@ const Search_result = ({
       staticRoute = {
         ...staticRoute,
         location_id: tag.value,
-        location_name: tag.name,
+        location_name: tag.name
       };
       UrlCreator({
         query: staticRoute,
         route: router.route,
-        cb: UrlUpdater,
+        cb: UrlUpdater
       });
       initSearch();
     }
@@ -597,8 +597,7 @@ const Search_result = ({
     <article
       className='search_result_page_container'
       dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
-      onClick={getClickPosition}
-    >
+      onClick={getClickPosition}>
       {/* result count section */}
       <div className='count_bar_container' ref={new_search_ref}>
         <div
@@ -607,9 +606,8 @@ const Search_result = ({
             setShowSearch(!showSearch);
           }}
           style={{
-            height: showSearch ? 'auto' : '42px',
-          }}
-        >
+            height: showSearch ? 'auto' : '42px'
+          }}>
           {result ? (
             result.length > 0 && !showSearch ? (
               <p className='count_bar_count'>
@@ -620,7 +618,7 @@ const Search_result = ({
                           total_count,
                           extra_info.params.start_date.slice(5),
                           extra_info.params.end_date.slice(5),
-                          carLocationName,
+                          carLocationName
                         ],
                         language.COMMON.carInResult,
                         total_count > 1 ? true : false
@@ -639,8 +637,7 @@ const Search_result = ({
             {showSearch ? (
               <span className='close_text_btn'>
                 {language.COMMON.close}
-                <Icon name="close" width="20px" height="20px" color="#dcdcdc" />
- 
+                <Icon name='close' width='20px' height='20px' color='#dcdcdc' />
               </span>
             ) : (
               language.COMMON.changeSearch
@@ -651,9 +648,8 @@ const Search_result = ({
         <section
           className={[
             'new_search_in_landing',
-            showSearch ? 'show_search_section' : null,
-          ].join(' ')}
-        >
+            showSearch ? 'show_search_section' : null
+          ].join(' ')}>
           <div className='responsive'>
             <Search
               language={language}
@@ -673,7 +669,7 @@ const Search_result = ({
                 UrlCreator({
                   query: staticRoute,
                   route: router.route,
-                  cb: UrlUpdater,
+                  cb: UrlUpdater
                 });
                 initSearch();
               }}
@@ -682,10 +678,10 @@ const Search_result = ({
         </section>
         {showSearch ? (
           <span
-          onClick={() => setShowSearch(false)}
-          className='Arrow_up_change_search'>
-                <Icon name="chevronUp" width="20px" height="20px" color="#dcdcdc" />
-</span>
+            onClick={() => setShowSearch(false)}
+            className='Arrow_up_change_search'>
+            <Icon name='chevronUp' width='20px' height='20px' color='#dcdcdc' />
+          </span>
         ) : null}
       </div>
       {/* search box */}
@@ -701,11 +697,10 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               initSearch();
-            }}
-          >
+            }}>
             {language.COMMON.highToLow}
           </span>
           <span
@@ -717,26 +712,23 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               initSearch();
-            }}
-          >
+            }}>
             {language.COMMON.lowToHigh}
           </span>
           {/* Trigger icon in mobile view */}
           <p className='show_filter' onClick={() => setShow_filter(true)}>
             {language.COMMON.advanceSearch}
-            <Icon name="options" width="14px" height="14px" color="#656565" />
-
+            <Icon name='options' width='14px' height='14px' color='#656565' />
           </p>
         </div>
       </section>
       <section
         className={`responsive minimal_filters ${
           loading ? 'disabledmMinimal_filters' : ''
-        }`}
-      >
+        }`}>
         {/* {filtersChecker.location ? (
           <p
             className='minimal_filter_tags'
@@ -777,18 +769,17 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               initSearch();
-            }}
-          >
-                <Icon name="close" width="13px" height="13px" color="#3fa6da" />
-       
+            }}>
+            <Icon name='close' width='13px' height='13px' color='#3fa6da' />
+
             {numberChanger(
               dynamicString(
                 [
                   Number(price.min).toLocaleString(),
-                  Number(price.max).toLocaleString(),
+                  Number(price.max).toLocaleString()
                 ],
                 language.COMMON.badgePrice
               ),
@@ -809,13 +800,12 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               initSearch();
-            }}
-          >
-                            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
- 
+            }}>
+            <Icon name='close' width='13px' height='13px' color='#3fa6da' />
+
             {language.COMMON.delivery}
           </p>
         ) : null}
@@ -832,12 +822,11 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               initSearch();
-            }}
-          > 
-            <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+            }}>
+            <Icon name='close' width='13px' height='13px' color='#3fa6da' />
             {language.COMMON.withDriver}
           </p>
         ) : null}
@@ -854,12 +843,11 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               initSearch();
-            }}
-          >
-                <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+            }}>
+            <Icon name='close' width='13px' height='13px' color='#3fa6da' />
             {language.COMMON.withoutDriver}
           </p>
         ) : null}
@@ -886,12 +874,16 @@ const Search_result = ({
                     UrlCreator({
                       query: staticRoute,
                       route: router.route,
-                      cb: UrlUpdater,
+                      cb: UrlUpdater
                     });
                     initSearch();
-                  }}
-                >
-                      <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+                  }}>
+                  <Icon
+                    name='close'
+                    width='13px'
+                    height='13px'
+                    color='#3fa6da'
+                  />
                   {/* {language.minimal_filters_body_style} */}
                   {name[activeLanguage]}
                 </p>
@@ -913,12 +905,11 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               // initSearch();
-            }}
-          >
-               <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+            }}>
+            <Icon name='close' width='13px' height='13px' color='#3fa6da' />
             {/* {language.minimal_filters_brand} */}
             {brand_name}
           </p>
@@ -937,12 +928,11 @@ const Search_result = ({
               UrlCreator({
                 query: staticRoute,
                 route: router.route,
-                cb: UrlUpdater,
+                cb: UrlUpdater
               });
               // initSearch();
-            }}
-          >
-                <Icon name="close" width="13px" height="13px" color="#3fa6da" />
+            }}>
+            <Icon name='close' width='13px' height='13px' color='#3fa6da' />
             {/* {language.minimal_filters_model} */}
             {car_name}
           </p>
@@ -954,9 +944,8 @@ const Search_result = ({
           value={{
             setDataForSearch: (v) => {
               filterResults(v);
-            },
-          }}
-        >
+            }
+          }}>
           <Filters
             loading={loading}
             extra_info={extra_info}
@@ -993,16 +982,21 @@ const Search_result = ({
         <span
           className={[
             'Load_more_car HEAP_SearchResult_Btn_ShowMore',
-            show_spinner_loadMore ? 'no_padding' : null,
+            show_spinner_loadMore ? 'no_padding' : null
           ].join(' ')}
-          onClick={() => loadMore()}
-        >
+          onClick={() => loadMore()}>
           {show_spinner_loadMore ? (
             <Spinner display='block' width={20} color='#9E9E9E' />
           ) : (
             <>
-                <Icon name="chevronUp" rotate={180} width="20px" height="20px" color="#202020" />
-               
+              <Icon
+                name='chevronUp'
+                rotate={180}
+                width='20px'
+                height='20px'
+                color='#202020'
+              />
+
               {language.COMMON.loadMore}
             </>
           )}

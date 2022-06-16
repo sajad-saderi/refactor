@@ -946,6 +946,7 @@ const CarPage = ({
                             width='22px'
                             height='22px'
                             color='#202020'
+                            rotate={activeLanguage == 'fa' ? 0 : 182}
                           />
                           <span className='day_name'>{`${moment(
                             `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,
@@ -1322,6 +1323,7 @@ const CarPage = ({
                       width='22px'
                       height='22px'
                       color='#202020'
+                      rotate={activeLanguage == 'fa' ? 0 : 182}
                     />
                     <span className='day_name'>{`${moment(
                       `${dayRange.to.year}/${dayRange.to.month}/${dayRange.to.day}`,

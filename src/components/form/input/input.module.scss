@@ -15,7 +15,7 @@
   .inputWrapper {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     position: relative;
     .input {
@@ -54,7 +54,6 @@
     }
     .tailContent {
       margin-inline-start: 16px;
-      height: 100%;
       display: flex;
       align-items: center;
       color: $_313131;

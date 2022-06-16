@@ -4,16 +4,13 @@
   width: 100%;
   .rate_to_owner_car {
     text-align: center;
-    .imageContainer{
-      width: 70px;
-    height: 70px;
-    position: relative;
-    display: block;
-    margin: auto;
+    .imageContainer {
+      display: block;
+      margin: auto;
     }
-    img { 
+    img {
       margin-top: 10px;
-      border-radius: 4px;
+      border-radius: 50px;
     }
     h3 {
       font-weight: 500;
@@ -30,6 +27,10 @@
       svg {
         width: 20px;
       }
+    }
+    .Error_color {
+      font-size: 12px;
+      display: block;
     }
     label {
       text-align: right;
@@ -63,6 +64,9 @@
         background-color: transparent;
         color: $_3fa6da;
         border: 1px solid $_3fa6da;
+        span {
+          border-color: $_808080;
+        }
       }
     }
   }
