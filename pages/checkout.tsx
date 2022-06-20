@@ -93,42 +93,35 @@ const Checkout = ({ order_information, expired, locale, missingSearchId }) => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async ({
-//   query,
-//   locale,
-//   params,
-//   locales,
-//   resolvedUrl
-// }) => {
-//   const { search_id } = query;
-//   console.log(locale, search_id, params, resolvedUrl);
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { search_id } = query;
 
-//   try {
-//     if (search_id) {
-//       const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
-//       return {
-//         props: { order_information: res }
-//       };
-//     } else {
-//       const data = {
-//         order_information: null,
-//         missingSearchId: true
-//       };
-//       return {
-//         props: data
-//       };
-//     }
-//   } catch (error) {
-//     const data = {
-//       order_information: null
-//     };
-//     if (error.response.data?.error === 'INVALID_SEARCH_ID') {
-//       data['expired'] = true;
-//     }
-//     return {
-//       props: data
-//     };
-//   }
-// };
+  try {
+    if (search_id) {
+      const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
+      return {
+        props: { order_information: res }
+      };
+    } else {
+      const data = {
+        order_information: null,
+        missingSearchId: true
+      };
+      return {
+        props: data
+      };
+    }
+  } catch (error) {
+    const data = {
+      order_information: null
+    };
+    if (error.response.data?.error === 'INVALID_SEARCH_ID') {
+      data['expired'] = true;
+    }
+    return {
+      props: data
+    };
+  }
+};
 
 export default Checkout;
