@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef, useContext } from "react";
-import dynamic from "next/dynamic";
+import { useState, useEffect, useRef, useContext } from 'react';
+import dynamic from 'next/dynamic';
 import languageCTX from '../../../context/languageCTX';
-import Icon from "../../Icons";
-import classNames from "classnames";
+import Icon from '../../Icons';
+import classNames from 'classnames';
 
-const Spinner = dynamic(() => import("../../Spinner"));
+const Spinner = dynamic(() => import('../../Spinner'));
 // import Spinner from "../../Spinner";
 
 const DropdownSearch = (props: IDropDown) => {
-  const [InputValue, setInputValue] = useState("");
+  const [InputValue, setInputValue] = useState('');
   const [ShowController, setShowController] = useState(false);
   const [Data, setData] = useState([]);
-  const [search_value, setSearch_value] = useState("");
-  const [locale, setLocale] = useState("fa");
+  const [search_value, setSearch_value] = useState('');
+  const [locale, setLocale] = useState('fa');
   // this value is necessary to update the drop-down input in case of a default value
   const [colorCode, setColorCode] = useState(null);
   const localeCTX = useContext(languageCTX);
@@ -21,20 +21,20 @@ const DropdownSearch = (props: IDropDown) => {
   const handleClickOutside = (e) => {
     // If the click is outside of the drop-down box the drop-down section will be close
     if (!wrapperRef.current.contains(e.target)) {
-      setSearch_value("");
+      setSearch_value('');
       setShowController(false);
       return;
     }
   };
 
   useEffect(() => {
-    setLocale(localeCTX.activeLanguage)
-  }, [localeCTX.activeLanguage])
+    setLocale(localeCTX.activeLanguage);
+  }, [localeCTX.activeLanguage]);
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -52,7 +52,7 @@ const DropdownSearch = (props: IDropDown) => {
   // Reset the input field
   useEffect(() => {
     if (props.callClearField) {
-      setInputValue("");
+      setInputValue('');
       props.clearField();
       props.callClearFieldReset();
     }
@@ -66,14 +66,14 @@ const DropdownSearch = (props: IDropDown) => {
   // }, [props.error_status]);
 
   const DropDownController = () => {
-    setSearch_value("");
+    setSearch_value('');
     setData(props.data);
     setShowController(!ShowController);
   };
 
   const searchHandler = (e) => {
     // show all the data if the input is clear
-    if (e === "") {
+    if (e === '') {
       setData(props.data);
     }
 
@@ -87,15 +87,15 @@ const DropdownSearch = (props: IDropDown) => {
         {
           key: -1,
           name: props.language.COMMON.noResult,
-          value: -1,
-        },
+          value: -1
+        }
       ];
 
     setData(filter);
   };
 
   const clearField = () => {
-    setInputValue("");
+    setInputValue('');
     setShowController(true);
     props.clearField();
   };
@@ -103,33 +103,30 @@ const DropdownSearch = (props: IDropDown) => {
   return (
     <div
       className={[
-        "DropDown_container",
+        'DropDown_container',
         //  if the drop-down is disabled, it is shown by class
-        props.disabled ? "Disable_Container" : null,
-      ].join(" ")}
+        props.disabled ? 'Disable_Container' : null
+      ].join(' ')}
       ref={wrapperRef}
-      dir={localeCTX.activeLanguage === 'fa' ? 'rtl' : 'ltr'}
-    >
+      dir={localeCTX.activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       {props.label && (
         <label
           data-test-id='label'
-          className={props.disabled ? "Disable_color" : null}
-        >
+          className={props.disabled ? 'Disable_color' : null}>
           {props.label}
         </label>
       )}
       {props.browserDropdown ? (
         <div className='select_container'>
           <span className='ArrowDown'>
-
-          <Icon
-          name="chevronUp"
-            color='#a5a5a5'
-            width='20px'
-            height='20px'
-            rotate={180}
+            <Icon
+              name='chevronUp'
+              color='#a5a5a5'
+              width='20px'
+              height='20px'
+              rotate={180}
             />
-            </span>
+          </span>
           <select
             className='default_select'
             onChange={(e) => {
@@ -141,8 +138,8 @@ const DropdownSearch = (props: IDropDown) => {
                 props.Select(value);
               }
             }}
-          >
-            <option value={JSON.stringify({ value: -1 })}></option>
+            value={props.defaultVal === '' ? -1 : props.defaultVal}>
+            <option value={JSON.stringify({ value: -1 })}>ss</option>
             {Data.map((i, index) => (
               <option key={index} value={JSON.stringify(i)}>
                 {i.name[locale]}
@@ -153,21 +150,20 @@ const DropdownSearch = (props: IDropDown) => {
       ) : null}
       <div
         className={[
-          "input_wrapper",
-          props.browserDropdown ? "hideInput_wrapper" : null,
-        ].join(" ")}
-      >
+          'input_wrapper',
+          props.browserDropdown ? 'hideInput_wrapper' : null
+        ].join(' ')}>
         <input
           data-test-id='drop_down_input'
           className={[
-            "data-hj-allow",
-            props.disabled ? "Disable_color" : null,
+            'data-hj-allow',
+            props.disabled ? 'Disable_color' : null,
             props.styleClass ? props.styleClass : null,
-            props.error_status ? "inputError" : null,
-            ShowController ? "dropdownIsActive" : null,
-          ].join(" ")}
+            props.error_status ? 'inputError' : null,
+            ShowController ? 'dropdownIsActive' : null
+          ].join(' ')}
           data-hj-allow
-          onChange={() => { }}
+          onChange={() => {}}
           // active readOnly for input
           readOnly={props.InputDisable}
           disabled={props.disabled}
@@ -179,19 +175,10 @@ const DropdownSearch = (props: IDropDown) => {
         {/* close icon in input */}
         {props.clearField ? (
           (InputValue.length > 0 || props.defaultVal) &&
-            !props.hideClearField ? (
-              <span
-              className='clean_icon'
-                  onClick={clearField}>
-
-                <Icon
-                name="close"
-                  color="#a5a5a5"
-                  width='20px'
-                  height='20px'
-                  
-                />
-              </span>
+          !props.hideClearField ? (
+            <span className='clean_icon' onClick={clearField}>
+              <Icon name='close' color='#a5a5a5' width='20px' height='20px' />
+            </span>
           ) : null
         ) : null}
         {/* Show the selected color in color picker drop-down */}
@@ -202,35 +189,32 @@ const DropdownSearch = (props: IDropDown) => {
               background: colorCode
                 ? colorCode
                 : props.colorPicker
-                  ? InputValue
-                  : null,
-            }}
-          ></div>
+                ? InputValue
+                : null
+            }}></div>
         )}
         {/* Arrow down icon */}
         {!props.hideArrowDown && (
           <span
-          
-          className={classNames(
-            "ArrowDown",
-            ShowController && "rotate_arrow_down_icon" )}
-          onClick={DropDownController}>
-
-          <Icon
-          name="chevronUp"
-          color='#a5a5a5'
-          width='20px'
-          height='20px'
-          rotate={180}
-          />
-          </span> 
+            className={classNames(
+              'ArrowDown',
+              ShowController && 'rotate_arrow_down_icon'
+            )}
+            onClick={DropDownController}>
+            <Icon
+              name='chevronUp'
+              color='#a5a5a5'
+              width='20px'
+              height='20px'
+              rotate={180}
+            />
+          </span>
         )}
       </div>
       {ShowController ? (
         <div
           data-test-id='Locations_list_container'
-          className='Locations_list_container'
-        >
+          className='Locations_list_container'>
           {Data.length === 0 ? (
             <div className='resultList spinnerPlaceholder'>
               <Spinner display='block' width={21} color='#9E9E9E' />
@@ -257,21 +241,27 @@ const DropdownSearch = (props: IDropDown) => {
                       searchHandler(e.target.value.trim());
                     }}
                   />
-                  {!search_value && <Icon name='search' width="20px" height='20px' color='#737373' />}
+                  {!search_value && (
+                    <Icon
+                      name='search'
+                      width='20px'
+                      height='20px'
+                      color='#737373'
+                    />
+                  )}
                   {search_value && (
-                    <span   onClick={() => {
-                      setSearch_value("");
-                      searchHandler("");
-                    }}>
-
-<Icon
-                name="close"
-                  color="#a5a5a5"
-                  width='20px'
-                  height='20px'
-                  
-                /> 
-                      </span>
+                    <span
+                      onClick={() => {
+                        setSearch_value('');
+                        searchHandler('');
+                      }}>
+                      <Icon
+                        name='close'
+                        color='#a5a5a5'
+                        width='20px'
+                        height='20px'
+                      />
+                    </span>
                   )}
                 </div>
               )}
@@ -289,15 +279,13 @@ const DropdownSearch = (props: IDropDown) => {
                     props.Select(i);
                     DropDownController();
                   }}
-                  key={index}
-                >
+                  key={index}>
                   {i.name[locale]}
                   {/* this section will active just in the color picker */}
                   {i.code && (
                     <span
                       style={{ background: `${i.code}` }}
-                      className='Color_box'
-                    ></span>
+                      className='Color_box'></span>
                   )}
                 </p>
               ))}
@@ -355,7 +343,7 @@ interface IDropDown {
 
   // Reset the controller value of clear input from the parent component
   search_place_holder?: string;
-  language: any; 
+  language: any;
 }
 
 export default DropdownSearch;

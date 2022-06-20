@@ -1,11 +1,11 @@
 @use "../../styles/newStyles/variables" as var;
-@import "../../styles/colors";
-@import "./modals/modal.module.scss";
+@import '../../styles/colors';
+@import './modals/modal.module.scss';
 .header {
   background-color: $_1f1f1f;
-  padding: 12px 0;
-  height: 48px;
-  font-family: "danaXV", "dana";
+  padding: 8px 0;
+  // height: 48px;
+  font-family: 'danaXV', 'dana';
   .header_container {
     display: flex;
     align-items: center;
@@ -13,10 +13,10 @@
   }
   .Logo {
     // float: left;
-    margin-top: -1px;
+    // margin-top: -1px;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     .homeLink {
       display: flex;
       align-items: center;
@@ -42,7 +42,7 @@
     //   display: block;
     //   clear: both;
     //   content: "";
-    // } 
+    // }
   }
 
   // @disable the hamburger menu
@@ -74,20 +74,28 @@
 
   .Nav {
     transition: 0.25s all;
-    margin-top: -3px;
+    // margin-top: -3px;
     ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       li {
-        display: inline-block;
+        // display: inline-block;
         color: $_fefefe;
         font-size: 14px;
         position: relative;
         line-height: 2;
         font-weight: 500;
         cursor: pointer;
+        .profile {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
         .profile_icon {
           width: 32px;
-          display: inline-block;
-          vertical-align: middle;
+          // display: inline-block;
+          // vertical-align: middle;
           border-radius: 50%;
           margin-right: 8px;
         }
@@ -154,7 +162,7 @@
         }
         .user-name {
           padding: 0 !important;
-          display: inline-block;
+          // display: inline-block;
         }
         .login-out {
           padding: 0;
@@ -198,7 +206,7 @@
           &::before {
             bottom: 100%;
             left: 13%;
-            content: "";
+            content: '';
             height: 0px;
             width: 0px;
             position: absolute;
@@ -218,8 +226,7 @@
   }
 }
 
-.header[dir="ltr"] {
- 
+.header[dir='ltr'] {
   .Nav {
     ul {
       li {
@@ -283,7 +290,7 @@
 @media screen and(max-width:480px) {
   .header {
     .Logo {
-      margin-top: -3px;  
+      // margin-top: -3px;
     }
     .Nav {
       margin-top: -2px;

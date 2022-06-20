@@ -8,7 +8,7 @@ import for_journey from '../../../public/image/for_journey.jpeg';
 import moment from 'moment-jalaali';
 import Link from 'next/link';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import AppStore from '../../context/app'; 
+import AppStore from '../../context/app';
 import { numberChanger } from '../../../utils/numberChanger';
 import Image from 'next/image';
 import { limitForSearchResult } from '../../../utils/constances';
@@ -63,9 +63,8 @@ const Recommendation_section = ({ language }) => {
               )}&end_date=${numberChanger(
                 end_date,
                 'en'
-              )}&price_order=-price&page=1&limit=${limitForSearchResult}&max_price=500000`}
-              prefetch={false}
-            >
+              )}&price_order=-price&page=1&limit=${limitForSearchResult}&max_price=500000&without_driver=1`}
+              prefetch={false}>
               <a>
                 <figure>
                   <Image src={affordable} />
@@ -97,8 +96,7 @@ const Recommendation_section = ({ language }) => {
                 end_date,
                 'en'
               )}&price_order=-price&page=1&limit=${limitForSearchResult}&with_driver=1`}
-              prefetch={false}
-            >
+              prefetch={false}>
               <a>
                 <figure>
                   <Image src={with_driver} />
@@ -119,9 +117,8 @@ const Recommendation_section = ({ language }) => {
               )}&end_date=${numberChanger(
                 end_date,
                 'en'
-              )}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=2`}
-              prefetch={false}
-            >
+              )}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=2&without_driver=1`}
+              prefetch={false}>
               <a>
                 <figure>
                   <Image src={suv} />
@@ -143,8 +140,7 @@ const Recommendation_section = ({ language }) => {
                 end_date,
                 'en'
               )}&price_order=-price&page=1&limit=${limitForSearchResult}&body_style_id=5`}
-              prefetch={false}
-            >
+              prefetch={false}>
               <a>
                 <figure>
                   <Image src={van} />
