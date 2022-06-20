@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { REQUEST_GET_RENTAL_CAR, REQUEST_SET_RENT_REQUEST } from '../../API';
-import { useRouter } from 'next/router';
-// import "./checkout.scss";
+import Router, { useRouter } from 'next/router';
 import context_user from '../../context/User_info';
 import dynamic from 'next/dynamic';
 
@@ -32,16 +31,17 @@ import { numberChanger } from '../../../utils/numberChanger';
 import { errorCodeFormatter } from '../../../utils/errorCodeFormatter';
 import Icon from '../../components/Icons';
 import Input from '../../components/form/input';
-
+import { getUrlQueryParams } from '../../../utils/common';
 let dateObject: ICalender | null = { from: null, to: null };
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: 'persian-modern' });
 
 const Checkout_Container = ({
-  language,
-  order_information
-}: ICheckout_Container) => {
+  language
+}: // order_information,
+// missingSearchId
+ICheckout_Container) => {
   const [car, setCar] = useState(null);
   const [year, setYear] = useState(null);
   const [media_set, setMedia_set] = useState([]);
@@ -90,21 +90,27 @@ const Checkout_Container = ({
 
   const token = jsCookie.get('token');
 
-  // useEffect(() => {
-  //   const { search_id } = Router.router.query;
-  //   fetchData(search_id);
-  // }, []);
-
-  // const fetchData = async (search_id) => {
-  //   try {
-  //     const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
-  //     set_CarInformation(res);
-  //   } catch (error) {
-  //     console.log("!Error", error);
-  //   }
-  // };
-
   useEffect(() => {
+    const { search_id } = Router.router.query;
+    console.log('search_id', getUrlQueryParams(window.location.href));
+
+    fetchData(search_id);
+  }, []);
+
+  const fetchData = async (search_id) => {
+    try {
+      const res: any = await REQUEST_GET_RENTAL_CAR({ search_id });
+      set_CarInformation(res);
+    } catch (error) {
+      console.log('!Error', error);
+    }
+  };
+
+  // useEffect(() => {
+  //   set_CarInformation(order_information);
+  // }, [order_information]);
+
+  const set_CarInformation = (order_information) => {
     if (order_information) {
       setCar(order_information.car);
       setYear(order_information.year);
@@ -145,19 +151,19 @@ const Checkout_Container = ({
       setLocation(order_information.location);
       setOwner(order_information.owner);
       setCancellation_policy(order_information.cancellation_policy);
+      dateObject = {
+        from: twoWayDateConvertor(order_information.start_date),
+        to: twoWayDateConvertor(order_information.end_date)
+      };
       if (order_information.has_media)
         setMedia_set(order_information.media_set);
       else setMedia_set([{ thumbnail_url: carImage }]);
       setSearch_id(order_information.search_id);
       setStart_date(order_information.start_date);
-      dateObject = {
-        from: twoWayDateConvertor(order_information.start_date),
-        to: twoWayDateConvertor(order_information.end_date)
-      };
 
       setEnd_date(order_information.end_date);
     }
-  }, [order_information]);
+  };
 
   const hasInsurance = (e) => {
     // show the insurance part in price box
@@ -671,7 +677,8 @@ const Checkout_Container = ({
 };
 interface ICheckout_Container {
   language: any;
-  order_information: any;
+  // order_information: any;
+  // missingSearchId: boolean;
 }
 
 export default Checkout_Container;

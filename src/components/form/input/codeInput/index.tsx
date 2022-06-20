@@ -44,16 +44,19 @@ const CodeInput: React.FC<{
     }
     if (character === 'Backspace' && index === 1) {
       setValue1('');
+      setValue0('');
       input0.current?.focus();
       setActiveInput([true, false, false, false]);
       return;
     } else if (character === 'Backspace' && index === 2) {
       setValue2('');
+      setValue1('');
       input1.current?.focus();
       setActiveInput([false, true, false, false]);
       return;
     } else if (character === 'Backspace' && index === 3) {
       setValue3('');
+      setValue2('');
       input2.current?.focus();
       setActiveInput([false, false, true, false]);
       return;
@@ -94,7 +97,7 @@ const CodeInput: React.FC<{
         ref={input3}
         onKeyUp={(e) => characterHandler(e, 3)}
         value={value3}
-        type='number'
+        type='text'
         name='code'
         className={classNames(
           styles.codeInput,
@@ -106,7 +109,7 @@ const CodeInput: React.FC<{
       <input
         ref={input2}
         onKeyUp={(e) => characterHandler(e, 2)}
-        type='number'
+        type='text'
         value={value2}
         name='code'
         className={classNames(
@@ -120,7 +123,7 @@ const CodeInput: React.FC<{
         ref={input1}
         value={value1}
         onKeyUp={(e) => characterHandler(e, 1)}
-        type='number'
+        type='text'
         name='code'
         className={classNames(
           styles.codeInput,
@@ -133,7 +136,7 @@ const CodeInput: React.FC<{
         ref={input0}
         value={value0}
         onKeyUp={(e) => characterHandler(e, 0)}
-        type='number'
+        type='text'
         name='code'
         className={classNames(
           styles.codeInput,

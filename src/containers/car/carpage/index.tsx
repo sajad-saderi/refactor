@@ -543,7 +543,7 @@ const CarPage = ({
           pathname: '/checkout',
           query: { search_id: search_id }
         },
-        undefined,
+        `/checkout?search_id=${search_id}`,
         { locale: activeLanguage }
       );
     } else {

@@ -416,6 +416,7 @@ input {
     font-size: 14px;
     color: $_ffffff;
     .logPwa {
+      display: flex;
       margin-inline-end: 10px;
     }
     img {
@@ -433,10 +434,13 @@ input {
     color: $_ffffff;
     border-radius: 20px;
     padding: 3px 5px 3px 10px;
-    svg {
-      display: inline-block;
-      vertical-align: middle;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // svg {
+    //   display: inline-block;
+    //   vertical-align: middle;
+    // }
   }
   @media (max-width: 720px) {
     // position: fixed;
