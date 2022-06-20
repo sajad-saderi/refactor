@@ -22,6 +22,37 @@
   p {
     margin-top: 10px;
   }
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    direction: ltr !important;
+    div {
+      width: 100% !important;
+      text-align: center;
+    }
+    input {
+      font-family: inherit;
+      margin-inline: 8px;
+      border: none !important;
+      border-radius: 0 !important;
+      border-bottom: 1px solid $_3fa6da !important;
+      width: 35px;
+      text-align: center;
+      font-size: 30px;
+      outline: none;
+      &:active {
+        outline: none;
+      }
+      /* Chrome, Safari, Edge, Opera */
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
   .errorMessage {
     font-size: 12px;
     color: $_d83030;

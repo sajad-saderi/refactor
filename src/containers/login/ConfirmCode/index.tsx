@@ -16,6 +16,7 @@ import styles from './confirmCode.module.scss';
 import Icon from '../../../components/Icons';
 import classNames from 'classnames';
 import CodeInput from '../../../components/form/input/codeInput';
+import ReactCodeInput from 'react-verification-code-input';
 
 const ConfirmCode: React.FC<{
   cellPhone: string;
@@ -199,14 +200,28 @@ const ConfirmCode: React.FC<{
         <h2>{language.LOGIN.title}</h2>
       </div>
       <form className={styles.form} onSubmit={sendConfirmCode}>
-        <CodeInput
+        {/* <CodeInput
           setCode={(e) => {
             if (error.status) {
               setError({ status: false, message: '' });
             }
             setCode(e);
           }}
-        />
+        /> */}
+        <div className={styles.inputContainer}>
+          <ReactCodeInput
+            autoFocus
+            fieldWidth={35}
+            type='number'
+            fields={4}
+            onComplete={(e) => {
+              if (error.status) {
+                setError({ status: false, message: '' });
+              }
+              setCode(e);
+            }}
+          />
+        </div>
         {error.status && <p className={styles.errorMessage}>{error.message}</p>}
         {/* <NumberSeparatedTextInput
           error={error}
