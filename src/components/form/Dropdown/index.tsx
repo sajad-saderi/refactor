@@ -138,7 +138,7 @@ const DropdownSearch = (props: IDropDown) => {
                 props.Select(value);
               }
             }}>
-            <option value={JSON.stringify({ value: -1 })}></option>
+            <option value={JSON.stringify({ value: -1 })} />
             {Data.map((i, index) => (
               <option key={index} value={JSON.stringify(i)}>
                 {i.name[locale]}
