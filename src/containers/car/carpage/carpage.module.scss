@@ -1,5 +1,5 @@
 @use '../../../styles/variables' as var;
-@import "../../../styles/colors";
+@import '../../../styles/colors';
 
 .Top_Rent_date {
   display: none;
@@ -186,6 +186,10 @@
             display: inline-block;
             vertical-align: middle;
           }
+          span {
+            white-space: nowrap;
+            display: inline-block;
+          }
         }
         .change_date_in_car_page {
           cursor: pointer;
@@ -334,9 +338,10 @@
       }
       span {
         display: inline-block;
-        font-family: "danaXV", "dana";
+        font-family: 'danaXV', 'dana';
         font-size: 16px;
         line-height: 14px;
+        font-variation-settings: 'wght' 600;
       }
     }
     p,
@@ -480,7 +485,7 @@
         line-height: 14px;
       }
       .unit_name {
-        font-family: "danaXV", "dana";
+        font-family: 'danaXV', 'dana';
       }
     }
     .search_box_div {
@@ -613,6 +618,10 @@
           display: inline-block;
           vertical-align: middle;
         }
+        .daysOfRent {
+          white-space: nowrap;
+          display: inline-block;
+        }
       }
       .change_date_in_car_page {
         cursor: pointer;
@@ -679,7 +688,7 @@
         position: relative;
         padding-left: 9px;
         &::before {
-          content: "";
+          content: '';
           clear: both;
           display: block;
           position: absolute;
@@ -709,7 +718,7 @@
   }
 }
 
-.Car_page_container[dir="ltr"] {
+.Car_page_container[dir='ltr'] {
   .carInfo_container {
     .price_place_holder {
       left: auto;
@@ -1057,7 +1066,7 @@
           text-align: left;
         }
         .unit_name {
-          font-family: "danaXV", "dana";
+          font-family: 'danaXV', 'dana';
           font-size: 12px;
           text-align: left;
         }

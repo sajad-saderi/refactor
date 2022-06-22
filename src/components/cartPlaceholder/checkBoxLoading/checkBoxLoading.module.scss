@@ -1,29 +1,21 @@
-.CheckBox_Loader_placeHolder {
-  width: 200px;
+@import '../../../styles/colors';
+.checkBoxLoader {
   margin-bottom: 8px;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
   p {
-    display: inline-block;
     width: 16px;
     height: 16px;
     background: $_f1f1f1;
     border-radius: 4px;
-    margin-left: 10px;
-    vertical-align: middle;
   }
   span {
-    width: 120px;
+    display: block;
+    width: 70%;
+    max-width: 200px;
     height: 14px;
-    display: inline-block;
     border-radius: 3px;
-    vertical-align: middle;
-  }
-}
-
-@media screen and(max-width:575px){
-  .CheckBox_Loader_placeHolder {
-    width: 140px; 
-    span {
-      width: 100px; 
-    }
+    margin-inline: 10px;
   }
 }

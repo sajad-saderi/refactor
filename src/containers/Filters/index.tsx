@@ -19,6 +19,7 @@ import net_CTX from '../../context/internetConnectionCTX';
 import languageCTX from '../../context/languageCTX';
 import { dynamicString } from '../../helpers/dynamicString';
 import Icon from '../../components/Icons';
+import CheckBox_Loader from '../../components/cartPlaceholder/checkBoxLoading';
 
 let body_style_list = [];
 

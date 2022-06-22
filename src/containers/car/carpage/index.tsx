@@ -960,18 +960,22 @@ const CarPage = ({
                             activeLanguage === 'fa' ? 'jM' : 'M'
                           ).format(
                             activeLanguage === 'fa' ? 'jMMMM' : 'MMMM'
-                          )}`}
-                          <br />
-                          {no_of_days
-                            ? `(${numberChanger(
+                          )}`}{' '}
+                          {no_of_days ? (
+                            <span className='daysOfRents'>
+                              (
+                              {numberChanger(
                                 no_of_days.toString(),
                                 activeLanguage
-                              )} ${dynamicString(
+                              )}{' '}
+                              {dynamicString(
                                 null,
                                 language.COMMON.day,
                                 no_of_days > 1 ? true : false
-                              )})`
-                            : null}
+                              )}
+                              )
+                            </span>
+                          ) : null}
                         </p>
                         <p
                           className='change_date_in_car_page'
@@ -1336,17 +1340,17 @@ const CarPage = ({
                       dayRange.to.month,
                       activeLanguage === 'fa' ? 'jM' : 'M'
                     ).format(activeLanguage === 'fa' ? 'jMMMM' : 'MMMM')}`}{' '}
-                    <br />
-                    {no_of_days
-                      ? `(${numberChanger(
-                          no_of_days.toString(),
-                          activeLanguage
-                        )} ${dynamicString(
+                    {no_of_days ? (
+                      <span className='daysOfRents'>
+                        ({numberChanger(no_of_days.toString(), activeLanguage)}{' '}
+                        {dynamicString(
                           null,
                           language.COMMON.day,
                           no_of_days > 1 ? true : false
-                        )})`
-                      : null}
+                        )}
+                        )
+                      </span>
+                    ) : null}
                   </p>
                   <p
                     className='change_date_in_car_page'

@@ -1,4 +1,4 @@
-export const limitForSearchResult = 20;
+export const limitForSearchResult = 21;
 export const bodyStyles = [
   {
     id: 1,

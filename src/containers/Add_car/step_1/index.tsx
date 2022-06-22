@@ -426,7 +426,7 @@ const error_reducer = (current, action) => {
   }
 };
 
-const checkListLoaderLength = Array(30).fill(0);
+const checkListLoaderLength = Array(15).fill(0);
 
 const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
   const [locationList, setLocationList] = useState([]);
@@ -1881,10 +1881,10 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         <label className='add_car_Facilities_label'>
           {language.ADD_CAR_PAGE.facilities}
         </label>
-        {facilitesList.length === 0 ? (
+        {facilitesList.length === 0 || true ? (
           <div className='Step1_checkoout_placeholder'>
             {checkListLoaderLength.map((_, i) => (
-              <CheckBox_Loader key={i} />
+              <CheckBox_Loader width='175px' />
             ))}
           </div>
         ) : (

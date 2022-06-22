@@ -138,7 +138,7 @@
       font-weight: 500;
       font-size: 14px;
       margin-bottom: 8px;
-      display: block;
+      display: inline-block;
       span {
         color: $_bfbfbf;
       }
@@ -147,9 +147,11 @@
       margin-bottom: 8px;
     }
     .Step1_checkoout_placeholder {
-      .CheckBox_Loader_placeHolder {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      label {
         margin-bottom: 20px !important;
-        display: inline-block;
       }
     }
     .transition_type_Label {

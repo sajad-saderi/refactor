@@ -121,8 +121,8 @@
       svg {
         position: absolute;
         width: 20px;
-        right: 8px;
-        top: 12px;
+        inset-inline-start: 8px;
+        top: 10px;
         cursor: pointer;
       }
     }
@@ -176,14 +176,6 @@
     .ArrowDown {
       left: auto;
       right: 10px;
-    }
-  }
-  .Locations_list_container {
-    .search_input_container {
-      svg {
-        right: auto;
-        left: 84px;
-      }
     }
   }
 }

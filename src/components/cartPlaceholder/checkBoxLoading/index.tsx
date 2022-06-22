@@ -1,10 +1,15 @@
-import React from "react";
+import React from 'react';
+import styles from './checkBoxLoading.module.scss';
 
-const CheckBox_Loader = () => {
+const CheckBox_Loader: React.FC<{ width: string }> = ({ width }) => {
   return (
-    <label className="CheckBox_Loader_placeHolder">
-      <p className="FadeInOutAnimation" />
-      <span className="Gradient"></span>
+    <label
+      className={styles.checkBoxLoader}
+      style={{
+        width: width
+      }}>
+      <p className='FadeInOutAnimation' />
+      <span className='Gradient'></span>
     </label>
   );
 };

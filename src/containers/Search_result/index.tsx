@@ -102,7 +102,7 @@ const Search_result = ({
   });
   const [carLocationName, setCarLocationName] = useState('');
   const toastCTX = useContext(toast_context);
-  const { setLocation } = useContext(AppStore);
+  const { setLocation, store } = useContext(AppStore);
   const router = useRouter();
   const new_search_ref = useRef(null);
   const netCTX = useContext(net_CTX);
@@ -618,7 +618,7 @@ const Search_result = ({
                           total_count,
                           extra_info.params.start_date.slice(5),
                           extra_info.params.end_date.slice(5),
-                          carLocationName
+                          store.location[activeLanguage]
                         ],
                         language.COMMON.carInResult,
                         total_count > 1 ? true : false

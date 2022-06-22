@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import { useContext, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import languageCTX from '../../../context/languageCTX';
+import CheckBox_Loader from '../../cartPlaceholder/checkBoxLoading';
 
-const Spinner = dynamic(() => import("../../Spinner"));
+const Spinner = dynamic(() => import('../../Spinner'));
 // import Spinner from "../../Spinner";
 
 const Checkbox = (props: ICheckbox) => {
   const [Data, setData] = useState([]);
   const [initialValueList, setInitialValueList] = useState([]);
-  const { activeLanguage } = useContext(languageCTX)
+  const { activeLanguage } = useContext(languageCTX);
   useEffect(() => {
     // Update the data if data came after loading the component
     setData(props.data);
@@ -25,16 +26,19 @@ const Checkbox = (props: ICheckbox) => {
     <>
       {Data.length === 0 ? (
         <div className='resultList' data-test-id='resultList'>
-          <Spinner display='block' width={21} color='#9E9E9E' />
+          <CheckBox_Loader width='auto' />
         </div>
       ) : (
         <div
-          className={["check_box_container", props.disable?'disableCheckBox':'', props.custom_className].join(" ")}
-          dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}
-        >
+          className={[
+            'check_box_container',
+            props.disable ? 'disableCheckBox' : '',
+            props.custom_className
+          ].join(' ')}
+          dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
           {Data.map((i, index) => (
             <label className='container' key={index} data-test-id='container'>
-              {typeof (i.name) === 'object' ? i.name[activeLanguage] : i.name}
+              {typeof i.name === 'object' ? i.name[activeLanguage] : i.name}
               {/* if you need to show some number from checkbox you can active it ny 'count' property */}
               {/* {i.count ? (
                 <span className="count">{i.count}</span>
@@ -104,7 +108,7 @@ interface ICheckbox {
    * add a custom class to the main container
    */
   custom_className?: string;
-	disable?:boolean
+  disable?: boolean;
 }
 
 export default Checkbox;
