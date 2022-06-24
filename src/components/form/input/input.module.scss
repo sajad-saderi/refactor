@@ -25,9 +25,10 @@
       -webkit-appearance: none;
       line-height: 1.5;
       padding: 10px;
+      font-size: 16px;
       background: $_ffffff;
       border: 1px solid $_bfbfbf;
-      color: rgba($color: $_000000, $alpha: 0.87);
+      color: $_525252;
       border-radius: 4px;
       box-shadow: 0 0 0 0 transparent inset;
       &:focus {

@@ -1,24 +1,26 @@
-import * as React from "react"; 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Router from "next/router";
-import * as car from "../../../public/car_logo_black.svg";
-import { supportedLanguages } from "../../../types";
-import { addingCountryCodeToNumber } from "../../helpers/addingCountryCodeToNumber";
-import { numberChanger } from "../../../utils/numberChanger";
-import Icon from "../Icons";
-import { SeprisCarLogo } from "../Icons/svg/seprisCarLogo";
+import * as React from 'react';
+import { useState, useEffect, useContext } from 'react';
+import Link from 'next/link';
+import Router from 'next/router';
+import * as car from '../../../public/car_logo_black.svg';
+import { supportedLanguages } from '../../../types';
+import { addingCountryCodeToNumber } from '../../helpers/addingCountryCodeToNumber';
+import { numberChanger } from '../../../utils/numberChanger';
+import Icon from '../Icons';
+import { SeprisCarLogo } from '../Icons/svg/seprisCarLogo';
+import languageCTX from '../../context/languageCTX';
 
 const Footer = ({
   hide,
   showToTop,
   LinkControl,
   language,
-  locale,
+  locale
 }: IFooter) => {
   const [hidden, setHidden] = useState(false);
   const [activeToTop, setActiveToTop] = useState(false);
   const [showTop, setShowTop] = useState(false);
+  const { activeLanguage } = useContext(languageCTX);
 
   // Because the layout render once you should track the hide props for change
   useEffect(() => {
@@ -28,9 +30,9 @@ const Footer = ({
 
   // Add an event listener on scroll to show the "Go To Top" button
   useEffect(() => {
-    document.addEventListener("scroll", scrollCheck);
+    document.addEventListener('scroll', scrollCheck);
     return () => {
-      document.removeEventListener("scroll", scrollCheck);
+      document.removeEventListener('scroll', scrollCheck);
     };
   }, []);
 
@@ -53,71 +55,69 @@ const Footer = ({
 
   return (
     <footer
-      data-test-id="footer"
-      className={hidden ? "hide_footer" : null}
-      dir={locale === "fa" ? "rtl" : "ltr"}
-    >
+      data-test-id='footer'
+      className={hidden ? 'hide_footer' : null}
+      dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       {activeToTop ? (
         <div
-          className={["toTop", showTop ? "showTop" : null].join(" ")}
-          onClick={toTop}
-        >
-          <Icon name="chevronUp" width="40px" height="40px" color="#fafafa" />
+          className={['toTop', showTop ? 'showTop' : null].join(' ')}
+          onClick={toTop}>
+          <Icon name='chevronUp' width='40px' height='40px' color='#fafafa' />
         </div>
       ) : null}
-      <div className=" responsive plus_border">
-        <ul className="links">
+      <div className=' responsive plus_border'>
+        <ul className='links'>
           {/* <li>
             <Link href="/about-us" prefetch={false}>
               <a>{language.LINKS.aboutUs}</a>
             </Link>
           </li> */}
           <li>
-            <Link href="/faq" prefetch={false}>
+            <Link href='/faq' prefetch={false}>
               <a>{language.LINKS.faq}</a>
             </Link>
           </li>
-          {locale === "fa" && (
+          {locale === 'fa' && (
             <>
               <li>
-                <Link href="/sepris" prefetch={false}>
+                <Link href='/sepris' prefetch={false}>
                   <a>{language.LINKS.sepris}</a>
                 </Link>
               </li>
               {LinkControl ? (
                 <li>
-                  <Link href="/guide-renter" prefetch={false}>
+                  <Link href='/guide-renter' prefetch={false}>
                     <a>{language.LINKS.host}</a>
                   </Link>
                 </li>
               ) : null}
               {LinkControl ? (
                 <li>
-                  <Link href="/evaluation" prefetch={false}>
+                  <Link href='/evaluation' prefetch={false}>
                     <a>{language.LINKS.evaluation}</a>
                   </Link>
                 </li>
               ) : null}
               <li>
-                <Link href="/our-policies" prefetch={false}>
+                <Link href='/our-policies' prefetch={false}>
                   <a>{language.LINKS.ourPolicies}</a>
                 </Link>
               </li>
               <li>
-                <Link href="/insurance-policies" prefetch={false}>
+                <Link href='/insurance-policies' prefetch={false}>
                   <a>{language.LINKS.insurancePolicies}</a>
                 </Link>
               </li>
               {LinkControl ? null : (
                 <li>
-                  <Link href="/rent" prefetch={false}>
+                  <Link href='/rent' prefetch={false}>
                     <a>{language.LINKS.rent}</a>
                   </Link>
                 </li>
               )}
               {LinkControl ? null : (
                 <li>
-                  <Link href="/site-map" prefetch={false}>
+                  <Link href='/site-map' prefetch={false}>
                     <a>{language.LINKS.siteMap}</a>
                   </Link>
                 </li>
@@ -126,36 +126,35 @@ const Footer = ({
           )}
         </ul>
 
-        <div className="social_container_footer">
+        <div className='social_container_footer'>
           <h3>{language.FOOTER.followUs}</h3>
           <div>
-            <a target="_black" href="https://www.instagram.com/sepris.rent/">
+            <a target='_black' href='https://www.instagram.com/sepris.rent/'>
               <Icon
-                name="instagram"
-                width="30px"
-                height="30px"
-                color="#4ba3ce"
+                name='instagram'
+                width='30px'
+                height='30px'
+                color='#4ba3ce'
               />
             </a>
-            <a target="_black" href="https://twitter.com/Seprisrent">
-              <Icon name="twitter" width="30px" height="30px" color="#4ba3ce" />
+            <a target='_black' href='https://twitter.com/Seprisrent'>
+              <Icon name='twitter' width='30px' height='30px' color='#4ba3ce' />
             </a>
-            <a target="_black" href="https://wa.me/message/C3U7RO7ADABWF1">
+            <a target='_black' href='https://wa.me/message/C3U7RO7ADABWF1'>
               <Icon
-                name="whatsApp"
-                width="30px"
-                height="30px"
-                color="#4ba3ce"
+                name='whatsApp'
+                width='30px'
+                height='30px'
+                color='#4ba3ce'
               />
             </a>
           </div>
           <p>
-            {" "}
+            {' '}
             {language.FOOTER.customerService}
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number1)}`}
-              className="HEAP_Footer_Link_Phone"
-            >
+              className='HEAP_Footer_Link_Phone'>
               {numberChanger(language.COMMON.number1, locale)}
             </a>
             {/* -
@@ -168,39 +167,42 @@ const Footer = ({
             -
             <a
               href={`tel:${addingCountryCodeToNumber(language.COMMON.number3)}`}
-              className="HEAP_Footer_Link_Phone"
-            >
+              className='HEAP_Footer_Link_Phone'>
               {numberChanger(language.COMMON.number3, locale)}
             </a>
           </p>
           <br />
           <br />
-          <div className="brand_description">
-            <p className="imageWrapper">
-              <SeprisCarLogo width='38px' height='26px' color='#929292' />
+          <div className='brand_description'>
+            <p className='imageWrapper'>
+              <SeprisCarLogo
+                width='38px'
+                height='26px'
+                color='#929292'
+                rotate={activeLanguage === 'fa' ? 0 : 180}
+              />
             </p>
             <p>{language.COMMON.seprisDefinition}</p>
-          </div> 
+          </div>
           <br />
           <br />
         </div>
-        <div className="enamadContainer">
+        <div className='enamadContainer'>
           <a
-            referrerPolicy="origin"
-            target="_blank"
-            href="https://trustseal.enamad.ir/?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
-          >
+            referrerPolicy='origin'
+            target='_blank'
+            href='https://trustseal.enamad.ir/?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW'>
             <img
-              referrerPolicy="origin"
-              src="https://Trustseal.eNamad.ir/logo.aspx?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW"
-              alt=""
-              id="Qeni4CAkxd51laL0SZTW"
+              referrerPolicy='origin'
+              src='https://Trustseal.eNamad.ir/logo.aspx?id=266639&amp;Code=Qeni4CAkxd51laL0SZTW'
+              alt=''
+              id='Qeni4CAkxd51laL0SZTW'
             />
           </a>
         </div>
       </div>
-      <div className="signature">
-        <span className="ver">2.0.0</span>
+      <div className='signature'>
+        <span className='ver'>2.0.0</span>
         <p>{language.FOOTER.signature}</p>
       </div>
     </footer>

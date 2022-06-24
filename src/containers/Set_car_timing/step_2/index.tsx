@@ -984,12 +984,12 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                     <p className='our_recommendation_placeHoler Gradient'></p>
                   )}
                 </div>
-                {state.price_per_day.length > 3 && (
+                {/* {state.price_per_day.length > 3 && (
                   <p>
                     اجاره خودرو شما در تمام روز ها با قیمت{' '}
                     {Number(state.price_per_day).toLocaleString()} تومان است
                   </p>
-                )}
+                )} */}
               </>
             ) : Edit ? (
               <PriceBox
@@ -1184,32 +1184,37 @@ const Add_Car_Step_2 = ({ language }: IAdd_Car_Step_2) => {
                 ]}
               />
             </div>
-            <label>{language.CAR_SETTING.delivetyType}</label>
-            <Checkbox
-              initialValue={[state.deliver_at_renters_place]}
-              data={[
-                {
-                  name: {
-                    fa: language.CAR_SETTING.delivery,
-                    en: language.CAR_SETTING.delivery
-                  },
-                  value: state.deliver_at_renters_place
+            <div className='deliveryOption'>
+              <label className='label'>
+                {language.CAR_SETTING.delivetyType}
+              </label>
+              <Checkbox
+                initialValue={[state.deliver_at_renters_place]}
+                data={[
+                  {
+                    name: {
+                      fa: language.CAR_SETTING.delivery,
+                      en: language.CAR_SETTING.delivery
+                    },
+                    value: state.deliver_at_renters_place
+                  }
+                ]}
+                name='deliver_at_renters_place'
+                clearField={() =>
+                  dispatch({
+                    type: 'deliver_at_renters_place',
+                    deliver_at_renters_place: 0
+                  })
                 }
-              ]}
-              name='deliver_at_renters_place'
-              clearField={() =>
-                dispatch({
-                  type: 'deliver_at_renters_place',
-                  deliver_at_renters_place: 0
-                })
-              }
-              Select={() => {
-                dispatch({
-                  type: 'deliver_at_renters_place',
-                  deliver_at_renters_place: 1
-                });
-              }}
-            />
+                Select={() => {
+                  dispatch({
+                    type: 'deliver_at_renters_place',
+                    deliver_at_renters_place: 1
+                  });
+                }}
+              />
+            </div>
+
             {/* <Checkbox
               initialValue={[state.with_driver]}
               data={[

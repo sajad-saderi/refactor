@@ -1,7 +1,7 @@
-import { useCallback, useState, useContext, useEffect, useRef } from "react";
+import { useCallback, useState, useContext, useEffect, useRef } from 'react';
 // import "./ImageUploader.scss";
-import jsCookie from "js-cookie";
-import carVector from "../../../public/image/car_vector.png";
+import jsCookie from 'js-cookie';
+import carVector from '../../../public/image/car_vector.png';
 /**
  *
  * react-dropzone
@@ -12,24 +12,27 @@ import carVector from "../../../public/image/car_vector.png";
  * Git
  *  https://github.com/react-dropzone/react-dropzone
  */
-import { useDropzone } from "react-dropzone";
-import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from "../../API";
-import Spinner from "../Spinner";
-import getCroppedImg from "../../../utils/cropImage";
-import Cropper from "react-easy-crop";
-import ZoomSlider from "./ZoomSlider";
-import ErrorHelper from "../../../utils/error_helper";
-import toast_context from "../../context/Toast_context";
-import net_CTX from "../../context/internetConnectionCTX";
-import Icon from "../Icons";
-import Image from "next/image";
+import { useDropzone } from 'react-dropzone';
+import { REQUEST_REMOVE_CAR_MEDIA, REQUEST_NEW_CAR_MEDIA } from '../../API';
+import Spinner from '../Spinner';
+import getCroppedImg from '../../../utils/cropImage';
+import Cropper from 'react-easy-crop';
+import ZoomSlider from './ZoomSlider';
+import ErrorHelper from '../../../utils/error_helper';
+import toast_context from '../../context/Toast_context';
+import net_CTX from '../../context/internetConnectionCTX';
+import Icon from '../Icons';
+import Image from 'next/image';
+import { supportedLanguages } from '../../../types';
+import { SeprisCarLogo } from '../Icons/svg/seprisCarLogo';
 
 const ImageUploader = ({
   Upload_image,
   delete_image,
   default_image,
   error_status,
-  language,
+  activeLanguage,
+  language
 }: IImageUpload) => {
   const [picturesPreview, setPicturesPreview] = useState([]);
   const [loading, setloading] = useState(false);
@@ -41,12 +44,12 @@ const ImageUploader = ({
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const toastCTX = useContext(toast_context);
   const wrapperRef = useRef(null);
-  const token = jsCookie.get("token");
+  const token = jsCookie.get('token');
   const netCTX = useContext(net_CTX);
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
-      console.log("file", file);
+      console.log('file', file);
       const reader: any = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -68,7 +71,7 @@ const ImageUploader = ({
   const RemoveAnImage = (i) => {
     REQUEST_REMOVE_CAR_MEDIA({
       token: token,
-      id: i,
+      id: i
     });
     setPicturesPreview((picturesPreview) =>
       picturesPreview.filter((item, index) => {
@@ -84,14 +87,14 @@ const ImageUploader = ({
     try {
       const image_upload_res: any = await REQUEST_NEW_CAR_MEDIA({
         token: token,
-        file: file,
+        file: file
       });
       setloading(false);
       // add the given image to preview list
       setPicturesPreview((picturesPreview) =>
         picturesPreview.concat({
           img: result,
-          id: image_upload_res.id,
+          id: image_upload_res.id
         })
       );
       // sent the image id to parent component
@@ -103,13 +106,13 @@ const ImageUploader = ({
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: language.COMMON.errorInUploadingImage,
-            })
+                errorObj: error.response,
+                _400Message: language.COMMON.errorInUploadingImage
+              })
             : error,
-          color: "#ed9026",
+          color: '#ed9026',
           time: 0,
-          autoClose: false,
+          autoClose: false
         });
     }
   };
@@ -119,7 +122,7 @@ const ImageUploader = ({
     // accept: ".jpeg, .jpg, .png",
 
     // active Drop and use custom function
-    onDrop,
+    onDrop
   });
 
   // useEffect(() => {
@@ -147,12 +150,12 @@ const ImageUploader = ({
   return (
     <div ref={wrapperRef}>
       <label>{language.ADD_CAR_PAGE.picture}</label>
-      <p className="image_upload_under_label">
+      <p className='image_upload_under_label'>
         {language.ADD_CAR_PAGE.text1}
         {language.ADD_CAR_PAGE.text2}
       </p>
       {croptStart && (
-        <div className="crop_container">
+        <div className='crop_container'>
           <Cropper
             image={currentImage}
             crop={crop}
@@ -161,15 +164,15 @@ const ImageUploader = ({
             onCropChange={setCrop}
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
-            cropShape="rect"
+            cropShape='rect'
           />
           {/* <ZoomSlider zoomChange={setZoom} zoom={zoom} /> */}
-          <div className="Crop_BTN_container">
-            <span className="Blue_BTN local_class" onClick={showCroppedImage}>
+          <div className='Crop_BTN_container'>
+            <span className='Blue_BTN local_class' onClick={showCroppedImage}>
               تایید
             </span>
             <span
-              className="Blue_BTN cancel_class"
+              className='Blue_BTN cancel_class'
               onClick={() => {
                 setCurrentImage(null);
                 setCroptStart(false);
@@ -177,61 +180,60 @@ const ImageUploader = ({
                 //   dispatch({ type: "image", image: data.thumbnail_url });
                 // }
                 // file_input.current.value = null;
-              }}
-            >
+              }}>
               لغو
             </span>
           </div>
         </div>
       )}
-      <div className="drop_zone" {...getRootProps()}>
+      <div className='drop_zone' {...getRootProps()}>
         <input {...getInputProps()} multiple={false} />
-        <p className="uploadText">{language.ADD_CAR_PAGE.text3}</p>
+        <p className='uploadText'>{language.ADD_CAR_PAGE.text3}</p>
         {picturesPreview.length > 0 ? (
           <div
             // if the image is uploading the drop-zone will be unreachable
-            className={["Image_box", loading ? "loading_class" : null].join(
-              " "
+            className={['Image_box', loading ? 'loading_class' : null].join(
+              ' '
             )}
-            onClick={(e) => e.preventDefault()}
-          >
+            onClick={(e) => e.preventDefault()}>
             {picturesPreview.map((i, index) => {
               return (
                 <div
-                  className="Each_image"
+                  className='Each_image'
                   key={index}
                   onClick={(e) => {
                     e.stopPropagation();
                     RemoveAnImage(i.id);
-                  }}
-                >
+                  }}>
                   {/* onClick on trash icon the image will deleted for the car and sent the id to parent */}
-                  
-                <Icon
-                name="close"
-                  color="#ea2d2d"
-                  width='20px'
-                  height='20px'
-                  
-                /> 
+
+                  <Icon
+                    name='close'
+                    color='#ea2d2d'
+                    width='20px'
+                    height='20px'
+                  />
                   <img src={i.img} alt={i.id} />
                 </div>
               );
             })}
             {loading ? (
-              <Spinner display="inline-block" width={20} color="#b5b5b5" />
+              <Spinner display='inline-block' width={20} color='#b5b5b5' />
             ) : null}
           </div>
         ) : loading ? (
-          <Spinner display="block" width={20} color="#b5b5b5" />
+          <Spinner display='block' width={20} color='#b5b5b5' />
         ) : (
-          <Image
-            className="vector_car_upload"
-            src={carVector}
-            alt="car vector image"
-          />
+          <div className='carLogo'>
+            <SeprisCarLogo
+              width='150px'
+              height='80px'
+              color='#dfdfdf'
+              rotate={activeLanguage === 'fa' ? 0 : 180}
+            />
+          </div>
         )}
-        <p className="gallery_button">{language.ADD_CAR_PAGE.fromGallery}</p>
+        <p className='gallery_button'>{language.ADD_CAR_PAGE.fromGallery}</p>
       </div>
     </div>
   );
@@ -243,6 +245,7 @@ interface IImageUpload {
 
   // Send the id of the deleted image to parent component
   delete_image: any;
+  activeLanguage: supportedLanguages;
 
   // receive an array of image ids
   default_image?: any;

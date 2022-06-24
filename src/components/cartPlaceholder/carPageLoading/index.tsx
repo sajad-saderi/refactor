@@ -1,12 +1,20 @@
 // import "./carPageLoading.scss";
 
+import { supportedLanguages } from '../../../../types';
 import { SeprisCarLogo } from '../../Icons/svg/seprisCarLogo';
 
-const CarPageLoading = () => {
+const CarPageLoading: React.FC<{ activeLanguage: supportedLanguages }> = ({
+  activeLanguage
+}) => {
   return (
     <>
       <div className='slider Gradient'>
-        <SeprisCarLogo width='180px' height='120px' color='#dfdfdf' />
+        <SeprisCarLogo
+          width='180px'
+          height='120px'
+          color='#dfdfdf'
+          rotate={activeLanguage === 'fa' ? 0 : 180}
+        />
       </div>
       <article className='responsive Car_page_container_loading'>
         <section className='carInfo_container'>

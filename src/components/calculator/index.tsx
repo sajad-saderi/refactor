@@ -58,7 +58,6 @@ const Calculator = ({
   const [authorize, set_authorize] = useState(true);
   const toastCTX = useContext(toast_context);
   const netCTX = useContext(net_CTX);
-  console.log(model.name);
 
   useEffect(() => {
     const guard = guard_controller();
@@ -428,11 +427,11 @@ const Calculator = ({
               // Reset the car value
               setValue('');
               setBrand({
-                name: null,
+                name: '',
                 id: null
               });
               setModel({
-                name: null,
+                name: '',
                 id: null
               });
               setLoading(false);

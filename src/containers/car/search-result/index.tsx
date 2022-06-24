@@ -1,18 +1,19 @@
-import { useContext, useEffect } from "react";
-import economic from "../../../../public/image/affordable.svg";
-import offRoad from "../../../../public/image/SUV.svg";
-import dynamic from "next/dynamic";
+import { useContext, useEffect } from 'react';
+import economic from '../../../../public/image/affordable.svg';
+import offRoad from '../../../../public/image/SUV.svg';
+import dynamic from 'next/dynamic';
 
 // const Car = dynamic(() => import("./car"));
 // const CarLoading = dynamic(() =>
 //   import("../../../components/cartPlaceholder/CarLoading")
 // );
-import Car from "./car";
+import Car from './car';
 // import "./search_result.scss";
-import CarLoading from "../../../components/cartPlaceholder/CarLoading";
-import languageCTX from '../../../context/languageCTX'
+import CarLoading from '../../../components/cartPlaceholder/CarLoading';
+import languageCTX from '../../../context/languageCTX';
 import { addingCountryCodeToNumber } from '../../../helpers/addingCountryCodeToNumber';
-import Image from "next/image";
+import Image from 'next/image';
+import { limitForSearchResult } from '../../../../utils/constances';
 let quickAccessClick = false;
 const SearchResultList = ({
   showLocation,
@@ -20,26 +21,27 @@ const SearchResultList = ({
   setFilterForSearch,
   result,
   tagClick,
-  language,
+  language
 }: ISearchResultList) => {
-  const { activeLanguage } = useContext(languageCTX)
+  const { activeLanguage } = useContext(languageCTX);
+  const skeletonCards = Array(limitForSearchResult).fill(' ');
   useEffect(() => {
     if (result) {
       if (result.length > 0) {
-        let startString = result[0].start_date.split("/");
-        let endString = result[0].end_date.split("/");
+        let startString = result[0].start_date.split('/');
+        let endString = result[0].end_date.split('/');
         let start = {
           year: +startString[0],
           month: +startString[1],
-          day: +startString[2],
+          day: +startString[2]
         };
         let end = {
           year: +endString[0],
           month: +endString[1],
-          day: +endString[2],
+          day: +endString[2]
         };
-        localStorage["start"] = JSON.stringify(start);
-        localStorage["end"] = JSON.stringify(end);
+        localStorage['start'] = JSON.stringify(start);
+        localStorage['end'] = JSON.stringify(end);
       }
     }
   }, [result]);
@@ -51,7 +53,8 @@ const SearchResultList = ({
   }, []);
 
   return (
-    <section className='search_result_section minHeight'
+    <section
+      className='search_result_section minHeight'
       dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       {result ? (
         result.length > 0 ? (
@@ -65,8 +68,9 @@ const SearchResultList = ({
                   tagClick={tagClick}
                   language={language}
                 />
-                <section className='quick_access_middle_searchResult'
-                dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+                <section
+                  className='quick_access_middle_searchResult'
+                  dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
                   <h2>{language.COMMON.quickAccess}</h2>
                   <div className='quick_access_child_container'>
                     <div
@@ -75,11 +79,15 @@ const SearchResultList = ({
                         window.scrollTo(0, 0);
                         quickAccessClick = true;
                         setFilterForSearch({
-                          body_style_id: { value: [2], status: true },
+                          body_style_id: { value: [2], status: true }
                         });
-                      }}
-                    >
-                      <Image width={88} height={50} src={offRoad} alt={language.COMMON.suvCars} />
+                      }}>
+                      <Image
+                        width={88}
+                        height={50}
+                        src={offRoad}
+                        alt={language.COMMON.suvCars}
+                      />
                       <p>{language.COMMON.suvCars}</p>
                     </div>
                     <div
@@ -88,15 +96,19 @@ const SearchResultList = ({
                         window.scrollTo(0, 0);
                         quickAccessClick = true;
                         setFilterForSearch({
-                          o: "-price",
+                          o: '-price',
                           price: {
-                            value: ["0.00", "500000.00"],
-                            status: true,
-                          },
+                            value: ['0.00', '500000.00'],
+                            status: true
+                          }
                         });
-                      }}
-                    >
-                      <Image width={88} height={50} src={economic} alt={language.COMMON.affordableCars} />
+                      }}>
+                      <Image
+                        width={88}
+                        height={50}
+                        src={economic}
+                        alt={language.COMMON.affordableCars}
+                      />
                       <p>{language.COMMON.affordableCars}</p>
                     </div>
                   </div>
@@ -120,33 +132,19 @@ const SearchResultList = ({
             {language.COMMON.part2}
             <br />
             {language.COMMON.part3}
-            <a href={`tel:${addingCountryCodeToNumber(language.COMMON.number1)}`}>
+            <a
+              href={`tel:${addingCountryCodeToNumber(
+                language.COMMON.number1
+              )}`}>
               {language.COMMON.number1}
             </a>
           </p>
         )
       ) : (
-        <> 
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
-          <CarLoading />
+        <>
+          {skeletonCards.map((i) => (
+            <CarLoading activeLanguage={activeLanguage} />
+          ))}
         </>
       )}
     </section>

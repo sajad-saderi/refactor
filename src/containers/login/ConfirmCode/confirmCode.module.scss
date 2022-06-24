@@ -12,7 +12,8 @@
   }
   h2 {
     text-align: center;
-    font-size: 14px;
+    margin-block: 0;
+    font-size: 16px;
   }
 }
 .form {
@@ -31,6 +32,7 @@
     div {
       width: 100% !important;
       text-align: center;
+      margin-top: 12px;
     }
     input {
       font-family: inherit;
@@ -40,7 +42,7 @@
       border-bottom: 1px solid $_3fa6da !important;
       width: 35px;
       text-align: center;
-      font-size: 30px;
+      font-size: 20px;
       outline: none;
       &:active {
         outline: none;

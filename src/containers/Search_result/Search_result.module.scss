@@ -1,5 +1,5 @@
-@import "../../styles/units";
-@import "../../styles/colors";
+@import '../../styles/units';
+@import '../../styles/colors';
 
 .search_result_page_container {
   .count_bar_container {
@@ -13,6 +13,7 @@
         font-size: 14px;
         color: $_dcdcdc;
         display: inline-block;
+        text-transform: capitalize;
       }
       .change_search_btn {
         border-radius: 4px;
@@ -31,7 +32,7 @@
             display: inline-block;
             vertical-align: middle;
             padding-bottom: 0;
-            padding-right: 5px;
+            padding-inline-end: 5px;
             width: 20px;
           }
         }
@@ -70,24 +71,24 @@
       width: 20px;
     }
   }
-	.disableSort{
-		position: relative;
-	&::after {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		padding: 2px;
-		height: 100%;
-		width: 100%;
-		background-color: $_ffffff;
-		opacity: 0.2;
-		cursor: not-allowed;
-		content: '';
-		display: block;
-		z-index: 2;
-	}
-	}
+  .disableSort {
+    position: relative;
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2px;
+      height: 100%;
+      width: 100%;
+      background-color: $_ffffff;
+      opacity: 0.2;
+      cursor: not-allowed;
+      content: '';
+      display: block;
+      z-index: 2;
+    }
+  }
   .price_sort_container {
     padding: 15px 0;
     text-align: left;
@@ -123,24 +124,24 @@
       float: right;
     }
   }
-	.disabledmMinimal_filters{
-		position: relative;
-		&::after {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			padding: 2px;
-			height: 100%;
-			width: 100%;
-			background-color: $_ffffff;
-			opacity: 0.2;
-			cursor: not-allowed;
-			content: '';
-			display: block;
-			z-index: 2;
-		}
-	}
+  .disabledmMinimal_filters {
+    position: relative;
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2px;
+      height: 100%;
+      width: 100%;
+      background-color: $_ffffff;
+      opacity: 0.2;
+      cursor: not-allowed;
+      content: '';
+      display: block;
+      z-index: 2;
+    }
+  }
   .minimal_filters {
     .minimal_filter_tags {
       display: inline-flex;
@@ -156,7 +157,7 @@
       cursor: pointer;
       background: $_fafafa;
       color: $_525252;
-      svg {  
+      svg {
         padding-left: 5px;
         width: 13px;
       }
@@ -171,54 +172,52 @@
 }
 
 .search_result_page_container[dir='ltr'] {
-  .count_bar_container { 
-    .count_bar { 
-     
-      .change_search_btn {  
-        float: right; 
-        .close_text_btn { 
-          svg { 
+  .count_bar_container {
+    .count_bar {
+      .change_search_btn {
+        float: right;
+        .close_text_btn {
+          svg {
             padding-right: 0;
-            padding-left: 5px; 
+            padding-left: 5px;
           }
         }
       }
-    }  
+    }
   }
 
-  .price_sort_container { 
+  .price_sort_container {
     text-align: right;
-    span { 
-      border-right-color:$_e5e5e5;
-      border-left-color: transparent; 
-      &:first-child { 
-        border-radius: 5px  0  0 5px ; 
+    span {
+      border-right-color: $_e5e5e5;
+      border-left-color: transparent;
+      &:first-child {
+        border-radius: 5px 0 0 5px;
         border-left-color: rgba(0, 0, 0, 0.08);
       }
       &:nth-of-type(2) {
         border-radius: 0 5px 5px 0;
       }
     }
-    .show_filter {  
+    .show_filter {
       float: left;
-      svg { 
+      svg {
         margin-left: 10px !important;
         margin-right: 0 !important;
       }
     }
   }
   .minimal_filters {
-    .minimal_filter_tags {   
+    .minimal_filter_tags {
       margin-left: 0;
-      margin-right: 10px;  
-      svg { 
+      margin-right: 10px;
+      svg {
         padding-left: 0;
-        padding-right: 5px; 
+        padding-right: 5px;
       }
     }
-  } 
+  }
 }
-
 
 .quick_access_middle_searchResult {
   display: none;
@@ -226,7 +225,7 @@
   margin: 10px 0 40px;
   h2 {
     color: $_313131;
-    margin-top: 0; 
+    margin-top: 0;
     font-weight: 400;
     font-size: 14px;
   }

@@ -1,4 +1,4 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 .image_upload_under_label {
   margin-bottom: 15px;
@@ -91,6 +91,9 @@
   }
   .gallery_button {
     display: none;
+  }
+  .carLogo {
+    margin-top: 20px;
   }
   .Image_box {
     margin-top: 20px;

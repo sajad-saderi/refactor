@@ -1,5 +1,5 @@
-@import "../../styles/colors";
- 
+@import '../../styles/colors';
+
 footer {
   background-color: $_fefefe;
   border-top: solid 1px $_e5e5e5;
@@ -110,18 +110,16 @@ footer {
       color: $_929292;
       justify-content: center;
       align-items: center;
-      .imageWrapper
-      {
-
+      .imageWrapper {
         width: auto !important;
       }
       svg {
-      width: 38px !important;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 50px;
-    margin-inline-end: 14px;
+        width: 38px !important;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 50px;
+        margin-inline-end: 14px;
       }
     }
   }
@@ -147,7 +145,7 @@ footer {
   }
 }
 
-footer[dir="ltr"] {
+footer[dir='ltr'] {
   .toTop {
     svg {
       left: auto;
@@ -156,8 +154,8 @@ footer[dir="ltr"] {
   }
   .plus_border {
     ul {
-      border-left: 0px solid $_e8e8e8;
-      border-right: 1px solid $_e8e8e8;
+      // border-left: 0px solid $_e8e8e8;
+      // border-right: 1px solid $_e8e8e8;
       li {
         a {
           &:hover {

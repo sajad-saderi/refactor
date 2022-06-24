@@ -106,7 +106,8 @@
         margin: 0 0 12px 0;
         font-size: 14px;
         line-height: 1;
-        font-weight: 500;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
         .extra_text {
           color: $_313131;
         }
@@ -114,10 +115,11 @@
       .DropDown_container label,
       label {
         display: block;
-        margin: 0 0 12px 0;
+        margin: 0 0 8px 0;
         font-size: 14px;
         line-height: 1;
-        font-weight: 500;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
       }
       .custom_input_container_step_2 {
         max-width: 380px;
@@ -202,7 +204,6 @@
             }
             input {
               height: 51px;
-              font-size: 1.4em;
             }
           }
         }
@@ -210,7 +211,7 @@
       .driver_satus {
         margin-bottom: 30px;
         p {
-          margin-bottom: 16px;
+          margin-bottom: 18px;
           line-height: 24px;
         }
         .radio_container {
@@ -225,6 +226,17 @@
             font-size: 13px;
             font-weight: 400;
           }
+        }
+      }
+      .deliveryOption {
+        label {
+          font-variation-settings: 'wght' 500;
+          font-weight: 500;
+        }
+        .label {
+          font-variation-settings: 'wght' 700;
+          font-weight: 700;
+          margin-bottom: 18px;
         }
       }
       .check_box_container {
@@ -257,6 +269,8 @@
         justify-content: center;
         margin-bottom: 4px;
         label {
+          font-variation-settings: 'wght' 500;
+          font-weight: 500;
           line-height: 1.5;
         }
       }

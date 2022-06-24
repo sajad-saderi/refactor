@@ -1590,7 +1590,7 @@ const CarPage = ({
         </>
       ) : (
         <>
-          <CarPageLoading />
+          <CarPageLoading activeLanguage={activeLanguage} />
         </>
       )}
     </>

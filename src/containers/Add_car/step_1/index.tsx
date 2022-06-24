@@ -1881,7 +1881,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
         <label className='add_car_Facilities_label'>
           {language.ADD_CAR_PAGE.facilities}
         </label>
-        {facilitesList.length === 0 || true ? (
+        {facilitesList.length === 0 ? (
           <div className='Step1_checkoout_placeholder'>
             {checkListLoaderLength.map((_, i) => (
               <CheckBox_Loader width='175px' />
@@ -1965,6 +1965,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
           />
         </div>
         <ImageUploader
+          activeLanguage={activeLanguage}
           Upload_image={(id) => {
             dispatch({
               type: 'media_id',

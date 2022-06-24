@@ -636,8 +636,8 @@ const Search_result = ({
           <p className='change_search_btn'>
             {showSearch ? (
               <span className='close_text_btn'>
-                {language.COMMON.close}
                 <Icon name='close' width='20px' height='20px' color='#dcdcdc' />
+                {language.COMMON.close}
               </span>
             ) : (
               language.COMMON.changeSearch
