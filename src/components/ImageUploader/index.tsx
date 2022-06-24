@@ -49,7 +49,6 @@ const ImageUploader = ({
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
-      console.log('file', file);
       const reader: any = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
