@@ -53,7 +53,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
   const [total_discount, setTotal_discount] = useState(null);
   const [click_on_cancel, set_click_on_cancel] = useState(false);
   const [extensionInfo, setExtensionInfo] = useState(null);
-  const [extensionSum, setExtensionSum] = useState(null);
+  const [extensionSum, setExtensionSum] = useState({
+    price: 0,
+    insurance_price: 0,
+    status: { id: '' },
+    no_of_extended_days: 0
+  });
   const [downloadBox, setDownloadBox] = useState(false);
 
   const MODAL_CONTEXT = useContext(Modal_context);
@@ -174,6 +179,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         ? data.extend_request_set[0]
         : null
       : null;
+    console.log(extensionInfo);
+
     if (extensionInfo) {
       extensionSum = data.extend_request_set.reduce(
         (previous, current) => {
@@ -184,6 +191,10 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   ? 'extended'
                   : previous.status.id
             },
+            no_of_extended_days:
+              current.status.id === 'extended'
+                ? previous.no_of_extended_days + current.no_of_extended_days
+                : previous.no_of_extended_days + 0,
             price:
               (previous.status.id === 'extended' ? previous.price : 0) +
               (current.status.id === 'extended' ? current.price : 0),
@@ -194,7 +205,12 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               (current.status.id === 'extended' ? current.insurance_price : 0)
           };
         },
-        { price: 0, insurance_price: 0, status: { id: '' } }
+        {
+          price: 0,
+          insurance_price: 0,
+          status: { id: '' },
+          no_of_extended_days: 0
+        }
       );
       setExtensionSum(extensionSum);
     }
@@ -711,11 +727,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {numberChanger(
                 (
                   no_of_days +
-                  (extensionSum
-                    ? extensionSum.price
-                      ? extensionInfo.no_of_extended_days
-                      : 0
-                    : 0)
+                  (extensionSum ? extensionSum.no_of_extended_days : 0)
                 ).toString(),
                 activeLanguage
               )}{' '}
@@ -738,11 +750,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
               {numberChanger(
                 (
                   no_of_days +
-                  (extensionSum
-                    ? extensionSum.price
-                      ? extensionInfo.no_of_extended_days
-                      : 0
-                    : 0)
+                  (extensionSum ? extensionSum.no_of_extended_days : 0)
                 ).toString(),
                 activeLanguage
               )}{' '}
