@@ -106,7 +106,7 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
       setLocation({
         value: locationStorage.value,
         text: locationStorage.name.fa,
-        en: locationStorage.name.en,
+        en: locationStorage.name.en
       });
     }
     if (localeCTX.activeLanguage !== Router.router.locale) {
@@ -157,7 +157,7 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
         hitType: 'event',
         eventCategory,
         eventAction,
-        eventLabel,
+        eventLabel
       });
     }
   };
@@ -188,9 +188,8 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
           show_toast: toast,
           toast_option: (data) => {
             toast_handler(data);
-          },
-        }}
-      >
+          }
+        }}>
         <modal_context.Provider
           value={{
             show_modal: Show_Modal,
@@ -200,37 +199,32 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
             },
             confirm_id: (status) => {
               use_confirm_id(status);
-            },
-          }}
-        >
+            }
+          }}>
           <auth_context.Provider
             value={{
               Auth: Auth,
-              Auth_Manager: (v) => setAuth(v),
-            }}
-          >
+              Auth_Manager: (v) => setAuth(v)
+            }}>
             <ErrorBounderies
               language={
                 localeCTX.activeLanguage === 'fa'
                   ? fa.COMMON.errorParagraph1
                   : en.COMMON.errorParagraph1
-              }
-            >
+              }>
               <Header
                 modalType={modalType}
                 Show_Modal={Show_Modal}
                 // data information is just needed for owner and renter modals
                 data={data}
-                language={localeCTX.activeLanguage === 'fa' ? fa : en}
-              ></Header>
+                language={localeCTX.activeLanguage === 'fa' ? fa : en}></Header>
             </ErrorBounderies>
             <ErrorBounderies
               language={
                 localeCTX.activeLanguage === 'fa'
                   ? fa.COMMON.errorParagraph1
                   : en.COMMON.errorParagraph1
-              }
-            >
+              }>
               <main className='minHeight'>{children}</main>
             </ErrorBounderies>
           </auth_context.Provider>
@@ -264,8 +258,7 @@ const Layout = ({ children, hide, showToTop, LinkControl }: ILayout) => {
           localeCTX.activeLanguage === 'fa'
             ? fa.COMMON.errorParagraph1
             : en.COMMON.errorParagraph1
-        }
-      >
+        }>
         <Footer
           hide={hide}
           showToTop={showToTop}

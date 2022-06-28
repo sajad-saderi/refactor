@@ -1,8 +1,9 @@
 export interface IPageHeadBuilder {
   title: string;
   description: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   canonical?: string;
+  noIndex?: boolean
 }
 
 export interface IPageViewDataLayer {

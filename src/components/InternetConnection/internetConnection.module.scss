@@ -1,5 +1,13 @@
 @import '../../styles/colors';
-.internet-connection {
+
+@mixin PStyle {
+  color: $_ec7f00;
+  font-size: 14px;
+  font-variation-settings: 'wght' 500;
+  font-weight: 500;
+}
+
+.container {
   z-index: 9999;
   position: fixed;
   background-color: $_fff8ef;
@@ -8,60 +16,32 @@
   bottom: 0%;
   padding: 16px;
   direction: rtl;
-  img {
-    display: inline-block;
-    vertical-align: super;
-    width: 20px;
-    margin-left: 8px;
-  }
-  div {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  p {
-    margin-top: 10px;
-    color: $_ec7f00;
-    font-size: 14px;
-    font-weight: 500;
-    span {
-      color: $_ec7f00;
-      font-weight: 500;
-    }
+  .content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
     svg {
-      width: 20px;
-      margin-left: 6px;
-      display: inline-block;
-      vertical-align: middle;
+      margin-inline-end: 8px;
+    }
+    p {
+      margin-bottom: 10px;
+      @include PStyle;
+      span {
+        color: $_ec7f00;
+        font-weight: 500;
+      }
     }
   }
   .retry {
+    @include PStyle;
     color: $_3fa6da;
-    font-weight: 500;
     cursor: pointer;
     text-align: left;
     margin-top: 16px;
-  }
-}
-.internetConnectionLtr {
-  direction: ltr;
-  img {
-    margin-left: 0px;
-    margin-right: 8px;
-  }
-  p {
     svg {
-      margin-left: 0;
-      margin-right: 6px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-inline-end: 6px;
     }
   }
-  .retry {
-    text-align: right;
-  }
 }
-
-// @media screen and(max-width:480px) {
-//   .internet-connection {
-//     width: 100%;
-//     padding: 14px;
-//   }
-// }

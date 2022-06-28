@@ -4,7 +4,8 @@ export const PageHeadBuilder = ({
   title,
   description,
   imageUrl,
-  canonical
+  canonical,
+  noIndex
 }: IPageHeadBuilder) => (
   <Head>
     <title>{title}</title>
@@ -29,5 +30,11 @@ export const PageHeadBuilder = ({
       content='https://core.sepris.com/media/Sepris-Logo.png'
     />
     {canonical && <link rel='canonical' href={canonical} />}
+    {noIndex && (
+      <>
+        <meta name='robots' content='noindex,follow' />
+        <meta name='googlebot' content='noindex,follow' />
+      </>
+    )}
   </Head>
 );

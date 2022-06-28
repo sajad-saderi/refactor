@@ -1,9 +1,10 @@
-import { useEffect, useState, useContext } from "react";
-import { useRouter } from "next/router";
-import ReactDOM from "react-dom";
-import CountDown from "../countDown";  
-import toast_context from "../../context/Toast_context";
-import Icon from "../Icons";
+import { useEffect, useState, useContext } from 'react';
+import { useRouter } from 'next/router';
+import ReactDOM from 'react-dom';
+import CountDown from '../countDown';
+import toast_context from '../../context/Toast_context';
+import Icon from '../Icons';
+import styles from './internetConnection.module.scss';
 
 const InternetConnection = ({ language }) => {
   const [time, setTime] = useState(5);
@@ -37,32 +38,30 @@ const InternetConnection = ({ language }) => {
   };
 
   return ReactDOM.createPortal(
-    <div
-      className={`internet-connection ${
-        router.locale === "fa" ? "" : "internetConnectionLtr"
-      }`}
-    >
-      <Icon name="warning" width="20px" height="20px" color="" />
-      <div>
-        <p>{language.COMMON.youDeviceIsNotConnected}</p>
-        {startTimer ? (
-          <p className="automatic-retry">
-            {language.COMMON.checkingConnectionLater}{" "}
-            {<CountDown time={time} Done={checkTheConnection} />}{" "}
-            {language.COMMON.seconds}.
-          </p>
-        ) : (
-          <p className="automatic-retry">
-            {language.COMMON.checkInternetConnection}...
-          </p>
-        )}
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <Icon name='warning' width='20px' height='20px' color='#ec7f00' />
+        <div>
+          <p>{language.COMMON.youDeviceIsNotConnected}</p>
+          {startTimer ? (
+            <p className={styles.automaticRetry}>
+              {language.COMMON.checkingConnectionLater}{' '}
+              {<CountDown time={time} Done={checkTheConnection} />}{' '}
+              {language.COMMON.seconds}.
+            </p>
+          ) : (
+            <p className={styles.automaticRetry}>
+              {language.COMMON.checkInternetConnection}...
+            </p>
+          )}
+        </div>
       </div>
-      <p className="retry" onClick={checkTheConnection}>
-        <Icon name="refresh" width="20px" height="20px" color="#3fa6da" />
+      <p className={styles.retry} onClick={checkTheConnection}>
+        <Icon name='refresh' width='20px' height='20px' color='#3fa6da' />
         {language.COMMON.checkConnection}
       </p>
     </div>,
-    document.getElementById("portal_notification")
+    document.getElementById('portal_notification')
   );
 };
 
