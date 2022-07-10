@@ -59,6 +59,7 @@ import { dynamicString } from '../../../helpers/dynamicString';
 import Icon from '../../../components/Icons';
 import Image from 'next/image';
 import Input from '../../../components/form/input';
+import { listOfCities } from '../../../../utils/constances';
 // import { logPageView } from "../../../../utils/analytics";
 
 /**
@@ -866,14 +867,14 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
 
   const getInitials = async () => {
     try {
-      const location_Res: any = await REQUEST_GET_LOCATION();
+      // const location_Res: any = await REQUEST_GET_LOCATION();
       const car_brand_Res: any = await REQUEST_GET_CAR_BRAND();
       const year_Res: any = await REQUEST_GET_YEAR();
       const bodyStyle_res: any = await REQUEST_GET_CAR_BODY_STYLE();
       const cylinder_res: any = await REQUEST_GET_CAR_CYLINDER();
       const facilities_res: any = await REQUEST_GET_CAR_FACILITIES();
       const colorList_res: any = await REQUEST_GET_CAR_COLORS();
-      setLocationList(location_Res.data);
+      // setLocationList(location_Res.data);
       setBrandList(car_brand_Res.carBrands);
       setYearList(year_Res.data);
       setBodyStyleList(bodyStyle_res.data);
@@ -1296,7 +1297,7 @@ const Add_Car_Step_1 = ({ language }: IAdd_Car_Step_1) => {
             error_status={!showDistrict ? ErrorState.location_id : false}
             label={language.ADD_CAR_PAGE.location}
             search_place_holder={language.COMMON.inCities}
-            data={locationList}
+            data={listOfCities}
             defaultVal={locationName && locationName[activeLanguage]}
             // clearField={() => {
             //   dispatch({ type: "location_id", location_id: null });

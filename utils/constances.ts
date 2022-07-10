@@ -1,3 +1,286 @@
+export const listOfCities = [
+  {
+    value: 1670,
+    name: {
+      fa: 'اراک',
+      en: 'arak'
+    }
+  },
+  {
+    value: 1668,
+    name: {
+      fa: 'اردبیل',
+      en: 'ardabil'
+    }
+  },
+  {
+    value: 1662,
+    name: {
+      fa: 'ارومیه',
+      en: 'Urmia'
+    }
+  },
+  {
+    value: 1683,
+    name: {
+      fa: 'یاسوج',
+      en: 'Yasuj'
+    }
+  },
+  {
+    value: 1656,
+    name: {
+      fa: 'اصفهان',
+      en: 'esfahan'
+    }
+  },
+  {
+    value: 1680,
+    name: {
+      fa: 'ایلام',
+      en: 'ilam'
+    }
+  },
+  {
+    value: 1684,
+    name: {
+      fa: 'انزلی',
+      en: 'anzali'
+    }
+  },
+  {
+    value: 1660,
+    name: {
+      fa: 'اهواز',
+      en: 'ahvaz'
+    }
+  },
+  {
+    value: 1677,
+    name: {
+      fa: 'بجنورد',
+      en: 'bojnurd'
+    }
+  },
+  {
+    value: 1679,
+    name: {
+      fa: 'بیرجند',
+      en: 'birjand'
+    }
+  },
+  {
+    value: 1669,
+    name: {
+      fa: 'بندرعباس',
+      en: 'Bandar Abbas'
+    }
+  },
+  {
+    value: 1678,
+    name: {
+      fa: 'بوشهر',
+      en: 'bushehr'
+    }
+  },
+  {
+    value: 1658,
+    name: {
+      fa: 'تبریز',
+      en: 'tabriz'
+    }
+  },
+  {
+    value: 1,
+    name: {
+      fa: 'تهران',
+      en: 'Tehran'
+    }
+  },
+  {
+    value: 1691,
+    name: {
+      fa: 'چالوس',
+      en: 'chalus'
+    }
+  },
+  {
+    value: 1674,
+    name: {
+      fa: 'خرم‌آباد',
+      en: 'khorramabad'
+    }
+  },
+  {
+    value: 1685,
+    name: {
+      fa: 'رامسر',
+      en: 'ramsar'
+    }
+  },
+  {
+    value: 1663,
+    name: {
+      fa: 'رشت',
+      en: 'rasht'
+    }
+  },
+  {
+    value: 1664,
+    name: {
+      fa: 'زاهدان',
+      en: 'zahedan'
+    }
+  },
+  {
+    value: 1667,
+    name: {
+      fa: 'یزد',
+      en: 'yazd'
+    }
+  },
+  {
+    value: 1671,
+    name: {
+      fa: 'زنجان',
+      en: 'zanjan'
+    }
+  },
+  {
+    value: 1676,
+    name: {
+      fa: 'ساری',
+      en: 'sari'
+    }
+  },
+  {
+    value: 1682,
+    name: {
+      fa: 'سمنان',
+      en: 'semnan'
+    }
+  },
+  {
+    value: 1672,
+    name: {
+      fa: 'سنندج',
+      en: 'sanandaj'
+    }
+  },
+  {
+    value: 3,
+    name: {
+      fa: 'شیراز',
+      en: 'Shiraz'
+    }
+  },
+  {
+    value: 1681,
+    name: {
+      fa: 'شهرکرد',
+      en: 'shahrekord'
+    }
+  },
+  {
+    value: 1673,
+    name: {
+      fa: 'قزوین',
+      en: 'qazvin'
+    }
+  },
+  {
+    value: 1690,
+    name: {
+      fa: 'قشم',
+      en: 'Qeshm'
+    }
+  },
+  {
+    value: 1659,
+    name: {
+      fa: 'قم',
+      en: 'qom'
+    }
+  },
+  {
+    value: 1689,
+    name: {
+      fa: 'کاشان',
+      en: 'kashan'
+    }
+  },
+  {
+    value: 1657,
+    name: {
+      fa: 'کرج',
+      en: 'karaj'
+    }
+  },
+  {
+    value: 1666,
+    name: {
+      fa: 'کرمان',
+      en: 'kerman'
+    }
+  },
+  {
+    value: 1661,
+    name: {
+      fa: 'کرمانشاه',
+      en: 'kermanshah'
+    }
+  },
+  {
+    value: 2,
+    name: {
+      fa: 'کیش',
+      en: 'Kish'
+    }
+  },
+  {
+    value: 1675,
+    name: {
+      fa: 'گرگان',
+      en: 'gorgan'
+    }
+  },
+  {
+    value: 1688,
+    name: {
+      fa: 'محمودآباد',
+      en: 'Mahmudabad'
+    }
+  },
+  {
+    value: 1655,
+    name: {
+      fa: 'مشهد',
+      en: 'mashhad'
+    }
+  },
+  {
+    value: 1686,
+    name: {
+      fa: 'نور',
+      en: 'nour'
+    }
+  },
+  {
+    value: 1687,
+    name: {
+      fa: 'نوشهر',
+      en: 'Nowshahr'
+    }
+  },
+  {
+    value: 1665,
+    name: {
+      fa: 'همدان',
+      en: 'hamedan'
+    }
+  }
+];
+
 export const limitForSearchResult = 21;
 export const bodyStyles = [
   {
@@ -69,7 +352,21 @@ export const ImageUrl =
   'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAQwAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/bAEMBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAK0CPQMBEQACEQEDEQH/xAAVAAEBAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAVAQEBAAAAAAAAAAAAAAAAAAAABf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AKwJ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9k=';
 
 export const carCardPlaceholderLength = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
 ];
 
 export const capacityList = [

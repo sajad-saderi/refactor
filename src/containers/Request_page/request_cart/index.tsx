@@ -179,7 +179,6 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
         ? data.extend_request_set[0]
         : null
       : null;
-    console.log(extensionInfo);
 
     if (extensionInfo) {
       extensionSum = data.extend_request_set.reduce(
@@ -214,6 +213,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
       );
       setExtensionSum(extensionSum);
     }
+    // console.log(extensionSum);
+
     setExtensionInfo(extensionInfo);
     // small portion at the top right on the request cart
     let RentStatus = null;
@@ -518,12 +519,14 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
     setDiscounted_total_price(
       renter
         ? data.rent_search_dump.discounted_total_price +
-            (extensionSum ? extensionSum.price : 0)
+            (extensionSum
+              ? extensionSum.price + extensionSum.insurance_price
+              : 0)
         : data.rent_search_dump.owner_price
         ? data.rent_search_dump.owner_price +
-          (extensionSum ? extensionSum.price : 0)
+          (extensionSum ? extensionSum.price + extensionSum.insurance_price : 0)
         : data.rent_search_dump.discounted_total_price +
-          (extensionSum ? extensionSum.price : 0)
+          (extensionSum ? extensionSum.price + extensionSum.insurance_price : 0)
     );
     setInsurance_total_price(
       has_insurance ? data.rent_search_dump.insurance_total_price : 0
@@ -708,7 +711,7 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                     : numberChanger(
                         (
                           discounted_total_price +
-                          (extensionSum ? extensionSum.price : 0) +
+                          // (extensionSum ? extensionSum.price : 0) +
                           insurance_total_price
                         ).toLocaleString(),
                         activeLanguage
@@ -716,10 +719,9 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
                   : coupon
                   ? numberChanger(coupon.toLocaleString(), activeLanguage)
                   : numberChanger(
-                      (
-                        discounted_total_price +
-                        (extensionSum ? extensionSum.price : 0)
-                      ).toLocaleString(),
+                      discounted_total_price
+                        // + (extensionSum ? extensionSum.price : 0)
+                        .toLocaleString(),
                       activeLanguage
                     )}{' '}
               </span>

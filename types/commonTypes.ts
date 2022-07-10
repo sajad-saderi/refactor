@@ -1,4 +1,4 @@
-export type supportedLanguages = "fa" | "en" | "ar" | "tr";
+export type supportedLanguages = 'fa' | 'en' | 'ar' | 'tr';
 interface TLanguageFileStructure {
   [key: string]: any | string;
 }

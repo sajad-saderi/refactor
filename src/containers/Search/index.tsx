@@ -23,7 +23,7 @@ import { activeCities } from '../../helpers/activeCities';
 import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { ICalender } from '../../../types';
 import { numberChanger } from '../../../utils/numberChanger';
-import { limitForSearchResult } from '../../../utils/constances';
+import { limitForSearchResult, listOfCities } from '../../../utils/constances';
 import classNames from 'classnames';
 import Select from '../../components/form/select';
 
@@ -50,7 +50,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
     from: null
   });
 
-  const [locationsList, setLocationsList] = useState(null);
+  const [locationsList, setLocationsList] = useState(listOfCities);
   const [loading, setLoading] = useState(false);
   const [showBorder, setShowBorder] = useState(false);
   const [fromError, setFromError] = useState({
@@ -83,7 +83,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
       setLocationId(initialCity.value);
       setLocationName(initialCity.name[activeLanguage]);
     }
-    get_car_location();
+    // get_car_location();
     setDateFromStorage();
   }, []);
 
@@ -359,7 +359,7 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
             inputValue={LocationName}
             onClear={() => {}}
             language={language}
-            data={locationsList}
+            data={listOfCities}
             noClear
             searchPlaceHolder={language.COMMON.inCities}
             onSelect={(i) => {
