@@ -7,7 +7,7 @@ const CarPageLoading = dynamic(() =>
   import('../../../components/cartPlaceholder/carPageLoading')
 );
 const Spinner = dynamic(() => import('../../../components/Spinner'));
-const Review = dynamic(() => import('../../../components/Review'));
+const Review = dynamic(() => import('../../../components/review'));
 import {
   REQUEST_GET_CAR_REVIEW,
   REQUEST_GET_RENTAL_CAR
@@ -193,7 +193,7 @@ const CarPage = ({
       });
       setShowCalender(true);
       set_CarInformation(car_Information);
-      get_reviews();
+      // get_reviews();
 
       // if (start_date) {
       //   let startDate = start_date.split("/");
@@ -299,7 +299,7 @@ const CarPage = ({
         });
         setShowCalender(true);
       }
-      get_reviews();
+      // get_reviews();
 
       // setCalenderClick(false);
     } catch (error) {
@@ -334,28 +334,6 @@ const CarPage = ({
           autoClose
         });
       }
-    }
-  };
-
-  const get_reviews = async () => {
-    try {
-      const reviews: any = await REQUEST_GET_CAR_REVIEW(id);
-      setReView(reviews.items);
-    } catch (error) {
-      if (error === 111) {
-        netCTX.toggleTheContainer(true);
-      } else
-        toastCTX.toast_option({
-          message: error.response
-            ? ErrorHelper({
-                errorObj: error.response,
-                _400Message: language.COMMON.errorInReviews
-              })
-            : error,
-          color: '#ed9026',
-          time: 0,
-          autoClose: false
-        });
     }
   };
 
@@ -1580,13 +1558,25 @@ const CarPage = ({
               ) : null}
             </section>
           </article>
-          {review && review.length > 0 ? (
-            <Review
-              review={review}
-              language={language}
-              locale={activeLanguage}
-            />
-          ) : null}
+          <article className='reviewContainer responsive'>
+            <section className='commentSection '>
+              <h2>
+                <Icon
+                  name='chatBalloon'
+                  color='#116B98'
+                  width='16px'
+                  height='16px'
+                />
+                <span>{language.CAR_PAGE.reviews}</span>
+              </h2>
+              <Review
+                language={language}
+                locale={activeLanguage}
+                id={id}
+                noReview={language.CAR_PAGE.noReview}
+              />
+            </section>
+          </article>
         </>
       ) : (
         <>
@@ -1601,7 +1591,7 @@ interface ICarPage {
   language: any;
   is_mine: boolean;
   initial_search_id: string | number;
-  id: string | number;
+  id: string;
   car_Information: any;
   expired: boolean;
   start_date: string;

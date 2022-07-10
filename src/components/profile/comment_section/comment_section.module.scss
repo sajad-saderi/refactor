@@ -1,7 +1,6 @@
 @import '../../../styles/colors';
 .comment_section {
   margin-bottom: 40px;
-  width: 50%;
   text-align: right;
   direction: rtl;
   @media screen and (max-width: 768px) {
@@ -49,19 +48,10 @@
         }
       }
     }
-    .review_article {
+    section {
       padding: 0%;
-      .review_container_car_page {
-        padding: 0;
-        width: 100%;
-        margin-top: 24px;
-        box-shadow: none;
-        div {
-          margin-right: 0;
-        }
-        .nothing-to-show {
-          margin: 0;
-        }
+      div {
+        margin-inline-start: 0;
       }
     }
   }

@@ -27,6 +27,7 @@ import { twoWayDateConvertor } from '../../helpers/dateControler';
 import { numberChanger } from '../../../utils/numberChanger';
 import Icon from '../../components/Icons';
 import { limitForSearchResult } from '../../../utils/constances';
+import LoadMoreButton from '../../components/loadMoreButton';
 
 let JumpTo = null;
 
@@ -979,6 +980,14 @@ const Search_result = ({
       </section>
       {/* load more */}
       {remained_count > 0 && (
+        <LoadMoreButton
+          loading={show_spinner_loadMore}
+          text={language.COMMON.loadMore}
+          click={() => loadMore()}
+        />
+      )}
+
+      {/* {remained_count > 0 && (
         <span
           className={[
             'Load_more_car HEAP_SearchResult_Btn_ShowMore',
@@ -1001,7 +1010,7 @@ const Search_result = ({
             </>
           )}
         </span>
-      )}
+      )} */}
     </article>
   );
 };

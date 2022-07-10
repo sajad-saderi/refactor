@@ -1,0 +1,53 @@
+@use '../../styles/mixins' as mixin;
+@import '../../styles/colors';
+
+.wrapper {
+  .reviewContainer {
+    margin-inline-start: 24px;
+    margin-bottom: 24px;
+    .name {
+      font-size: 14px;
+      margin-bottom: 4px;
+      font-variation-settings: 'wght' 500;
+      font-weight: 500;
+    }
+    .date {
+      font-size: 12px;
+      color: $_525252;
+    }
+    .review {
+      line-height: normal;
+      font-size: 14px;
+      font-family: 'iranSansXV', 'iranSans';
+      white-space: pre-line;
+      margin-top: 12px;
+    }
+  }
+  .noReview {
+    font-size: 14px;
+  }
+  .loadingContainer {
+    margin-inline-start: 24px;
+    margin-bottom: 24px;
+    h3 {
+      width: 90px;
+      height: 14px;
+      display: block;
+      margin: 0;
+      @include mixin.gradient;
+    }
+    small {
+      width: 120px;
+      height: 14px;
+      display: block;
+      @include mixin.gradient;
+
+      margin-top: 8px;
+    }
+    p {
+      height: 14px;
+      @include mixin.gradient;
+      margin-top: 8px;
+    }
+  }
+}

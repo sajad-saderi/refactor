@@ -1,0 +1,27 @@
+@import '../../styles/colors';
+.container {
+  background-color: $_fffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $_dadada;
+  position: relative;
+  width: 250px;
+  font-family: inherit;
+  text-align: center;
+  margin: 10px auto auto;
+  cursor: pointer;
+  font-size: 14px;
+  font-variation-settings: 'wght' 500;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 10px 10px;
+  span {
+    color: $_6e6e6e;
+    svg {
+      position: absolute;
+      inset-inline-start: 10px;
+      top: 10px;
+    }
+  }
+}

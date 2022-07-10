@@ -131,8 +131,8 @@
     "enterCarValue": "Please enter value of car",
     "contract": "rent contract",
     "comformCarDelete": "Do yo want to delete the {value} {value}?",
-    "activatingTheCar":"Do yo want to activate the {value} {value}?",
-    "inactivatingTheCar":"Do yo want to inactivate the {value} {value}?",
+    "activatingTheCar": "Do yo want to activate the {value} {value}?",
+    "inactivatingTheCar": "Do yo want to inactivate the {value} {value}?",
     "comformOrderDelete": "Do you want to delete the request",
     "iAgree": "I agree",
     "fetchCitiesError": "there is some problem in showing cities",
@@ -486,7 +486,7 @@
     "withInsurance": "Insurance included",
     "withoutInsurance": "No insurance included",
     "invoice": "invoice",
-    "contractDocuments":"Download the Contract Documents",
+    "contractDocuments": "Download the Contract Documents",
     "downloadContact": "Rent Contract",
     "rentInsurance": "Rent Insurance",
     "rentCheckList": "Rent Check List",
@@ -578,7 +578,8 @@
     "errorUserName": "Please enter a valid username.",
     "errorCompany": "Please enter a valid company name.",
     "errorImageFormat": "Please upload the image in JPEG format.",
-    "error1": "خطا در دریافت اطلاعات کاربری."
+    "error1": "خطا در دریافت اطلاعات کاربری.",
+    "noReview": "There Is No Review"
   },
   "TOASTS": {
     "success": "Have been done successfully",
