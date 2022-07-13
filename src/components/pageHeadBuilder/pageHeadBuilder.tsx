@@ -4,6 +4,8 @@ export const PageHeadBuilder = ({
   title,
   url,
   description,
+  height,
+  width,
   imageUrl,
   canonical,
   noIndex
@@ -30,15 +32,15 @@ export const PageHeadBuilder = ({
           imageUrl ? imageUrl : 'https://core.sepris.com/media/Sepris-Logo.png'
         }
       />
-      <meta property='og:image:width' content='500' />
-      <meta property='og:image:height' content='500' />
+      <meta property='og:image:width' content={width.toString()} />
+      <meta property='og:image:height' content={height.toString()} />
       <meta
         property='og:image:secure_url'
         content={
           imageUrl ? imageUrl : 'https://core.sepris.com/media/Sepris-Logo.png'
         }
       />
-      <meta property='og:image:type' content='image/png' />
+      <meta property='og:image:type' content='image/jpeg' />
       <meta property='og:image:alt' content={'https://sepris.com/' + url} />
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:site' content='@seprisrent' />

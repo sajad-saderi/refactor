@@ -5,6 +5,8 @@ export interface IPageHeadBuilder {
   imageUrl?: string | null;
   canonical?: string;
   noIndex?: boolean;
+  height?: number;
+  width?: number;
 }
 
 export interface IPageViewDataLayer {
