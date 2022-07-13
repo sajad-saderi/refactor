@@ -36,7 +36,7 @@ export const PageHeadBuilder = ({
           imageUrl ? imageUrl : 'https://core.sepris.com/media/Sepris-Logo.png'
         }
       />
-      <meta property='og:image:type' content='image/png' />
+      <meta property='og:image:type' content='image/jpeg' />
       <meta property='og:image:alt' content={'https://sepris.com/' + url} />
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:site' content='@seprisrent' />
