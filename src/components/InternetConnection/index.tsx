@@ -38,7 +38,7 @@ const InternetConnection = ({ language }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className={styles.container}>
+    <div className={styles.internetConnectionContainer}>
       <div className={styles.content}>
         <Icon name='warning' width='20px' height='20px' color='#ec7f00' />
         <div>

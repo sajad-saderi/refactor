@@ -51,8 +51,6 @@ const Car = ({
       });
     }
   }, []);
-  console.log(car_Information);
-
   return (
     <Layout>
       {car_Information ? (
