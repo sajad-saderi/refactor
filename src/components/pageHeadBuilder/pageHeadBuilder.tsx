@@ -32,8 +32,8 @@ export const PageHeadBuilder = ({
           imageUrl ? imageUrl : 'https://core.sepris.com/media/Sepris-Logo.png'
         }
       />
-      <meta property='og:image:width' content={width.toString()} />
-      <meta property='og:image:height' content={height.toString()} />
+      <meta property='og:image:width' content={`${width}`} />
+      <meta property='og:image:height' content={`${height}`} />
       <meta
         property='og:image:secure_url'
         content={

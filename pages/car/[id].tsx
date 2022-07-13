@@ -69,6 +69,8 @@ const Car = ({
           }`}
           description={locale.PAGE_HEADER.carPage.description}
           url={`car/${id}`}
+          height={car_Information.media_set[0].thumbnail_height}
+          width={car_Information.media_set[0].thumbnail_width}
           imageUrl={
             car_Information.media_set.length !== 0
               ? car_Information.media_set[0].url
