@@ -71,7 +71,7 @@ const Car = ({
           url={`car/${id}`}
           imageUrl={
             car_Information.media_set.length !== 0
-              ? car_Information.media_set[0].url
+              ? car_Information.media_set[0].thumbnail_url
               : null
           }
         />
