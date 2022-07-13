@@ -51,6 +51,7 @@ const Car = ({
       });
     }
   }, []);
+  console.log(car_Information);
 
   return (
     <Layout>
@@ -67,6 +68,7 @@ const Car = ({
             locale.PAGE_HEADER.carPage.title
           }`}
           description={locale.PAGE_HEADER.carPage.description}
+          url={`car/${id}`}
           imageUrl={
             car_Information.media_set.length !== 0
               ? car_Information.media_set[0].thumbnail_url
@@ -225,6 +227,8 @@ export async function getServerSideProps(props) {
       }
 
       const res: any = await REQUEST_GET_RENTAL_CAR(param);
+      console.log('2');
+
       return {
         props: {
           car_Information: res,
@@ -259,6 +263,8 @@ export async function getServerSideProps(props) {
     if (error === 'INVALID_SEARCH_ID') {
       init_props['expired'] = true;
     }
+    console.log('3');
+
     return {
       props: init_props
     };
