@@ -10,7 +10,6 @@ export const PageHeadBuilder = ({
   canonical,
   noIndex
 }: IPageHeadBuilder) => {
-  console.log({ title, description, imageUrl, canonical, noIndex });
   return (
     <Head>
       <title>{title}</title>

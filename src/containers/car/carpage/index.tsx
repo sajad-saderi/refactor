@@ -450,7 +450,7 @@ const CarPage = ({
     setFacility_set(res.facility_set);
     setCancellation_policy(res.cancellation_policy);
     if (res.has_media) setMedia_set(res.media_set);
-    else setMedia_set([{ url: carImage }]);
+    else setMedia_set([{ url: carImage.src }]);
     // setSearch_id(res.search_id);
     search_id = res.search_id;
     setTotal_discount(res.total_discount);

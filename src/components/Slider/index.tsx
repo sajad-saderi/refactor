@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-// import arrow_right from "../../../public/image/svg/arrow-right.svg"; 
+import { useState, useEffect } from 'react';
+// import arrow_right from "../../../public/image/svg/arrow-right.svg";
 // import "./slider.scss";
-import dynamic from "next/dynamic";
-import Icon from "../Icons";
+import dynamic from 'next/dynamic';
+import Icon from '../Icons';
 
-const Gallery = dynamic(() => import("./Gallery"));
+const Gallery = dynamic(() => import('./Gallery'));
 // import Gallery from "./Gallery";
 
 const Slider = (props: ISlider) => {
   const [Feed, setFeed] = useState([]);
-  const [alt, setAlt] = useState("");
+  const [alt, setAlt] = useState('');
   const [Loade, setLoade] = useState(false);
   const [carousel, setCarousel] = useState(false);
   const [heightController, setheightController] = useState(0);
@@ -33,10 +33,10 @@ const Slider = (props: ISlider) => {
     /**
      * check if the click is on left or right icon
      */
-    if (slide === "right" && slideIndex < props.Feed.length - 1) {
+    if (slide === 'right' && slideIndex < props.Feed.length - 1) {
       // add index by 1 to go to right
       setslideIndex(1 + slideIndex);
-    } else if (slide === "left" && slideIndex > 0) {
+    } else if (slide === 'left' && slideIndex > 0) {
       // subtract index by 1 to go to left
       setslideIndex(slideIndex - 1);
     } else return;
@@ -60,15 +60,14 @@ const Slider = (props: ISlider) => {
       <>
         <div
           className={[
-            "carousel_container",
-            window.innerWidth > 720 ? "responsive border-gap" : null,
-          ].join(" ")}
+            'carousel_container',
+            window.innerWidth > 720 ? 'responsive border-gap' : null
+          ].join(' ')}
           style={{
             height:
               window.innerWidth < 720 &&
-              `${(window.innerWidth * 0.5625).toFixed(0)}px`,
-          }}
-        >
+              `${(window.innerWidth * 0.5625).toFixed(0)}px`
+          }}>
           {/* extend icon */}
           {!colseModal && (
             <Gallery
@@ -85,7 +84,12 @@ const Slider = (props: ISlider) => {
                 {/* Open the gallery */}
                 {carousel && (
                   <div className='FullScreen' onClick={CloseGallery}>
-                    <Icon name='fullscreen' width="20px" height="20px" color="#ffffff" />
+                    <Icon
+                      name='fullscreen'
+                      width='20px'
+                      height='20px'
+                      color='#ffffff'
+                    />
                   </div>
                 )}
                 {Feed.map((item, i) => {
@@ -129,7 +133,7 @@ const Slider = (props: ISlider) => {
                           if (right > 100 && falgControl) {
                             // don't let the image to swipe several time
                             setfalgControl(false);
-                            SliderNav("left");
+                            SliderNav('left');
                             return;
                           } else {
                             // this.setState({
@@ -144,7 +148,7 @@ const Slider = (props: ISlider) => {
                             // rightV: 0,
                             // don't let the image to swipe several time
                             setfalgControl(false);
-                            SliderNav("right");
+                            SliderNav('right');
                             return;
                           } else {
                             // this.setState({
@@ -158,16 +162,16 @@ const Slider = (props: ISlider) => {
                        * while user grabbed the image
                        * */
                       style={{
-                        right: rightV + "px",
+                        right: rightV + 'px'
                       }}
                       className={[
                         // current image have carousel_FrontImage class
-                        slideIndex === i && "carousel_FrontImage",
+                        slideIndex === i && 'carousel_FrontImage',
                         // images at the LEFT of the current image have class TranslateRight because they should translate to RIGHT
-                        slideIndex < i && "carousel_FrontImage TranslateRight",
+                        slideIndex < i && 'carousel_FrontImage TranslateRight',
                         // images at the RIGHT of the current image have class TranslateRight because they should translate to LEFT
-                        slideIndex > i && "carousel_FrontImage TranslateLeft",
-                      ].join(" ")}
+                        slideIndex > i && 'carousel_FrontImage TranslateLeft'
+                      ].join(' ')}
                       src={item.url}
                       alt={alt}
                     />
@@ -184,7 +188,7 @@ const Slider = (props: ISlider) => {
 
                 // adjust the image at the center of view division
                 style={{
-                  top: `-${heightController}px`,
+                  top: `-${heightController}px`
                 }}
                 src={Feed[slideIndex].url}
                 alt={alt}
@@ -210,7 +214,7 @@ const Slider = (props: ISlider) => {
                 className='carousel_BackImage'
                 src={Feed[0].url}
                 style={{
-                  top: `-${heightController}px`,
+                  top: `-${heightController}px`
                 }}
                 alt={alt}
                 // adjust the image in container
@@ -225,18 +229,28 @@ const Slider = (props: ISlider) => {
               {slideIndex < Feed.length - 1 && (
                 <button
                   className='NAVIGA arrow-right'
-                  onClick={() => SliderNav("right")}
-                >
-                  <Icon name='chevronUp' rotate={90} width="40px" height="40px" color="#ffffff" />
+                  onClick={() => SliderNav('right')}>
+                  <Icon
+                    name='chevronUp'
+                    rotate={90}
+                    width='40px'
+                    height='40px'
+                    color='#ffffff'
+                  />
                 </button>
               )}
               {/* if there is no more image left to swipe to left, hide the left arrow icon */}
               {slideIndex > 0 && (
                 <button
                   className='NAVIGA arrow-left'
-                  onClick={() => SliderNav("left")}
-                >
-                  <Icon name='chevronUp' rotate={90} width="40px" height="40px" color="#ffffff" />
+                  onClick={() => SliderNav('left')}>
+                  <Icon
+                    name='chevronUp'
+                    rotate={90}
+                    width='40px'
+                    height='40px'
+                    color='#ffffff'
+                  />
                 </button>
               )}
             </>
@@ -250,8 +264,9 @@ const Slider = (props: ISlider) => {
                 <span
                   key={i}
                   onClick={() => setslideIndex(i)}
-                  className={slideIndex === i ? "activeDot" : "deactiveDot"}
-                ></span>
+                  className={
+                    slideIndex === i ? 'activeDot' : 'deactiveDot'
+                  }></span>
               );
             })}
           </div>

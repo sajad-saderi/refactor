@@ -51,6 +51,7 @@ const Car = ({
       });
     }
   }, []);
+
   return (
     <Layout>
       {car_Information ? (
@@ -67,8 +68,16 @@ const Car = ({
           }`}
           description={locale.PAGE_HEADER.carPage.description}
           url={`car/${id}`}
-          height={car_Information.media_set[0].thumbnail_height}
-          width={car_Information.media_set[0].thumbnail_width}
+          height={
+            car_Information.media_set.length > 0
+              ? car_Information.media_set[0].thumbnail_height
+              : 500
+          }
+          width={
+            car_Information.media_set.length > 0
+              ? car_Information.media_set[0].thumbnail_width
+              : 500
+          }
           imageUrl={
             car_Information.media_set.length !== 0
               ? car_Information.media_set[0].url
@@ -227,7 +236,6 @@ export async function getServerSideProps(props) {
       }
 
       const res: any = await REQUEST_GET_RENTAL_CAR(param);
-      console.log('2');
 
       return {
         props: {
@@ -263,7 +271,6 @@ export async function getServerSideProps(props) {
     if (error === 'INVALID_SEARCH_ID') {
       init_props['expired'] = true;
     }
-    console.log('3');
 
     return {
       props: init_props
