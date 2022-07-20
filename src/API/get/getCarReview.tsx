@@ -6,17 +6,25 @@ let GET_REVIEW = '/core/rental-car/review/list?id=';
 let GET_REVIEW_RENTER = '/core/user/review/list/renter?id=';
 let GET_REVIEW_OWNER = '/core/user/review/list/owner?id=';
 
-export const REQUEST_GET_CAR_REVIEW = (
-  id: string | number,
-  renter?,
-  owner?
-) => {
+export const REQUEST_GET_CAR_REVIEW = ({
+  id,
+  page,
+  renter,
+  owner,
+  limit
+}: {
+  id: string | number;
+  page: number;
+  renter?: boolean;
+  owner?: boolean;
+  limit: number;
+}) => {
   return new Promise((resolve, reject) => {
     axios
       .get(
         `${DOMAIN}${
           renter ? GET_REVIEW_RENTER : owner ? GET_REVIEW_OWNER : GET_REVIEW
-        }${id}`
+        }${id}&page=${page}&limit=${limit}`
       )
       .then((response) => {
         if (response.data.success) {

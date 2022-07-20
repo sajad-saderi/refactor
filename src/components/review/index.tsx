@@ -9,6 +9,7 @@ import ReviewLoading from './loadnig';
 import { ILocale } from '../../../types';
 import LoadMoreButton from '../loadMoreButton';
 
+let page = 1;
 const Review: React.FC<{
   language: ILocale;
   locale: supportedLanguages;
@@ -17,26 +18,39 @@ const Review: React.FC<{
   owner?: boolean;
   noReview: string;
 }> = ({ locale, id, renter, owner, noReview, language }) => {
-  const [review, setReView] = useState(null);
+  const [review, setReView] = useState([]);
+  const [showMore, setShowLoadMore] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     moment.locale(locale);
   }, [locale]);
 
-  useEffect(() => {
-    get_reviews();
-  }, []);
+  // useEffect(() => {
+  //   get_reviews();
+  // }, []);
   useEffect(() => {
     setReView(null);
     get_reviews();
   }, [renter, owner]);
 
-  const get_reviews = async () => {
+  const get_reviews = async (loadMore?: boolean) => {
+    setLoading(true);
     try {
-      const reviews: any = await REQUEST_GET_CAR_REVIEW(id, renter, owner);
-      setReView(reviews.items);
+      const reviews: any = await REQUEST_GET_CAR_REVIEW({
+        id,
+        renter,
+        owner,
+        page,
+        limit: 10
+      });
+      if (loadMore) setReView((review) => review.concat(reviews.items));
+      else setReView(reviews.items);
+      if (reviews.remained_count > 0) setShowLoadMore(true);
+      else setShowLoadMore(false);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -65,13 +79,16 @@ const Review: React.FC<{
                 </div>
               );
             })}
-            {/* {review.length < 9 ? null : (
+            {showMore && (
               <LoadMoreButton
                 text={language.COMMON.loadMore}
-                click={() => {}}
+                click={() => {
+                  page = page + 1;
+                  get_reviews(true);
+                }}
                 loading={loading}
               />
-            )} */}
+            )}
           </>
         ) : (
           <p className={styles.noReview}>{noReview}</p>

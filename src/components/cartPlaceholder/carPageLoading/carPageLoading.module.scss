@@ -26,6 +26,7 @@
     vertical-align: top;
     border-radius: 4px;
     text-align: right;
+
     h1,
     h2,
     h4,
@@ -36,12 +37,28 @@
       display: inline-block;
       margin-bottom: 10px;
     }
+    .carH1 {
+      width: 150px;
+    }
+    h4 {
+      width: 200px;
+    }
+    .carLoadingBadges {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+      span {
+        width: 80px;
+        margin-inline-end: 10px;
+      }
+    }
     hr {
       border-width: 1px;
-      margin-top: 22px;
-      margin-bottom: 12px;
+      margin-top: 24px;
+      margin-bottom: 24px;
       border-bottom-width: 0;
-      border-color: $_bfbfbf;
+      border-color: rgba(34, 36, 38, 0.1);
     }
   }
   .onwnerInfo_container {
@@ -60,7 +77,7 @@
     }
     .owner_part {
       width: 60%;
-      height: 10px;
+      height: 15px;
       margin-bottom: 20px;
     }
     .continue_to_checkout {

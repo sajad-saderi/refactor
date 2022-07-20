@@ -10,7 +10,8 @@ import Icon from '../../Icons';
 const Comment_section = ({
   user_id,
   user_data,
-  language
+  language,
+  host
 }: IComment_section) => {
   const [active_tab, set_active_tab] = useState(true);
   const [review_renter, setReViewRenter] = useState([]);
@@ -19,7 +20,8 @@ const Comment_section = ({
   const { activeLanguage } = useContext(languageCTX);
 
   useEffect(() => {
-    // get_reviews();
+    if (host) set_active_tab(false);
+    else set_active_tab(true);
   }, []);
 
   // const get_reviews = async () => {
@@ -124,6 +126,7 @@ interface IComment_section {
   user_id: number;
   user_data: any;
   language: any;
+  host: boolean;
 }
 
 export default Comment_section;

@@ -833,8 +833,8 @@ const Request_cart = ({ data, getDataAgain, language }: IRequest_cart) => {
           ) : (
             <>
               <Link
-                href='/user/[id]'
-                as={`/user/${renter_info.id}`}
+                href='/user/[id]?host=true'
+                as={`/user/${renter_info.id}?host=true`}
                 prefetch={false}>
                 <a>
                   <span className='avatar'>

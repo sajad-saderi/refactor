@@ -1,4 +1,4 @@
-@import "../../../../styles/colors";
+@import '../../../../styles/colors';
 
 .modal_box_div {
   width: 100%;
@@ -19,8 +19,7 @@
       align-items: center;
       .Blue_BTN {
         border: 2px solid $_3fa6da;
-        padding: 5px 30px;
-        width: 103px;
+        padding: 7px 14px;
         margin: 0 10px;
       }
       .cancel_btn {

@@ -1,23 +1,23 @@
-import { useEffect, useState, useContext } from "react";
-import { REQUEST_GET_USER_CARS } from "../../../API";
-import Router from "next/router";
-import dynamic from "next/dynamic";
-import Comment_section from "../../../components/profile/comment_section/comment_section";
-import toast_context from "../../../context/Toast_context";
-const Car = dynamic(() => import("./car"));
+import { useEffect, useState, useContext } from 'react';
+import { REQUEST_GET_USER_CARS } from '../../../API';
+import Router from 'next/router';
+import dynamic from 'next/dynamic';
+import Comment_section from '../../../components/profile/comment_section/comment_section';
+import toast_context from '../../../context/Toast_context';
+const Car = dynamic(() => import('./car'));
 const CarLoading = dynamic(() =>
-  import("../../../components/cartPlaceholder/CarLoadingProfile")
+  import('../../../components/cartPlaceholder/CarLoadingProfile')
 );
-const Radio = dynamic(() => import("../../../components/form/Radio"));
+const Radio = dynamic(() => import('../../../components/form/Radio'));
 // import Car from "./car";
 // import "./profile_car.scss";
 // import CarLoading from "../../../components/cartPlaceholder/CarLoadingProfile";
 // import Radio from "../../../components/form/Radio";
-import Button from "../../../components/form/Button"; 
-import ErrorHelper from "../../../../utils/error_helper";
-import net_CTX from "../../../context/internetConnectionCTX";
-import languageCTX from "../../../context/languageCTX";
-import Icon from "../../../components/Icons";
+import Button from '../../../components/form/Button';
+import ErrorHelper from '../../../../utils/error_helper';
+import net_CTX from '../../../context/internetConnectionCTX';
+import languageCTX from '../../../context/languageCTX';
+import Icon from '../../../components/Icons';
 
 let useFilter = false;
 let filterNumber = 0;
@@ -29,6 +29,7 @@ const Profile_Cars = ({
   profile_Id,
   user_data,
   language,
+  host
 }: IProfile_Cars) => {
   const [result, setResult] = useState(null);
   const [active, setActive] = useState(1);
@@ -58,7 +59,7 @@ const Profile_Cars = ({
       data = {
         id: profile_Id,
         is_out_of_service: filterNumber,
-        page: page,
+        page: page
       };
     } else {
       data = { id: profile_Id, page: page };
@@ -75,9 +76,9 @@ const Profile_Cars = ({
         (item) => !item.cancellation_policy
       );
       if (uncompleted_item.length > 0) {
-        localStorage["red_dot"] = 1;
+        localStorage['red_dot'] = 1;
       } else {
-        localStorage.removeItem("red_dot");
+        localStorage.removeItem('red_dot');
       }
       if (user_cars_res.total_count > 14 && user_cars_res.remained_count > 0) {
         setShowMoreButton(true);
@@ -89,13 +90,13 @@ const Profile_Cars = ({
         toastCTX.toast_option({
           message: error.response
             ? ErrorHelper({
-              errorObj: error.response,
-              _400Message: language.COMMON.errorInUserCars,
-            })
+                errorObj: error.response,
+                _400Message: language.COMMON.errorInUserCars
+              })
             : error,
-          color: "#ed9026",
+          color: '#ed9026',
           time: 0,
-          autoClose: false,
+          autoClose: false
         });
     }
   };
@@ -103,9 +104,9 @@ const Profile_Cars = ({
   const set_car_count_in_heap = (len) => {
     if (is_mine) {
       try {
-        if (window["heap"]) {
-          window["heap"].addUserProperties({
-            Cars_Num: len,
+        if (window['heap']) {
+          window['heap'].addUserProperties({
+            Cars_Num: len
           });
         }
       } catch (error) {
@@ -133,7 +134,9 @@ const Profile_Cars = ({
   };
 
   return (
-    <article className="Profile_car_container" dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
+    <article
+      className='Profile_car_container'
+      dir={activeLanguage === 'fa' ? 'rtl' : 'ltr'}>
       {/* {is_mine && result
         ? result.length > 3 && (
             <div className='service_filer'>
@@ -165,7 +168,7 @@ const Profile_Cars = ({
         : null} */}
       {result ? (
         result.length > 0 ? (
-          <div className="cars_container">
+          <div className='cars_container'>
             {result.map((item, i) => {
               // car section
               return is_mine ? (
@@ -202,7 +205,7 @@ const Profile_Cars = ({
         //     />
         //   </div>
         // )
-        <div className="place_holder_div">
+        <div className='place_holder_div'>
           <CarLoading />
           <CarLoading />
           <CarLoading />
@@ -210,20 +213,30 @@ const Profile_Cars = ({
         </div>
       )}
       {showMoreButton ? (
-        <div className="Load_more_car_container">
+        <div className='Load_more_car_container'>
           <span
-            className="Load_more_car HEAP_Profile_Btn_ShowMore"
+            className='Load_more_car HEAP_Profile_Btn_ShowMore'
             onClick={() => {
               page = 1 + page;
               fetchApi(page);
-            }}
-          >
-            <Icon name="chevronUp" rotate={180} width="20px" height="20px" color="#202020"/>
+            }}>
+            <Icon
+              name='chevronUp'
+              rotate={180}
+              width='20px'
+              height='20px'
+              color='#202020'
+            />
             {language.COMMON.loadMore}
           </span>
         </div>
       ) : null}
-      <Comment_section user_id={profile_Id} user_data={user_data} language={language} />
+      <Comment_section
+        user_id={profile_Id}
+        user_data={user_data}
+        language={language}
+        host={host}
+      />
     </article>
   );
 };
@@ -233,6 +246,7 @@ interface IProfile_Cars {
   profile_Id: number;
   language: any;
   user_data: any;
+  host: boolean;
 }
 
 export default Profile_Cars;
