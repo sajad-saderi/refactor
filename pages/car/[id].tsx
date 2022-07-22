@@ -264,11 +264,14 @@ export async function getServerSideProps(props) {
       initial_search_id: null,
       id
     };
-    if (error === 'Not found!') {
+    if (error === 'Not found!' || error.response.data.error === 'NOT_FOUND') {
       init_props['expired'] = true;
       init_props['_404'] = true;
     }
-    if (error === 'INVALID_SEARCH_ID') {
+    if (
+      error === 'INVALID_SEARCH_ID' ||
+      error.response.data.error === 'INVALID_SEARCH_ID'
+    ) {
       init_props['expired'] = true;
     }
 

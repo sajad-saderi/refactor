@@ -115,7 +115,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const data = {
       order_information: null
     };
-    if (error.response.data?.error === 'INVALID_SEARCH_ID') {
+    if (
+      error === 'INVALID_SEARCH_ID' ||
+      error.response.data?.error === 'INVALID_SEARCH_ID'
+    ) {
       data['expired'] = true;
     }
     return {
