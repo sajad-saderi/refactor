@@ -16,8 +16,7 @@ import { useRouter } from 'next/router';
 // import Slider from "../../../../src/components/Slider";
 import Button from '../../../components/form/Button';
 import Link from 'next/link';
-import DatePicker, { DayRange, utils } from 'react-modern-calendar-datepicker';
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker, { DayRange, utils } from '../../../components/datePicker';
 // import CarPageLoading from "../../../components/cartPlaceholder/carPageLoading";
 import jsCookie from 'js-cookie';
 import moment from 'moment-jalaali';
@@ -42,6 +41,7 @@ import { ICalender } from '../../../../types';
 import { twoWayDateConvertor } from '../../../helpers/dateControler';
 import { numberChanger } from '../../../../utils/numberChanger';
 import Icon from '../../../components/Icons';
+import classNames from 'classnames';
 
 // use شنبه،یک شنبه و ....
 moment.loadPersian({ dialect: 'persian-modern' });
@@ -991,7 +991,16 @@ const CarPage = ({
                             value={dayRange}
                             onChange={setDayRange}
                             shouldHighlightWeekends
-                            minimumDate={utils(activeLanguage).getToday()}
+                            minimumDate={
+                              dayRange.from && !dayRange.to
+                                ? dayRange.from
+                                : utils(activeLanguage).getToday()
+                            }
+                            calendarPopperPosition='bottom'
+                            wrapperClassName={classNames(
+                              'customCalenderClass',
+                              !dayRange.to ? 'pushLeft' : ''
+                            )}
                             locale={activeLanguage}
                             colorPrimary='#4ba3ce'
                             // disabledDays={[utils("fa").getToday()]}
@@ -1362,7 +1371,16 @@ const CarPage = ({
                         value={dayRange}
                         onChange={setDayRange}
                         shouldHighlightWeekends
-                        minimumDate={utils(activeLanguage).getToday()}
+                        minimumDate={
+                          dayRange.from && !dayRange.to
+                            ? dayRange.from
+                            : utils(activeLanguage).getToday()
+                        }
+                        calendarPopperPosition='bottom'
+                        wrapperClassName={classNames(
+                          'customCalenderClass',
+                          !dayRange.to ? 'pushLeft' : ''
+                        )}
                         locale={activeLanguage}
                         colorPrimary='#4ba3ce'
                         // disabledDays={[utils("fa").getToday()]}

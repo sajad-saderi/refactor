@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker, { DayRange, utils } from 'react-modern-calendar-datepicker';
+import DatePicker, { DayRange, utils } from '../../../components/datePicker';
 import moment from 'moment-jalaali';
 // import "./PriceBox.scss";
 import TextInput from '../../../components/form/TextInput';
@@ -244,11 +243,15 @@ const PriceBox = (props: IPriceBox) => {
             ].join(' ')}>
             <label className='Diff_margin'>از تاریخ</label>
             <DatePicker
-              inputPlaceholder='از تاریخ تا تاریخ'
+              inputPlaceholder=' '
               value={dayRange}
               onChange={setDayRange}
               shouldHighlightWeekends
-              minimumDate={utils('fa').getToday()}
+              minimumDate={
+                dayRange.from && !dayRange.to
+                  ? dayRange.from
+                  : utils('fa').getToday()
+              }
               locale='fa'
               colorPrimary='#4ba3ce'
               disabledDays={DisableList}

@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker, { DayRange, utils } from 'react-modern-calendar-datepicker';
+import DatePicker, { DayRange, utils } from '../../components/datePicker';
 import moment from 'moment-jalaali';
 import dynamic from 'next/dynamic';
 import net_CTX from '../../context/internetConnectionCTX';
@@ -421,10 +419,18 @@ const Search = ({ dynamic, searchSubmit, language }: ISearch) => {
               value={dayRange}
               onChange={setDayRange}
               shouldHighlightWeekends
-              minimumDate={utils(activeLanguage).getToday()}
+              minimumDate={
+                dayRange.from && !dayRange.to
+                  ? dayRange.from
+                  : utils(activeLanguage).getToday()
+              }
+              calendarPopperPosition='bottom'
               locale={activeLanguage}
               colorPrimary='#4ba3ce'
-              // disabledDays={[utils("fa").getToday()]}
+              wrapperClassName={classNames(
+                'customCalenderClass',
+                !dayRange.to ? 'pushLeft' : ''
+              )}
             />
             <div
               className={`${

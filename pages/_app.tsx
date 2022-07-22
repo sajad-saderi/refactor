@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import * as Sentry from '@sentry/browser';
 import { REQUEST_GET_USER_INFO } from '../src/API';
+import '../src/components/datePicker/DatePicker.css';
+
 import Image from 'next/image';
 import jsCookie from 'js-cookie';
 import user_context from '../src/context/User_info';
